@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Topdown-shooter", "Topdown-shooter\Topdown-shooter.vcxproj", "{028169B3-5023-42CF-A3BB-1407DAC8801F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7D59CDF-F8A2-4BB7-B5D0-8F85504F9545} = {E7D59CDF-F8A2-4BB7-B5D0-8F85504F9545}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{E7D59CDF-F8A2-4BB7-B5D0-8F85504F9545}"
 EndProject
