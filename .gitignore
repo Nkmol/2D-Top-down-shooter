@@ -7,10 +7,7 @@
 *.o
 *.obj
 .idea
-CMakeLists.txt
-Include
 cmake-build-debug
-cmake
 
 # Precompiled Headers
 *.gch
