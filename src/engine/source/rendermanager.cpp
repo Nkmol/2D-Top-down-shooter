@@ -27,13 +27,9 @@ SDL_Surface* RenderManager::LoadImages(const std::string &filePath) {
 void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
                                 double angle) {
     int resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
-//    std::cout << resp << std::endl;
     if (resp != 0) {
         std::cout << SDL_GetError() << std::endl;
     }
-
-////    _rendercount += 1;
-//    std::cout << std::to_string(_rendercount) << std::endl;
 }
 
 RenderManager* RenderManager::GetRenderManager() {
