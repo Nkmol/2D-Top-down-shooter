@@ -1,3 +1,0 @@
-/Users/ahmadrahimi/Desktop/school/minor/project/repos/GroepH/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/ahmadrahimi/Desktop/school/minor/project/repos/GroepH/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ahmadrahimi/Desktop/school/minor/project/repos/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir
