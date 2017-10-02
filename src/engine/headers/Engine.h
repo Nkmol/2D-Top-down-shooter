@@ -8,5 +8,6 @@ namespace Engine {
 	class MainManager {
 	public:
 		std::string Message = "test";
+		
 	};
 }
