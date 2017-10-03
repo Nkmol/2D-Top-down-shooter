@@ -58,13 +58,6 @@ else()
     set(BOX2D_FOUND FALSE)
 endif()
 
-if(BOX2D_INCLUDE_DIR)
-    MESSAGE("testttszz22")
-    MESSAGE(${BOX2D_INCLUDE_DIR})
-else()
-    MESSAGE("testttszz11")
-    MESSAGE(${BOX2D_INCLUDE_DIR})
-endif()
 # Handle the QUIETLY and REQUIRED arguments and set SNDFILE_FOUND to TRUE if
 # all listed variables are TRUE.
 include(FindPackageHandleStandardArgs)

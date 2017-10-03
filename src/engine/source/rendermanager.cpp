@@ -4,6 +4,7 @@
 
 #include "rendermanager.h"
 
+using namespace std;
 
 RenderManager* RenderManager::renderManager;
 

@@ -50,7 +50,7 @@ find_path(SDL2_IMAGE_INCLUDE_DIR SDL_image.h
         # path suffixes to search inside ENV{SDLDIR}
         include/SDL2 include
         )
-
+MESSAGE(${SDL2_IMAGE_INCLUDE_DIR})
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(VC_LIB_PATH_SUFFIX lib/x64)
 else()

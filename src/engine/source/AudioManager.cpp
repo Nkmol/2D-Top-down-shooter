@@ -1,9 +1,13 @@
 #include "AudioManager.h"
 
+using namespace std;
+
+AudioManager* AudioManager::sInstance;
+
 //how to call: AudioManager::instance()->playBGM();
 AudioManager* AudioManager::instance()
 {
-	if (!sInstance) {
+	if (!AudioManager::sInstance) {
 		static AudioManager sInstance;
 		sInstance.initMusicPlayer();
 	}

@@ -7,21 +7,17 @@
 #include <iostream>
 #include <SDL_image.h>
 
-
-using namespace std;
-
 class AssetManager {
 
 private:
-	map<string, const char* > sounds;
-	map<string, const char* > effect;
-	map<string, const char* > render;
+	std::map<std::string, const char* > sounds;
+	std::map<std::string, const char* > effect;
+	std::map<std::string, const char* > render;
 	static AssetManager* sInstance;
 public:
 	AssetManager();
 	static AssetManager* instance();
-	Mix_Music* loadBGM(string soundToken);
-	Mix_Chunk* loadEffect(string effectToken);
-	SDL_Surface* loadSurface(string mediaToken);
-
+	Mix_Music* loadBGM(std::string soundToken);
+	Mix_Chunk* loadEffect(std::string effectToken);
+	SDL_Surface* loadSurface(std::string mediaToken);
 }; 

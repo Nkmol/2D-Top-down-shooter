@@ -10,8 +10,6 @@
 #include <SDL_image.h>
 #include <iostream>
 
-using namespace std;
-
 struct SDL_Window;
 struct SDL_Renderer;
 
@@ -47,7 +45,7 @@ public:
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
-    map<std::string, SDL_Surface*> sprites;
+    std::map<std::string, SDL_Surface*> sprites;
     static RenderManager *renderManager;
 };
 #endif //RENDERMANAGER_H

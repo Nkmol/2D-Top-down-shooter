@@ -2,6 +2,9 @@
 
 #include "AssetManager.h"
 
+using namespace std;
+AssetManager* AssetManager::sInstance;
+
 //how to call: AssetManager::instance()->loadBGM();
 AssetManager* AssetManager::instance()
 {

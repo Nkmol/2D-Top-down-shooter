@@ -4,20 +4,17 @@
 #include <iostream>
 #include "SDL_mixer.h"
 #include "AssetManager.h"
-
-using namespace std;
-
 class AudioManager {
 
 public:
 	AudioManager();
 	int initMusicPlayer();
 	static AudioManager* instance();
-	int loadBGM(string audioToken);
+	int loadBGM(std::string audioToken);
 	void playBGM();
 	void pauseResumeBGM();
 	void stopBGM();
-	int playEffect(string audioToken);
+	int playEffect(std::string audioToken);
 	void close();
 private:
 	static AudioManager* sInstance;
