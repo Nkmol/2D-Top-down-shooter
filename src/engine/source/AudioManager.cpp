@@ -5,7 +5,7 @@ AudioManager* AudioManager::Instance()
 {
 	if (!sInstance) {
 		static AudioManager sInstance;
-		sInstance.initMusicPlayer();
+		sInstance.InitMusicPlayer();
 	}
 	return sInstance;
 }
@@ -91,7 +91,7 @@ void AudioManager::PauseResumeBGM()
 		}
 	}
 	else {
-		playBGM();
+		PlayBGM();
 	}
 }
 
