@@ -1,11 +1,11 @@
 #include "AudioManager.h"
 
 //how to call: AudioManager::instance()->playBGM();
-AudioManager* AudioManager::instance()
+AudioManager* AudioManager::Instance()
 {
 	if (!sInstance) {
 		static AudioManager sInstance;
-		sInstance.initMusicPlayer();
+		sInstance.InitMusicPlayer();
 	}
 	return sInstance;
 }
@@ -16,7 +16,7 @@ AudioManager::AudioManager()
 	gEffectM = nullptr;
 }
 
-int AudioManager::initMusicPlayer()
+int AudioManager::InitMusicPlayer()
 {
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
@@ -35,7 +35,7 @@ int AudioManager::initMusicPlayer()
 	return 0;
 }
 
-int AudioManager::loadBGM(string audioToken)
+int AudioManager::LoadBGM(string audioToken)
 {
 	//Load music
 	//gBGM = Mix_LoadMUS(name);
@@ -49,7 +49,7 @@ int AudioManager::loadBGM(string audioToken)
 }
 
 
-int AudioManager::playEffect(string audioToken)
+int AudioManager::PlayEffect(string audioToken)
 {
 	//Mix_Chunk* effectM = Mix_LoadWAV(name);
 	gEffectM = AssetManager::instance()->loadEffect(audioToken);
@@ -62,7 +62,7 @@ int AudioManager::playEffect(string audioToken)
 	return 0;
 }
 
-void AudioManager::playBGM()
+void AudioManager::PlayBGM()
 {
 	cout << "playing music: " << endl;
 
@@ -73,7 +73,7 @@ void AudioManager::playBGM()
 	}
 }
 
-void AudioManager::pauseResumeBGM()
+void AudioManager::PauseResumeBGM()
 {
 	if (Mix_PlayingMusic() == 1)
 	{
@@ -91,16 +91,16 @@ void AudioManager::pauseResumeBGM()
 		}
 	}
 	else {
-		playBGM();
+		PlayBGM();
 	}
 }
 
-void AudioManager::stopBGM()
+void AudioManager::StopBGM()
 {
 	Mix_HaltMusic();
 }
 
-void AudioManager::close()
+void AudioManager::Close()
 {
 	//Free the music
 	Mix_FreeMusic(gBGM);
