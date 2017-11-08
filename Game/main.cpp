@@ -2,13 +2,14 @@
 #include "Engine.h"
 //#include "AudioManager.h"
 
-int main(int argc, char *argv[]) {
+#undef main
+int main(int argc, char* argv[]) {
 	std::cout << "Hello, World!" << std::endl;
 
 	auto engine = new Engine::MainManager();
 	//werkt nog niet vanwege link problemen
-	//AudioManager::instance()->loadBGM("pokemon");
-	//AudioManager::instance()->playBGM();
+	//AudioManager::Instance()->LoadBGM("pokemon");
+	//AudioManager::Instance()->PlayBGM();
 	std::cout << engine->Message;
 
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-#include <iostream>
 #include "SDL_mixer.h"
 #include "AssetManager.h"
 
@@ -13,7 +11,6 @@ public:
 	AudioManager(AudioManager const&) = delete;
 	void operator=(AudioManager const&) = delete;
 
-	AudioManager();
 	int InitMusicPlayer();
 	static AudioManager* Instance();
 	int LoadBGM(string audioToken);
@@ -23,6 +20,8 @@ public:
 	int PlayEffect(string audioToken);
 	void Close();
 private:
+	AudioManager();
+
 	static AudioManager* sInstance;
 	Mix_Music* gBGM;
 	Mix_Chunk* gEffectM;
