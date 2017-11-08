@@ -3,10 +3,9 @@
 //how to call: AudioManager::instance()->playBGM();
 AudioManager* AudioManager::Instance()
 {
-	if (!sInstance) {
-		static AudioManager sInstance;
-		sInstance.InitMusicPlayer();
-	}
+	// TODO to refernece, can never be nullptr (should never)
+	static AudioManager* sInstance; // Guaranteed to be destroyed.
+									// Instantiated on first use.
 	return sInstance;
 }
 

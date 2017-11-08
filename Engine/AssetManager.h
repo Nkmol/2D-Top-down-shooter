@@ -17,8 +17,10 @@ private:
 	map<string, const char* > effect;
 	map<string, const char* > render;
 	static AssetManager* sInstance;
-public:
 	AssetManager();
+public:
+	AssetManager(AssetManager const&) = delete;
+	void operator=(AssetManager const&) = delete;
 	static AssetManager* instance();
 	Mix_Music* loadBGM(string soundToken);
 	Mix_Chunk* loadEffect(string effectToken);

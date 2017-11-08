@@ -5,9 +5,9 @@
 //how to call: AssetManager::instance()->loadBGM();
 AssetManager* AssetManager::instance()
 {
-	if (!sInstance) {
-		static AssetManager sInstance;
-	}
+	// TODO to refernece, can never be nullptr (should never)
+	static AssetManager* sInstance;
+
 	return sInstance;
 }
 

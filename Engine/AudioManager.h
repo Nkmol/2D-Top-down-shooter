@@ -10,6 +10,9 @@ using namespace std;
 class AudioManager {
 
 public:
+	AudioManager(AudioManager const&) = delete;
+	void operator=(AudioManager const&) = delete;
+
 	AudioManager();
 	int InitMusicPlayer();
 	static AudioManager* Instance();
