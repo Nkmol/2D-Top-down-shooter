@@ -7,9 +7,9 @@ int main(int argc, char* argv[]) {
 	std::cout << "Hello, World!" << std::endl;
 
 	auto engine = new Engine::MainManager();
-	//werkt nog niet vanwege link problemen
-	//AudioManager::Instance()->LoadBGM("pokemon");
-	//AudioManager::Instance()->PlayBGM();
+	
+	/*AudioManager::Instance()->LoadBGM("pokemon");
+	AudioManager::Instance()->PlayBGM(); */
 	std::cout << engine->Message;
 
 

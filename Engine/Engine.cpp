@@ -1,7 +1,10 @@
 // This is the main DLL file.
 #include "Engine.h"
+#include <SDL.h>
 
 namespace Engine
 {
-
-}// This is the main DLL file.
+	MainManager::MainManager()
+	{
+	}
+}

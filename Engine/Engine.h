@@ -6,8 +6,8 @@
 namespace Engine {
 
 	class MainManager {
-	public:
-		std::string Message = "test";
-
+		public:
+			std::string Message = "test";
+			MainManager();
 	};
 }
