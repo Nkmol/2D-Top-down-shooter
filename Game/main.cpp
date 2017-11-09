@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../Engine/Engine.h"
+#include "../Engine/RenderManager.h"
 //#include "AudioManager.h"
 
 #undef main
@@ -10,6 +11,11 @@ int main(int argc, char* argv[]) {
 	
 	/*AudioManager::Instance()->LoadBGM("pokemon");
 	AudioManager::Instance()->PlayBGM(); */
+
+//    RenderManager::GetRenderManager();
+//
+//        RenderManager::GetRenderManager()->Clear();
+//        RenderManager::GetRenderManager()->Flip();
 
 	std::cout << engine->Message;
 
