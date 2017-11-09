@@ -22,7 +22,7 @@ set(SOURCE_FILES
         Engine/RenderManager.h
         Engine/Engine.cpp
         Engine/Engine.h
-        )
+        Engine/moveableobject.cpp Engine/moveableobject.h)
 add_executable(GroepH ${SOURCE_FILES})
 
 target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})

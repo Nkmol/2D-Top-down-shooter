@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../Engine/Engine.h"
 #include "../Engine/RenderManager.h"
+#include "../Engine/moveableobject.h"
 //#include "AudioManager.h"
 
 #undef main
@@ -12,11 +13,15 @@ int main(int argc, char* argv[]) {
 	/*AudioManager::Instance()->LoadBGM("pokemon");
 	AudioManager::Instance()->PlayBGM(); */
 
-//    RenderManager::GetRenderManager();
-//
-//        RenderManager::GetRenderManager()->Clear();
-//        RenderManager::GetRenderManager()->Flip();
+    RenderManager::GetRenderManager();
 
+    while(true) {
+        SDL_PumpEvents();
+        MoveableObject moveableObject = MoveableObject("content/soldier.png", 50, 50, 1);
+        RenderManager::GetRenderManager()->Clear();
+        moveableObject.draw(50,50,100);
+        RenderManager::GetRenderManager()->Flip();
+    }
 	std::cout << engine->Message;
 
 	std::cin.get();

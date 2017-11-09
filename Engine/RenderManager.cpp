@@ -17,7 +17,7 @@ RenderManager::~RenderManager() {
 	SDL_DestroyWindow(this->window);
 }
 
-SDL_Surface* RenderManager::LoadImages(const std::string &filePath) {
+SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	if (this->sprites.count(filePath) == 0) {
 		this->sprites[filePath] = IMG_Load(filePath.c_str());
 	}
