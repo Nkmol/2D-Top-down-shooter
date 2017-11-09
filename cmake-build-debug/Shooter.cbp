@@ -97,19 +97,10 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
-		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h">
-			<Option target="GroepH"/>
-		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
-		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.h">
-			<Option target="GroepH"/>
-		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp">
-			<Option target="GroepH"/>
-		</Unit>
-		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp">
@@ -121,16 +112,25 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
-		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h">
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AudioManager.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp">

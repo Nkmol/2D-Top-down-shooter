@@ -49,7 +49,7 @@ CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
  /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL.h
  /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -97,9 +97,9 @@ CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
  /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AudioManager.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL.h
  /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -146,7 +146,7 @@ CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/begin_code.h
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h
  /Library/Frameworks/SDL2.framework/Headers/SDL_config.h
@@ -226,7 +226,7 @@ CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
 CMakeFiles/GroepH.dir/Game/Player.cpp.o
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
@@ -278,10 +278,10 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/begin_code.h
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp

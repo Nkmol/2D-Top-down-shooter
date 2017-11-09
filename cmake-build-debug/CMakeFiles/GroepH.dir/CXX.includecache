@@ -607,41 +607,17 @@ SDL2/close_code.h
 -
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp
-AssetManager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h
-
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h
-SDL.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/SDL.h
-SDL_audio.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/SDL_audio.h
-SDL_mixer.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/SDL_mixer.h
-map
--
-iostream
--
-SDL_image.h
--
+headers/AssetManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp
-AudioManager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.h
-
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.h
-SDL_mixer.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/SDL_mixer.h
-AssetManager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.h
+headers/AudioManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AudioManager.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp
-Engine.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
+headers/Engine.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h
 SDL.h
--
-
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
-string
 -
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp
@@ -659,22 +635,34 @@ headers/Direction.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
-rendermanager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
+headers/RenderManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
 
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
-map
--
-string
--
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h
 SDL.h
--
-SDL_image.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/SDL.h
+SDL_audio.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/SDL_audio.h
+SDL_mixer.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/SDL_mixer.h
+map
 -
 iostream
 -
+SDL_image.h
+-
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AudioManager.h
+SDL_mixer.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/SDL_mixer.h
+AssetManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AssetManager.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h
+string
+-
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
 SDL_events.h
@@ -690,7 +678,7 @@ string
 Direction.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
 
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
 map
 -
 string
@@ -713,10 +701,10 @@ headers/Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
 iostream
 -
-../Engine/Engine.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
-../Engine/RenderManager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
+../Engine/headers/Engine.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Engine.h
+../Engine/headers/RenderManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
 ../Engine/headers/InputManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
 headers/Player.h

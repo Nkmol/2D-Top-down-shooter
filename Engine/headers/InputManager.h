@@ -23,15 +23,6 @@ private:
 
     InputManager();
 
-    int _mousePositionX;
-    int _mousePositionY;
-    std::map<SDL_Scancode, bool> _heldKeys;
-    std::map<SDL_Scancode, bool> _pressedKeys;
-    std::map<SDL_Scancode, bool> _releasedKeys;
-    std::map<Uint8, bool> _mousePressedButtons;
-    std::map<Uint8, bool> _mouseReleasedButtons;
-    std::map<Uint8, bool> _mouseHeldButtons;
-
 public:
 
     static InputManager *instance();
@@ -40,32 +31,7 @@ public:
 
     bool isKeyDown(SDL_Event &event);
 
-    Direction getKey(SDL_Event &event);
-
-    void beginNewFrame();
-
-    void keyUpEvent(const SDL_Event &event);
-
-    void keyDownEvent(const SDL_Event &event);
-
-    void mouseDownEvent(const SDL_Event &event);
-
-    void mouseUpEvent(const SDL_Event &event);
-
-    void mouseMovedEvent(const SDL_Event &event);
-
-    bool wasKeyPressed(SDL_Scancode key);
-
-    bool wasKeyReleased(SDL_Scancode key);
-
-    bool isKeyHeld(SDL_Scancode key);
-
-    bool wasMouseButtonPressed(Uint8 button);
-
-    bool wasMouseButtonReleased(Uint8 button);
-
-    bool isMouseButtonHeld(Uint8 button);
-
+    Direction getDirection(SDL_Event &event);
 };
 
 

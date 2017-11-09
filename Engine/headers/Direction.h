@@ -5,7 +5,11 @@
 #ifndef SHOOTER_DIRECTION_H
 
 enum class Direction {
-    Top, Right, Bottom, Left, Null
+    Top,
+    Right,
+    Bottom,
+    Left,
+    Null
 };
 
 

@@ -48,7 +48,7 @@ CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: /Library/Frameworks/SDL2.framew
 CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
 CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
 CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: ../Engine/AssetManager.cpp
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: ../Engine/AssetManager.h
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: ../Engine/headers/AssetManager.h
 
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -96,9 +96,9 @@ CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2.framew
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: ../Engine/AssetManager.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: ../Engine/AudioManager.cpp
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: ../Engine/AudioManager.h
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: ../Engine/headers/AssetManager.h
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: ../Engine/headers/AudioManager.h
 
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -145,7 +145,7 @@ CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/He
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: ../Engine/Engine.cpp
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: ../Engine/Engine.h
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: ../Engine/headers/Engine.h
 
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_config.h
@@ -225,7 +225,7 @@ CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2.frame
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: ../Engine/RenderManager.cpp
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: ../Engine/rendermanager.h
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: ../Engine/headers/RenderManager.h
 
 CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Engine/headers/Direction.h
 CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Engine/headers/MoveableObject.h
@@ -277,11 +277,11 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Header
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
-CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/Engine.h
-CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/RenderManager.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/Direction.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/Engine.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/InputManager.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/MoveableObject.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/RenderManager.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Game/headers/Player.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Game/main.cpp
 

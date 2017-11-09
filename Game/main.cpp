@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../Engine/Engine.h"
-#include "../Engine/RenderManager.h"
+#include "../Engine/headers/Engine.h"
+#include "../Engine/headers/RenderManager.h"
 #include "../Engine/headers/InputManager.h"
 #include "headers/Player.h"
 //#include "AudioManager.h"
@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
 
     auto inputManager = InputManager::instance();
 
+    // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
     SDL_Init(SDL_INIT_EVERYTHING);
 
     SDL_Window *_window;
@@ -23,19 +24,18 @@ int main(int argc, char *argv[]) {
     SDL_SetWindowTitle(_window, "Shooter");
     SDL_Surface *surface = SDL_GetWindowSurface(_window);
 
-
     SDL_Event event;
 
-    std::unique_ptr<Player> player{new Player};
-    player->setXPos(0);
-    player->setYPos(0);
+    std::unique_ptr<MoveableObject> player{new Player(5, 3)};
 
+    std::cout << "X: " << player->getXPos() << std::endl;
+    std::cout << "Y: " << player->getYPos() << std::endl << std::endl;
 
     while (true) {
 
         if (inputManager->hasEvent(&event)) {
             if (inputManager->isKeyDown(event)) {
-                auto direction = inputManager->getKey(event);
+                auto direction = inputManager->getDirection(event);
                 player->move(direction);
 
                 std::cout << "X: " << player->getXPos() << std::endl;
@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+
+    // TODO: END. this entire block is just for testing ////////////////////////////////////////////////////////////////
 
 
     std::cout << engine->Message;

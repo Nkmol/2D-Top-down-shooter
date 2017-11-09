@@ -5,6 +5,7 @@
 #include "headers/MoveableObject.h"
 #include "headers/Direction.h"
 
+MoveableObject::MoveableObject(int xPos, int yPos) : xPos{xPos}, yPos{yPos} {}
 
 int MoveableObject::getXPos() const {
     return xPos;
@@ -14,12 +15,22 @@ int MoveableObject::getYPos() const {
     return yPos;
 }
 
-void MoveableObject::setXPos(int xPos) {
-    MoveableObject::xPos = xPos;
-}
+void MoveableObject::move(Direction direction) {
+    if (direction == Direction::Top) {
+        moveTop();
+    }
 
-void MoveableObject::setYPos(int yPos) {
-    MoveableObject::yPos = yPos;
+    if (direction == Direction::Right) {
+        moveRight();
+    }
+
+    if (direction == Direction::Bottom) {
+        moveBottom();
+    }
+
+    if (direction == Direction::Left) {
+        moveLeft();
+    }
 }
 
 void MoveableObject::moveTop() {
@@ -48,21 +59,3 @@ void MoveableObject::moveLeft() {
     }
 }
 
-void MoveableObject::move(Direction direction) {
-    if (direction == Direction::Top) {
-        moveTop();
-    }
-
-    if (direction == Direction::Right) {
-        moveRight();
-    }
-
-    if (direction == Direction::Bottom) {
-        moveBottom();
-    }
-
-    if (direction == Direction::Left) {
-        moveLeft();
-    }
-
-}

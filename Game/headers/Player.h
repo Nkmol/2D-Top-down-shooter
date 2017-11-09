@@ -11,6 +11,8 @@
 class Player : public MoveableObject {
 
 
+public:
+    Player(int xPos, int yPos);
 };
 
 

@@ -3,3 +3,8 @@
 //
 
 #include "headers/Player.h"
+
+Player::Player(int xPos, int yPos) : MoveableObject(xPos, yPos) {
+
+
+}

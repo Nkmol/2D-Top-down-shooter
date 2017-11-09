@@ -23,9 +23,7 @@ private:
     void moveBottom();
 
 public:
-    void setXPos(int xPos);
-
-    void setYPos(int yPos);
+    MoveableObject(int xPos, int yPos);
 
     int getXPos() const;
 
