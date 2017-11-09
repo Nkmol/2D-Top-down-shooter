@@ -10,7 +10,7 @@ find_path(SDL2_MIXER_INCLUDE_DIR SDL_mixer.h
 
 find_library(SDL2_MIXER_LIBRARY
         NAMES SDL2_mixer
-        PATH_SUFFIXES lib
+        PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
         )
 
 set(SDL2_MIXER_LIBRARIES ${SDL2_MIXER_LIBRARY})
