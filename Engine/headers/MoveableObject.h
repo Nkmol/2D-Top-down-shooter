@@ -5,7 +5,9 @@
 #ifndef SHOOTER_MOVEABLEOBJECT_H
 #define SHOOTER_MOVEABLEOBJECT_H
 
-
+#include "Direction.h"
+#include "RenderManager.h"
+#include <SDL_render.h>
 #include <string>
 #include "Direction.h"
 

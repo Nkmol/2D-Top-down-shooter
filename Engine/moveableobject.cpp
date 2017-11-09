@@ -2,10 +2,7 @@
 // Created by Mevlüt Özdemir on 09-11-17.
 //
 
-#include <SDL_render.h>
 #include "headers/MoveableObject.h"
-#include "headers/Direction.h"
-#include "headers/RenderManager.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos} {
     this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
