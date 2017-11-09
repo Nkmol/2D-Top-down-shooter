@@ -12,7 +12,7 @@ public:
 	void operator=(AudioManager const&) = delete;
 
 	int InitMusicPlayer();
-	static AudioManager* Instance();
+	static AudioManager& Instance();
 	int LoadBGM(string audioToken);
 	void PlayBGM();
 	void PauseResumeBGM();
