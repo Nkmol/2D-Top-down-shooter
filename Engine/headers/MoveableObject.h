@@ -14,9 +14,11 @@
 class MoveableObject {
 
 private:
-    SDL_Texture* _sprite;
+    SDL_Texture *_sprite;
 
     int xPos, yPos;
+
+    int angle;
 
     void moveTop();
 
@@ -29,13 +31,13 @@ private:
 public:
     MoveableObject(const std::string &filePath, int xPos, int yPos);
 
+    void move(Direction direction);
+
+    void draw();
+
     int getXPos() const;
 
     int getYPos() const;
-
-    void move(Direction direction);
-
-    void draw(float x, float y, double angle);
 };
 
 

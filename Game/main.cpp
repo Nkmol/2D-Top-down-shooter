@@ -11,6 +11,9 @@ int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
 
 
+    // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
+
+
     auto renderManager = RenderManager::GetRenderManager();
     auto inputManager = InputManager::instance();
 
@@ -19,37 +22,20 @@ int main(int argc, char *argv[]) {
     renderManager->Clear();
 
     std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 0, 0)};
-    player->draw(50, 50, 100);
-
+    player->draw();
     renderManager->Flip();
 
-
-
-    // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
-//    SDL_Init(SDL_INIT_EVERYTHING);
-//
-//    SDL_Window *_window;
-//    SDL_Renderer *_renderer;
-//
-//    SDL_CreateWindowAndRenderer(1080, 720, 0, &_window, &_renderer);
-//    SDL_SetWindowTitle(_window, "Shooter");
-//    SDL_Surface *surface = SDL_GetWindowSurface(_window);
-//
     SDL_Event event;
-
-
-    std::cout << "X: " << player->getXPos() << std::endl;
-    std::cout << "Y: " << player->getYPos() << std::endl << std::endl;
 
     while (true) {
 
         if (inputManager->hasEvent(&event)) {
             if (inputManager->isKeyDown(event)) {
                 auto direction = inputManager->getDirection(event);
+                renderManager->Clear();
                 player->move(direction);
-
-                std::cout << "X: " << player->getXPos() << std::endl;
-                std::cout << "Y: " << player->getYPos() << std::endl << std::endl;
+                player->draw();
+                renderManager->Flip();
             }
 
             if (event.type == SDL_QUIT) {
@@ -57,6 +43,7 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+
 
     // TODO: END. this entire block is just for testing ////////////////////////////////////////////////////////////////
 

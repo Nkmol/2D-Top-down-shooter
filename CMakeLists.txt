@@ -24,7 +24,7 @@ set(SOURCE_FILES
         Engine/RenderManager.cpp
         Engine/headers/RenderManager.h
         Engine/Engine.cpp
-        Engine/moveableobject.cpp
+        Engine/MoveableObject.cpp
         Engine/headers/Engine.h
         Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h)
 add_executable(GroepH ${SOURCE_FILES})

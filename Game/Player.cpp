@@ -6,5 +6,4 @@
 
 Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos) {
 
-
 }
