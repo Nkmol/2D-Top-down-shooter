@@ -7,7 +7,7 @@
 #include "headers/Direction.h"
 
 
-InputManager *InputManager::sInstance = 0;
+InputManager *InputManager::sInstance = nullptr;
 
 InputManager::InputManager() {
     InputManager::keyDirections = {
@@ -19,7 +19,7 @@ InputManager::InputManager() {
 }
 
 InputManager *InputManager::instance() {
-    if (sInstance == 0) {
+    if (sInstance == nullptr) {
         sInstance = new InputManager();
     }
 
@@ -45,6 +45,4 @@ Direction InputManager::getDirection(SDL_Event &event) {
     // if the key does not exists in the map. It is not a valid key.
     return Direction::Null;
 }
-
-
 
