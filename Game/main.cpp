@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     renderManager->Clear();
 
-    std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 0, 0)};
+    std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 100, 300)};
     player->draw();
     renderManager->Flip();
 
