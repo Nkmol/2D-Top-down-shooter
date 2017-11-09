@@ -1,30 +1,67 @@
 #include <iostream>
-#include "../Engine/Engine.h"
-#include "../Engine/RenderManager.h"
-#include "../Engine/moveableobject.h"
+#include "../Engine/headers/Engine.h"
+#include "../Engine/headers/RenderManager.h"
+#include "../Engine/headers/InputManager.h"
+#include "headers/Player.h"
 //#include "AudioManager.h"
 
 #undef main
-int main(int argc, char* argv[]) {
-	std::cout << "Hello, World!" << std::endl;
 
-	auto engine = new Engine::MainManager();
-	
-	/*AudioManager::Instance()->LoadBGM("pokemon");
-	AudioManager::Instance()->PlayBGM(); */
+int main(int argc, char *argv[]) {
+    std::cout << "Hello, World!" << std::endl;
 
-    RenderManager::GetRenderManager();
 
-    while(true) {
-        SDL_PumpEvents();
-        MoveableObject moveableObject = MoveableObject("content/soldier.png", 50, 50, 1);
-        RenderManager::GetRenderManager()->Clear();
-        moveableObject.draw(50,50,100);
-        RenderManager::GetRenderManager()->Flip();
+    auto renderManager = RenderManager::GetRenderManager();
+    auto inputManager = InputManager::instance();
+
+    SDL_PumpEvents();
+
+    renderManager->Clear();
+
+    std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 0, 0)};
+    player->draw(50, 50, 100);
+
+    renderManager->Flip();
+
+
+
+    // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
+//    SDL_Init(SDL_INIT_EVERYTHING);
+//
+//    SDL_Window *_window;
+//    SDL_Renderer *_renderer;
+//
+//    SDL_CreateWindowAndRenderer(1080, 720, 0, &_window, &_renderer);
+//    SDL_SetWindowTitle(_window, "Shooter");
+//    SDL_Surface *surface = SDL_GetWindowSurface(_window);
+//
+    SDL_Event event;
+
+
+    std::cout << "X: " << player->getXPos() << std::endl;
+    std::cout << "Y: " << player->getYPos() << std::endl << std::endl;
+
+    while (true) {
+
+        if (inputManager->hasEvent(&event)) {
+            if (inputManager->isKeyDown(event)) {
+                auto direction = inputManager->getDirection(event);
+                player->move(direction);
+
+                std::cout << "X: " << player->getXPos() << std::endl;
+                std::cout << "Y: " << player->getYPos() << std::endl << std::endl;
+            }
+
+            if (event.type == SDL_QUIT) {
+                break;
+            }
+        }
     }
-	std::cout << engine->Message;
 
-	std::cin.get();
+    // TODO: END. this entire block is just for testing ////////////////////////////////////////////////////////////////
 
-	return 0;
+
+    std::cin.get();
+
+    return 0;
 }

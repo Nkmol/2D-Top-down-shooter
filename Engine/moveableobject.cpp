@@ -1,21 +1,72 @@
 //
-// Created by Ahmad Rahimi on 11/9/17.
+// Created by Mevlüt Özdemir on 09-11-17.
 //
 
+#include <SDL_render.h>
+#include "headers/MoveableObject.h"
+#include "headers/Direction.h"
+#include "headers/RenderManager.h"
 
-#include "moveableobject.h"
+MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos} {
+    this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
+                                                 RenderManager::GetRenderManager()->LoadImage(filePath));
 
-MoveableObject::MoveableObject() {}
-
-MoveableObject::MoveableObject(const std::string &filePath, float posX, float posY, int partnumber) : _x(posX), _y(posY), _partnumber(partnumber) {
-    this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(), RenderManager::GetRenderManager()->LoadImage(filePath));
-
-    if (this->_sprite == NULL){
+    if (this->_sprite == NULL) {
         printf(SDL_GetError());
     }
 }
 
-MoveableObject::~MoveableObject() {}
+int MoveableObject::getXPos() const {
+    return xPos;
+}
+
+int MoveableObject::getYPos() const {
+    return yPos;
+}
+
+void MoveableObject::move(Direction direction) {
+    if (direction == Direction::Top) {
+        moveTop();
+    }
+
+    if (direction == Direction::Right) {
+        moveRight();
+    }
+
+    if (direction == Direction::Bottom) {
+        moveBottom();
+    }
+
+    if (direction == Direction::Left) {
+        moveLeft();
+    }
+}
+
+void MoveableObject::moveTop() {
+    if (MoveableObject::yPos > 0) {
+        MoveableObject::yPos -= 1;
+    }
+}
+
+void MoveableObject::moveRight() {
+    int maxWidth = 10; // todo
+    if (MoveableObject::xPos < maxWidth) {
+        MoveableObject::xPos += 1;
+    }
+}
+
+void MoveableObject::moveBottom() {
+    int maxHeight = 10;
+    if (MoveableObject::yPos < maxHeight) {
+        MoveableObject::yPos += 1;
+    }
+}
+
+void MoveableObject::moveLeft() {
+    if (MoveableObject::xPos > 0) {
+        MoveableObject::xPos -= 1;
+    }
+}
 
 void MoveableObject::draw(float x, float y, double angle) {
 //    try {
@@ -28,6 +79,5 @@ void MoveableObject::draw(float x, float y, double angle) {
 //    }
 }
 
-void MoveableObject::update() {
 
-}
+

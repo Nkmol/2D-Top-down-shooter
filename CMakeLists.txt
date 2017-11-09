@@ -18,14 +18,15 @@ set(SOURCE_FILES
         content
         Game/main.cpp
         Engine/AssetManager.cpp
-        Engine/AssetManager.h
+        Engine/headers/AssetManager.h
         Engine/AudioManager.cpp
-        Engine/AudioManager.h
+        Engine/headers/AudioManager.h
         Engine/RenderManager.cpp
-        Engine/RenderManager.h
+        Engine/headers/RenderManager.h
         Engine/Engine.cpp
-        Engine/Engine.h
-        Engine/moveableobject.cpp Engine/moveableobject.h)
+        Engine/moveableobject.cpp
+        Engine/headers/Engine.h
+        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h)
 add_executable(GroepH ${SOURCE_FILES})
 
 target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})
