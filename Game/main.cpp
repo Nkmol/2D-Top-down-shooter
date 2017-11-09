@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Engine.h"
+#include "../Engine/Engine.h"
 //#include "AudioManager.h"
 
 #undef main
@@ -10,8 +10,8 @@ int main(int argc, char* argv[]) {
 	
 	/*AudioManager::Instance()->LoadBGM("pokemon");
 	AudioManager::Instance()->PlayBGM(); */
-	std::cout << engine->Message;
 
+	std::cout << engine->Message;
 
 	std::cin.get();
 
