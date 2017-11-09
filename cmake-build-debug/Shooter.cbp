@@ -112,10 +112,31 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp">

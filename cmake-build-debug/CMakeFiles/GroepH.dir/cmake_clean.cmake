@@ -4,6 +4,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o"
   "CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o"
   "CMakeFiles/GroepH.dir/Engine/Engine.cpp.o"
+  "CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o"
+  "CMakeFiles/GroepH.dir/Game/Player.cpp.o"
+  "CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o"
   "GroepH.pdb"
   "GroepH"
 )

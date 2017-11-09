@@ -644,6 +644,20 @@ SDL.h
 string
 -
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp
+iostream
+-
+headers/InputManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
+headers/Direction.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp
+headers/MoveableObject.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+headers/Direction.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
 rendermanager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
@@ -660,6 +674,22 @@ SDL_image.h
 iostream
 -
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
+SDL_events.h
+-
+map
+-
+Direction.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+string
+-
+Direction.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
 map
 -
@@ -672,6 +702,14 @@ SDL_image.h
 iostream
 -
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
+headers/Player.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
+../../Engine/headers/MoveableObject.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
 iostream
 -
@@ -679,4 +717,8 @@ iostream
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
 ../Engine/RenderManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
+../Engine/headers/InputManager.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
+headers/Player.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
 

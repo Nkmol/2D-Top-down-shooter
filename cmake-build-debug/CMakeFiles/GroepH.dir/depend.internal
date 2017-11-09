@@ -147,6 +147,38 @@ CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
+ /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_config.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_config_macosx.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_endian.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_error.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_events.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_gamecontroller.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_gesture.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_joystick.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_keyboard.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_keycode.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_mouse.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_pixels.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_platform.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_quit.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_rect.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_rwops.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_scancode.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_stdinc.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_surface.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_touch.h
+ /Library/Frameworks/SDL2.framework/Headers/SDL_video.h
+ /Library/Frameworks/SDL2.framework/Headers/begin_code.h
+ /Library/Frameworks/SDL2.framework/Headers/close_code.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
+CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL.h
  /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -195,6 +227,11 @@ CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/rendermanager.h
+CMakeFiles/GroepH.dir/Game/Player.cpp.o
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
+ /Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL.h
  /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -243,4 +280,8 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
+ /Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp

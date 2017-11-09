@@ -204,6 +204,60 @@ Engine/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Engine.cpp.s
 .PHONY : Engine/Engine.cpp.s
 
+Engine/InputManager.o: Engine/InputManager.cpp.o
+
+.PHONY : Engine/InputManager.o
+
+# target to build an object file
+Engine/InputManager.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
+.PHONY : Engine/InputManager.cpp.o
+
+Engine/InputManager.i: Engine/InputManager.cpp.i
+
+.PHONY : Engine/InputManager.i
+
+# target to preprocess a source file
+Engine/InputManager.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i
+.PHONY : Engine/InputManager.cpp.i
+
+Engine/InputManager.s: Engine/InputManager.cpp.s
+
+.PHONY : Engine/InputManager.s
+
+# target to generate assembly for a file
+Engine/InputManager.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s
+.PHONY : Engine/InputManager.cpp.s
+
+Engine/MoveableObject.o: Engine/MoveableObject.cpp.o
+
+.PHONY : Engine/MoveableObject.o
+
+# target to build an object file
+Engine/MoveableObject.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o
+.PHONY : Engine/MoveableObject.cpp.o
+
+Engine/MoveableObject.i: Engine/MoveableObject.cpp.i
+
+.PHONY : Engine/MoveableObject.i
+
+# target to preprocess a source file
+Engine/MoveableObject.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.i
+.PHONY : Engine/MoveableObject.cpp.i
+
+Engine/MoveableObject.s: Engine/MoveableObject.cpp.s
+
+.PHONY : Engine/MoveableObject.s
+
+# target to generate assembly for a file
+Engine/MoveableObject.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s
+.PHONY : Engine/MoveableObject.cpp.s
+
 Engine/RenderManager.o: Engine/RenderManager.cpp.o
 
 .PHONY : Engine/RenderManager.o
@@ -230,6 +284,33 @@ Engine/RenderManager.s: Engine/RenderManager.cpp.s
 Engine/RenderManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s
 .PHONY : Engine/RenderManager.cpp.s
+
+Game/Player.o: Game/Player.cpp.o
+
+.PHONY : Game/Player.o
+
+# target to build an object file
+Game/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Player.cpp.o
+.PHONY : Game/Player.cpp.o
+
+Game/Player.i: Game/Player.cpp.i
+
+.PHONY : Game/Player.i
+
+# target to preprocess a source file
+Game/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Player.cpp.i
+.PHONY : Game/Player.cpp.i
+
+Game/Player.s: Game/Player.cpp.s
+
+.PHONY : Game/Player.s
+
+# target to generate assembly for a file
+Game/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Player.cpp.s
+.PHONY : Game/Player.cpp.s
 
 Game/main.o: Game/main.cpp.o
 
@@ -276,9 +357,18 @@ help:
 	@echo "... Engine/Engine.o"
 	@echo "... Engine/Engine.i"
 	@echo "... Engine/Engine.s"
+	@echo "... Engine/InputManager.o"
+	@echo "... Engine/InputManager.i"
+	@echo "... Engine/InputManager.s"
+	@echo "... Engine/MoveableObject.o"
+	@echo "... Engine/MoveableObject.i"
+	@echo "... Engine/MoveableObject.s"
 	@echo "... Engine/RenderManager.o"
 	@echo "... Engine/RenderManager.i"
 	@echo "... Engine/RenderManager.s"
+	@echo "... Game/Player.o"
+	@echo "... Game/Player.i"
+	@echo "... Game/Player.s"
 	@echo "... Game/main.o"
 	@echo "... Game/main.i"
 	@echo "... Game/main.s"

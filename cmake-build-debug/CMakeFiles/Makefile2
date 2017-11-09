@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-de
 CMakeFiles/GroepH.dir/all:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/depend
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target GroepH"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target GroepH"
 .PHONY : CMakeFiles/GroepH.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/GroepH.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GroepH.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/GroepH.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/GroepH.dir/rule

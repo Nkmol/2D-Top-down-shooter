@@ -7,7 +7,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/Engine.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Game/Player.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/cmake-build-debug/CMakeFiles/GroepH.dir/Game/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

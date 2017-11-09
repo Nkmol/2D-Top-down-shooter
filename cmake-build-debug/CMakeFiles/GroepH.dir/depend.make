@@ -147,6 +147,38 @@ CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/He
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: ../Engine/Engine.cpp
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: ../Engine/Engine.h
 
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_config.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_config_macosx.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_endian.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_error.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_events.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_gamecontroller.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_gesture.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_joystick.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_keyboard.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_keycode.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_mouse.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_pixels.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_platform.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_quit.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_rect.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_rwops.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_scancode.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_stdinc.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_surface.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_touch.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_video.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: ../Engine/InputManager.cpp
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: ../Engine/headers/Direction.h
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: ../Engine/headers/InputManager.h
+
+CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: ../Engine/MoveableObject.cpp
+CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: ../Engine/headers/Direction.h
+CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: ../Engine/headers/MoveableObject.h
+
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_atomic.h
@@ -195,6 +227,11 @@ CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2_image
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: ../Engine/RenderManager.cpp
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: ../Engine/rendermanager.h
 
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Engine/headers/Direction.h
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Engine/headers/MoveableObject.h
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Game/Player.cpp
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: ../Game/headers/Player.h
+
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_atomic.h
@@ -242,5 +279,9 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Header
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/Engine.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/RenderManager.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/Direction.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/InputManager.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Engine/headers/MoveableObject.h
+CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Game/headers/Player.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: ../Game/main.cpp
 
