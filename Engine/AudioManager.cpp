@@ -1,11 +1,12 @@
 #include "headers/AudioManager.h"
 
 //how to call: AudioManager::instance()->playBGM();
-AudioManager* AudioManager::Instance()
+AudioManager& AudioManager::Instance()
 {
 	// TODO to refernece, can never be nullptr (should never)
-	static AudioManager* sInstance; // Guaranteed to be destroyed.
+	static AudioManager sInstance; // Guaranteed to be destroyed.
 									// Instantiated on first use.
+
 	return sInstance;
 }
 
@@ -38,7 +39,7 @@ int AudioManager::LoadBGM(string audioToken)
 {
 	//Load music
 	//gBGM = Mix_LoadMUS(name);
-	gBGM = AssetManager::instance()->loadBGM(audioToken);
+	gBGM = AssetManager::getInstance().loadBGM(audioToken);
 	if (gBGM == NULL)
 	{
 		cout << "Failed to load beat music! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
@@ -51,7 +52,7 @@ int AudioManager::LoadBGM(string audioToken)
 int AudioManager::PlayEffect(string audioToken)
 {
 	//Mix_Chunk* effectM = Mix_LoadWAV(name);
-	gEffectM = AssetManager::instance()->loadEffect(audioToken);
+	gEffectM = AssetManager::getInstance().loadEffect(audioToken);
 	if (gEffectM == NULL)
 	{
 		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;

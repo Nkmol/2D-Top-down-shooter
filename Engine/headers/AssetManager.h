@@ -16,12 +16,15 @@ private:
 	map<string, const char* > sounds;
 	map<string, const char* > effect;
 	map<string, const char* > render;
-	static AssetManager* sInstance;
 	AssetManager();
+
+
 public:
+
+	static AssetManager& getInstance();
 	AssetManager(AssetManager const&) = delete;
 	void operator=(AssetManager const&) = delete;
-	static AssetManager* instance();
+	//static AssetManager* instance();
 	Mix_Music* loadBGM(string soundToken);
 	Mix_Chunk* loadEffect(string effectToken);
 	SDL_Surface* loadSurface(string mediaToken);
