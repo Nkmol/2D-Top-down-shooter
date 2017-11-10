@@ -27,6 +27,27 @@
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TMXManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\TMXParser.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\TSXParser.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -41,5 +62,24 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TMXManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tmx\src\TMXParser.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tmx\src\TSXParser.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tmx\include\rapidxml\license.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tmx\include\rapidxml\manual.html">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -146,12 +146,28 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="TMXManager.h" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="tmx\include\TMXParser.h" />
+    <ClInclude Include="tmx\include\TSXParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="TMXManager.cpp" />
+    <ClCompile Include="tmx\src\TMXParser.cpp" />
+    <ClCompile Include="tmx\src\TSXParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tmx\include\rapidxml\license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tmx\include\rapidxml\manual.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
