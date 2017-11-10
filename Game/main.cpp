@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Engine.h"
 #include "AudioManager.h"
-#include "vld.h"
+//#include "vld.h"
 
 #undef main
 int main(int argc, char* argv[]) {
