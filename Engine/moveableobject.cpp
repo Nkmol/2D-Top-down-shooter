@@ -36,7 +36,6 @@ void MoveableObject::draw() {
 void MoveableObject::move(Direction direction) {
 
     // TODO: REFACTOR
-
     MoveableObject::setAngle(direction);
 
     if (direction == Direction::Top) {
@@ -84,6 +83,13 @@ void MoveableObject::move(Direction direction) {
     }
 }
 
+void MoveableObject::setAngle(Direction direction) {
+    auto search = directionAngles.find(direction);
+
+    if (search != directionAngles.end()) {
+        MoveableObject::angle = search->second; // search->first is the key.. search->second is the value..
+    }
+}
 
 void MoveableObject::moveTop() {
     if (MoveableObject::yPos > 0) {
@@ -108,14 +114,6 @@ void MoveableObject::moveBottom() {
 void MoveableObject::moveLeft() {
     if (MoveableObject::xPos > 0) {
         MoveableObject::xPos -= 10;
-    }
-}
-
-void MoveableObject::setAngle(Direction direction) {
-    auto search = directionAngles.find(direction);
-
-    if (search != directionAngles.end()) {
-        MoveableObject::angle = search->second; // search->first is the key.. search->second is the value..
     }
 }
 
