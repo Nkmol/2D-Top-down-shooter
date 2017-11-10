@@ -37,6 +37,8 @@ bool InputManager::isKeyDown(SDL_Event &event) {
 
 Direction InputManager::getDirection(SDL_Event &event) {
 
+    // TODO REFACTOR
+
     SDL_PumpEvents();
 
     // update keyboard state
@@ -75,7 +77,6 @@ Direction InputManager::getDirection(SDL_Event &event) {
     }
 
 
-
 //    auto search = keyDirections.find(event.key.keysym.sym);
 //
 //    if (search != keyDirections.end()) {
@@ -83,6 +84,8 @@ Direction InputManager::getDirection(SDL_Event &event) {
 //    }
 
     // if the key does not exists in the map. It is not a valid key.
+
+
     return Direction::Null;
 }
 

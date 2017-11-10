@@ -28,11 +28,14 @@ void MoveableObject::draw() {
     int w, h;
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &w, &h);
     SDL_Rect destinationRectangle = {xPos, yPos, w, h};
-    RenderManager::GetRenderManager()->BlitSurface(this->_sprite, nullptr, &destinationRectangle, MoveableObject::angle);
+    RenderManager::GetRenderManager()->BlitSurface(this->_sprite, nullptr, &destinationRectangle,
+                                                   MoveableObject::angle);
 }
 
 
 void MoveableObject::move(Direction direction) {
+
+    // TODO: REFACTOR
 
     MoveableObject::setAngle(direction);
 
