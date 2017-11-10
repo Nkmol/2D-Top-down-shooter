@@ -6,10 +6,14 @@
 
 enum class Direction {
     Top,
+    TopRight,
+    TopLeft,
     Right,
     Bottom,
+    BottomRight,
+    BottomLeft,
     Left,
-    Null
+    Null,
 };
 
 

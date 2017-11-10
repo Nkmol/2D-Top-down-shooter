@@ -14,6 +14,8 @@
 class MoveableObject {
 
 private:
+    std::map<Direction, int> directionAngles;
+
     SDL_Texture *_sprite;
 
     int xPos, yPos;
@@ -35,9 +37,8 @@ public:
 
     void draw();
 
-    int getXPos() const;
+    void setAngle(Direction direction);
 
-    int getYPos() const;
 };
 
 

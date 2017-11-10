@@ -36,11 +36,51 @@ bool InputManager::isKeyDown(SDL_Event &event) {
 }
 
 Direction InputManager::getDirection(SDL_Event &event) {
-    auto search = keyDirections.find(event.key.keysym.sym);
 
-    if (search != keyDirections.end()) {
-        return search->second; // search->first is the key.. search->second is the value..
+    SDL_PumpEvents();
+
+    // update keyboard state
+    auto keysArray = const_cast <Uint8 *> (SDL_GetKeyboardState(new int(2)));
+
+    if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
+        return Direction::TopRight;
     }
+
+    if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_A]) {
+        return Direction::TopLeft;
+    }
+
+    if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_D]) {
+        return Direction::BottomRight;
+    }
+
+    if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_A]) {
+        return Direction::BottomLeft;
+    }
+
+    if (keysArray[SDL_SCANCODE_W]) {
+        return Direction::Top;
+    }
+
+    if (keysArray[SDL_SCANCODE_D]) {
+        return Direction::Right;
+    }
+
+    if (keysArray[SDL_SCANCODE_S]) {
+        return Direction::Bottom;
+    }
+
+    if (keysArray[SDL_SCANCODE_A]) {
+        return Direction::Left;
+    }
+
+
+
+//    auto search = keyDirections.find(event.key.keysym.sym);
+//
+//    if (search != keyDirections.end()) {
+//        return search->second; // search->first is the key.. search->second is the value..
+//    }
 
     // if the key does not exists in the map. It is not a valid key.
     return Direction::Null;
