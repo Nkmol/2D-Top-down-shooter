@@ -5,7 +5,6 @@
 #include "rapidxml/rapidxml.hpp"
 #include "rapidxml/rapidxml_utils.hpp"
 
-
 #include <string>
 #include <vector>
 #include <utility>
@@ -15,6 +14,69 @@
 
 namespace TMX
 {
+	struct Map {
+		std::string version;
+		std::string orientation;
+		unsigned int width;
+		unsigned int height;
+		unsigned int tileWidth;
+		unsigned int tileHeight;
+		std::string backgroundColor;
+		std::map<std::string, std::string> property;
+	};
+
+	struct Tileset {
+		unsigned int firstGID;
+		std::string source;
+	};
+
+	struct Data {
+		std::string encoding;
+		std::string compression;
+		std::string contents;
+	};
+
+	struct TileLayer {
+		std::string name;
+		bool visible;
+		float opacity;
+		Data data;
+		std::map<std::string, std::string> property;
+	};
+
+	struct Object {
+		std::string name;
+		std::string type;
+		int x;
+		int y;
+		unsigned int width;
+		unsigned int height;
+		unsigned int gid;
+		bool visible;
+		std::map<std::string, std::string> property;
+	};
+
+	struct ObjectGroup {
+		std::string color;
+		std::string name;
+		float opacity;
+		bool visible;
+		std::map<std::string, Object> object;
+		std::map<std::string, std::string> property;
+	};
+
+	struct Image {
+		std::string source;
+		std::string transparencyColor;
+	};
+
+	struct ImageLayer {
+		std::string name;
+		float opacity;
+		bool visible;
+		std::map<std::string, std::string> property;
+		Image image;
+	};
 
   class Parser
   {
@@ -25,69 +87,7 @@ namespace TMX
 
       bool load( const char* filename );
 
-      struct Map {
-        std::string version;
-        std::string orientation;
-        unsigned int width;
-        unsigned int height;
-        unsigned int tileWidth;
-        unsigned int tileHeight;
-        std::string backgroundColor;
-        std::map<std::string, std::string> property;
-      };
-
-      struct Tileset {
-        unsigned int firstGID;
-        std::string source;
-      };
-
-      struct Data {
-        std::string encoding;
-        std::string compression;
-        std::string contents;
-      };
-
-      struct TileLayer {
-        std::string name;
-        bool visible;
-        float opacity;
-        Data data;
-        std::map<std::string, std::string> property;
-      };
-
-      struct Object {
-        std::string name;
-        std::string type;
-        int x;
-        int y;
-        unsigned int width;
-        unsigned int height;
-        unsigned int gid;
-        bool visible;
-        std::map<std::string, std::string> property;
-      };
-
-      struct ObjectGroup {
-        std::string color;
-        std::string name;
-        float opacity;
-        bool visible;
-        std::map<std::string, Object> object;
-        std::map<std::string, std::string> property;
-      };
-
-      struct Image {
-        std::string source;
-        std::string transparencyColor;
-      };
-
-      struct ImageLayer {
-        std::string name;
-        float opacity;
-        bool visible;
-        std::map<std::string, std::string> property;
-        Image image;
-      };
+	  std::string mapVersion;
 
       Map mapInfo;
       std::vector<Tileset> tilesetList;
@@ -97,6 +97,5 @@ namespace TMX
     protected:
     private:
   };
-
 }
 #endif // TMXPARSER_H

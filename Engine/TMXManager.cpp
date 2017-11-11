@@ -2,9 +2,9 @@
 
 using namespace std;
 
-TMXManager* TMXManager::Instance()
+TMXManager& TMXManager::Instance()
 {
-	static TMXManager* sInstance;
+	static TMXManager sInstance;
 
 	return sInstance;
 }
@@ -14,16 +14,13 @@ TMXManager::TMXManager()
 	mapTexture = nullptr;
 }
 
-void TMXManager::Init(string input)
+void TMXManager::Init(const string input)
 {
 	tmx.load(input.c_str());
 	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
 	tsx.load(tileset.c_str());
 
 	RenderTilesText();
-
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-		cout << SDL_GetError() << endl;
 
 	SDL_Window* window = SDL_CreateWindow("TMX", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN);
 
@@ -59,7 +56,7 @@ void TMXManager::Render()
 	const int height = tmx.mapInfo.height;
 	vector<vector<string>> tileLayers;
 
-	for (std::map<std::string, TMX::Parser::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
+	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
 		string content = tmx.tileLayer[it->first].data.contents;
 		vector<string> tiles;
 		string next;
@@ -100,7 +97,7 @@ void TMXManager::Render()
 
 void TMXManager::RenderTilesText()
 {
-	for (std::map<std::string, TMX::Parser::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
+	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
 		std::cout << std::endl;
 		std::cout << "Tile Layer Name: " << it->first << std::endl;
 		std::cout << "Tile Layer Visibility: " << tmx.tileLayer[it->first].visible << std::endl;

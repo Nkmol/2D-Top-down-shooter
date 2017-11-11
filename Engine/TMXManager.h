@@ -12,15 +12,15 @@ class TMXManager {
 public:
 	TMXManager(TMXManager const&) = delete;
 	void operator=(TMXManager const&) = delete;
-	static TMXManager* Instance();
+	static TMXManager& Instance();
 
-	void Init(std::string input);
+	void Init(const std::string input);
 	void Render();
 	void RenderTilesText();
 private:
 	TMX::Parser tmx;
 	TSX::Parser tsx;
-	static TMXManager* sInstance;
+	static TMXManager sInstance;
 	SDL_Texture* mapTexture;
 	SDL_Renderer* renderer;
 	TMXManager();

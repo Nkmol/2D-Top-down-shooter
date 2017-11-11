@@ -34,7 +34,7 @@ namespace TMX {
       return false;
     }
 
-    mapInfo.version = root_node->first_attribute( "version" )->value();
+	mapInfo.version = root_node->first_attribute( "version" )->value();
     std::cout << "Version: " << mapInfo.version << std::endl;
     mapInfo.orientation = root_node->first_attribute( "orientation" )->value();
     std::cout << "Orientation: " << mapInfo.orientation << std::endl;
