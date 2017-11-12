@@ -31,6 +31,9 @@ bool InputManager::hasEvent(SDL_Event *event) {
     return static_cast<bool>(SDL_PollEvent(event));
 }
 
+bool InputManager::isMouseMoved(SDL_Event &event) {
+    return event.type == SDL_MOUSEMOTION;
+}
 
 bool InputManager::isKeyDown(SDL_Event &event) {
     return event.type == SDL_KEYDOWN;

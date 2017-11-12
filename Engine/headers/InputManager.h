@@ -37,6 +37,8 @@ public:
     Direction getDirection(SDL_Event &event);
 
     int getMouseAngleFrom(MoveableObject &object);
+
+    bool isMouseMoved(SDL_Event &event);
 };
 
 

@@ -32,16 +32,12 @@ int main(int argc, char *argv[]) {
     while (true) {
 
         if (inputManager.hasEvent(&event)) {
-
-            if (event.type == SDL_MOUSEMOTION) {
-                renderManager->Clear();
-
-                int angle = inputManager.getMouseAngleFrom(*player);
-                player->setAngle(angle);
-                player->draw();
-
-                renderManager->Flip();
-            }
+            
+            renderManager->Clear();
+            int angle = inputManager.getMouseAngleFrom(*player);
+            player->setAngle(angle);
+            player->draw();
+            renderManager->Flip();
 
             if (inputManager.isKeyDown(event)) {
                 renderManager->Clear();
