@@ -101,8 +101,6 @@ bool InputManager::isMouseMoved(SDL_Event &event) {
 }
 
 
-
-
 // Getters & Setters
 
 int InputManager::getMousePositionX() const {

@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
             // recalculate players angle to mouse ONLY IF the mouse has been moved.
             if (inputManager.isMouseMoved(event)) {
                 int angle = inputManager.recalculateMouseAngle(*player);
-                
+
                 // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
                 player->setAngle(angle);
             }
