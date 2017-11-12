@@ -15,7 +15,7 @@ class MoveableObject {
 
     SDL_Texture *_sprite;
 
-    int xPos, yPos, speed, angle;
+    int xPos, yPos, distance, angle;
 
     std::map<Direction, int> directionAngles;
 

@@ -4,7 +4,7 @@
 
 #include "headers/MoveableObject.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos}, speed{10} {
+MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos}, distance{40} {
     this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
                                                  RenderManager::GetRenderManager()->LoadImage(filePath));
 
@@ -98,27 +98,27 @@ void MoveableObject::setAngle(int angle) {
 
 void MoveableObject::moveTop() {
     if (MoveableObject::yPos > 0) {
-        MoveableObject::yPos -= MoveableObject::speed;
+        MoveableObject::yPos -= MoveableObject::distance;
     }
 }
 
 void MoveableObject::moveRight() {
     int maxWidth = 1500; // todo get max width
     if (MoveableObject::xPos < maxWidth) {
-        MoveableObject::xPos += MoveableObject::speed;
+        MoveableObject::xPos += MoveableObject::distance;
     }
 }
 
 void MoveableObject::moveBottom() {
     int maxHeight = 960; // todo get max height
     if (MoveableObject::yPos < maxHeight) {
-        MoveableObject::yPos += MoveableObject::speed;
+        MoveableObject::yPos += MoveableObject::distance;
     }
 }
 
 void MoveableObject::moveLeft() {
     if (MoveableObject::xPos > 0) {
-        MoveableObject::xPos -= MoveableObject::speed;
+        MoveableObject::xPos -= MoveableObject::distance;
     }
 }
 
@@ -129,6 +129,7 @@ int MoveableObject::getXPos() const {
 int MoveableObject::getYPos() const {
     return yPos;
 }
+
 
 
 
