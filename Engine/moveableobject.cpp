@@ -4,7 +4,7 @@
 
 #include "headers/MoveableObject.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos}, distance{40} {
+MoveableObject::MoveableObject(const std::string &filePath, int xPos, int yPos) : xPos{xPos}, yPos{yPos}, distance{10} {
     this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
                                                  RenderManager::GetRenderManager()->LoadImage(filePath));
 
