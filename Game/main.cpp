@@ -23,22 +23,33 @@ int main(int argc, char *argv[]) {
 
     SDL_PumpEvents();
 
-    renderManager->Clear();
-
     std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 100, 300)};
     player->draw();
     renderManager->Flip();
 
-    SDL_Event event;
+    SDL_Event event{};
 
     while (true) {
 
         if (inputManager.hasEvent(&event)) {
-            if (inputManager.isKeyDown(event)) {
-                auto direction = inputManager.getDirection(event);
+
+            if (event.type == SDL_MOUSEMOTION) {
                 renderManager->Clear();
+
+                int angle = inputManager.getMouseAngleFrom(*player);
+                player->setAngle(angle);
+                player->draw();
+
+                renderManager->Flip();
+            }
+
+            if (inputManager.isKeyDown(event)) {
+                renderManager->Clear();
+
+                Direction direction = inputManager.getDirection(event);
                 player->move(direction);
                 player->draw();
+
                 renderManager->Flip();
             }
 

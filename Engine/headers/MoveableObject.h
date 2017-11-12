@@ -33,10 +33,15 @@ public:
 
     MoveableObject(const std::string &filePath, int xPos, int yPos);
 
+    int getXPos() const;
+
+    int getYPos() const;
+
     void move(Direction direction);
 
     void draw();
 
+    void setAngle(int angle);
 };
 
 

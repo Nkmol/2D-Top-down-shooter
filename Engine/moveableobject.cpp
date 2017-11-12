@@ -36,7 +36,7 @@ void MoveableObject::draw() {
 void MoveableObject::move(Direction direction) {
 
     // TODO: REFACTOR
-    MoveableObject::setAngle(direction);
+//    MoveableObject::setAngle(direction);
 
     if (direction == Direction::Top) {
         moveTop();
@@ -91,6 +91,10 @@ void MoveableObject::setAngle(Direction direction) {
     }
 }
 
+void MoveableObject::setAngle(int angle) {
+    MoveableObject::angle = angle;
+}
+
 
 void MoveableObject::moveTop() {
     if (MoveableObject::yPos > 0) {
@@ -116,6 +120,14 @@ void MoveableObject::moveLeft() {
     if (MoveableObject::xPos > 0) {
         MoveableObject::xPos -= MoveableObject::speed;
     }
+}
+
+int MoveableObject::getXPos() const {
+    return xPos;
+}
+
+int MoveableObject::getYPos() const {
+    return yPos;
 }
 
 

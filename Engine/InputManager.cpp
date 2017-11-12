@@ -3,8 +3,10 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include "headers/InputManager.h"
 #include "headers/Direction.h"
+#include "headers/MoveableObject.h"
 
 
 InputManager *InputManager::sInstance = nullptr;
@@ -17,6 +19,7 @@ InputManager::InputManager() {
             {SDLK_a, Direction::Left},
     };
 }
+
 
 InputManager &InputManager::instance() {
     static InputManager sInstance;
@@ -70,3 +73,15 @@ Direction InputManager::getDirection(SDL_Event &event) {
     return Direction::Null;
 }
 
+int InputManager::getMouseAngleFrom(MoveableObject &object) {
+    int mouseX, mouseY;
+
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    int deltaY = object.getYPos() - mouseY;
+    int deltaX = object.getXPos() - mouseX;
+
+    double radian = atan2(deltaY, deltaX);
+
+    return static_cast<int>(radian * 180 / M_PI);
+}
