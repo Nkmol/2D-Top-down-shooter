@@ -18,10 +18,8 @@ InputManager::InputManager() {
     };
 }
 
-InputManager *InputManager::instance() {
-    if (sInstance == nullptr) {
-        sInstance = new InputManager();
-    }
+InputManager &InputManager::instance() {
+    static InputManager sInstance;
 
     return sInstance;
 }
@@ -60,31 +58,14 @@ Direction InputManager::getDirection(SDL_Event &event) {
         return Direction::BottomLeft;
     }
 
-    if (keysArray[SDL_SCANCODE_W]) {
-        return Direction::Top;
+    // if not multiple keys are pressed, find the single key.
+    auto search = keyDirections.find(event.key.keysym.sym);
+
+    if (search != keyDirections.end()) {
+        return search->second; // search->first is the key.. search->second is the value..
     }
 
-    if (keysArray[SDL_SCANCODE_D]) {
-        return Direction::Right;
-    }
-
-    if (keysArray[SDL_SCANCODE_S]) {
-        return Direction::Bottom;
-    }
-
-    if (keysArray[SDL_SCANCODE_A]) {
-        return Direction::Left;
-    }
-
-
-//    auto search = keyDirections.find(event.key.keysym.sym);
-//
-//    if (search != keyDirections.end()) {
-//        return search->second; // search->first is the key.. search->second is the value..
-//    }
-
-    // if the key does not exists in the map. It is not a valid key.
-
+    // When key doesn't exists in the map. It is not a valid key.
 
     return Direction::Null;
 }

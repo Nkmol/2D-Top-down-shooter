@@ -13,14 +13,11 @@
 
 class MoveableObject {
 
-private:
-    std::map<Direction, int> directionAngles;
-
     SDL_Texture *_sprite;
 
-    int xPos, yPos;
+    int xPos, yPos, speed, angle;
 
-    int angle;
+    std::map<Direction, int> directionAngles;
 
     void moveTop();
 
@@ -30,14 +27,15 @@ private:
 
     void moveBottom();
 
+    void setAngle(Direction direction);
+
 public:
+
     MoveableObject(const std::string &filePath, int xPos, int yPos);
 
     void move(Direction direction);
 
     void draw();
-
-    void setAngle(Direction direction);
 
 };
 

@@ -3,6 +3,7 @@
 #include "../Engine/headers/InputManager.h"
 #include "headers/Player.h"
 #include "../Engine/headers/AudioManager.h"
+#include <memory>
 
 #undef main
 
@@ -32,9 +33,9 @@ int main(int argc, char *argv[]) {
 
     while (true) {
 
-        if (inputManager->hasEvent(&event)) {
-            if (inputManager->isKeyDown(event)) {
-                auto direction = inputManager->getDirection(event);
+        if (inputManager.hasEvent(&event)) {
+            if (inputManager.isKeyDown(event)) {
+                auto direction = inputManager.getDirection(event);
                 renderManager->Clear();
                 player->move(direction);
                 player->draw();
@@ -50,8 +51,6 @@ int main(int argc, char *argv[]) {
 
     // TODO: END. this entire block is just for testing ////////////////////////////////////////////////////////////////
 
-
-    std::cin.get();
 
     return 0;
 

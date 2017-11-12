@@ -25,7 +25,7 @@ private:
 
 public:
 
-    static InputManager *instance();
+    static InputManager &instance();
 
     bool hasEvent(SDL_Event *event);
 
