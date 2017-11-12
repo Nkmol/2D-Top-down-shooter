@@ -17,7 +17,6 @@ class InputManager {
  * Singleton
  */
 
-private:
     static InputManager *sInstance;
 
     int mousePositionX, mousePositionY;
@@ -36,9 +35,15 @@ public:
 
     Direction getDirection(SDL_Event &event);
 
-    int getMouseAngleFrom(MoveableObject &object);
-
     bool isMouseMoved(SDL_Event &event);
+
+    int getMousePositionX() const;
+
+    int getMousePositionY() const;
+
+    int calculateMouseAngle(MoveableObject &object);
+
+    int recalculateMouseAngle(MoveableObject &object);
 };
 
 

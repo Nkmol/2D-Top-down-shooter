@@ -32,22 +32,22 @@ int main(int argc, char *argv[]) {
     while (true) {
 
         if (inputManager.hasEvent(&event)) {
-            
             renderManager->Clear();
-            int angle = inputManager.getMouseAngleFrom(*player);
-            player->setAngle(angle);
-            player->draw();
-            renderManager->Flip();
+
+            if (inputManager.isMouseMoved(event)) {
+                int angle = inputManager.recalculateMouseAngle(*player);
+                player->setAngle(angle);
+            }
 
             if (inputManager.isKeyDown(event)) {
-                renderManager->Clear();
-
                 Direction direction = inputManager.getDirection(event);
+                int angle = inputManager.calculateMouseAngle(*player);
+                player->setAngle(angle);
                 player->move(direction);
-                player->draw();
-
-                renderManager->Flip();
             }
+
+            player->draw();
+            renderManager->Flip();
 
             if (event.type == SDL_QUIT) {
                 break;
