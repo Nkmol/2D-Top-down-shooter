@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../Engine/headers/RenderManager.h"
-#include "../Engine/headers/InputManager.h"
-#include "headers/Player.h"
-#include "../Engine/headers/AudioManager.h"
+#include "RenderManager.h"
+#include "InputManager.h"
+#include "Player.h"
+#include "AudioManager.h"
 #include <memory>
 
 #undef main
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     SDL_PumpEvents();
 
-    std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 100, 300)};
+    std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
     player->draw();
     renderManager->Flip();
 

@@ -1,4 +1,4 @@
-#include "headers/AudioManager.h"
+#include "AudioManager.h"
 
 //how to call: AudioManager::instance()->playBGM();
 AudioManager& AudioManager::Instance()

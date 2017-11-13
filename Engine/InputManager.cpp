@@ -4,9 +4,9 @@
 
 #include <iostream>
 #include <cmath>
-#include "headers/InputManager.h"
-#include "headers/Direction.h"
-#include "headers/MoveableObject.h"
+#include "InputManager.h"
+#include "Direction.h"
+#include "MoveableObject.h"
 
 
 InputManager *InputManager::sInstance = nullptr;

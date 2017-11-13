@@ -2,7 +2,7 @@
 // Created by Ahmad Rahimi on 9/25/17.
 //
 
-#include "headers/RenderManager.h"
+#include "RenderManager.h"
 
 
 RenderManager* RenderManager::renderManager;

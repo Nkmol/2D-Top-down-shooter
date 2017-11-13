@@ -70,19 +70,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Engine;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Game\headers;$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Engine;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Game\headers;$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Engine;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Game\headers;$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Engine;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Game\headers;$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

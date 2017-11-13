@@ -1,6 +1,7 @@
 //
-// Created by Mevlüt Özdemir on 09-11-17.
+// Created by Mevl�t �zdemir on 09-11-17.
 //
+
 
 #include "headers/MoveableObject.h"
 
@@ -129,4 +130,5 @@ void MoveableObject::stopMove() {
     this->destinationXPos = 0.0f;
     this->destinationYPos = 0.0f;
 }
+
 
