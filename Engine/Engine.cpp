@@ -1,5 +1,5 @@
 // This is the main DLL file.
-#include "headers/Engine.h"
+#include "Engine.h"
 #include <SDL.h>
 
 namespace Engine

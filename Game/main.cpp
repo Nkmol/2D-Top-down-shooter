@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../Engine/headers/RenderManager.h"
-#include "../Engine/headers/InputManager.h"
-#include "headers/Player.h"
-#include "../Engine/headers/AudioManager.h"
+#include "RenderManager.h"
+#include "InputManager.h"
+#include "Player.h"
+#include "AudioManager.h"
 #include <memory>
 
 #undef main

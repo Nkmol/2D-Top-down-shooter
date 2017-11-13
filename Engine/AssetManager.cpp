@@ -1,6 +1,6 @@
 #pragma once
 
-#include "headers/AssetManager.h"
+#include "AssetManager.h"
 
 //AssetManager* AssetManager::instance()
 //{
