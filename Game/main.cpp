@@ -4,9 +4,9 @@
 #include "Player.h"
 #include "AudioManager.h"
 #include <memory>
+#include <algorithm>
 
 #undef main
-
 
 int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
