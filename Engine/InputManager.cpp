@@ -96,8 +96,8 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 // used to calculate. Call this method directly if mouse position is NOT changed
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::calculateMouseAngle(MoveableObject &object) {
-    int deltaY = object.getYPos() - InputManager::getMousePositionY();
-    int deltaX = object.getXPos() - InputManager::getMousePositionX();
+    float deltaY = object.getYPos() - InputManager::getMousePositionY();
+    float deltaX = object.getXPos() - InputManager::getMousePositionX();
 
     double radian = atan2(deltaY, deltaX);
 
