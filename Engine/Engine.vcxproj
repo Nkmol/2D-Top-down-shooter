@@ -146,6 +146,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="headers\Direction.h" />
+    <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\MoveableObject.h" />
     <ClInclude Include="RenderManager.h" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="RenderManager.cpp" />
   </ItemGroup>
