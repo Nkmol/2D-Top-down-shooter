@@ -13,7 +13,8 @@
 *.userprefs
 
 # Build results
-**/[Dd]ebug/*
+[Dd]ebug/**
+**/[Dd]ebug/**
 ![Dd]ebug/*.dll
 [Dd]ebugPublic/
 [Rr]elease/
