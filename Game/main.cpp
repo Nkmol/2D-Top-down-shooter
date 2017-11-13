@@ -29,10 +29,9 @@ int main(int argc, char *argv[]) {
 
     SDL_Event event{};
 
-    int FPS = 50;
+    int FPS = 100;
     int MAX_FRAME_TIME = 5 * 1000 / FPS;
     int LAST_UPDATE_TIME = SDL_GetTicks();
-    Direction direction = Direction::Null;
 
     while (true) {
 
@@ -44,17 +43,16 @@ int main(int argc, char *argv[]) {
 
                 // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
                 player->setAngle(angle);
-            }
-
+            }   
 
             if (inputManager.isKeyDown(event)) {
-                direction = inputManager.getDirection(event);
+                Direction direction = inputManager.getDirection(event);
                 int angle = inputManager.calculateMouseAngle(*player);
                 player->setAngle(angle);
                 player->move(direction);
             }
 
-            if(inputManager.isKeyUp(event)){
+            if (inputManager.isKeyUp(event)) {
                 player->stopMove();
             }
 
@@ -69,7 +67,7 @@ int main(int argc, char *argv[]) {
         int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
         int time = std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME);
 
-        player->update(time, direction);
+        player->update(time);
 
         LAST_UPDATE_TIME = CURRENT_TIME_MS;
 

@@ -33,9 +33,9 @@ public:
 
     MoveableObject(const std::string &filePath, float xPos, float yPos);
 
-    int getXPos() const;
+    float getXPos() const;
 
-    int getYPos() const;
+    float getYPos() const;
 
     void move(Direction direction);
 
@@ -43,7 +43,7 @@ public:
 
     void setAngle(int angle);
 
-    void update(float time, Direction direction);
+    void update(float time);
 
     void stopMove();
 };

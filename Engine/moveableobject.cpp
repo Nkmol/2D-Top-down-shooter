@@ -5,7 +5,7 @@
 #include "headers/MoveableObject.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos) : xPos{xPos}, yPos{yPos},
-                                                                                      distance{0.2f} {
+                                                                                      distance{0.3f} {
     this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
                                                  RenderManager::GetRenderManager()->LoadImage(filePath));
 
@@ -79,7 +79,6 @@ void MoveableObject::setAngle(int angle) {
     MoveableObject::angle = angle;
 }
 
-
 void MoveableObject::moveTop() {
     if (MoveableObject::yPos > 0) {
         destinationYPos = -MoveableObject::distance;
@@ -106,17 +105,23 @@ void MoveableObject::moveLeft() {
     }
 }
 
-int MoveableObject::getXPos() const {
+float MoveableObject::getXPos() const {
     return xPos;
 }
 
-int MoveableObject::getYPos() const {
+float MoveableObject::getYPos() const {
     return yPos;
 }
 
-void MoveableObject::update(float time, Direction direction) {
+
+void MoveableObject::update(float time) {
     this->xPos += this->destinationXPos * time;
     this->yPos += this->destinationYPos * time;
+
+    if (xPos < 0) xPos = 0;
+    if (xPos > 1500) xPos = 1500;
+    if (yPos < 0) yPos = 0;
+    if (yPos > 960) yPos = 960;
 }
 
 
