@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     SDL_PumpEvents();
 
-    std::unique_ptr<MoveableObject> player{new Player("content/soldier.png", 100, 300)};
+    std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
     player->draw();
     renderManager->Flip();
 
