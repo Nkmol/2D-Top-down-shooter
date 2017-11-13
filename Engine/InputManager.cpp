@@ -35,6 +35,14 @@ bool InputManager::isKeyDown(SDL_Event &event) {
     return event.type == SDL_KEYDOWN;
 }
 
+bool InputManager::isKeyUp(SDL_Event &event) {
+    return event.type == SDL_KEYUP;
+}
+
+bool InputManager::isQuit(SDL_Event &event) {
+    return event.type == SDL_QUIT;
+}
+
 Direction InputManager::getDirection(SDL_Event &event) {
 
     // TODO REFACTOR

@@ -29,10 +29,14 @@ int main(int argc, char *argv[]) {
 
     SDL_Event event{};
 
+    int FPS = 50;
+    int MAX_FRAME_TIME = 5 * 1000 / FPS;
+    int LAST_UPDATE_TIME = SDL_GetTicks();
+    Direction direction = Direction::Null;
+
     while (true) {
 
         if (inputManager.hasEvent(&event)) {
-            renderManager->Clear();
 
             // recalculate players angle to mouse ONLY IF the mouse has been moved.
             if (inputManager.isMouseMoved(event)) {
@@ -42,20 +46,37 @@ int main(int argc, char *argv[]) {
                 player->setAngle(angle);
             }
 
+
             if (inputManager.isKeyDown(event)) {
-                Direction direction = inputManager.getDirection(event);
+                direction = inputManager.getDirection(event);
                 int angle = inputManager.calculateMouseAngle(*player);
                 player->setAngle(angle);
                 player->move(direction);
             }
 
-            player->draw();
-            renderManager->Flip();
+            if(inputManager.isKeyUp(event)){
+                player->stopMove();
+            }
 
-            if (event.type == SDL_QUIT) {
+
+            if (inputManager.isQuit(event)) {
                 break;
             }
         }
+
+        // todo, alle draw functies naar rendermanager: functie: void DrawObject(MoveableObject object);
+        const int CURRENT_TIME_MS = SDL_GetTicks();
+        int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
+        int time = std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME);
+
+        player->update(time, direction);
+
+        LAST_UPDATE_TIME = CURRENT_TIME_MS;
+
+
+        renderManager->Clear();
+        player->draw();
+        renderManager->Flip();
     }
 
 

@@ -44,6 +44,10 @@ public:
     int calculateMouseAngle(MoveableObject &object);
 
     int recalculateMouseAngle(MoveableObject &object);
+
+    bool isKeyUp(SDL_Event &event);
+
+    bool isQuit(SDL_Event &event);
 };
 
 
