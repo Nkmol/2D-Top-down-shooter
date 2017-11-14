@@ -12,29 +12,28 @@
 
 using namespace std;
 
-struct SDL_Window;
-struct SDL_Renderer;
 
 class RenderManager {
 public:
 	RenderManager();
 	~RenderManager();
+	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
 
 	SDL_Surface* LoadImage(const std::string &filePath);
 	/* void BlitSurface
 	* Drawing images on a screen
 	*/
-	void BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0);
+	void BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
 
 	/* void flip
 	* Render everything on screen
 	*/
-	void Flip();
+	void Flip() const;
 
 	/* void clear
 	* Clear the screen
 	*/
-	void Clear();
+	void Clear() const;
 
 	/* SDL_Renderer* getRenderer
 	* Returns the renderer
