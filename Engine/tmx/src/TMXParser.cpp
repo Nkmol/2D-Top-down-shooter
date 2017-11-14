@@ -79,6 +79,8 @@ namespace TMX {
       layer.name = layer_node->first_attribute( "name" )->value();
       std::cout << std::endl << "Layer Name: " << layer.name << std::endl;
 
+	  layer.opacity = 1;
+
       if( layer_node->first_node( "properties" ) != 0 ) {
         for( rapidxml::xml_node<>* properties_node = layer_node->first_node( "properties" )->first_node( "property" ); properties_node; properties_node = properties_node->next_sibling() ) {
           layer.property[properties_node->first_attribute( "name" )->value()] = properties_node->first_attribute( "value" )->value();

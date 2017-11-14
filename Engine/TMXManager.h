@@ -1,6 +1,8 @@
 #include <iostream>
 #include "tmx/include/TMXParser.h"
 #include "tmx/include/TSXParser.h"
+#include "AssetManager.h"
+#include "CollidableObject.h"
 #include <sstream>
 #include <vector>
 #include <string>
@@ -13,6 +15,7 @@ public:
 	TMXManager(TMXManager const&) = delete;
 	void operator=(TMXManager const&) = delete;
 	static TMXManager& Instance();
+	std::vector<CollidableObject> collidables;
 
 	void Init(const std::string input);
 	void Render();

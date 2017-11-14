@@ -27,7 +27,7 @@ void TMXManager::Init(const string input)
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 
-	SDL_Surface* spritesheet = IMG_Load("../content/map/roguelikeCity_magenta.jpg");
+	SDL_Surface* spritesheet = AssetManager::instance()->loadSurface(tsx.tileset.image.source.c_str());
 	if (!spritesheet)
 		cout << SDL_GetError() << endl;
 	mapTexture = SDL_CreateTextureFromSurface(renderer, spritesheet);
@@ -55,13 +55,14 @@ void TMXManager::Render()
 	const int width = tmx.mapInfo.width;
 	const int height = tmx.mapInfo.height;
 	vector<vector<string>> tileLayers;
-
 	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
 		string content = tmx.tileLayer[it->first].data.contents;
+
 		vector<string> tiles;
 		string next;
 
 		Split(content, ',', std::back_inserter(tiles));
+		
 		tileLayers.push_back(tiles);
 	}
 	SDL_Rect srcRect;
@@ -72,7 +73,7 @@ void TMXManager::Render()
 	destRect.h = tileHeight;
 
 	std::map<int, SDL_Rect> tilesMap = GetTilesMap();
-
+	
 	int counter = 0;
 	for (int i = 0; i < height; i++)
 	{
@@ -80,7 +81,7 @@ void TMXManager::Render()
 		{
 			destRect.y = i*tileWidth;
 			destRect.x = j*tileHeight;
-
+			
 			if (atoi(tileLayers.at(0).at(counter).c_str()) == 0) {
 				SDL_RenderDrawRect(renderer, &destRect);
 				SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
@@ -88,11 +89,15 @@ void TMXManager::Render()
 			else {
 				SDL_RenderCopy(renderer, mapTexture, &tilesMap.at(atoi(tileLayers.at(0).at(counter).c_str())), &destRect);
 			}
-			SDL_RenderPresent(renderer);
 
+			if (atoi(tileLayers.at(1).at(counter).c_str()) != 0) {
+				collidables.push_back({ destRect.x, destRect.y, tileWidth, tileHeight });
+				SDL_RenderCopy(renderer, mapTexture, &tilesMap.at(atoi(tileLayers.at(1).at(counter).c_str())), &destRect);
+			}
 			counter++;
 		}
 	}
+	SDL_RenderPresent(renderer);
 }
 
 void TMXManager::RenderTilesText()

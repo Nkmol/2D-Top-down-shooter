@@ -48,6 +48,9 @@
     <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="CollidableObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="tmx\src\TSXParser.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollidableObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

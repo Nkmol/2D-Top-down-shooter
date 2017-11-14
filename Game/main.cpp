@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 	AudioManager::Instance()->PlayBGM(); */
 	std::cout << engine->Message;
 
-	TMXManager::Instance().Init("../content/map/tilemapje.tmx");
+	TMXManager::Instance().Init("../content/map/tilemapje2.tmx");
 	TMXManager::Instance().Render();
 	std::cin.get();
 
