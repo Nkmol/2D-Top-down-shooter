@@ -5,6 +5,7 @@
 #include "AudioManager.h"
 #include <memory>
 #include <algorithm>
+#include "Game.h"
 
 #undef main
 int main(int argc, char *argv[]) {
@@ -14,12 +15,12 @@ int main(int argc, char *argv[]) {
 //    AudioManager::Instance().LoadBGM("pokemon");
 //    AudioManager::Instance().PlayBGM();
 
+	Game game;
+	game.Init("Shooter game", false, 1500, 960);
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
 
     auto& renderManager = RenderManager::Instance();
-	renderManager.CreateWindow("Shooter game", false, 1500, 960);
-
     auto inputManager = InputManager::instance();
 
     SDL_PumpEvents();
