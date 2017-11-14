@@ -2,7 +2,7 @@
 // Created by Ahmad Rahimi on 9/25/17.
 //
 
-#include "rendermanager.h"
+#include "RenderManager.h"
 
 
 RenderManager* RenderManager::renderManager;
@@ -17,7 +17,7 @@ RenderManager::~RenderManager() {
 	SDL_DestroyWindow(this->window);
 }
 
-SDL_Surface* RenderManager::LoadImages(const std::string &filePath) {
+SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	if (this->sprites.count(filePath) == 0) {
 		this->sprites[filePath] = IMG_Load(filePath.c_str());
 	}

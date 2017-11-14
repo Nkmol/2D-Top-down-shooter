@@ -70,19 +70,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)bin\include;$(IncludePath)v</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)bin\include;$(IncludePath)v</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)bin\include;$(IncludePath)v</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)bin\include;$(IncludePath)v</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\headers;$(SolutionDir)bin\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\lib\$(AppxManifestMetaDataClTargetArchDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -154,12 +154,17 @@
     <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp" />
     <ClInclude Include="tmx\include\TMXParser.h" />
     <ClInclude Include="tmx\include\TSXParser.h" />
+    <ClInclude Include="headers\Direction.h" />
+    <ClInclude Include="headers\InputManager.h" />
+    <ClInclude Include="headers\MoveableObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CollidableObject.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="TMXManager.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />

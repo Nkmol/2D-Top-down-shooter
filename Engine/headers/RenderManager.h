@@ -20,7 +20,7 @@ public:
 	RenderManager();
 	~RenderManager();
 
-	SDL_Surface* LoadImages(const std::string &filePath);
+	SDL_Surface* LoadImage(const std::string &filePath);
 	/* void BlitSurface
 	* Drawing images on a screen
 	*/

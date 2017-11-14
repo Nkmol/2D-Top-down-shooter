@@ -13,7 +13,8 @@
 *.userprefs
 
 # Build results
-**/[Dd]ebug/*
+[Dd]ebug/**
+**/[Dd]ebug/**
 ![Dd]ebug/*.dll
 [Dd]ebugPublic/
 [Rr]elease/
@@ -307,3 +308,5 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 Debug/Engine.lib
+
+cmake-build-debug/
