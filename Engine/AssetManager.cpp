@@ -2,22 +2,30 @@
 
 #include "AssetManager.h"
 
-//how to call: AssetManager::instance()->loadBGM();
-AssetManager* AssetManager::instance()
-{
-	// TODO to refernece, can never be nullptr (should never)
-	static AssetManager* sInstance;
-
-	return sInstance;
-}
+//AssetManager* AssetManager::instance()
+//{
+//	// TODO to refernece, can never be nullptr (should never)
+//	static AssetManager* sInstance;
+//
+//	return sInstance;
+//}
 
 AssetManager::AssetManager() {
-	sounds["pokemon"] = "../content/Audio/Pokemon.wav";
-	effect["headshot"] = "../content/Audio/Headshot.wav";
-	render["background"] = "../Assets/Img/wallpaper.png";
-	render["roguelikeCity_magenta.png"] = "../content/map/roguelikeCity_magenta.png";
+	sounds["pokemon"] = "../content/audio/Pokemon.wav";
+	effect["headshot"] = "../content/audio/Headshot.wav";
+	//render["background"] = "../Assets/Img/wallpaper.png";
 }
 
+
+AssetManager & AssetManager::getInstance()
+{
+	// The only instance
+	// Guaranteed to be lazy initialized
+	// Guaranteed that it will be destroyed correctly
+
+	static AssetManager sInstance;
+	return sInstance;
+}
 
 Mix_Music* AssetManager::loadBGM(string soundToken)
 {

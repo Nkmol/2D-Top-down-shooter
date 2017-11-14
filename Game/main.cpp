@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Engine.h"
+#include "AudioManager.h"
+//#include "vld.h"
 //#include "AudioManager.h"
 #include "TMXManager.h"
 #include "RenderManager.h"
@@ -8,11 +10,9 @@
 int main(int argc, char* argv[]) {
 	std::cout << "Hello, World!" << std::endl;
 
-	auto engine = new Engine::MainManager();
-	
-	/*AudioManager::Instance()->LoadBGM("pokemon");
-	AudioManager::Instance()->PlayBGM(); */
-	std::cout << engine->Message;
+	AudioManager::Instance().InitMusicPlayer();
+	AudioManager::Instance().LoadBGM("pokemon");
+	AudioManager::Instance().PlayBGM();
 
 	TMXManager::Instance().Init("../content/map/tilemapje2.tmx");
 	TMXManager::Instance().Render();
