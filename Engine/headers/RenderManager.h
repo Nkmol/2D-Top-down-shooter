@@ -15,6 +15,9 @@ using namespace std;
 
 class RenderManager {
 public:
+	RenderManager(RenderManager const&) = delete;
+	void operator=(RenderManager const&) = delete;
+
 	RenderManager();
 	~RenderManager();
 	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
@@ -40,13 +43,14 @@ public:
 	*/
 	SDL_Renderer* GetRenderer() const;
 
-	static RenderManager* GetRenderManager();
+	static RenderManager& Instance();
 
 
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	map<std::string, SDL_Surface*> sprites;
-	static RenderManager *renderManager;
+
+	static RenderManager* sInstance;
 };
 #endif //RENDERMANAGER_H

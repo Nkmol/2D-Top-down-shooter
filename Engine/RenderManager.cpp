@@ -4,9 +4,6 @@
 
 #include "RenderManager.h"
 
-
-RenderManager* RenderManager::renderManager;
-
 RenderManager::RenderManager(): window(nullptr), renderer(nullptr)
 {
 }
@@ -46,11 +43,11 @@ void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-RenderManager* RenderManager::GetRenderManager() {
-	if (!renderManager) {
-		renderManager = new RenderManager;
-	}
-	return renderManager;
+RenderManager& RenderManager::Instance() {
+	static RenderManager sInstance; // Guaranteed to be destroyed.
+								    // Instantiated on first use.
+
+	return sInstance;
 }
 
 void RenderManager::Flip() const

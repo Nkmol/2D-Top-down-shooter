@@ -7,7 +7,6 @@
 #include <algorithm>
 
 #undef main
-
 int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
 //
@@ -18,14 +17,16 @@ int main(int argc, char *argv[]) {
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
 
-    auto renderManager = RenderManager::GetRenderManager();
+    auto& renderManager = RenderManager::Instance();
+	renderManager.CreateWindow("Shooter game", false, 1500, 960);
+
     auto inputManager = InputManager::instance();
 
     SDL_PumpEvents();
 
     std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
     player->draw();
-    renderManager->Flip();
+    renderManager.Flip();
 
     SDL_Event event{};
 
@@ -72,9 +73,9 @@ int main(int argc, char *argv[]) {
         LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
 
-        renderManager->Clear();
+        renderManager.Clear();
         player->draw();
-        renderManager->Flip();
+        renderManager.Flip();
     }
 
 
@@ -84,4 +85,3 @@ int main(int argc, char *argv[]) {
     return 0;
 
 }
-
