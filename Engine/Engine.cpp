@@ -19,4 +19,6 @@ void Engine::Init() const
 		std::cout << SDL_GetError() << std::endl;
 		exit(-1);
 	}
+
+	SDL_PumpEvents();
 }
