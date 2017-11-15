@@ -15,9 +15,10 @@ protected:
     std::vector<Bullet> bullets;
 
 public:
+
     void shoot(int angle, float xPos, float yPos);
 
-    void addBullets(const Bullet &bullet, int amount);
+    void addBullets(Bullet &bullet, int amount);
 
     void update(float time);
 

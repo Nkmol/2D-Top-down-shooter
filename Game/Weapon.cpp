@@ -5,7 +5,7 @@
 #include <iostream>
 #include <Weapon.h>
 
-void Weapon::addBullets(const Bullet &bullet, int amount) {
+void Weapon::addBullets(Bullet &bullet, int amount) {
     for (int i = 0; i < amount; ++i) {
         bullets.push_back(bullet);
     }
@@ -30,7 +30,7 @@ void Weapon::shoot(int angle, float xPos, float yPos) {
 void Weapon::update(float time) {
     for (auto &bullet : bullets) {
         if (bullet.isVisible()) {
-            bullet.update(time);
+            bullet.makeInvisible();
         }
     }
 }
@@ -48,4 +48,5 @@ void Weapon::drawBullets() {
         }
     }
 }
+
 

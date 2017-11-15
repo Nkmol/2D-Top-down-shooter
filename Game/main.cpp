@@ -39,9 +39,9 @@ int main(int argc, char *argv[]) {
     int FPS = 100;
     int MAX_FRAME_TIME = 5 * 1000 / FPS;
     int LAST_UPDATE_TIME = SDL_GetTicks();
-
+    auto counter = 0;
     while (true) {
-
+        cout << ++counter << endl;
         if (inputManager.hasEvent(&event)) {
 
             // recalculate players angle to mouse ONLY IF the mouse has been moved.
