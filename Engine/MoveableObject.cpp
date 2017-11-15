@@ -23,9 +23,10 @@ MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yP
 void MoveableObject::draw() {
     int w, h;
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &w, &h);
+
     SDL_Rect destinationRectangle = {static_cast<int>(xPos), static_cast<int>(yPos), w, h};
     RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle,
-                                                   MoveableObject::angle);
+                                          MoveableObject::angle);
 }
 
 
@@ -82,27 +83,27 @@ void MoveableObject::setAngle(int angle) {
 
 void MoveableObject::moveTop() {
     if (MoveableObject::yPos > 0) {
-        destinationYPos = -MoveableObject::distance;
+        setDestinationYPos(-MoveableObject::distance);
     }
 }
 
 void MoveableObject::moveRight() {
     int maxWidth = 1500; // todo get max width
     if (MoveableObject::xPos < maxWidth) {
-        destinationXPos = MoveableObject::distance;
+        setDestinationXPos(MoveableObject::distance);
     }
 }
 
 void MoveableObject::moveBottom() {
     int maxHeight = 960; // todo get max height
     if (MoveableObject::yPos < maxHeight) {
-        destinationYPos = MoveableObject::distance;
+        setDestinationYPos(MoveableObject::distance);
     }
 }
 
 void MoveableObject::moveLeft() {
     if (MoveableObject::xPos > 0) {
-        destinationXPos = -MoveableObject::distance;
+        setDestinationXPos(-MoveableObject::distance);
     }
 }
 
@@ -129,6 +130,38 @@ void MoveableObject::update(float time) {
 void MoveableObject::stopMove() {
     this->destinationXPos = 0.0f;
     this->destinationYPos = 0.0f;
+}
+
+int MoveableObject::getAngle() const {
+    return angle;
+}
+
+void MoveableObject::setXPos(float xPos) {
+    MoveableObject::xPos = xPos;
+}
+
+void MoveableObject::setYPos(float yPos) {
+    MoveableObject::yPos = yPos;
+}
+
+bool MoveableObject::isVisible() const {
+    return visible;
+}
+
+void MoveableObject::setDestinationXPos(float destinationXPos) {
+    MoveableObject::destinationXPos = destinationXPos;
+}
+
+void MoveableObject::setDestinationYPos(float destinationYPos) {
+    MoveableObject::destinationYPos = destinationYPos;
+}
+
+float MoveableObject::getDestinationXPos() const {
+    return destinationXPos;
+}
+
+float MoveableObject::getDestinationYPos() const {
+    return destinationYPos;
 }
 
 

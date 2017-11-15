@@ -37,6 +37,8 @@ public:
 
     bool isMouseMoved(SDL_Event &event);
 
+    bool isMouseClicked(SDL_Event &event);
+
     int getMousePositionX() const;
 
     int getMousePositionY() const;

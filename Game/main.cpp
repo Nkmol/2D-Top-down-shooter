@@ -5,8 +5,10 @@
 #include "AudioManager.h"
 #include <memory>
 #include <algorithm>
+#include <Uzi.h>
 
 #undef main
+
 int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
 //
@@ -17,15 +19,19 @@ int main(int argc, char *argv[]) {
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
 
-    auto& renderManager = RenderManager::Instance();
-	renderManager.CreateWindow("Shooter game", false, 1500, 960);
+    auto &renderManager = RenderManager::Instance();
+    renderManager.CreateWindow("Shooter game", false, 1500, 960);
 
     auto inputManager = InputManager::instance();
 
     SDL_PumpEvents();
 
-    std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
+    std::unique_ptr<Weapon> uzi{new Uzi()};
+
+    std::unique_ptr<Player> player{new Player("../content/soldier.png", 100, 300)};
+    player->addWeapon(*uzi);
     player->draw();
+
     renderManager.Flip();
 
     SDL_Event event{};
@@ -44,13 +50,17 @@ int main(int argc, char *argv[]) {
 
                 // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
                 player->setAngle(angle);
-            }   
+            }
 
             if (inputManager.isKeyDown(event)) {
                 Direction direction = inputManager.getDirection(event);
                 int angle = inputManager.calculateMouseAngle(*player);
                 player->setAngle(angle);
                 player->move(direction);
+            }
+
+            if (inputManager.isMouseClicked(event)) {
+                player->shoot();
             }
 
             if (inputManager.isKeyUp(event)) {
@@ -69,12 +79,14 @@ int main(int argc, char *argv[]) {
         int time = std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME);
 
         player->update(time);
+        player->getWeapon().update(time);
 
         LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
 
         renderManager.Clear();
         player->draw();
+        player->getWeapon().drawBullets();
         renderManager.Flip();
     }
 

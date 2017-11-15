@@ -108,6 +108,10 @@ bool InputManager::isMouseMoved(SDL_Event &event) {
     return event.type == SDL_MOUSEMOTION;
 }
 
+bool InputManager::isMouseClicked(SDL_Event &event) {
+    return event.type == SDL_MOUSEBUTTONDOWN;
+}
+
 
 // Getters & Setters
 
