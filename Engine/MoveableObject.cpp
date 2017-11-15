@@ -7,8 +7,8 @@
 
 MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos) : xPos{xPos}, yPos{yPos},
                                                                                       distance{0.3f} {
-    this->_sprite = SDL_CreateTextureFromSurface(RenderManager::GetRenderManager()->GetRenderer(),
-                                                 RenderManager::GetRenderManager()->LoadImage(filePath));
+    this->_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(),
+                                                 RenderManager::Instance().LoadImage(filePath));
 
     if (this->_sprite == NULL) {
         printf(SDL_GetError());
@@ -24,7 +24,7 @@ void MoveableObject::draw() {
     int w, h;
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &w, &h);
     SDL_Rect destinationRectangle = {static_cast<int>(xPos), static_cast<int>(yPos), w, h};
-    RenderManager::GetRenderManager()->BlitSurface(this->_sprite, nullptr, &destinationRectangle,
+    RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle,
                                                    MoveableObject::angle);
 }
 
