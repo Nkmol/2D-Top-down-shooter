@@ -8,6 +8,8 @@
 #include "TMXManager.h"
 #include <memory>
 #include <algorithm>
+#include "Game.h"
+#include "PlayingState.h"
 
 
 #undef main
@@ -21,21 +23,24 @@ int main(int argc, char *argv[]) {
 //    AudioManager::Instance().LoadBGM("pokemon");
 //    AudioManager::Instance().PlayBGM();
 
-	TMXManager::Instance().Init("../content/map/tilemapje2.tmx");
-	TMXManager::Instance().Render();
-	std::cin.get();
+	Game game;
+
+	unique_ptr<PlayingState> state(new PlayingState());
+	game.Init("Shooter game", false, 1500, 960);
+	game.ChangeState(state.get());
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
 
+    auto& renderManager = RenderManager::Instance();
     auto inputManager = InputManager::instance();
 
-    SDL_PumpEvents();
+    //SDL_PumpEvents();
 
-    std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
-    player->draw();
+    //std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
+    //player->draw();
     renderManager.Flip();
 
-    SDL_Event event{};
+   /* SDL_Event event{};*/
 
     int FPS = 100;
     int MAX_FRAME_TIME = 5 * 1000 / FPS;
@@ -43,46 +48,48 @@ int main(int argc, char *argv[]) {
 
     while (true) {
 
-        if (inputManager.hasEvent(&event)) {
+        //if (inputManager.hasEvent(&event)) {
 
-            // recalculate players angle to mouse ONLY IF the mouse has been moved.
-            if (inputManager.isMouseMoved(event)) {
-                int angle = inputManager.recalculateMouseAngle(*player);
+        //    // recalculate players angle to mouse ONLY IF the mouse has been moved.
+        //    if (inputManager.isMouseMoved(event)) {
+        //        int angle = inputManager.recalculateMouseAngle(*player);
 
-                // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
-                player->setAngle(angle);
-            }   
+        //        // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
+        //        player->setAngle(angle);
+        //    }   
 
-            if (inputManager.isKeyDown(event)) {
-                Direction direction = inputManager.getDirection(event);
-                int angle = inputManager.calculateMouseAngle(*player);
-                player->setAngle(angle);
-                player->move(direction);
-            }
+        //    if (inputManager.isKeyDown(event)) {
+        //        Direction direction = inputManager.getDirection(event);
+        //        int angle = inputManager.calculateMouseAngle(*player);
+        //        player->setAngle(angle);
+        //        player->move(direction);
+        //    }
 
-            if (inputManager.isKeyUp(event)) {
-                player->stopMove();
-            }
+        //    if (inputManager.isKeyUp(event)) {
+        //        player->stopMove();
+        //    }
 
 
-            if (inputManager.isQuit(event)) {
-                break;
-            }
-        }
+        //    if (inputManager.isQuit(event)) {
+        //        break;
+        //    }
+        //}
 
         // todo, alle draw functies naar rendermanager: functie: void DrawObject(MoveableObject object);
         const int CURRENT_TIME_MS = SDL_GetTicks();
         int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
         int time = std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME);
 
-        player->update(time);
+		game.HandleEvents();
+		game.Update(time);
+        //player->update(time);
 
         LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
-
-        renderManager.Clear();
+		game.Draw();
+       /* renderManager.Clear();
         player->draw();
-        renderManager.Flip();
+        renderManager.Flip();*/
     }
 
 
