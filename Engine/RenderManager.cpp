@@ -4,17 +4,27 @@
 
 #include "RenderManager.h"
 
-
-RenderManager* RenderManager::renderManager;
-
-RenderManager::RenderManager() {
-	SDL_CreateWindowAndRenderer(1500, 960, 0, &this->window, &this->renderer);
-	SDL_SetWindowTitle(this->window, "Shooter");
-	SDL_Surface* surface = SDL_GetWindowSurface(this->window);
+RenderManager::RenderManager(): window(nullptr), renderer(nullptr)
+{
 }
 
 RenderManager::~RenderManager() {
 	SDL_DestroyWindow(this->window);
+}
+
+void RenderManager::CreateWindow(const std::string& title, bool fullscreen, const int width, const int height)
+{
+	auto flags = 0;
+	if(fullscreen)
+	{
+		flags = SDL_WINDOW_FULLSCREEN;
+	}
+
+	const auto resp = SDL_CreateWindowAndRenderer(width, height, flags, &this->window, &this->renderer);
+	if (resp != 0) {
+		std::cout << SDL_GetError() << std::endl;
+	}
+	SDL_SetWindowTitle(this->window, title.c_str());
 }
 
 SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
@@ -25,25 +35,28 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 }
 
 void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
-	double angle) {
-	int resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
+	double angle) const
+{
+	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
 	if (resp != 0) {
 		std::cout << SDL_GetError() << std::endl;
 	}
 }
 
-RenderManager* RenderManager::GetRenderManager() {
-	if (!renderManager) {
-		renderManager = new RenderManager;
-	}
-	return renderManager;
+RenderManager& RenderManager::Instance() {
+	static RenderManager sInstance; // Guaranteed to be destroyed.
+								    // Instantiated on first use.
+
+	return sInstance;
 }
 
-void RenderManager::Flip() {
+void RenderManager::Flip() const
+{
 	SDL_RenderPresent(this->renderer);
 }
 
-void RenderManager::Clear() {
+void RenderManager::Clear() const
+{
 	SDL_RenderClear(this->renderer);
 }
 
