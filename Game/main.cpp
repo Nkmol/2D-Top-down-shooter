@@ -13,6 +13,9 @@
 #undef main
 int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
+
+	auto& renderManager = RenderManager::Instance();
+	renderManager.CreateWindow("Shooter game", false, 1500, 960);
 //
 //    AudioManager::Instance().InitMusicPlayer();
 //    AudioManager::Instance().LoadBGM("pokemon");
@@ -23,9 +26,6 @@ int main(int argc, char *argv[]) {
 	std::cin.get();
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
-
-    auto& renderManager = RenderManager::Instance();
-	renderManager.CreateWindow("Shooter game", false, 1500, 960);
 
     auto inputManager = InputManager::instance();
 

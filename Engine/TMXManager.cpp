@@ -20,33 +20,15 @@ void TMXManager::Init(const string input)
 	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
 	tsx.load(tileset.c_str());
 
-	RenderTilesText();
-
-	SDL_Window* window = SDL_CreateWindow("TMX", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN);
-
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
 	SDL_Surface* spritesheet = AssetManager::getInstance().loadSurface(tsx.tileset.image.source.c_str());
 	if (!spritesheet)
 		cout << SDL_GetError() << endl;
-	mapTexture = SDL_CreateTextureFromSurface(renderer, spritesheet);
+	mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), spritesheet);
 	SDL_FreeSurface(spritesheet);
-
-
-	Render();
-
-	SDL_Event e;
-	while (SDL_WaitEvent(&e)) {
-		if (e.type == SDL_QUIT) break;
-		SDL_RenderClear(renderer);
-
-	}
 }
 
 void TMXManager::Render()
 {
-	SDL_RenderClear(renderer);
-
 	char tileID = 0;
 
 	const int tileWidth = tmx.mapInfo.tileWidth;
@@ -81,22 +63,18 @@ void TMXManager::Render()
 			destRect.y = i*tileWidth;
 			destRect.x = j*tileHeight;
 			
-			if (atoi(tileLayers.at(0).at(counter).c_str()) == 0) {
-				SDL_RenderDrawRect(renderer, &destRect);
-				SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-			}
-			else {
-				SDL_RenderCopy(renderer, mapTexture, &tilesMap.at(atoi(tileLayers.at(0).at(counter).c_str())), &destRect);
+			if (atoi(tileLayers.at(0).at(counter).c_str()) != 0) {
+				RenderManager::Instance().BlitSurface(mapTexture, &tilesMap.at(atoi(tileLayers.at(0).at(counter).c_str())), &destRect);
 			}
 
 			if (atoi(tileLayers.at(1).at(counter).c_str()) != 0) {
 				collidables.push_back({ destRect.x, destRect.y, tileWidth, tileHeight });
-				SDL_RenderCopy(renderer, mapTexture, &tilesMap.at(atoi(tileLayers.at(1).at(counter).c_str())), &destRect);
+				RenderManager::Instance().BlitSurface(mapTexture, &tilesMap.at(atoi(tileLayers.at(1).at(counter).c_str())), &destRect);
 			}
 			counter++;
 		}
 	}
-	SDL_RenderPresent(renderer);
+	RenderManager::Instance().Flip();
 }
 
 void TMXManager::RenderTilesText()

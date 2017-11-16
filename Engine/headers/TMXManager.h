@@ -2,13 +2,13 @@
 #include "../tmx/include/TMXParser.h"
 #include "../tmx/include/TSXParser.h"
 #include "AssetManager.h"
+#include "RenderManager.h"
 #include "CollidableObject.h"
 #include <sstream>
 #include <vector>
 #include <string>
 #include <iterator>
 #include <SDL.h>
-#include <SDL_image.h>
 
 class TMXManager {
 public:
@@ -25,7 +25,6 @@ private:
 	TSX::Parser tsx;
 	static TMXManager sInstance;
 	SDL_Texture* mapTexture;
-	SDL_Renderer* renderer;
 	TMXManager();
 
 	template<typename Out>

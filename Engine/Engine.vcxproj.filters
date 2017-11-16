@@ -42,18 +42,6 @@
     <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

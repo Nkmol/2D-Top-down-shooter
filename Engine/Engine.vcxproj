@@ -142,16 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="AudioManager.h" />
-    <ClInclude Include="Engine.h" />
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
     <ClInclude Include="headers\CollidableObject.h" />
     <ClInclude Include="headers\Engine.h" />
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\TMXManager.h" />
-    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
