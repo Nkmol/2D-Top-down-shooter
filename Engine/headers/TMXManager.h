@@ -26,9 +26,12 @@ private:
 	static TMXManager sInstance;
 	SDL_Texture* mapTexture;
 	TMXManager();
+	std::map<int, SDL_Rect> tilesMap;
+	vector<vector<string>> tileLayers;
 
 	template<typename Out>
 	void Split(const std::string &s, char delim, Out result);
-	std::map<int, SDL_Rect> GetTilesMap();
+	void GetTilesMap();
+	void GetTileLayers();
 	
 };

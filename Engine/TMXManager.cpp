@@ -25,27 +25,17 @@ void TMXManager::Init(const string input)
 		cout << SDL_GetError() << endl;
 	mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), spritesheet);
 	SDL_FreeSurface(spritesheet);
+	GetTilesMap();
+	GetTileLayers();
 }
 
 void TMXManager::Render()
 {
-	char tileID = 0;
-
 	const int tileWidth = tmx.mapInfo.tileWidth;
 	const int tileHeight = tmx.mapInfo.tileHeight;
 	const int width = tmx.mapInfo.width;
 	const int height = tmx.mapInfo.height;
-	vector<vector<string>> tileLayers;
-	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
-		string content = tmx.tileLayer[it->first].data.contents;
-
-		vector<string> tiles;
-		string next;
-
-		Split(content, ',', std::back_inserter(tiles));
-		
-		tileLayers.push_back(tiles);
-	}
+	
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 	srcRect.w = tileWidth;
@@ -53,7 +43,6 @@ void TMXManager::Render()
 	destRect.w = tileWidth;
 	destRect.h = tileHeight;
 
-	std::map<int, SDL_Rect> tilesMap = GetTilesMap();
 	
 	int counter = 0;
 	for (int i = 0; i < height; i++)
@@ -111,14 +100,12 @@ void TMXManager::Split(const std::string &s, char delim, Out result)
 	}
 }
 
-std::map<int, SDL_Rect> TMXManager::GetTilesMap()
+void TMXManager::GetTilesMap()
 {
 	const int columns = tsx.tileset.columns;
 	const int tileWidth = tsx.tileset.tileWidth;
 	const int tileHeight = tsx.tileset.tileHeight;
-
-	std::map<int, SDL_Rect> tilesMap;
-
+	
 	int counter = 1;
 
 	for (int i = 0; i < columns; i++)
@@ -136,5 +123,18 @@ std::map<int, SDL_Rect> TMXManager::GetTilesMap()
 				break;
 		}
 	}
-	return tilesMap;
+}
+
+void TMXManager::GetTileLayers()
+{
+	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
+		string content = tmx.tileLayer[it->first].data.contents;
+
+		vector<string> tiles;
+		string next;
+
+		Split(content, ',', std::back_inserter(tiles));
+
+		tileLayers.push_back(tiles);
+	}
 }
