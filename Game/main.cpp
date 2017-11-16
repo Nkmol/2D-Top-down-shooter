@@ -16,8 +16,7 @@
 int main(int argc, char *argv[]) {
     std::cout << "Hello, World!" << std::endl;
 
-	auto& renderManager = RenderManager::Instance();
-	renderManager.CreateWindow("Shooter game", false, 1500, 960);
+	//auto& renderManager = RenderManager::Instance();
 //
 //    AudioManager::Instance().InitMusicPlayer();
 //    AudioManager::Instance().LoadBGM("pokemon");
@@ -31,14 +30,13 @@ int main(int argc, char *argv[]) {
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
 
-    auto& renderManager = RenderManager::Instance();
     auto inputManager = InputManager::instance();
 
     //SDL_PumpEvents();
 
     //std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
     //player->draw();
-    renderManager.Flip();
+    //renderManager.Flip();
 
    /* SDL_Event event{};*/
 

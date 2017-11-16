@@ -74,7 +74,6 @@ void TMXManager::Render()
 			counter++;
 		}
 	}
-	RenderManager::Instance().Flip();
 }
 
 void TMXManager::RenderTilesText()
