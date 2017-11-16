@@ -5,7 +5,6 @@
 
 Game::Game()
 {
-	_mainManager = Engine();
 }
 
 Game::~Game()
