@@ -1,6 +1,6 @@
 #include <iostream>
-#include "tmx/include/TMXParser.h"
-#include "tmx/include/TSXParser.h"
+#include "../tmx/include/TMXParser.h"
+#include "../tmx/include/TSXParser.h"
 #include "AssetManager.h"
 #include "CollidableObject.h"
 #include <sstream>

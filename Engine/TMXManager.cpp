@@ -25,9 +25,8 @@ void TMXManager::Init(const string input)
 	SDL_Window* window = SDL_CreateWindow("TMX", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN);
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 
-	SDL_Surface* spritesheet = AssetManager::instance()->loadSurface(tsx.tileset.image.source.c_str());
+	SDL_Surface* spritesheet = AssetManager::getInstance().loadSurface(tsx.tileset.image.source.c_str());
 	if (!spritesheet)
 		cout << SDL_GetError() << endl;
 	mapTexture = SDL_CreateTextureFromSurface(renderer, spritesheet);
