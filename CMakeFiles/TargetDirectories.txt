@@ -1,0 +1,3 @@
+/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/rebuild_cache.dir
+/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/edit_cache.dir
+/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir
