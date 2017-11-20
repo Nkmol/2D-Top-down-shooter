@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 
     //SDL_PumpEvents();
 
-    //std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
-    //player->draw();
+    std::unique_ptr<MoveableObject> player{new Player("../content/soldier.png", 100, 300)};
+    player->draw();
     renderManager.Flip();
 
    /* SDL_Event event{};*/
@@ -39,7 +39,9 @@ int main(int argc, char *argv[]) {
     int MAX_FRAME_TIME = 5 * 1000 / FPS;
     int LAST_UPDATE_TIME = SDL_GetTicks();
 
-    while (true) {
+    bool isPlaying = true;
+
+    while (isPlaying) {
 
         //if (inputManager.hasEvent(&event)) {
 
