@@ -13,6 +13,9 @@
 AssetManager::AssetManager() {
 	sounds["pokemon"] = "../content/audio/Pokemon.wav";
 	effect["headshot"] = "../content/audio/Headshot.wav";
+	render["creditbutton"] = "../content/img/button_credits.bmp";
+	render["loadgamebutton"] = "../content/img/button_load-game.bmp";
+	render["newgamebutton"] = "../content/img/button_new-game.bmp";
 	//render["background"] = "../Assets/Img/wallpaper.png";
 }
 

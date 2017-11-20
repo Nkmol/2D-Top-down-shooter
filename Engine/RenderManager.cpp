@@ -3,6 +3,7 @@
 //
 
 #include "RenderManager.h"
+#include "AssetManager.h"
 
 RenderManager::RenderManager(): window(nullptr), renderer(nullptr)
 {
@@ -25,6 +26,19 @@ void RenderManager::CreateWindow(const std::string& title, bool fullscreen, cons
 		std::cout << SDL_GetError() << std::endl;
 	}
 	SDL_SetWindowTitle(this->window, title.c_str());
+}
+
+void RenderManager::apply_surface(int x, int y, SDL_Surface * source, SDL_Surface * destination)
+{
+	//Make a temporary rectangle to hold the offsets
+	SDL_Rect offset;
+
+	//Give the offsets to the rectangle
+	offset.x = x;
+	offset.y = y;
+
+	//Blit the surface
+	SDL_BlitSurface(source, NULL, destination, &offset);
 }
 
 SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
@@ -62,4 +76,8 @@ void RenderManager::Clear() const
 
 SDL_Renderer* RenderManager::GetRenderer() const {
 	return this->renderer;
+}
+
+SDL_Window* RenderManager::GetWindow() {
+	return this->window;
 }

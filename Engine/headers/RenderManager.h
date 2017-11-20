@@ -21,6 +21,8 @@ public:
 	RenderManager();
 	~RenderManager();
 	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
+	SDL_Window* GetWindow();
+	void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination);
 
 	SDL_Surface* LoadImage(const std::string &filePath);
 	/* void BlitSurface
@@ -47,6 +49,7 @@ public:
 
 
 private:
+	SDL_Surface* windowSurface;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	map<std::string, SDL_Surface*> sprites;
