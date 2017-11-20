@@ -144,19 +144,37 @@
   <ItemGroup>
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
-    <ClInclude Include="headers\Direction.h" />
+    <ClInclude Include="headers\CollidableObject.h" />
     <ClInclude Include="headers\Engine.h" />
+    <ClInclude Include="headers\RenderManager.h" />
+    <ClInclude Include="headers\TMXManager.h" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="tmx\include\TMXParser.h" />
+    <ClInclude Include="tmx\include\TSXParser.h" />
+    <ClInclude Include="headers\Direction.h" />
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\MoveableObject.h" />
-    <ClInclude Include="headers\RenderManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="CollidableObject.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="TMXManager.cpp" />
+    <ClCompile Include="tmx\src\TMXParser.cpp" />
+    <ClCompile Include="tmx\src\TSXParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tmx\include\rapidxml\license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tmx\include\rapidxml\manual.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
