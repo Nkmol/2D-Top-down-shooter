@@ -10,11 +10,11 @@
 #include <iterator>
 #include <SDL.h>
 
-class TMXManager {
+class MapManager {
 public:
-	TMXManager(TMXManager const&) = delete;
-	void operator=(TMXManager const&) = delete;
-	static TMXManager& Instance();
+	MapManager(MapManager const&) = delete;
+	void operator=(MapManager const&) = delete;
+	static MapManager& Instance();
 	std::vector<CollidableObject> collidables;
 
 	void Init(const std::string input);
@@ -23,9 +23,9 @@ public:
 private:
 	TMX::Parser tmx;
 	TSX::Parser tsx;
-	static TMXManager sInstance;
+	static MapManager sInstance;
 	SDL_Texture* mapTexture;
-	TMXManager();
+	MapManager();
 	std::map<int, SDL_Rect> tilesMap;
 	vector<vector<string>> tileLayers;
 

@@ -57,7 +57,7 @@
     <ClInclude Include="headers\CollidableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\TMXManager.h">
+    <ClInclude Include="headers\MapManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,9 +74,6 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TMXManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tmx\src\TMXParser.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
@@ -90,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
