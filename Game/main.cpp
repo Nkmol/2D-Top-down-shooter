@@ -39,14 +39,15 @@ int main(int argc, char *argv[]) {
     int FPS = 100;
     int MAX_FRAME_TIME = 5 * 1000 / FPS;
     int LAST_UPDATE_TIME = SDL_GetTicks();
-    auto counter = 0;
+
     while (true) {
-        cout << ++counter << endl;
         if (inputManager.hasEvent(&event)) {
 
             // recalculate players angle to mouse ONLY IF the mouse has been moved.
             if (inputManager.isMouseMoved(event)) {
                 int angle = inputManager.recalculateMouseAngle(*player);
+                angle = (angle + 360) % 360;
+                std::cout << angle << std::endl;
 
                 // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
                 player->setAngle(angle);
@@ -55,6 +56,7 @@ int main(int argc, char *argv[]) {
             if (inputManager.isKeyDown(event)) {
                 Direction direction = inputManager.getDirection(event);
                 int angle = inputManager.calculateMouseAngle(*player);
+                angle = (angle + 360) % 360;
                 player->setAngle(angle);
                 player->move(direction);
             }
@@ -66,7 +68,6 @@ int main(int argc, char *argv[]) {
             if (inputManager.isKeyUp(event)) {
                 player->stopMove();
             }
-
 
             if (inputManager.isQuit(event)) {
                 break;

@@ -10,6 +10,7 @@
 #include <map>
 #include "Direction.h"
 #include "MoveableObject.h"
+#include "vector"
 
 class InputManager {
 

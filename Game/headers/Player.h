@@ -21,7 +21,9 @@ public:
 
     void addWeapon(Weapon &weapon);
 
-    Weapon getWeapon();
+    Weapon& getWeapon();
+
+    void updateWeapon(int time);
 };
 
 

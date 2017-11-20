@@ -37,6 +37,8 @@ public:
 
     MoveableObject(const std::string &filePath, float xPos, float yPos);
 
+    ~MoveableObject();
+
     float getXPos() const;
 
     float getYPos() const;

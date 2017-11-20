@@ -18,8 +18,7 @@ void Weapon::shoot(int angle, float xPos, float yPos) {
             bullet.makeVisible();
             bullet.setXPos(xPos);
             bullet.setYPos(yPos);
-            bullet.setDestinationXPos(20);
-            bullet.setDestinationYPos(20);
+
             bullet.setAngle(angle);
             break;
         }
@@ -30,21 +29,16 @@ void Weapon::shoot(int angle, float xPos, float yPos) {
 void Weapon::update(float time) {
     for (auto &bullet : bullets) {
         if (bullet.isVisible()) {
-            bullet.makeInvisible();
+            bullet.update(time);
         }
     }
 }
 
 
 void Weapon::drawBullets() {
-    int counter = 0;
     for (auto &bullet : bullets) {
         if (bullet.isVisible()) {
             bullet.draw();
-            cout << counter << endl;
-            cout << "X: " << bullet.getXPos() << endl;
-            cout << "Y: " << bullet.getYPos() << endl << endl;
-            counter++;
         }
     }
 }

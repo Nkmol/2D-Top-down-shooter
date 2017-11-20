@@ -19,6 +19,6 @@ void Player::shoot() {
     Player::weapon.shoot(getAngle(), bulletStartX, bulletStartY);
 }
 
-Weapon Player::getWeapon() {
+Weapon & Player::getWeapon() {
     return weapon;
 }

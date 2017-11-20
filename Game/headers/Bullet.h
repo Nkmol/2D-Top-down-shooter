@@ -19,6 +19,8 @@ public:
     void makeVisible();
 
     void makeInvisible();
+
+    void update(float time);
 };
 
 
