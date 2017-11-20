@@ -2,7 +2,7 @@
 #include "RenderManager.h"
 #include "Engine.h"
 #include "State.h"
-#include "TMXManager.h"
+#include "MapManager.h"
 
 Game::Game()
 {
@@ -17,7 +17,7 @@ void Game::Init(const std::string& title, bool fullscreen, const int width, cons
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(title, fullscreen, width, height);
 
-	TMXManager::Instance().Init("../content/map/tilemapje2.tmx");
+	MapManager::Instance().Init("../content/map/tilemapje2.tmx");
 }
 
 void Game::ChangeState(State* state)
@@ -52,7 +52,7 @@ void Game::Draw()
 {
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
-	TMXManager::Instance().Render();
+	MapManager::Instance().Render();
 
 	_states.back()->Draw(*this);
 	renderManager.Flip();

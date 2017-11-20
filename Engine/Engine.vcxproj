@@ -147,7 +147,7 @@
     <ClInclude Include="headers\CollidableObject.h" />
     <ClInclude Include="headers\Engine.h" />
     <ClInclude Include="headers\RenderManager.h" />
-    <ClInclude Include="headers\TMXManager.h" />
+    <ClInclude Include="headers\MapManager.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
@@ -166,7 +166,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="RenderManager.cpp" />
-    <ClCompile Include="TMXManager.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />
     <ClCompile Include="tmx\src\TSXParser.cpp" />
   </ItemGroup>

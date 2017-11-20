@@ -1,20 +1,20 @@
-#include "TMXManager.h"
+#include "MapManager.h"
 
 using namespace std;
 
-TMXManager& TMXManager::Instance()
+MapManager& MapManager::Instance()
 {
-	static TMXManager sInstance;
+	static MapManager sInstance;
 
 	return sInstance;
 }
 
-TMXManager::TMXManager()
+MapManager::MapManager()
 {
 	mapTexture = nullptr;
 }
 
-void TMXManager::Init(const string input)
+void MapManager::Init(const string input)
 {
 	tmx.load(input.c_str());
 	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
@@ -29,7 +29,7 @@ void TMXManager::Init(const string input)
 	GetTileLayers();
 }
 
-void TMXManager::Render()
+void MapManager::Render()
 {
 	const int tileWidth = tmx.mapInfo.tileWidth;
 	const int tileHeight = tmx.mapInfo.tileHeight;
@@ -65,7 +65,7 @@ void TMXManager::Render()
 	}
 }
 
-void TMXManager::RenderTilesText()
+void MapManager::RenderTilesText()
 {
 	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
 		std::cout << std::endl;
@@ -87,7 +87,7 @@ void TMXManager::RenderTilesText()
 }
 
 template<typename Out>
-void TMXManager::Split(const std::string &s, char delim, Out result)
+void MapManager::Split(const std::string &s, char delim, Out result)
 {
 	std::stringstream ss(s);
 	std::string item;
@@ -100,7 +100,7 @@ void TMXManager::Split(const std::string &s, char delim, Out result)
 	}
 }
 
-void TMXManager::GetTilesMap()
+void MapManager::GetTilesMap()
 {
 	const int columns = tsx.tileset.columns;
 	const int tileWidth = tsx.tileset.tileWidth;
@@ -125,7 +125,7 @@ void TMXManager::GetTilesMap()
 	}
 }
 
-void TMXManager::GetTileLayers()
+void MapManager::GetTileLayers()
 {
 	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
 		string content = tmx.tileLayer[it->first].data.contents;
