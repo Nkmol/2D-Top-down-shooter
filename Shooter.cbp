@@ -104,10 +104,16 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/CollidableObject.cpp">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MapManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp">
@@ -122,6 +128,9 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/AudioManager.h">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/CollidableObject.h">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h">
 			<Option target="GroepH"/>
 		</Unit>
@@ -131,10 +140,37 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/InputManager.h">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MapManager.h">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/TMXParser.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/TSXParser.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/rapidxml/rapidxml.hpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/rapidxml/rapidxml_iterators.hpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/rapidxml/rapidxml_print.hpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/include/rapidxml/rapidxml_utils.hpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TMXParser.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp">

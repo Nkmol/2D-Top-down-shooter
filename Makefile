@@ -177,6 +177,33 @@ Engine/AudioManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s
 .PHONY : Engine/AudioManager.cpp.s
 
+Engine/CollidableObject.o: Engine/CollidableObject.cpp.o
+
+.PHONY : Engine/CollidableObject.o
+
+# target to build an object file
+Engine/CollidableObject.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o
+.PHONY : Engine/CollidableObject.cpp.o
+
+Engine/CollidableObject.i: Engine/CollidableObject.cpp.i
+
+.PHONY : Engine/CollidableObject.i
+
+# target to preprocess a source file
+Engine/CollidableObject.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.i
+.PHONY : Engine/CollidableObject.cpp.i
+
+Engine/CollidableObject.s: Engine/CollidableObject.cpp.s
+
+.PHONY : Engine/CollidableObject.s
+
+# target to generate assembly for a file
+Engine/CollidableObject.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.s
+.PHONY : Engine/CollidableObject.cpp.s
+
 Engine/Engine.o: Engine/Engine.cpp.o
 
 .PHONY : Engine/Engine.o
@@ -231,6 +258,33 @@ Engine/InputManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s
 .PHONY : Engine/InputManager.cpp.s
 
+Engine/MapManager.o: Engine/MapManager.cpp.o
+
+.PHONY : Engine/MapManager.o
+
+# target to build an object file
+Engine/MapManager.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o
+.PHONY : Engine/MapManager.cpp.o
+
+Engine/MapManager.i: Engine/MapManager.cpp.i
+
+.PHONY : Engine/MapManager.i
+
+# target to preprocess a source file
+Engine/MapManager.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MapManager.cpp.i
+.PHONY : Engine/MapManager.cpp.i
+
+Engine/MapManager.s: Engine/MapManager.cpp.s
+
+.PHONY : Engine/MapManager.s
+
+# target to generate assembly for a file
+Engine/MapManager.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MapManager.cpp.s
+.PHONY : Engine/MapManager.cpp.s
+
 Engine/MoveableObject.o: Engine/MoveableObject.cpp.o
 
 .PHONY : Engine/MoveableObject.o
@@ -284,6 +338,60 @@ Engine/RenderManager.s: Engine/RenderManager.cpp.s
 Engine/RenderManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s
 .PHONY : Engine/RenderManager.cpp.s
+
+Engine/tmx/src/TMXParser.o: Engine/tmx/src/TMXParser.cpp.o
+
+.PHONY : Engine/tmx/src/TMXParser.o
+
+# target to build an object file
+Engine/tmx/src/TMXParser.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o
+.PHONY : Engine/tmx/src/TMXParser.cpp.o
+
+Engine/tmx/src/TMXParser.i: Engine/tmx/src/TMXParser.cpp.i
+
+.PHONY : Engine/tmx/src/TMXParser.i
+
+# target to preprocess a source file
+Engine/tmx/src/TMXParser.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.i
+.PHONY : Engine/tmx/src/TMXParser.cpp.i
+
+Engine/tmx/src/TMXParser.s: Engine/tmx/src/TMXParser.cpp.s
+
+.PHONY : Engine/tmx/src/TMXParser.s
+
+# target to generate assembly for a file
+Engine/tmx/src/TMXParser.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.s
+.PHONY : Engine/tmx/src/TMXParser.cpp.s
+
+Engine/tmx/src/TSXParser.o: Engine/tmx/src/TSXParser.cpp.o
+
+.PHONY : Engine/tmx/src/TSXParser.o
+
+# target to build an object file
+Engine/tmx/src/TSXParser.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o
+.PHONY : Engine/tmx/src/TSXParser.cpp.o
+
+Engine/tmx/src/TSXParser.i: Engine/tmx/src/TSXParser.cpp.i
+
+.PHONY : Engine/tmx/src/TSXParser.i
+
+# target to preprocess a source file
+Engine/tmx/src/TSXParser.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.i
+.PHONY : Engine/tmx/src/TSXParser.cpp.i
+
+Engine/tmx/src/TSXParser.s: Engine/tmx/src/TSXParser.cpp.s
+
+.PHONY : Engine/tmx/src/TSXParser.s
+
+# target to generate assembly for a file
+Engine/tmx/src/TSXParser.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s
+.PHONY : Engine/tmx/src/TSXParser.cpp.s
 
 Game/Game.o: Game/Game.cpp.o
 
@@ -408,18 +516,30 @@ help:
 	@echo "... Engine/AudioManager.o"
 	@echo "... Engine/AudioManager.i"
 	@echo "... Engine/AudioManager.s"
+	@echo "... Engine/CollidableObject.o"
+	@echo "... Engine/CollidableObject.i"
+	@echo "... Engine/CollidableObject.s"
 	@echo "... Engine/Engine.o"
 	@echo "... Engine/Engine.i"
 	@echo "... Engine/Engine.s"
 	@echo "... Engine/InputManager.o"
 	@echo "... Engine/InputManager.i"
 	@echo "... Engine/InputManager.s"
+	@echo "... Engine/MapManager.o"
+	@echo "... Engine/MapManager.i"
+	@echo "... Engine/MapManager.s"
 	@echo "... Engine/MoveableObject.o"
 	@echo "... Engine/MoveableObject.i"
 	@echo "... Engine/MoveableObject.s"
 	@echo "... Engine/RenderManager.o"
 	@echo "... Engine/RenderManager.i"
 	@echo "... Engine/RenderManager.s"
+	@echo "... Engine/tmx/src/TMXParser.o"
+	@echo "... Engine/tmx/src/TMXParser.i"
+	@echo "... Engine/tmx/src/TMXParser.s"
+	@echo "... Engine/tmx/src/TSXParser.o"
+	@echo "... Engine/tmx/src/TSXParser.i"
+	@echo "... Engine/tmx/src/TSXParser.s"
 	@echo "... Game/Game.o"
 	@echo "... Game/Game.i"
 	@echo "... Game/Game.s"

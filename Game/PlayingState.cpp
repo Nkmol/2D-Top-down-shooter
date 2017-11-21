@@ -64,7 +64,7 @@ void PlayingState::Draw(Game& game)
 
 void PlayingState::Init()
 {
-	auto* player = new Player("../content/soldier.png", 100, 300);
+	auto* player = new Player("content/soldier.png", 100, 300);
 	_objs.emplace_back(player);
 
 	// save pointer seperate

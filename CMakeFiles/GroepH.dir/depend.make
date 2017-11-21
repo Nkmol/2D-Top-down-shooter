@@ -100,6 +100,9 @@ CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: Engine/AudioManager.cpp
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: Engine/headers/AssetManager.h
 CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: Engine/headers/AudioManager.h
 
+CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o: Engine/CollidableObject.cpp
+CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o: Engine/headers/CollidableObject.h
+
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
 CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_atomic.h
@@ -197,6 +200,62 @@ CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/headers/Direction.h
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/headers/InputManager.h
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/headers/MoveableObject.h
 CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/headers/RenderManager.h
+
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_atomic.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_audio.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_blendmode.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_clipboard.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_config.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_config_macosx.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_cpuinfo.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_endian.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_error.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_events.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_filesystem.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_gamecontroller.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_gesture.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_haptic.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_hints.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_joystick.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_keyboard.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_keycode.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_loadso.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_log.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_main.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_messagebox.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_mouse.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_mutex.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_pixels.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_platform.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_power.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_quit.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_rect.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_render.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_rwops.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_scancode.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_stdinc.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_surface.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_system.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_thread.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_timer.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_touch.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_version.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_video.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/MapManager.cpp
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/headers/AssetManager.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/headers/CollidableObject.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/headers/MapManager.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/headers/RenderManager.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/tmx/include/TMXParser.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/tmx/include/TSXParser.h
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/tmx/include/rapidxml/rapidxml.hpp
+CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/tmx/include/rapidxml/rapidxml_utils.hpp
 
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
@@ -296,6 +355,17 @@ CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: /Library/Frameworks/SDL2_image
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: Engine/RenderManager.cpp
 CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: Engine/headers/RenderManager.h
 
+CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/include/TMXParser.h
+CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/include/TSXParser.h
+CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/include/rapidxml/rapidxml.hpp
+CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/include/rapidxml/rapidxml_utils.hpp
+CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/src/TMXParser.cpp
+
+CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: Engine/tmx/include/TSXParser.h
+CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: Engine/tmx/include/rapidxml/rapidxml.hpp
+CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: Engine/tmx/include/rapidxml/rapidxml_utils.hpp
+CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: Engine/tmx/src/TSXParser.cpp
+
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_atomic.h
@@ -341,11 +411,19 @@ CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Header
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: Game/Game.cpp
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: Game/Game.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: Game/State.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/headers/AssetManager.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/headers/CollidableObject.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/headers/Engine.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/headers/MapManager.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/headers/RenderManager.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/tmx/include/TMXParser.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/tmx/include/TSXParser.h
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/tmx/include/rapidxml/rapidxml.hpp
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Engine/tmx/include/rapidxml/rapidxml_utils.hpp
 
 CMakeFiles/GroepH.dir/Game/Player.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL.h
 CMakeFiles/GroepH.dir/Game/Player.cpp.o: /Library/Frameworks/SDL2.framework/Headers/SDL_assert.h
