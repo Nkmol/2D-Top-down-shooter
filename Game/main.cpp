@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 	Game game;
 
 	unique_ptr<PlayingState> state(new PlayingState());
-	game.Init("Shooter game", false, 1500, 960);
+	game.Init("Shooter game", false, 1280, 960);
 	game.ChangeState(state.get());
 
     // TODO: START. this entire block is just for testing //////////////////////////////////////////////////////////////
