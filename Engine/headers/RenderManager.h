@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include "AssetManager.h"
 
 using namespace std;
 
@@ -42,7 +43,9 @@ public:
 	* Returns the renderer
 	*/
 	SDL_Renderer* GetRenderer() const;
-
+	SDL_Window* GetWindow() const;
+	void AddMenuSurfaces(int screen_width, int screen_height);
+	void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination);
 	static RenderManager& Instance();
 
 

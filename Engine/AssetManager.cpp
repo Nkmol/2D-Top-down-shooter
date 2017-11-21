@@ -15,6 +15,9 @@ AssetManager::AssetManager() {
 	effect["headshot"] = "../content/audio/Headshot.wav";
 	render["roguelikeCity_magenta.png"] = "../content/map/roguelikeCity_magenta.png";
 	render["half life.png"] = "../content/map/half life.png";
+	render["newgamebutton"] = "../content/menu/button_new-game.bmp";
+	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
+	render["creditbutton"] = "../content/menu/button_credits.bmp";
 	//render["background"] = "../Assets/Img/wallpaper.png";
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 }
