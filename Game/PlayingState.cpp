@@ -13,13 +13,18 @@ PlayingState::~PlayingState() {
 
 void PlayingState::HandleEvents(Game &game) {
     auto inputManager = InputManager::instance();
+
+    cout << inputManager.getMousePositionX() << endl;
+    cout << inputManager.getMousePositionY() << endl;
+
     SDL_Event event{};
 
     if (inputManager.hasEvent(&event)) {
 
-        // recalculate players angle to mouse ONLY IF the mouse has been moved.
         if (inputManager.isMouseMoved(event)) {
+            // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
             int angle = inputManager.recalculateMouseAngle(*_player);
+            cout << "angle: " << angle << ", player: " << _player->getAngle() << endl;
 
             // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
             _player->setAngle(angle);
@@ -27,7 +32,11 @@ void PlayingState::HandleEvents(Game &game) {
 
         if (inputManager.isKeyDown(event)) {
             Direction direction = inputManager.getDirection(event);
-            int angle = inputManager.calculateMouseAngle(*_player);
+            // todo: inputManager::instance is a new instance
+            // int angle = inputManager.calculateMouseAngle(*_player);
+
+            int angle = inputManager.recalculateMouseAngle(*_player);
+
             _player->setAngle(angle);
             _player->move(direction);
         }
@@ -39,7 +48,6 @@ void PlayingState::HandleEvents(Game &game) {
         if (inputManager.isMouseClicked(event)) {
             _player->shoot();
         }
-
 
         if (inputManager.isQuit(event)) {
             game.Quit();
@@ -62,7 +70,7 @@ void PlayingState::Draw(Game &game) {
 
 void PlayingState::Init() {
     auto *player = new Player("content/soldier.png", 100, 300);
-    std::unique_ptr<Weapon> uzi{new Uzi()};
+    unique_ptr<Weapon> uzi{new Uzi()};
     player->addWeapon(*uzi);
 
     _objs.emplace_back(player);

@@ -795,6 +795,8 @@ MoveableObject.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/MoveableObject.h
 memory
 -
+InputManager.h
+-
 Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
 
@@ -819,14 +821,6 @@ RenderManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/RenderManager.h
 InputManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/InputManager.h
-Player.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
-AudioManager.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Game/AudioManager.h
-memory
--
-algorithm
--
 Game.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
 PlayingState.h

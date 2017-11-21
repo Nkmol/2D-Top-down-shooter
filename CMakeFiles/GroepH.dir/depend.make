@@ -738,13 +738,10 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Header
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/begin_code.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2.framework/Headers/close_code.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
-CMakeFiles/GroepH.dir/Game/main.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/Game.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/PlayingState.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/State.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/main.cpp
-CMakeFiles/GroepH.dir/Game/main.cpp.o: Engine/headers/AssetManager.h
-CMakeFiles/GroepH.dir/Game/main.cpp.o: Engine/headers/AudioManager.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Engine/headers/Direction.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Engine/headers/Engine.h
 CMakeFiles/GroepH.dir/Game/main.cpp.o: Engine/headers/InputManager.h

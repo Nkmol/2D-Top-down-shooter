@@ -87,8 +87,8 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    InputManager::mousePositionX = mouseX;
-    InputManager::mousePositionY = mouseY;
+    mousePositionX = mouseX;
+    mousePositionY = mouseY;
 
     return calculateMouseAngle(object);
 }
@@ -96,12 +96,14 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 // used to calculate. Call this method directly if mouse position is NOT changed
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::calculateMouseAngle(MoveableObject &object) {
+
     float deltaY = object.getYPos() - InputManager::getMousePositionY();
     float deltaX = object.getXPos() - InputManager::getMousePositionX();
 
     double radian = atan2(deltaY, deltaX);
 
-    return static_cast<int>(radian * 180 / M_PI);
+    auto result = static_cast<int>(radian * 180 / M_PI);
+    return (result + 360) % 360;
 }
 
 bool InputManager::isMouseMoved(SDL_Event &event) {

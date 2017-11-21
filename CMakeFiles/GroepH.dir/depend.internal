@@ -739,13 +739,10 @@ CMakeFiles/GroepH.dir/Game/main.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/begin_code.h
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
- /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
- Engine/headers/AssetManager.h
- Engine/headers/AudioManager.h
  Engine/headers/Direction.h
  Engine/headers/Engine.h
  Engine/headers/InputManager.h

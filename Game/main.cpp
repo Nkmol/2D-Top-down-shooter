@@ -1,19 +1,8 @@
 #include <iostream>
 #include "RenderManager.h"
 #include "InputManager.h"
-#include "Player.h"
-#include "AudioManager.h"
-
-//#include "vld.h"
-#include <memory>
-#include <algorithm>
-//<<<<<<< HEAD
 #include "Game.h"
 #include "PlayingState.h"
-
-//=======
-//#include <Uzi.h>
-//>>>>>>> bullet
 
 #undef main
 

@@ -2,6 +2,7 @@
 #include "State.h"
 #include "MoveableObject.h"
 #include <memory>
+#include <InputManager.h>
 #include "Player.h"
 
 class PlayingState : public State
@@ -19,5 +20,6 @@ private:
 	// Use Pointer so Slicing will not occur
 	std::vector<unique_ptr<MoveableObject>> _objs;
 	Player* _player;
+	InputManager *inputManager;
 };
 
