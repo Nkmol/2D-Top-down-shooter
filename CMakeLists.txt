@@ -43,7 +43,9 @@ set(SOURCE_FILES
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
         Engine/tmx/src/TSXParser.cpp
-        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h Engine/MoveableObject.cpp)
+        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h Engine/MoveableObject.cpp
+        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h Engine/MoveableObject.cpp Game/Bullet.cpp Game/headers/Bullet.h Game/Weapon.cpp Game/headers/Weapon.h Game/Uzi.cpp Game/headers/Uzi.h)
+
 add_executable(GroepH ${SOURCE_FILES})
 
 target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})

@@ -50,7 +50,7 @@ Direction InputManager::getDirection(SDL_Event &event) {
     SDL_PumpEvents();
 
     // update keyboard state
-    auto keysArray = const_cast <Uint8 *> (SDL_GetKeyboardState(new int(2)));
+    auto keysArray = SDL_GetKeyboardState(nullptr);
 
     if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
         return Direction::TopRight;
@@ -106,6 +106,10 @@ int InputManager::calculateMouseAngle(MoveableObject &object) {
 
 bool InputManager::isMouseMoved(SDL_Event &event) {
     return event.type == SDL_MOUSEMOTION;
+}
+
+bool InputManager::isMouseClicked(SDL_Event &event) {
+    return event.type == SDL_MOUSEBUTTONDOWN;
 }
 
 

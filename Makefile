@@ -393,6 +393,33 @@ Engine/tmx/src/TSXParser.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s
 .PHONY : Engine/tmx/src/TSXParser.cpp.s
 
+Game/Bullet.o: Game/Bullet.cpp.o
+
+.PHONY : Game/Bullet.o
+
+# target to build an object file
+Game/Bullet.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+.PHONY : Game/Bullet.cpp.o
+
+Game/Bullet.i: Game/Bullet.cpp.i
+
+.PHONY : Game/Bullet.i
+
+# target to preprocess a source file
+Game/Bullet.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.i
+.PHONY : Game/Bullet.cpp.i
+
+Game/Bullet.s: Game/Bullet.cpp.s
+
+.PHONY : Game/Bullet.s
+
+# target to generate assembly for a file
+Game/Bullet.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.s
+.PHONY : Game/Bullet.cpp.s
+
 Game/Game.o: Game/Game.cpp.o
 
 .PHONY : Game/Game.o
@@ -474,6 +501,60 @@ Game/PlayingState.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s
 .PHONY : Game/PlayingState.cpp.s
 
+Game/Uzi.o: Game/Uzi.cpp.o
+
+.PHONY : Game/Uzi.o
+
+# target to build an object file
+Game/Uzi.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
+.PHONY : Game/Uzi.cpp.o
+
+Game/Uzi.i: Game/Uzi.cpp.i
+
+.PHONY : Game/Uzi.i
+
+# target to preprocess a source file
+Game/Uzi.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.i
+.PHONY : Game/Uzi.cpp.i
+
+Game/Uzi.s: Game/Uzi.cpp.s
+
+.PHONY : Game/Uzi.s
+
+# target to generate assembly for a file
+Game/Uzi.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.s
+.PHONY : Game/Uzi.cpp.s
+
+Game/Weapon.o: Game/Weapon.cpp.o
+
+.PHONY : Game/Weapon.o
+
+# target to build an object file
+Game/Weapon.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Weapon.cpp.o
+.PHONY : Game/Weapon.cpp.o
+
+Game/Weapon.i: Game/Weapon.cpp.i
+
+.PHONY : Game/Weapon.i
+
+# target to preprocess a source file
+Game/Weapon.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Weapon.cpp.i
+.PHONY : Game/Weapon.cpp.i
+
+Game/Weapon.s: Game/Weapon.cpp.s
+
+.PHONY : Game/Weapon.s
+
+# target to generate assembly for a file
+Game/Weapon.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Weapon.cpp.s
+.PHONY : Game/Weapon.cpp.s
+
 Game/main.o: Game/main.cpp.o
 
 .PHONY : Game/main.o
@@ -540,6 +621,9 @@ help:
 	@echo "... Engine/tmx/src/TSXParser.o"
 	@echo "... Engine/tmx/src/TSXParser.i"
 	@echo "... Engine/tmx/src/TSXParser.s"
+	@echo "... Game/Bullet.o"
+	@echo "... Game/Bullet.i"
+	@echo "... Game/Bullet.s"
 	@echo "... Game/Game.o"
 	@echo "... Game/Game.i"
 	@echo "... Game/Game.s"
@@ -549,6 +633,12 @@ help:
 	@echo "... Game/PlayingState.o"
 	@echo "... Game/PlayingState.i"
 	@echo "... Game/PlayingState.s"
+	@echo "... Game/Uzi.o"
+	@echo "... Game/Uzi.i"
+	@echo "... Game/Uzi.s"
+	@echo "... Game/Weapon.o"
+	@echo "... Game/Weapon.i"
+	@echo "... Game/Weapon.s"
 	@echo "... Game/main.o"
 	@echo "... Game/main.i"
 	@echo "... Game/main.s"

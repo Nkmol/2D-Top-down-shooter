@@ -14,9 +14,12 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TMXParser.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Bullet.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Game.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Player.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

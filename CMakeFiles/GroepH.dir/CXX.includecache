@@ -748,6 +748,10 @@ iostream
 sstream
 -
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp
+Bullet.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp
 Game.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
@@ -769,10 +773,14 @@ Engine.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Engine.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
+Weapon.h
+-
 Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp
+Uzi.h
+-
 PlayingState.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.h
 Player.h
@@ -793,6 +801,16 @@ Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h
 Game.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp
+Uzi.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp
+iostream
+-
+Weapon.h
+-
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
 iostream
@@ -849,6 +867,8 @@ Direction.h
 Engine/headers/Direction.h
 MoveableObject.h
 Engine/headers/MoveableObject.h
+vector
+Engine/headers/vector
 
 Engine/headers/MapManager.h
 iostream
@@ -950,7 +970,23 @@ fstream
 stdexcept
 -
 
+Game/headers/Bullet.h
+MoveableObject.h
+-
+
 Game/headers/Player.h
 MoveableObject.h
 Game/headers/MoveableObject.h
+Weapon.h
+Game/headers/Weapon.h
+
+Game/headers/Uzi.h
+Weapon.h
+Game/headers/Weapon.h
+
+Game/headers/Weapon.h
+Bullet.h
+-
+vector
+-
 

@@ -173,6 +173,9 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp">
 			<Option target="GroepH"/>
 		</Unit>
@@ -191,7 +194,22 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Bullet.h">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Uzi.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Weapon.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp">

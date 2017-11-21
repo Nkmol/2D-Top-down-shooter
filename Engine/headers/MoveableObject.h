@@ -13,6 +13,7 @@
 
 class MoveableObject {
 
+private:
     SDL_Texture *_sprite;
 
     float xPos, yPos, distance, destinationXPos, destinationYPos;
@@ -29,13 +30,22 @@ class MoveableObject {
 
     void moveBottom();
 
+protected:
+    bool visible;
+
 public:
 
     MoveableObject(const std::string &filePath, float xPos, float yPos);
 
+    ~MoveableObject();
+
     float getXPos() const;
 
     float getYPos() const;
+
+    void setXPos(float xPos);
+
+    void setYPos(float yPos);
 
     void move(Direction direction);
 
@@ -43,9 +53,21 @@ public:
 
     void setAngle(int angle);
 
+    int getAngle() const;
+
     void update(float time);
 
     void stopMove();
+
+    bool isVisible() const;
+
+    void setDestinationXPos(float destinationXPos);
+
+    void setDestinationYPos(float destinationYPos);
+
+    float getDestinationXPos() const;
+
+    float getDestinationYPos() const;
 };
 
 

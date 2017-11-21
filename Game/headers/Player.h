@@ -7,12 +7,23 @@
 
 
 #include "MoveableObject.h"
+#include "Weapon.h"
 
 class Player : public MoveableObject {
 
+private:
+    Weapon weapon;
 
 public:
     Player(const std::string &filePath, int xPos, int yPos);
+
+    void shoot();
+
+    void addWeapon(Weapon &weapon);
+
+    Weapon& getWeapon();
+
+    void updateWeapon(int time);
 };
 
 
