@@ -14,8 +14,8 @@ PlayingState::~PlayingState() {
 void PlayingState::HandleEvents(Game &game) {
     auto inputManager = InputManager::instance();
 
-    cout << inputManager.getMousePositionX() << endl;
-    cout << inputManager.getMousePositionY() << endl;
+//    cout << inputManager.getMousePositionX() << endl;
+//    cout << inputManager.getMousePositionY() << endl;
 
     SDL_Event event{};
 
@@ -24,7 +24,7 @@ void PlayingState::HandleEvents(Game &game) {
         if (inputManager.isMouseMoved(event)) {
             // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
             int angle = inputManager.recalculateMouseAngle(*_player);
-            cout << "angle: " << angle << ", player: " << _player->getAngle() << endl;
+//            cout << "angle: " << angle << ", player: " << _player->getAngle() << endl;
 
             // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
             _player->setAngle(angle);

@@ -24,6 +24,16 @@ public:
     Weapon& getWeapon();
 
     void updateWeapon(int time);
+
+    void move(Direction direction);
+
+    void moveTop();
+
+    void moveRight();
+
+    void moveBottom();
+
+    void moveLeft();
 };
 
 

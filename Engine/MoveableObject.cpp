@@ -5,8 +5,10 @@
 
 #include "headers/MoveableObject.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos) : xPos{xPos}, yPos{yPos},
-                                                                                      distance{0.3f} {
+MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos, float speed)
+        : xPos{xPos},
+          yPos{yPos},
+          speed{speed} {
     this->_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(),
                                                  RenderManager::Instance().LoadImage(filePath));
 
@@ -29,83 +31,10 @@ void MoveableObject::draw() {
                                           MoveableObject::angle);
 }
 
-
-void MoveableObject::move(Direction direction) {
-
-    if (direction == Direction::Top) {
-        moveTop();
-        return;
-    }
-
-    if (direction == Direction::TopRight) {
-        moveTop();
-        moveRight();
-        return;
-    }
-
-    if (direction == Direction::TopLeft) {
-        moveTop();
-        moveLeft();
-        return;
-    }
-
-    if (direction == Direction::Right) {
-        moveRight();
-        return;
-    }
-
-    if (direction == Direction::Bottom) {
-        moveBottom();
-        return;
-    }
-
-    if (direction == Direction::BottomRight) {
-        moveBottom();
-        moveRight();
-        return;
-    }
-
-    if (direction == Direction::BottomLeft) {
-        moveBottom();
-        moveLeft();
-        return;
-    }
-
-    if (direction == Direction::Left) {
-        moveLeft();
-        return;
-    }
-}
-
 void MoveableObject::setAngle(int angle) {
     MoveableObject::angle = angle;
 }
 
-void MoveableObject::moveTop() {
-    if (MoveableObject::yPos > 0) {
-        setDestinationYPos(-MoveableObject::distance);
-    }
-}
-
-void MoveableObject::moveRight() {
-    int maxWidth = 1500; // todo get max width
-    if (MoveableObject::xPos < maxWidth) {
-        setDestinationXPos(MoveableObject::distance);
-    }
-}
-
-void MoveableObject::moveBottom() {
-    int maxHeight = 960; // todo get max height
-    if (MoveableObject::yPos < maxHeight) {
-        setDestinationYPos(MoveableObject::distance);
-    }
-}
-
-void MoveableObject::moveLeft() {
-    if (MoveableObject::xPos > 0) {
-        setDestinationXPos(-MoveableObject::distance);
-    }
-}
 
 float MoveableObject::getXPos() const {
     return xPos;

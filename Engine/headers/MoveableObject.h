@@ -16,7 +16,7 @@ class MoveableObject {
 private:
     SDL_Texture *_sprite;
 
-    float xPos, yPos, distance, destinationXPos, destinationYPos;
+    float destinationYPos;
 
     int angle;
 
@@ -33,9 +33,13 @@ private:
 protected:
     bool visible;
 
+    float yPos;
+    float speed;
+    float destinationXPos;
+    float xPos;
 public:
 
-    MoveableObject(const std::string &filePath, float xPos, float yPos);
+    MoveableObject(const std::string &filePath, float xPos, float yPos, float speed);
 
     ~MoveableObject();
 
@@ -46,8 +50,6 @@ public:
     void setXPos(float xPos);
 
     void setYPos(float yPos);
-
-    void move(Direction direction);
 
     void draw();
 

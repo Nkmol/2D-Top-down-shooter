@@ -45,7 +45,7 @@ bool InputManager::isQuit(SDL_Event &event) {
 
 Direction InputManager::getDirection(SDL_Event &event) {
 
-    // TODO REFACTOR
+    // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
 
