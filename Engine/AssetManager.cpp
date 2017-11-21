@@ -14,6 +14,7 @@ AssetManager::AssetManager() {
 	sounds["pokemon"] = "../content/audio/Pokemon.wav";
 	effect["headshot"] = "../content/audio/Headshot.wav";
 	render["roguelikeCity_magenta.png"] = "../content/map/roguelikeCity_magenta.png";
+	render["half life.png"] = "../content/map/half life.png";
 	//render["background"] = "../Assets/Img/wallpaper.png";
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 }
