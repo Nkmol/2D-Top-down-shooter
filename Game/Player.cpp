@@ -5,7 +5,7 @@
 #include <Weapon.h>
 #include "Player.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 0.3f) {
+Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 0.4f) {
 
 }
 
@@ -73,27 +73,17 @@ void Player::move(Direction direction) {
 
 
 void Player::moveTop() {
-    if (yPos > 0) {
-        setDestinationYPos(-speed);
-    }
+    setDestinationYPos(-speed);
 }
 
 void Player::moveRight() {
-    int maxWidth = 1500; // todo get max width
-    if (xPos < maxWidth) {
-        setDestinationXPos(speed);
-    }
+    setDestinationXPos(speed);
 }
 
 void Player::moveBottom() {
-    int maxHeight = 960; // todo get max height
-    if (yPos < maxHeight) {
-        setDestinationYPos(speed);
-    }
+    setDestinationYPos(speed);
 }
 
 void Player::moveLeft() {
-    if (xPos > 0) {
-        setDestinationXPos(-speed);
-    }
+    setDestinationXPos(-speed);
 }
