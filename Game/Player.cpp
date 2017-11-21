@@ -16,7 +16,7 @@ void Player::addWeapon(Weapon &weapon) {
 void Player::shoot() {
     float bulletStartX = getXPos();
     float bulletStartY = getYPos();
-    Player::weapon.shoot(getAngle(), bulletStartX, bulletStartY);
+    weapon.shoot(getAngle(), bulletStartX, bulletStartY);
 }
 
 Weapon & Player::getWeapon() {

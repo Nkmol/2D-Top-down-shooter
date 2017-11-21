@@ -13,7 +13,7 @@ PlayingState::~PlayingState() {
 
 void PlayingState::HandleEvents(Game &game) {
     auto inputManager = InputManager::instance();
-    SDL_Event event;
+    SDL_Event event{};
 
     if (inputManager.hasEvent(&event)) {
 
@@ -34,6 +34,10 @@ void PlayingState::HandleEvents(Game &game) {
 
         if (inputManager.isKeyUp(event)) {
             _player->stopMove();
+        }
+
+        if (inputManager.isMouseClicked(event)) {
+            _player->shoot();
         }
 
 
@@ -60,6 +64,7 @@ void PlayingState::Init() {
     auto *player = new Player("content/soldier.png", 100, 300);
     std::unique_ptr<Weapon> uzi{new Uzi()};
     player->addWeapon(*uzi);
+
     _objs.emplace_back(player);
 
     // save pointer seperate

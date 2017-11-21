@@ -13,6 +13,8 @@ class Weapon {
 
 protected:
     std::vector<Bullet> bullets;
+public:
+    const vector<Bullet> &getBullets() const;
 
 public:
 

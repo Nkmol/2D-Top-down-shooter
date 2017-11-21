@@ -13,6 +13,7 @@ void Weapon::addBullets(Bullet &bullet, int amount) {
 
 
 void Weapon::shoot(int angle, float xPos, float yPos) {
+    std::cout << "Shoot" << std::endl;
     for (auto &bullet : bullets) {
         if (!bullet.isVisible()) {
             bullet.makeVisible();
@@ -41,6 +42,10 @@ void Weapon::drawBullets() {
             bullet.draw();
         }
     }
+}
+
+const vector<Bullet> &Weapon::getBullets() const {
+    return bullets;
 }
 
 

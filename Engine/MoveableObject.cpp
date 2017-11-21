@@ -78,7 +78,6 @@ void MoveableObject::move(Direction direction) {
 }
 
 void MoveableObject::setAngle(int angle) {
-    cout << angle << endl;
     MoveableObject::angle = angle;
 }
 
@@ -166,7 +165,7 @@ float MoveableObject::getDestinationYPos() const {
 }
 
 MoveableObject::~MoveableObject() {
-  
+
 }
 
 
