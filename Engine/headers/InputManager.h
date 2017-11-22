@@ -10,6 +10,7 @@
 #include <map>
 #include "Direction.h"
 #include "MoveableObject.h"
+#include "vector"
 
 class InputManager {
 
@@ -36,6 +37,8 @@ public:
     Direction getDirection(SDL_Event &event);
 
     bool isMouseMoved(SDL_Event &event);
+
+    bool isMouseClicked(SDL_Event &event);
 
     int getMousePositionX() const;
 

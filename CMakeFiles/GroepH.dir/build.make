@@ -513,6 +513,78 @@ CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Hel
 CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
 
 
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: Game/Bullet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/GroepH.dir/Game/Bullet.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Bullet.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp > CMakeFiles/GroepH.dir/Game/Bullet.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Bullet.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.o: Game/Weapon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Weapon.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp > CMakeFiles/GroepH.dir/Game/Weapon.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Weapon.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.o: Game/Uzi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Uzi.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp > CMakeFiles/GroepH.dir/Game/Uzi.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Uzi.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
+
+
 # Object files for target GroepH
 GroepH_OBJECTS = \
 "CMakeFiles/GroepH.dir/Game/main.cpp.o" \
@@ -533,7 +605,10 @@ GroepH_OBJECTS = \
 "CMakeFiles/GroepH.dir/Game/FlockController.cpp.o" \
 "CMakeFiles/GroepH.dir/Game/Flock.cpp.o" \
 "CMakeFiles/GroepH.dir/Engine/Point.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Helper.cpp.o"
+"CMakeFiles/GroepH.dir/Game/Helper.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Bullet.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Weapon.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
 
 # External object files for target GroepH
 GroepH_EXTERNAL_OBJECTS =
@@ -557,9 +632,12 @@ GroepH: CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/Flock.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Engine/Point.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
 GroepH: CMakeFiles/GroepH.dir/build.make
 GroepH: CMakeFiles/GroepH.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable GroepH"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable GroepH"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GroepH.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -586,6 +664,9 @@ CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires
 
 .PHONY : CMakeFiles/GroepH.dir/requires
 

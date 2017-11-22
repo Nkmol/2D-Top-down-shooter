@@ -18,6 +18,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/GroepH.dir/Game/Flock.cpp.o"
   "CMakeFiles/GroepH.dir/Engine/Point.cpp.o"
   "CMakeFiles/GroepH.dir/Game/Helper.cpp.o"
+  "CMakeFiles/GroepH.dir/Game/Bullet.cpp.o"
+  "CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
+  "CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
   "GroepH.pdb"
   "GroepH"
 )
