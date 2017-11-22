@@ -5,7 +5,7 @@
 #include "Uzi.h"
 
 Uzi::Uzi() {
-    Bullet bullet("content/bullet.png", 0, 0);
+    Bullet bullet("bullet", 0, 0);
     bullet.makeInvisible();
     Weapon::addBullets(bullet, 100);
 }

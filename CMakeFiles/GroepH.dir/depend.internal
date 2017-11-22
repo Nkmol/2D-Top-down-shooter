@@ -303,10 +303,12 @@ CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/begin_code.h
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
+ /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Direction.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h
+ Engine/headers/AssetManager.h
 CMakeFiles/GroepH.dir/Engine/Point.cpp.o
  /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp
  Engine/headers/Point.h
@@ -579,39 +581,17 @@ CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/begin_code.h
  /Library/Frameworks/SDL2.framework/Headers/close_code.h
  /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
- /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp
  /Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp
- /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
- Engine/headers/AssetManager.h
- Engine/headers/CollidableObject.h
  Engine/headers/Direction.h
- Engine/headers/Engine.h
- Engine/headers/InputManager.h
- Engine/headers/MapManager.h
  Engine/headers/MoveableObject.h
  Engine/headers/Point.h
  Engine/headers/RenderManager.h
- Engine/tmx/include/TMXParser.h
- Engine/tmx/include/TSXParser.h
- Engine/tmx/include/rapidxml/rapidxml.hpp
- Engine/tmx/include/rapidxml/rapidxml_utils.hpp
  Game/headers/Bullet.h
  Game/headers/EnemyBase.h
  Game/headers/Flock.h
  Game/headers/FlockController.h
  Game/headers/Helper.h
  Game/headers/Player.h
- Game/headers/Uzi.h
  Game/headers/Weapon.h
 CMakeFiles/GroepH.dir/Game/Game.cpp.o
  /Library/Frameworks/SDL2.framework/Headers/SDL.h

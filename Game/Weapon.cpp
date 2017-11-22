@@ -7,7 +7,8 @@
 
 void Weapon::addBullets(Bullet &bullet, int amount) {
     for (int i = 0; i < amount; ++i) {
-        bullets.push_back(bullet);
+        unique_ptr<Bullet> b{new Bullet(bullet)};
+        bullets.push_back(*b);
     }
 }
 

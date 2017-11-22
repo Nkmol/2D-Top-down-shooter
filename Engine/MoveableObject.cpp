@@ -3,14 +3,20 @@
 //
 
 
+#include <AssetManager.h>
 #include "headers/MoveableObject.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos, float speed)
         : xPos{xPos},
           yPos{yPos},
           speed{speed} {
-    this->_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(),
-                                                 RenderManager::Instance().LoadImage(filePath));
+
+    SDL_Surface *surface = AssetManager::getInstance().loadSurface(filePath);
+    if (!surface)
+        cout << SDL_GetError() << endl;
+    _sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
+
+    SDL_FreeSurface(surface);
 
     if (this->_sprite == NULL) {
         printf(SDL_GetError());
@@ -87,7 +93,8 @@ void MoveableObject::setDestinationYPos(float destinationYPos) {
 
 
 MoveableObject::~MoveableObject() {
-    // todo: delete _sprite
+    // if sdl_destroytexture is called, the bullet's image cannot be found
+    //    SDL_DestroyTexture(_sprite);
 }
 
 

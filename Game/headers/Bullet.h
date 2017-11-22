@@ -16,6 +16,8 @@ private:
 public:
     Bullet(const string &filePath, float xPos, float yPos);
 
+    Bullet(const string &filePath, float xPos, float yPos, float speed, const Bullet &other);
+
     void makeVisible();
 
     void makeInvisible();

@@ -65,7 +65,7 @@ void PlayingState::Draw(Game &game) {
 }
 
 void PlayingState::Init() {
-    shared_ptr<Player> player{new Player("content/soldier.png", 100, 300)};
+    shared_ptr<Player> player{new Player("soldier", 100, 300)};
     unique_ptr<Weapon> uzi{new Uzi()};
     player->addWeapon(*uzi);
 
@@ -73,5 +73,5 @@ void PlayingState::Init() {
 
     // save pointer seperate
     _player = player;
-    flockController.generateFlock(5, 100, 900, _player, 0.1f);
+    flockController.generateFlock(100, 100, 900, _player, 0.1f);
 }
