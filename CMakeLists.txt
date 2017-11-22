@@ -26,7 +26,25 @@ set(SOURCE_FILES
         Engine/Engine.cpp
         Engine/MoveableObject.cpp
         Engine/headers/Engine.h
-        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h Engine/MoveableObject.cpp)
+        Game/Game.cpp
+        Game/Game.h
+        Game/PlayingState.cpp
+        Game/PlayingState.h
+        Game/State.h
+        Engine/CollidableObject.cpp
+        Engine/MapManager.cpp
+        Engine/headers/CollidableObject.h
+        Engine/headers/MapManager.h
+        Engine/tmx/include/rapidxml/rapidxml.hpp
+        Engine/tmx/include/rapidxml/rapidxml_iterators.hpp
+        Engine/tmx/include/rapidxml/rapidxml_print.hpp
+        Engine/tmx/include/rapidxml/rapidxml_utils.hpp
+        Engine/tmx/include/TMXParser.h
+        Engine/tmx/include/TSXParser.h
+        Engine/tmx/src/TMXParser.cpp
+        Engine/tmx/src/TSXParser.cpp
+        Game/headers/Helper.h
+        Engine/InputManager.cpp Engine/headers/InputManager.h Game/Player.cpp Game/headers/Player.h Engine/MoveableObject.cpp Engine/headers/MoveableObject.h Engine/headers/Direction.h Engine/MoveableObject.cpp Game/EnemyBase.cpp Game/headers/EnemyBase.h Game/FlockController.cpp Game/headers/FlockController.h Game/Flock.cpp Game/headers/Flock.h Engine/Point.cpp Engine/headers/Point.h Game/Helper.cpp Game/headers/Helper.h)
 add_executable(GroepH ${SOURCE_FILES})
 
 target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})

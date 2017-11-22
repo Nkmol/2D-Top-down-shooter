@@ -15,10 +15,6 @@ class MoveableObject {
 
     SDL_Texture *_sprite;
 
-    float xPos, yPos, distance, destinationXPos, destinationYPos;
-
-    int angle;
-
     std::map<Direction, int> directionAngles;
 
     void moveTop();
@@ -29,8 +25,12 @@ class MoveableObject {
 
     void moveBottom();
 
-public:
+protected:
+    int angle;
 
+    float xPos, yPos, distance, destinationXPos, destinationYPos;
+
+public:
     MoveableObject(const std::string &filePath, float xPos, float yPos);
 
     float getXPos() const;

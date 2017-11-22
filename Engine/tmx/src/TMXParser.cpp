@@ -97,7 +97,7 @@ namespace TMX {
       layer.data.encoding = data_node->first_attribute( "encoding" )->value();
       std::cout << "Layer Encoding: " << layer.data.encoding << std::endl;
 
-      if( data_node->first_attribute( "compression" ) > 0 ) {
+      if( data_node->first_attribute( "compression" ) > (void *)0 ) {
         layer.data.compression = data_node->first_attribute( "compression" )->value();
         std::cout << "Layer Compression: " << layer.data.compression << std::endl;
       }

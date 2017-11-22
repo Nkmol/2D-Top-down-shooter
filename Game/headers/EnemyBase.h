@@ -1,0 +1,43 @@
+//
+// Created by Ahmad Rahimi on 11/21/17.
+//
+
+#ifndef SHOOTER_ENEMYBASE_H
+#define SHOOTER_ENEMYBASE_H
+
+
+#include <Point.h>
+#include <vector>
+#include "memory"
+#include "Player.h"
+#include "Helper.h"
+class EnemyBase : public MoveableObject, public std::enable_shared_from_this<EnemyBase>  {
+    Point destinationPoint;
+    bool isLeader;
+    shared_ptr<EnemyBase> leader;
+    shared_ptr<Player> target;
+
+public:
+    EnemyBase(const std::string &filePath, float xPos, float yPos, float distance, bool isLeader);
+    void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
+
+    //algorithms
+    void align();
+    void cohese(std::vector<shared_ptr<EnemyBase>> others);
+    void seperate(std::vector<shared_ptr<EnemyBase>> others);
+    void applyForce(float forcePower, int forceDirection);
+    void goTarget();
+
+    //getters
+    const shared_ptr<Player> &getTarget() const;
+
+    //setters
+    void setTarget(const shared_ptr<Player> &target);
+    void setLeader(const shared_ptr<EnemyBase> &leader);
+
+    void update(float time);
+    void draw();
+};
+
+
+#endif //SHOOTER_ENEMYBASE_H

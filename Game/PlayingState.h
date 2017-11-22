@@ -3,7 +3,7 @@
 #include "MoveableObject.h"
 #include <memory>
 #include "Player.h"
-
+#include "FlockController.h"
 class PlayingState : public State
 {
 public:
@@ -17,7 +17,8 @@ public:
 private:
 	// Todo might actually need to be GameObject
 	// Use Pointer so Slicing will not occur
-	std::vector<unique_ptr<MoveableObject>> _objs;
-	Player* _player;
+	std::vector<shared_ptr<MoveableObject>> _objs;
+	shared_ptr<Player> _player;
+	FlockController flockController;
 };
 
