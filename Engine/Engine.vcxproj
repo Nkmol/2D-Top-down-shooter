@@ -146,6 +146,7 @@
     <ClInclude Include="headers\AudioManager.h" />
     <ClInclude Include="headers\CollidableObject.h" />
     <ClInclude Include="headers\Engine.h" />
+    <ClInclude Include="headers\Point.h" />
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\MapManager.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />

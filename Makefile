@@ -312,6 +312,33 @@ Engine/MoveableObject.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s
 .PHONY : Engine/MoveableObject.cpp.s
 
+Engine/Point.o: Engine/Point.cpp.o
+
+.PHONY : Engine/Point.o
+
+# target to build an object file
+Engine/Point.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Point.cpp.o
+.PHONY : Engine/Point.cpp.o
+
+Engine/Point.i: Engine/Point.cpp.i
+
+.PHONY : Engine/Point.i
+
+# target to preprocess a source file
+Engine/Point.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Point.cpp.i
+.PHONY : Engine/Point.cpp.i
+
+Engine/Point.s: Engine/Point.cpp.s
+
+.PHONY : Engine/Point.s
+
+# target to generate assembly for a file
+Engine/Point.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Point.cpp.s
+.PHONY : Engine/Point.cpp.s
+
 Engine/RenderManager.o: Engine/RenderManager.cpp.o
 
 .PHONY : Engine/RenderManager.o
@@ -393,6 +420,87 @@ Engine/tmx/src/TSXParser.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s
 .PHONY : Engine/tmx/src/TSXParser.cpp.s
 
+Game/EnemyBase.o: Game/EnemyBase.cpp.o
+
+.PHONY : Game/EnemyBase.o
+
+# target to build an object file
+Game/EnemyBase.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o
+.PHONY : Game/EnemyBase.cpp.o
+
+Game/EnemyBase.i: Game/EnemyBase.cpp.i
+
+.PHONY : Game/EnemyBase.i
+
+# target to preprocess a source file
+Game/EnemyBase.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.i
+.PHONY : Game/EnemyBase.cpp.i
+
+Game/EnemyBase.s: Game/EnemyBase.cpp.s
+
+.PHONY : Game/EnemyBase.s
+
+# target to generate assembly for a file
+Game/EnemyBase.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.s
+.PHONY : Game/EnemyBase.cpp.s
+
+Game/Flock.o: Game/Flock.cpp.o
+
+.PHONY : Game/Flock.o
+
+# target to build an object file
+Game/Flock.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Flock.cpp.o
+.PHONY : Game/Flock.cpp.o
+
+Game/Flock.i: Game/Flock.cpp.i
+
+.PHONY : Game/Flock.i
+
+# target to preprocess a source file
+Game/Flock.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Flock.cpp.i
+.PHONY : Game/Flock.cpp.i
+
+Game/Flock.s: Game/Flock.cpp.s
+
+.PHONY : Game/Flock.s
+
+# target to generate assembly for a file
+Game/Flock.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Flock.cpp.s
+.PHONY : Game/Flock.cpp.s
+
+Game/FlockController.o: Game/FlockController.cpp.o
+
+.PHONY : Game/FlockController.o
+
+# target to build an object file
+Game/FlockController.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
+.PHONY : Game/FlockController.cpp.o
+
+Game/FlockController.i: Game/FlockController.cpp.i
+
+.PHONY : Game/FlockController.i
+
+# target to preprocess a source file
+Game/FlockController.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/FlockController.cpp.i
+.PHONY : Game/FlockController.cpp.i
+
+Game/FlockController.s: Game/FlockController.cpp.s
+
+.PHONY : Game/FlockController.s
+
+# target to generate assembly for a file
+Game/FlockController.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/FlockController.cpp.s
+.PHONY : Game/FlockController.cpp.s
+
 Game/Game.o: Game/Game.cpp.o
 
 .PHONY : Game/Game.o
@@ -419,6 +527,33 @@ Game/Game.s: Game/Game.cpp.s
 Game/Game.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Game.cpp.s
 .PHONY : Game/Game.cpp.s
+
+Game/Helper.o: Game/Helper.cpp.o
+
+.PHONY : Game/Helper.o
+
+# target to build an object file
+Game/Helper.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.o
+.PHONY : Game/Helper.cpp.o
+
+Game/Helper.i: Game/Helper.cpp.i
+
+.PHONY : Game/Helper.i
+
+# target to preprocess a source file
+Game/Helper.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.i
+.PHONY : Game/Helper.cpp.i
+
+Game/Helper.s: Game/Helper.cpp.s
+
+.PHONY : Game/Helper.s
+
+# target to generate assembly for a file
+Game/Helper.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.s
+.PHONY : Game/Helper.cpp.s
 
 Game/Player.o: Game/Player.cpp.o
 
@@ -531,6 +666,9 @@ help:
 	@echo "... Engine/MoveableObject.o"
 	@echo "... Engine/MoveableObject.i"
 	@echo "... Engine/MoveableObject.s"
+	@echo "... Engine/Point.o"
+	@echo "... Engine/Point.i"
+	@echo "... Engine/Point.s"
 	@echo "... Engine/RenderManager.o"
 	@echo "... Engine/RenderManager.i"
 	@echo "... Engine/RenderManager.s"
@@ -540,9 +678,21 @@ help:
 	@echo "... Engine/tmx/src/TSXParser.o"
 	@echo "... Engine/tmx/src/TSXParser.i"
 	@echo "... Engine/tmx/src/TSXParser.s"
+	@echo "... Game/EnemyBase.o"
+	@echo "... Game/EnemyBase.i"
+	@echo "... Game/EnemyBase.s"
+	@echo "... Game/Flock.o"
+	@echo "... Game/Flock.i"
+	@echo "... Game/Flock.s"
+	@echo "... Game/FlockController.o"
+	@echo "... Game/FlockController.i"
+	@echo "... Game/FlockController.s"
 	@echo "... Game/Game.o"
 	@echo "... Game/Game.i"
 	@echo "... Game/Game.s"
+	@echo "... Game/Helper.o"
+	@echo "... Game/Helper.i"
+	@echo "... Game/Helper.s"
 	@echo "... Game/Player.o"
 	@echo "... Game/Player.i"
 	@echo "... Game/Player.s"

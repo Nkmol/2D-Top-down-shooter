@@ -1,5 +1,4 @@
 #include "PlayingState.h"
-#include "Player.h"
 #include "InputManager.h"
 
 
@@ -52,6 +51,7 @@ void PlayingState::Update(Game& game, int time)
 	{
 		obj->update(time);
 	}
+	flockController.updateFlocks(time);
 }
 
 void PlayingState::Draw(Game& game)
@@ -60,13 +60,16 @@ void PlayingState::Draw(Game& game)
 	{
 		obj->draw();
 	}
+	flockController.drawFlocks();
 }
 
 void PlayingState::Init()
 {
-	auto* player = new Player("content/soldier.png", 100, 300);
+	shared_ptr<Player> player{new Player("content/soldier.png", 100, 300)};
+
 	_objs.emplace_back(player);
 
 	// save pointer seperate
 	_player = player;
+	flockController.generateFlock(5,100,900,_player,0.3);
 }

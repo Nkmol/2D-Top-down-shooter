@@ -646,6 +646,10 @@ MapManager.h
 headers/MoveableObject.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp
+Point.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
 RenderManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.h
@@ -748,6 +752,18 @@ iostream
 sstream
 -
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.cpp
+EnemyBase.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp
+Flock.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp
+FlockController.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp
 Game.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h
@@ -768,6 +784,12 @@ vector
 Engine.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Engine.h
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp
+cmath
+-
+Helper.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.h
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
 Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
@@ -775,8 +797,6 @@ Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp
 PlayingState.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.h
-Player.h
-/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
 InputManager.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/InputManager.h
 
@@ -789,6 +809,8 @@ memory
 -
 Player.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.h
+FlockController.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h
 Game.h
@@ -886,6 +908,8 @@ string
 Direction.h
 Engine/headers/Direction.h
 
+Engine/headers/Point.h
+
 Engine/headers/RenderManager.h
 map
 -
@@ -949,6 +973,46 @@ fstream
 -
 stdexcept
 -
+
+Game/headers/EnemyBase.h
+Point.h
+-
+vector
+-
+memory
+Game/headers/memory
+Player.h
+Game/headers/Player.h
+Helper.h
+Game/headers/Helper.h
+
+Game/headers/Flock.h
+EnemyBase.h
+Game/headers/EnemyBase.h
+memory
+Game/headers/memory
+vector
+Game/headers/vector
+
+Game/headers/FlockController.h
+Player.h
+Game/headers/Player.h
+Flock.h
+Game/headers/Flock.h
+memory
+Game/headers/memory
+vector
+Game/headers/vector
+
+Game/headers/Helper.h
+cmath
+-
+vector
+-
+deque
+-
+Point.h
+Game/headers/Point.h
 
 Game/headers/Player.h
 MoveableObject.h

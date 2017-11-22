@@ -119,6 +119,9 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp">
 			<Option target="GroepH"/>
 		</Unit>
@@ -144,6 +147,9 @@
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/MoveableObject.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/Point.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/headers/RenderManager.h">
@@ -173,10 +179,22 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp">
@@ -189,6 +207,18 @@
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/EnemyBase.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Flock.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/FlockController.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Helper.h">
 			<Option target="GroepH"/>
 		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/headers/Player.h">
