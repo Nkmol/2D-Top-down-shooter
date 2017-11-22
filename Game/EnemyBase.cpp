@@ -4,12 +4,15 @@
 
 #include "EnemyBase.h"
 
-EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float distance, bool isLeader) : MoveableObject(filePath, xPos, yPos), isLeader{isLeader}, destinationPoint{xPos, yPos} {
-    angle = 0;
+EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader) :
+        MoveableObject(filePath, xPos, yPos, speed),
+        isLeader{isLeader},
+        destinationPoint{xPos, yPos} {
+//    angle = 0;
 }
 
 void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time) {
-    if(!isLeader) {
+    if (!isLeader) {
         align();
         cohese(others);
         seperate(others);
@@ -18,11 +21,11 @@ void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float
     }
 
     float _rad = (atan2(this->getYPos() - destinationPoint.y, this->getXPos() - destinationPoint.x));
-    float _dir =  Helper::radiansToDegrees(_rad);
-    float correctedAngleRadians = Helper::degreesToRadians(_dir -90);
+    float _dir = Helper::radiansToDegrees(_rad);
+    float correctedAngleRadians = Helper::degreesToRadians(_dir - 90);
     this->setAngle(_dir);
-    this->destinationXPos = distance * sin(correctedAngleRadians);
-    this->destinationYPos = distance * -cos(correctedAngleRadians);
+    this->destinationXPos = speed * sin(correctedAngleRadians);
+    this->destinationYPos = speed * -cos(correctedAngleRadians);
     this->update(time);
 }
 
@@ -31,7 +34,7 @@ void EnemyBase::align() {
 }
 
 void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
-    Point massCenter = Point(0,0);
+    Point massCenter = Point(0, 0);
     for (auto const &other: others) {
         if (other.get() != shared_from_this().get()) {
             massCenter.x += other->getXPos();
@@ -39,7 +42,7 @@ void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
         }
     }
 
-    auto othersSize = others.size()-1;
+    auto othersSize = others.size() - 1;
     massCenter.x = massCenter.x / othersSize;
     massCenter.y = massCenter.y / othersSize;
     int forceDirection = Helper::calculateAngle(this->getXPos(), this->getYPos(), massCenter.x, massCenter.y);
@@ -49,13 +52,14 @@ void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
 void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>> others) {
     for (auto const &other: others) {
         if (other.get() != shared_from_this().get()) {
-            Point squared = Point((other->getXPos() - this->getXPos()) * (other->getXPos() - this->getXPos()), (other->getYPos() - this->getYPos()) * (other->getYPos() - this->getYPos()));
+            Point squared = Point((other->getXPos() - this->getXPos()) * (other->getXPos() - this->getXPos()),
+                                  (other->getYPos() - this->getYPos()) * (other->getYPos() - this->getYPos()));
             float squareDist = squared.x + squared.y;
-            if(squareDist < 155500){
+            if (squareDist < 155500) {
                 Point headingVector = Point(this->getXPos() - other->getXPos(), this->getYPos() - other->getYPos());
                 double scale = sqrt(squareDist) / sqrt(155500);
                 Point unitVector = Point(headingVector.x / sqrt(squareDist), headingVector.y / sqrt(squareDist));
-                Point scaledVector = Point((unitVector.x / scale),(unitVector.y / scale));
+                Point scaledVector = Point((unitVector.x / scale), (unitVector.y / scale));
                 this->destinationPoint.x += scaledVector.x;
                 this->destinationPoint.y += scaledVector.y;
             }

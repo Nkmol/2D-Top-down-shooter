@@ -22,6 +22,7 @@ InputManager::InputManager() {
 
 
 InputManager &InputManager::instance() {
+
     static InputManager sInstance;
 
     return sInstance;
@@ -45,12 +46,12 @@ bool InputManager::isQuit(SDL_Event &event) {
 
 Direction InputManager::getDirection(SDL_Event &event) {
 
-    // TODO REFACTOR
+    // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
 
     // update keyboard state
-    auto keysArray = const_cast <Uint8 *> (SDL_GetKeyboardState(new int(2)));
+    auto keysArray = SDL_GetKeyboardState(nullptr);
 
     if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
         return Direction::TopRight;
@@ -87,8 +88,8 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    InputManager::mousePositionX = mouseX;
-    InputManager::mousePositionY = mouseY;
+    mousePositionX = mouseX;
+    mousePositionY = mouseY;
 
     return calculateMouseAngle(object);
 }
@@ -96,16 +97,22 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 // used to calculate. Call this method directly if mouse position is NOT changed
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::calculateMouseAngle(MoveableObject &object) {
+
     float deltaY = object.getYPos() - InputManager::getMousePositionY();
     float deltaX = object.getXPos() - InputManager::getMousePositionX();
 
     double radian = atan2(deltaY, deltaX);
 
-    return static_cast<int>(radian * 180 / M_PI);
+    auto result = static_cast<int>(radian * 180 / M_PI);
+    return (result + 360) % 360;
 }
 
 bool InputManager::isMouseMoved(SDL_Event &event) {
     return event.type == SDL_MOUSEMOTION;
+}
+
+bool InputManager::isMouseClicked(SDL_Event &event) {
+    return event.type == SDL_MOUSEBUTTONDOWN;
 }
 
 

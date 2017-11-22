@@ -13,39 +13,46 @@
 
 class MoveableObject {
 
+private:
     SDL_Texture *_sprite;
 
     std::map<Direction, int> directionAngles;
 
-    void moveTop();
-
-    void moveLeft();
-
-    void moveRight();
-
-    void moveBottom();
-
 protected:
+    bool visible;
     int angle;
-
+    float speed;
     float xPos, yPos, distance, destinationXPos, destinationYPos;
 
 public:
-    MoveableObject(const std::string &filePath, float xPos, float yPos);
+    MoveableObject(const std::string &filePath, float xPos, float yPos, float speed);
+
+    ~MoveableObject();
+
+    virtual void draw();
+
+    virtual void update(float time);
 
     float getXPos() const;
 
     float getYPos() const;
 
-    void move(Direction direction);
+    void setXPos(float xPos);
 
-    void draw();
+    void setYPos(float yPos);
 
     void setAngle(int angle);
 
-    void update(float time);
+    int getAngle() const;
 
     void stopMove();
+
+    bool isVisible() const;
+
+    void setDestinationXPos(float destinationXPos);
+
+    void setDestinationYPos(float destinationYPos);
+
 };
 
 

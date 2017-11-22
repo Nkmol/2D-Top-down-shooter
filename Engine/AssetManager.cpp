@@ -11,57 +11,53 @@
 //}
 
 AssetManager::AssetManager() {
-	sounds["pokemon"] = "../content/audio/Pokemon.wav";
-	effect["headshot"] = "../content/audio/Headshot.wav";
-	render["roguelikeCity_magenta.png"] = "../content/map/roguelikeCity_magenta.png";
-	render["half life.png"] = "../content/map/half life.png";
-	//render["background"] = "../Assets/Img/wallpaper.png";
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+    sounds["pokemon"] = "content/audio/Pokemon.wav";
+    effect["headshot"] = "content/audio/Headshot.wav";
+    render["roguelikeCity_magenta.png"] = "content/map/roguelikeCity_magenta.png";
+    render["half life.png"] = "content/map/half life.png";
+    render["soldier"] = "content/soldier.png";
+    render["boid"] = "content/boid.png";
+    render["bullet"] = "content/bullet.png";
+    //render["background"] = "../Assets/Img/wallpaper.png";
+    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 }
 
 
-AssetManager & AssetManager::getInstance()
-{
-	// The only instance
-	// Guaranteed to be lazy initialized
-	// Guaranteed that it will be destroyed correctly
+AssetManager &AssetManager::getInstance() {
+    // The only instance
+    // Guaranteed to be lazy initialized
+    // Guaranteed that it will be destroyed correctly
 
-	static AssetManager sInstance;
-	return sInstance;
+    static AssetManager sInstance;
+    return sInstance;
 }
 
-Mix_Music* AssetManager::loadBGM(string soundToken)
-{
-	//Load music
-	Mix_Music* gBGM = Mix_LoadMUS(sounds[soundToken]);
-	if (gBGM == NULL)
-	{
-		cout << "failed to load" << Mix_GetError() << endl;
-		return nullptr;
-	}
-	cout << "works" << Mix_GetError() << endl;
-	return gBGM;
+Mix_Music *AssetManager::loadBGM(string soundToken) {
+    //Load music
+    Mix_Music *gBGM = Mix_LoadMUS(sounds[soundToken]);
+    if (gBGM == NULL) {
+        cout << "failed to load" << Mix_GetError() << endl;
+        return nullptr;
+    }
+    cout << "works" << Mix_GetError() << endl;
+    return gBGM;
 }
 
-Mix_Chunk* AssetManager::loadEffect(string effectToken)
-{
-	Mix_Chunk* gEffectM = Mix_LoadWAV(effect[effectToken]);
-	if (gEffectM == NULL)
-	{
-		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
-		return nullptr;
-	}
-	return gEffectM;
+Mix_Chunk *AssetManager::loadEffect(string effectToken) {
+    Mix_Chunk *gEffectM = Mix_LoadWAV(effect[effectToken]);
+    if (gEffectM == NULL) {
+        cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
+        return nullptr;
+    }
+    return gEffectM;
 }
 
-SDL_Surface* AssetManager::loadSurface(string mediaToken)
-{
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load(render[mediaToken]);
-	if (loadedSurface == NULL)
-	{
-		cout << "Unable to load image %s! SDL_image Error: " << render[mediaToken] << IMG_GetError() << endl;
-	}
+SDL_Surface *AssetManager::loadSurface(string mediaToken) {
+    //Load image at specified path
+    SDL_Surface *loadedSurface = IMG_Load(render[mediaToken]);
+    if (loadedSurface == NULL) {
+        cout << "Unable to load image %s! SDL_image Error: " << render[mediaToken] << IMG_GetError() << endl;
+    }
 
-	return loadedSurface;
+    return loadedSurface;
 }

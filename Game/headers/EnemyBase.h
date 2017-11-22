@@ -18,7 +18,7 @@ class EnemyBase : public MoveableObject, public std::enable_shared_from_this<Ene
     shared_ptr<Player> target;
 
 public:
-    EnemyBase(const std::string &filePath, float xPos, float yPos, float distance, bool isLeader);
+    EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader);
     void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
 
     //algorithms
