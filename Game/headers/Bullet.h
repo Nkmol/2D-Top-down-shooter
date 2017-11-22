@@ -11,7 +11,7 @@
 class Bullet : public MoveableObject {
 
 private:
-
+    float BULLET_SPEED = 2.0f;
 
 public:
     Bullet(const string &filePath, float xPos, float yPos);

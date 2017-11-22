@@ -48,11 +48,11 @@ float MoveableObject::getYPos() const {
 void MoveableObject::update(float time) {
     this->xPos += this->destinationXPos * time;
     this->yPos += this->destinationYPos * time;
-
-    if (xPos < 0) xPos = 0;
-    if (xPos > 1500) xPos = 1500;
-    if (yPos < 0) yPos = 0;
-    if (yPos > 960) yPos = 960;
+//
+//    if (xPos < 0) xPos = 0;
+//    if (xPos > 1500) xPos = 1500;
+//    if (yPos < 0) yPos = 0;
+//    if (yPos > 960) yPos = 960;
 }
 
 
@@ -85,16 +85,9 @@ void MoveableObject::setDestinationYPos(float destinationYPos) {
     MoveableObject::destinationYPos = destinationYPos;
 }
 
-float MoveableObject::getDestinationXPos() const {
-    return destinationXPos;
-}
-
-float MoveableObject::getDestinationYPos() const {
-    return destinationYPos;
-}
 
 MoveableObject::~MoveableObject() {
-
+    // todo: delete _sprite
 }
 
 

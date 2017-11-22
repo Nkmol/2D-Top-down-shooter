@@ -22,7 +22,7 @@ public:
 
     void addBullets(Bullet &bullet, int amount);
 
-    void update(float time);
+    void updateBullets(float time);
 
     void drawBullets();
 };

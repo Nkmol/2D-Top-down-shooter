@@ -11,8 +11,8 @@
 
 class Player : public MoveableObject {
 
-private:
     Weapon weapon;
+    float WALKING_SPEED = 0.4f;
 
 public:
     Player(const std::string &filePath, int xPos, int yPos);
@@ -21,9 +21,7 @@ public:
 
     void addWeapon(Weapon &weapon);
 
-    Weapon& getWeapon();
-
-    void updateWeapon(int time);
+    Weapon &getWeapon();
 
     void move(Direction direction);
 
@@ -34,6 +32,10 @@ public:
     void moveBottom();
 
     void moveLeft();
+
+    void draw() override;
+
+    void update(float time) override;
 };
 
 

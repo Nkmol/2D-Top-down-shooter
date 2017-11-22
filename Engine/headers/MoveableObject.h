@@ -22,17 +22,8 @@ private:
 
     std::map<Direction, int> directionAngles;
 
-    void moveTop();
-
-    void moveLeft();
-
-    void moveRight();
-
-    void moveBottom();
-
 protected:
     bool visible;
-
     float yPos;
     float speed;
     float destinationXPos;
@@ -43,6 +34,10 @@ public:
 
     ~MoveableObject();
 
+    virtual void draw();
+
+    virtual void update(float time);
+
     float getXPos() const;
 
     float getYPos() const;
@@ -51,13 +46,9 @@ public:
 
     void setYPos(float yPos);
 
-    void draw();
-
     void setAngle(int angle);
 
     int getAngle() const;
-
-    void update(float time);
 
     void stopMove();
 
@@ -67,9 +58,6 @@ public:
 
     void setDestinationYPos(float destinationYPos);
 
-    float getDestinationXPos() const;
-
-    float getDestinationYPos() const;
 };
 
 

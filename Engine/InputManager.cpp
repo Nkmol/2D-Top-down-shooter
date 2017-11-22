@@ -22,6 +22,7 @@ InputManager::InputManager() {
 
 
 InputManager &InputManager::instance() {
+
     static InputManager sInstance;
 
     return sInstance;

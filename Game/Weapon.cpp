@@ -13,7 +13,6 @@ void Weapon::addBullets(Bullet &bullet, int amount) {
 
 
 void Weapon::shoot(int angle, float xPos, float yPos) {
-    std::cout << "shoot" << std::endl;
     for (auto &bullet : bullets) {
         if (!bullet.isVisible()) {
             bullet.makeVisible();
@@ -27,7 +26,7 @@ void Weapon::shoot(int angle, float xPos, float yPos) {
 
 }
 
-void Weapon::update(float time) {
+void Weapon::updateBullets(float time) {
     for (auto &bullet : bullets) {
         if (bullet.isVisible()) {
             bullet.update(time);

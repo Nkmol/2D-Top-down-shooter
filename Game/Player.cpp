@@ -23,7 +23,6 @@ Weapon &Player::getWeapon() {
     return weapon;
 }
 
-
 void Player::move(Direction direction) {
 
     if (direction == Direction::Top) {
@@ -86,4 +85,14 @@ void Player::moveBottom() {
 
 void Player::moveLeft() {
     setDestinationXPos(-speed);
+}
+
+void Player::draw() {
+    weapon.drawBullets();
+    MoveableObject::draw();
+}
+
+void Player::update(float time) {
+    weapon.updateBullets(time);
+    MoveableObject::update(time);
 }
