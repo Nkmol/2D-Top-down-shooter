@@ -3,7 +3,7 @@
 #include <vector>
 #include "Engine.h"
 #include <memory>
-
+#include "Config.h"
 class State;
 
 class Game
@@ -11,7 +11,7 @@ class Game
 public:
 	Game();
 	~Game();
-	void Init(const std::string& title, bool fullscreen, const int width, const int height) const;
+	void Init() const;
 	void ChangeState(std::unique_ptr<State>&& state);
 	void PopState();
 	void Quit() const;

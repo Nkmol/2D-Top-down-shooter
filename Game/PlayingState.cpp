@@ -19,7 +19,8 @@ void PlayingState::HandleEvents(Game &game) {
     if (inputManager.hasEvent(&event)) {
 
 		if (inputManager.isPauseResume(event)) {
-			ChangeState(game, make_shared<PausedState>().get());
+			auto state = make_unique<PausedState>();
+			game.ChangeState(std::move(state));
 		}
 
         if (inputManager.isMouseMoved(event)) {

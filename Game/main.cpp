@@ -13,8 +13,8 @@ int main(int argc, char *argv[]) {
     Game game;
 
 	auto state = make_unique<PlayingState>();
-    game.Init("Shooter game", false, 1280, 960);
-    game.ChangeState(state.get());
+    game.Init();
+    game.ChangeState(std::move(state));
 
     auto inputManager = InputManager::instance();
 

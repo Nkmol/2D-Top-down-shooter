@@ -46,7 +46,7 @@ bool InputManager::isQuit(SDL_Event &event) {
 
 bool InputManager::isPauseResume(SDL_Event &event)
 {
-	return event.key.keysym.sym == SDLK_ESCAPE;
+	return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);
 }
 
 Direction InputManager::getDirection(SDL_Event &event) {

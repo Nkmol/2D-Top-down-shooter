@@ -34,7 +34,7 @@ void PausedState::Update(Game & game, int time)
 
 void PausedState::Draw(Game & game)
 {
-	RenderManager::Instance().DrawText("Press ESC to resume game", 200, 200, 300, 40, 0);
+	RenderManager::Instance().DrawText("Press ESC to resume game", config::width/2 - 155, config::height/2 - 20, 360, 40, 0);
 }
 
 void PausedState::Init()

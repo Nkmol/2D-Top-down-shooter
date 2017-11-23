@@ -152,6 +152,7 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="headers\Bullet.h" />
     <ClInclude Include="headers\EnemyBase.h" />
