@@ -13,9 +13,9 @@ public:
 	virtual void Update(Game& game, int time) = 0;
 	virtual void Draw(Game& game) = 0;
 
-	void ChangeState(Game& game, State* state) {
+	/*void ChangeState(Game& game, State* state) {
 		game.ChangeState(state);
-	}
+	}*/
 
 protected:
 	State() { }
