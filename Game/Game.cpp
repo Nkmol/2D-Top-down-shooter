@@ -20,16 +20,11 @@ void Game::Init(const std::string& title, bool fullscreen, const int width, cons
 	MapManager::Instance().Init("../content/map/halflife.tmx");
 }
 
-void Game::ChangeState(State* state)
+// Explicity force user to transfer ownership with std::move
+void Game::ChangeState(unique_ptr<State>&& state)
 {
-	// cleanup the current state
-	/*if (!_states.empty()) {
-		_states.back()->Cleanup();
-		_states.pop_back();
-	}*/
-
-	// store and init the new state
-	_states.push_back(state);
+	// Move ownership to the state vector
+	_states.push_back(std::move(state));
 	_states.back()->Init();
 }
 

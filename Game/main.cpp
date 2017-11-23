@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 
     unique_ptr<PlayingState> state(new PlayingState());
     game.Init("Shooter game", false, 1280, 960);
-    game.ChangeState(state.get());
+    game.ChangeState(std::move(state));
 
     auto inputManager = InputManager::instance();
 
