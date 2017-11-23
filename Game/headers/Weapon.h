@@ -6,8 +6,10 @@
 #define SHOOTER_WEAPON_H
 
 
-#include <Bullet.h>
+#include <iostream>
+#include "Bullet.h"
 #include <vector>
+#include <memory>
 
 class Weapon {
 

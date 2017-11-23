@@ -17,7 +17,7 @@ MapManager::MapManager()
 void MapManager::Init(const string input)
 {
 	tmx.load(input.c_str());
-	string tileset = "content/map/" + tmx.tilesetList.at(0).source;
+	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
 	tsx.load(tileset.c_str());
 
 	SDL_Surface* spritesheet = AssetManager::getInstance().loadSurface(tsx.tileset.image.source.c_str());

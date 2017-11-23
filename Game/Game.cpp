@@ -17,7 +17,7 @@ void Game::Init(const std::string& title, bool fullscreen, const int width, cons
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(title, fullscreen, width, height);
 
-	MapManager::Instance().Init("content/map/halflife.tmx");
+	MapManager::Instance().Init("../content/map/halflife.tmx");
 }
 
 void Game::ChangeState(State* state)
