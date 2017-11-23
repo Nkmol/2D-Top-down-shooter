@@ -51,6 +51,8 @@ public:
     bool isKeyUp(SDL_Event &event);
 
     bool isQuit(SDL_Event &event);
+
+	bool isPauseResume(SDL_Event &event);
 };
 
 

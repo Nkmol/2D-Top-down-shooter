@@ -145,6 +145,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Uzi.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Uzi.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>

@@ -29,8 +29,13 @@ void Game::ChangeState(State* state)
 	}*/
 
 	// store and init the new state
-	_states.push_back(state);
+	_states.push_back(std::move(state));
 	_states.back()->Init();
+}
+
+void Game::PopState()
+{
+	_states.pop_back();
 }
 
 void Game::Quit() const

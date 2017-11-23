@@ -44,6 +44,11 @@ bool InputManager::isQuit(SDL_Event &event) {
     return event.type == SDL_QUIT;
 }
 
+bool InputManager::isPauseResume(SDL_Event &event)
+{
+	return event.key.keysym.sym == SDLK_ESCAPE;
+}
+
 Direction InputManager::getDirection(SDL_Event &event) {
 
     // TODO REFACTOR, NEW CLASS

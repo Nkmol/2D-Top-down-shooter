@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
     Game game;
 
-    unique_ptr<PlayingState> state(new PlayingState());
+	auto state = make_unique<PlayingState>();
     game.Init("Shooter game", false, 1280, 960);
     game.ChangeState(state.get());
 

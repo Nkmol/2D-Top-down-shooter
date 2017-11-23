@@ -1,6 +1,7 @@
 #include <Uzi.h>
 #include "PlayingState.h"
 #include "InputManager.h"
+#include "PausedState.h"
 
 
 PlayingState::PlayingState() {
@@ -16,6 +17,11 @@ void PlayingState::HandleEvents(Game &game) {
     SDL_Event event{};
 
     if (inputManager.hasEvent(&event)) {
+
+		if (inputManager.isPauseResume(event)) {
+			auto state = make_unique<PausedState>();
+			ChangeState(game, state.get());
+		}
 
         if (inputManager.isMouseMoved(event)) {
             // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
@@ -65,13 +71,13 @@ void PlayingState::Draw(Game &game) {
 }
 
 void PlayingState::Init() {
-    shared_ptr<Player> player{new Player("soldier", 100, 300)};
-    unique_ptr<Weapon> uzi{new Uzi()};
+	auto player = make_shared<Player>("soldier", 100, 300);
+	auto uzi = make_unique<Weapon>(Uzi());
     player->addWeapon(*uzi);
 
     _objs.emplace_back(player);
 
     // save pointer seperate
     _player = player;
-    flockController.generateFlock(100, 100, 900, _player, 0.1f);
+    flockController.generateFlock(10, 100, 900, _player, 0.1f);
 }
