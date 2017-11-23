@@ -2,8 +2,8 @@
 // Created by Mevlüt Özdemir on 15-11-17.
 //
 
-#include <iostream>
-#include <Weapon.h>
+#include "Weapon.h"
+
 
 void Weapon::addBullets(Bullet &bullet, int amount) {
     for (int i = 0; i < amount; ++i) {
