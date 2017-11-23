@@ -43,6 +43,26 @@ void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
+void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle) const
+{
+	TTF_Font* font = AssetManager::getInstance().loadFont("Sans Regular", height);
+	SDL_Color color = { 255, 255, 255 };
+	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
+	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
+	SDL_FreeSurface(sMessage);
+
+	SDL_Rect messageRect;
+	messageRect.x = x;
+	messageRect.y = y;
+	messageRect.w = width;
+	messageRect.h = height;
+
+	const auto resp = SDL_RenderCopyEx(renderer, message, NULL, &messageRect, angle, NULL, SDL_FLIP_NONE);
+	if (resp != 0) {
+		std::cout << SDL_GetError() << std::endl;
+	}
+}
+
 RenderManager& RenderManager::Instance() {
 	static RenderManager sInstance; // Guaranteed to be destroyed.
 								    // Instantiated on first use.

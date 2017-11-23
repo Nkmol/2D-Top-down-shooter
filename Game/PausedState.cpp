@@ -1,5 +1,6 @@
 #include "PausedState.h"
 #include "PlayingState.h"
+#include "RenderManager.h"
 
 PausedState::PausedState()
 {
@@ -21,6 +22,9 @@ void PausedState::HandleEvents(Game & game)
 		{
 			game.PopState();
 		}
+		if (inputManager.isQuit(event)) {
+			game.Quit();
+		}
 	}
 }
 
@@ -30,7 +34,7 @@ void PausedState::Update(Game & game, int time)
 
 void PausedState::Draw(Game & game)
 {
-
+	RenderManager::Instance().DrawText("Press ESC to resume game", 200, 200, 300, 40, 0);
 }
 
 void PausedState::Init()

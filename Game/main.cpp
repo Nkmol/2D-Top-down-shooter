@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "PlayingState.h"
 #include <algorithm>
+#include "PausedState.h"
 
 #undef main
 

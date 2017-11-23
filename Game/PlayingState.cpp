@@ -19,8 +19,7 @@ void PlayingState::HandleEvents(Game &game) {
     if (inputManager.hasEvent(&event)) {
 
 		if (inputManager.isPauseResume(event)) {
-			auto state = make_unique<PausedState>();
-			ChangeState(game, state.get());
+			ChangeState(game, make_shared<PausedState>().get());
 		}
 
         if (inputManager.isMouseMoved(event)) {

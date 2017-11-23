@@ -57,7 +57,7 @@ void Game::Draw()
 {
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
-	MapManager::Instance().Render();
+	//MapManager::Instance().Render();
 
 	_states.back()->Draw(*this);
 	renderManager.Flip();
