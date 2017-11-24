@@ -26,12 +26,12 @@ void PlayingState::HandleEvents(Game &game) {
         }
 
         if (inputManager.isKeyDown(event)) {
-            Direction direction = inputManager.getDirection(event);
+            Point direction = inputManager.getDirection(event);
 
             int angle = inputManager.calculateMouseAngle(*_player);
 
             _player->setAngle(angle);
-            _player->move(direction);
+            _player->Move(direction);
         }
 
         if (inputManager.isKeyUp(event)) {

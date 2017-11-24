@@ -5,27 +5,28 @@
 
 #include <AssetManager.h>
 #include "headers/MoveableObject.h"
+#include "Point.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos, float speed)
-        : xPos{xPos},
-          yPos{yPos},
-          speed{speed} {
+	: speed{speed},
+	  xPos{xPos}, 
+	  yPos{yPos},
+	  _destination(Point::Empty())
+{
+	SDL_Surface* surface = AssetManager::getInstance().loadSurface(filePath);
+	if (!surface)
+		cout << SDL_GetError() << endl;
+	_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
 
-    SDL_Surface *surface = AssetManager::getInstance().loadSurface(filePath);
-    if (!surface)
-        cout << SDL_GetError() << endl;
-    _sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
+	SDL_FreeSurface(surface);
 
-    SDL_FreeSurface(surface);
+	if (this->_sprite == NULL)
+	{
+		printf(SDL_GetError());
+	}
 
-    if (this->_sprite == NULL) {
-        printf(SDL_GetError());
-    }
-
-    destinationYPos = 0.0f;
-    destinationXPos = 0.0f;
-
-
+	//destinationYPos = 0.0f;
+	//destinationXPos = 0.0f;
 }
 
 void MoveableObject::draw() {
@@ -52,8 +53,8 @@ float MoveableObject::getYPos() const {
 
 
 void MoveableObject::update(float time) {
-    this->xPos += this->destinationXPos * time;
-    this->yPos += this->destinationYPos * time;
+	this->xPos += _destination.x * speed * time;
+	this->yPos += _destination.y * speed * time;
 //
 //    if (xPos < 0) xPos = 0;
 //    if (xPos > 1500) xPos = 1500;
@@ -63,8 +64,7 @@ void MoveableObject::update(float time) {
 
 
 void MoveableObject::stopMove() {
-    this->destinationXPos = 0.0f;
-    this->destinationYPos = 0.0f;
+	_destination = Point{ 0, 0 };
 }
 
 int MoveableObject::getAngle() const {
@@ -84,11 +84,11 @@ bool MoveableObject::isVisible() const {
 }
 
 void MoveableObject::setDestinationXPos(float destinationXPos) {
-    MoveableObject::destinationXPos = destinationXPos;
+    //MoveableObject::destinationXPos = destinationXPos;
 }
 
 void MoveableObject::setDestinationYPos(float destinationYPos) {
-    MoveableObject::destinationYPos = destinationYPos;
+    //MoveableObject::destinationYPos = destinationYPos;
 }
 
 
