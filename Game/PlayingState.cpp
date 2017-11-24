@@ -73,5 +73,5 @@ void PlayingState::Init() {
 
     // save pointer seperate
     _player = player;
-    flockController.generateFlock(100, 100, 900, _player, 0.1f);
+    flockController.generateFlock(100, 100, 900, _player, 15.0f);
 }
