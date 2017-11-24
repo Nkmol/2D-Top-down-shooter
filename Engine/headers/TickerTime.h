@@ -5,7 +5,6 @@ class TickerTime
 {
 	unsigned _fps;
 	unsigned _maxFps;
-	float _minimumFrameTime;
 
 	Uint32 _lastUpdateTime;
 public:
