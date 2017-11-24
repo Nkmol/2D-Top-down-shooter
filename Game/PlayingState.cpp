@@ -48,13 +48,13 @@ void PlayingState::HandleEvents(Game &game) {
     }
 }
 
-
-void PlayingState::Update(Game &game, int time) {
-    // The reference & to the std::unique_ptr avoids the copying and you can use the uniqe_ptr without dereferencing.
-    for (auto &&obj : _objs) {
-        obj->update(time);
-    }
-    flockController.updateFlocks(time);
+void PlayingState::Update(Game& game, float time)
+{
+	// The reference & to the std::unique_ptr avoids the copying and you can use the uniqe_ptr without dereferencing.
+	for (auto &&obj : _objs) {
+		obj->update(time);
+	}
+	flockController.updateFlocks(time);
 }
 
 void PlayingState::Draw(Game &game) {
