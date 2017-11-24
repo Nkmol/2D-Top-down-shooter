@@ -5,18 +5,16 @@
 #include <iostream>
 #include <cmath>
 #include "InputManager.h"
-#include "Direction.h"
 #include "MoveableObject.h"
-
 
 InputManager *InputManager::sInstance = nullptr;
 
 InputManager::InputManager() {
     InputManager::keyDirections = {
-            {SDLK_w, Direction::Top},
-            {SDLK_d, Direction::Right},
-            {SDLK_s, Direction::Bottom},
-            {SDLK_a, Direction::Left},
+            { SDL_SCANCODE_W, Point::Up()},
+            { SDL_SCANCODE_D, Point::Right() },
+            { SDL_SCANCODE_S, Point::Down() },
+            { SDL_SCANCODE_A, Point::Left() },
     };
 }
 
@@ -44,41 +42,45 @@ bool InputManager::isQuit(SDL_Event &event) {
     return event.type == SDL_QUIT;
 }
 
-Direction InputManager::getDirection(SDL_Event &event) {
+Point InputManager::getDirection(SDL_Event& event) {
 
     // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
 
+	Point direction { 0, 0 };
     // update keyboard state
-    auto keysArray = SDL_GetKeyboardState(nullptr);
+	const auto keysArray = SDL_GetKeyboardState(nullptr);
 
-    if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
-        return Direction::TopRight;
-    }
+	for(auto const& value : keyDirections)
+	{
+		if (keysArray[value.first]) direction += value.second;
+	}
 
-    if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_A]) {
-        return Direction::TopLeft;
-    }
+    //if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
+    //    return Direction::TopRight;
+    //}
 
-    if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_D]) {
-        return Direction::BottomRight;
-    }
+    //if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_A]) {
+    //    return Direction::TopLeft;
+    //}
 
-    if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_A]) {
-        return Direction::BottomLeft;
-    }
+    //if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_D]) {
+    //    return Direction::BottomRight;
+    //}
 
-    // if not multiple keys are pressed, find the single key.
-    auto search = keyDirections.find(event.key.keysym.sym);
+    //if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_A]) {
+    //    return Direction::BottomLeft;
+    //}
 
-    if (search != keyDirections.end()) {
-        return search->second; // search->first is the key.. search->second is the value..
-    }
+    //// if not multiple keys are pressed, find the single key.
+    //auto search = keyDirections.find(event.key.keysym.sym);
 
-    // When key doesn't exists in the map. It is not a valid key.
+    //if (search != keyDirections.end()) {
+    //    return search->second; // search->first is the key.. search->second is the value..
+    //}
 
-    return Direction::Null;
+	return direction;
 }
 
 

@@ -18,9 +18,6 @@
     <ClInclude Include="headers\MoveableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Direction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

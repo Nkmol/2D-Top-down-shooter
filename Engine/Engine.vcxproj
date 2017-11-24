@@ -156,7 +156,6 @@
     <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp" />
     <ClInclude Include="tmx\include\TMXParser.h" />
     <ClInclude Include="tmx\include\TSXParser.h" />
-    <ClInclude Include="headers\Direction.h" />
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\MoveableObject.h" />
   </ItemGroup>

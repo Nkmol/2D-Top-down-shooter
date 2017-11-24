@@ -8,9 +8,8 @@
 
 #include <SDL_events.h>
 #include <map>
-#include "Direction.h"
 #include "MoveableObject.h"
-#include "vector"
+#include "Point.h"
 
 class InputManager {
 
@@ -22,7 +21,7 @@ class InputManager {
 
     int mousePositionX, mousePositionY;
 
-    std::map<SDL_Keycode, Direction> keyDirections;
+    std::map<SDL_Keycode, Point> keyDirections;
 
     InputManager();
 
@@ -34,7 +33,7 @@ public:
 
     bool isKeyDown(SDL_Event &event);
 
-    Direction getDirection(SDL_Event &event);
+	Point getDirection(SDL_Event& event);
 
     bool isMouseMoved(SDL_Event &event);
 
