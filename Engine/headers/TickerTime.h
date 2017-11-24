@@ -12,6 +12,5 @@ public:
 	TickerTime(const unsigned fps, const unsigned maxFps);
 	~TickerTime();
 	float GetDeltaTime();
-	void WaitNextUpdate() const;
 };
 

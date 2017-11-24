@@ -44,17 +44,21 @@ void Game::Run(const unsigned int fps)
 {
 	TickerTime ticker{ fps, 100 };
 
+	const auto frameTime = fps / 100.0f;
 	const auto gameIsRunning = true;
 	while (gameIsRunning) {
 		HandleEvents();
 
-		const auto deltaTime = ticker.GetDeltaTime();
-		Update(deltaTime);
-
-		Draw();
+		auto deltaTime = ticker.GetDeltaTime();
 
 		// To create constant update sequence
-		ticker.WaitNextUpdate();
+		do
+		{
+			Update(deltaTime);
+			deltaTime -= frameTime;
+		} while (deltaTime >= frameTime);
+
+		Draw();
 	}
 }
 

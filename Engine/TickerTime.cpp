@@ -1,8 +1,9 @@
 #include "TickerTime.h"
 #include <SDL.h>
 #include <algorithm>
+#include <iostream>
 
-TickerTime::TickerTime(const unsigned fps, const unsigned maxFps) : _fps{ fps }, _maxFps{maxFps}, _minimumFrameTime{ fps / 1000.0f }, _lastUpdateTime {SDL_GetTicks()}
+TickerTime::TickerTime(const unsigned fps, const unsigned maxFps) : _fps{ fps }, _maxFps{maxFps}, _minimumFrameTime{ (fps / 1000.0f) * 10000.0f }, _lastUpdateTime ( SDL_GetPerformanceCounter() )
 {
 }
 
@@ -13,19 +14,11 @@ TickerTime::~TickerTime()
 // Delta time in seconds
 float TickerTime::GetDeltaTime()
 {
-	const int currentTimeMs = SDL_GetTicks();
-	const auto frameTime = currentTimeMs - _lastUpdateTime;
-	const auto time = std::min<unsigned>(frameTime, _maxFps);
+	const int currentTimeMs = SDL_GetPerformanceCounter();
+	const auto elapsedTime = currentTimeMs - _lastUpdateTime;
+	const auto time = std::min<unsigned>(elapsedTime, _maxFps);
 
-	_lastUpdateTime = time;
+	_lastUpdateTime = currentTimeMs;
 
-	return time / 1000.0f;
-}
-
-void TickerTime:: WaitNextUpdate() const
-{
-	// Check how long the frame took and wait for the next frame if it updated 'too' fast.
-	// results in fixed fps
-	if ((SDL_GetTicks() - _lastUpdateTime) < _minimumFrameTime)
-		SDL_Delay(_minimumFrameTime - (SDL_GetTicks() - _lastUpdateTime));
+	return (time * 1000.0f) / SDL_GetPerformanceFrequency();
 }
