@@ -49,10 +49,6 @@ public:
 
     bool isVisible() const;
 
-    void setDestinationXPos(float destinationXPos);
-
-    void setDestinationYPos(float destinationYPos);
-
 };
 
 

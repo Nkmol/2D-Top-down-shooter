@@ -83,15 +83,6 @@ bool MoveableObject::isVisible() const {
     return visible;
 }
 
-void MoveableObject::setDestinationXPos(float destinationXPos) {
-    //MoveableObject::destinationXPos = destinationXPos;
-}
-
-void MoveableObject::setDestinationYPos(float destinationYPos) {
-    //MoveableObject::destinationYPos = destinationYPos;
-}
-
-
 MoveableObject::~MoveableObject() {
     // if sdl_destroytexture is called, the bullet's image cannot be found
     //    SDL_DestroyTexture(_sprite);

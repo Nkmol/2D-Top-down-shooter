@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 30.0f) {
+Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 70.0f) {
 
 }
 
@@ -35,9 +35,6 @@ void Player::draw() {
 
 void Player::update(float time) {
     weapon.updateBullets(time);
-
-	std::cerr << "Time: " << time << endl;
-	std::cerr << "Player speed: " << 7.0 * time << endl;
     MoveableObject::update(time);
 }
 
