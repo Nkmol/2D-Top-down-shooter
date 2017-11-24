@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include "State.h"
 #include "MapManager.h"
+#include "TickerTime.h"
+#include <algorithm>
 
 Game::Game()
 {
@@ -33,12 +35,30 @@ void Game::Quit() const
 	exit(0);
 }
 
+void Game::Run(const unsigned int fps)
+{
+	TickerTime ticker{ fps, 100 };
+
+	const auto gameIsRunning = true;
+	while (gameIsRunning) {
+		HandleEvents();
+
+		const auto deltaTime = ticker.GetDeltaTime();
+		Update(deltaTime);
+
+		Draw();
+
+		// To create constant update sequence
+		ticker.WaitNextUpdate();
+	}
+}
+
 void Game::HandleEvents()
 {
 	_states.back()->HandleEvents(*this);
 }
 
-void Game::Update(int time)
+void Game::Update(float time)
 {
 	_states.back()->Update(*this, time);
 }
