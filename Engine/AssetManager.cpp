@@ -18,8 +18,10 @@ AssetManager::AssetManager() {
     render["soldier"] = "../content/soldier.png";
     render["boid"] = "../content/boid.png";
     render["bullet"] = "../content/bullet.png";
+	fonts["Sans Regular"] = "../content/fonts/OpenSans-Regular.ttf";
     //render["background"] = "../Assets/Img/wallpaper.png";
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+	TTF_Init();
 }
 
 
@@ -60,4 +62,13 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
     }
 
     return loadedSurface;
+}
+
+TTF_Font* AssetManager::loadFont(string fontToken, const int size)
+{
+	TTF_Font* font = TTF_OpenFont(fonts[fontToken], size);
+	if (font == NULL)
+		cout << "Unable to load font %s! SDL_image Error: " << render[fontToken] << TTF_GetError() << endl;
+
+	return font;
 }

@@ -42,8 +42,12 @@ bool InputManager::isQuit(SDL_Event &event) {
     return event.type == SDL_QUIT;
 }
 
-Point InputManager::getDirection(SDL_Event& event) {
+bool InputManager::isPauseResume(SDL_Event &event)
+{
+	return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);
+}
 
+Point InputManager::getDirection(SDL_Event& event) {
     // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
@@ -56,29 +60,6 @@ Point InputManager::getDirection(SDL_Event& event) {
 	{
 		if (keysArray[value.first]) direction += value.second;
 	}
-
-    //if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_D]) {
-    //    return Direction::TopRight;
-    //}
-
-    //if (keysArray[SDL_SCANCODE_W] && keysArray[SDL_SCANCODE_A]) {
-    //    return Direction::TopLeft;
-    //}
-
-    //if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_D]) {
-    //    return Direction::BottomRight;
-    //}
-
-    //if (keysArray[SDL_SCANCODE_S] && keysArray[SDL_SCANCODE_A]) {
-    //    return Direction::BottomLeft;
-    //}
-
-    //// if not multiple keys are pressed, find the single key.
-    //auto search = keyDirections.find(event.key.keysym.sym);
-
-    //if (search != keyDirections.end()) {
-    //    return search->second; // search->first is the key.. search->second is the value..
-    //}
 
 	return direction;
 }

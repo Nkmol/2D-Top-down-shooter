@@ -9,9 +9,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
-
+#include <SDL_ttf.h>
+#include "AssetManager.h"
 using namespace std;
-
 
 class RenderManager {
 public:
@@ -42,6 +42,11 @@ public:
 	* Returns the renderer
 	*/
 	SDL_Renderer* GetRenderer() const;
+
+	/* void DrawText
+	* Draw Text on screen
+	*/
+	void DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle = 0) const;
 
 	static RenderManager& Instance();
 
