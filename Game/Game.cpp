@@ -12,10 +12,10 @@ Game::~Game()
 {
 }
 
-void Game::Init(const std::string& title, bool fullscreen, const int width, const int height) const
+void Game::Init() const
 {
 	_mainManager.Init();
-	RenderManager::Instance().CreateWindow(title, fullscreen, width, height);
+	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
 	MapManager::Instance().Init("../content/map/halflife.tmx");
 }
@@ -26,6 +26,11 @@ void Game::ChangeState(unique_ptr<State>&& state)
 	// Move ownership to the state vector
 	_states.push_back(std::move(state));
 	_states.back()->Init();
+}
+
+void Game::PopState()
+{
+	_states.pop_back();
 }
 
 void Game::Quit() const

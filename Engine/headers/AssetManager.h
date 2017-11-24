@@ -6,6 +6,7 @@
 #include <map>
 #include <iostream>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 
 using namespace std;
@@ -16,6 +17,7 @@ private:
 	map<string, const char* > sounds;
 	map<string, const char* > effect;
 	map<string, const char* > render;
+	map<string, const char* > fonts;
 	AssetManager();
 
 
@@ -28,5 +30,5 @@ public:
 	Mix_Music* loadBGM(string soundToken);
 	Mix_Chunk* loadEffect(string effectToken);
 	SDL_Surface* loadSurface(string mediaToken);
-
+	TTF_Font* loadFont(string fontToken, const int size);
 };
