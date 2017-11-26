@@ -9,6 +9,11 @@ MapManager& MapManager::Instance()
 	return sInstance;
 }
 
+const std::vector<GameObject>* MapManager::getCollidables() const
+{
+	return &collidables;
+}
+
 MapManager::MapManager()
 {
 	mapTexture = nullptr;
@@ -20,13 +25,30 @@ void MapManager::Init(const string input)
 	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
 	tsx.load(tileset.c_str());
 
-	SDL_Surface* spritesheet = AssetManager::getInstance().loadSurface(tsx.tileset.image.source.c_str());
+	SDL_Surface* spritesheet = AssetManager::Instance().loadSurface(tsx.tileset.image.source.c_str());
 	if (!spritesheet)
 		cout << SDL_GetError() << endl;
 	mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), spritesheet);
 	SDL_FreeSurface(spritesheet);
 	GetTilesMap();
 	GetTileLayers();
+
+	const int tileWidth = tmx.mapInfo.tileWidth;
+	const int tileHeight = tmx.mapInfo.tileHeight;
+	const int width = tmx.mapInfo.width;
+	const int height = tmx.mapInfo.height;
+
+	int counter = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			if (atoi(tileLayers.at(1).at(counter).c_str()) != 0) {
+				collidables.push_back({ (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
+			}
+			counter++;
+		}
+	}
 }
 
 void MapManager::Render()
@@ -57,7 +79,6 @@ void MapManager::Render()
 			}
 
 			if (atoi(tileLayers.at(1).at(counter).c_str()) != 0) {
-				collidables.push_back({ destRect.x, destRect.y, tileWidth, tileHeight });
 				RenderManager::Instance().BlitSurface(mapTexture, &tilesMap.at(atoi(tileLayers.at(1).at(counter).c_str())), &destRect);
 			}
 			counter++;

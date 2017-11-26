@@ -150,11 +150,12 @@
   <ItemGroup>
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
-    <ClInclude Include="headers\CollidableObject.h" />
+    <ClInclude Include="headers\GameObject.h" />
     <ClInclude Include="headers\Engine.h" />
     <ClInclude Include="headers\Point.h" />
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\MapManager.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
@@ -168,10 +169,11 @@
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="CollidableObject.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />

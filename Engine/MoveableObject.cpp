@@ -11,7 +11,7 @@ MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yP
           yPos{yPos},
           speed{speed} {
 
-    SDL_Surface *surface = AssetManager::getInstance().loadSurface(filePath);
+    SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
     _sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
@@ -29,10 +29,10 @@ MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yP
 }
 
 void MoveableObject::draw() {
-    int w, h;
-    SDL_QueryTexture(this->_sprite, nullptr, nullptr, &w, &h);
 
-    SDL_Rect destinationRectangle = {static_cast<int>(xPos), static_cast<int>(yPos), w, h};
+    SDL_QueryTexture(this->_sprite, nullptr, nullptr, &width, &height);
+
+    SDL_Rect destinationRectangle = {static_cast<int>(xPos), static_cast<int>(yPos), width, height};
     RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle,
                                           MoveableObject::angle);
 }
@@ -84,11 +84,16 @@ bool MoveableObject::isVisible() const {
 }
 
 void MoveableObject::setDestinationXPos(float destinationXPos) {
-    MoveableObject::destinationXPos = destinationXPos;
+	if (PhysicsManager::Instance().checkCollision(this->getMidX(destinationXPos), this->getMidY(yPos), this->getRadius())) {
+		MoveableObject::destinationXPos = destinationXPos;
+	}
 }
 
 void MoveableObject::setDestinationYPos(float destinationYPos) {
-    MoveableObject::destinationYPos = destinationYPos;
+	if (PhysicsManager::Instance().checkCollision(this->getMidX(xPos), this->getMidY(destinationYPos), this->getRadius())) {
+		MoveableObject::destinationYPos = destinationYPos;
+	}
+
 }
 
 
@@ -97,4 +102,17 @@ MoveableObject::~MoveableObject() {
     //    SDL_DestroyTexture(_sprite);
 }
 
+const int MoveableObject::getMidX(float destinationPosition) const
+{
+	return  destinationPosition +  width / 2;;
+}
 
+const int MoveableObject::getMidY(float destinationPosition) const
+{
+	return destinationPosition + height / 2;
+}
+
+const int MoveableObject::getRadius() const
+{
+	return (width + height) / 4;
+}

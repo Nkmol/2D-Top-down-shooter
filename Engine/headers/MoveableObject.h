@@ -10,6 +10,8 @@
 #include <SDL_render.h>
 #include <string>
 #include "Direction.h"
+#include "GameObject.h"
+#include "PhysicsManager.h"
 
 class MoveableObject {
 
@@ -20,7 +22,7 @@ private:
 
 protected:
     bool visible;
-    int angle;
+    int angle, radius, midX, midY, width, height;
     float speed;
     float xPos, yPos, distance, destinationXPos, destinationYPos;
 
@@ -52,6 +54,10 @@ public:
     void setDestinationXPos(float destinationXPos);
 
     void setDestinationYPos(float destinationYPos);
+
+	const int getMidX(float destinationPosition) const;
+	const int getMidY(float destinationPosition) const;
+	const int getRadius() const;
 
 };
 

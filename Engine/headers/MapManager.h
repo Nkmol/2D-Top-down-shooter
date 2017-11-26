@@ -3,7 +3,7 @@
 #include "../tmx/include/TSXParser.h"
 #include "AssetManager.h"
 #include "RenderManager.h"
-#include "CollidableObject.h"
+#include "GameObject.h"
 #include <sstream>
 #include <vector>
 #include <string>
@@ -15,12 +15,13 @@ public:
 	MapManager(MapManager const&) = delete;
 	void operator=(MapManager const&) = delete;
 	static MapManager& Instance();
-	std::vector<CollidableObject> collidables;
+	const std::vector<GameObject>* getCollidables() const;
 
 	void Init(const std::string input);
 	void Render();
 	void RenderTilesText();
 private:
+	std::vector<GameObject> collidables;
 	TMX::Parser tmx;
 	TSX::Parser tsx;
 	static MapManager sInstance;

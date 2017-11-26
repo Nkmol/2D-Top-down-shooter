@@ -23,7 +23,7 @@ private:
 
 public:
 
-	static AssetManager& getInstance();
+	static AssetManager& Instance();
 	AssetManager(AssetManager const&) = delete;
 	void operator=(AssetManager const&) = delete;
 	//static AssetManager* instance();
