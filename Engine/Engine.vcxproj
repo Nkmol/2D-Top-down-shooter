@@ -152,10 +152,10 @@
     <ClInclude Include="headers\AudioManager.h" />
     <ClInclude Include="headers\GameObject.h" />
     <ClInclude Include="headers\Engine.h" />
+    <ClInclude Include="headers\PhysicsManager.h" />
     <ClInclude Include="headers\Point.h" />
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\MapManager.h" />
-    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />

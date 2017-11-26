@@ -38,6 +38,7 @@ bool PhysicsManager::checkCollision(float midX, float midY, float radius)
 
 		if (distance < collisionRange) {
 			isCollision = true;
+			break;
 		}
 	}
 

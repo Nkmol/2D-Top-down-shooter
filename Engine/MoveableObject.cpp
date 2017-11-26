@@ -52,8 +52,11 @@ float MoveableObject::getYPos() const {
 
 
 void MoveableObject::update(float time) {
-    this->xPos += this->destinationXPos * time;
-    this->yPos += this->destinationYPos * time;
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
+		this->xPos += this->destinationXPos * time;
+		this->yPos += this->destinationYPos * time;
+	}
+
 //
 //    if (xPos < 0) xPos = 0;
 //    if (xPos > 1500) xPos = 1500;
@@ -84,16 +87,11 @@ bool MoveableObject::isVisible() const {
 }
 
 void MoveableObject::setDestinationXPos(float destinationXPos) {
-	if (PhysicsManager::Instance().checkCollision(this->getMidX(destinationXPos), this->getMidY(yPos), this->getRadius())) {
-		MoveableObject::destinationXPos = destinationXPos;
-	}
+	MoveableObject::destinationXPos = destinationXPos;
 }
 
 void MoveableObject::setDestinationYPos(float destinationYPos) {
-	if (PhysicsManager::Instance().checkCollision(this->getMidX(xPos), this->getMidY(destinationYPos), this->getRadius())) {
-		MoveableObject::destinationYPos = destinationYPos;
-	}
-
+	MoveableObject::destinationYPos = destinationYPos;
 }
 
 
