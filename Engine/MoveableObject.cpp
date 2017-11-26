@@ -52,11 +52,8 @@ float MoveableObject::getYPos() const {
 
 
 void MoveableObject::update(float time) {
-	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
-		this->xPos += this->destinationXPos * time;
-		this->yPos += this->destinationYPos * time;
-	}
-
+	this->xPos += this->destinationXPos * time;
+	this->yPos += this->destinationYPos * time;
 //
 //    if (xPos < 0) xPos = 0;
 //    if (xPos > 1500) xPos = 1500;

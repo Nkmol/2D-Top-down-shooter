@@ -93,6 +93,12 @@ void Player::draw() {
 }
 
 void Player::update(float time) {
-    weapon.updateBullets(time);
-    MoveableObject::update(time);
+	weapon.updateBullets(time);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
+		MoveableObject::update(time);
+	}
+	else {
+		MoveableObject::stopMove();
+	}
+
 }

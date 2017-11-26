@@ -15,18 +15,23 @@ void Bullet::makeInvisible() {
 }
 
 void Bullet::update(float time) {
-    double correctedAngle = this->getAngle() + 270;
+	double correctedAngle = this->getAngle() + 270;
 
-    if (this->getAngle() > 90)
-        correctedAngle = this->getAngle() - 90;
+	if (this->getAngle() > 90)
+		correctedAngle = this->getAngle() - 90;
 
-    double correctedAngleRadians = correctedAngle / 180 * M_PI;
-    double destinationXPos = sin(correctedAngleRadians) * BULLET_SPEED;
-    double destinationYPos = -cos(correctedAngleRadians) * BULLET_SPEED;
+	double correctedAngleRadians = correctedAngle / 180 * M_PI;
+	double destinationXPos = sin(correctedAngleRadians) * BULLET_SPEED;
+	double destinationYPos = -cos(correctedAngleRadians) * BULLET_SPEED;
 
-    setDestinationXPos((float) destinationXPos);
-    setDestinationYPos((float) destinationYPos);
+	setDestinationXPos((float)destinationXPos);
+	setDestinationYPos((float)destinationYPos);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
+		MoveableObject::update(time);	}
+	else {
+		// verwerk hier wat er moet gebeuren als er collision is
+		MoveableObject::stopMove();
+	}
 
-    MoveableObject::update(time);
 }
 
