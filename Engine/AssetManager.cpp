@@ -19,6 +19,9 @@ AssetManager::AssetManager() {
     render["boid"] = "../content/boid.png";
     render["bullet"] = "../content/bullet.png";
 	fonts["Sans Regular"] = "../content/fonts/OpenSans-Regular.ttf";
+	render["newgamebutton"] = "../content/menu/button_new-game.bmp";
+	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
+	render["creditsbutton"] = "../content/menu/button_credits.bmp";
     //render["background"] = "../Assets/Img/wallpaper.png";
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();

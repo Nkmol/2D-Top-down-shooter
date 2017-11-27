@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -139,12 +139,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayingState.cpp" />
@@ -152,6 +154,7 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="headers\Bullet.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Uzi.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="State.h" />

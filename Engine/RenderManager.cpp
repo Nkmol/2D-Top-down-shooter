@@ -63,6 +63,34 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	}
 }
 
+void RenderManager::DrawButton(int screen_width, int screen_height, int xPos, int yPos, std::string mediatoken)
+{
+	SDL_Rect srcRect;
+
+	
+	SDL_Rect destRect;
+	srcRect.w = 225;
+	srcRect.h = 45;
+	srcRect.x = xPos;
+	srcRect.y = yPos;
+
+	destRect.w = screen_width;
+	destRect.h = screen_height;
+	destRect.x = 0;
+	destRect.y = 0;
+
+	SDL_Surface* buttonSurface = AssetManager::getInstance().loadSurface(mediatoken);
+
+	SDL_Texture* buttonTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), buttonSurface);
+
+
+	const auto resp = SDL_RenderCopyEx(this->renderer, buttonTexture, &destRect, &srcRect, 0, NULL, SDL_FLIP_NONE);
+	if (resp != 0) {
+		std::cout << SDL_GetError() << std::endl;
+	}
+
+}
+
 RenderManager& RenderManager::Instance() {
 	static RenderManager sInstance; // Guaranteed to be destroyed.
 								    // Instantiated on first use.
