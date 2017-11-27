@@ -34,8 +34,14 @@ void Player::draw() {
 }
 
 void Player::update(float time) {
-    weapon.updateBullets(time);
-    MoveableObject::update(time);
+	weapon.updateBullets(time);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
+		MoveableObject::update(time);
+	}
+	else {
+		MoveableObject::stopMove();
+	}
+
 }
 
 const int Player::getLifepoints() const

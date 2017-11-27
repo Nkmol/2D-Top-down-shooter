@@ -51,13 +51,16 @@
     <ClInclude Include="headers\RenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\CollidableObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\MapManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\PhysicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\TickerTime.h">
@@ -83,12 +86,6 @@
     <ClCompile Include="tmx\src\TSXParser.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="CollidableObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveableObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,6 +93,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveableObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TickerTime.cpp">

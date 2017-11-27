@@ -8,6 +8,7 @@
 #include "RenderManager.h"
 #include <SDL_render.h>
 #include <string>
+#include "PhysicsManager.h"
 #include "Point.h"
 
 class MoveableObject {
@@ -19,7 +20,7 @@ private:
 
 protected:
     bool visible;
-    int angle;
+    int angle, radius, midX, midY, width, height;
     float speed;
     float xPos, yPos, distance;
 	Point _destination;
@@ -49,6 +50,11 @@ public:
 
     bool isVisible() const;
 
+	const int getMidX(float destinationPosition) const;
+
+	const int getMidY(float destinationPosition) const;
+
+	const int getRadius() const;
 };
 
 

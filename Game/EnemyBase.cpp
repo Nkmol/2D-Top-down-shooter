@@ -95,7 +95,14 @@ void EnemyBase::setLeader(const shared_ptr<EnemyBase> &leader) {
 }
 
 void EnemyBase::update(float time) {
-    MoveableObject::update(time);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
+		MoveableObject::update(time);
+	}
+	else {
+		MoveableObject::stopMove();
+	}
+
+    
 }
 
 void EnemyBase::draw() {

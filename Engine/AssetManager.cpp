@@ -25,7 +25,7 @@ AssetManager::AssetManager() {
 }
 
 
-AssetManager &AssetManager::getInstance() {
+AssetManager &AssetManager::Instance() {
     // The only instance
     // Guaranteed to be lazy initialized
     // Guaranteed that it will be destroyed correctly
