@@ -35,9 +35,9 @@ void Game::PopState()
 	_states.pop_back();
 }
 
-void Game::Quit() const
+void Game::Quit()
 {
-	exit(0);
+	isRunning = false;
 }
 
 void Game::Run(const unsigned int fps)
@@ -45,8 +45,8 @@ void Game::Run(const unsigned int fps)
 	TickerTime ticker{fps, 100};
 
 	const auto frameTime = fps / 100.0f;
-	const auto gameIsRunning = true;
-	while (gameIsRunning)
+	isRunning = true;
+	while (isRunning)
 	{
 		HandleEvents();
 

@@ -5,6 +5,7 @@
 #include "PlayingState.h"
 #include <algorithm>
 #include "PausedState.h"
+//#include <vld.h>
 
 #undef main
 
