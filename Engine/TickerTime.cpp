@@ -11,21 +11,21 @@ TickerTime::TickerTime(const unsigned targetFps, const unsigned maxFps) : _targe
 }
 
 // Happens when the loop catches up (when lagging)
-void TickerTime::OnCatchUp(const DelegateFunction func)
+void TickerTime::OnCatchUp(const DelegateFunction&&  func)
 {
-	_catchUpFunctions.push_back(func);
+	_catchUpFunctions.push_back(std::move(func));
 }
 
 // Happens every frame
-void TickerTime::OnFrame(const DelegateFunction func)
+void TickerTime::OnFrame(const DelegateFunction&&  func)
 {
-	_frameFunctions.push_back(func);
+	_frameFunctions.push_back(std::move(func));
 }
 
 // Happens every x seconds
-void TickerTime::PerSecond(const int secondInterval, DelegateFunction func)
+void TickerTime::PerSecond(const int secondInterval, DelegateFunction&& func)
 {
-	_onSecondFunctions.emplace_back(secondInterval, func);
+	_onSecondFunctions.emplace_back(secondInterval, std::move(func));
 }
 
 // The actual multiplier of the game time, representing 1 tick in 1 second

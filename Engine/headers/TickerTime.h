@@ -50,9 +50,9 @@ private:
 	std::vector<CountdownEvent> _onSecondFunctions;
 public:
 	TickerTime(const unsigned fps, const unsigned maxFps);
-	void OnCatchUp(const DelegateFunction func);
-	void OnFrame(const DelegateFunction func);
-	void PerSecond(const int secondInterval, DelegateFunction func);
+	void OnCatchUp(const DelegateFunction&& func);
+	void OnFrame(const DelegateFunction&& func);
+	void PerSecond(const int secondInterval, DelegateFunction&& func);
 	float GetGameTime() const;
 	int GetFps() const;
 	void Run(const bool& exitWhen);
