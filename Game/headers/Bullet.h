@@ -12,17 +12,19 @@ class Bullet : public MoveableObject {
 
 private:
     float BULLET_SPEED = 0.8f;
-
+	int damage;
 public:
-    Bullet(const string &filePath, float xPos, float yPos);
+    Bullet(const string &filePath, float xPos, float yPos, int damage);
 
-    Bullet(const string &filePath, float xPos, float yPos, float speed, const Bullet &other);
+    Bullet(const string &filePath, float xPos, float yPos, float speed, const Bullet &other, int damage);
 
     void makeVisible();
 
     void makeInvisible();
 
     void update(float time);
+
+	const int getDamage() const;
 };
 
 

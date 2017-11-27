@@ -5,7 +5,7 @@
 #include <Weapon.h>
 #include "Player.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 0.4f) {
+Player::Player(const std::string &filePath, int xPos, int yPos, int lp) : MoveableObject(filePath, xPos, yPos, 0.4f), lifepoints(lp) {
 
 }
 
@@ -96,3 +96,16 @@ void Player::update(float time) {
     weapon.updateBullets(time);
     MoveableObject::update(time);
 }
+
+const int Player::getLifepoints() const
+{
+	return lifepoints;
+}
+
+const int Player::changeLifepoints(const int lp)
+{
+	lifepoints += lp;
+	return lifepoints;
+}
+
+
