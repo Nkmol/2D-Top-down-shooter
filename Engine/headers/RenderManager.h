@@ -47,16 +47,13 @@ public:
 	* Draw Text on screen
 	*/
 	void DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle = 0) const;
-	void DrawButton(int screen_width, int screen_height, int x, int y, std::string mediatoken);
+	void DrawButton(int x, int y, std::string mediatoken);
 	static RenderManager& Instance();
 
 
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	SDL_Texture* newgameTexture;
-	SDL_Texture* loadgameTexture;
-	SDL_Texture* creditsTexture;
 	map<std::string, SDL_Surface*> sprites;
 
 	static RenderManager* sInstance;

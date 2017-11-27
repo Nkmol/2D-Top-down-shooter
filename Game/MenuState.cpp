@@ -52,9 +52,9 @@ void MenuState::Update(Game& game, float time)
 
 void MenuState::Draw(Game& game)
 {
-	RenderManager::Instance().DrawButton(SCREEN_WIDTH, SCREEN_HEIGHT, newgamebutton.getX1(), newgamebutton.getY1(), "newgamebutton");
-	RenderManager::Instance().DrawButton(SCREEN_WIDTH, SCREEN_HEIGHT, loadgamebutton.getX1(), loadgamebutton.getY1(), "loadgamebutton");
-	RenderManager::Instance().DrawButton(SCREEN_WIDTH, SCREEN_HEIGHT, creditsbutton.getX1(), creditsbutton.getY1(), "creditsbutton");
+	RenderManager::Instance().DrawButton(newgamebutton.getX1(), newgamebutton.getY1(), "newgamebutton");
+	RenderManager::Instance().DrawButton(loadgamebutton.getX1(), loadgamebutton.getY1(), "loadgamebutton");
+	RenderManager::Instance().DrawButton(creditsbutton.getX1(), creditsbutton.getY1(), "creditsbutton");
 
 }
 

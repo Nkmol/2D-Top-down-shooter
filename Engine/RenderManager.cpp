@@ -63,7 +63,7 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	}
 }
 
-void RenderManager::DrawButton(int screen_width, int screen_height, int xPos, int yPos, std::string mediatoken)
+void RenderManager::DrawButton(int xPos, int yPos, std::string mediatoken)
 {
 	SDL_Rect srcRect;
 
@@ -74,8 +74,8 @@ void RenderManager::DrawButton(int screen_width, int screen_height, int xPos, in
 	srcRect.x = xPos;
 	srcRect.y = yPos;
 
-	destRect.w = screen_width;
-	destRect.h = screen_height;
+	destRect.w = SDL_GetWindowSurface(window)->w;
+	destRect.h = SDL_GetWindowSurface(window)->h;
 	destRect.x = 0;
 	destRect.y = 0;
 

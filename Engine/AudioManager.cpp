@@ -64,8 +64,6 @@ int AudioManager::PlayEffect(string audioToken)
 
 void AudioManager::PlayBGM()
 {
-	cout << "playing music: " << endl;
-
 	if (Mix_PlayingMusic() == 0)
 	{
 		//Play the music
