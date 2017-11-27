@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
+CMAKE_SOURCE_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
+CMAKE_BINARY_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/GroepH.dir/depend.make
@@ -57,138 +57,18 @@ include CMakeFiles/GroepH.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/GroepH.dir/flags.make
 
-CMakeFiles/GroepH.dir/Game/main.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GroepH.dir/Game/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/main.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp
-
-CMakeFiles/GroepH.dir/Game/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp > CMakeFiles/GroepH.dir/Game/main.cpp.i
-
-CMakeFiles/GroepH.dir/Game/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp -o CMakeFiles/GroepH.dir/Game/main.cpp.s
-
-CMakeFiles/GroepH.dir/Game/main.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Game/main.cpp.o.provides: CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/main.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/main.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Game/main.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/main.cpp.o
-
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: Engine/AssetManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp > CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AssetManager.cpp -o CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o
-
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: Engine/AudioManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp > CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/AudioManager.cpp -o CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
-
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: Engine/RenderManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp > CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/RenderManager.cpp -o CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
-
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: Engine/Engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GroepH.dir/Engine/Engine.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/Engine.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/Engine.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp > CMakeFiles/GroepH.dir/Engine/Engine.cpp.i
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/Engine.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Engine.cpp -o CMakeFiles/GroepH.dir/Engine/Engine.cpp.s
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
-
-
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o: Engine/MoveableObject.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MoveableObject.cpp"
 
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp > CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MoveableObject.cpp" > CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.i
 
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MoveableObject.cpp -o CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MoveableObject.cpp" -o CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s
 
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o.requires:
 
@@ -201,90 +81,186 @@ CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o.provides: CMakeFiles/GroepH.di
 CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o
 
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/Game.cpp.o: Game/Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GroepH.dir/Game/Game.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Game.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o: Engine/TickerTime.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/TickerTime.cpp"
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Game.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp > CMakeFiles/GroepH.dir/Game/Game.cpp.i
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/TickerTime.cpp" > CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.i
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Game.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp -o CMakeFiles/GroepH.dir/Game/Game.cpp.s
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/TickerTime.cpp" -o CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.s
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires:
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.requires:
 
-.PHONY : CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
+.PHONY : CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.requires
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.provides
 
-CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Game.cpp.o
-
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o: Game/PlayingState.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp > CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp -o CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o
+CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o
 
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o: Engine/CollidableObject.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/CollidableObject.cpp
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o: Engine/GameObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/GameObject.cpp"
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/CollidableObject.cpp > CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.i
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/GameObject.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/GameObject.cpp" > CMakeFiles/GroepH.dir/Engine/GameObject.cpp.i
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/CollidableObject.cpp -o CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.s
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/GameObject.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/GameObject.cpp" -o CMakeFiles/GroepH.dir/Engine/GameObject.cpp.s
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.requires:
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.requires:
 
-.PHONY : CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.requires
+.PHONY : CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.requires
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.provides
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.provides
 
-CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o
+CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o: Engine/RenderManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/RenderManager.cpp"
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/RenderManager.cpp" > CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/RenderManager.cpp" -o CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o: Engine/PhysicsManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/PhysicsManager.cpp"
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/PhysicsManager.cpp" > CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/PhysicsManager.cpp" -o CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/InputManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/InputManager.cpp"
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/InputManager.cpp" > CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/InputManager.cpp" -o CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/Point.cpp.o: Engine/Point.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GroepH.dir/Engine/Point.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/Point.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Point.cpp"
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/Point.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Point.cpp" > CMakeFiles/GroepH.dir/Engine/Point.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/Point.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Point.cpp" -o CMakeFiles/GroepH.dir/Engine/Point.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/Point.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o: Engine/AssetManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AssetManager.cpp"
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AssetManager.cpp" > CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AssetManager.cpp" -o CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o
 
 
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o: Engine/MapManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MapManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MapManager.cpp"
 
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/MapManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MapManager.cpp > CMakeFiles/GroepH.dir/Engine/MapManager.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MapManager.cpp" > CMakeFiles/GroepH.dir/Engine/MapManager.cpp.i
 
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/MapManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/MapManager.cpp -o CMakeFiles/GroepH.dir/Engine/MapManager.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/MapManager.cpp" -o CMakeFiles/GroepH.dir/Engine/MapManager.cpp.s
 
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o.requires:
 
@@ -297,18 +273,66 @@ CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o.provides: CMakeFiles/GroepH.dir/En
 CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o
 
 
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o: Engine/Engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GroepH.dir/Engine/Engine.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/Engine.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Engine.cpp"
+
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/Engine.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Engine.cpp" > CMakeFiles/GroepH.dir/Engine/Engine.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/Engine.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/Engine.cpp" -o CMakeFiles/GroepH.dir/Engine/Engine.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
+
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o: Engine/AudioManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AudioManager.cpp"
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AudioManager.cpp" > CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.i
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/AudioManager.cpp" -o CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
+
+
 CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o: Engine/tmx/src/TMXParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TMXParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TMXParser.cpp"
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TMXParser.cpp > CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TMXParser.cpp" > CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.i
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TMXParser.cpp -o CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TMXParser.cpp" -o CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.s
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o.requires:
 
@@ -323,16 +347,16 @@ CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o: Engine/tmx/src/TSXParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TSXParser.cpp"
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp > CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TSXParser.cpp" > CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.i
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/tmx/src/TSXParser.cpp -o CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Engine/tmx/src/TSXParser.cpp" -o CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.s
 
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o.requires:
 
@@ -345,66 +369,42 @@ CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o.provides: CMakeFiles/GroepH
 CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o
 
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o: Engine/InputManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o: Game/PlayingState.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PlayingState.cpp"
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp > CMakeFiles/GroepH.dir/Engine/InputManager.cpp.i
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PlayingState.cpp" > CMakeFiles/GroepH.dir/Game/PlayingState.cpp.i
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/InputManager.cpp -o CMakeFiles/GroepH.dir/Engine/InputManager.cpp.s
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PlayingState.cpp" -o CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires:
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires:
 
-.PHONY : CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
+.PHONY : CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides
 
-CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
-
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/Player.cpp.o: Game/Player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/GroepH.dir/Game/Player.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Player.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Player.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp > CMakeFiles/GroepH.dir/Game/Player.cpp.i
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Player.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp -o CMakeFiles/GroepH.dir/Game/Player.cpp.s
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Player.cpp.o
+CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o
 
 
 CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o: Game/EnemyBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/EnemyBase.cpp"
 
 CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.cpp > CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/EnemyBase.cpp" > CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.i
 
 CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/EnemyBase.cpp -o CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/EnemyBase.cpp" -o CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.s
 
 CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o.requires:
 
@@ -419,16 +419,16 @@ CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o.provides.build: CMakeFiles/GroepH.dir
 
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.o: Game/FlockController.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/GroepH.dir/Game/FlockController.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/FlockController.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/GroepH.dir/Game/FlockController.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/FlockController.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/FlockController.cpp"
 
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/FlockController.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp > CMakeFiles/GroepH.dir/Game/FlockController.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/FlockController.cpp" > CMakeFiles/GroepH.dir/Game/FlockController.cpp.i
 
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/FlockController.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp -o CMakeFiles/GroepH.dir/Game/FlockController.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/FlockController.cpp" -o CMakeFiles/GroepH.dir/Game/FlockController.cpp.s
 
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.o.requires:
 
@@ -441,114 +441,42 @@ CMakeFiles/GroepH.dir/Game/FlockController.cpp.o.provides: CMakeFiles/GroepH.dir
 CMakeFiles/GroepH.dir/Game/FlockController.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
 
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/Flock.cpp.o: Game/Flock.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/GroepH.dir/Game/Flock.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Flock.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Player.cpp.o: Game/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/GroepH.dir/Game/Player.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Player.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Player.cpp"
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Flock.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp > CMakeFiles/GroepH.dir/Game/Flock.cpp.i
+CMakeFiles/GroepH.dir/Game/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Player.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Player.cpp" > CMakeFiles/GroepH.dir/Game/Player.cpp.i
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Flock.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp -o CMakeFiles/GroepH.dir/Game/Flock.cpp.s
+CMakeFiles/GroepH.dir/Game/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Player.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Player.cpp" -o CMakeFiles/GroepH.dir/Game/Player.cpp.s
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires:
+CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires:
 
-.PHONY : CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
+.PHONY : CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides
+CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides
 
-CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Flock.cpp.o
-
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Engine/Point.cpp.o: Engine/Point.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/GroepH.dir/Engine/Point.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Engine/Point.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Engine/Point.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp > CMakeFiles/GroepH.dir/Engine/Point.cpp.i
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Engine/Point.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Engine/Point.cpp -o CMakeFiles/GroepH.dir/Engine/Point.cpp.s
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides: CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Engine/Point.cpp.o.provides.build: CMakeFiles/GroepH.dir/Engine/Point.cpp.o
-
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/Helper.cpp.o: Game/Helper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/GroepH.dir/Game/Helper.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Helper.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Helper.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp > CMakeFiles/GroepH.dir/Game/Helper.cpp.i
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Helper.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp -o CMakeFiles/GroepH.dir/Game/Helper.cpp.s
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
-
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: CMakeFiles/GroepH.dir/flags.make
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: Game/Bullet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/GroepH.dir/Game/Bullet.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Bullet.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp > CMakeFiles/GroepH.dir/Game/Bullet.cpp.i
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Bullet.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Bullet.cpp -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.s
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires:
-
-.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build
-.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides
-
-CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+CMakeFiles/GroepH.dir/Game/Player.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Player.cpp.o
 
 
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.o: Game/Weapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Weapon.cpp"
 
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Weapon.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp > CMakeFiles/GroepH.dir/Game/Weapon.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Weapon.cpp" > CMakeFiles/GroepH.dir/Game/Weapon.cpp.i
 
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Weapon.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Weapon.cpp" -o CMakeFiles/GroepH.dir/Game/Weapon.cpp.s
 
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires:
 
@@ -561,18 +489,114 @@ CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Wea
 CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o
 
 
+CMakeFiles/GroepH.dir/Game/Helper.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Helper.cpp.o: Game/Helper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/GroepH.dir/Game/Helper.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Helper.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Helper.cpp"
+
+CMakeFiles/GroepH.dir/Game/Helper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Helper.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Helper.cpp" > CMakeFiles/GroepH.dir/Game/Helper.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Helper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Helper.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Helper.cpp" -o CMakeFiles/GroepH.dir/Game/Helper.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Helper.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Flock.cpp.o: Game/Flock.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/GroepH.dir/Game/Flock.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Flock.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Flock.cpp"
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Flock.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Flock.cpp" > CMakeFiles/GroepH.dir/Game/Flock.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Flock.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Flock.cpp" -o CMakeFiles/GroepH.dir/Game/Flock.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Flock.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Flock.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.o: Game/PausedState.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/GroepH.dir/Game/PausedState.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/PausedState.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PausedState.cpp"
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/PausedState.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PausedState.cpp" > CMakeFiles/GroepH.dir/Game/PausedState.cpp.i
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/PausedState.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/PausedState.cpp" -o CMakeFiles/GroepH.dir/Game/PausedState.cpp.s
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.provides: CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/PausedState.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o: Game/Bullet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/GroepH.dir/Game/Bullet.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Bullet.cpp"
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Bullet.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Bullet.cpp" > CMakeFiles/GroepH.dir/Game/Bullet.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Bullet.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Bullet.cpp" -o CMakeFiles/GroepH.dir/Game/Bullet.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+
+
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.o: CMakeFiles/GroepH.dir/flags.make
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.o: Game/Uzi.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.o -c /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Uzi.cpp"
 
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Uzi.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp > CMakeFiles/GroepH.dir/Game/Uzi.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Uzi.cpp" > CMakeFiles/GroepH.dir/Game/Uzi.cpp.i
 
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Uzi.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Uzi.cpp" -o CMakeFiles/GroepH.dir/Game/Uzi.cpp.s
 
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires:
 
@@ -585,59 +609,140 @@ CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Uzi.cp
 CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
 
 
+CMakeFiles/GroepH.dir/Game/main.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/main.cpp.o: Game/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/GroepH.dir/Game/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/main.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/main.cpp"
+
+CMakeFiles/GroepH.dir/Game/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/main.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/main.cpp" > CMakeFiles/GroepH.dir/Game/main.cpp.i
+
+CMakeFiles/GroepH.dir/Game/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/main.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/main.cpp" -o CMakeFiles/GroepH.dir/Game/main.cpp.s
+
+CMakeFiles/GroepH.dir/Game/main.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/main.cpp.o.provides: CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/main.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/main.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/main.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/main.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Game.cpp.o: Game/Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/GroepH.dir/Game/Game.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Game.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.cpp"
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Game.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.cpp" > CMakeFiles/GroepH.dir/Game/Game.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Game.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.cpp" -o CMakeFiles/GroepH.dir/Game/Game.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Game.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Game.cpp.o
+
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.o: CMakeFiles/GroepH.dir/flags.make
+CMakeFiles/GroepH.dir/Game/Level.cpp.o: Game/Level.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/GroepH.dir/Game/Level.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GroepH.dir/Game/Level.cpp.o -c "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Level.cpp"
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GroepH.dir/Game/Level.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Level.cpp" > CMakeFiles/GroepH.dir/Game/Level.cpp.i
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GroepH.dir/Game/Level.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Level.cpp" -o CMakeFiles/GroepH.dir/Game/Level.cpp.s
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.o.requires:
+
+.PHONY : CMakeFiles/GroepH.dir/Game/Level.cpp.o.requires
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.o.provides: CMakeFiles/GroepH.dir/Game/Level.cpp.o.requires
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Level.cpp.o.provides.build
+.PHONY : CMakeFiles/GroepH.dir/Game/Level.cpp.o.provides
+
+CMakeFiles/GroepH.dir/Game/Level.cpp.o.provides.build: CMakeFiles/GroepH.dir/Game/Level.cpp.o
+
+
 # Object files for target GroepH
 GroepH_OBJECTS = \
-"CMakeFiles/GroepH.dir/Game/main.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/Engine.cpp.o" \
 "CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Game.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/Point.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o" \
 "CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/Engine.cpp.o" \
+"CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o" \
 "CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o" \
 "CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Player.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o" \
 "CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o" \
 "CMakeFiles/GroepH.dir/Game/FlockController.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Flock.cpp.o" \
-"CMakeFiles/GroepH.dir/Engine/Point.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Helper.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Bullet.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Player.cpp.o" \
 "CMakeFiles/GroepH.dir/Game/Weapon.cpp.o" \
-"CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
+"CMakeFiles/GroepH.dir/Game/Helper.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Flock.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/PausedState.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Bullet.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Uzi.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/main.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Game.cpp.o" \
+"CMakeFiles/GroepH.dir/Game/Level.cpp.o"
 
 # External object files for target GroepH
 GroepH_EXTERNAL_OBJECTS =
 
-GroepH: CMakeFiles/GroepH.dir/Game/main.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/Game.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/Point.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/Player.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/FlockController.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/Flock.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Engine/Point.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
-GroepH: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Player.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Helper.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Flock.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/PausedState.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o
 GroepH: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/main.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Game.cpp.o
+GroepH: CMakeFiles/GroepH.dir/Game/Level.cpp.o
 GroepH: CMakeFiles/GroepH.dir/build.make
+GroepH: /usr/local/lib/libSDL2_image.dylib
 GroepH: CMakeFiles/GroepH.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable GroepH"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable GroepH"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GroepH.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -645,28 +750,32 @@ CMakeFiles/GroepH.dir/build: GroepH
 
 .PHONY : CMakeFiles/GroepH.dir/build
 
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/AssetManager.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/MapManager.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/Engine.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/tmx/src/TMXParser.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/tmx/src/TSXParser.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/InputManager.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/EnemyBase.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/FlockController.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Engine/Point.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
-CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Player.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Weapon.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Helper.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Flock.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/PausedState.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Bullet.cpp.o.requires
 CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Uzi.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/main.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Game.cpp.o.requires
+CMakeFiles/GroepH.dir/requires: CMakeFiles/GroepH.dir/Game/Level.cpp.o.requires
 
 .PHONY : CMakeFiles/GroepH.dir/requires
 
@@ -675,6 +784,6 @@ CMakeFiles/GroepH.dir/clean:
 .PHONY : CMakeFiles/GroepH.dir/clean
 
 CMakeFiles/GroepH.dir/depend:
-	cd /Users/MevlutOzdemir/Developers/project/GroepH && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/MevlutOzdemir/Developers/project/GroepH /Users/MevlutOzdemir/Developers/project/GroepH /Users/MevlutOzdemir/Developers/project/GroepH /Users/MevlutOzdemir/Developers/project/GroepH /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/GroepH.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/GroepH.dir/depend
 
