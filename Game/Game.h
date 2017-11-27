@@ -24,5 +24,6 @@ private:
 	std::vector<std::unique_ptr<State>> _states;
 
 	Engine _mainManager;
+	double _fps;
 };
 

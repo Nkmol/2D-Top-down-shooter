@@ -5,7 +5,8 @@
 #include "MapManager.h"
 #include "TickerTime.h"
 #include <algorithm>
-
+#include <chrono>
+#include <thread>
 Game::Game()
 {
 }
@@ -40,27 +41,39 @@ void Game::Quit() const
 	exit(0);
 }
 
-void Game::Run(const unsigned int fps)
+void Game::Run(const unsigned int targetFps)
 {
-	TickerTime ticker{fps, 100};
-
-	const auto frameTime = fps / 100.0f;
-	const auto gameIsRunning = true;
-	while (gameIsRunning)
+	const auto ticksPerSecond = SDL_GetPerformanceFrequency();
+	const auto targetTicksPerFrame = ticksPerSecond / targetFps;
+	auto currentTime = SDL_GetPerformanceCounter();
+	auto accumulator = 0.0;
+	auto t = 0;
+	while (!false)
 	{
-		HandleEvents();
+		const auto time = SDL_GetPerformanceCounter();
+		const auto deltaTime = time - currentTime;
+		currentTime = time;
 
-		auto deltaTime = ticker.GetDeltaTime();
+		accumulator += deltaTime;
 
-		// To create constant update sequence
-		do
+		// update game logic as lag permits -> physics catch up
+		while (accumulator >= targetTicksPerFrame)
 		{
-			Update(deltaTime);
-			deltaTime -= frameTime;
+			// update at a fixed rate each time
+			Update(targetTicksPerFrame / static_cast<float>(ticksPerSecond)); // ticks to seconds
+
+			accumulator -= targetTicksPerFrame;
 		}
-		while (deltaTime >= frameTime);
+
+		// Draw only once per sec
+		if (t % targetFps == 0)
+		{
+			_fps = static_cast<float>(ticksPerSecond) / deltaTime;
+		}
 
 		Draw();
+		t++;
+		HandleEvents();
 	}
 }
 
@@ -79,6 +92,7 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	MapManager::Instance().Render();
+	renderManager.DrawText(std::to_string(_fps), 20, 20, 100, 20);
 
 	_states.back()->Draw(*this);
 	renderManager.Flip();
