@@ -14,9 +14,8 @@ private:
     float BULLET_SPEED = 0.8f;
 	int damage;
 public:
-    Bullet(const string &filePath, float xPos, float yPos, int damage);
-
-    Bullet(const string &filePath, float xPos, float yPos, float speed, const Bullet &other, int damage);
+	Bullet(const string& filePath, float x, float y, int damage);
+	Bullet(const string& filePath, Point coordinates, int damage);
 
     void makeVisible();
 

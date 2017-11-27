@@ -4,7 +4,11 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, float xPos, float yPos, int damage) : MoveableObject(filePath, xPos, yPos, 300.0f), damage(damage) {}
+Bullet::Bullet(const string& filePath, const float x, const float y, int damage) : Bullet(filePath, Point{ x,y }, damage)
+{
+}
+
+Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f), damage(damage) {}
 
 void Bullet::makeVisible() {
     this->visible = true;
@@ -24,7 +28,8 @@ void Bullet::update(float time) {
 	
 	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
-	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
 		MoveableObject::update(time);	}
 	else {
 		// verwerk hier wat er moet gebeuren als er collision is

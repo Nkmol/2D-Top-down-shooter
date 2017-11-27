@@ -2,16 +2,12 @@
 // Created by Mevl�t �zdemir on 09-11-17.
 //
 
-
 #include <AssetManager.h>
-#include "headers/MoveableObject.h"
+#include "MoveableObject.h"
 #include "Point.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos, float speed)
-	: speed{ speed },
-	xPos{ xPos },
-	yPos{ yPos },
-	_destination(Point::Empty())
+MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) : speed{ speed },
+	_destination(Point::Empty()), _coordinates(coordinates)
 {
 
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
@@ -30,28 +26,26 @@ void MoveableObject::draw() {
 
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &width, &height);
 
-    SDL_Rect destinationRectangle = {static_cast<int>(xPos), static_cast<int>(yPos), width, height};
-    RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle,
-                                          MoveableObject::angle);
+    SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
+    RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle, angle);
 }
 
 void MoveableObject::setAngle(int angle) {
     MoveableObject::angle = angle;
 }
 
-
-float MoveableObject::getXPos() const {
-    return xPos;
+const Point& MoveableObject::GetCoordinates() const
+{
+	return _coordinates;
 }
 
-float MoveableObject::getYPos() const {
-    return yPos;
+void MoveableObject::SetCoordinates(Point point)
+{
+	_coordinates = point;
 }
-
 
 void MoveableObject::update(float time) {
-	this->xPos += _destination.x * speed * time;
-	this->yPos += _destination.y * speed * time;
+	_coordinates += _destination * speed * time;
 }
 
 
@@ -61,14 +55,6 @@ void MoveableObject::stopMove() {
 
 int MoveableObject::getAngle() const {
     return angle;
-}
-
-void MoveableObject::setXPos(float xPos) {
-    MoveableObject::xPos = xPos;
-}
-
-void MoveableObject::setYPos(float yPos) {
-    MoveableObject::yPos = yPos;
 }
 
 bool MoveableObject::isVisible() const {

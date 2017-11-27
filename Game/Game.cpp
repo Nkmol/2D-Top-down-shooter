@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "RenderManager.h"
-#include "Engine.h"
 #include "State.h"
 #include "MapManager.h"
 #include "TickerTime.h"
@@ -16,12 +15,12 @@ Game::~Game()
 {
 }
 
-void Game::Init() const
+void Game::Init()
 {
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
-	MapManager::Instance().Init("../content/map/halflife.tmx");
+	_level = make_shared<Level>(1);
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -37,9 +36,9 @@ void Game::PopState()
 	_states.pop_back();
 }
 
-void Game::Quit() const
+void Game::Quit()
 {
-	exit(0);
+	isRunning = false;
 }
 
 void t()
@@ -72,8 +71,8 @@ void Game::Run(const unsigned int targetFps)
 		_fps = timer.GetFps();
 	});
 
-	const auto gameIsRunning = true;
-	timer.Run(gameIsRunning);
+	isRunning = true;;
+	timer.Run(isRunning);
 }
 
 void Game::HandleEvents()
@@ -100,4 +99,9 @@ void Game::Draw()
 
 	_states.back()->Draw(*this);
 	renderManager.Flip();
+}
+
+shared_ptr<Level> Game::GetLevel() const
+{
+	return _level;
 }

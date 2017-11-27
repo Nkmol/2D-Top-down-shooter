@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "../tmx/include/TMXParser.h"
 #include "../tmx/include/TSXParser.h"

@@ -42,6 +42,11 @@ Point Point::operator+(const Point& p) const
 	return Point{ p.x + x, p.y + y };
 }
 
+Point Point::operator*(const float v) const
+{
+	return Point{ x * v, y * v };
+}
+
 void Point::operator+=(const Point& p)
 {
 	x += p.x;

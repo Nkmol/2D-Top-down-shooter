@@ -29,7 +29,9 @@ protected:
 
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
-    void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
+	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
+	          int reward);
+	void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
 
     //algorithms
     void align();
