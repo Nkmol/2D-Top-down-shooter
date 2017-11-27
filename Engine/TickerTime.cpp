@@ -54,7 +54,7 @@ void TickerTime::Run(const bool& exitWhen)
 		// update game logic as lag permits -> physics catch up
 		while (_accumulator >= _targetTicksPerFrame)
 		{
-			for (auto&& catchUpFunction : _catchUpFunctions)
+			for (const auto& catchUpFunction : _catchUpFunctions)
 			{
 				catchUpFunction();
 			}
@@ -64,13 +64,13 @@ void TickerTime::Run(const bool& exitWhen)
 		// For every second
 		if (_timesRendered % _targetFps == 0)
 		{
-			for (auto&& onSecondFunction : _onSecondFunctions)
+			for (auto& onSecondFunction : _onSecondFunctions)
 			{
 				onSecondFunction.Tick();
 			}
 		}
 
-		for (auto&& frameFunction : _frameFunctions)
+		for (const auto& frameFunction : _frameFunctions)
 		{
 			frameFunction();
 		}

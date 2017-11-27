@@ -157,6 +157,7 @@
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\MapManager.h" />
     <ClInclude Include="headers\TickerTime.h" />
+    <ClInclude Include="CustomDeleter.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />

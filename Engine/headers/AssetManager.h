@@ -7,6 +7,9 @@
 #include <iostream>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <memory>
+#include <memory>
+#include "../CustomDeleter.h"
 
 
 using namespace std;
@@ -30,5 +33,6 @@ public:
 	Mix_Music* loadBGM(string soundToken);
 	Mix_Chunk* loadEffect(string effectToken);
 	SDL_Surface* loadSurface(string mediaToken);
-	TTF_Font* loadFont(string fontToken, const int size);
+
+	unique_ptr<TTF_Font, CustomDeleter> loadFont(string fontToken, const int size);
 };
