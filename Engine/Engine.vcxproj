@@ -155,13 +155,13 @@
     <ClInclude Include="headers\Point.h" />
     <ClInclude Include="headers\RenderManager.h" />
     <ClInclude Include="headers\MapManager.h" />
+    <ClInclude Include="headers\TickerTime.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_utils.hpp" />
     <ClInclude Include="tmx\include\TMXParser.h" />
     <ClInclude Include="tmx\include\TSXParser.h" />
-    <ClInclude Include="headers\Direction.h" />
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\MoveableObject.h" />
   </ItemGroup>
@@ -175,6 +175,7 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="TickerTime.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />
     <ClCompile Include="tmx\src\TSXParser.cpp" />
   </ItemGroup>

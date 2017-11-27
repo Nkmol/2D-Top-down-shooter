@@ -10,7 +10,7 @@ public:
 	virtual void Init() = 0;
 
 	virtual void HandleEvents(Game& game) = 0;
-	virtual void Update(Game& game, int time) = 0;
+	virtual void Update(Game& game, float time) = 0;
 	virtual void Draw(Game& game) = 0;
 
 	/*void ChangeState(Game& game, State* state) {

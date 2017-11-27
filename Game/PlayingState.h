@@ -15,7 +15,7 @@ public:
 
     void HandleEvents(Game &game) override;
 
-    void Update(Game &game, int time) override;
+    void Update(Game& game, float time) override;
 
     void Draw(Game &game) override;
 

@@ -24,9 +24,10 @@ void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float
     float _dir = Helper::radiansToDegrees(_rad);
     float correctedAngleRadians = Helper::degreesToRadians(_dir - 90);
     this->setAngle(_dir);
-    this->destinationXPos = speed * sin(correctedAngleRadians);
-    this->destinationYPos = speed * -cos(correctedAngleRadians);
-    this->update(time);
+
+	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
+
+	this->update(time);
 }
 
 void EnemyBase::align() {
