@@ -4,10 +4,13 @@
 
 #include "EnemyBase.h"
 
-EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader) :
-        MoveableObject(filePath, xPos, yPos, speed),
-        isLeader{isLeader},
-        destinationPoint{xPos, yPos} {
+EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
+		MoveableObject(filePath, xPos, yPos, speed),
+		isLeader{isLeader},
+		destinationPoint{xPos, yPos},
+		damage(damage),
+		lifepoints(lifepoints),
+		reward(reward) {
 //    angle = 0;
 }
 
@@ -97,4 +100,25 @@ void EnemyBase::update(float time) {
 
 void EnemyBase::draw() {
     MoveableObject::draw();
+}
+
+const int EnemyBase::getLifepoints() const
+{
+	return lifepoints;
+}
+
+const int EnemyBase::changeLifepoints(const int lp)
+{
+	lifepoints += lp;
+	return lifepoints;
+}
+
+const int EnemyBase::getDamage() const
+{
+	return damage;
+}
+
+const int EnemyBase::getReward() const
+{
+	return reward;
 }

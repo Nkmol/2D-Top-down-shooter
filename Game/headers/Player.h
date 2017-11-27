@@ -13,8 +13,10 @@
 class Player : public MoveableObject {
 
     Weapon weapon;
+	int lifepoints;
+
 public:
-    Player(const std::string &filePath, int xPos, int yPos);
+    Player(const std::string &filePath, int xPos, int yPos, int lp = 100);
 
     void shoot();
 
@@ -27,6 +29,11 @@ public:
     void draw() override;
 
     void update(float time) override;
+
+	const int getLifepoints() const;
+
+	const int changeLifepoints(const int lp);
+	
 };
 
 

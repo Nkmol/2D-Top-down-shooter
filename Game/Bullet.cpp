@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, float xPos, float yPos) : MoveableObject(filePath, xPos, yPos, 150.0f) {}
+Bullet::Bullet(const string &filePath, float xPos, float yPos, int damage) : MoveableObject(filePath, xPos, yPos, 150.0f), damage(damage) {}
 
 void Bullet::makeVisible() {
     this->visible = true;
@@ -24,5 +24,10 @@ void Bullet::update(float time) {
 	_destination = Point ( sin(correctedAngleRadians), -cos(correctedAngleRadians) );
 
     MoveableObject::update(time);
+}
+
+const int Bullet::getDamage() const
+{
+	return damage;
 }
 

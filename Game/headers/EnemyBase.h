@@ -17,8 +17,18 @@ class EnemyBase : public MoveableObject, public std::enable_shared_from_this<Ene
     shared_ptr<EnemyBase> leader;
     shared_ptr<Player> target;
 
+protected:
+	int lifepoints;
+	int damage;
+	int reward;
+	
+	const int getLifepoints() const;
+	const int changeLifepoints(const int lp);
+	const int getDamage() const;
+	const int getReward() const;
+
 public:
-    EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader);
+    EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
     void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
 
     //algorithms

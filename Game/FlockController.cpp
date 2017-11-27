@@ -7,13 +7,13 @@
 void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget,
                                     float flockSpeed) {
     shared_ptr<EnemyBase> leader{
-            new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, true)};
+            new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, true, 10, 30)};
     leader->setTarget(flockTarget);
 
     shared_ptr<Flock> newFlock{new Flock(leader)};
     for (int i = 0; i < flockSize; i++) {
         shared_ptr<EnemyBase> newFlockMember{
-                new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, false)};
+                new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, false, 10, 30)};
         newFlock->addMember(newFlockMember);
     }
     this->flocks.push_back(newFlock);

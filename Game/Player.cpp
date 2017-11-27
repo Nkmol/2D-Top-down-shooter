@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos) : MoveableObject(filePath, xPos, yPos, 70.0f) {
+Player::Player(const std::string &filePath, int xPos, int yPos, int lp) : MoveableObject(filePath, xPos, yPos, 70.0f), lifepoints(lp) {
 
 }
 
@@ -37,4 +37,16 @@ void Player::update(float time) {
     weapon.updateBullets(time);
     MoveableObject::update(time);
 }
+
+const int Player::getLifepoints() const
+{
+	return lifepoints;
+}
+
+const int Player::changeLifepoints(const int lp)
+{
+	lifepoints += lp;
+	return lifepoints;
+}
+
 
