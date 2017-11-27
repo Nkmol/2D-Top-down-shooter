@@ -17,8 +17,7 @@ void Weapon::shoot(int angle, float xPos, float yPos) {
     for (auto &bullet : bullets) {
         if (!bullet.isVisible()) {
             bullet.makeVisible();
-            bullet.setXPos(xPos);
-            bullet.setYPos(yPos);
+			bullet.SetCoordinates(Point{ xPos, yPos });
 
             bullet.setAngle(angle);
             break;
