@@ -5,11 +5,14 @@
 
 #include <AssetManager.h>
 #include "headers/MoveableObject.h"
+#include "Point.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yPos, float speed)
-        : xPos{xPos},
-          yPos{yPos},
-          speed{speed} {
+	: speed{ speed },
+	xPos{ xPos },
+	yPos{ yPos },
+	_destination(Point::Empty())
+{
 
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
@@ -21,11 +24,6 @@ MoveableObject::MoveableObject(const std::string &filePath, float xPos, float yP
     if (this->_sprite == NULL) {
         printf(SDL_GetError());
     }
-
-    destinationYPos = 0.0f;
-    destinationXPos = 0.0f;
-
-
 }
 
 void MoveableObject::draw() {
@@ -52,19 +50,13 @@ float MoveableObject::getYPos() const {
 
 
 void MoveableObject::update(float time) {
-	this->xPos += this->destinationXPos * time;
-	this->yPos += this->destinationYPos * time;
-//
-//    if (xPos < 0) xPos = 0;
-//    if (xPos > 1500) xPos = 1500;
-//    if (yPos < 0) yPos = 0;
-//    if (yPos > 960) yPos = 960;
+	this->xPos += _destination.x * speed * time;
+	this->yPos += _destination.y * speed * time;
 }
 
 
 void MoveableObject::stopMove() {
-    this->destinationXPos = 0.0f;
-    this->destinationYPos = 0.0f;
+	_destination = Point{ 0, 0 };
 }
 
 int MoveableObject::getAngle() const {
@@ -82,15 +74,6 @@ void MoveableObject::setYPos(float yPos) {
 bool MoveableObject::isVisible() const {
     return visible;
 }
-
-void MoveableObject::setDestinationXPos(float destinationXPos) {
-	MoveableObject::destinationXPos = destinationXPos;
-}
-
-void MoveableObject::setDestinationYPos(float destinationYPos) {
-	MoveableObject::destinationYPos = destinationYPos;
-}
-
 
 MoveableObject::~MoveableObject() {
     // if sdl_destroytexture is called, the bullet's image cannot be found

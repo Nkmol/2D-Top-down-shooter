@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, float xPos, float yPos) : MoveableObject(filePath, xPos, yPos, 0.4f) {}
+Bullet::Bullet(const string &filePath, float xPos, float yPos, int damage) : MoveableObject(filePath, xPos, yPos, 150.0f), damage(damage) {}
 
 void Bullet::makeVisible() {
     this->visible = true;
@@ -21,17 +21,19 @@ void Bullet::update(float time) {
 		correctedAngle = this->getAngle() - 90;
 
 	double correctedAngleRadians = correctedAngle / 180 * M_PI;
-	double destinationXPos = sin(correctedAngleRadians) * BULLET_SPEED;
-	double destinationYPos = -cos(correctedAngleRadians) * BULLET_SPEED;
+	
+	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
-	setDestinationXPos((float)destinationXPos);
-	setDestinationYPos((float)destinationYPos);
-	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
 		MoveableObject::update(time);	}
 	else {
 		// verwerk hier wat er moet gebeuren als er collision is
 		MoveableObject::stopMove();
 	}
+}
 
+const int Bullet::getDamage() const
+{
+	return damage;
 }
 

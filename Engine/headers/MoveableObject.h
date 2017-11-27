@@ -5,26 +5,25 @@
 #ifndef SHOOTER_MOVEABLEOBJECT_H
 #define SHOOTER_MOVEABLEOBJECT_H
 
-#include "Direction.h"
 #include "RenderManager.h"
 #include <SDL_render.h>
 #include <string>
-#include "Direction.h"
-#include "GameObject.h"
 #include "PhysicsManager.h"
+#include "Point.h"
 
 class MoveableObject {
 
 private:
     SDL_Texture *_sprite;
 
-    std::map<Direction, int> directionAngles;
+    std::map<Point, int> directionAngles;
 
 protected:
     bool visible;
     int angle, radius, midX, midY, width, height;
     float speed;
-    float xPos, yPos, distance, destinationXPos, destinationYPos;
+    float xPos, yPos, distance;
+	Point _destination;
 
 public:
     MoveableObject(const std::string &filePath, float xPos, float yPos, float speed);
@@ -51,14 +50,11 @@ public:
 
     bool isVisible() const;
 
-    void setDestinationXPos(float destinationXPos);
-
-    void setDestinationYPos(float destinationYPos);
-
 	const int getMidX(float destinationPosition) const;
-	const int getMidY(float destinationPosition) const;
-	const int getRadius() const;
 
+	const int getMidY(float destinationPosition) const;
+
+	const int getRadius() const;
 };
 
 

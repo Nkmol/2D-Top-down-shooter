@@ -15,10 +15,10 @@ class Weapon {
 
 protected:
     std::vector<Bullet> bullets;
+
+	int damage;
 public:
     const vector<Bullet> &getBullets() const;
-
-public:
 
     void shoot(int angle, float xPos, float yPos);
 

@@ -4,10 +4,13 @@
 
 #include "EnemyBase.h"
 
-EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader) :
-        MoveableObject(filePath, xPos, yPos, speed),
-        isLeader{isLeader},
-        destinationPoint{xPos, yPos} {
+EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
+		MoveableObject(filePath, xPos, yPos, speed),
+		isLeader{isLeader},
+		destinationPoint{xPos, yPos},
+		damage(damage),
+		lifepoints(lifepoints),
+		reward(reward) {
 //    angle = 0;
 }
 
@@ -24,9 +27,10 @@ void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float
     float _dir = Helper::radiansToDegrees(_rad);
     float correctedAngleRadians = Helper::degreesToRadians(_dir - 90);
     this->setAngle(_dir);
-    this->destinationXPos = speed * sin(correctedAngleRadians);
-    this->destinationYPos = speed * -cos(correctedAngleRadians);
-    this->update(time);
+
+	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
+
+	this->update(time);
 }
 
 void EnemyBase::align() {
@@ -91,7 +95,7 @@ void EnemyBase::setLeader(const shared_ptr<EnemyBase> &leader) {
 }
 
 void EnemyBase::update(float time) {
-	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + destinationXPos * time), getMidY(yPos + destinationYPos * time), getRadius())) {
+	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
 		MoveableObject::update(time);
 	}
 	else {
@@ -103,4 +107,25 @@ void EnemyBase::update(float time) {
 
 void EnemyBase::draw() {
     MoveableObject::draw();
+}
+
+const int EnemyBase::getLifepoints() const
+{
+	return lifepoints;
+}
+
+const int EnemyBase::changeLifepoints(const int lp)
+{
+	lifepoints += lp;
+	return lifepoints;
+}
+
+const int EnemyBase::getDamage() const
+{
+	return damage;
+}
+
+const int EnemyBase::getReward() const
+{
+	return reward;
 }

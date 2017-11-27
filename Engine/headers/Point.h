@@ -8,8 +8,17 @@
 
 class Point {
 public:
+	Point();
     Point(float x,float y);
     float x,y;
+
+	static Point Left();
+	static Point Up();
+	static Point Right();
+	static Point Down();
+	static Point Empty();
+	Point operator+(const Point& p) const;
+	void operator+=(const Point& p);
 };
 
 
