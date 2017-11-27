@@ -14,10 +14,10 @@ RenderManager::~RenderManager() {
 
 void RenderManager::CreateWindow(const std::string& title, bool fullscreen, const int width, const int height)
 {
-	auto flags = 0;
+	auto flags = SDL_RENDERER_ACCELERATED;
 	if(fullscreen)
 	{
-		flags = SDL_WINDOW_FULLSCREEN;
+		//flags = SDL_WINDOW_FULLSCREEN | SDL_RENDERER_ACCELERATED;
 	}
 
 	const auto resp = SDL_CreateWindowAndRenderer(width, height, flags, &this->window, &this->renderer);
@@ -34,7 +34,7 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	return this->sprites[filePath];
 }
 
-void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
+void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
 	double angle) const
 {
 	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
@@ -70,7 +70,7 @@ RenderManager& RenderManager::Instance() {
 	return sInstance;
 }
 
-void RenderManager::Flip() const
+void RenderManager::Render() const
 {
 	SDL_RenderPresent(this->renderer);
 }
@@ -82,4 +82,8 @@ void RenderManager::Clear() const
 
 SDL_Renderer* RenderManager::GetRenderer() const {
 	return this->renderer;
+}
+
+SDL_Window* RenderManager::GetWindow() const {
+	return this->window;
 }

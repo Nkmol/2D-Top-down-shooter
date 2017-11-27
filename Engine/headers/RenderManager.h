@@ -23,15 +23,16 @@ public:
 	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
 
 	SDL_Surface* LoadImage(const std::string &filePath);
-	/* void BlitSurface
+
+	/* void DrawTexture
 	* Drawing images on a screen
 	*/
-	void BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
+	void DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
 
-	/* void flip
+	/* void Render
 	* Render everything on screen
 	*/
-	void Flip() const;
+	void Render() const;
 
 	/* void clear
 	* Clear the screen
@@ -50,6 +51,7 @@ public:
 
 	static RenderManager& Instance();
 
+	SDL_Window* RenderManager::GetWindow() const;
 
 private:
 	SDL_Window* window;

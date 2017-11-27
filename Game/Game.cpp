@@ -80,7 +80,7 @@ void Game::Draw()
 	MapManager::Instance().Render();
 
 	_states.back()->Draw(*this);
-	renderManager.Flip();
+	renderManager.Render();
 }
 
 shared_ptr<Level> Game::GetLevel() const

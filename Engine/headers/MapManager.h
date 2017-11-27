@@ -29,7 +29,7 @@ private:
 	SDL_Texture* mapTexture;
 	MapManager();
 	std::map<int, SDL_Rect> tilesMap;
-	vector<vector<string>> tileLayers;
+	vector<vector<int>> tileLayers;
 
 	template<typename Out>
 	void Split(const std::string &s, char delim, Out result);
