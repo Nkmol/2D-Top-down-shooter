@@ -5,8 +5,9 @@
 #include "MapManager.h"
 #include "TickerTime.h"
 #include <algorithm>
-#include <chrono>
 #include <thread>
+#include <iomanip> 
+
 Game::Game()
 {
 }
@@ -90,7 +91,12 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	MapManager::Instance().Render();
-	renderManager.DrawText(std::to_string(_fps), 20, 20, 100, 20);
+
+	// Fps to string and 2 decimal
+	std::stringstream str;
+	str << fixed << std::setprecision(2) << _fps;
+
+	renderManager.DrawText(str.str(), 20, 20, 70, 20);
 
 	_states.back()->Draw(*this);
 	renderManager.Flip();

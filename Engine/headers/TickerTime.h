@@ -23,7 +23,7 @@ public:
 		void Tick()
 		{
 			_currentTime -= 1;
-			if (_currentTime < 0)
+			if (_currentTime <= 0)
 			{
 				_func();
 

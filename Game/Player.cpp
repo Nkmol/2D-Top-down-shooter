@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos, int lp) : MoveableObject(filePath, xPos, yPos, 70.0f), lifepoints(lp) {
+Player::Player(const std::string &filePath, int xPos, int yPos, int lp) : MoveableObject(filePath, xPos, yPos, 140.0f), lifepoints(lp) {
 
 }
 
