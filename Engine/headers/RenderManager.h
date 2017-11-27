@@ -47,7 +47,7 @@ public:
 	* Draw Text on screen
 	*/
 	void DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle = 0) const;
-
+	void DrawButton(int x, int y, std::string mediatoken);
 	static RenderManager& Instance();
 
 

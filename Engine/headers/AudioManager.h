@@ -19,8 +19,8 @@ public:
 	void StopBGM();
 	int PlayEffect(string audioToken);
 	void Close();
-private:
 	AudioManager();
+private:
 
 	static AudioManager* sInstance;
 	Mix_Music* gBGM;

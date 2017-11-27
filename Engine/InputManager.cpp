@@ -34,6 +34,11 @@ bool InputManager::isKeyDown(SDL_Event &event) {
     return event.type == SDL_KEYDOWN;
 }
 
+bool InputManager::isMouseDown(SDL_Event &event)
+{
+	return event.type == SDL_MOUSEBUTTONDOWN;
+}
+
 bool InputManager::isKeyUp(SDL_Event &event) {
     return event.type == SDL_KEYUP;
 }

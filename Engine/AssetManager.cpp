@@ -12,6 +12,7 @@
 
 AssetManager::AssetManager() {
     sounds["pokemon"] = "../content/audio/Pokemon.wav";
+	sounds["mainmenu"] = "../content/audio/MainMenu.mp3";
     effect["headshot"] = "../content/audio/Headshot.wav";
     render["roguelikeCity_magenta.png"] = "../content/map/roguelikeCity_magenta.png";
     render["half life.png"] = "../content/map/half life.png";
@@ -19,6 +20,9 @@ AssetManager::AssetManager() {
     render["boid"] = "../content/boid.png";
     render["bullet"] = "../content/bullet.png";
 	fonts["Sans Regular"] = "../content/fonts/OpenSans-Regular.ttf";
+	render["newgamebutton"] = "../content/menu/button_new-game.bmp";
+	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
+	render["creditsbutton"] = "../content/menu/button_credits.bmp";
     //render["background"] = "../Assets/Img/wallpaper.png";
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();

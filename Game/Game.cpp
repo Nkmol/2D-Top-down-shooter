@@ -19,7 +19,6 @@ void Game::Init() const
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
-	MapManager::Instance().Init("../content/map/halflife.tmx");
 }
 
 // Explicity force user to transfer ownership with std::move
