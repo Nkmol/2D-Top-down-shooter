@@ -14,10 +14,10 @@ RenderManager::~RenderManager() {
 
 void RenderManager::CreateWindow(const std::string& title, bool fullscreen, const int width, const int height)
 {
-	auto flags = 0;
+	auto flags = SDL_RENDERER_ACCELERATED;
 	if(fullscreen)
 	{
-		flags = SDL_WINDOW_FULLSCREEN;
+		//flags = SDL_WINDOW_FULLSCREEN | SDL_RENDERER_ACCELERATED;
 	}
 
 	const auto resp = SDL_CreateWindowAndRenderer(width, height, flags, &this->window, &this->renderer);
