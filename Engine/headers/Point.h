@@ -10,7 +10,7 @@ class Point {
 public:
 	Point();
     Point(float x,float y);
-    float x,y;
+	float x,y;
 
 	static Point Left();
 	static Point Up();
@@ -18,6 +18,7 @@ public:
 	static Point Down();
 	static Point Empty();
 	Point operator+(const Point& p) const;
+	Point operator*(const float p) const;
 	void operator+=(const Point& p);
 };
 

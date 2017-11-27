@@ -6,7 +6,9 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player(const std::string &filePath, int xPos, int yPos, int lp) : MoveableObject(filePath, xPos, yPos, 70.0f), lifepoints(lp) {
+Player::Player(const std::string &filePath, const float x, const float y) : Player(filePath, Point{x, y}) {}
+
+Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath, coordinates, 70.0f), lifepoints(lp) {
 
 }
 
@@ -15,8 +17,8 @@ void Player::addWeapon(Weapon &weapon) {
 }
 
 void Player::shoot() {
-    float bulletStartX = getXPos();
-    float bulletStartY = getYPos();
+    float bulletStartX = _coordinates.x;
+    float bulletStartY = _coordinates.y;
     weapon.shoot(getAngle(), bulletStartX, bulletStartY);
 }
 
@@ -35,7 +37,9 @@ void Player::draw() {
 
 void Player::update(float time) {
 	weapon.updateBullets(time);
-	if (!PhysicsManager::Instance().checkCollision(getMidX(xPos + _destination.x * speed * time), getMidY(yPos + _destination.y * speed * time), getRadius())) {
+
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
 		MoveableObject::update(time);
 	}
 	else {

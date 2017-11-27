@@ -16,10 +16,10 @@ class Player : public MoveableObject {
 	int lifepoints;
 
 public:
-    Player(const std::string &filePath, int xPos, int yPos, int lp = 100);
-
     void shoot();
 
+	Player(const std::string& filePath, float x, float y);
+	Player(const std::string& filePath, Point coordinates, int lp = 100);
     void addWeapon(Weapon &weapon);
 
     Weapon &getWeapon();
