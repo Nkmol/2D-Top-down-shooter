@@ -27,7 +27,7 @@ void MoveableObject::draw() {
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &width, &height);
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
-    RenderManager::Instance().BlitSurface(this->_sprite, nullptr, &destinationRectangle, angle);
+    RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);
 }
 
 void MoveableObject::setAngle(int angle) {

@@ -34,7 +34,7 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	return this->sprites[filePath];
 }
 
-void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
+void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
 	double angle) const
 {
 	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
@@ -70,7 +70,7 @@ RenderManager& RenderManager::Instance() {
 	return sInstance;
 }
 
-void RenderManager::Flip() const
+void RenderManager::Render() const
 {
 	SDL_RenderPresent(this->renderer);
 }

@@ -76,7 +76,7 @@ void MapManager::Render()
 	srcRect.w = tmx.mapInfo.width * tmx.mapInfo.tileWidth;
 	srcRect.h = tmx.mapInfo.height * tmx.mapInfo.tileHeight;
 
-	RenderManager::Instance().BlitSurface(mapTexture, &srcRect, NULL);
+	RenderManager::Instance().DrawTexture(mapTexture, &srcRect, NULL);
 }
 
 void MapManager::RenderTilesText()
