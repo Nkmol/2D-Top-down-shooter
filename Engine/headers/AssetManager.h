@@ -34,5 +34,5 @@ public:
 	Mix_Chunk* loadEffect(string effectToken);
 	SDL_Surface* loadSurface(string mediaToken);
 
-	unique_ptr<TTF_Font, CustomDeleter> loadFont(string fontToken, const int size);
+	TTF_Font* loadFont(string fontToken, const int size);
 };

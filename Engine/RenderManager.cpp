@@ -45,12 +45,12 @@ void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle) const
+void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle)
 {
-	unique_ptr<TTF_Font, CustomDeleter> font(AssetManager::Instance().loadFont("Sans Regular", height));
-
+	if (font == NULL)
+		font = AssetManager::Instance().loadFont("Sans Regular", height);
 	SDL_Color color = { 255, 255, 255 };
-	SDL_Surface* sMessage = TTF_RenderText_Solid(font.get(), text.c_str(), color);
+	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
 	SDL_FreeSurface(sMessage);
 
@@ -64,6 +64,7 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	if (resp != 0) {
 		std::cout << SDL_GetError() << std::endl;
 	}
+	SDL_DestroyTexture(message);
 }
 
 RenderManager& RenderManager::Instance() {

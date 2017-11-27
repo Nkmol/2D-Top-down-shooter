@@ -66,9 +66,9 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
 }
 
 
-unique_ptr<TTF_Font, CustomDeleter> AssetManager::loadFont(string fontToken, const int size)
+TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 {
-	unique_ptr<TTF_Font, CustomDeleter> font (TTF_OpenFont(fonts[fontToken], size), CustomDeleter());
+	TTF_Font* font  = TTF_OpenFont(fonts[fontToken], size);
 	if (font == NULL)
 		cout << "Unable to load font %s! SDL_image Error: " << render[fontToken] << TTF_GetError() << endl;
 
