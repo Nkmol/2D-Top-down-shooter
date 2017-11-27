@@ -27,7 +27,7 @@ public:
 	* Drawing images on a screen
 	*/
 	void BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
-
+	void BlitSurfaceNoFlip(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
 	/* void flip
 	* Render everything on screen
 	*/
@@ -47,7 +47,6 @@ public:
 	* Draw Text on screen
 	*/
 	void DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle = 0) const;
-	void DrawButton(int x, int y, std::string mediatoken);
 	static RenderManager& Instance();
 
 

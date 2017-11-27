@@ -1,6 +1,8 @@
 #pragma once
 #include "State.h"
 #include "Button.h"
+#include <string>
+#include <memory>
 class MenuState : public State
 {
 public:

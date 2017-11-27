@@ -27,7 +27,7 @@ void MenuState::HandleEvents(Game& game)
 			if (ev.button.x > newgamebutton.getX1() && ev.button.x < newgamebutton.getX2() && ev.button.y > newgamebutton.getY1() && ev.button.y < newgamebutton.getY2()) {
 				//New game
 				//SDL_RenderClear(this->renderer);
-				unique_ptr<PlayingState> state(new PlayingState());
+				auto state = make_unique<PlayingState>();
 				game.ChangeState(std::move(state));
 				AudioManager::Instance().StopBGM();
 				MapManager::Instance().Init("../content/map/halflife.tmx");
@@ -52,17 +52,21 @@ void MenuState::Update(Game& game, float time)
 
 void MenuState::Draw(Game& game)
 {
-	RenderManager::Instance().DrawButton(newgamebutton.getX1(), newgamebutton.getY1(), "newgamebutton");
-	RenderManager::Instance().DrawButton(loadgamebutton.getX1(), loadgamebutton.getY1(), "loadgamebutton");
-	RenderManager::Instance().DrawButton(creditsbutton.getX1(), creditsbutton.getY1(), "creditsbutton");
 
+	newgamebutton.drawButton();
+	loadgamebutton.drawButton();
+	creditsbutton.drawButton();
 }
 
 void MenuState::Init()
 {
-	newgamebutton = Button(SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 0.75, 225, 45);
-	loadgamebutton = Button(SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
-	creditsbutton = Button(SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
+	std::string newgameString = "newgamebutton";
+	std::string loadgameString = "loadgamebutton";
+	std::string creditsString = "creditsbutton";
+
+	newgamebutton = Button(newgameString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 0.75, 225, 45);
+	loadgamebutton = Button(loadgameString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
+	creditsbutton = Button(creditsString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
 
 	AudioManager::Instance().InitMusicPlayer();
 	AudioManager::Instance().LoadBGM("mainmenu");

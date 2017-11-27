@@ -43,6 +43,15 @@ void RenderManager::BlitSurface(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
+void RenderManager::BlitSurfaceNoFlip(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
+	double angle) const
+{
+	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_NONE);
+	if (resp != 0) {
+		std::cout << SDL_GetError() << std::endl;
+	}
+}
+
 void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle) const
 {
 	TTF_Font* font = AssetManager::getInstance().loadFont("Sans Regular", height);
@@ -61,34 +70,6 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	if (resp != 0) {
 		std::cout << SDL_GetError() << std::endl;
 	}
-}
-
-void RenderManager::DrawButton(int xPos, int yPos, std::string mediatoken)
-{
-	SDL_Rect srcRect;
-
-	
-	SDL_Rect destRect;
-	srcRect.w = 225;
-	srcRect.h = 45;
-	srcRect.x = xPos;
-	srcRect.y = yPos;
-
-	destRect.w = SDL_GetWindowSurface(window)->w;
-	destRect.h = SDL_GetWindowSurface(window)->h;
-	destRect.x = 0;
-	destRect.y = 0;
-
-	SDL_Surface* buttonSurface = AssetManager::getInstance().loadSurface(mediatoken);
-
-	SDL_Texture* buttonTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), buttonSurface);
-
-
-	const auto resp = SDL_RenderCopyEx(this->renderer, buttonTexture, &destRect, &srcRect, 0, NULL, SDL_FLIP_NONE);
-	if (resp != 0) {
-		std::cout << SDL_GetError() << std::endl;
-	}
-
 }
 
 RenderManager& RenderManager::Instance() {
