@@ -5,6 +5,7 @@
 #include "PlayingState.h"
 #include <algorithm>
 #include "MapManager.h"
+#include "Audiomanager.h"
 
 MenuState::MenuState()
 {
@@ -28,6 +29,7 @@ void MenuState::HandleEvents(Game& game)
 				//SDL_RenderClear(this->renderer);
 				unique_ptr<PlayingState> state(new PlayingState());
 				game.ChangeState(std::move(state));
+				AudioManager::Instance().StopBGM();
 				MapManager::Instance().Init("../content/map/halflife.tmx");
 				// todo, alle draw functies naar rendermanager: functie: void DrawObject(MoveableObject object);
 			}
@@ -62,6 +64,9 @@ void MenuState::Init()
 	loadgamebutton = Button(SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
 	creditsbutton = Button(SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
 
+	AudioManager::Instance().InitMusicPlayer();
+	AudioManager::Instance().LoadBGM("mainmenu");
+	AudioManager::Instance().PlayBGM();
 
 	//auto* player = new Player("../content/soldier.png", 100, 300);
 	//_objs.emplace_back(player);
