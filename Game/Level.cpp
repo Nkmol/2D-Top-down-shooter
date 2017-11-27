@@ -31,22 +31,16 @@ void Level::HandleEvents(SDL_Event event)
 		_player->setAngle(angle);
 	}
 
-	if (InputManager::instance().isKeyDown(event)) {
-		Point direction = InputManager::instance().getDirection(event);
-
-		int angle = InputManager::instance().calculateMouseAngle(*_player);
-
-		_player->setAngle(angle);
-		_player->Move(direction);
-	}
-
-	if (InputManager::instance().isKeyUp(event)) {
-		_player->stopMove();
-	}
-
 	if (InputManager::instance().isMouseClicked(event)) {
 		_player->shoot();
 	}
+
+	Point direction = InputManager::instance().getDirection(event);
+
+	int angle = InputManager::instance().calculateMouseAngle(*_player);
+
+	_player->setAngle(angle);
+	_player->Move(direction);
 }
 
 void Level::Update(float time)
