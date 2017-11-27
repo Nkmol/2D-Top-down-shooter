@@ -41,40 +41,33 @@ void Game::Quit() const
 	exit(0);
 }
 
+void t()
+{
+	// TODO: Split physics and non-physic logic with 2 different updates
+	// update at a fixed rate each time
+	//Update(1 / static_cast<float>(1)); // ticks to seconds
+}
+
 void Game::Run(const unsigned int targetFps)
 {
-	const auto ticksPerSecond = SDL_GetPerformanceFrequency();
-	const auto targetTicksPerFrame = ticksPerSecond / targetFps;
-	auto currentTime = SDL_GetPerformanceCounter();
-	auto accumulator = 0.0;
-	auto t = 0;
-	while (!false)
+	TickerTime timer{ targetFps, 120 };
+
+	timer.OnCatchUp([&]() {
+		// TODO: Split physics and non-physic logic with 2 different updates
+		// update at a fixed rate each time
+		Update(timer.GetDeltaTime()); // ticks to seconds
+	});
+
+	timer.OnFrame([&]()
 	{
-		const auto time = SDL_GetPerformanceCounter();
-		const auto deltaTime = time - currentTime;
-		currentTime = time;
-
-		accumulator += deltaTime;
-
-		// update game logic as lag permits -> physics catch up
-		while (accumulator >= targetTicksPerFrame)
-		{
-			// update at a fixed rate each time
-			Update(targetTicksPerFrame / static_cast<float>(ticksPerSecond)); // ticks to seconds
-
-			accumulator -= targetTicksPerFrame;
-		}
-
-		// Draw only once per sec
-		if (t % targetFps == 0)
-		{
-			_fps = static_cast<float>(ticksPerSecond) / deltaTime;
-		}
-
+		// TODO: Support interpolation between 2 drawing states -> will smooth the rendering
 		Draw();
-		t++;
+		//t++;
 		HandleEvents();
-	}
+	});
+
+	auto gameIsRunning = true;
+	timer.Run(gameIsRunning);
 }
 
 void Game::HandleEvents()
