@@ -50,6 +50,7 @@ public:
 
 	static RenderManager& Instance();
 
+	SDL_Window* RenderManager::GetWindow() const;
 
 private:
 	SDL_Window* window;

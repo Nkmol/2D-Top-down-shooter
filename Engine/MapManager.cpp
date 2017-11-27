@@ -31,34 +31,17 @@ void MapManager::Init(const string input)
 	
 	GetTilesMap();
 	GetTileLayers();
-
-	
-	/*int counter = 0;
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			if (tileLayers.at(1).at(counter) != 0) {
-				collidables.push_back({ (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
-			}
-			counter++;
-		}
-	}*/
-
 	const int tileWidth = tmx.mapInfo.tileWidth;
 	const int tileHeight = tmx.mapInfo.tileHeight;
 	const int width = tmx.mapInfo.width;
 	const int height = tmx.mapInfo.height;
 
-	SDL_Rect srcRect;
 	SDL_Rect destRect;
-	srcRect.w = tileWidth;
-	srcRect.h = tileHeight;
 	destRect.w = tileWidth;
 	destRect.h = tileHeight;
 
-	SDL_Surface* tempSurface = nullptr;
-
+	SDL_Surface* tempSurface = SDL_GetWindowSurface(RenderManager::Instance().GetWindow());
+	std::cout << SDL_GetError() << endl;
 	int counter = 0;
 	for (int i = 0; i < height; i++)
 	{
@@ -68,14 +51,13 @@ void MapManager::Init(const string input)
 			destRect.x = j*tileHeight;
 
 			if (tileLayers.at(0).at(counter) != 0) {
-				if (SDL_BlitSurface(spritesheet, &srcRect, tempSurface, &destRect) != 0)
+				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(0).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
-
 			}
 
 			if (tileLayers.at(1).at(counter) != 0) {
 				collidables.push_back({ (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
-				if (SDL_BlitSurface(spritesheet, &srcRect, tempSurface, &destRect) != 0)
+				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
 			}
 			counter++;
@@ -89,37 +71,6 @@ void MapManager::Init(const string input)
 
 void MapManager::Render()
 {
-	/*const int tileWidth = tmx.mapInfo.tileWidth;
-	const int tileHeight = tmx.mapInfo.tileHeight;
-	const int width = tmx.mapInfo.width;
-	const int height = tmx.mapInfo.height;
-	
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-	srcRect.w = tileWidth;
-	srcRect.h = tileHeight;
-	destRect.w = tileWidth;
-	destRect.h = tileHeight;
-
-	
-	int counter = 0;
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			destRect.y = i*tileWidth;
-			destRect.x = j*tileHeight;
-			
-			if (tileLayers.at(0).at(counter) != 0) {
-				RenderManager::Instance().BlitSurface(mapTexture, &tilesMap.at(tileLayers.at(0).at(counter)), &destRect);
-			}
-
-			if (tileLayers.at(1).at(counter) != 0) {
-				RenderManager::Instance().BlitSurface(mapTexture, &tilesMap.at(tileLayers.at(1).at(counter)), &destRect);
-			}
-			counter++;
-		}
-	}*/
 	SDL_Rect srcRect;
 	srcRect.x = srcRect.y = 0;
 	srcRect.w = tmx.mapInfo.width * tmx.mapInfo.tileWidth;

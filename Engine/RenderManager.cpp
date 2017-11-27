@@ -83,3 +83,7 @@ void RenderManager::Clear() const
 SDL_Renderer* RenderManager::GetRenderer() const {
 	return this->renderer;
 }
+
+SDL_Window* RenderManager::GetWindow() const {
+	return this->window;
+}
