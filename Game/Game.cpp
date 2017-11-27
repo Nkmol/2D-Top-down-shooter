@@ -50,23 +50,28 @@ void t()
 
 void Game::Run(const unsigned int targetFps)
 {
-	TickerTime timer{ targetFps, 120 };
+	TickerTime timer{targetFps, 120};
 
-	timer.OnCatchUp([&]() {
+	timer.OnCatchUp([&]()
+	{
 		// TODO: Split physics and non-physic logic with 2 different updates
 		// update at a fixed rate each time
-		Update(timer.GetDeltaTime()); // ticks to seconds
+		Update(timer.GetGameTime()); // ticks to seconds
 	});
 
 	timer.OnFrame([&]()
 	{
 		// TODO: Support interpolation between 2 drawing states -> will smooth the rendering
 		Draw();
-		//t++;
 		HandleEvents();
 	});
 
-	auto gameIsRunning = true;
+	timer.PerSecond(1, [&]()
+	{
+		_fps = timer.GetFps();
+	});
+
+	const auto gameIsRunning = true;
 	timer.Run(gameIsRunning);
 }
 

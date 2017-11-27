@@ -1,15 +1,12 @@
 #include "TickerTime.h"
-#include <SDL.h>
-#include <functional>
 
 TickerTime::TickerTime(const unsigned targetFps, const unsigned maxFps) : _targetFps{targetFps}, _maxFps{maxFps},
                                                                           _lastUpdateTime{SDL_GetPerformanceCounter()},
-                                                                          _ticksPerSecond {
-	                                                                          SDL_GetPerformanceFrequency()
-                                                                          },
-                                                                          _targetTicksPerFrame {
-	                                                                          _ticksPerSecond / _targetFps
-                                                                          }, _accumulator {0.0}, _timesRendered{0}
+                                                                          _lastDeltaTime(0),
+                                                                          _ticksPerSecond { SDL_GetPerformanceFrequency() },
+                                                                          _targetTicksPerFrame { _ticksPerSecond / _targetFps}, 
+																		  _accumulator {0.0}, 
+																		  _timesRendered{0}
 {
 }
 
@@ -28,48 +25,57 @@ void TickerTime::OnFrame(const DelegateFunction func)
 // Happens every x seconds
 void TickerTime::PerSecond(const int secondInterval, DelegateFunction func)
 {
-	
+	_onSecondFunctions.emplace_back(secondInterval, func);
 }
 
-float TickerTime::GetDeltaTime() const
+// The actual multiplier of the game time, representing 1 tick in 1 second
+float TickerTime::GetGameTime() const
 {
 	return _targetTicksPerFrame / static_cast<float>(_ticksPerSecond);
 }
 
+int TickerTime::GetFps() const
+{
+	/*std::cout << _ticksPerSecond << " / " << _lastDeltaTime << " = " << (static_cast<float>(_ticksPerSecond) / (
+		_lastDeltaTime)) << std::endl;*/
+	return static_cast<float>(_ticksPerSecond) / _lastDeltaTime;
+}
+
 void TickerTime::Run(const bool& exitWhen)
 {
-	while(exitWhen)
+	while (exitWhen)
 	{
 		const auto time = SDL_GetPerformanceCounter();
-		const auto deltaTime = time - _lastUpdateTime;
+		_lastDeltaTime = time - _lastUpdateTime;
 		_lastUpdateTime = time;
 
-		_accumulator += deltaTime;
+		_accumulator += _lastDeltaTime;
 
 		// update game logic as lag permits -> physics catch up
 		while (_accumulator >= _targetTicksPerFrame)
 		{
-			// TODO: Split physics and non-physic logic with 2 different updates
-			// update at a fixed rate each time
-			//Update(targetTicksPerFrame / static_cast<float>(ticksPerSecond)); // ticks to seconds
-
-			for (auto && catchUpFunction : _catchUpFunctions)
+			for (auto&& catchUpFunction : _catchUpFunctions)
 			{
 				catchUpFunction();
 			}
 			_accumulator -= _targetTicksPerFrame;
 		}
 
-		// Draw only once per sec
-	/*	if (t % targetFps == 0)
+		// For every second
+		if (_timesRendered % _targetFps == 0)
 		{
-			_fps = static_cast<float>(ticksPerSecond) / deltaTime;
-		}*/
+			for (auto&& onSecondFunction : _onSecondFunctions)
+			{
+				onSecondFunction.Tick();
+			}
+		}
 
-		for (auto && frameFunction : _frameFunctions)
+		for (auto&& frameFunction : _frameFunctions)
 		{
 			frameFunction();
 		}
+
+		_timesRendered += 1;
 	}
 }
 
