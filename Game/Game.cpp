@@ -41,22 +41,16 @@ void Game::Quit()
 	isRunning = false;
 }
 
-void t()
-{
-	// TODO: Split physics and non-physic logic with 2 different updates
-	// update at a fixed rate each time
-	//Update(1 / static_cast<float>(1)); // ticks to seconds
-}
-
 void Game::Run(const unsigned int targetFps)
 {
 	TickerTime timer{targetFps, 120};
 
+	#pragma region init timer
 	timer.OnCatchUp([&]()
 	{
 		// TODO: Split physics and non-physic logic with 2 different updates
 		// update at a fixed rate each time
-		Update(timer.GetGameTime()); // ticks to seconds
+		Update(timer.GetGameTime());
 	});
 
 	timer.OnFrame([&]()
@@ -70,6 +64,7 @@ void Game::Run(const unsigned int targetFps)
 	{
 		_fps = timer.GetFps();
 	});
+	#pragma endregion 
 
 	isRunning = true;;
 	timer.Run(isRunning);
