@@ -32,12 +32,12 @@ void PlayingState::HandleEvents(Game &game) {
         }
 
         if (inputManager.isKeyDown(event)) {
-            Direction direction = inputManager.getDirection(event);
+            Point direction = inputManager.getDirection(event);
 
             int angle = inputManager.calculateMouseAngle(*_player);
 
             _player->setAngle(angle);
-            _player->move(direction);
+            _player->Move(direction);
         }
 
         if (inputManager.isKeyUp(event)) {
@@ -54,13 +54,13 @@ void PlayingState::HandleEvents(Game &game) {
     }
 }
 
-
-void PlayingState::Update(Game &game, int time) {
-    // The reference & to the std::unique_ptr avoids the copying and you can use the uniqe_ptr without dereferencing.
-    for (auto &&obj : _objs) {
-        obj->update(time);
-    }
-    flockController.updateFlocks(time);
+void PlayingState::Update(Game& game, float time)
+{
+	// The reference & to the std::unique_ptr avoids the copying and you can use the uniqe_ptr without dereferencing.
+	for (auto &&obj : _objs) {
+		obj->update(time);
+	}
+	flockController.updateFlocks(time);
 }
 
 void PlayingState::Draw(Game &game) {
@@ -79,5 +79,5 @@ void PlayingState::Init() {
 
     // save pointer seperate
     _player = player;
-    flockController.generateFlock(10, 100, 900, _player, 0.1f);
+    flockController.generateFlock(20, 100, 900, _player, 15.0f);
 }

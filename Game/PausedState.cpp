@@ -28,7 +28,7 @@ void PausedState::HandleEvents(Game & game)
 	}
 }
 
-void PausedState::Update(Game & game, int time)
+void PausedState::Update(Game & game, float time)
 {
 }
 
