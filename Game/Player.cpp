@@ -8,7 +8,7 @@
 
 Player::Player(const std::string &filePath, const float x, const float y) : Player(filePath, Point{x, y}) {}
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath, coordinates, 70.0f), lifepoints(lp) {
+Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath, coordinates, 140.0f), lifepoints(lp) {
 
 }
 

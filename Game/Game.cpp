@@ -1,6 +1,9 @@
 #include "Game.h"
 #include "State.h"
 #include "TickerTime.h"
+#include <algorithm>
+#include <thread>
+#include <iomanip>
 
 Game::Game()
 {
@@ -36,28 +39,36 @@ void Game::Quit()
 	isRunning = false;
 }
 
-void Game::Run(const unsigned int fps)
+void Game::Run(const unsigned int targetFps)
 {
-	TickerTime ticker{fps, 100};
+	// Reference explenation: http://gamesfromwithin.com/casey-and-the-clearly-deterministic-contraptions
+	// Reference code example: https://gist.github.com/mariobadr/673bbd5545242fcf9482
 
-	const auto frameTime = fps / 100.0f;
-	isRunning = true;
-	while (isRunning)
+	TickerTime timer{targetFps, 120};
+
+	#pragma region init timer
+	timer.OnCatchUp([&]()
 	{
-		HandleEvents();
+		// TODO: Split physics and non-physic logic with 2 different updates
+		// update at a fixed rate each time
+		Update(timer.GetGameTime());
+	});
 
-		auto deltaTime = ticker.GetDeltaTime();
-
-		// To create constant update sequence
-		do
-		{
-			Update(deltaTime);
-			deltaTime -= frameTime;
-		}
-		while (deltaTime >= frameTime);
-
+	timer.OnFrame([&]()
+	{
+		// TODO: Support interpolation between 2 drawing states -> will smooth the rendering
 		Draw();
-	}
+		HandleEvents();
+	});
+
+	timer.PerSecond(1, [&]()
+	{
+		_fps = timer.GetFps();
+	});
+	#pragma endregion 
+
+	isRunning = true;;
+	timer.Run(isRunning);
 }
 
 void Game::HandleEvents()
@@ -75,6 +86,12 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	MapManager::Instance().Render();
+
+	// Fps to string and 2 decimal
+	std::stringstream str;
+	str << fixed << std::setprecision(2) << _fps;
+
+	renderManager.DrawText(str.str(), 20, 20, 70, 20);
 
 	_states.back()->Draw(*this);
 	renderManager.Render();

@@ -1,3 +1,0 @@
-/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/rebuild_cache.dir
-/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/edit_cache.dir
-/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/GroepH.dir
