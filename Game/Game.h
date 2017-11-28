@@ -28,5 +28,6 @@ private:
 	std::vector<std::unique_ptr<State>> _states;
 	bool isRunning;
 	Engine _mainManager;
+	double _fps;
 };
 

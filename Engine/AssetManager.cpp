@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AssetManager.h"
+#include <memory>
 
 //AssetManager* AssetManager::instance()
 //{
@@ -64,9 +65,10 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
     return loadedSurface;
 }
 
+
 TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 {
-	TTF_Font* font = TTF_OpenFont(fonts[fontToken], size);
+	TTF_Font* font  = TTF_OpenFont(fonts[fontToken], size);
 	if (font == NULL)
 		cout << "Unable to load font %s! SDL_image Error: " << render[fontToken] << TTF_GetError() << endl;
 

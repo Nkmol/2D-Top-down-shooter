@@ -18,7 +18,7 @@ void Level::Init()
 
 	// save pointer seperate
 	_player = player;
-	_flockController.generateFlock(20, 100, 900, _player, 15.0f);
+	_flockController.generateFlock(20, 100, 900, _player, 50.0f);
 }
 
 void Level::HandleEvents(SDL_Event event)

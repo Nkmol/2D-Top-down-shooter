@@ -3,6 +3,8 @@
 //
 
 #include "RenderManager.h"
+#include <memory>
+#include "CustomDeleter.h"
 
 RenderManager::RenderManager(): window(nullptr), renderer(nullptr)
 {
@@ -43,9 +45,10 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle) const
+void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle)
 {
-	TTF_Font* font = AssetManager::Instance().loadFont("Sans Regular", height);
+	if (font == NULL)
+		font = AssetManager::Instance().loadFont("Sans Regular", height);
 	SDL_Color color = { 255, 255, 255 };
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
@@ -61,6 +64,7 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	if (resp != 0) {
 		std::cout << SDL_GetError() << std::endl;
 	}
+	SDL_DestroyTexture(message);
 }
 
 RenderManager& RenderManager::Instance() {

@@ -8,7 +8,7 @@ Bullet::Bullet(const string& filePath, const float x, const float y, int damage)
 {
 }
 
-Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 150.0f), damage(damage) {}
+Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f), damage(damage) {}
 
 void Bullet::makeVisible() {
     this->visible = true;

@@ -41,5 +41,4 @@ void PlayingState::Draw(Game &game) {
 }
 
 void PlayingState::Init() {
-	
 }
