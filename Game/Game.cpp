@@ -1,9 +1,6 @@
 #include "Game.h"
-#include "RenderManager.h"
 #include "State.h"
-#include "MapManager.h"
 #include "TickerTime.h"
-#include <algorithm>
 
 Game::Game()
 {

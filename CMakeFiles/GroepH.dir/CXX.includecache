@@ -753,16 +753,10 @@ FlockController.h
 /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.cpp
 Game.h
 /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.h
-RenderManager.h
-/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/RenderManager.h
 State.h
 /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/State.h
-MapManager.h
-/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/MapManager.h
 TickerTime.h
 /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/TickerTime.h
-algorithm
--
 
 /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/Game.h
 string
