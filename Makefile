@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
+CMAKE_SOURCE_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
+CMAKE_BINARY_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -177,33 +177,6 @@ Engine/AudioManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/AudioManager.cpp.s
 .PHONY : Engine/AudioManager.cpp.s
 
-Engine/CollidableObject.o: Engine/CollidableObject.cpp.o
-
-.PHONY : Engine/CollidableObject.o
-
-# target to build an object file
-Engine/CollidableObject.cpp.o:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.o
-.PHONY : Engine/CollidableObject.cpp.o
-
-Engine/CollidableObject.i: Engine/CollidableObject.cpp.i
-
-.PHONY : Engine/CollidableObject.i
-
-# target to preprocess a source file
-Engine/CollidableObject.cpp.i:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.i
-.PHONY : Engine/CollidableObject.cpp.i
-
-Engine/CollidableObject.s: Engine/CollidableObject.cpp.s
-
-.PHONY : Engine/CollidableObject.s
-
-# target to generate assembly for a file
-Engine/CollidableObject.cpp.s:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/CollidableObject.cpp.s
-.PHONY : Engine/CollidableObject.cpp.s
-
 Engine/Engine.o: Engine/Engine.cpp.o
 
 .PHONY : Engine/Engine.o
@@ -230,6 +203,33 @@ Engine/Engine.s: Engine/Engine.cpp.s
 Engine/Engine.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/Engine.cpp.s
 .PHONY : Engine/Engine.cpp.s
+
+Engine/GameObject.o: Engine/GameObject.cpp.o
+
+.PHONY : Engine/GameObject.o
+
+# target to build an object file
+Engine/GameObject.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/GameObject.cpp.o
+.PHONY : Engine/GameObject.cpp.o
+
+Engine/GameObject.i: Engine/GameObject.cpp.i
+
+.PHONY : Engine/GameObject.i
+
+# target to preprocess a source file
+Engine/GameObject.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/GameObject.cpp.i
+.PHONY : Engine/GameObject.cpp.i
+
+Engine/GameObject.s: Engine/GameObject.cpp.s
+
+.PHONY : Engine/GameObject.s
+
+# target to generate assembly for a file
+Engine/GameObject.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/GameObject.cpp.s
+.PHONY : Engine/GameObject.cpp.s
 
 Engine/InputManager.o: Engine/InputManager.cpp.o
 
@@ -312,6 +312,33 @@ Engine/MoveableObject.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/MoveableObject.cpp.s
 .PHONY : Engine/MoveableObject.cpp.s
 
+Engine/PhysicsManager.o: Engine/PhysicsManager.cpp.o
+
+.PHONY : Engine/PhysicsManager.o
+
+# target to build an object file
+Engine/PhysicsManager.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.o
+.PHONY : Engine/PhysicsManager.cpp.o
+
+Engine/PhysicsManager.i: Engine/PhysicsManager.cpp.i
+
+.PHONY : Engine/PhysicsManager.i
+
+# target to preprocess a source file
+Engine/PhysicsManager.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.i
+.PHONY : Engine/PhysicsManager.cpp.i
+
+Engine/PhysicsManager.s: Engine/PhysicsManager.cpp.s
+
+.PHONY : Engine/PhysicsManager.s
+
+# target to generate assembly for a file
+Engine/PhysicsManager.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/PhysicsManager.cpp.s
+.PHONY : Engine/PhysicsManager.cpp.s
+
 Engine/Point.o: Engine/Point.cpp.o
 
 .PHONY : Engine/Point.o
@@ -365,6 +392,33 @@ Engine/RenderManager.s: Engine/RenderManager.cpp.s
 Engine/RenderManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/RenderManager.cpp.s
 .PHONY : Engine/RenderManager.cpp.s
+
+Engine/TickerTime.o: Engine/TickerTime.cpp.o
+
+.PHONY : Engine/TickerTime.o
+
+# target to build an object file
+Engine/TickerTime.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.o
+.PHONY : Engine/TickerTime.cpp.o
+
+Engine/TickerTime.i: Engine/TickerTime.cpp.i
+
+.PHONY : Engine/TickerTime.i
+
+# target to preprocess a source file
+Engine/TickerTime.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.i
+.PHONY : Engine/TickerTime.cpp.i
+
+Engine/TickerTime.s: Engine/TickerTime.cpp.s
+
+.PHONY : Engine/TickerTime.s
+
+# target to generate assembly for a file
+Engine/TickerTime.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Engine/TickerTime.cpp.s
+.PHONY : Engine/TickerTime.cpp.s
 
 Engine/tmx/src/TMXParser.o: Engine/tmx/src/TMXParser.cpp.o
 
@@ -582,6 +636,60 @@ Game/Helper.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Helper.cpp.s
 .PHONY : Game/Helper.cpp.s
 
+Game/Level.o: Game/Level.cpp.o
+
+.PHONY : Game/Level.o
+
+# target to build an object file
+Game/Level.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Level.cpp.o
+.PHONY : Game/Level.cpp.o
+
+Game/Level.i: Game/Level.cpp.i
+
+.PHONY : Game/Level.i
+
+# target to preprocess a source file
+Game/Level.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Level.cpp.i
+.PHONY : Game/Level.cpp.i
+
+Game/Level.s: Game/Level.cpp.s
+
+.PHONY : Game/Level.s
+
+# target to generate assembly for a file
+Game/Level.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Level.cpp.s
+.PHONY : Game/Level.cpp.s
+
+Game/PausedState.o: Game/PausedState.cpp.o
+
+.PHONY : Game/PausedState.o
+
+# target to build an object file
+Game/PausedState.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PausedState.cpp.o
+.PHONY : Game/PausedState.cpp.o
+
+Game/PausedState.i: Game/PausedState.cpp.i
+
+.PHONY : Game/PausedState.i
+
+# target to preprocess a source file
+Game/PausedState.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PausedState.cpp.i
+.PHONY : Game/PausedState.cpp.i
+
+Game/PausedState.s: Game/PausedState.cpp.s
+
+.PHONY : Game/PausedState.s
+
+# target to generate assembly for a file
+Game/PausedState.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PausedState.cpp.s
+.PHONY : Game/PausedState.cpp.s
+
 Game/Player.o: Game/Player.cpp.o
 
 .PHONY : Game/Player.o
@@ -732,12 +840,12 @@ help:
 	@echo "... Engine/AudioManager.o"
 	@echo "... Engine/AudioManager.i"
 	@echo "... Engine/AudioManager.s"
-	@echo "... Engine/CollidableObject.o"
-	@echo "... Engine/CollidableObject.i"
-	@echo "... Engine/CollidableObject.s"
 	@echo "... Engine/Engine.o"
 	@echo "... Engine/Engine.i"
 	@echo "... Engine/Engine.s"
+	@echo "... Engine/GameObject.o"
+	@echo "... Engine/GameObject.i"
+	@echo "... Engine/GameObject.s"
 	@echo "... Engine/InputManager.o"
 	@echo "... Engine/InputManager.i"
 	@echo "... Engine/InputManager.s"
@@ -747,12 +855,18 @@ help:
 	@echo "... Engine/MoveableObject.o"
 	@echo "... Engine/MoveableObject.i"
 	@echo "... Engine/MoveableObject.s"
+	@echo "... Engine/PhysicsManager.o"
+	@echo "... Engine/PhysicsManager.i"
+	@echo "... Engine/PhysicsManager.s"
 	@echo "... Engine/Point.o"
 	@echo "... Engine/Point.i"
 	@echo "... Engine/Point.s"
 	@echo "... Engine/RenderManager.o"
 	@echo "... Engine/RenderManager.i"
 	@echo "... Engine/RenderManager.s"
+	@echo "... Engine/TickerTime.o"
+	@echo "... Engine/TickerTime.i"
+	@echo "... Engine/TickerTime.s"
 	@echo "... Engine/tmx/src/TMXParser.o"
 	@echo "... Engine/tmx/src/TMXParser.i"
 	@echo "... Engine/tmx/src/TMXParser.s"
@@ -777,6 +891,12 @@ help:
 	@echo "... Game/Helper.o"
 	@echo "... Game/Helper.i"
 	@echo "... Game/Helper.s"
+	@echo "... Game/Level.o"
+	@echo "... Game/Level.i"
+	@echo "... Game/Level.s"
+	@echo "... Game/PausedState.o"
+	@echo "... Game/PausedState.i"
+	@echo "... Game/PausedState.s"
 	@echo "... Game/Player.o"
 	@echo "... Game/Player.i"
 	@echo "... Game/Player.s"

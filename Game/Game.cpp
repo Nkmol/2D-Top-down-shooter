@@ -1,11 +1,9 @@
 #include "Game.h"
-#include "RenderManager.h"
 #include "State.h"
-#include "MapManager.h"
 #include "TickerTime.h"
 #include <algorithm>
 #include <thread>
-#include <iomanip> 
+#include <iomanip>
 
 Game::Game()
 {

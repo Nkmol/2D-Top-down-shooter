@@ -1,4 +1,4 @@
-# Install script for directory: /Users/MevlutOzdemir/Developers/project/GroepH
+# Install script for directory: /Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/MevlutOzdemir/Developers/project/GroepH/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
