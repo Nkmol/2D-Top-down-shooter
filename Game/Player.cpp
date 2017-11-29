@@ -21,7 +21,7 @@ void Player::addWeapon(Weapon &weapon) {
 
 
 void Player::changeWeapon(int index) {
-    if (--index < weapons.size() && index > 0) {
+    if (index > 0 && --index < weapons.size()) {
         this->weapon = &weapons[index];// it returns the weapon on index - 1
     }
 }
