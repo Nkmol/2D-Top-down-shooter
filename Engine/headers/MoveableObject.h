@@ -23,32 +23,35 @@ protected:
     int angle, radius, midX, midY, width, height;
     float speed;
     float distance;
-	Point _destination;
-	Point _coordinates;
+    Point _destination;
+    Point _coordinates;
 
 public:
     ~MoveableObject();
 
-	MoveableObject(const std::string& filePath, const Point coordinates, const float speed);
+    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+
     virtual void draw();
 
     virtual void update(float time);
 
     void setAngle(int angle);
-	const Point& GetCoordinates() const;
-	void SetCoordinates(Point point);
 
-	int getAngle() const;
+    const Point &GetCoordinates() const;
+
+    int getAngle() const;
 
     void stopMove();
 
     bool isVisible() const;
 
-	const int getMidX(float destinationPosition) const;
+    const int getMidX(float destinationPosition) const;
 
-	const int getMidY(float destinationPosition) const;
+    const int getMidY(float destinationPosition) const;
 
-	const int getRadius() const;
+    const int getRadius() const;
+
+    void hide();
 };
 
 

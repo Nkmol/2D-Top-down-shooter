@@ -33,7 +33,7 @@ public:
 
     bool isKeyDown(SDL_Event &event);
 
-	Point getDirection(SDL_Event& event);
+    Point getDirection(SDL_Event &event);
 
     bool isMouseMoved(SDL_Event &event);
 
@@ -51,7 +51,9 @@ public:
 
     bool isQuit(SDL_Event &event);
 
-	bool isPauseResume(SDL_Event &event);
+    bool isPauseResume(SDL_Event &event);
+
+    bool isNumericKeyPressed(SDL_Event &event, int &key);
 };
 
 

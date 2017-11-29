@@ -6,9 +6,12 @@
 #include "MoveableObject.h"
 #include "Point.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) : speed{ speed },
-	_destination(Point::Empty()), _coordinates(coordinates)
-{
+MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
+        speed{speed},
+        _destination(Point::Empty()),
+        _coordinates(coordinates),
+        visible{true} {
+
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
@@ -22,7 +25,7 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
 }
 
 void MoveableObject::draw() {
-
+    if (!visible) return;
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &width, &height);
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
@@ -33,27 +36,25 @@ void MoveableObject::setAngle(int angle) {
     MoveableObject::angle = angle;
 }
 
-const Point& MoveableObject::GetCoordinates() const
-{
-	return _coordinates;
-}
-
-void MoveableObject::SetCoordinates(Point point)
-{
-	_coordinates = point;
+const Point &MoveableObject::GetCoordinates() const {
+    return _coordinates;
 }
 
 void MoveableObject::update(float time) {
-	_coordinates += _destination * speed * time;
+    _coordinates += _destination * speed * time;
 }
 
 
 void MoveableObject::stopMove() {
-	_destination = Point{ 0, 0 };
+    _destination = Point{0, 0};
 }
 
 int MoveableObject::getAngle() const {
     return angle;
+}
+
+void MoveableObject::hide() {
+    this->visible = false;
 }
 
 bool MoveableObject::isVisible() const {
@@ -65,17 +66,15 @@ MoveableObject::~MoveableObject() {
     //    SDL_DestroyTexture(_sprite);
 }
 
-const int MoveableObject::getMidX(float destinationPosition) const
-{
-	return  destinationPosition +  width / 2;;
+const int MoveableObject::getMidX(float destinationPosition) const {
+    return destinationPosition + width / 2;;
 }
 
-const int MoveableObject::getMidY(float destinationPosition) const
-{
-	return destinationPosition + height / 2;
+const int MoveableObject::getMidY(float destinationPosition) const {
+    return destinationPosition + height / 2;
 }
 
-const int MoveableObject::getRadius() const
-{
-	return (width + height) / 4;
+const int MoveableObject::getRadius() const {
+    return (width + height) / 4;
 }
+
