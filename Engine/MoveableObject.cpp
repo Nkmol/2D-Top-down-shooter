@@ -9,13 +9,12 @@
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) : speed{ speed },
 	_destination(Point::Empty()), _coordinates(coordinates)
 {
-
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
     _sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
 
-    SDL_FreeSurface(surface);
+    //SDL_FreeSurface(surface);
 
     if (this->_sprite == NULL) {
         printf(SDL_GetError());

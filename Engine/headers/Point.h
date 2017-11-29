@@ -20,6 +20,7 @@ public:
 	Point operator+(const Point& p) const;
 	Point operator*(const float p) const;
 	void operator+=(const Point& p);
+	friend bool operator<(const Point& p1, const Point& p2);
 };
 
 

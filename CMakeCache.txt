@@ -207,6 +207,12 @@ SDL2_MIXER_INCLUDE_DIR:PATH=/Library/Frameworks/SDL2_mixer.framework/Headers
 //Path to a library.
 SDL2_MIXER_LIBRARY:FILEPATH=/Library/Frameworks/SDL2_mixer.framework
 
+//Path to a file.
+SDL2_TTF_INCLUDE_DIR:PATH=/Library/Frameworks/SDL2_ttf.framework/Headers
+
+//Path to a library.
+SDL2_TTF_LIBRARY:FILEPATH=/Library/Frameworks/SDL2_ttf.framework
+
 //Value Computed by CMake
 Shooter_BINARY_DIR:STATIC=/Users/MevlutOzdemir/Developers/project/GroepH
 
@@ -359,15 +365,21 @@ FIND_PACKAGE_MESSAGE_DETAILS_SDL2:INTERNAL=[/Library/Frameworks/SDL2.framework;-
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2_image:INTERNAL=[/Library/Frameworks/SDL2_image.framework][/Library/Frameworks/SDL2_image.framework/Headers][v..()]
 //Details about finding SDL2_mixer
 FIND_PACKAGE_MESSAGE_DETAILS_SDL2_mixer:INTERNAL=[/Library/Frameworks/SDL2_mixer.framework][/Library/Frameworks/SDL2_mixer.framework/Headers][v()]
+//Details about finding SDL2_ttf
+FIND_PACKAGE_MESSAGE_DETAILS_SDL2_ttf:INTERNAL=[/Library/Frameworks/SDL2_ttf.framework][/Library/Frameworks/SDL2_ttf.framework/Headers][v2.0.14()]
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_IMAGE_INCLUDE_DIR
 SDL2_IMAGE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_IMAGE_LIBRARY
 SDL2_IMAGE_LIBRARY-ADVANCED:INTERNAL=1
-SDL2_LIBRARY_TEMP:INTERNAL=/Library/Frameworks/SDL2.framework;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa
+SDL2_LIBRARY_TEMP:INTERNAL=/Library/Frameworks/SDL2.framework;-framework Cocoa
 //ADVANCED property for variable: SDL2_MIXER_INCLUDE_DIR
 SDL2_MIXER_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_MIXER_LIBRARY
 SDL2_MIXER_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL2_TTF_INCLUDE_DIR
+SDL2_TTF_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL2_TTF_LIBRARY
+SDL2_TTF_LIBRARY-ADVANCED:INTERNAL=1
 
