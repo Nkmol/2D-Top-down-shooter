@@ -52,6 +52,7 @@ bool InputManager::isNumericKeyPressed(SDL_Event &event, int &key) {
             {SDL_SCANCODE_2, 2},
             {SDL_SCANCODE_3, 3},
             {SDL_SCANCODE_4, 4},
+            {SDL_SCANCODE_5, 5},
     };
 
     const auto keysArray = SDL_GetKeyboardState(nullptr);
