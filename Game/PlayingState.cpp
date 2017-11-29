@@ -36,13 +36,6 @@ void PlayingState::Update(Game &game, float time) {
 
 void PlayingState::Draw(Game &game) {
     game.GetLevel()->Draw();
-    auto weaponName = game.GetLevel()->getPlayer()->getWeapon()->getName();
-    auto totalBullets = game.GetLevel()->getPlayer()->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - game.GetLevel()->getPlayer()->getWeapon()->getShooted();
-    RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
-    RenderManager::Instance().DrawText("Bullets: " +
-                                       to_string(remainingBullets) + "/" +
-                                       to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 }
 
 void PlayingState::Init() {

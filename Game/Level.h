@@ -11,6 +11,7 @@
 #include "Weapon.h"
 #include "Uzi.h"
 #include "Handgun.h"
+#include "Config.h"
 
 class Level {
     int _level;

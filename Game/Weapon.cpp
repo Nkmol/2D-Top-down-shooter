@@ -11,7 +11,7 @@ Weapon::Weapon(int damage, std::string name) : name{name}, damage{damage} {
 
 void Weapon::addBullets(Bullet &bullet, int amount) {
     for (int i = 0; i < amount; ++i) {
-        unique_ptr<Bullet> b{new Bullet(bullet)};
+        shared_ptr<Bullet> b{new Bullet(bullet)};
         bullets.push_back(*b);
     }
 }

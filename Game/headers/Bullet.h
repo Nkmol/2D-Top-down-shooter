@@ -21,7 +21,7 @@ public:
 
     void makeInvisible();
 
-    void update(float time);
+    void update(float time) override;
 
 	const int getDamage() const;
 };

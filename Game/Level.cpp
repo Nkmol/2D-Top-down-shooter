@@ -63,6 +63,16 @@ void Level::Draw() {
         obj->draw();
     }
     _flockController.drawFlocks();
+
+
+    // TODO, verplaatsen
+    auto weaponName = _player->getWeapon()->getName();
+    auto totalBullets = _player->getWeapon()->totalBullets();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
+    RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
+    RenderManager::Instance().DrawText("Bullets: " +
+                                       to_string(remainingBullets) + "/" +
+                                       to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 }
 
 const shared_ptr<Player> &Level::getPlayer() const {

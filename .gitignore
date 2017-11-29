@@ -310,3 +310,5 @@ OpenCover/
 Debug/Engine.lib
 
 cmake-build-debug/
+/CMakeFiles/
+/cmake-build-debug/

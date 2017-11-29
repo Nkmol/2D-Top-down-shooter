@@ -965,6 +965,7 @@ CMakeFiles/GroepH.dir/Game/Level.cpp.o: /Library/Frameworks/SDL2.framework/Heade
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: /Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: /Library/Frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: /Library/Frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h
+CMakeFiles/GroepH.dir/Game/Level.cpp.o: Game/Config.h
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: Game/Handgun.h
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: Game/Level.cpp
 CMakeFiles/GroepH.dir/Game/Level.cpp.o: Game/Level.h
