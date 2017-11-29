@@ -24,14 +24,14 @@ public:
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
 
-    void shoot();
+    Bullet shoot();
 
     void addWeapon(Weapon &weapon);
 
 
     void Move(const Point direction);
 
-    void draw() override;
+//    void draw() override;
 
     void update(float time) override;
 
@@ -44,6 +44,8 @@ public:
     Weapon *getWeapon() const;
 
     void addWeapons(std::vector<Weapon> wp);
+
+    bool canShoot();
 };
 
 

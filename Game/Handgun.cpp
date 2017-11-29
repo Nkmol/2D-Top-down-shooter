@@ -4,8 +4,6 @@
 
 #include "Handgun.h"
 
-Handgun::Handgun(int damage) : Weapon(damage, "Handgun") {
-    Bullet bullet("bullet", 0, 0, damage);
-    bullet.makeInvisible();
-    this->addBullets(bullet, 10);
+Handgun::Handgun(int damage) : Weapon(damage, "Handgun", 10) {
+
 }

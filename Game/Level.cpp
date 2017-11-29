@@ -30,9 +30,9 @@ void Level::HandleEvents(SDL_Event event) {
     }
 
     if (inputManager.isMouseClicked(event)) {
-        _player->shoot();
+        auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+        _objs.emplace_back(bullet);
     }
-
 
     int key = 0;
     if (inputManager.isNumericKeyPressed(event, key)) {

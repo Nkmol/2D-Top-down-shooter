@@ -4,9 +4,6 @@
 
 #include "Shotgun.h"
 
-Shotgun::Shotgun(int damage) : Weapon(damage, "Shotgun") {
-    Bullet bullet("bullet", 0, 0, damage);
-    bullet.makeInvisible();
+Shotgun::Shotgun(int damage) : Weapon(damage, "Shotgun", 5) {
 
-    this->addBullets(bullet, 5);
 }

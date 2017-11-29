@@ -15,22 +15,16 @@ class Weapon {
 
 protected:
     int damage;
+    int maxBullets;
     int shooted = 0;
-    std::vector<Bullet> bullets;
     std::string name;
 
 public:
-    Weapon(int damage, std::string name);
+    Weapon(int damage, std::string name, int maxBullets);
 
-    const vector<Bullet> &getBullets() const;
+    bool hasBullets();
 
-    void shoot(int angle, float xPos, float yPos);
-
-    void addBullets(Bullet &bullet, int amount);
-
-    void updateBullets(float time);
-
-    void drawBullets();
+    Bullet getBullet(int angle, Point coordinates);
 
     int totalBullets() const;
 

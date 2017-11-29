@@ -12,18 +12,17 @@ class Bullet : public MoveableObject {
 
 private:
     float BULLET_SPEED = 0.8f;
-	int damage;
+
+    int damage;
 public:
-	Bullet(const string& filePath, float x, float y, int damage);
-	Bullet(const string& filePath, Point coordinates, int damage);
 
-    void makeVisible();
-
-    void makeInvisible();
+    Bullet(const string &filePath, Point coordinates, int damage);
 
     void update(float time) override;
 
-	const int getDamage() const;
+    void draw() override;
+
+    const int getDamage() const;
 };
 
 

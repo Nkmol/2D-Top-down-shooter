@@ -4,41 +4,37 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string& filePath, const float x, const float y, int damage) : Bullet(filePath, Point{ x,y }, damage)
-{
+Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
+                                                                        damage(damage) {
 }
 
-Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f), damage(damage) {}
-
-void Bullet::makeVisible() {
-    this->visible = true;
-}
-
-void Bullet::makeInvisible() {
-    this->visible = false;
-}
 
 void Bullet::update(float time) {
-	double correctedAngle = this->getAngle() + 270;
+    double correctedAngle = this->getAngle() + 270;
 
-	if (this->getAngle() > 90)
-		correctedAngle = this->getAngle() - 90;
+    if (this->getAngle() > 90)
+        correctedAngle = this->getAngle() - 90;
 
-	double correctedAngleRadians = correctedAngle / 180 * M_PI;
-	
-	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
+    double correctedAngleRadians = correctedAngle / 180 * M_PI;
 
-	const auto newPostition = _coordinates + (_destination * speed * time);
-	if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-		MoveableObject::update(time);	}
-	else {
-		// verwerk hier wat er moet gebeuren als er collision is
-		MoveableObject::stopMove();
-	}
+    _destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
+
+    const auto newPostition = _coordinates + (_destination * speed * time);
+    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
+        MoveableObject::update(time);
+    } else {
+        // verwerk hier wat er moet gebeuren als er collision is
+        MoveableObject::stopMove();
+    }
 }
 
-const int Bullet::getDamage() const
-{
-	return damage;
+
+const int Bullet::getDamage() const {
+    return damage;
 }
+
+void Bullet::draw() {
+    MoveableObject::draw();
+}
+
 

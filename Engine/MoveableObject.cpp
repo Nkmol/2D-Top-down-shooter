@@ -6,9 +6,11 @@
 #include "MoveableObject.h"
 #include "Point.h"
 
-MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) : speed{ speed },
-	_destination(Point::Empty()), _coordinates(coordinates)
-{
+MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
+        speed{speed},
+        _destination(Point::Empty()),
+        _coordinates(coordinates) {
+
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
@@ -33,23 +35,17 @@ void MoveableObject::setAngle(int angle) {
     MoveableObject::angle = angle;
 }
 
-const Point& MoveableObject::GetCoordinates() const
-{
-	return _coordinates;
-}
-
-void MoveableObject::SetCoordinates(Point point)
-{
-	_coordinates = point;
+const Point &MoveableObject::GetCoordinates() const {
+    return _coordinates;
 }
 
 void MoveableObject::update(float time) {
-	_coordinates += _destination * speed * time;
+    _coordinates += _destination * speed * time;
 }
 
 
 void MoveableObject::stopMove() {
-	_destination = Point{ 0, 0 };
+    _destination = Point{0, 0};
 }
 
 int MoveableObject::getAngle() const {
@@ -65,17 +61,15 @@ MoveableObject::~MoveableObject() {
     //    SDL_DestroyTexture(_sprite);
 }
 
-const int MoveableObject::getMidX(float destinationPosition) const
-{
-	return  destinationPosition +  width / 2;;
+const int MoveableObject::getMidX(float destinationPosition) const {
+    return destinationPosition + width / 2;;
 }
 
-const int MoveableObject::getMidY(float destinationPosition) const
-{
-	return destinationPosition + height / 2;
+const int MoveableObject::getMidY(float destinationPosition) const {
+    return destinationPosition + height / 2;
 }
 
-const int MoveableObject::getRadius() const
-{
-	return (width + height) / 4;
+const int MoveableObject::getRadius() const {
+    return (width + height) / 4;
 }
+

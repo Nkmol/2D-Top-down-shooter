@@ -4,9 +4,6 @@
 
 #include "Uzi.h"
 
-Uzi::Uzi(int damage) : Weapon(damage, "Uzi") {
-    Bullet bullet("bullet", 0, 0, damage);
-    bullet.makeInvisible();
+Uzi::Uzi(int damage) : Weapon(damage, "Uzi", 100) {
 
-    this->addBullets(bullet, 100);
 }

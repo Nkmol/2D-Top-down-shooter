@@ -20,7 +20,7 @@ void Player::addWeapon(Weapon &weapon) {
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
-    for(auto &weapon : wp){
+    for (auto &weapon : wp) {
         weapons.push_back(weapon);
     }
 }
@@ -32,24 +32,15 @@ void Player::changeWeapon(int index) {
     }
 }
 
-void Player::shoot() {
-    float bulletStartX = _coordinates.x;
-    float bulletStartY = _coordinates.y;
-    weapon->shoot(getAngle(), bulletStartX, bulletStartY);
+Bullet Player::shoot() {
+    return weapon->getBullet(getAngle(), _coordinates);
 }
-
 
 void Player::Move(const Point direction) {
     _destination = direction;
 }
 
-void Player::draw() {
-    weapon->drawBullets();
-    MoveableObject::draw();
-}
-
 void Player::update(float time) {
-    weapon->updateBullets(time);
 
     const auto newPostition = _coordinates + (_destination * speed * time);
     if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
