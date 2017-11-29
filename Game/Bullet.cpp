@@ -33,8 +33,4 @@ const int Bullet::getDamage() const {
     return damage;
 }
 
-void Bullet::draw() {
-    MoveableObject::draw();
-}
-
 

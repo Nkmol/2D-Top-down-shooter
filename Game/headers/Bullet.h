@@ -20,8 +20,6 @@ public:
 
     void update(float time) override;
 
-    void draw() override;
-
     const int getDamage() const;
 };
 
