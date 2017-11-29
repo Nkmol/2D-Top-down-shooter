@@ -143,18 +143,21 @@
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayingState.cpp" />
+    <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Uzi.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Handgun.h" />
     <ClInclude Include="headers\Bullet.h" />
     <ClInclude Include="headers\EnemyBase.h" />
     <ClInclude Include="headers\Flock.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
+    <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
