@@ -6,7 +6,7 @@ Level::Level(const int level) : _level(level) {
 
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
-    
+
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(1); // set weapon to Uzi
@@ -19,28 +19,30 @@ void Level::Init() {
 }
 
 void Level::HandleEvents(SDL_Event event) {
-    if (InputManager::instance().isMouseMoved(event)) {
+    auto &inputManager = InputManager::instance();
+
+    if (inputManager.isMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
-        int angle = InputManager::instance().recalculateMouseAngle(*_player);
+        int angle = inputManager.recalculateMouseAngle(*_player);
 
         // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
         _player->setAngle(angle);
     }
 
-    if (InputManager::instance().isMouseClicked(event)) {
+    if (inputManager.isMouseClicked(event)) {
         _player->shoot();
     }
 
 
     int key = 0;
-    if (InputManager::instance().isNumericKeyPressed(event, key)) {
+    if (inputManager.isNumericKeyPressed(event, key)) {
         _player->changeWeapon(key);
     }
 
 
-    Point direction = InputManager::instance().getDirection(event);
+    Point direction = inputManager.getDirection(event);
 
-    int angle = InputManager::instance().calculateMouseAngle(*_player);
+    int angle = inputManager.calculateMouseAngle(*_player);
 
     _player->setAngle(angle);
     _player->Move(direction);
