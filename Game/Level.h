@@ -9,6 +9,7 @@
 #include <InputManager.h>
 #include "Weapon.h"
 #include "Uzi.h"
+#include "monsters/ZombieEnemy.h"
 
 class Level
 {

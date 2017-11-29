@@ -3,21 +3,24 @@
 //
 
 #include "FlockController.h"
+#include "monsters/BatEnemy.h"
 
-void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget,
-                                    float flockSpeed) {
+using namespace std;
+template<class T> void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget) {
     shared_ptr<EnemyBase> leader{
-            new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, true, 10, 30)};
+            new T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), true)};
     leader->setTarget(flockTarget);
 
     shared_ptr<Flock> newFlock{new Flock(leader)};
     for (int i = 0; i < flockSize; i++) {
         shared_ptr<EnemyBase> newFlockMember{
-                new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, false, 10, 30)};
+                new T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false)};
         newFlock->addMember(newFlockMember);
     }
     this->flocks.push_back(newFlock);
 }
+template void FlockController::generateFlock<ZombieEnemy>(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget);
+template void FlockController::generateFlock<BatEnemy>(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget);
 
 void FlockController::drawFlocks() {
     for (auto const &flock: this->flocks) {

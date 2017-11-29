@@ -277,6 +277,18 @@
 		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/main.cpp">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/monsters/BatEnemy.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/monsters/BatEnemy.h">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/monsters/ZombieEnemy.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/Game/monsters/ZombieEnemy.h">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/content">
 			<Option target="GroepH"/>
 		</Unit>

@@ -79,3 +79,11 @@ const int MoveableObject::getRadius() const
 {
 	return (width + height) / 4;
 }
+
+int MoveableObject::getWidth() const {
+    return width;
+}
+
+int MoveableObject::getHeight() const {
+    return height;
+}

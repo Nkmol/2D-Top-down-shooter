@@ -21,6 +21,11 @@ AssetManager::AssetManager() {
     render["bullet"] = "../content/bullet.png";
 	fonts["Sans Regular"] = "../content/fonts/OpenSans-Regular.ttf";
     //render["background"] = "../Assets/Img/wallpaper.png";
+
+    //enemies
+    render["zombieenemy"] = "../content/zombie_1.png";
+    render["batenemy"] = "../content/bat.png";
+
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }

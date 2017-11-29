@@ -21,7 +21,7 @@ private:
 protected:
     bool visible;
     int angle, radius, midX, midY, width, height;
-    float speed;
+	float speed;
     float distance;
 	Point _destination;
 	Point _coordinates;
@@ -49,6 +49,9 @@ public:
 	const int getMidY(float destinationPosition) const;
 
 	const int getRadius() const;
+	int getWidth() const;
+
+	int getHeight() const;
 };
 
 

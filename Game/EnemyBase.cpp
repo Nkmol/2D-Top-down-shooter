@@ -3,7 +3,9 @@
 //
 
 #include "EnemyBase.h"
-
+namespace enemybase_constants {
+    const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
+}
 EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
 		MoveableObject(filePath, Point{ xPos, yPos }, speed),
 		destinationPoint{xPos, yPos},
@@ -22,7 +24,6 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 	damage(damage),
 	reward(reward)
 {
-	
 }
 
 void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time) {
@@ -68,13 +69,14 @@ void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
 void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>> others) {
     for (auto const &other: others) {
         if (other.get() != shared_from_this().get()) {
+            const auto& oWeight = other->getWidth() * other->getHeight() * this->weightMultiplier;
 			const auto& oCoordinates = other->GetCoordinates();
             Point squared = Point((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
                                   (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
             float squareDist = squared.x + squared.y;
-            if (squareDist < 155500) {
+            if (squareDist < oWeight) {
                 Point headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
-                double scale = sqrt(squareDist) / sqrt(155500);
+                double scale = sqrt(squareDist) / sqrt(oWeight);
                 Point unitVector = Point(headingVector.x / sqrt(squareDist), headingVector.y / sqrt(squareDist));
                 Point scaledVector = Point((unitVector.x / scale), (unitVector.y / scale));
                 this->destinationPoint.x += scaledVector.x;
@@ -82,6 +84,25 @@ void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>> others) {
             }
         }
     }
+
+    for (GameObject const &other: *PhysicsManager::Instance().collidables) {
+        const auto& oX = other.getMidX();
+        const auto& oY = other.getMidY();
+        const auto& oWeight = (other.getWidth() * other.getHeight()) * enemybase_constants::COLLIDABLEWEIGHTMULTIPLIER;
+        const auto& mX = this->GetCoordinates().x;
+        const auto& mY = this->GetCoordinates().y;
+        Point squared = Point((oX - mX) * (oX - mX), (oY - mY) * (oY - mY));
+        float squareDist = squared.x + squared.y;
+        if(squareDist < oWeight){
+            Point headingVector = Point(mX - oX, mY - oY);
+            double scale = sqrt(squareDist) / sqrt(oWeight);
+            Point unitVector = Point(headingVector.x / sqrt(squareDist), headingVector.y / sqrt(squareDist));
+            Point scaledVector = Point((unitVector.x / scale),(unitVector.y / scale));
+            this->destinationPoint.x += scaledVector.x;
+            this->destinationPoint.y += scaledVector.y;
+        }
+    }
+
 }
 
 void EnemyBase::applyForce(float forcePower, int forceDirection) {

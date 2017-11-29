@@ -825,6 +825,60 @@ Game/main.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/main.cpp.s
 .PHONY : Game/main.cpp.s
 
+Game/monsters/BatEnemy.o: Game/monsters/BatEnemy.cpp.o
+
+.PHONY : Game/monsters/BatEnemy.o
+
+# target to build an object file
+Game/monsters/BatEnemy.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/BatEnemy.cpp.o
+.PHONY : Game/monsters/BatEnemy.cpp.o
+
+Game/monsters/BatEnemy.i: Game/monsters/BatEnemy.cpp.i
+
+.PHONY : Game/monsters/BatEnemy.i
+
+# target to preprocess a source file
+Game/monsters/BatEnemy.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/BatEnemy.cpp.i
+.PHONY : Game/monsters/BatEnemy.cpp.i
+
+Game/monsters/BatEnemy.s: Game/monsters/BatEnemy.cpp.s
+
+.PHONY : Game/monsters/BatEnemy.s
+
+# target to generate assembly for a file
+Game/monsters/BatEnemy.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/BatEnemy.cpp.s
+.PHONY : Game/monsters/BatEnemy.cpp.s
+
+Game/monsters/ZombieEnemy.o: Game/monsters/ZombieEnemy.cpp.o
+
+.PHONY : Game/monsters/ZombieEnemy.o
+
+# target to build an object file
+Game/monsters/ZombieEnemy.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/ZombieEnemy.cpp.o
+.PHONY : Game/monsters/ZombieEnemy.cpp.o
+
+Game/monsters/ZombieEnemy.i: Game/monsters/ZombieEnemy.cpp.i
+
+.PHONY : Game/monsters/ZombieEnemy.i
+
+# target to preprocess a source file
+Game/monsters/ZombieEnemy.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/ZombieEnemy.cpp.i
+.PHONY : Game/monsters/ZombieEnemy.cpp.i
+
+Game/monsters/ZombieEnemy.s: Game/monsters/ZombieEnemy.cpp.s
+
+.PHONY : Game/monsters/ZombieEnemy.s
+
+# target to generate assembly for a file
+Game/monsters/ZombieEnemy.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/monsters/ZombieEnemy.cpp.s
+.PHONY : Game/monsters/ZombieEnemy.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -912,6 +966,12 @@ help:
 	@echo "... Game/main.o"
 	@echo "... Game/main.i"
 	@echo "... Game/main.s"
+	@echo "... Game/monsters/BatEnemy.o"
+	@echo "... Game/monsters/BatEnemy.i"
+	@echo "... Game/monsters/BatEnemy.s"
+	@echo "... Game/monsters/ZombieEnemy.o"
+	@echo "... Game/monsters/ZombieEnemy.i"
+	@echo "... Game/monsters/ZombieEnemy.s"
 .PHONY : help
 
 

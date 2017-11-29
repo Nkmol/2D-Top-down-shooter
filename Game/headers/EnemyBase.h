@@ -12,16 +12,13 @@
 #include "Player.h"
 #include "Helper.h"
 class EnemyBase : public MoveableObject, public std::enable_shared_from_this<EnemyBase>  {
-    Point destinationPoint;
     bool isLeader;
     shared_ptr<EnemyBase> leader;
-    shared_ptr<Player> target;
 
 protected:
-	int lifepoints;
-	int damage;
-	int reward;
-	
+	int lifepoints, damage, reward, weightMultiplier = 100;
+	Point destinationPoint;
+	shared_ptr<Player> target;
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
@@ -38,7 +35,8 @@ public:
     void cohese(std::vector<shared_ptr<EnemyBase>> others);
     void seperate(std::vector<shared_ptr<EnemyBase>> others);
     void applyForce(float forcePower, int forceDirection);
-    void goTarget();
+
+	virtual void goTarget();
 
     //getters
     const shared_ptr<Player> &getTarget() const;

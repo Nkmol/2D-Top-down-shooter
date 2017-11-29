@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "monsters/BatEnemy.h"
 
 Level::Level(const int level) : _level(level)
 {
@@ -18,7 +19,8 @@ void Level::Init()
 
 	// save pointer seperate
 	_player = player;
-	_flockController.generateFlock(20, 100, 900, _player, 50.0f);
+	_flockController.generateFlock<ZombieEnemy>(20, 100, 900, _player);
+	_flockController.generateFlock<BatEnemy>(50, 100, 900, _player);
 }
 
 void Level::HandleEvents(SDL_Event event)
