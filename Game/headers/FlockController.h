@@ -11,6 +11,7 @@
 #include "memory"
 #include "vector"
 #include "../monsters/ZombieEnemy.h"
+#include "../monsters/BatEnemy.h"
 class FlockController {
     shared_ptr<Player> target;
 public:

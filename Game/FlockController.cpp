@@ -3,7 +3,6 @@
 //
 
 #include "FlockController.h"
-#include "monsters/BatEnemy.h"
 
 using namespace std;
 template<class T> void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget) {
