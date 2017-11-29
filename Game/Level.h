@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Player.h"
 #include "MoveableObject.h"
 #include "GameObject.h"
@@ -9,20 +10,28 @@
 #include <InputManager.h>
 #include "Weapon.h"
 #include "Uzi.h"
+#include "Handgun.h"
 
-class Level
-{
-	int _level;
-	std::vector<shared_ptr<MoveableObject>> _objs;
-	std::vector<shared_ptr<MoveableObject>> _npcs;
-	std::vector<shared_ptr<GameObject>> _loot;
-	shared_ptr<Player> _player;
-	FlockController _flockController;
-	
+class Level {
+    int _level;
+    std::vector<shared_ptr<MoveableObject>> _objs;
+    std::vector<shared_ptr<MoveableObject>> _npcs;
+    std::vector<shared_ptr<GameObject>> _loot;
+    shared_ptr<Player> _player;
 public:
-	Level(int level);
-	void Init();
-	void HandleEvents(SDL_Event event);
-	void Update(float time);
-	void Draw();
+    const shared_ptr<Player> &getPlayer() const;
+
+private:
+    FlockController _flockController;
+
+public:
+    Level(int level);
+
+    void Init();
+
+    void HandleEvents(SDL_Event event);
+
+    void Update(float time);
+
+    void Draw();
 };

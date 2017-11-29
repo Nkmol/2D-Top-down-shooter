@@ -804,6 +804,14 @@ Config.h
 Level.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Level.h
 
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Handgun.cpp
+Handgun.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Handgun.h
+
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Handgun.h
+Weapon.h
+-
+
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp
 cmath
 -
@@ -835,6 +843,8 @@ Weapon.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.h
 Uzi.h
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.h
+Handgun.h
+/Users/MevlutOzdemir/Developers/project/GroepH/Game/Handgun.h
 
 /Users/MevlutOzdemir/Developers/project/GroepH/Game/PausedState.cpp
 PausedState.h

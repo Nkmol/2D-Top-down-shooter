@@ -8,55 +8,65 @@
 
 Player::Player(const std::string &filePath, const float x, const float y) : Player(filePath, Point{x, y}) {}
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath, coordinates, 140.0f), lifepoints(lp) {
+Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath,
+                                                                                                    coordinates,
+                                                                                                    140.0f),
+                                                                                     lifepoints(lp) {
 
 }
 
 void Player::addWeapon(Weapon &weapon) {
-    Player::weapon = weapon;
+    weapons.push_back(weapon);
+}
+
+
+void Player::changeWeapon(int index) {
+    if (--index < weapons.size()) {
+        this->weapon = &weapons[index];// it returns the weapon on index - 1
+    }
 }
 
 void Player::shoot() {
     float bulletStartX = _coordinates.x;
     float bulletStartY = _coordinates.y;
-    weapon.shoot(getAngle(), bulletStartX, bulletStartY);
+    weapon->shoot(getAngle(), bulletStartX, bulletStartY);
 }
 
-Weapon &Player::getWeapon() {
-    return weapon;
-}
 
 void Player::Move(const Point direction) {
-	_destination = direction;
+    _destination = direction;
 }
 
 void Player::draw() {
-    weapon.drawBullets();
+    weapon->drawBullets();
     MoveableObject::draw();
 }
 
 void Player::update(float time) {
-	weapon.updateBullets(time);
+    weapon->updateBullets(time);
 
-	const auto newPostition = _coordinates + (_destination * speed * time);
-	if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-		MoveableObject::update(time);
-	}
-	else {
-		MoveableObject::stopMove();
-	}
+    const auto newPostition = _coordinates + (_destination * speed * time);
+    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
+        MoveableObject::update(time);
+    } else {
+        MoveableObject::stopMove();
+    }
 
 }
 
-const int Player::getLifepoints() const
-{
-	return lifepoints;
+const int Player::getLifepoints() const {
+    return lifepoints;
 }
 
-const int Player::changeLifepoints(const int lp)
-{
-	lifepoints += lp;
-	return lifepoints;
+const int Player::changeLifepoints(const int lp) {
+    lifepoints += lp;
+    return lifepoints;
 }
+
+Weapon *Player::getWeapon() const {
+    return weapon;
+}
+
+
 
 

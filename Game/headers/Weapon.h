@@ -14,10 +14,14 @@
 class Weapon {
 
 protected:
+    int damage;
+    int shooted = 0;
     std::vector<Bullet> bullets;
+    std::string name;
 
-	int damage;
 public:
+    Weapon(int damage, std::string name);
+
     const vector<Bullet> &getBullets() const;
 
     void shoot(int angle, float xPos, float yPos);
@@ -27,6 +31,12 @@ public:
     void updateBullets(float time);
 
     void drawBullets();
+
+    int totalBullets() const;
+
+    int getShooted() const;
+
+    std::string getName() const;
 };
 
 

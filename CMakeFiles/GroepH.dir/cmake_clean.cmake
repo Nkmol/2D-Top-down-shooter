@@ -25,6 +25,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/GroepH.dir/Game/main.cpp.o"
   "CMakeFiles/GroepH.dir/Game/Game.cpp.o"
   "CMakeFiles/GroepH.dir/Game/Level.cpp.o"
+  "CMakeFiles/GroepH.dir/Game/Handgun.cpp.o"
   "GroepH.pdb"
   "GroepH"
 )

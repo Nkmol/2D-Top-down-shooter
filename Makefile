@@ -609,6 +609,33 @@ Game/Game.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Game.cpp.s
 .PHONY : Game/Game.cpp.s
 
+Game/Handgun.o: Game/Handgun.cpp.o
+
+.PHONY : Game/Handgun.o
+
+# target to build an object file
+Game/Handgun.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.o
+.PHONY : Game/Handgun.cpp.o
+
+Game/Handgun.i: Game/Handgun.cpp.i
+
+.PHONY : Game/Handgun.i
+
+# target to preprocess a source file
+Game/Handgun.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.i
+.PHONY : Game/Handgun.cpp.i
+
+Game/Handgun.s: Game/Handgun.cpp.s
+
+.PHONY : Game/Handgun.s
+
+# target to generate assembly for a file
+Game/Handgun.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.s
+.PHONY : Game/Handgun.cpp.s
+
 Game/Helper.o: Game/Helper.cpp.o
 
 .PHONY : Game/Helper.o
@@ -888,6 +915,9 @@ help:
 	@echo "... Game/Game.o"
 	@echo "... Game/Game.i"
 	@echo "... Game/Game.s"
+	@echo "... Game/Handgun.o"
+	@echo "... Game/Handgun.i"
+	@echo "... Game/Handgun.s"
 	@echo "... Game/Helper.o"
 	@echo "... Game/Helper.i"
 	@echo "... Game/Helper.s"

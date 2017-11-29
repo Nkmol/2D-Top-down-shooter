@@ -22,6 +22,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Flock.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Flock.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/FlockController.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/FlockController.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Game.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Game.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Handgun.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Handgun.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Helper.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Helper.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Level.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Level.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/PausedState.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/PausedState.cpp.o"
