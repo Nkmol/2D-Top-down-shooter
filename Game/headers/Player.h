@@ -26,12 +26,7 @@ public:
 
     Bullet shoot();
 
-    void addWeapon(Weapon &weapon);
-
-
     void Move(const Point direction);
-
-//    void draw() override;
 
     void update(float time) override;
 
@@ -45,7 +40,6 @@ public:
 
     void addWeapons(std::vector<Weapon> wp);
 
-    bool canShoot();
 };
 
 

@@ -50,6 +50,8 @@ public:
     const int getMidY(float destinationPosition) const;
 
     const int getRadius() const;
+
+    void hide();
 };
 
 

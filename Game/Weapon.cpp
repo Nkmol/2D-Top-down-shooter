@@ -4,22 +4,22 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(int damage, std::string name, int maxBullets) : name{std::move(name)}, damage{damage},
-                                                               maxBullets{maxBullets} {
-
-}
+Weapon::Weapon(int damage, std::string name, int maxBullets) :
+        name{std::move(name)},
+        damage{damage},
+        maxBullets{maxBullets} {}
 
 Bullet Weapon::getBullet(int angle, Point coordinates) {
+    Bullet bullet("bullet", coordinates, damage);
+    bullet.setAngle(angle);
+
     if (hasBullets()) {
         shooted++;
-
-        Bullet b("bullet", coordinates, damage);
-        b.setAngle(angle);
-
-        return b;
+    } else {
+        bullet.hide(); // returns a hidden bullet, so it will not be drawn
     }
 
-    return Bullet("bullet", Point(-20,-20), 0); // todo return NullBulletObject
+    return bullet;
 }
 
 bool Weapon::hasBullets() {

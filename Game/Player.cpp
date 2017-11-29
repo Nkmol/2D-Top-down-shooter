@@ -6,18 +6,14 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player(const std::string &filePath, const float x, const float y) : Player(filePath, Point{x, y}) {}
+Player::Player(const std::string &filePath, const float x, const float y)
+        : Player(filePath, Point{x, y}) {}
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp) : MoveableObject(filePath,
-                                                                                                    coordinates,
-                                                                                                    140.0f),
-                                                                                     lifepoints(lp) {
+Player::Player(const std::string &filePath, const Point coordinates, const int lp)
+        : MoveableObject(filePath, coordinates, 140.0f), lifepoints(lp) {
 
 }
 
-void Player::addWeapon(Weapon &weapon) {
-    weapons.push_back(weapon);
-}
 
 void Player::addWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
@@ -28,7 +24,7 @@ void Player::addWeapons(std::vector<Weapon> wp) {
 
 void Player::changeWeapon(int index) {
     if (index > 0 && --index < weapons.size()) {
-        this->weapon = &weapons[index];// it returns the weapon on index - 1
+        this->weapon = &weapons[index]; // it returns the weapon on index - 1
     }
 }
 

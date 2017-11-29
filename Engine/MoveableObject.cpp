@@ -9,7 +9,8 @@
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed},
         _destination(Point::Empty()),
-        _coordinates(coordinates) {
+        _coordinates(coordinates),
+        visible{true} {
 
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
@@ -24,7 +25,7 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
 }
 
 void MoveableObject::draw() {
-
+    if (!visible) return;
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &width, &height);
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
@@ -50,6 +51,10 @@ void MoveableObject::stopMove() {
 
 int MoveableObject::getAngle() const {
     return angle;
+}
+
+void MoveableObject::hide() {
+    this->visible = false;
 }
 
 bool MoveableObject::isVisible() const {
