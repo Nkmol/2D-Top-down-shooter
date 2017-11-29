@@ -10,7 +10,7 @@ void Level::Init() {
 
     auto player = make_shared<Player>("soldier", 100, 300);
     auto uzi = make_unique<Weapon>(Uzi());
-    auto handgun = make_unique<Weapon>(Handgun());
+    auto handgun = make_unique<Weapon>(Handgun(10));
 
     player->addWeapon(*uzi);
     player->addWeapon(*handgun);
