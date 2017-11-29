@@ -26,12 +26,13 @@ void BatEnemy::goTarget() {
     if(this->currentUpdateCounter >= this->maxUpdateCounter){
         this->currentUpdateCounter = 0;
         attackTarget = !attackTarget;
-        this->maxUpdateCounter = attackTarget ? rand() % 75 + 50 : rand() % 60 + 30 ;
-        const auto& tCoordinates = this->target->GetCoordinates();
-        int rAngle = rand() % 360 + 1;
-        float targetX = this->GetCoordinates().x + float(200 * cos(rAngle));
-        float targetY = this->GetCoordinates().y + float(200 * sin(rAngle));
-        this->destinationPoint = Point(targetX, targetY);
+        this->maxUpdateCounter = attackTarget ? rand() % 75 + 50 : rand() % 60 + 30;
+        if(!attackTarget) {
+            int rAngle = rand() % 360 + 1;
+            float targetX = this->GetCoordinates().x + float(200 * cos(rAngle));
+            float targetY = this->GetCoordinates().y + float(200 * sin(rAngle));
+            this->destinationPoint = Point(targetX, targetY);
+        }
     }else{
         this->currentUpdateCounter++;
     }
