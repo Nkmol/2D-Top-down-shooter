@@ -4,7 +4,9 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(int damage, std::string name) : name{name}, damage{damage} {
+#include <utility>
+
+Weapon::Weapon(int damage, std::string name) : name{std::move(name)}, damage{damage} {
 
 }
 
@@ -52,7 +54,9 @@ const vector<Bullet> &Weapon::getBullets() const {
 }
 
 int Weapon::totalBullets() const {
-    return static_cast<int>(bullets.size() > 0 ? bullets.size() : 0);
+    if (bullets.empty()) return 0;
+
+    return bullets.size();
 }
 
 std::string Weapon::getName() const {

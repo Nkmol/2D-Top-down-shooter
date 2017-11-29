@@ -771,6 +771,33 @@ Game/PlayingState.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s
 .PHONY : Game/PlayingState.cpp.s
 
+Game/Shotgun.o: Game/Shotgun.cpp.o
+
+.PHONY : Game/Shotgun.o
+
+# target to build an object file
+Game/Shotgun.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.o
+.PHONY : Game/Shotgun.cpp.o
+
+Game/Shotgun.i: Game/Shotgun.cpp.i
+
+.PHONY : Game/Shotgun.i
+
+# target to preprocess a source file
+Game/Shotgun.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.i
+.PHONY : Game/Shotgun.cpp.i
+
+Game/Shotgun.s: Game/Shotgun.cpp.s
+
+.PHONY : Game/Shotgun.s
+
+# target to generate assembly for a file
+Game/Shotgun.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.s
+.PHONY : Game/Shotgun.cpp.s
+
 Game/Uzi.o: Game/Uzi.cpp.o
 
 .PHONY : Game/Uzi.o
@@ -933,6 +960,9 @@ help:
 	@echo "... Game/PlayingState.o"
 	@echo "... Game/PlayingState.i"
 	@echo "... Game/PlayingState.s"
+	@echo "... Game/Shotgun.o"
+	@echo "... Game/Shotgun.i"
+	@echo "... Game/Shotgun.s"
 	@echo "... Game/Uzi.o"
 	@echo "... Game/Uzi.i"
 	@echo "... Game/Uzi.s"

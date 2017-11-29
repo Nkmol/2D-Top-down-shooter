@@ -244,6 +244,12 @@
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.h">
 			<Option target="GroepH"/>
 		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Shotgun.cpp">
+			<Option target="GroepH"/>
+		</Unit>
+		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/Shotgun.h">
+			<Option target="GroepH"/>
+		</Unit>
 		<Unit filename="/Users/MevlutOzdemir/Developers/project/GroepH/Game/State.h">
 			<Option target="GroepH"/>
 		</Unit>

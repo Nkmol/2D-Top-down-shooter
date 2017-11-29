@@ -28,6 +28,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/PausedState.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/PausedState.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Player.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Player.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/PlayingState.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/PlayingState.cpp.o"
+  "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Shotgun.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Shotgun.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Uzi.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Uzi.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/Weapon.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/Weapon.cpp.o"
   "/Users/MevlutOzdemir/Developers/project/GroepH/Game/main.cpp" "/Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/GroepH.dir/Game/main.cpp.o"

@@ -42,6 +42,8 @@ public:
     void changeWeapon(int index);
 
     Weapon *getWeapon() const;
+
+    void addWeapons(std::vector<Weapon> wp);
 };
 
 

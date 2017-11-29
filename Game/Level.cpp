@@ -9,12 +9,8 @@ void Level::Init() {
 
 
     auto player = make_shared<Player>("soldier", 100, 300);
-    auto uzi = make_unique<Weapon>(Uzi());
-    auto handgun = make_unique<Weapon>(Handgun());
-
-    player->addWeapon(*uzi);
-    player->addWeapon(*handgun);
-    player->changeWeapon(1);
+    player->addWeapons({Uzi(), Handgun(), Shotgun()});
+    player->changeWeapon(1); // set weapon to Uzi
 
     _objs.emplace_back(player);
 
@@ -75,6 +71,3 @@ void Level::Draw() {
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 }
 
-const shared_ptr<Player> &Level::getPlayer() const {
-    return _player;
-}

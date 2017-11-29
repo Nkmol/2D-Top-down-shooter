@@ -11,6 +11,7 @@
 #include "Weapon.h"
 #include "Uzi.h"
 #include "Handgun.h"
+#include "Shotgun.h"
 #include "Config.h"
 
 class Level {
@@ -19,14 +20,12 @@ class Level {
     std::vector<shared_ptr<MoveableObject>> _npcs;
     std::vector<shared_ptr<GameObject>> _loot;
     shared_ptr<Player> _player;
-public:
-    const shared_ptr<Player> &getPlayer() const;
 
 private:
     FlockController _flockController;
 
 public:
-    Level(int level);
+    explicit Level(int level);
 
     void Init();
 

@@ -19,6 +19,12 @@ void Player::addWeapon(Weapon &weapon) {
     weapons.push_back(weapon);
 }
 
+void Player::addWeapons(std::vector<Weapon> wp) {
+    for(auto &weapon : wp){
+        weapons.push_back(weapon);
+    }
+}
+
 
 void Player::changeWeapon(int index) {
     if (index > 0 && --index < weapons.size()) {
