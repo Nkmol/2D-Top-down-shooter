@@ -6,8 +6,7 @@ Level::Level(const int level) : _level(level) {
 
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
-
-
+    
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(1); // set weapon to Uzi
