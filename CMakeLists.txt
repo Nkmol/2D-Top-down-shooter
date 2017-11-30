@@ -76,7 +76,7 @@ set(SOURCE_FILES
         Game/headers/EnemyBase.h
         Game/Level.cpp
         Game/Level.h
-        )
+        Game/Handgun.cpp Game/Handgun.h Game/Shotgun.cpp Game/Shotgun.h)
 add_executable(GroepH ${SOURCE_FILES})
 
 target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})

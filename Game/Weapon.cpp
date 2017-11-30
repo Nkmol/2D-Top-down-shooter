@@ -4,47 +4,38 @@
 
 #include "Weapon.h"
 
+Weapon::Weapon(int damage, std::string name, int maxBullets) :
+        name{std::move(name)},
+        damage{damage},
+        maxBullets{maxBullets} {}
 
-void Weapon::addBullets(Bullet &bullet, int amount) {
-    for (int i = 0; i < amount; ++i) {
-        unique_ptr<Bullet> b{new Bullet(bullet)};
-        bullets.push_back(*b);
-    }
-}
+Bullet Weapon::getBullet(int angle, Point coordinates) {
+    Bullet bullet("bullet", coordinates, damage);
+    bullet.setAngle(angle);
 
-
-void Weapon::shoot(int angle, float xPos, float yPos) {
-    for (auto &bullet : bullets) {
-        if (!bullet.isVisible()) {
-            bullet.makeVisible();
-			bullet.SetCoordinates(Point{ xPos, yPos });
-
-            bullet.setAngle(angle);
-            break;
-        }
+    if (hasBullets()) {
+        shooted++;
+    } else {
+        bullet.hide(); // returns a hidden bullet, so it will not be drawn
     }
 
+    return bullet;
 }
 
-void Weapon::updateBullets(float time) {
-    for (auto &bullet : bullets) {
-        if (bullet.isVisible()) {
-            bullet.update(time);
-        }
-    }
+bool Weapon::hasBullets() {
+    return this->shooted < this->maxBullets;
 }
 
-
-void Weapon::drawBullets() {
-    for (auto &bullet : bullets) {
-        if (bullet.isVisible()) {
-            bullet.draw();
-        }
-    }
+int Weapon::totalBullets() const {
+    return maxBullets;
 }
 
-const vector<Bullet> &Weapon::getBullets() const {
-    return bullets;
+std::string Weapon::getName() const {
+    return this->name;
+}
+
+int Weapon::getShooted() const {
+    return this->shooted;
 }
 
 

@@ -11,10 +11,10 @@ InputManager *InputManager::sInstance = nullptr;
 
 InputManager::InputManager() {
     InputManager::keyDirections = {
-            { SDL_SCANCODE_W, Point::Up()},
-            { SDL_SCANCODE_D, Point::Right() },
-            { SDL_SCANCODE_S, Point::Down() },
-            { SDL_SCANCODE_A, Point::Left() },
+            {SDL_SCANCODE_W, Point::Up()},
+            {SDL_SCANCODE_D, Point::Right()},
+            {SDL_SCANCODE_S, Point::Down()},
+            {SDL_SCANCODE_A, Point::Left()},
     };
 }
 
@@ -42,31 +42,45 @@ bool InputManager::isQuit(SDL_Event &event) {
     return event.type == SDL_QUIT;
 }
 
-bool InputManager::isMouseDown(SDL_Event &event)
-{
-	return event.type == SDL_MOUSEBUTTONDOWN;
+bool InputManager::isPauseResume(SDL_Event &event) {
+    return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);
 }
 
-bool InputManager::isPauseResume(SDL_Event &event)
-{
-	return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);
+bool InputManager::isNumericKeyPressed(SDL_Event &event, int &key) {
+    std::map<SDL_Keycode, int> keyNumber = {
+            {SDL_SCANCODE_1, 1},
+            {SDL_SCANCODE_2, 2},
+            {SDL_SCANCODE_3, 3},
+            {SDL_SCANCODE_4, 4},
+            {SDL_SCANCODE_5, 5},
+    };
+
+    const auto keysArray = SDL_GetKeyboardState(nullptr);
+
+    for (auto const &value : keyNumber) {
+        if (keysArray[value.first]) {
+            key = value.second;
+            return true;
+        }
+    }
+    return false;
 }
 
-Point InputManager::getDirection(SDL_Event& event) {
+Point InputManager::getDirection(SDL_Event &event) {
     // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
 
-	Point direction { 0, 0 };
+    Point direction{0, 0};
     // update keyboard state
-	const auto keysArray = SDL_GetKeyboardState(nullptr);
+    const auto keysArray = SDL_GetKeyboardState(nullptr);
 
-	for(auto const& value : keyDirections)
-	{
-		if (keysArray[value.first]) direction += value.second;
-	}
+    for (auto const &value : keyDirections) {
+        if (keysArray[value.first])
+            direction += value.second;
+    }
 
-	return direction;
+    return direction;
 }
 
 
@@ -86,7 +100,7 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::calculateMouseAngle(MoveableObject &object) {
 
-	const auto& coordinates = object.GetCoordinates();
+    const auto &coordinates = object.GetCoordinates();
     float deltaY = coordinates.y - InputManager::getMousePositionY();
     float deltaX = coordinates.x - InputManager::getMousePositionX();
 

@@ -16,29 +16,26 @@ void PlayingState::HandleEvents(Game &game) {
 
     SDL_Event event{};
 
-    if (inputManager.hasEvent(&event)) {
+    while (inputManager.hasEvent(&event)) {
 
-		if (inputManager.isPauseResume(event)) {
-			auto state = make_unique<PausedState>();
-			game.ChangeState(std::move(state));
-		}        
+        if (inputManager.isPauseResume(event)) {
+            auto state = make_unique<PausedState>();
+            game.ChangeState(std::move(state));
+        }
         if (inputManager.isQuit(event)) {
             game.Quit();
         }
-		game.GetLevel()->HandleEvents(event);
+        game.GetLevel()->HandleEvents(event);
     }
 }
 
-void PlayingState::Update(Game& game, float time)
-{
-	game.GetLevel()->Update(time);
+void PlayingState::Update(Game &game, float time) {
+    game.GetLevel()->Update(time);
 
 }
 
 void PlayingState::Draw(Game &game) {
-	MapManager::Instance().Render();
-	game.GetLevel()->Draw();
-
+    game.GetLevel()->Draw();
 }
 
 void PlayingState::Init() {

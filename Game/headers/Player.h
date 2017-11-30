@@ -12,28 +12,34 @@
 
 class Player : public MoveableObject {
 
-    Weapon weapon;
-	int lifepoints;
+    std::vector<Weapon> weapons;
+    Weapon *weapon;
+
+private:
+    // don't need to delete, it's a reference to a weapon inside de weapons vector.
+    int lifepoints;
 
 public:
-    void shoot();
+    Player(const std::string &filePath, float x, float y);
 
-	Player(const std::string& filePath, float x, float y);
-	Player(const std::string& filePath, Point coordinates, int lp = 100);
-    void addWeapon(Weapon &weapon);
+    Player(const std::string &filePath, Point coordinates, int lp = 100);
 
-    Weapon &getWeapon();
+    Bullet shoot();
 
     void Move(const Point direction);
 
-    void draw() override;
-
     void update(float time) override;
 
-	const int getLifepoints() const;
+    const int getLifepoints() const;
 
-	const int changeLifepoints(const int lp);
-	
+    const int changeLifepoints(const int lp);
+
+    void changeWeapon(int index);
+
+    Weapon *getWeapon() const;
+
+    void addWeapons(std::vector<Weapon> wp);
+
 };
 
 
