@@ -1,7 +1,10 @@
 #include "TickerTime.h"
+#include <ostream>
+#include <iostream>
+#include <thread>
 
 TickerTime::TickerTime(const unsigned targetFps, const unsigned maxFps) : _targetFps{targetFps}, _maxFps{maxFps},
-                                                                          _lastUpdateTime{SDL_GetPerformanceCounter()},
+                                                                          _startPreviousFrame{SDL_GetPerformanceCounter()},
                                                                           _lastDeltaTicks(0),
                                                                           _ticksPerSecond { SDL_GetPerformanceFrequency() },
                                                                           _targetTicksPerFrame { _ticksPerSecond / _targetFps}, 
@@ -34,18 +37,18 @@ float TickerTime::GetGameTime() const
 	return _targetTicksPerFrame / static_cast<float>(_ticksPerSecond);
 }
 
-double TickerTime::GetMsOfLastFrame() const
+double TickerTime::GetMsOfCurrentFrame() const
 {
-	return _lastDeltaTicks * 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
+	return (SDL_GetPerformanceCounter() - _startPreviousFrame) * 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
 }
 
-int TickerTime::GetFps() const
+double TickerTime::GetFps() const
 {
 	/*std::cout << SDL_GetPerformanceFrequency() << " / " << _lastDeltaTicks << " = " << (static_cast<float>(_ticksPerSecond) / (
 		_lastDeltaTicks)) << std::endl;*/
 
 	// 1 seconds / ms in one frame
-	return 1000 / GetMsOfLastFrame();
+	return 1000.0 / GetMsOfCurrentFrame();
 }
 
 void TickerTime::Run(const bool& exitWhen)
@@ -57,11 +60,9 @@ void TickerTime::Run(const bool& exitWhen)
 	while (exitWhen)
 	{
 		const auto ticksNow = SDL_GetPerformanceCounter();
-		_lastDeltaTicks = ticksNow - _lastUpdateTime;
-		_lastUpdateTime = ticksNow;
-
+		_lastDeltaTicks = ticksNow - _startPreviousFrame;
+		
 		_accumulator += _lastDeltaTicks;
-
 		// update game logic as lag permits -> physics catch up
 		while (_accumulator >= _targetTicksPerFrame)
 		{
@@ -71,6 +72,17 @@ void TickerTime::Run(const bool& exitWhen)
 			}
 			_accumulator -= _targetTicksPerFrame;
 
+			// Check after first accumalotr resolve if still lagg
+			if (_accumulator >= _targetTicksPerFrame) {
+				SDL_Log("Current lag is %f ms", _accumulator * 1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
+				
+				// Skip catching up when it falls to far behind (5 frames behind for now)
+				if (_accumulator >= _targetTicksPerFrame * 5)
+				{
+					SDL_LogCritical(2, "Skipping frames, falls too far behind");
+					_accumulator = 0;
+				}
+			}
 		}
 
 		// For every second
@@ -81,6 +93,8 @@ void TickerTime::Run(const bool& exitWhen)
 			{
 				onSecondFunction.Tick();
 			}
+
+			SDL_Log("Timeframe took %f ms based on previous frame", GetMsOfCurrentFrame());
 		}
 
 		for (const auto& frameFunction : _frameFunctions)
@@ -89,14 +103,24 @@ void TickerTime::Run(const bool& exitWhen)
 		}
 
 
-		actualTimeRun += GetMsOfLastFrame() / 1000;
+		actualTimeRun += GetMsOfCurrentFrame() / 1000;
 		_timesRendered += 1;
 
+		//auto start = SDL_GetPerformanceCounter();
+		//SDL_Log("update   took %f ms", (double)((start - ticksNow) * 1000) / SDL_GetPerformanceFrequency());
+
 		// Wait for next frame (caps frames)
-		const auto delay = 1000 / _maxFps - GetMsOfLastFrame() * 0.001;
+		long delay = 1000.0l / _maxFps - (SDL_GetPerformanceCounter() - ticksNow) * 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
 		if (delay > 0) {
-			SDL_Delay(delay);
+			std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 		}
+
+		_startPreviousFrame = ticksNow;
+
+		//auto s1 = SDL_GetPerformanceCounter();
+		//SDL_Log("timefame took %f ms with function result of %f ms", (double)((s1 - ticksNow) * 1000) / SDL_GetPerformanceFrequency(), GetMsOfCurrentFrame());
+		//SDL_Log("delay took    %f ms with a delay of %f ms", (double)((s1 - start) * 1000) / SDL_GetPerformanceFrequency(), (double)(std::chrono::milliseconds(delay).count()));
+
 	}
 }
 

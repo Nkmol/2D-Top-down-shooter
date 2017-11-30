@@ -11,8 +11,7 @@
 class Uzi : public Weapon {
 
 public:
-    Uzi(int damage = 15);
-
+    explicit Uzi(int damage = 15);
 };
 
 

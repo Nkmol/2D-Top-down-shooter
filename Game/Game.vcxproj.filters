@@ -54,10 +54,10 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="monsters\BatEnemy.cpp">
+    <ClCompile Include="Handgun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="monsters\ZombieEnemy.cpp">
+    <ClCompile Include="Shotgun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,10 +104,10 @@
     <ClInclude Include="Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="monsters\BatEnemy.h">
+    <ClInclude Include="Shotgun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="monsters\ZombieEnemy.h">
+    <ClInclude Include="Handgun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

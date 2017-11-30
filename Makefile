@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
+CMAKE_SOURCE_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH"
+CMAKE_BINARY_DIR = /Users/MevlutOzdemir/Developers/project/GroepH
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/ahmadrahimi/Desktop/school/minor/blok 2/project/GroepH_Prod/GroepH/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/MevlutOzdemir/Developers/project/GroepH/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -609,6 +609,33 @@ Game/Game.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Game.cpp.s
 .PHONY : Game/Game.cpp.s
 
+Game/Handgun.o: Game/Handgun.cpp.o
+
+.PHONY : Game/Handgun.o
+
+# target to build an object file
+Game/Handgun.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.o
+.PHONY : Game/Handgun.cpp.o
+
+Game/Handgun.i: Game/Handgun.cpp.i
+
+.PHONY : Game/Handgun.i
+
+# target to preprocess a source file
+Game/Handgun.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.i
+.PHONY : Game/Handgun.cpp.i
+
+Game/Handgun.s: Game/Handgun.cpp.s
+
+.PHONY : Game/Handgun.s
+
+# target to generate assembly for a file
+Game/Handgun.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Handgun.cpp.s
+.PHONY : Game/Handgun.cpp.s
+
 Game/Helper.o: Game/Helper.cpp.o
 
 .PHONY : Game/Helper.o
@@ -743,6 +770,33 @@ Game/PlayingState.s: Game/PlayingState.cpp.s
 Game/PlayingState.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/PlayingState.cpp.s
 .PHONY : Game/PlayingState.cpp.s
+
+Game/Shotgun.o: Game/Shotgun.cpp.o
+
+.PHONY : Game/Shotgun.o
+
+# target to build an object file
+Game/Shotgun.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.o
+.PHONY : Game/Shotgun.cpp.o
+
+Game/Shotgun.i: Game/Shotgun.cpp.i
+
+.PHONY : Game/Shotgun.i
+
+# target to preprocess a source file
+Game/Shotgun.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.i
+.PHONY : Game/Shotgun.cpp.i
+
+Game/Shotgun.s: Game/Shotgun.cpp.s
+
+.PHONY : Game/Shotgun.s
+
+# target to generate assembly for a file
+Game/Shotgun.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.s
+.PHONY : Game/Shotgun.cpp.s
 
 Game/Uzi.o: Game/Uzi.cpp.o
 
@@ -942,6 +996,9 @@ help:
 	@echo "... Game/Game.o"
 	@echo "... Game/Game.i"
 	@echo "... Game/Game.s"
+	@echo "... Game/Handgun.o"
+	@echo "... Game/Handgun.i"
+	@echo "... Game/Handgun.s"
 	@echo "... Game/Helper.o"
 	@echo "... Game/Helper.i"
 	@echo "... Game/Helper.s"
@@ -957,6 +1014,9 @@ help:
 	@echo "... Game/PlayingState.o"
 	@echo "... Game/PlayingState.i"
 	@echo "... Game/PlayingState.s"
+	@echo "... Game/Shotgun.o"
+	@echo "... Game/Shotgun.i"
+	@echo "... Game/Shotgun.s"
 	@echo "... Game/Uzi.o"
 	@echo "... Game/Uzi.i"
 	@echo "... Game/Uzi.s"

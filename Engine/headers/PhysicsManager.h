@@ -23,6 +23,8 @@ public:
 	bool checkCollision(float midX, float midY, float radius);
 
 private:
-
+	float _tileSize;
+	float _playScreenWidth;
+	float _playScreenHeight;
 };
 #endif
