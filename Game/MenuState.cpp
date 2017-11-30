@@ -13,10 +13,10 @@ void MenuState::HandleEvents(Game& game)
 {
 	auto& inputManager = InputManager::instance();
 	SDL_Event ev;
-	if (inputManager.hasEvent(&ev)) {
+	while (inputManager.hasEvent(&ev)) {
 		if (inputManager.isQuit(ev))
 			game.Quit();
-		else if (inputManager.isMouseDown(ev))
+		else if (inputManager.isMouseClicked(ev))
 		{
 			if (ev.button.x > newgamebutton.getX1() && ev.button.x < newgamebutton.getX2() && ev.button.y > newgamebutton.getY1() && ev.button.y < newgamebutton.getY2()) {
 				//New game
@@ -53,9 +53,9 @@ void MenuState::Draw(Game& game)
 
 void MenuState::Init()
 {
-	newgamebutton = Button(newgameString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 0.75, 225, 45);
-	loadgamebutton = Button(loadgameString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
-	creditsbutton = Button(creditsString, SCREEN_WIDTH / 3, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
+	newgamebutton = Button(newgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 0.75, 225, 45);
+	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
+	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
 
 
 	AudioManager::Instance().InitMusicPlayer();

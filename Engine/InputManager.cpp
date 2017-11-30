@@ -112,11 +112,6 @@ int InputManager::calculateMouseAngle(MoveableObject &object) {
     return (result + 360) % 360;
 }
 
-bool InputManager::isMouseDown(SDL_Event& event)
-{
-	return event.type == SDL_MOUSEBUTTONDOWN;
-}
-
 bool InputManager::isMouseMoved(SDL_Event &event) {
     return event.type == SDL_MOUSEMOTION;
 }

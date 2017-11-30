@@ -25,8 +25,8 @@ private:
 	std::string newgameString = "newgamebutton";
 	std::string loadgameString = "loadgamebutton";
 	std::string creditsString = "creditsbutton";
-	const int SCREEN_WIDTH = 1500;
-	const int SCREEN_HEIGHT = 960;
+	const int SCREEN_WIDTH = config::width; 
+	const int SCREEN_HEIGHT = config::height;
 	Button newgamebutton;
 	Button loadgamebutton;
 	Button creditsbutton;
