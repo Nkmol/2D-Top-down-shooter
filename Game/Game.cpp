@@ -44,7 +44,7 @@ void Game::Run(const unsigned int targetFps)
 	// Reference explenation: http://gamesfromwithin.com/casey-and-the-clearly-deterministic-contraptions
 	// Reference code example: https://gist.github.com/mariobadr/673bbd5545242fcf9482
 
-	TickerTime timer{targetFps, 120};
+	TickerTime timer{targetFps, 320};
 
 	#pragma region init timer
 	timer.OnCatchUp([&]()
