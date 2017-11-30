@@ -42,6 +42,11 @@ bool InputManager::isQuit(SDL_Event &event) {
     return event.type == SDL_QUIT;
 }
 
+bool InputManager::isMouseDown(SDL_Event &event)
+{
+	return event.type == SDL_MOUSEBUTTONDOWN;
+}
+
 bool InputManager::isPauseResume(SDL_Event &event)
 {
 	return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);

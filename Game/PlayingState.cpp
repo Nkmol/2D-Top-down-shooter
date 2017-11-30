@@ -36,6 +36,7 @@ void PlayingState::Update(Game& game, float time)
 }
 
 void PlayingState::Draw(Game &game) {
+	MapManager::Instance().Render();
 	game.GetLevel()->Draw();
 
 }
