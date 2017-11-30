@@ -11,7 +11,7 @@ MenuState::~MenuState()
 
 void MenuState::HandleEvents(Game& game)
 {
-	auto inputManager = InputManager::instance();
+	auto& inputManager = InputManager::instance();
 	SDL_Event ev;
 	if (inputManager.hasEvent(&ev)) {
 		if (inputManager.isQuit(ev))
