@@ -10,16 +10,16 @@
 #include "Flock.h"
 #include "memory"
 #include "vector"
-#include "../monsters/ZombieEnemy.h"
-#include "../monsters/BatEnemy.h"
-class FlockController {
-    shared_ptr<Player> target;
+
+class FlockController
+{
+	vector<unique_ptr<Flock>> _flocks;
 public:
-    std::vector<shared_ptr<Flock>> flocks;
-    FlockController() = default;
-    template<class T> void generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget);
-    void drawFlocks();
-    void updateFlocks(float time);
+	FlockController() = default;
+	template <class T>
+	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget);
+	void DrawFlocks();
+	void UpdateFlocks(float time);
 };
 
 #endif //SHOOTER_FLOCKCONTROLLER_H

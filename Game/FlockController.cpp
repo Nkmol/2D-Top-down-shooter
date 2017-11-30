@@ -3,32 +3,43 @@
 //
 
 #include "FlockController.h"
+#include "../monsters/ZombieEnemy.h"
+#include "../monsters/BatEnemy.h"
 
 using namespace std;
-template<class T> void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget) {
-    shared_ptr<EnemyBase> leader{
-            new T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), true)};
-    leader->setTarget(flockTarget);
 
-    shared_ptr<Flock> newFlock{new Flock(leader)};
-    for (int i = 0; i < flockSize; i++) {
-        shared_ptr<EnemyBase> newFlockMember{
-                new T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false)};
-        newFlock->addMember(newFlockMember);
-    }
-    this->flocks.push_back(newFlock);
-}
-template void FlockController::generateFlock<ZombieEnemy>(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget);
-template void FlockController::generateFlock<BatEnemy>(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget);
+template <class T>
+void FlockController::GenerateFlock(const int flockSize, const int minPos, const int maxPos, Player& flockTarget)
+{
+	T leader(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), true);
+	leader.setTarget(flockTarget);
 
-void FlockController::drawFlocks() {
-    for (auto const &flock: this->flocks) {
-        flock->draw();
-    }
+	auto newFlock = std::make_unique<Flock>(move(leader));
+	for (auto i = 0; i < flockSize; i++)
+	{
+		newFlock->AddMember(T{Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false});
+	}
+
+	_flocks.push_back(move(newFlock));
 }
 
-void FlockController::updateFlocks(float time) {
-    for (auto const &flock: this->flocks) {
-        flock->update(time);
-    }
+template void FlockController::GenerateFlock<ZombieEnemy>(const int flockSize, const int minPos, const int maxPos,
+                                                          Player& flockTarget);
+template void FlockController::GenerateFlock<BatEnemy>(const int flockSize, const int minPos, const int maxPos,
+                                                       Player& flockTarget);
+
+void FlockController::DrawFlocks()
+{
+	for (auto const& flock : _flocks)
+	{
+		flock->Draw();
+	}
+}
+
+void FlockController::UpdateFlocks(const float time)
+{
+	for (auto const& flock : _flocks)
+	{
+		flock->Update(time);
+	}
 }
