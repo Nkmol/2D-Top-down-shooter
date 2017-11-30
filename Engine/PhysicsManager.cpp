@@ -3,8 +3,11 @@
 
 PhysicsManager::PhysicsManager()
 {
-	if(collidables == NULL)
+	if(collidables == NULL){}
 		collidables = MapManager::Instance().getCollidables();
+	_tileSize = collidables->at(0).getRadius() * 2;
+	_playScreenWidth = 39 * _tileSize;
+	_playScreenHeight = 29 * _tileSize;
 }
 
 PhysicsManager::~PhysicsManager()
@@ -24,6 +27,22 @@ PhysicsManager& PhysicsManager::Instance()
 bool PhysicsManager::checkCollision(float midX, float midY, float radius)
 {
 	bool isCollision = false;
+	//if (midX - radius < _tileSize ) {
+	//	return true;
+	//}
+
+	//if (midY - radius < _tileSize) {
+	//	return true;
+	//}
+
+	//if (midX + radius > _playScreenWidth) {
+	//	return true;
+	//}
+
+	//if (midY + radius > _playScreenHeight) {
+	//	return true;
+	//}
+	
 	for (int i = 0; i < collidables->size(); i++) {
 		int xStep = midX - collidables->at(i).getMidX();
 		int yStep = midY - collidables->at(i).getMidY();
