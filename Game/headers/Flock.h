@@ -11,15 +11,15 @@
 #include "vector"
 
 class Flock {
-    shared_ptr<EnemyBase> leader;
-    std::vector<shared_ptr<EnemyBase>> members;
+	EnemyBase& _leader;
+    vector<unique_ptr<EnemyBase>> _members;
 public:
-    explicit Flock(shared_ptr<EnemyBase> leader);
+	explicit Flock(EnemyBase&& leader);
 
-    void addMember(shared_ptr<EnemyBase> newMember);
-    void removeFarMembers();
-    void update(float time);
-    void draw();
+    void AddMember(EnemyBase&& newMember);
+    void RemoveFarMembers();
+    void Update(float time);
+    void Draw();
 };
 
 

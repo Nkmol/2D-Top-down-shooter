@@ -26,11 +26,11 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 {
 }
 
-void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>>& others, float time) {
+void EnemyBase::updatePositions(std::vector<unique_ptr<EnemyBase>>& others, float time) {
     if (!isLeader) {
         align();
-        cohese(others);
-        seperate(others);
+        /*cohese(others);
+        seperate(others);*/
     } else {
         goTarget();
     }
@@ -119,16 +119,16 @@ void EnemyBase::goTarget() {
     this->destinationPoint = Point(tCoordinates.x, tCoordinates.y);
 }
 
-const shared_ptr<Player> &EnemyBase::getTarget() const {
-    return target;
+const Player& EnemyBase::getTarget() const {
+    return *target;
 }
 
-void EnemyBase::setTarget(const shared_ptr<Player> &target) {
-    EnemyBase::target = target;
+void EnemyBase::setTarget(const Player& target) {
+    EnemyBase::target = &target;
 }
 
-void EnemyBase::setLeader(const shared_ptr<EnemyBase> &leader) {
-    EnemyBase::leader = leader;
+void EnemyBase::setLeader(const EnemyBase& leader) {
+    EnemyBase::leader = &leader;
 }
 
 void EnemyBase::update(float time) {

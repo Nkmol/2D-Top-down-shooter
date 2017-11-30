@@ -16,8 +16,8 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-    _flockController.generateFlock<ZombieEnemy>(20, 200, 600, _player);
-    _flockController.generateFlock<BatEnemy>(200, 200, 600, _player);
+    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
+    _flockController.GenerateFlock<BatEnemy>(200, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -54,14 +54,14 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(time);
     }
-    _flockController.updateFlocks(time);
+    _flockController.UpdateFlocks(time);
 }
 
 void Level::Draw() {
     for (auto &&obj : _objs) {
         obj->draw();
     }
-    _flockController.drawFlocks();
+    _flockController.DrawFlocks();
 
 
     // TODO, verplaatsen

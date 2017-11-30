@@ -13,12 +13,12 @@
 #include "Helper.h"
 class EnemyBase : public MoveableObject  {
     bool isLeader;
-    shared_ptr<EnemyBase> leader;
+	const EnemyBase* leader; // Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
 
 protected:
 	int lifepoints, damage, reward, weightMultiplier = 100;
 	Point destinationPoint;
-	shared_ptr<Player> target;
+	const Player* target; // Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
@@ -28,7 +28,7 @@ public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
-	void updatePositions(std::vector<shared_ptr<EnemyBase>>& others, float time);
+	void updatePositions(std::vector<unique_ptr<EnemyBase>>& others, float time);
 
     //algorithms
     void align();
@@ -39,11 +39,11 @@ public:
 	virtual void goTarget();
 
     //getters
-    const shared_ptr<Player> &getTarget() const;
+	const Player& getTarget() const;
 
     //setters
-    void setTarget(const shared_ptr<Player> &target);
-    void setLeader(const shared_ptr<EnemyBase> &leader);
+    void setTarget(const Player& target);
+    void setLeader(const EnemyBase& leader);
 
     void update(float time);
     void draw();
