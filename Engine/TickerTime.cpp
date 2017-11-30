@@ -71,6 +71,17 @@ void TickerTime::Run(const bool& exitWhen)
 			}
 			_accumulator -= _targetTicksPerFrame;
 
+			// Check after first accumalotr resolve if still lagg
+			if (_accumulator >= _targetTicksPerFrame) {
+				SDL_Log("Current lag is %f ms", _accumulator * 1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
+				
+				// Skip catching up when it falls to far behind (5 frames behind for now)
+				if (_accumulator >= _targetTicksPerFrame * 5)
+				{
+					SDL_LogCritical(2, "Skipping frames, falls too far behind");
+					_accumulator = 0;
+				}
+			}
 		}
 
 		// For every second
