@@ -27,39 +27,39 @@ PhysicsManager& PhysicsManager::Instance()
 bool PhysicsManager::checkCollision(float midX, float midY, float radius)
 {
 	bool isCollision = false;
-	//if (midX - radius < _tileSize ) {
-	//	return true;
-	//}
-
-	//if (midY - radius < _tileSize) {
-	//	return true;
-	//}
-
-	//if (midX + radius > _playScreenWidth) {
-	//	return true;
-	//}
-
-	//if (midY + radius > _playScreenHeight) {
-	//	return true;
-	//}
-	
-	for (int i = 0; i < collidables->size(); i++) {
-		int xStep = midX - collidables->at(i).getMidX();
-		int yStep = midY - collidables->at(i).getMidY();
-		int collisionRange =radius + collidables->at(i).getRadius();
-
-
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-		if (distance < 0) {
-			distance *= -1;
-		}
-
-		if (distance < collisionRange) {
-			isCollision = true;
-			break;
-		}
+	if (midX - radius < _tileSize ) {
+		return true;
 	}
+
+	if (midY - radius < _tileSize) {
+		return true;
+	}
+
+	if (midX + radius > _playScreenWidth) {
+		return true;
+	}
+
+	if (midY + radius > _playScreenHeight) {
+		return true;
+	}
+	
+	//for (int i = 0; i < collidables->size(); i++) {
+	//	int xStep = midX - collidables->at(i).getMidX();
+	//	int yStep = midY - collidables->at(i).getMidY();
+	//	int collisionRange =radius + collidables->at(i).getRadius();
+
+
+	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
+
+	//	if (distance < 0) {
+	//		distance *= -1;
+	//	}
+
+	//	if (distance < collisionRange) {
+	//		isCollision = true;
+	//		break;
+	//	}
+	//}
 
 	return isCollision;
 }
