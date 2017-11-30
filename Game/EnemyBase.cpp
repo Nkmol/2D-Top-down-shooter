@@ -26,7 +26,7 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 {
 }
 
-void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time) {
+void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>>& others, float time) {
     if (!isLeader) {
         align();
         cohese(others);
@@ -49,13 +49,14 @@ void EnemyBase::align() {
     this->destinationPoint = this->leader->destinationPoint;
 }
 
-void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
-    Point massCenter = Point(0, 0);
-    for (auto const &other: others) {
-        if (other.get() != shared_from_this().get()) {
+void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>>& others) {
+    Point massCenter(0, 0);
+	//const auto sharedFromThis = shared_from_this();
+    for (const auto& other: others) {
+        if (other.get() != this) {
+
 			const auto& oCoordinates = other->GetCoordinates();
-            massCenter.x += oCoordinates.x;
-            massCenter.y += oCoordinates.y;
+			massCenter += oCoordinates;
         }
     }
 
@@ -66,12 +67,13 @@ void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
     this->applyForce(0.1, forceDirection);
 }
 
-void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>> others) {
-    for (auto const &other: others) {
-        if (other.get() != shared_from_this().get()) {
-            const auto& oWeight = other->getWidth() * other->getHeight() * this->weightMultiplier;
+void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>>& others) {
+	//const auto sharedFromThis = shared_from_this();
+    for (const auto& other: others) {
+        if (other.get() != this) {
+            const auto& oWeight = other->getWidth() * other->getHeight() * weightMultiplier;
 			const auto& oCoordinates = other->GetCoordinates();
-            Point squared = Point((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
+            Point squared ((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
                                   (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
             float squareDist = squared.x + squared.y;
             if (squareDist < oWeight) {

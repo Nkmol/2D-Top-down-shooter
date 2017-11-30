@@ -11,7 +11,7 @@
 #include "memory"
 #include "Player.h"
 #include "Helper.h"
-class EnemyBase : public MoveableObject, public std::enable_shared_from_this<EnemyBase>  {
+class EnemyBase : public MoveableObject  {
     bool isLeader;
     shared_ptr<EnemyBase> leader;
 
@@ -28,12 +28,12 @@ public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
-	void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
+	void updatePositions(std::vector<shared_ptr<EnemyBase>>& others, float time);
 
     //algorithms
     void align();
-    void cohese(std::vector<shared_ptr<EnemyBase>> others);
-    void seperate(std::vector<shared_ptr<EnemyBase>> others);
+    void cohese(std::vector<shared_ptr<EnemyBase>>& others);
+    void seperate(std::vector<shared_ptr<EnemyBase>>& others);
     void applyForce(float forcePower, int forceDirection);
 
 	virtual void goTarget();
