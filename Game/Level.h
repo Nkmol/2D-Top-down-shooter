@@ -23,6 +23,7 @@ class Level {
 
 private:
     FlockController _flockController;
+	double _levelSpeed;
 
 public:
     explicit Level(int level);
