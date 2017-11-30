@@ -12,12 +12,13 @@ void Level::Init() {
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(1); // set weapon to Uzi
 
-	_objs.emplace_back(player);
+    _objs.emplace_back(player);
 
-	// save pointer seperate
-	_player = player;
-	_flockController.generateFlock<ZombieEnemy>(20, 100, 900, _player);
-	_flockController.generateFlock<BatEnemy>(200, 100, 900, _player);
+    // save pointer seperate
+    _player = player;
+    _flockController.generateFlock<ZombieEnemy>(20, 200, 600, _player);
+    _flockController.generateFlock<BatEnemy>(200, 200, 600, _player);
+}
 
 void Level::HandleEvents(SDL_Event event) {
     auto &inputManager = InputManager::instance();

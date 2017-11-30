@@ -51,7 +51,6 @@ public:
 
     const int getRadius() const;
 
-	const int getRadius() const;
 	int getWidth() const;
 
 	int getHeight() const;
