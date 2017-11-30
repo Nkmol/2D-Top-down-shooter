@@ -94,7 +94,7 @@ void TickerTime::Run(const bool& exitWhen)
 				onSecondFunction.Tick();
 			}
 
-			SDL_Log("Timeframe took %f ms based on previous frame", GetMsOfCurrentFrame());
+			//SDL_Log("Timeframe took %f ms based on previous frame", GetMsOfCurrentFrame());
 		}
 
 		for (const auto& frameFunction : _frameFunctions)
