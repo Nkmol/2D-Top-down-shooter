@@ -93,9 +93,9 @@ void TickerTime::Run(const bool& exitWhen)
 		_timesRendered += 1;
 
 		// Wait for next frame (caps frames)
-		const auto delay = 1000 / _maxFps - GetMsOfLastFrame() * 0.001;
+		long delay = 1000.0l / _maxFps - (SDL_GetPerformanceCounter() - ticksNow) * 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
 		if (delay > 0) {
-			SDL_Delay(delay);
+			std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 		}
 	}
 }
