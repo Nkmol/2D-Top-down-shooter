@@ -1,8 +1,10 @@
 //
 // Created by Ahmad Rahimi on 11/21/17.
 //
-
+#include "ctime"
 #include "EnemyBase.h"
+std::atomic<int> EnemyBase::s_id;
+
 namespace enemybase_constants {
     const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
 }
@@ -13,7 +15,7 @@ EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float 
 		lifepoints(lifepoints),
 		damage(damage),
 		reward(reward) {
-//    angle = 0;
+        id = ++s_id;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints, int reward) :
@@ -24,9 +26,10 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 	damage(damage),
 	reward(reward)
 {
+    id = ++s_id;
 }
 
-void EnemyBase::updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time) {
+void EnemyBase::updatePositions(std::vector<EnemyBase> &others, float time) {
     if (!isLeader) {
         align();
         cohese(others);
@@ -49,11 +52,11 @@ void EnemyBase::align() {
     this->destinationPoint = this->leader->destinationPoint;
 }
 
-void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
+void EnemyBase::cohese(std::vector<EnemyBase> &others) {
     Point massCenter = Point(0, 0);
     for (auto const &other: others) {
-        if (other.get() != shared_from_this().get()) {
-			const auto& oCoordinates = other->GetCoordinates();
+        if (this != &other) {
+			const auto& oCoordinates = other.GetCoordinates();
             massCenter.x += oCoordinates.x;
             massCenter.y += oCoordinates.y;
         }
@@ -66,11 +69,13 @@ void EnemyBase::cohese(std::vector<shared_ptr<EnemyBase>> others) {
     this->applyForce(0.1, forceDirection);
 }
 
-void EnemyBase::seperate(std::vector<shared_ptr<EnemyBase>> others) {
+void EnemyBase::seperate(std::vector<EnemyBase> &others) {
     for (auto const &other: others) {
-        if (other.get() != shared_from_this().get()) {
-            const auto& oWeight = other->getWidth() * other->getHeight() * this->weightMultiplier;
-			const auto& oCoordinates = other->GetCoordinates();
+        if (this->id != other.id) {
+//            string mQ = this->getCurrentQuadrant();
+//            string oQ = other.getCurrentQuadrant();
+            const auto& oWeight = other.getWidth() * other.getHeight() * this->weightMultiplier;
+			const auto& oCoordinates = other.GetCoordinates();
             Point squared = Point((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
                                   (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
             float squareDist = squared.x + squared.y;
@@ -136,8 +141,6 @@ void EnemyBase::update(float time) {
 	else {
 		MoveableObject::stopMove();
 	}
-
-    
 }
 
 void EnemyBase::draw() {
@@ -163,4 +166,18 @@ const int EnemyBase::getDamage() const
 const int EnemyBase::getReward() const
 {
 	return reward;
+}
+
+bool operator==(EnemyBase &enemyBase1, const EnemyBase &enemyBase2) {
+//    cout << "--------------" << endl;
+//    cout << enemyBase1.id << endl;
+//    cout << enemyBase2.id << endl;
+//    cout << "--------------" << endl;
+    return (enemyBase1.id == enemyBase2.id);
+}
+
+string EnemyBase::getCurrentQuadrant() const {
+    int qW = int(this->GetCoordinates().x) / 32;
+    int qH = int(this->GetCoordinates().y) / 32;
+    return to_string(qW) + to_string(qH);
 }

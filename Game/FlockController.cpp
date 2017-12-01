@@ -12,8 +12,7 @@ template<class T> void FlockController::generateFlock(int flockSize, int minPos,
 
     shared_ptr<Flock> newFlock{new Flock(leader)};
     for (int i = 0; i < flockSize; i++) {
-        shared_ptr<EnemyBase> newFlockMember{
-                new T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false)};
+        EnemyBase newFlockMember = T(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false);
         newFlock->addMember(newFlockMember);
     }
     this->flocks.push_back(newFlock);
