@@ -10,15 +10,16 @@
 #include "Flock.h"
 #include "memory"
 #include "vector"
-class FlockController {
-    shared_ptr<Player> target;
-public:
-    std::vector<shared_ptr<Flock>> flocks;
-    FlockController() = default;
-    void generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget, float flockSpeed);
-    void drawFlocks();
-    void updateFlocks(float time);
-};
 
+class FlockController
+{
+	vector<unique_ptr<Flock>> _flocks;
+public:
+	FlockController() = default;
+	template <class T>
+	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget);
+	void DrawFlocks();
+	void UpdateFlocks(float time);
+};
 
 #endif //SHOOTER_FLOCKCONTROLLER_H
