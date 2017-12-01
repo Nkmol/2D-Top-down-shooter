@@ -3,14 +3,19 @@
 //
 
 #include "ZombieEnemy.h"
-namespace Properties {
-    const float attrSpeed = 50.0f;
-    const int attrDmg = 12;
-    const int attrLp = 100;
-    const int attrReward = 8;
-    const int weightMultiplier = 100;
+
+namespace Properties
+{
+	const float AttrSpeed = 50.0f;
+	const int AttrDmg = 12;
+	const int AttrLp = 100;
+	const int AttrReward = 8;
+	const int WeightMultiplier = 100;
 }
-ZombieEnemy::ZombieEnemy(const Point &coordinates, bool isLeader) : EnemyBase("zombieenemy", coordinates, Properties::attrSpeed, isLeader, Properties::attrDmg,
-                                                                              Properties::attrLp, Properties::attrReward) {
-    this->weightMultiplier = Properties::weightMultiplier;
+
+ZombieEnemy::ZombieEnemy(const Point& coordinates, const bool isLeader) : EnemyBase(
+	"zombieenemy", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
+	Properties::AttrLp, Properties::AttrReward)
+{
+	this->weightMultiplier = Properties::WeightMultiplier;
 }

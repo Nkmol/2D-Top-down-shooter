@@ -17,7 +17,7 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
     _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(200, 200, 600, *_player);
+    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {

@@ -8,15 +8,15 @@
 
 #include <EnemyBase.h>
 
-class BatEnemy : public EnemyBase{
+class BatEnemy : public EnemyBase
+{
 public:
-    BatEnemy(const Point &coordinates, bool isLeader);
-    void update(float time);
-	void GoTarget();
+	BatEnemy(const Point& coordinates, bool isLeader);
+	void update(float time) override;
+	void GoTarget() override;
 private:
-    int currentUpdateCounter = 0, maxUpdateCounter = 50;
-    bool attackTarget = true;
-
+	int _currentUpdateCounter = 0, _maxUpdateCounter = 50;
+	bool _attackTarget = true;
 };
 
 
