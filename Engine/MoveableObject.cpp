@@ -32,7 +32,7 @@ void MoveableObject::draw() {
     RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);
 }
 
-void MoveableObject::setAngle(int angle) {
+void MoveableObject::SetAngle(const int angle) {
     MoveableObject::angle = angle;
 }
 

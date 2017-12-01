@@ -35,7 +35,7 @@ public:
 
     virtual void update(float time);
 
-    void setAngle(int angle);
+    void SetAngle(int angle);
 
     const Point &GetCoordinates() const;
 

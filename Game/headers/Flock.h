@@ -10,21 +10,18 @@
 #include "memory"
 #include "vector"
 
-class Flock {
-    shared_ptr<EnemyBase> leader;
-    std::vector<EnemyBase> members;
-    std::map<string, std::vector<EnemyBase>> quadtree;
-
+class Flock
+{
+	EnemyBase& _leader;
+	vector<unique_ptr<EnemyBase>> _members;
 public:
-    explicit Flock(shared_ptr<EnemyBase> leader);
-
-    void addMember(EnemyBase newMember);
-    void removeFarMembers();
-    void update(float time);
-    string placeEnemyAtQuadrant(EnemyBase& replaceEnemy);
-    void draw();
-
-    int mapH;
+	explicit Flock(unique_ptr<EnemyBase> leader);
+	void AddMember(unique_ptr<EnemyBase> newMember);
+	void RemoveFarMembers();
+	void Update(float time);
+      string placeEnemyAtQuadrant(EnemyBase& replaceEnemy);
+	void Draw();
+      int mapH;
     int mapW;
 };
 

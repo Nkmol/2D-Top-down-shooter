@@ -29,109 +29,100 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
     id = ++s_id;
 }
 
-void EnemyBase::updatePositions(std::vector<EnemyBase> &others, float time) {
-    if (!isLeader) {
-        align();
-        cohese(others);
-        seperate(others);
-    } else {
-        goTarget();
-    }
-
-    float _rad = (atan2(_coordinates.y - destinationPoint.y, _coordinates.x - destinationPoint.x));
-    float _dir = Helper::radiansToDegrees(_rad);
-    float correctedAngleRadians = Helper::degreesToRadians(_dir - 90);
-    this->setAngle(_dir);
+void EnemyBase::UpdatePositions(EnemiesType& others, const float time) {
+  
+	if (!isLeader) {
+		Align();
+		Cohese(others);
+		Seperate(others);
+	}
+	else {
+		GoTarget();
+	}
+	
+	const auto rad = (atan2(_coordinates.y - destinationPoint.y, _coordinates.x - destinationPoint.x));
+	const auto dir = Helper::radiansToDegrees(rad);
+	const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
+    SetAngle(dir);
 
 	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
-
-	this->update(time);
+	update(time);
 }
 
-void EnemyBase::align() {
-    this->destinationPoint = this->leader->destinationPoint;
+void EnemyBase::Align() {
+    destinationPoint = _leader->destinationPoint;
 }
 
-void EnemyBase::cohese(std::vector<EnemyBase> &others) {
-    Point massCenter = Point(0, 0);
-    for (auto const &other: others) {
-        if (this != &other) {
-			const auto& oCoordinates = other.GetCoordinates();
-            massCenter.x += oCoordinates.x;
-            massCenter.y += oCoordinates.y;
+void EnemyBase::Cohese(EnemiesType& others) {
+    Point massCenter(0, 0);
+    for (const auto& other: others) {
+        if (other.get() != this) {
+
+			const auto& oCoordinates = other->GetCoordinates();
+			massCenter += oCoordinates;
         }
     }
 
-    auto othersSize = others.size() - 1;
-    massCenter.x = massCenter.x / othersSize;
-    massCenter.y = massCenter.y / othersSize;
-    int forceDirection = Helper::calculateAngle(_coordinates.x, _coordinates.y, massCenter.x, massCenter.y);
-    this->applyForce(0.1, forceDirection);
+	const auto othersSize = others.size() - 1;
+	massCenter = massCenter / othersSize;
+	const auto forceDirection = Helper::calculateAngle(_coordinates.x, _coordinates.y, massCenter.x, massCenter.y);
+	ApplyForce(0.1, forceDirection);
 }
 
-void EnemyBase::seperate(std::vector<EnemyBase> &others) {
-    for (auto const &other: others) {
-        if (this->id != other.id) {
-//            string mQ = this->getCurrentQuadrant();
-//            string oQ = other.getCurrentQuadrant();
-            const auto& oWeight = other.getWidth() * other.getHeight() * this->weightMultiplier;
-			const auto& oCoordinates = other.GetCoordinates();
-            Point squared = Point((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
+void EnemyBase::Seperate(EnemiesType& others) {
+    for (const auto& other: others) {
+        if (other.get() != this) {
+            const auto& oWeight = other->getWidth() * other->getHeight() * weightMultiplier;
+			const auto& oCoordinates = other->GetCoordinates();
+	        const Point squared ((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
                                   (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
-            float squareDist = squared.x + squared.y;
+	        const auto squareDist = squared.x + squared.y;
             if (squareDist < oWeight) {
-                Point headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
-                double scale = sqrt(squareDist) / sqrt(oWeight);
-                Point unitVector = Point(headingVector.x / sqrt(squareDist), headingVector.y / sqrt(squareDist));
-                Point scaledVector = Point((unitVector.x / scale), (unitVector.y / scale));
-                this->destinationPoint.x += scaledVector.x;
-                this->destinationPoint.y += scaledVector.y;
+	            const auto headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
+	            const auto scale = sqrt(squareDist) / sqrt(oWeight);
+	            const auto scaledVector = headingVector / sqrt(squareDist) / scale;
+                this->destinationPoint += scaledVector;
             }
         }
     }
 
-    for (GameObject const &other: *PhysicsManager::Instance().collidables) {
+    for (const auto& other: *PhysicsManager::Instance().collidables) {
         const auto& oX = other.getMidX();
         const auto& oY = other.getMidY();
-        const auto& oWeight = (other.getWidth() * other.getHeight()) * enemybase_constants::COLLIDABLEWEIGHTMULTIPLIER;
-        const auto& mX = this->GetCoordinates().x;
-        const auto& mY = this->GetCoordinates().y;
-        Point squared = Point((oX - mX) * (oX - mX), (oY - mY) * (oY - mY));
-        float squareDist = squared.x + squared.y;
+        const auto& oWeight = other.getWidth() * other.getHeight() * enemybase_constants::COLLIDABLEWEIGHTMULTIPLIER;
+        const auto& m = this->GetCoordinates();
+	    const Point squared ((oX - m.x) * (oX - m.x), (oY - m.y) * (oY - m.y));
+	    const auto squareDist = squared.x + squared.y;
         if(squareDist < oWeight){
-            Point headingVector = Point(mX - oX, mY - oY);
-            double scale = sqrt(squareDist) / sqrt(oWeight);
-            Point unitVector = Point(headingVector.x / sqrt(squareDist), headingVector.y / sqrt(squareDist));
-            Point scaledVector = Point((unitVector.x / scale),(unitVector.y / scale));
-            this->destinationPoint.x += scaledVector.x;
-            this->destinationPoint.y += scaledVector.y;
+	        const Point headingVector (m.x - oX, m.y - oY);
+	        const auto scale = sqrt(squareDist) / sqrt(oWeight);
+            const auto scaledVector = headingVector / sqrt(squareDist) / scale;
+            destinationPoint += scaledVector;
         }
     }
-
 }
 
-void EnemyBase::applyForce(float forcePower, int forceDirection) {
-    auto forceX = float(forcePower * cos(forceDirection));
-    auto forceY = float(forcePower * sin(forceDirection));
+void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
+	const auto forceX = float(forcePower * cos(forceDirection));
+	const auto forceY = float(forcePower * sin(forceDirection));
     this->destinationPoint.x += forceX;
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::goTarget() {
-	const auto& tCoordinates = target->GetCoordinates();
-    this->destinationPoint = Point(tCoordinates.x, tCoordinates.y);
+void EnemyBase::GoTarget() {
+    this->destinationPoint = _target->GetCoordinates();
 }
 
-const shared_ptr<Player> &EnemyBase::getTarget() const {
-    return target;
+const Player& EnemyBase::getTarget() const {
+    return *_target;
 }
 
-void EnemyBase::setTarget(const shared_ptr<Player> &target) {
-    EnemyBase::target = target;
+void EnemyBase::setTarget(const Player& target) {
+    EnemyBase::_target = &target;
 }
 
-void EnemyBase::setLeader(const shared_ptr<EnemyBase> &leader) {
-    EnemyBase::leader = leader;
+void EnemyBase::setLeader(const EnemyBase& leader) {
+    EnemyBase::_leader = &leader;
 }
 
 void EnemyBase::update(float time) {

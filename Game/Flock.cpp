@@ -4,60 +4,52 @@
 
 #include "Flock.h"
 
-Flock::Flock(shared_ptr<EnemyBase> leader) {
-    this->leader = leader;
-    //this->members.push_back(leader);
-    mapW = MapManager::Instance().getTmx().mapInfo.width * MapManager::Instance().getTmx().mapInfo.tileWidth;
-    mapH = MapManager::Instance().getTmx().mapInfo.height * MapManager::Instance().getTmx().mapInfo.tileHeight;
+Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
+{
+	_members.push_back(move(leader));
+  mapW = MapManager::Instance().getTmx().mapInfo.width * MapManager::Instance().getTmx().mapInfo.tileWidth;
+  mapH = MapManager::Instance().getTmx().mapInfo.height * MapManager::Instance().getTmx().mapInfo.tileHeight;
 
-    for(int x = 0; x <= mapW/32; x++){
-        for(int y = 0; y <= mapH/32; y++){
-            std::vector<EnemyBase> ebVector;
-            this->quadtree[std::to_string(x) + std::to_string(y)] = ebVector;
-        }
-    }
+  for(int x = 0; x <= mapW/32; x++){
+      for(int y = 0; y <= mapH/32; y++){
+          std::vector<EnemyBase> ebVector;
+          this->quadtree[std::to_string(x) + std::to_string(y)] = ebVector;
+      }
+  }
 }
 
-void Flock::addMember(EnemyBase newMember) {
-    newMember.setLeader(leader);
-    newMember.setTarget(leader->getTarget());
-    this->members.push_back(newMember);
-
+void Flock::AddMember(unique_ptr<EnemyBase> newMember)
+{
+	newMember->setLeader(_leader);
+	newMember->setTarget(_leader.getTarget());
+	_members.push_back(move(newMember));
 }
 
-void Flock::removeFarMembers() {
-//todo alle members die ver weg zijn worden geremoved
+void Flock::RemoveFarMembers()
+{
+	//todo alle members die ver weg zijn worden geremoved
 }
 //
 void updateEnemyMapping(){
 }
 
-void Flock::update(float time) {
-    //todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-    leader->updatePositions(members, time);
-    for (auto &member: this->members) {
-        auto test = this->quadtree[member.currentQuadrant];
-        member.updatePositions(this->quadtree[member.currentQuadrant], time);
-        member.currentQuadrant = this->placeEnemyAtQuadrant(member);
-    }
-
-//    map<string, std::vector<EnemyBase>>::iterator it;
-//    cout << "-----------" << endl;
-//    for ( it = this->quadtree.begin(); it != this->quadtree.end(); it++ )
-//    {
-//        if(it->second.size() > 0) {
-//            cout << it->first << endl;
-//            cout << it->second.size() << endl;
-//        }
-//    }
-//    cout << "-----------" << endl;
+void Flock::Update(const float time)
+{
+	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
+  leader->updatePositions(members, time);
+  for (auto const &member: this->members) {
+      auto test = this->quadtree[member.currentQuadrant];
+      member.updatePositions(this->quadtree[member.currentQuadrant], time);
+      member.currentQuadrant = this->placeEnemyAtQuadrant(member);
+  }
 }
 
-void Flock::draw() {
-    leader->draw();
-    for (auto &member: this->members) {
-        member.draw();
-    }
+void Flock::Draw()
+{
+	for (auto const& member : _members)
+	{
+		member->draw();
+	}
 }
 
 string Flock::placeEnemyAtQuadrant(EnemyBase& replaceEnemy) {
