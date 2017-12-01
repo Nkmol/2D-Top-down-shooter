@@ -36,11 +36,10 @@ void updateEnemyMapping(){
 void Flock::Update(const float time)
 {
 	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-  leader->updatePositions(members, time);
-  for (auto const &member: this->members) {
-      auto test = this->quadtree[member.currentQuadrant];
-      member.updatePositions(this->quadtree[member.currentQuadrant], time);
-      member.currentQuadrant = this->placeEnemyAtQuadrant(member);
+  _leader.UpdatePositions(_members, time);
+  for (auto const &member: this->_members) {
+      auto test = this->quadtree[member->currentQuadrant];
+      member->UpdatePositions(_members, time);
   }
 }
 
@@ -52,21 +51,21 @@ void Flock::Draw()
 	}
 }
 
-string Flock::placeEnemyAtQuadrant(EnemyBase& replaceEnemy) {
-    int qW = int(replaceEnemy.GetCoordinates().x) / 32;
-    int qH = int(replaceEnemy.GetCoordinates().y) / 32;
-    string nextPos = std::to_string(qW) + std::to_string(qH);
-    if(nextPos != replaceEnemy.currentQuadrant) {
-        if(replaceEnemy.currentQuadrantIndex != -1) {
-            auto it = std::find(this->quadtree[replaceEnemy.currentQuadrant].begin(), this->quadtree[replaceEnemy.currentQuadrant].end(), replaceEnemy);
-            if(it != this->quadtree[replaceEnemy.currentQuadrant].end()) {
-                this->quadtree[replaceEnemy.currentQuadrant].erase(it);
-               // cout << " deleted!" << endl;
-            }
-        }
-        this->quadtree[nextPos].push_back(replaceEnemy);
-        replaceEnemy.currentQuadrant = nextPos;
-        replaceEnemy.currentQuadrantIndex = this->quadtree[nextPos].size();
-    }
-    return replaceEnemy.currentQuadrant;
-}
+//string Flock::placeEnemyAtQuadrant(EnemyBase& replaceEnemy) {
+//    int qW = int(replaceEnemy.GetCoordinates().x) / 32;
+//    int qH = int(replaceEnemy.GetCoordinates().y) / 32;
+//    string nextPos = std::to_string(qW) + std::to_string(qH);
+//    if(nextPos != replaceEnemy.currentQuadrant) {
+//        if(replaceEnemy.currentQuadrantIndex != -1) {
+//            auto it = std::find(this->quadtree[replaceEnemy.currentQuadrant].begin(), this->quadtree[replaceEnemy.currentQuadrant].end(), replaceEnemy);
+//            if(it != this->quadtree[replaceEnemy.currentQuadrant].end()) {
+//                this->quadtree[replaceEnemy.currentQuadrant].erase(it);
+//               // cout << " deleted!" << endl;
+//            }
+//        }
+//        this->quadtree[nextPos].push_back(replaceEnemy);
+//        replaceEnemy.currentQuadrant = nextPos;
+//        replaceEnemy.currentQuadrantIndex = this->quadtree[nextPos].size();
+//    }
+//    return replaceEnemy.currentQuadrant;
+//}

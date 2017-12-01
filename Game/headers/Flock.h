@@ -14,14 +14,16 @@ class Flock
 {
 	EnemyBase& _leader;
 	vector<unique_ptr<EnemyBase>> _members;
+	std::map<string, std::vector<EnemyBase>> quadtree;
 public:
 	explicit Flock(unique_ptr<EnemyBase> leader);
 	void AddMember(unique_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
-      string placeEnemyAtQuadrant(EnemyBase& replaceEnemy);
+	string placeEnemyAtQuadrant(EnemyBase& replaceEnemy);
 	void Draw();
-      int mapH;
+
+	int mapH;
     int mapW;
 };
 
