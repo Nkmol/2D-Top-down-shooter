@@ -13,17 +13,19 @@
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Config.h"
+#include "WaveController.h"
 
 class Level {
     int _level;
     std::vector<shared_ptr<MoveableObject>> _objs;
-    std::vector<shared_ptr<MoveableObject>> _npcs;
+    shared_ptr<std::vector<shared_ptr<MoveableObject>>> _npcs;
     std::vector<shared_ptr<GameObject>> _loot;
     shared_ptr<Player> _player;
 
 private:
     FlockController _flockController;
 	double _levelSpeed;
+	WaveController _waveController;
 
 public:
     explicit Level(int level);

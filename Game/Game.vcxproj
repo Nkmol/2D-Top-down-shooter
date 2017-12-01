@@ -152,6 +152,7 @@
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Uzi.cpp" />
+    <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="WaveController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

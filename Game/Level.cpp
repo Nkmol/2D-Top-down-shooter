@@ -16,6 +16,7 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
     _flockController.generateFlock(20, 100, 900, _player, 50.0f);
+	_waveController.Init(_level, _player, _npcs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -68,6 +69,7 @@ void Level::Update(float time) {
         obj->update(accSpeed);
     }
     _flockController.updateFlocks(accSpeed);
+	_waveController.Update(time);
 }
 
 void Level::Draw() {
