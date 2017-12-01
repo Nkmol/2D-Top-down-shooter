@@ -22,7 +22,7 @@ void BatEnemy::update(float time) {
     }
 }
 
-void BatEnemy::goTarget() {
+void BatEnemy::GoTarget() {
     if(this->currentUpdateCounter >= this->maxUpdateCounter){
         this->currentUpdateCounter = 0;
         attackTarget = !attackTarget;

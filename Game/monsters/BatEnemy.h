@@ -12,7 +12,7 @@ class BatEnemy : public EnemyBase{
 public:
     BatEnemy(const Point &coordinates, bool isLeader);
     void update(float time);
-    void goTarget();
+	void GoTarget();
 private:
     int currentUpdateCounter = 0, maxUpdateCounter = 50;
     bool attackTarget = true;

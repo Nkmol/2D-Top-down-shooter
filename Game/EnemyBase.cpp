@@ -30,8 +30,8 @@ void EnemyBase::UpdatePositions(EnemiesType& others, const float time) {
   
 	if (!isLeader) {
 		Align();
-	/*	Cohese(others);
-		Seperate(others);*/
+		Cohese(others);
+		Seperate(others);
 	}
 	else {
 		GoTarget();
@@ -40,10 +40,10 @@ void EnemyBase::UpdatePositions(EnemiesType& others, const float time) {
 	const auto rad = (atan2(_coordinates.y - destinationPoint.y, _coordinates.x - destinationPoint.x));
 	const auto dir = Helper::radiansToDegrees(rad);
 	const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
-    this->SetAngle(dir);
+    SetAngle(dir);
 
 	_destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
-	this->update(time);
+	update(time);
 }
 
 void EnemyBase::Align() {

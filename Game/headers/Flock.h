@@ -15,9 +15,8 @@ class Flock
 	EnemyBase& _leader;
 	vector<unique_ptr<EnemyBase>> _members;
 public:
-	explicit Flock(EnemyBase&& leader);
-
-	void AddMember(EnemyBase&& newMember);
+	explicit Flock(unique_ptr<EnemyBase> leader);
+	void AddMember(unique_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
 	void Draw();

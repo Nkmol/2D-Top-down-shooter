@@ -4,16 +4,16 @@
 
 #include "Flock.h"
 
-Flock::Flock(EnemyBase&& leader) : _leader(leader)
+Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
 {
-	_members.push_back(make_unique<EnemyBase>(leader));
+	_members.push_back(move(leader));
 }
 
-void Flock::AddMember(EnemyBase&& newMember)
+void Flock::AddMember(unique_ptr<EnemyBase> newMember)
 {
-	newMember.setLeader(_leader);
-	newMember.setTarget(_leader.getTarget());
-	_members.push_back(make_unique<EnemyBase>(move(newMember)));
+	newMember->setLeader(_leader);
+	newMember->setTarget(_leader.getTarget());
+	_members.push_back(move(newMember));
 }
 
 void Flock::RemoveFarMembers()
