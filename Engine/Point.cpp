@@ -53,6 +53,12 @@ void Point::operator+=(const Point& p)
 	y += p.y;
 }
 
+Point Point::operator/(const float v) const
+{
+	return Point(x / v, y / v);
+}
+
+
 bool operator<(const Point &p1, const Point &p2) {
 	return (p1.x == p2.x && p1.y == p2.y);
 }

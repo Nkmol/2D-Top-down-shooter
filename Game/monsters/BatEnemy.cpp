@@ -38,6 +38,6 @@ void BatEnemy::goTarget() {
     }
 
     if(attackTarget){
-        EnemyBase::goTarget();
+        EnemyBase::GoTarget();
     }
 }

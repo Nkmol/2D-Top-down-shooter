@@ -12,13 +12,16 @@
 #include "Player.h"
 #include "Helper.h"
 class EnemyBase : public MoveableObject  {
-    bool isLeader;
-	const EnemyBase* leader; // Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
-
+	using EnemiesType = vector<unique_ptr<EnemyBase>>;
 protected:
 	int lifepoints, damage, reward, weightMultiplier = 100;
 	Point destinationPoint;
-	const Player* target; // Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
+
+	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
+	const Player* _target;
+	const EnemyBase* _leader;
+
+	bool isLeader;
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
@@ -28,15 +31,15 @@ public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
-	void updatePositions(std::vector<unique_ptr<EnemyBase>>& others, float time);
+	void UpdatePositions(EnemiesType& others, float time);
 
     //algorithms
-    void align();
-    void cohese(std::vector<shared_ptr<EnemyBase>>& others);
-    void seperate(std::vector<shared_ptr<EnemyBase>>& others);
-    void applyForce(float forcePower, int forceDirection);
+    void Align();
+    void Cohese(EnemiesType& others);
+    void Seperate(EnemiesType& others);
+    void ApplyForce(float forcePower, int forceDirection);
 
-	virtual void goTarget();
+	virtual void GoTarget();
 
     //getters
 	const Player& getTarget() const;

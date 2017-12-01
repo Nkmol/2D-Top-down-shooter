@@ -10,16 +10,17 @@
 #include "memory"
 #include "vector"
 
-class Flock {
+class Flock
+{
 	EnemyBase& _leader;
-    vector<unique_ptr<EnemyBase>> _members;
+	vector<unique_ptr<EnemyBase>> _members;
 public:
 	explicit Flock(EnemyBase&& leader);
 
-    void AddMember(EnemyBase&& newMember);
-    void RemoveFarMembers();
-    void Update(float time);
-    void Draw();
+	void AddMember(EnemyBase&& newMember);
+	void RemoveFarMembers();
+	void Update(float time);
+	void Draw();
 };
 
 

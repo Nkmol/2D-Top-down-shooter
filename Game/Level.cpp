@@ -28,7 +28,7 @@ void Level::HandleEvents(SDL_Event event) {
         int angle = inputManager.recalculateMouseAngle(*_player);
 
         // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
-        _player->setAngle(angle);
+        _player->SetAngle(angle);
     }
 
     if (inputManager.isMouseClicked(event)) {
@@ -46,7 +46,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     int angle = inputManager.calculateMouseAngle(*_player);
 
-    _player->setAngle(angle);
+    _player->SetAngle(angle);
     _player->Move(direction);
 }
 
