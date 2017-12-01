@@ -109,7 +109,7 @@ void EnemyBase::setLeader(const shared_ptr<EnemyBase> &leader) {
 }
 
 void EnemyBase::update(float time) {
-	if (!PhysicsManager::Instance().checkCollision(getMidX(_coordinates.x + _destination.x * speed * time), getMidY(_coordinates.y + _destination.y * speed * time), getRadius())) {
+	if (!PhysicsManager::Instance().checkOuterWallCollision(getMidX(_coordinates.x + _destination.x * speed * time), getMidY(_coordinates.y + _destination.y * speed * time), getRadius())) {
 		MoveableObject::update(time);
 	}
 	else {

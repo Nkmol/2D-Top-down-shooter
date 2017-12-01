@@ -39,7 +39,7 @@ void Player::Move(const Point direction) {
 void Player::update(float time) {
 
     const auto newPostition = _coordinates + (_destination * speed * time);
-    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
+    if (!PhysicsManager::Instance().checkOuterWallCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
         MoveableObject::update(time);
     } else {
         MoveableObject::stopMove();

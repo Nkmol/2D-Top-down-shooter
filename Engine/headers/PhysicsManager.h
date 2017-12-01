@@ -20,8 +20,9 @@ public:
 
 	static PhysicsManager& Instance();
 	const std::vector<GameObject>* collidables;
-	bool checkCollision(float midX, float midY, float radius);
-
+	bool checkOuterWallCollision(float midX, float midY, float radius); 
+	bool checkStaticObjectCollision(float midX, float midY, float radius); 
+	bool checkMoveableCollision(float midX, float midY, float radius);
 private:
 	float _tileSize;
 	float _playScreenWidth;
