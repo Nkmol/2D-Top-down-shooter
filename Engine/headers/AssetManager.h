@@ -8,7 +8,6 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <memory>
-#include <memory>
 #include "../CustomDeleter.h"
 
 
