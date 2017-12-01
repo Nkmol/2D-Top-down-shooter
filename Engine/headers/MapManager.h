@@ -24,10 +24,6 @@ public:
 private:
 	std::vector<GameObject> collidables;
 	TMX::Parser tmx;
-public:
-	const TMX::Parser &getTmx() const;
-
-private:
 	TSX::Parser tsx;
 	static MapManager sInstance;
 	SDL_Texture* mapTexture;

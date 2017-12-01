@@ -178,7 +178,3 @@ void MapManager::GetTileLayers()
 		counter++;
 	}
 }
-
-const TMX::Parser &MapManager::getTmx() const {
-	return tmx;
-}

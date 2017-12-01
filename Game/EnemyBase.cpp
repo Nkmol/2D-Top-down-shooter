@@ -1,9 +1,7 @@
 //
 // Created by Ahmad Rahimi on 11/21/17.
 //
-#include "ctime"
 #include "EnemyBase.h"
-std::atomic<int> EnemyBase::s_id;
 
 namespace enemybase_constants {
     const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
@@ -15,7 +13,6 @@ EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float 
 		lifepoints(lifepoints),
 		damage(damage),
 		reward(reward) {
-        id = ++s_id;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints, int reward) :
@@ -26,7 +23,6 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 	damage(damage),
 	reward(reward)
 {
-    id = ++s_id;
 }
 
 void EnemyBase::UpdatePositions(EnemiesType& others, const float time) {
@@ -157,18 +153,4 @@ const int EnemyBase::getDamage() const
 const int EnemyBase::getReward() const
 {
 	return reward;
-}
-
-bool operator==(EnemyBase &enemyBase1, const EnemyBase &enemyBase2) {
-//    cout << "--------------" << endl;
-//    cout << enemyBase1.id << endl;
-//    cout << enemyBase2.id << endl;
-//    cout << "--------------" << endl;
-    return (enemyBase1.id == enemyBase2.id);
-}
-
-string EnemyBase::getCurrentQuadrant() const {
-    int qW = int(this->GetCoordinates().x) / 32;
-    int qH = int(this->GetCoordinates().y) / 32;
-    return to_string(qW) + to_string(qH);
 }

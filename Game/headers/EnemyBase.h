@@ -28,23 +28,18 @@ protected:
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
-	static std::atomic<int> s_id;
-
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
 
 	void UpdatePositions(EnemiesType& others, float time);
-	string currentQuadrant = "1111";
-	int currentQuadrantIndex = -1;
-	int id = 0;
+
     //algorithms
     void Align();
     void Cohese(EnemiesType& others);
     void Seperate(EnemiesType& others);
     void ApplyForce(float forcePower, int forceDirection);
-      string getCurrentQuadrant() const;
 
 	virtual void GoTarget();
 
@@ -57,9 +52,6 @@ public:
 
     void update(float time);
     void draw();
-
-	//comparers
-	friend bool operator==(EnemyBase& enemyBase1, const EnemyBase& enemyBase2);
 };
 
 
