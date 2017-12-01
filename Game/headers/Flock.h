@@ -19,7 +19,10 @@ public:
 	void AddMember(unique_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
+      string placeEnemyAtQuadrant(EnemyBase& replaceEnemy);
 	void Draw();
+      int mapH;
+    int mapW;
 };
 
 
