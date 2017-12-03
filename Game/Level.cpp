@@ -52,6 +52,22 @@ void Level::HandleEvents(SDL_Event event) {
 		{
 			_levelSpeed += .1;
 		}
+		else if(event.button.button == SDL_SCANCODE_F5)
+		{
+			// Quicksave prittified json
+			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
+			o << std::setw(4) << json(*_player.get()) << std::endl;
+		}
+		else if(event.button.button == SDL_SCANCODE_F7)
+		{
+			// Quickload
+			std::ifstream i("../content/saves/quicksave.json"); // TODO refactor AssetManager
+			json j;
+			i >> j;
+
+			// Explicit "from_json" so it used the same reference
+			from_json(j, *_player.get());
+		}
 	}
 
 
