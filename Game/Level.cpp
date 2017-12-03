@@ -75,8 +75,12 @@ void Level::Update(float time) {
     _player->update(time);
     _flockController.UpdateFlocks(accSpeed);
     auto done = std::chrono::high_resolution_clock::now();
-
+    totalms += std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count() << endl;
+    counter++;
+    if(counter == 2000){
+        cout << totalms/counter << endl;
+    }
 }
 
 void Level::Draw() {
