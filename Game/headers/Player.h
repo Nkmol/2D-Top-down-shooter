@@ -9,6 +9,7 @@
 #include "MoveableObject.h"
 #include "Weapon.h"
 #include "Point.h"
+#include <Weapon.h>
 
 class Player : public MoveableObject {
 

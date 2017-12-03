@@ -10,12 +10,13 @@
 #include <vector>
 #include "memory"
 #include "Player.h"
+#include "MoveableObject.h"
 #include "Helper.h"
 
 class EnemyBase : public MoveableObject  {
 
 protected:
-	using EnemiesType = vector<unique_ptr<EnemyBase>>;
+	using EnemiesType = vector<shared_ptr<EnemyBase>>;
 	int lifepoints, damage, reward, weightMultiplier = 100;
 	Point destinationPoint;
 

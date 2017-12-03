@@ -13,11 +13,11 @@ void Level::Init() {
     player->changeWeapon(1); // set weapon to Uzi
 
     _objs.emplace_back(player);
-
+    _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
+//    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
+    _flockController.GenerateFlock<BatEnemy>(500, 200, 600, *_player, _objs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -33,7 +33,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     if (inputManager.isMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objs.emplace_back(bullet);
+        _objsNoEnemies.emplace_back(bullet);
     }
 
     int key = 0;
@@ -64,20 +64,27 @@ void Level::HandleEvents(SDL_Event event) {
 }
 
 void Level::Update(float time) {
+    auto started = std::chrono::high_resolution_clock::now();
+    PhysicsManager::Instance();
+    PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
 
-    for (auto &&obj : _objs) {
+    for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+    _player->update(time);
     _flockController.UpdateFlocks(accSpeed);
+    auto done = std::chrono::high_resolution_clock::now();
+
+    std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count() << endl;
 }
 
 void Level::Draw() {
-    for (auto &&obj : _objs) {
+    _player->draw();
+    for (auto &&obj : _objsNoEnemies) {
         obj->draw();
     }
     _flockController.DrawFlocks();
-
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();

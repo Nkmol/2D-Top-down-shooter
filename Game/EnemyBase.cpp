@@ -2,7 +2,8 @@
 // Created by Ahmad Rahimi on 11/21/17.
 //
 #include "EnemyBase.h"
-
+#include <time.h>
+#include <stdio.h>
 namespace enemybase_constants {
     const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
 }
@@ -66,21 +67,23 @@ void EnemyBase::Cohese(EnemiesType& others) {
 }
 
 void EnemyBase::Seperate(EnemiesType& others) {
-    for (const auto& other: others) {
-        if (other.get() != this) {
-            const auto& oWeight = other->getWidth() * other->getHeight() * weightMultiplier;
-			const auto& oCoordinates = other->GetCoordinates();
-	        const Point squared ((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
-                                  (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
-	        const auto squareDist = squared.x + squared.y;
-            if (squareDist < oWeight) {
-	            const auto headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
-	            const auto scale = sqrt(squareDist) / sqrt(oWeight);
-	            const auto scaledVector = headingVector / sqrt(squareDist) / scale;
-                this->destinationPoint += scaledVector;
-            }
-        }
-    }
+
+	std::vector<GameObject> neighbours = PhysicsManager::Instance().GetQuadTree().Retrieve(this->GetRect());
+    for (const auto& other: neighbours) {
+		if (other.GetId() != this->GetId()) {
+			const auto &oWeight = other.getWidth() * other.getHeight() * weightMultiplier;
+			const auto &oCoordinates = other.GetCoordinates();
+			const Point squared((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
+								(oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
+			const auto squareDist = squared.x + squared.y;
+			if (squareDist < oWeight) {
+				const auto headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
+				const auto scale = sqrt(squareDist) / sqrt(oWeight);
+				const auto scaledVector = headingVector / sqrt(squareDist) / scale;
+				this->destinationPoint += scaledVector;
+			}
+		}
+	}
 
     for (const auto& other: *PhysicsManager::Instance().collidables) {
         const auto& oX = other.getMidX();

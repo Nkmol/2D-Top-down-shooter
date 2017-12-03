@@ -2,9 +2,7 @@
 // Created by Mevlüt Özdemir on 09-11-17.
 //
 
-#include <Weapon.h>
 #include "Player.h"
-#include "Point.h"
 
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y}) {}
