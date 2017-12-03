@@ -14,7 +14,6 @@ Player::Player(const std::string &filePath, const Point coordinates, const int l
 
 }
 
-
 void Player::addWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
         weapons.push_back(weapon);
@@ -60,6 +59,17 @@ Weapon *Player::getWeapon() const {
     return weapon;
 }
 
+const vector<Weapon>& Player::getWeapons() const
+{
+	return weapons;
+}
 
-
-
+// ReSharper disable once CppInconsistentNaming
+void to_json(json& j, const Player& value)
+{
+	j = json{
+		{ "lifepoints", value.getLifepoints() },
+		{ "weapons", value.getWeapons() },
+		{ "currentWeapon", *value.getWeapon() }
+	};
+}

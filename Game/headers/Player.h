@@ -10,6 +10,9 @@
 #include "Weapon.h"
 #include "Point.h"
 
+#include "json.hpp"
+using json = nlohmann::json;
+
 class Player : public MoveableObject {
 
     std::vector<Weapon> weapons;
@@ -37,10 +40,12 @@ public:
     void changeWeapon(int index);
 
     Weapon *getWeapon() const;
+	const vector<Weapon>& getWeapons() const;
 
-    void addWeapons(std::vector<Weapon> wp);
-
+	void addWeapons(std::vector<Weapon> wp);
 };
 
+// ReSharper disable once CppInconsistentNaming
+void to_json(json& j, const Player& value);
 
 #endif //SHOOTER_PLAYER_H

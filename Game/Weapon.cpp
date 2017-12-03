@@ -38,4 +38,16 @@ int Weapon::getShooted() const {
     return this->shooted;
 }
 
+int Weapon::getMaxBullets() const {
+	return maxBullets;
+}
 
+//// ReSharper disable once CppInconsistentNaming
+void to_json(json& j, const Weapon& value)
+{
+	j = json {
+		{ "name", value.getName() },
+		{ "maxBullets", value.getMaxBullets() },
+		{ "currentBullets", value.getMaxBullets() - value.getShooted()}
+	};
+}

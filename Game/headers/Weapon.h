@@ -11,6 +11,9 @@
 #include <vector>
 #include <memory>
 
+#include "json.hpp"
+using json = nlohmann::json;
+
 class Weapon {
 
 protected:
@@ -29,9 +32,11 @@ public:
     int totalBullets() const;
 
     int getShooted() const;
+	int getMaxBullets() const;
 
-    std::string getName() const;
+	std::string getName() const;
 };
 
+void to_json(json& j, const Weapon& value);
 
 #endif //SHOOTER_WEAPON_H
