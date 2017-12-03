@@ -4,6 +4,10 @@
 
 #include "Weapon.h"
 
+Weapon::Weapon() : Weapon(0, "", 0)
+{
+}
+
 Weapon::Weapon(int damage, std::string name, int maxBullets) :
         name{std::move(name)},
         damage{damage},
@@ -42,12 +46,26 @@ int Weapon::getMaxBullets() const {
 	return maxBullets;
 }
 
-//// ReSharper disable once CppInconsistentNaming
+void Weapon::SetName(const string& v)
+{
+	name = v;
+}
+
+void Weapon::SetCurrentBullets(const int v)
+{
+	shooted = maxBullets - v;
+}
+
 void to_json(json& j, const Weapon& value)
 {
 	j = json {
 		{ "name", value.getName() },
-		{ "maxBullets", value.getMaxBullets() },
 		{ "currentBullets", value.getMaxBullets() - value.getShooted()}
 	};
+}
+
+void from_json(const json& j, Weapon& value)
+{
+	value.SetName(j.at("name").get<std::string>());
+	value.SetCurrentBullets(j.at("currentBullets").get<int>());
 }

@@ -23,6 +23,7 @@ protected:
     std::string name;
 
 public:
+	Weapon();
     Weapon(int damage, std::string name, int maxBullets);
 
     bool hasBullets();
@@ -33,10 +34,14 @@ public:
 
     int getShooted() const;
 	int getMaxBullets() const;
+	void SetName(const string& v);
+	void SetCurrentBullets(const int v);
 
 	std::string getName() const;
 };
 
 void to_json(json& j, const Weapon& value);
+
+void from_json(const json& j, Weapon& value);
 
 #endif //SHOOTER_WEAPON_H
