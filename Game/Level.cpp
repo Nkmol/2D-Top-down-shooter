@@ -16,8 +16,26 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
+
+	// Quickload
+	// TODO refactor AssetManager
+	std::ifstream i;
+	i.exceptions(ifstream::failbit | ifstream::badbit);
+	try
+	{
+		i.open("../content/config/monsters.meta.json");
+	}
+	catch (const ifstream::failure&)
+	{
+		cout << "Exception opening/reading file" << endl;
+		return;
+	}
+	json j;
+	i >> j;
+
+	EnemyBase e = j[0];
     _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
+    //_flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {

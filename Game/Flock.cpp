@@ -11,8 +11,8 @@ Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
 
 void Flock::AddMember(unique_ptr<EnemyBase> newMember)
 {
-	newMember->setLeader(_leader);
-	newMember->setTarget(_leader.getTarget());
+	newMember->GetBehaviour().SetLeader(_leader);
+	newMember->GetBehaviour().SetTarget(_leader.GetBehaviour().GetTarget());
 	_members.push_back(move(newMember));
 }
 
@@ -25,9 +25,9 @@ void Flock::RemoveFarMembers()
 void Flock::Update(const float time)
 {
 	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-  _leader.UpdatePositions(_members, time);
+  _leader.UpdatePosition(_members, time);
   for (auto const &member: this->_members) {
-      member->UpdatePositions(_members, time);
+      member->UpdatePosition(_members, time);
   }
 }
 

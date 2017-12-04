@@ -17,5 +17,5 @@ ZombieEnemy::ZombieEnemy(const Point& coordinates, const bool isLeader) : EnemyB
 	"zombieenemy", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
 	Properties::AttrLp, Properties::AttrReward)
 {
-	this->weightMultiplier = Properties::WeightMultiplier;
+	//this->weightMultiplier = Properties::WeightMultiplier;
 }

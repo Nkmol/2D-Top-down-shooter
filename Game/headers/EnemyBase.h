@@ -10,49 +10,40 @@
 #include <vector>
 #include "memory"
 #include "Player.h"
-#include "Helper.h"
+#include "../IAIBase.h"
 
 class EnemyBase : public MoveableObject  {
 
 protected:
 	using EnemiesType = vector<unique_ptr<EnemyBase>>;
-	int lifepoints, damage, reward, weightMultiplier = 100;
+	unique_ptr<IAIBase> _behaviour;
+
+	int lifepoints, damage, reward;
 	Point destinationPoint;
 
-	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
-	const Player* _target;
-	const EnemyBase* _leader;
-
-	bool isLeader;
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
-
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
 	EnemyBase(const json & j);
 
-	void UpdatePositions(EnemiesType& others, float time);
+	void UpdatePosition(EnemiesType& others, const float time);
 
-    //algorithms
-    void Align();
-    void Cohese(EnemiesType& others);
-    void Seperate(EnemiesType& others);
     void ApplyForce(float forcePower, int forceDirection);
 
-	virtual void GoTarget();
-
     //getters
-	const Player& getTarget() const;
+	const Point& GetDestinationPoint() const;
+	IAIBase& GetBehaviour() const;
 
     //setters
-    void setTarget(const Player& target);
-    void setLeader(const EnemyBase& leader);
+	void SetDestination(const Point& point);
+	void SetDestinationPoint(const Point& point);
 
-    void update(float time);
+	void update(const float time);
     void draw();
 };
 

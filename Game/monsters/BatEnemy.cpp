@@ -17,21 +17,21 @@ BatEnemy::BatEnemy(const Point& coordinates, const bool isLeader) : EnemyBase(
 	"batenemy", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
 	Properties::AttrLp, Properties::AttrReward)
 {
-	this->weightMultiplier = Properties::WeightMultiplier;
+	//this->weightMultiplier = Properties::WeightMultiplier;
 }
 
 void BatEnemy::update(const float time)
 {
-	EnemyBase::update(time);
+	/*EnemyBase::update(time);
 	if (this->_currentUpdateCounter % 50 == 0)
 	{
 		this->weightMultiplier = rand() % 100 + 10;
-	}
+	}*/
 }
 
 void BatEnemy::GoTarget()
 {
-	if (this->_currentUpdateCounter >= this->_maxUpdateCounter)
+	/*if (this->_currentUpdateCounter >= this->_maxUpdateCounter)
 	{
 		this->_currentUpdateCounter = 0;
 		_attackTarget = !_attackTarget;
@@ -52,5 +52,5 @@ void BatEnemy::GoTarget()
 	if (_attackTarget)
 	{
 		EnemyBase::GoTarget();
-	}
+	}*/
 }

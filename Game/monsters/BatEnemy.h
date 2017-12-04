@@ -13,7 +13,7 @@ class BatEnemy : public EnemyBase
 public:
 	BatEnemy(const Point& coordinates, bool isLeader);
 	void update(float time) override;
-	void GoTarget() override;
+	void GoTarget() /*override*/;
 private:
 	int _currentUpdateCounter = 0, _maxUpdateCounter = 50;
 	bool _attackTarget = true;

@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Flock.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handgun.h" />
@@ -168,6 +170,7 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Uzi.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="IAIBase.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="monsters\BatEnemy.h" />
     <ClInclude Include="monsters\ZombieEnemy.h" />
