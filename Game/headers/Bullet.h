@@ -14,6 +14,8 @@ private:
     float BULLET_SPEED = 0.8f;
 
     int damage;
+
+	bool hasCollision;
 public:
 
     Bullet(const string &filePath, Point coordinates, int damage);

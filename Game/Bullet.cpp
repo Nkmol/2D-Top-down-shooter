@@ -6,6 +6,7 @@
 
 Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
                                                                         damage(damage) {
+	hasCollision = false;
 }
 
 
@@ -22,6 +23,7 @@ void Bullet::update(float time) {
     const auto newPostition = _coordinates + (_destination * speed * time);
     if (!PhysicsManager::Instance().checkOuterWallCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
         MoveableObject::update(time);
+		hasCollision = true;
     } else {
         // verwerk hier wat er moet gebeuren als er collision is
         MoveableObject::stopMove();

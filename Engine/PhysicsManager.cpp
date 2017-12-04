@@ -3,11 +3,7 @@
 
 PhysicsManager::PhysicsManager()
 {
-	if(collidables == NULL){}
-		collidables = MapManager::Instance().getCollidables();
-	_tileSize = collidables->at(0).getRadius() * 2;
-	_playScreenWidth = 39 * _tileSize;
-	_playScreenHeight = 29 * _tileSize;
+
 }
 
 PhysicsManager::~PhysicsManager()
@@ -31,7 +27,9 @@ bool PhysicsManager::checkOuterWallCollision(float midX, float midY, float radiu
 		return true;
 	}
 
-	return isCollision;
+
+
+	return checkStaticObjectCollision(midX, midY, radius);
 }
 
 
@@ -64,9 +62,9 @@ bool PhysicsManager::checkMoveableCollision(float midX, float midY, float radius
 {
 	bool isCollision = false;
 
-	for (int i = 0; i < collidables->size(); i++) {
-		int xStep = midX - collidables->at(i).getMidX();
-		int yStep = midY - collidables->at(i).getMidY();
+	for (int i = 0; i < objects.size(); i++) {
+		int xStep = midX - objects.at(i).getMidX();
+		int yStep = midY - objects.at(i).getMidY();
 		int collisionRange = radius + collidables->at(i).getRadius();
 
 
@@ -84,3 +82,24 @@ bool PhysicsManager::checkMoveableCollision(float midX, float midY, float radius
 
 	return isCollision;
 }
+
+void PhysicsManager::setStaticObjects()
+{
+	if (collidables == NULL) {
+		collidables = MapManager::Instance().getCollidables();
+	}
+	_tileSize = collidables->at(0).getRadius() * 2;
+	_playScreenWidth = 39 * _tileSize;
+	_playScreenHeight = 29 * _tileSize;
+}
+
+void PhysicsManager::setMoveableObjects(std::vector<shared_ptr<MoveableObject>> &_objs)
+{
+	objects = _objs;
+}
+
+const vector<GameObject>* PhysicsManager::getCollidables()
+{
+	return collidables;
+}
+

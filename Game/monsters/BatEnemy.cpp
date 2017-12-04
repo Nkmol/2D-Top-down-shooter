@@ -14,7 +14,7 @@ namespace Properties
 }
 
 BatEnemy::BatEnemy(const Point& coordinates, const bool isLeader) : EnemyBase(
-	"batenemy", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
+	"bat", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
 	Properties::AttrLp, Properties::AttrReward)
 {
 	this->weightMultiplier = Properties::WeightMultiplier;

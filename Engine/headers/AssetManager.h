@@ -16,12 +16,7 @@ using namespace std;
 class AssetManager {
 
 private:
-	map<string, const char* > sounds;
-	map<string, const char* > effect;
-	map<string, const char* > render;
-	map<string, const char* > fonts;
 	AssetManager();
-
 
 public:
 

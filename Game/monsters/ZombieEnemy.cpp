@@ -14,7 +14,7 @@ namespace Properties
 }
 
 ZombieEnemy::ZombieEnemy(const Point& coordinates, const bool isLeader) : EnemyBase(
-	"zombieenemy", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
+	"zombie", coordinates, Properties::AttrSpeed, isLeader, Properties::AttrDmg,
 	Properties::AttrLp, Properties::AttrReward)
 {
 	this->weightMultiplier = Properties::WeightMultiplier;

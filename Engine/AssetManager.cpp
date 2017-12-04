@@ -3,10 +3,6 @@
 #include "AssetManager.h"
 
 AssetManager::AssetManager() {
-
-    render["zombieenemy"] = "../content/zombie_1.png";
-    render["batenemy"] = "../content/bat.png";
-
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }
@@ -35,7 +31,7 @@ Mix_Music *AssetManager::loadBGM(string soundToken) {
 Mix_Chunk *AssetManager::loadEffect(string effectToken) {
 	Mix_Chunk *gEffectM = Mix_LoadWAV(string{ "../content/audio/" + effectToken + ".wav" }.c_str());
     if (gEffectM == NULL) {
-        cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
+        cout << "Failed to load scratch sound effect! SDL_mixer Error: " << effectToken.c_str()  << Mix_GetError() << endl;
     }
     return gEffectM;
 }
@@ -62,7 +58,7 @@ TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 {
 	TTF_Font *font = TTF_OpenFont(string{ "../content/fonts/" + fontToken + ".ttf" }.c_str(), size);
 	if (font == NULL)
-		cout << "Unable to load font %s! SDL_image Error: " << render[fontToken] << TTF_GetError() << endl;
+		cout << "Unable to load font! SDL_image Error: " << fontToken.c_str() << TTF_GetError() << endl;
 
 	return font;
 }
