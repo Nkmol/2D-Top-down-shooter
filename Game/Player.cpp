@@ -92,5 +92,14 @@ void from_json(const json& j, Player& value)
 {
 	value.changeLifepoints(j.at("lifepoints").get<int>());
 	value.changeWeapon(j.at("currentWeapon").get<int>());
-	value.SetWeapons(j.at("weapons").get<vector<Weapon>>());
+
+	// TODO resolve with wep id -> refactored when weapons are saved in JSON
+	auto weps = value.getWeapons();
+	auto jsonWeapons = j.at("weapons");
+	for (auto i = 0; i < jsonWeapons.size(); i++)
+	{
+		from_json(jsonWeapons[i], weps[i]);
+	}
+
+	value.SetWeapons(weps);
 }
