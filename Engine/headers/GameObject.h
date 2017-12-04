@@ -16,6 +16,8 @@ public:
 	const SDL_Rect GetRect() const;
 	void update(float time);
 	void draw();
+	int GetTeamId() const;
+	void SetTeamId(int teamId);
 
 protected:
 	int width, height;
@@ -23,6 +25,9 @@ protected:
 	Point _coordinates;
 private:
 	int id;
+	int teamId = -1;
+
+private:
 	static int counter;
 
 };

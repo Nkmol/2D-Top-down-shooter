@@ -16,8 +16,10 @@ void Level::Init() {
     _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
-//    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(500, 200, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
+    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -78,7 +80,7 @@ void Level::Update(float time) {
     totalms += std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(done-started).count() << endl;
     counter++;
-    if(counter == 2000){
+    if(counter == 500){
         cout << totalms/counter << endl;
     }
 }
@@ -98,5 +100,6 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
+    PhysicsManager::Instance().DrawQTree();
 }
 

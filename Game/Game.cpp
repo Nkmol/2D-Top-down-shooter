@@ -85,6 +85,7 @@ void Game::Draw()
 {
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
+
 	MapManager::Instance().Render();
 
 	// Fps to string and 2 decimal

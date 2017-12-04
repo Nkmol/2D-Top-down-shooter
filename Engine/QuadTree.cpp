@@ -2,6 +2,8 @@
 // Created by Ahmad Rahimi on 12/3/17.
 //
 
+#include <SDL_system.h>
+#include <RenderManager.h>
 #include "QuadTree.h"
 using namespace std;
 QuadTree::QuadTree(int level, SDL_Rect bounds) : level(level), bounds(bounds) {
@@ -19,7 +21,7 @@ void QuadTree::ClearNode(){
 void QuadTree::CreateSubNodes() {
     SDL_Rect subBounds = SDL_Rect();
     subBounds.x = this->bounds.x;
-    subBounds.y = this->bounds.x;
+    subBounds.y = this->bounds.y;
     subBounds.w = this->bounds.w / 2;
     subBounds.h = this->bounds.h / 2;
     int nextLevel = level+1;
@@ -34,7 +36,7 @@ QuadTree::QuadTree(int level, int x, int y, int w, int h) : level(level){
     bounds.x = x;
     bounds.y = y;
     bounds.w = w;
-    bounds.y = y;
+    bounds.h = h;
 }
 
 int QuadTree::getIndex(SDL_Rect objectBounds) const {
@@ -90,14 +92,21 @@ void QuadTree::Insert(GameObject gameObject) {
 std::vector<GameObject> QuadTree::Retrieve(SDL_Rect rect) const {
     int index = this->getIndex(rect);
     if (index != -1 && this->nodes.size() != 0) {
-        std::vector<GameObject> otherNodessObjects;
-        std::vector<GameObject> currentNodesObjects;
-        otherNodessObjects = nodes[index].Retrieve(rect);
-        currentNodesObjects.reserve( currentNodesObjects.size() + otherNodessObjects.size() );
-        currentNodesObjects.insert(currentNodesObjects.end(), otherNodessObjects.begin(), otherNodessObjects.end());
-        return currentNodesObjects;
+        return nodes[index].Retrieve(rect);
+        //mergen is tijdrovend!
+        //currentNodesObjects.reserve( currentNodesObjects.size() + otherNodessObjects.size() );
+        //currentNodesObjects.insert(currentNodesObjects.end(), otherNodesObjects.begin(), otherNodesObjects.end());
     }else{
         return objects;
+    }
+}
+
+void QuadTree::Draw(){
+    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 255, 0, 0, 255);
+    SDL_RenderDrawRect(RenderManager::Instance().GetRenderer(), &bounds);
+    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 0, 0, 0, 0);
+    for(int i = 0; i < nodes.size(); i++){
+        nodes.at(i).Draw();
     }
 }
 

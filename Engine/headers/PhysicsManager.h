@@ -25,6 +25,7 @@ public:
 	void UpdateQuadTree(std::vector<GameObject> gameObjects);
 	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> gameObjects);
 	const QuadTree &GetQuadTree() const;
+	void DrawQTree();
 private:
 	float _tileSize;
 	float _playScreenWidth;

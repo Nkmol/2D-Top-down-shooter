@@ -66,6 +66,9 @@ bool PhysicsManager::checkCollision(float midX, float midY, float radius)
 
 void PhysicsManager::UpdateQuadTree(std::vector<GameObject> gameObjects) {
 	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
+	for (auto& gameObject: *MapManager::Instance().getCollidables()) {
+		_quadtree.Insert(gameObject);
+	}
 	for (const auto& gameObject: gameObjects) {
 		_quadtree.Insert(gameObject);
 	}
@@ -74,6 +77,9 @@ void PhysicsManager::UpdateQuadTree(std::vector<GameObject> gameObjects) {
 void PhysicsManager::UpdateQuadTree(std::vector<shared_ptr<GameObject>> gameObjects) {
 	this->_quadtree.ClearNode();
 	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
+	for (auto& gameObject: *MapManager::Instance().getCollidables()) {
+		_quadtree.Insert(gameObject);
+	}
 	for (const auto& gameObject: gameObjects) {
 		_quadtree.Insert(*gameObject.get());
 	}
@@ -83,3 +89,6 @@ const QuadTree &PhysicsManager::GetQuadTree() const {
 	return _quadtree;
 }
 
+void PhysicsManager::DrawQTree(){
+	this->_quadtree.Draw();
+}

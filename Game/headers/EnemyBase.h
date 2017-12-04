@@ -29,17 +29,21 @@ protected:
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
+
+
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
 
 	void UpdatePositions(EnemiesType& others, float time);
-
+	void UpdatePositions2(float time);
     //algorithms
     void Align();
     void Cohese(EnemiesType& others);
     void Seperate(EnemiesType& others);
+	void Cohese2(GameObject &other);
+	void Seperate2(GameObject &other);
     void ApplyForce(float forcePower, int forceDirection);
 
 	virtual void GoTarget();
@@ -53,6 +57,9 @@ public:
 
     void update(float time);
     void draw();
+private:
+	Point massCenter = Point(0,0);
+	int massSize = 0;
 };
 
 

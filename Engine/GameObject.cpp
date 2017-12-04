@@ -56,3 +56,11 @@ void GameObject::draw() {
 int GameObject::GetId() const {
 	return id;
 }
+
+void GameObject::SetTeamId(int teamId) {
+	GameObject::teamId = teamId;
+}
+
+int GameObject::GetTeamId() const {
+	return teamId;
+}
