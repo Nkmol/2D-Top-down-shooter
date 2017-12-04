@@ -11,41 +11,44 @@
 #include "memory"
 #include "Player.h"
 #include "Helper.h"
-class EnemyBase : public MoveableObject, public std::enable_shared_from_this<EnemyBase>  {
-    Point destinationPoint;
-    bool isLeader;
-    shared_ptr<EnemyBase> leader;
-    shared_ptr<Player> target;
+
+class EnemyBase : public MoveableObject  {
 
 protected:
-	int lifepoints;
-	int damage;
-	int reward;
-	
+	using EnemiesType = vector<unique_ptr<EnemyBase>>;
+	int lifepoints, damage, reward, weightMultiplier = 100;
+	Point destinationPoint;
+
+	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
+	const Player* _target;
+	const EnemyBase* _leader;
+
+	bool isLeader;
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
-
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
-	void updatePositions(std::vector<shared_ptr<EnemyBase>> others, float time);
+
+	void UpdatePositions(EnemiesType& others, float time);
 
     //algorithms
-    void align();
-    void cohese(std::vector<shared_ptr<EnemyBase>> others);
-    void seperate(std::vector<shared_ptr<EnemyBase>> others);
-    void applyForce(float forcePower, int forceDirection);
-    void goTarget();
+    void Align();
+    void Cohese(EnemiesType& others);
+    void Seperate(EnemiesType& others);
+    void ApplyForce(float forcePower, int forceDirection);
+
+	virtual void GoTarget();
 
     //getters
-    const shared_ptr<Player> &getTarget() const;
+	const Player& getTarget() const;
 
     //setters
-    void setTarget(const shared_ptr<Player> &target);
-    void setLeader(const shared_ptr<EnemyBase> &leader);
+    void setTarget(const Player& target);
+    void setLeader(const EnemyBase& leader);
 
     void update(float time);
     void draw();

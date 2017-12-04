@@ -1,6 +1,7 @@
 #include "Level.h"
+#include "monsters/BatEnemy.h"
 
-Level::Level(const int level) : _level(level) {
+Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
 }
 
@@ -15,7 +16,8 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-    _flockController.generateFlock(20, 100, 900, _player, 50.0f);
+    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
+    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -26,7 +28,7 @@ void Level::HandleEvents(SDL_Event event) {
         int angle = inputManager.recalculateMouseAngle(*_player);
 
         // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
-        _player->setAngle(angle);
+        _player->SetAngle(angle);
     }
 
     if (inputManager.isMouseClicked(event)) {
@@ -39,27 +41,42 @@ void Level::HandleEvents(SDL_Event event) {
         _player->changeWeapon(key);
     }
 
+	if(inputManager.isKeyDown(event))
+	{
+		if(event.button.button == SDL_SCANCODE_LEFTBRACKET)
+		{
+			_levelSpeed -= .1;
+			if (_levelSpeed < 0) _levelSpeed = 0;
+		}
+		else if(event.button.button == SDL_SCANCODE_RIGHTBRACKET)
+		{
+			_levelSpeed += .1;
+		}
+	}
+
 
     Point direction = inputManager.getDirection(event);
 
     int angle = inputManager.calculateMouseAngle(*_player);
 
-    _player->setAngle(angle);
+    _player->SetAngle(angle);
     _player->Move(direction);
 }
 
 void Level::Update(float time) {
+	const auto accSpeed = time *_levelSpeed;
+
     for (auto &&obj : _objs) {
-        obj->update(time);
+        obj->update(accSpeed);
     }
-    _flockController.updateFlocks(time);
+    _flockController.UpdateFlocks(accSpeed);
 }
 
 void Level::Draw() {
     for (auto &&obj : _objs) {
         obj->draw();
     }
-    _flockController.drawFlocks();
+    _flockController.DrawFlocks();
 
 
     // TODO, verplaatsen

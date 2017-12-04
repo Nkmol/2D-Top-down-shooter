@@ -16,7 +16,7 @@ void PlayingState::HandleEvents(Game &game) {
 
     SDL_Event event{};
 
-    if (inputManager.hasEvent(&event)) {
+    while (inputManager.hasEvent(&event)) {
 
         if (inputManager.isPauseResume(event)) {
             auto state = make_unique<PausedState>();

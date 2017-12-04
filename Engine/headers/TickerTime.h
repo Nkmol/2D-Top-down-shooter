@@ -37,7 +37,7 @@ private:
 	unsigned _targetFps;
 	unsigned _maxFps;
 
-	Uint64 _lastUpdateTime;
+	Uint64 _startPreviousFrame;
 	Uint64 _lastDeltaTicks;
 	Uint64 _ticksPerSecond;
 	Uint64 _targetTicksPerFrame;
@@ -49,14 +49,14 @@ private:
 	std::vector<DelegateFunction> _frameFunctions;
 	std::vector<CountdownEvent> _onSecondFunctions;
 
-	double GetMsOfLastFrame() const;
+	double GetMsOfCurrentFrame() const;
 public:
 	TickerTime(const unsigned fps, const unsigned maxFps);
 	void OnCatchUp(const DelegateFunction&& func);
 	void OnFrame(const DelegateFunction&& func);
 	void PerSecond(const int secondInterval, DelegateFunction&& func);
 	float GetGameTime() const;
-	int GetFps() const;
+	double GetFps() const;
 	void Run(const bool& exitWhen);
 	~TickerTime();
 };

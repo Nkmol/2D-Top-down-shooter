@@ -3,6 +3,10 @@
 #include "AssetManager.h"
 
 AssetManager::AssetManager() {
+
+    render["zombieenemy"] = "../content/zombie_1.png";
+    render["batenemy"] = "../content/bat.png";
+
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }

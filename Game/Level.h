@@ -10,6 +10,7 @@
 #include <InputManager.h>
 #include "Weapon.h"
 #include "Uzi.h"
+#include "monsters/ZombieEnemy.h"
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Config.h"
@@ -23,6 +24,7 @@ class Level {
 
 private:
     FlockController _flockController;
+	double _levelSpeed;
 
 public:
     explicit Level(int level);
