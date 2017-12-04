@@ -61,7 +61,18 @@ void Level::HandleEvents(SDL_Event event) {
 		else if(event.button.button == SDL_SCANCODE_F7)
 		{
 			// Quickload
-			std::ifstream i("../content/saves/quicksave.json"); // TODO refactor AssetManager
+			// TODO refactor AssetManager
+			std::ifstream i;
+			i.exceptions(ifstream::failbit | ifstream::badbit);
+			try
+			{
+				i.open("../content/saves/quicksave.json");
+			}
+			catch (const ifstream::failure&)
+			{
+				cout << "Exception opening/reading file" << endl;
+				return;
+			}
 			json j;
 			i >> j;
 
