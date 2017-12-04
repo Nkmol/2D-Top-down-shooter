@@ -2,26 +2,36 @@
 // Created by Ahmad Rahimi on 11/21/17.
 //
 #include "EnemyBase.h"
+#include "monsters/BatEnemy.h"
+#include "monsters/BatEnemy.h"
 
 namespace enemybase_constants {
     const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
 }
-EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
-		MoveableObject(filePath, Point{ xPos, yPos }, speed),
-		destinationPoint{xPos, yPos},
-		isLeader{isLeader},
-		lifepoints(lifepoints),
-		damage(damage),
-		reward(reward) {
+EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
+	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
+{
 }
 
-EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints, int reward) :
+EnemyBase::EnemyBase(const std::string &filePath, const Point coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	MoveableObject(filePath, coordinates, speed),
-	destinationPoint{ coordinates.x, coordinates.y },
-	isLeader{ isLeader },
 	lifepoints(lifepoints),
 	damage(damage),
-	reward(reward)
+	reward(reward),
+	destinationPoint{coordinates},
+	_target(nullptr),
+	_leader(nullptr),
+	isLeader{isLeader}
+{
+}
+
+EnemyBase::EnemyBase(const json& j) : EnemyBase{ j.at("type").get<string>(), 
+												 Point(0, 0), 
+												 j.at("speed").get<int>(),
+                                                 false, 
+												 j.at("damage").get<int>(), 
+												 j.at("lifepoints").get<int>(),
+                                                 j.at("reward").get<int>() }
 {
 }
 

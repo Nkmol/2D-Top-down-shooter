@@ -28,10 +28,12 @@ protected:
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
+
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
+	EnemyBase(const json & j);
 
 	void UpdatePositions(EnemiesType& others, float time);
 
