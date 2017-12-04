@@ -17,7 +17,7 @@ void WaveController::Update(float time)
 	if (last_wave_timer >= 10.0f) {
 		last_wave_timer = 0.0f;
 		std::cout << "hoi" << endl;
-		flock_controller.generateFlock(20, 100, 900, _player, 50.0f);
+		//flock_controller.GenerateFlock(20, 100, 900, _player, 50.0f);
 	}
 }
 

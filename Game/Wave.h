@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <json.hpp>
+using json = nlohmann::json;
 
 struct FlockVars
 {
@@ -26,7 +28,10 @@ public:
 	void set_flocksvars(const std::vector<FlockVars> vars) { _flocksVars = vars; }
 };
 
-void from_json(const json& j, Wave value) 
+void from_json(const json& j, Wave& value) 
 {
-
+	value.set_id(j.at("id").get<int>());
+	value.set_time(j.at("time").get<float>());
+	value.set_multiplier(j.at("multiplier").get<float>());
+	value.set_flocksvars(j.at("flocks").get<std::vector<FlockVars>>());
 }

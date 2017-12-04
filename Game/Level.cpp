@@ -86,7 +86,7 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-	_flockController.updateFlocks(accSpeed);
+	_flockController.UpdateFlocks(accSpeed);
 	_waveController.Update(time);
 }
 
