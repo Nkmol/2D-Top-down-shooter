@@ -116,5 +116,8 @@
     <ClInclude Include="WaveController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Wave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
