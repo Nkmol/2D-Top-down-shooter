@@ -2,19 +2,10 @@
 
 #include "AssetManager.h"
 
-//AssetManager* AssetManager::instance()
-//{
-//	// TODO to refernece, can never be nullptr (should never)
-//	static AssetManager* sInstance;
-//
-//	return sInstance;
-//}
-
 AssetManager::AssetManager() {
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }
-
 
 AssetManager &AssetManager::Instance() {
     // The only instance
@@ -48,6 +39,7 @@ Mix_Chunk *AssetManager::loadEffect(string effectToken) {
 SDL_Surface *AssetManager::loadSurface(string mediaToken) {
     //Load image at specified path
 	SDL_Surface *loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".png" }.c_str());
+
     if (loadedSurface == NULL) {
 		loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".jpg" }.c_str());
     }
@@ -55,7 +47,7 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
 		loadedSurface = IMG_Load(string{ "../content/map/" + mediaToken }.c_str());
 	}
 	if (loadedSurface == NULL) {
-		cout << "Unable to load image %s! SDL_image Error: " << render[mediaToken] << IMG_GetError() << endl;
+		cout << "Unable to load image! SDL_image Error: " << mediaToken.c_str() << IMG_GetError() << endl;
 	}
 
     return loadedSurface;
