@@ -25,6 +25,7 @@ AssetManager::AssetManager() {
     //enemies
     render["zombieenemy"] = "../content/zombie_1.png";
     render["batenemy"] = "../content/bat.png";
+	render["space.jpg"] = "../content/map/space.jpg";
 
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
