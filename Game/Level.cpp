@@ -67,7 +67,6 @@ void Level::HandleEvents(SDL_Event event) {
 }
 
 void Level::Update(float time) {
-    PhysicsManager::Instance();
     PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
 
