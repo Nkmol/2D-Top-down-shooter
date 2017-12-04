@@ -4,10 +4,6 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon() : Weapon(0, "", 0)
-{
-}
-
 Weapon::Weapon(int damage, std::string name, int maxBullets) :
         name{std::move(name)},
         damage{damage},

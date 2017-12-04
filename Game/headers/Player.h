@@ -23,8 +23,6 @@ private:
     int lifepoints;
 
 public:
-	Player();
-
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);

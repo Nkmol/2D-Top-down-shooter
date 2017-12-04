@@ -10,7 +10,7 @@ void Level::Init() {
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
-    player->changeWeapon(1); // set weapon to Uzi
+    player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
 
@@ -38,7 +38,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     int key = 0;
     if (inputManager.isNumericKeyPressed(event, key)) {
-        _player->changeWeapon(key);
+        _player->changeWeapon(key-1);
     }
 
 	if(inputManager.isKeyDown(event))

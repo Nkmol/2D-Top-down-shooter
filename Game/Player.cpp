@@ -6,16 +6,14 @@
 #include "Player.h"
 #include "Point.h"
 
-Player::Player() : MoveableObject("soldier", Point(1, 1), 1.0f), currentWeapon(0), lifepoints(0)
+Player::Player(const std::string &filePath, const float x, const float y)
+        : Player(filePath, Point{x, y})
 {
 }
 
-Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y}) {}
-
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-        : MoveableObject(filePath, coordinates, 140.0f), lifepoints(lp) {
-
+	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
+{
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -34,12 +32,12 @@ int Player::getCurrentWeaponIndex() const
 }
 
 void Player::changeWeapon(const unsigned index) {
-	if(index > weapons.size())
+	if(index >= weapons.size() || index < 0)
 	{
 		return;
 	}
 
-	currentWeapon = index-1;
+	currentWeapon = index;
 }
 
 Bullet Player::shoot() {
