@@ -92,3 +92,7 @@ const QuadTree &PhysicsManager::GetQuadTree() const {
 void PhysicsManager::DrawQTree(){
 	this->_quadtree.Draw();
 }
+
+std::vector<GameObject> PhysicsManager::RetrieveNearbyGameObjects(GameObject gameObject) {
+	return this->_quadtree.Retrieve(gameObject.GetRect());
+}

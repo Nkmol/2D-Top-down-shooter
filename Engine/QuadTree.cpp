@@ -41,7 +41,7 @@ QuadTree::QuadTree(int level, int x, int y, int w, int h) : level(level){
 
 int QuadTree::getIndex(SDL_Rect objectBounds) const {
     int index = -1;
-    //visa versa??
+
     double midY = this->bounds.y + (bounds.h/2);
     double midX = this->bounds.x + (bounds.w/2);
 
@@ -55,6 +55,7 @@ int QuadTree::getIndex(SDL_Rect objectBounds) const {
         }else if(botQuad){
             index = 2;
         }
+    //object past in rechter kwadraten
     }else {
         if(topQuad){
             index = 1;

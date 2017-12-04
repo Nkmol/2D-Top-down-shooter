@@ -21,14 +21,13 @@ void Flock::RemoveFarMembers()
 {
 	//todo alle members die ver weg zijn worden geremoved
 }
-//
 
 void Flock::Update(const float time)
 {
 	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-  _leader.UpdatePositions2(time);
+  _leader.UpdatePositions(time);
   for (auto const &member: this->_members) {
-      member->UpdatePositions2(time);
+      member->UpdatePositions(time);
   }
 }
 

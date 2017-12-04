@@ -93,6 +93,7 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
-    PhysicsManager::Instance().DrawQTree();
+// lines below this are only for debug purpose
+//    PhysicsManager::Instance().DrawQTree();
 }
 
