@@ -3,30 +3,44 @@
 //
 
 #include "FlockController.h"
+#include "../monsters/ZombieEnemy.h"
+#include "../monsters/BatEnemy.h"
 
-void FlockController::generateFlock(int flockSize, int minPos, int maxPos, shared_ptr<Player> flockTarget,
-                                    float flockSpeed) {
-    shared_ptr<EnemyBase> leader{
-            new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, true, 10, 30)};
-    leader->setTarget(flockTarget);
+using namespace std;
 
-    shared_ptr<Flock> newFlock{new Flock(leader)};
-    for (int i = 0; i < flockSize; i++) {
-        shared_ptr<EnemyBase> newFlockMember{
-                new EnemyBase("boid", rand() % maxPos + minPos, rand() % maxPos + minPos, flockSpeed, false, 10, 30)};
-        newFlock->addMember(newFlockMember);
-    }
-    this->flocks.push_back(newFlock);
+template <class T>
+void FlockController::GenerateFlock(const int flockSize, const int minPos, const int maxPos, Player& flockTarget)
+{
+	auto leader = make_unique<T>(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), true);
+	leader->setTarget(flockTarget);
+
+	auto newFlock = std::make_unique<Flock>(move(leader));
+	for (auto i = 0; i < flockSize; i++)
+	{
+		auto member = make_unique<T>(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false);
+		newFlock->AddMember(move(member));
+	}
+
+	_flocks.push_back(move(newFlock));
 }
 
-void FlockController::drawFlocks() {
-    for (auto const &flock: this->flocks) {
-        flock->draw();
-    }
+template void FlockController::GenerateFlock<ZombieEnemy>(const int flockSize, const int minPos, const int maxPos,
+                                                          Player& flockTarget);
+template void FlockController::GenerateFlock<BatEnemy>(const int flockSize, const int minPos, const int maxPos,
+                                                       Player& flockTarget);
+
+void FlockController::DrawFlocks()
+{
+	for (auto const& flock : _flocks)
+	{
+		flock->Draw();
+	}
 }
 
-void FlockController::updateFlocks(float time) {
-    for (auto const &flock: this->flocks) {
-        flock->update(time);
-    }
+void FlockController::UpdateFlocks(const float time)
+{
+	for (auto const& flock : _flocks)
+	{
+		flock->Update(time);
+	}
 }

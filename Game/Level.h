@@ -10,6 +10,7 @@
 #include <InputManager.h>
 #include "Weapon.h"
 #include "Uzi.h"
+#include "monsters/ZombieEnemy.h"
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Config.h"

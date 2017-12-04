@@ -76,6 +76,7 @@ set(SOURCE_FILES
         Game/headers/EnemyBase.h
         Game/Level.cpp
         Game/Level.h
+        Game/monsters/ZombieEnemy.cpp Game/monsters/ZombieEnemy.h Game/monsters/BatEnemy.cpp Game/monsters/BatEnemy.h
         Game/Handgun.cpp Game/Handgun.h Game/Shotgun.cpp Game/Shotgun.h)
 add_executable(GroepH ${SOURCE_FILES})
 

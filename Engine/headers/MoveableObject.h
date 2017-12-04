@@ -21,7 +21,7 @@ private:
 protected:
     bool visible;
     int angle, radius, midX, midY, width, height;
-    float speed;
+	float speed;
     float distance;
     Point _destination;
     Point _coordinates;
@@ -35,7 +35,7 @@ public:
 
     virtual void update(float time);
 
-    void setAngle(int angle);
+    void SetAngle(int angle);
 
     const Point &GetCoordinates() const;
 
@@ -50,6 +50,10 @@ public:
     const int getMidY(float destinationPosition) const;
 
     const int getRadius() const;
+
+	int getWidth() const;
+
+	int getHeight() const;
 
     void hide();
 };

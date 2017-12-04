@@ -1,14 +1,7 @@
-#include <iostream>
-#include "RenderManager.h"
-#include "InputManager.h"
 #include "Game.h"
 #include "PlayingState.h"
-#include <algorithm>
-#include "PausedState.h"
-//#include <vld.h>
 
 #undef main
-
 int main(int argc, char *argv[]) {
 
     Game game;
@@ -21,5 +14,4 @@ int main(int argc, char *argv[]) {
 
 
     return 0;
-
 }
