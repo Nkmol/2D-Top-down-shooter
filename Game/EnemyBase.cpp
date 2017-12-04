@@ -4,7 +4,7 @@
 #include "EnemyBase.h"
 
 namespace enemybase_constants {
-    const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
+    const int COLLIDABLEWEIGHTMULTIPLIER = 100000;
 }
 EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
 		MoveableObject(filePath, Point{ xPos, yPos }, speed),

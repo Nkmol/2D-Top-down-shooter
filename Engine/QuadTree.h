@@ -24,6 +24,7 @@ public:
 
     void ClearNode();
     void CreateSubNodes();
+    //for debug purposes
     void Draw();
     void Insert(GameObject gameObject);
     std::vector<GameObject> Retrieve(SDL_Rect rect) const;
