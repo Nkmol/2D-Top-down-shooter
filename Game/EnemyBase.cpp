@@ -40,10 +40,10 @@ void EnemyBase::UpdatePositions(float time) {
             Cohese(other);
             //apply cohesion force
             massCenter = massCenter / massSize;
-            const auto forceDirection = Helper::calculateAngle(_coordinates.x, _coordinates.y, massCenter.x, massCenter.y);
-            ApplyForce(0.1, forceDirection);
             Seperate(other);
         }
+        const auto forceDirection = Helper::calculateAngle(_coordinates.x, _coordinates.y, massCenter.x, massCenter.y);
+        ApplyForce(0.1, forceDirection);
 
     }
     else {
