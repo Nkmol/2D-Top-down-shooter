@@ -35,6 +35,21 @@ void MenuState::HandleEvents(Game& game)
 			else if (ev.button.x > SCREEN_WIDTH / 3 && ev.button.x < (SCREEN_WIDTH / 3 + 225) && ev.button.y >(SCREEN_HEIGHT / 3) * 1.75 && ev.button.y < ((SCREEN_HEIGHT / 3) * 1.75 + 45)) {
 				//Credits
 			}
+			else if (ev.button.x > mutebutton.getX1() && ev.button.x < mutebutton.getX2() && ev.button.y > mutebutton.getY1() && ev.button.y < mutebutton.getY2())
+			{
+				//Mute
+				if (muted == 0) {
+					AudioManager::Instance().StopBGM();
+					RenderManager::Instance().Clear();
+					muted = 1;
+				}
+				else {
+					AudioManager::Instance().InitMusicPlayer();
+					AudioManager::Instance().LoadBGM("mainmenu");
+					AudioManager::Instance().PlayBGM();
+					muted = 0;
+				}
+			}
 		}
 	}
 }
@@ -49,16 +64,18 @@ void MenuState::Draw(Game& game)
 	newgamebutton.drawButton();
 	loadgamebutton.drawButton();
 	creditsbutton.drawButton();
+	mutebutton.drawButton();
 }
 
 void MenuState::Init()
 {
-	newgamebutton = Button(newgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 0.75, 225, 45);
-	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.25, 225, 45);
-	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.75, 225, 45);
-
-
+	newgamebutton = Button(newgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 0.5, 225, 45);
+	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1, 225, 45);
+	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.5, 225, 45);
+	mutebutton = Button(muteString, (SCREEN_WIDTH / 2) + 150, (SCREEN_HEIGHT / 3) * 1.75, 75, 75);
 	AudioManager::Instance().InitMusicPlayer();
 	AudioManager::Instance().LoadBGM("mainmenu");
 	AudioManager::Instance().PlayBGM();
+
+	int muted = 0;
 }

@@ -16,7 +16,7 @@ Game::~Game()
 void Game::Init()
 {
 	_mainManager.Init();
-	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
+	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, (config::height-200));
 
 }
 
@@ -84,14 +84,13 @@ void Game::Draw()
 {
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
-
+	_states.back()->Draw(*this);
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(2) << _fps;
 
 	renderManager.DrawText(str.str(), 20, 20, 70, 20);
 
-	_states.back()->Draw(*this);
 	renderManager.Render();
 }
 

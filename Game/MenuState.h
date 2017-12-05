@@ -25,9 +25,14 @@ private:
 	std::string newgameString = "newgamebutton";
 	std::string loadgameString = "loadgamebutton";
 	std::string creditsString = "creditsbutton";
+	std::string muteString = "mutebutton";
+	std::string unmuteString = "unmutebutton";
 	const int SCREEN_WIDTH = config::width; 
 	const int SCREEN_HEIGHT = config::height;
+	int muted;
 	Button newgamebutton;
 	Button loadgamebutton;
 	Button creditsbutton;
+	Button mutebutton;
+	Button unmutebutton;
 };
