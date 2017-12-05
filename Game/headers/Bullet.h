@@ -15,7 +15,6 @@ private:
 
     int damage;
 
-	bool hasCollision;
 public:
 
     Bullet(const string &filePath, Point coordinates, int damage);
@@ -24,7 +23,7 @@ public:
 
     const int getDamage() const;
 
-	void onCollision(GameObject object);
+	void onCollision(bool isCollidedOnWall);
 };
 
 

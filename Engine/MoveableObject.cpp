@@ -58,9 +58,13 @@ void MoveableObject::hide() {
     this->visible = false;
 }
 
-void MoveableObject::onCollision(MoveableObject moveableObject)
+void MoveableObject::onBaseCollision(MoveableObject* moveableObject)
 {
-	hide();
+	//hide();
+}
+
+void MoveableObject::onCollision(bool isCollidedOnWall)
+{
 }
 
 bool MoveableObject::isVisible() const {
@@ -72,12 +76,22 @@ MoveableObject::~MoveableObject() {
     //    SDL_DestroyTexture(_sprite);
 }
 
-const int MoveableObject::getMidX(float destinationPosition) const {
-    return destinationPosition + width / 2;;
+const int MoveableObject::getMidX() const {
+	return _coordinates.x + width / 2;
 }
 
-const int MoveableObject::getMidY(float destinationPosition) const {
-    return destinationPosition + height / 2;
+const int MoveableObject::getMidY() const {
+    return _coordinates.y + height / 2;
+}
+
+const int MoveableObject::getPredictionMidX(float destinationPosition) const
+{
+	return destinationPosition + width / 2;
+}
+
+const int MoveableObject::getPredictionMidY(float destinationPosition) const
+{
+	return destinationPosition + height / 2;
 }
 
 const int MoveableObject::getRadius() const {

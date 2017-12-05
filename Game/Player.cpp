@@ -51,11 +51,9 @@ void Player::Move(const Point direction) {
 void Player::update(float time) {
 
     const auto newPostition = _coordinates + (_destination * speed * time);
-    if (!PhysicsManager::Instance().checkOuterWallCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-        MoveableObject::update(time);
-    } else {
-        MoveableObject::stopMove();
-    }
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+    MoveableObject::update(time);
+
 
 }
 
@@ -100,4 +98,9 @@ void from_json(const json& j, Player& value)
 	}
 
 	value.SetWeapons(weps);
+}
+
+void Player::onCollision(bool isCollidedOnWall)
+{
+	MoveableObject::stopMove();
 }

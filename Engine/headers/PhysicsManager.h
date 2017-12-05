@@ -7,6 +7,7 @@
 #include <string>
 #include "AssetManager.h"
 #include <memory>
+#include <Point.h>
 
 class MoveableObject;
 class PhysicsManager {
@@ -18,9 +19,9 @@ public:
 	~PhysicsManager();
 
 	static PhysicsManager& Instance();
-	bool checkOuterWallCollision(float midX, float midY, float radius); 
+	void checkWallCollision(MoveableObject* m, Point newPos);
 	bool checkStaticObjectCollision(float midX, float midY, float radius); 
-	bool checkMoveableCollision(float midX, float midY, float radius);
+	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
 	const vector<GameObject>* getCollidables();

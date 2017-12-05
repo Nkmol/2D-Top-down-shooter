@@ -20,16 +20,19 @@ PhysicsManager& PhysicsManager::Instance()
 	return sInstance;
 }
 
-bool PhysicsManager::checkOuterWallCollision(float midX, float midY, float radius)
+void PhysicsManager::checkWallCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
+	auto midX = m->getPredictionMidX(newPos.x);
+	auto midY = m->getPredictionMidY(newPos.y);
+	auto radius = m->getRadius();
+
 	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
-		return true;
+		m->onCollision(true);
 	}
-
-
-
-	return checkStaticObjectCollision(midX, midY, radius);
+	if (checkStaticObjectCollision(midX, midY, radius)) {
+		m->onCollision(true);
+	}
 }
 
 
@@ -58,29 +61,28 @@ bool PhysicsManager::checkStaticObjectCollision(float midX, float midY, float ra
 	return isCollision;
 }
 
-bool PhysicsManager::checkMoveableCollision(float midX, float midY, float radius)
+void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 {
-	bool isCollision = false;
+	auto midX = m->getPredictionMidX(newPos.x);
+	auto midY = m->getPredictionMidY(newPos.y);
+	auto radius = m->getRadius();
 
-	//for (int i = 0; i < objects.size(); i++) {
-	//	int xStep = midX - objects.at(i).getMidX();
-	//	int yStep = midY - objects.at(i).getMidY();
-	//	int collisionRange = radius + collidables->at(i).getRadius();
+	for (int i = 0; i < objects->size(); i++){
+		
+		int xStep = midX - objects->at(i).get()->getMidX();
+		int yStep = midY - objects->at(i).get()->getMidY();
+		int collisionRange = radius + objects->at(i).get()->getRadius();
+		int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
+		if (distance < 0) {
+			distance *= -1;
+		}
 
-	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-	//	if (distance < 0) {
-	//		distance *= -1;
-	//	}
-
-	//	if (distance < collisionRange) {
-	//		isCollision = true;
-	//		break;
-	//	}
-	//}
-
-	return isCollision;
+		if (distance < collisionRange) {
+			m->onBaseCollision(objects->at(i).get());
+			break;
+		}
+	}
 }
 
 void PhysicsManager::setStaticObjects()

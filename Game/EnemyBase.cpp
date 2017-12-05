@@ -122,12 +122,10 @@ void EnemyBase::setLeader(const EnemyBase& leader) {
 }
 
 void EnemyBase::update(float time) {
-	if (!PhysicsManager::Instance().checkOuterWallCollision(getMidX(_coordinates.x + _destination.x * speed * time), getMidY(_coordinates.y + _destination.y * speed * time), getRadius())) {
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
-	}
-	else {
-		MoveableObject::stopMove();
-	}
 }
 
 void EnemyBase::draw() {
@@ -153,4 +151,21 @@ const int EnemyBase::getDamage() const
 const int EnemyBase::getReward() const
 {
 	return reward;
+}
+
+void EnemyBase::onCollision(bool isCollidedOnWall)
+{
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onBaseCollision(MoveableObject * object)
+{
+	auto henk = typeid(object).name();
+	onCollision(object);
+}
+
+void EnemyBase::onCollision(Bullet* bullet)
+{
+	bullet->onCollision(true);
+	MoveableObject::stopMove();
 }

@@ -45,6 +45,8 @@ public:
 	void addWeapons(std::vector<Weapon> wp);
 	void SetWeapons(const std::vector<Weapon> wp);
 	int getCurrentWeaponIndex() const;
+
+	void onCollision(bool isCollidedOnWall);
 };
 
 // ReSharper disable once CppInconsistentNaming

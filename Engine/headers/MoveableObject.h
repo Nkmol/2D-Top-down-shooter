@@ -45,9 +45,13 @@ public:
 
     bool isVisible() const;
 
-    const int getMidX(float destinationPosition) const;
+    const int getMidX() const;
 
-    const int getMidY(float destinationPosition) const;
+    const int getMidY() const;
+
+	const int getPredictionMidX(float destinationPosition) const;
+
+	const int getPredictionMidY(float destinationPosition) const;
 
     const int getRadius() const;
 
@@ -57,7 +61,8 @@ public:
 
     void hide();
 
-	virtual void onCollision(MoveableObject moveableObject);
+	virtual void onBaseCollision(MoveableObject* moveableObject);
+	virtual void onCollision(bool isCollidedOnWall);
 };
 
 

@@ -9,7 +9,7 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
 	PhysicsManager::Instance().setStaticObjects();
-	//PhysicsManager::Instance().setMoveableObjects(_objs);
+	PhysicsManager::Instance().setMoveableObjects(&_objs);
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
@@ -19,10 +19,8 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(1, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(1, 200, 600, *_player);
-
-
+    _flockController.GenerateFlock<ZombieEnemy>(0, 200, 600, *_player);
+    //_flockController.GenerateFlock<BatEnemy>(0, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
