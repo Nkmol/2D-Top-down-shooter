@@ -25,6 +25,7 @@ AssetManager::AssetManager() {
 	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
 	render["creditsbutton"] = "../content/menu/button_credits.bmp";
 	render["mutebutton"] = "../content/menu/audio-unmute2.png";
+	render["quitbutton"] = "../content/menu/button_quit.bmp";
     //render["background"] = "../Assets/Img/wallpaper.png";
 
     //enemies
