@@ -65,6 +65,7 @@ void MenuState::Draw(Game& game)
 	loadgamebutton.drawButton();
 	creditsbutton.drawButton();
 	mutebutton.drawButton();
+	//quitbutton.drawButton();
 }
 
 void MenuState::Init()
@@ -72,7 +73,8 @@ void MenuState::Init()
 	newgamebutton = Button(newgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 0.5, 225, 45);
 	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1, 225, 45);
 	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.5, 225, 45);
-	mutebutton = Button(muteString, (SCREEN_WIDTH / 2) + 150, (SCREEN_HEIGHT / 3) * 1.75, 75, 75);
+	mutebutton = Button(muteString, (SCREEN_WIDTH / 2) + 200, (SCREEN_HEIGHT / 3) * 2, 75, 75);
+	//quitbutton = Button(quitString, (SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 3) * 2, 75, 75);
 
 	int muted = 0;
 }

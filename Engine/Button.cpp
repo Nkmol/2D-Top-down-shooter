@@ -30,7 +30,7 @@ void Button::drawButton() {
 	SDL_QueryTexture(this->_sprite, nullptr, nullptr, &w, &h);
 
 	SDL_Rect destinationRectangle = { static_cast<int>(x1Pos), static_cast<int>(y1Pos), w, h };
-	RenderManager::Instance().DrawTextureNoFlip(this->_sprite, nullptr, &destinationRectangle, 0);
+	RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, 0);
 }
 
 int Button::getX1() { return this->x1Pos; }
