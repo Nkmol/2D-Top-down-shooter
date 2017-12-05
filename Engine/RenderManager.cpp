@@ -39,7 +39,7 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
 	double angle) const
 {
-	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_HORIZONTAL);
+	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_NONE);
 	if (resp != 0) {
 		std::cout << SDL_GetError() << std::endl;
 	}
