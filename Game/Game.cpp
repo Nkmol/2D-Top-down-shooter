@@ -16,7 +16,7 @@ Game::~Game()
 void Game::Init()
 {
 	_mainManager.Init();
-	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, (config::height-200));
+	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
 }
 
