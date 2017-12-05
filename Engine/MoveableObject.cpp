@@ -3,8 +3,9 @@
 //
 
 #include <AssetManager.h>
-#include "MoveableObject.h"
 #include "Point.h"
+#include "MoveableObject.h"
+#include "PhysicsManager.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed},
@@ -55,6 +56,11 @@ int MoveableObject::getAngle() const {
 
 void MoveableObject::hide() {
     this->visible = false;
+}
+
+void MoveableObject::onCollision(MoveableObject moveableObject)
+{
+	hide();
 }
 
 bool MoveableObject::isVisible() const {

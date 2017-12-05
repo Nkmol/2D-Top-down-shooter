@@ -56,6 +56,8 @@ public:
 	int getHeight() const;
 
     void hide();
+
+	virtual void onCollision(MoveableObject moveableObject);
 };
 
 

@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "monsters/BatEnemy.h"
+#include <algorithm>
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -8,7 +9,7 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
 	PhysicsManager::Instance().setStaticObjects();
-	PhysicsManager::Instance().setMoveableObjects(_objs);
+	//PhysicsManager::Instance().setMoveableObjects(_objs);
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
@@ -69,7 +70,6 @@ void Level::HandleEvents(SDL_Event event) {
 
 void Level::Update(float time) {
 	const auto accSpeed = time *_levelSpeed;
-
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
@@ -78,6 +78,10 @@ void Level::Update(float time) {
 }
 
 void Level::Draw() {
+	
+	auto iter(std::remove_if(_objs.begin(), _objs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_objs.erase(iter, _objs.end());
+
     for (auto &&obj : _objs) {
         obj->draw();
     }

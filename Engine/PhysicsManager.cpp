@@ -1,5 +1,5 @@
 #include "PhysicsManager.h"
-
+#include "MoveableObject.h"
 
 PhysicsManager::PhysicsManager()
 {
@@ -62,23 +62,23 @@ bool PhysicsManager::checkMoveableCollision(float midX, float midY, float radius
 {
 	bool isCollision = false;
 
-	for (int i = 0; i < objects.size(); i++) {
-		int xStep = midX - objects.at(i).getMidX();
-		int yStep = midY - objects.at(i).getMidY();
-		int collisionRange = radius + collidables->at(i).getRadius();
+	//for (int i = 0; i < objects.size(); i++) {
+	//	int xStep = midX - objects.at(i).getMidX();
+	//	int yStep = midY - objects.at(i).getMidY();
+	//	int collisionRange = radius + collidables->at(i).getRadius();
 
 
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
+	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
-		if (distance < 0) {
-			distance *= -1;
-		}
+	//	if (distance < 0) {
+	//		distance *= -1;
+	//	}
 
-		if (distance < collisionRange) {
-			isCollision = true;
-			break;
-		}
-	}
+	//	if (distance < collisionRange) {
+	//		isCollision = true;
+	//		break;
+	//	}
+	//}
 
 	return isCollision;
 }
@@ -93,10 +93,12 @@ void PhysicsManager::setStaticObjects()
 	_playScreenHeight = 29 * _tileSize;
 }
 
-void PhysicsManager::setMoveableObjects(std::vector<shared_ptr<MoveableObject>> &_objs)
+void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
 {
 	objects = _objs;
 }
+
+
 
 const vector<GameObject>* PhysicsManager::getCollidables()
 {

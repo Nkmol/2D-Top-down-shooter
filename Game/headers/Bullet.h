@@ -23,6 +23,8 @@ public:
     void update(float time) override;
 
     const int getDamage() const;
+
+	void onCollision(GameObject object);
 };
 
 
