@@ -10,10 +10,13 @@
 #include "Weapon.h"
 #include "Point.h"
 
+#include "json.hpp"
+using json = nlohmann::json;
+
 class Player : public MoveableObject {
 
     std::vector<Weapon> weapons;
-    Weapon *weapon;
+    unsigned currentWeapon;
 
 private:
     // don't need to delete, it's a reference to a weapon inside de weapons vector.
@@ -33,14 +36,20 @@ public:
     const int getLifepoints() const;
 
     const int changeLifepoints(const int lp);
+	Weapon* getWeapon();
 
-    void changeWeapon(int index);
+	void changeWeapon(unsigned index);
 
-    Weapon *getWeapon() const;
+	const vector<Weapon>& getWeapons() const;
 
-    void addWeapons(std::vector<Weapon> wp);
-
+	void addWeapons(std::vector<Weapon> wp);
+	void SetWeapons(const std::vector<Weapon> wp);
+	int getCurrentWeaponIndex() const;
 };
 
+// ReSharper disable once CppInconsistentNaming
+void to_json(json& j, const Player& value);
+
+void from_json(const json& j, Player& value);
 
 #endif //SHOOTER_PLAYER_H
