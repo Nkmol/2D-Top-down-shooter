@@ -1,0 +1,18 @@
+{
+    "currentWeapon": 2,
+    "lifepoints": 100,
+    "weapons": [
+        {
+            "currentBullets": 100,
+            "name": "Uzi"
+        },
+        {
+            "currentBullets": 8,
+            "name": "Handgun"
+        },
+        {
+            "currentBullets": 3,
+            "name": "Shotgun"
+        }
+    ]
+}
