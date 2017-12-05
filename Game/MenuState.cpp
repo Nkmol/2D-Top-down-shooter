@@ -38,16 +38,16 @@ void MenuState::HandleEvents(Game& game)
 			else if (ev.button.x > mutebutton.getX1() && ev.button.x < mutebutton.getX2() && ev.button.y > mutebutton.getY1() && ev.button.y < mutebutton.getY2())
 			{
 				//Mute
-				if (muted == 0) {
+				if (muted == 1) {
 					AudioManager::Instance().StopBGM();
 					RenderManager::Instance().Clear();
-					muted = 1;
+					muted = 0;
 				}
 				else {
 					AudioManager::Instance().InitMusicPlayer();
 					AudioManager::Instance().LoadBGM("mainmenu");
 					AudioManager::Instance().PlayBGM();
-					muted = 0;
+					muted = 1;
 				}
 			}
 		}
@@ -73,9 +73,6 @@ void MenuState::Init()
 	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1, 225, 45);
 	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.5, 225, 45);
 	mutebutton = Button(muteString, (SCREEN_WIDTH / 2) + 150, (SCREEN_HEIGHT / 3) * 1.75, 75, 75);
-	AudioManager::Instance().InitMusicPlayer();
-	AudioManager::Instance().LoadBGM("mainmenu");
-	AudioManager::Instance().PlayBGM();
 
 	int muted = 0;
 }
