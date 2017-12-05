@@ -61,7 +61,7 @@ void TickerTime::Run(const bool& exitWhen)
 	{
 		const auto ticksNow = SDL_GetPerformanceCounter();
 		_lastDeltaTicks = ticksNow - _startPreviousFrame;
-		
+
 		_accumulator += _lastDeltaTicks;
 		// update game logic as lag permits -> physics catch up
 		while (_accumulator >= _targetTicksPerFrame)
@@ -75,7 +75,7 @@ void TickerTime::Run(const bool& exitWhen)
 			// Check after first accumalotr resolve if still lagg
 			if (_accumulator >= _targetTicksPerFrame) {
 				SDL_Log("Current lag is %f ms", _accumulator * 1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
-				
+
 				// Skip catching up when it falls to far behind (5 frames behind for now)
 				if (_accumulator >= _targetTicksPerFrame * 5)
 				{

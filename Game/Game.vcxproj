@@ -147,6 +147,8 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="monsters\BatEnemy.cpp" />
+    <ClCompile Include="monsters\ZombieEnemy.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -169,6 +171,8 @@
     <ClInclude Include="headers\Weapon.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="monsters\BatEnemy.h" />
+    <ClInclude Include="monsters\ZombieEnemy.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />

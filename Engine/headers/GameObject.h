@@ -7,6 +7,9 @@ public:
 	GameObject(const std::string mediatoken, const float x, const float y, const int width, const int height);
 	const int getMidX() const;
 	const int getMidY() const;
+	int getWidth() const;
+	int getHeight() const;
+
 	const int getRadius() const ;
 	GameObject();
 private:

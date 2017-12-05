@@ -11,7 +11,7 @@ Weapon::Weapon(int damage, std::string name, int maxBullets) :
 
 Bullet Weapon::getBullet(int angle, Point coordinates) {
     Bullet bullet("bullet", coordinates, damage);
-    bullet.setAngle(angle);
+    bullet.SetAngle(angle);
 
     if (hasBullets()) {
         shooted++;

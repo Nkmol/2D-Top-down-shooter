@@ -25,6 +25,11 @@ AssetManager::AssetManager() {
 	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
 	render["creditsbutton"] = "../content/menu/button_credits.bmp";
     //render["background"] = "../Assets/Img/wallpaper.png";
+
+    //enemies
+    render["zombieenemy"] = "../content/zombie_1.png";
+    render["batenemy"] = "../content/bat.png";
+
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }

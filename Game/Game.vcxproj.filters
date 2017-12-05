@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -54,13 +54,16 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Handgun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shotgun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="monsters\BatEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="monsters\ZombieEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +116,10 @@
     <ClInclude Include="Handgun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
+    <ClInclude Include="monsters\BatEnemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters\ZombieEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

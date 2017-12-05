@@ -27,3 +27,11 @@ const int GameObject::getRadius() const
 {
 	return radius;
 }
+
+int GameObject::getWidth() const {
+    return width;
+}
+
+int GameObject::getHeight() const {
+    return height;
+}
