@@ -45,15 +45,6 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawTextureNoFlip(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
-	double angle) const
-{
-	const auto resp = SDL_RenderCopyEx(this->renderer, texture, sourceRectangle, destinationRectangle, angle, NULL, SDL_FLIP_NONE);
-	if (resp != 0) {
-		std::cout << SDL_GetError() << std::endl;
-	}
-}
-
 void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle)
 {
 	if (font == NULL)
