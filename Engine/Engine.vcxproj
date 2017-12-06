@@ -153,6 +153,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
+    <ClInclude Include="headers\Event.h" />
     <ClInclude Include="headers\GameObject.h" />
     <ClInclude Include="headers\Engine.h" />
     <ClInclude Include="headers\PhysicsManager.h" />

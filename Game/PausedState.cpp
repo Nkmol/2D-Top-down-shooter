@@ -12,17 +12,17 @@ PausedState::~PausedState()
 
 void PausedState::HandleEvents(Game & game)
 {
-	auto &inputManager = InputManager::instance();
+	auto &inputManager = InputManager::Instance();
 
-	SDL_Event event{};
+	Event event;
 
-	while (inputManager.hasEvent(&event)) 
+	while (inputManager.HasEvent(&event)) 
 	{
-		if (inputManager.isPauseResume(event))
+		if (inputManager.IsPauseResume(event))
 		{
 			game.PopState();
 		}
-		if (inputManager.isQuit(event)) {
+		if (inputManager.IsQuit(event)) {
 			game.Quit();
 		}
 	}
