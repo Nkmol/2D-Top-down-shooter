@@ -22,10 +22,10 @@ public:
 	static PhysicsManager& Instance();
 	const std::vector<GameObject>* collidables;
 	bool checkCollision(float midX, float midY, float radius);
-	void UpdateQuadTree(std::vector<GameObject> gameObjects);
-	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> gameObjects);
+	void UpdateQuadTree(std::vector<GameObject> &gameObjects);
+	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects);
 	const QuadTree &GetQuadTree() const;
-    std::vector<GameObject> RetrieveNearbyGameObjects(GameObject gameObject);
+    std::vector<GameObject> RetrieveNearbyGameObjects(GameObject &gameObject);
 	void DrawQTree();
 private:
 	float _tileSize;
