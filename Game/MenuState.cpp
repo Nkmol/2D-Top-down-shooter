@@ -11,16 +11,15 @@ MenuState::~MenuState()
 
 void MenuState::HandleEvents(Game& game)
 {
-	auto& inputManager = InputManager::instance();
-	SDL_Event ev;
-	while (inputManager.hasEvent(&ev)) {
-		if (inputManager.isQuit(ev))
+	auto& inputManager = InputManager::Instance();
+	Event ev;
+	while (inputManager.HasEvent(&ev)) {
+		if (inputManager.IsQuit(ev))
 			game.Quit();
-		else if (inputManager.isMouseClicked(ev))
+		else if (inputManager.IsMouseClicked(ev))
 		{
-			if (ev.button.x > newgamebutton.getX1() && ev.button.x < newgamebutton.getX2() && ev.button.y > newgamebutton.getY1() && ev.button.y < newgamebutton.getY2()) {
+			if (ev.GetEventValue().button.x > newgamebutton.getX1() && ev.GetEventValue().button.x < newgamebutton.getX2() && ev.GetEventValue().button.y > newgamebutton.getY1() && ev.GetEventValue().button.y < newgamebutton.getY2()) {
 				//New game
-				//SDL_RenderClear(this->renderer);
 				auto state = make_unique<PlayingState>();
 				game.ChangeState(std::move(state));
 				AudioManager::Instance().StopBGM();
@@ -28,17 +27,17 @@ void MenuState::HandleEvents(Game& game)
 				// todo, alle draw functies naar rendermanager: functie: void DrawObject(MoveableObject object);
 			}
 
-			else if (ev.button.x > loadgamebutton.getX1() && ev.button.x < loadgamebutton.getX2() && ev.button.y > loadgamebutton.getY1() && ev.button.y < loadgamebutton.getY2()) {
+			else if (ev.GetEventValue().button.x > loadgamebutton.getX1() && ev.GetEventValue().button.x < loadgamebutton.getX2() && ev.GetEventValue().button.y > loadgamebutton.getY1() && ev.GetEventValue().button.y < loadgamebutton.getY2()) {
 				//Load game
 			}
 
-			else if (ev.button.x > creditsbutton.getX1() && ev.button.x < creditsbutton.getX2() && ev.button.y > creditsbutton.getY1() && ev.button.y < creditsbutton.getY2()) {
+			else if (ev.GetEventValue().button.x > creditsbutton.getX1() && ev.GetEventValue().button.x < creditsbutton.getX2() && ev.GetEventValue().button.y > creditsbutton.getY1() && ev.GetEventValue().button.y < creditsbutton.getY2()) {
 				//Credits
 			}
-			else if (ev.button.x > quitbutton.getX1() && ev.button.x < quitbutton.getX2() && ev.button.y > quitbutton.getY1() && ev.button.y < quitbutton.getY2()) {
+			else if (ev.GetEventValue().button.x > quitbutton.getX1() && ev.GetEventValue().button.x < quitbutton.getX2() && ev.GetEventValue().button.y > quitbutton.getY1() && ev.GetEventValue().button.y < quitbutton.getY2()) {
 				game.Quit();
 			}
-			else if (ev.button.x > mutebutton.getX1() && ev.button.x < mutebutton.getX2() && ev.button.y > mutebutton.getY1() && ev.button.y < mutebutton.getY2())
+			else if (ev.GetEventValue().button.x > mutebutton.getX1() && ev.GetEventValue().button.x < mutebutton.getX2() && ev.GetEventValue().button.y > mutebutton.getY1() && ev.GetEventValue().button.y < mutebutton.getY2())
 			{
 				//Mute
 				if (muted == 1) {
