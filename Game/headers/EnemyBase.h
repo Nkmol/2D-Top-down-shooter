@@ -33,9 +33,8 @@ public:
 	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,
 	          const int damage, const int lifepoints, const int reward);
 	EnemyBase(const nlohmann::json & j);
-	virtual ~EnemyBase();
-	//EnemyBase() = delete;
 	EnemyBase(const EnemyBase& other);
+	virtual ~EnemyBase();
 
 	void UpdatePosition(std::vector<unique_ptr<EnemyBase>>& others, const float time);
 
