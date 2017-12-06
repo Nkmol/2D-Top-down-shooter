@@ -12,6 +12,7 @@
 class EnemyBase;
 class Player;
 class Flock;
+class MoveableObject;
 
 class FlockController
 {
@@ -20,7 +21,7 @@ public:
 	FlockController();
 	~FlockController();
 	void GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos,
-	                   Player& flockTarget);
+	                   Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects);
 	void DrawFlocks();
 	void UpdateFlocks(float time);
 };

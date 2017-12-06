@@ -33,7 +33,7 @@ public:
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();
 
-	void UpdatePosition(std::vector<unique_ptr<EnemyBase>>& others, const float time);
+	void UpdatePosition(std::vector<shared_ptr<EnemyBase>>& others, const float time);
 
 	void ApplyForce(float forcePower, int forceDirection);
 

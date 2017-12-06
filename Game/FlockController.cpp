@@ -5,6 +5,7 @@
 #include "FlockController.h"
 #include "Flock.h"
 #include "IAIBase.h"
+#include "MoveableObject.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ FlockController::~FlockController()
 {
 }
 
-void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget)
+void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects)
 {
 	auto leader = make_unique<EnemyBase>(basedOn);
 	leader->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
@@ -27,10 +28,11 @@ void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSiz
 	auto newFlock = std::make_unique<Flock>(move(leader));
 	for (auto i = 0; i < flockSize; i++)
 	{
-		auto member = make_unique<EnemyBase>(basedOn);
+		auto member = make_shared<EnemyBase>(basedOn);
 		member->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
 
-		newFlock->AddMember(move(member));
+		newFlock->AddMember(member);
+		gameObjects.push_back(member);
 	}
 
 	_flocks.push_back(move(newFlock));

@@ -7,7 +7,7 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player, std::vector<std::shared_ptr<MoveableObject>> npcs)
+void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
 {
 	_waves = waves;
 	_player = player;
@@ -55,7 +55,7 @@ void WaveController::SpawnWave()
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player);
+		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player, _npcs);
 	}
 }
 

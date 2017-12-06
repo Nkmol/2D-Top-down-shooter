@@ -23,7 +23,13 @@ void MoveableObject::draw() {
     RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
 }
 
+int MoveableObject::getAngle() const {
+	return angle;
+}
 
+void MoveableObject::SetAngle(const int angle) {
+	MoveableObject::angle = angle;
+}
 
 void MoveableObject::SetCoordinates(const Point& value)
 {
@@ -31,9 +37,8 @@ void MoveableObject::SetCoordinates(const Point& value)
 }
 
 const Point &MoveableObject::GetCoordinates() const {
-    return _coordinates;
+	return _coordinates;
 }
-
 
 void MoveableObject::update(float time) {
     _coordinates += _destination * speed * time;
@@ -43,8 +48,6 @@ void MoveableObject::update(float time) {
 void MoveableObject::stopMove() {
     _destination = Point{0, 0};
 }
-
-
 
 const int MoveableObject::getMidX(float destinationPosition) const {
     return destinationPosition + width / 2;;

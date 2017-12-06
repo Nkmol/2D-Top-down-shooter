@@ -11,6 +11,7 @@ class Player;
 class MoveableObject;
 class GameObject;
 class Wave;
+class Event;
 
 class Level {
     int _level;

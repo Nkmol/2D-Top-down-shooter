@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "EnemyBase.h"
 #include "Wave.h"
+#include "Event.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -119,7 +120,6 @@ void Level::HandleEvents(Event event) {
 
 void Level::Update(float time) {
 	const auto accSpeed = time *_levelSpeed;
-
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }

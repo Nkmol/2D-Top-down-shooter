@@ -16,10 +16,10 @@ public:
 	//using EnemiesType = std::vector<unique_ptr<EnemyBase>>; 
 private:
 	EnemyBase& _leader;
-	std::vector<std::unique_ptr<EnemyBase>> _members;
+	std::vector<std::shared_ptr<EnemyBase>> _members;
 public:
 	explicit Flock(std::unique_ptr<EnemyBase> leader);
-	void AddMember(std::unique_ptr<EnemyBase> newMember);
+	void AddMember(std::shared_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
 	void Draw();

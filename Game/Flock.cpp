@@ -10,11 +10,11 @@ Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
 	_members.push_back(move(leader));
 }
 
-void Flock::AddMember(unique_ptr<EnemyBase> newMember)
+void Flock::AddMember(shared_ptr<EnemyBase> newMember)
 {
 	newMember->GetBehaviour().SetLeader(_leader);
 	newMember->GetBehaviour().SetTarget(_leader.GetBehaviour().GetTarget());
-	_members.push_back(move(newMember));
+	_members.push_back(newMember);
 }
 
 void Flock::RemoveFarMembers()
