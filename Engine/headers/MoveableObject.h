@@ -30,7 +30,7 @@ private:
 
 protected:
 
-    int angle, radius;
+    int angle;
 	float speed, distance;
     Point _destination;
 	classType _type;
@@ -64,7 +64,9 @@ public:
 
 	classType getType();
 
-	virtual void onBaseCollision(shared_ptr<MoveableObject> moveableObject);
+
+	virtual void onBaseCollision(MoveableObject* object);
+	virtual void onBaseCollision(GameObject object);
 	virtual void onCollision(bool isCollidedOnWall);
 };
 

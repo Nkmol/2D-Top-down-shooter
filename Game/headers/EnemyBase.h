@@ -31,8 +31,11 @@ protected:
 	const int getDamage() const;
 	const int getReward() const;
 
+	void onBaseCollision(MoveableObject * object);
+
+	void onBaseCollision(GameObject object);
+
 	//void onCollision(bool isCollidedOnWall) override;
-	void onBaseCollision(shared_ptr<MoveableObject> moveableObject);
 	void onCollision(Bullet bullet);
 
 public:

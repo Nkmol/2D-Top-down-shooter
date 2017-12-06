@@ -113,8 +113,10 @@ void EnemyBase::setLeader(const EnemyBase& leader) {
 
 void EnemyBase::update(float time) {
 	const auto newPostition = _coordinates + (_destination * speed * time);
-	PhysicsManager::Instance().checkWallCollision(this, newPostition);
 	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+
+	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
 
@@ -143,10 +145,15 @@ const int EnemyBase::getReward() const
 	return reward;
 }
 
-
-void EnemyBase::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
+void EnemyBase::onBaseCollision(MoveableObject* object)
 {
-	//onCollision(moveableObject.get());
+	string henk = "test";
+
+}
+
+void EnemyBase::onBaseCollision(GameObject object)
+{
+	string henk = "test";
 
 	//switch (moveableObject.get()->getType())
 	//{

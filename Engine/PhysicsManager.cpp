@@ -66,7 +66,7 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 	auto midY = m->getPredictionMidY(newPos.y);
 	auto radius = m->getRadius();
 
-	/*for (int i = 0; i < objects->size(); i++){
+	for (int i = 0; i < objects->size(); i++){
 		
 		int xStep = midX - objects->at(i).get()->getMidX();
 		int yStep = midY - objects->at(i).get()->getMidY();
@@ -78,10 +78,10 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 		}
 
 		if (distance < collisionRange) {
-			m->onBaseCollision(objects->at(i));
+			m->onBaseCollision(objects->at(i).get());
 			break;
 		}
-	}*/
+	}
 }
 
 void PhysicsManager::setStaticObjects()
@@ -99,6 +99,31 @@ void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _obj
 	objects = _objs;
 }
 
+
+void PhysicsManager::CheckQuadTreeCollision(MoveableObject* m, Point newPos) {
+	std::vector<GameObject> nearbyObjects = RetrieveNearbyGameObjects(*m);
+
+	auto midX = m->getPredictionMidX(newPos.x);
+	auto midY = m->getPredictionMidY(newPos.y);
+	auto radius = m->getRadius();
+
+	for (int i = 0; i < nearbyObjects.size(); i++){	
+
+		int xStep = midX - nearbyObjects.at(i).getMidX();
+		int yStep = midY - nearbyObjects.at(i).getMidY();
+		int collisionRange = radius + nearbyObjects.at(i).getRadius();
+		int distance = sqrt((xStep*xStep) + (yStep*yStep));
+
+		if (distance < 0) {
+			distance *= -1;
+		}
+
+		if (distance < collisionRange) {
+			m->onBaseCollision(nearbyObjects.at(i));
+			break;
+		}
+	}
+}
 
 
 const vector<GameObject>* PhysicsManager::getCollidables()

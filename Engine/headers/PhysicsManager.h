@@ -29,6 +29,7 @@ public:
 	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
+	void CheckQuadTreeCollision(MoveableObject * m, Point newPos);
 	const vector<GameObject>* getCollidables();
 
 	const std::vector<GameObject>* collidables;
@@ -37,7 +38,6 @@ public:
 	const QuadTree &GetQuadTree() const;
     std::vector<GameObject> RetrieveNearbyGameObjects(GameObject &gameObject);
 	void DrawQTree();
-
 private:
 	std::vector<shared_ptr<MoveableObject>>* objects;
 //	const std::vector<GameObject>* collidables;

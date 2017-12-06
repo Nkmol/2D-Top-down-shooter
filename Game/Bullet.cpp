@@ -22,7 +22,7 @@ void Bullet::update(float time) {
 
     const auto newPostition = _coordinates + (_destination * speed * time);
 
-	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
     MoveableObject::update(time);
 
 }

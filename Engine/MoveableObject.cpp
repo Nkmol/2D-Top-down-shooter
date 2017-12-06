@@ -60,7 +60,11 @@ classType MoveableObject::getType()
 	return _type;
 }
 
-void MoveableObject::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
+void MoveableObject::onBaseCollision(MoveableObject* object)
+{
+}
+
+void MoveableObject::onBaseCollision(GameObject object)
 {
 	//hide();
 }
