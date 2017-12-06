@@ -159,6 +159,7 @@
     <ClInclude Include="headers\MapManager.h" />
     <ClInclude Include="headers\TickerTime.h" />
     <ClInclude Include="CustomDeleter.h" />
+    <ClInclude Include="QuadTree.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="TickerTime.cpp" />

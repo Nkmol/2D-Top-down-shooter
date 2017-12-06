@@ -1,5 +1,6 @@
 #include "Level.h"
 #include "monsters/BatEnemy.h"
+#include <chrono>
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -13,11 +14,13 @@ void Level::Init() {
     player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
-
+    _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
+    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
+    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -33,7 +36,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     if (inputManager.isMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objs.emplace_back(bullet);
+        _objsNoEnemies.emplace_back(bullet);
     }
 
     int key = 0;
@@ -91,20 +94,22 @@ void Level::HandleEvents(SDL_Event event) {
 }
 
 void Level::Update(float time) {
+    PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
 
-    for (auto &&obj : _objs) {
+    for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+    _player->update(time);
     _flockController.UpdateFlocks(accSpeed);
 }
 
 void Level::Draw() {
-    for (auto &&obj : _objs) {
+    _player->draw();
+    for (auto &&obj : _objsNoEnemies) {
         obj->draw();
     }
     _flockController.DrawFlocks();
-
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
@@ -114,5 +119,7 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
+// lines below this are only for debug purpose
+//    PhysicsManager::Instance().DrawQTree();
 }
 

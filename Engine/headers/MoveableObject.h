@@ -11,7 +11,7 @@
 #include "PhysicsManager.h"
 #include "Point.h"
 
-class MoveableObject {
+class MoveableObject : public GameObject {
 
 private:
     SDL_Texture *_sprite;
@@ -20,11 +20,9 @@ private:
 
 protected:
     bool visible;
-    int angle, radius, midX, midY, width, height;
-	float speed;
-    float distance;
+    int angle, radius;
+	float speed, distance;
     Point _destination;
-    Point _coordinates;
 
 public:
     ~MoveableObject();
@@ -37,8 +35,6 @@ public:
 
     void SetAngle(int angle);
 
-    const Point &GetCoordinates() const;
-
     int getAngle() const;
 
     void stopMove();
@@ -48,12 +44,6 @@ public:
     const int getMidX(float destinationPosition) const;
 
     const int getMidY(float destinationPosition) const;
-
-    const int getRadius() const;
-
-	int getWidth() const;
-
-	int getHeight() const;
 
     void hide();
 };

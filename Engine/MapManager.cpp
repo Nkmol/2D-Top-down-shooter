@@ -72,7 +72,9 @@ void MapManager::Init(const string input)
 			}
 
 			if (tileLayers.at(1).at(counter) != 0) {
-				collidables.push_back({"", (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
+				GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
+				gameObject.SetTeamId(-100);
+				collidables.push_back(gameObject);
 				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
 			}
@@ -87,12 +89,11 @@ void MapManager::Init(const string input)
 
 void MapManager::Render()
 {
-	SDL_Rect srcRect;
-	srcRect.x = srcRect.y = 0;
-	srcRect.w = tmx.mapInfo.width * tmx.mapInfo.tileWidth;
-	srcRect.h = tmx.mapInfo.height * tmx.mapInfo.tileHeight;
+	mapRect.x = mapRect.y = 0;
+	mapRect.w = tmx.mapInfo.width * tmx.mapInfo.tileWidth;
+	mapRect.h = tmx.mapInfo.height * tmx.mapInfo.tileHeight;
 
-	RenderManager::Instance().DrawTexture(mapTexture, &srcRect, NULL);
+	RenderManager::Instance().DrawTexture(mapTexture, &mapRect, NULL);
 }
 
 void MapManager::RenderTilesText()
@@ -177,4 +178,8 @@ void MapManager::GetTileLayers()
 		tileLayers.push_back(intlayer);
 		counter++;
 	}
+}
+
+const SDL_Rect &MapManager::GetMapRect() const {
+	return mapRect;
 }

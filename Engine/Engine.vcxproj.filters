@@ -69,6 +69,7 @@
     <ClInclude Include="CustomDeleter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="QuadTree.h">
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,6 +114,7 @@
     <ClCompile Include="TickerTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QuadTree.cpp">
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

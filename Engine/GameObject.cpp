@@ -1,11 +1,22 @@
 #include "GameObject.h"
 
+int GameObject::counter = 0;
+GameObject::GameObject(const Point coordinates, const int width, const int height) :
+	_coordinates(coordinates), width(width), height(height)
+{
+	midX = _coordinates.x + width / 2;
+	midY = _coordinates.y + height / 2;
+	radius = (width + height) / 4;
+	this->id = ++counter;
+}
+
 GameObject::GameObject(const std::string mediatoken, float x, const float y, const int width, const int height) :
 	x(x), y(y), width(width), height(height) 
 {
-	midX = x + width / 2;
-	midY = y + height / 2;
+	midX = _coordinates.x + width / 2;
+	midY = _coordinates.y + height / 2;
 	radius = (width + height) / 4;
+	this->id = ++counter;
 }
 
 GameObject::GameObject()
@@ -34,4 +45,37 @@ int GameObject::getWidth() const {
 
 int GameObject::getHeight() const {
     return height;
+}
+
+const Point &GameObject::GetCoordinates() const {
+	return _coordinates;
+}
+
+const SDL_Rect GameObject::GetRect() const {
+	SDL_Rect rect = SDL_Rect();
+	rect.x = this->_coordinates.x;
+	rect.y = this->_coordinates.y;
+	rect.w = this->width;
+	rect.h = this->height;
+	return rect;
+}
+
+void GameObject::update(float time) {
+
+}
+
+void GameObject::draw() {
+
+}
+
+int GameObject::GetId() const {
+	return id;
+}
+
+void GameObject::SetTeamId(int teamId) {
+	GameObject::teamId = teamId;
+}
+
+int GameObject::GetTeamId() const {
+	return teamId;
 }
