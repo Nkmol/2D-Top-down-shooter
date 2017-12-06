@@ -2,8 +2,7 @@
 // Created by Ahmad Rahimi on 11/21/17.
 //
 #include "EnemyBase.h"
-#include "monsters/BatEnemy.h"
-#include "monsters/BatEnemy.h"
+#include "IAIBase.h"
 #include "AIDefault.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
@@ -11,7 +10,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float 
 {
 }
 
-EnemyBase::EnemyBase(const std::string &filePath, const Point coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
+EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	MoveableObject(filePath, coordinates, speed),
 	_behaviour(make_unique<AIDefault>(*this, 100, isLeader)),
 	lifepoints(lifepoints),
@@ -21,7 +20,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point coordinates, const
 {
 }
 
-EnemyBase::EnemyBase(const json& j) : EnemyBase{ j.at("type").get<string>(), 
+EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<string>(), 
 												 Point(0, 0), 
 												 j.at("speed").get<int>(),
                                                  false, 
@@ -31,6 +30,18 @@ EnemyBase::EnemyBase(const json& j) : EnemyBase{ j.at("type").get<string>(),
 {
 }
 
+
+EnemyBase::EnemyBase(const EnemyBase& other) : MoveableObject(other),
+                                               _behaviour(other._behaviour->Clone()), 
+											   lifepoints(other.lifepoints),
+                                               damage(other.damage), reward(other.reward),
+                                               destinationPoint(other._coordinates)
+{
+	_behaviour->SetOwner(*this);
+}
+
+EnemyBase::~EnemyBase() = default;
+
 void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
 	const auto forceX = float(forcePower * cos(forceDirection));
 	const auto forceY = float(forcePower * sin(forceDirection));
@@ -38,7 +49,7 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::UpdatePosition(EnemiesType& others, const float time)
+void EnemyBase::UpdatePosition(std::vector<unique_ptr<EnemyBase>>& others, const float time)
 {
 	_behaviour->Update(others, time);
 

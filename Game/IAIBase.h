@@ -2,31 +2,40 @@
 #include <vector>
 #include <memory>
 #include "Player.h"
-
-class EnemyBase;
+#include "EnemyBase.h"
 
 class IAIBase
 {
 protected:
 	using EnemiesType = std::vector<std::unique_ptr<EnemyBase>>;
-	EnemyBase& _owner;
 	int _weightMultiplier;
 
 
 	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
 	const Player* _target;
 	const EnemyBase* _leader;
+	EnemyBase* _owner;
 
 	bool _isLeader;
 
 	const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
 public:
-	IAIBase(EnemyBase& owner, const unsigned weightMultiplier, const bool isLeader) : _owner(owner), _weightMultiplier(weightMultiplier), _isLeader(isLeader)
+	IAIBase(EnemyBase& owner, const unsigned weightMultiplier, const bool isLeader) : _owner(&owner), _weightMultiplier(weightMultiplier), _isLeader(isLeader)
 	{
 	}
 
 	IAIBase(EnemyBase& owner) : IAIBase(owner, 100, false)
 	{
+	}
+
+	void SetOwner(EnemyBase& owner)
+	{
+		_owner = &owner;
+	}
+
+	void SetIsLeader(const bool value)
+	{
+		_isLeader = value;
 	}
 
 	void SetTarget(const Player& target)
@@ -60,5 +69,6 @@ public:
 	virtual void Cohese(EnemiesType& others) = 0;
 	virtual void Seperate(EnemiesType& others) = 0;
 	virtual void GoTarget() = 0;
+	virtual unique_ptr<IAIBase> Clone() const = 0;
 };
 

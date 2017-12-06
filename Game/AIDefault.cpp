@@ -1,8 +1,7 @@
 
-
 #include "AIDefault.h"
-#include "EnemyBase.h"
 #include "Helper.h"
+#include "EnemyBase.h"
 
 void AIDefault::Update(EnemiesType& others, int time)
 {
@@ -15,28 +14,28 @@ void AIDefault::Update(EnemiesType& others, int time)
 		GoTarget();
 	}
 
-	auto& coordinates = _owner.GetCoordinates();
-	auto& destinationPoint = _owner.GetDestinationPoint();
+	auto& coordinates = _owner->GetCoordinates();
+	auto& destinationPoint = _owner->GetDestinationPoint();
 
 	const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
 	const auto dir = Helper::radiansToDegrees(rad);
 	const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
-	_owner.SetAngle(dir);
+	_owner->SetAngle(dir);
 
-	_owner.SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
+	_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
 }
 
 void AIDefault::Align()
 {
 	auto& dest = _leader->GetDestinationPoint();
-	_owner.SetDestinationPoint(dest);
+	_owner->SetDestinationPoint(dest);
 }
 
 void AIDefault::Cohese(EnemiesType& others)
 {
 	Point massCenter(0, 0);
 	for (const auto& other : others) {
-		if (other.get() != &_owner) {
+		if (other.get() != _owner) {
 
 			const auto& oCoordinates = other->GetCoordinates();
 			massCenter += oCoordinates;
@@ -46,18 +45,18 @@ void AIDefault::Cohese(EnemiesType& others)
 	const auto othersSize = others.size() - 1;
 	massCenter = massCenter / othersSize;
 
-	auto& coordinates = _owner.GetCoordinates();
+	auto& coordinates = _owner->GetCoordinates();
 	const auto forceDirection = Helper::calculateAngle(coordinates.x, coordinates.y, massCenter.x, massCenter.y);
 
-	_owner.ApplyForce(0.1, forceDirection);
+	_owner->ApplyForce(0.1, forceDirection);
 }
 
 void AIDefault::Seperate(EnemiesType& others)
 {
-	auto& coordinates = _owner.GetCoordinates();
+	auto& coordinates = _owner->GetCoordinates();
 
 	for (const auto& other : others) {
-		if (other.get() != &_owner) {
+		if (other.get() != _owner) {
 			const auto& oWeight = other->getWidth() * other->getHeight() * _weightMultiplier;
 			const auto& oCoordinates = other->GetCoordinates();
 			const Point squared((oCoordinates.x - coordinates.x) * (oCoordinates.x - coordinates.x),
@@ -68,7 +67,7 @@ void AIDefault::Seperate(EnemiesType& others)
 				const auto scale = sqrt(squareDist) / sqrt(oWeight);
 				const auto scaledVector = headingVector / sqrt(squareDist) / scale;
 
-				_owner.SetDestinationPoint(_owner.GetDestinationPoint() + scaledVector);
+				_owner->SetDestinationPoint(_owner->GetDestinationPoint() + scaledVector);
 			}
 		}
 	}
@@ -85,16 +84,14 @@ void AIDefault::Seperate(EnemiesType& others)
 			const auto scale = sqrt(squareDist) / sqrt(oWeight);
 			const auto scaledVector = headingVector / sqrt(squareDist) / scale;
 			
-			_owner.SetDestinationPoint(_owner.GetDestinationPoint() + scaledVector);
+			_owner->SetDestinationPoint(_owner->GetDestinationPoint() + scaledVector);
 		}
 	}
 }
 
 void AIDefault::GoTarget()
 {
-	_owner.SetDestinationPoint(_target->GetCoordinates());
+	_owner->SetDestinationPoint(_target->GetCoordinates());
 }
 
-AIDefault::~AIDefault()
-{
-}
+AIDefault::~AIDefault() = default;
