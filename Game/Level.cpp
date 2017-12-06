@@ -46,9 +46,6 @@ void Level::Init() {
 
 	
 	_waveController.Init(_waves, _player);
-
-    //_flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
-    //_flockController.GenerateFlock(j[1], 50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
