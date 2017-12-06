@@ -31,6 +31,7 @@ AssetManager::AssetManager() {
     //enemies
     render["zombieenemy"] = "../content/zombie_1.png";
     render["batenemy"] = "../content/bat.png";
+	render["space.jpg"] = "../content/map/space.jpg";
 
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
@@ -53,7 +54,6 @@ Mix_Music *AssetManager::loadBGM(string soundToken) {
         cout << "failed to load" << Mix_GetError() << endl;
         return nullptr;
     }
-    cout << "works" << Mix_GetError() << endl;
     return gBGM;
 }
 
@@ -84,4 +84,18 @@ TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 		cout << "Unable to load font %s! SDL_image Error: " << render[fontToken] << TTF_GetError() << endl;
 
 	return font;
+}
+
+SDL_Texture * AssetManager::loadTexture(string mediaToken)
+{
+	SDL_Surface *surface = loadSurface(mediaToken);
+	if (!surface)
+		cout << SDL_GetError() << endl;
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
+
+
+	if (texture == NULL) {
+		printf(SDL_GetError());
+	}
+	return texture;
 }

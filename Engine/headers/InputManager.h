@@ -10,6 +10,7 @@
 #include <map>
 #include "MoveableObject.h"
 #include "Point.h"
+#include "Event.h"
 
 class InputManager {
 
@@ -29,33 +30,35 @@ public:
 	InputManager(InputManager const&) = delete;
 	void operator=(InputManager const&) = delete;
 
-    static InputManager &instance();
+    static InputManager& Instance();
 
-    bool hasEvent(SDL_Event *event);
+    bool HasEvent(Event *event);
 
-    bool isKeyDown(SDL_Event &event);
+    bool IsKeyDown(Event &event);
 
-    Point getDirection(SDL_Event &event);
+    Point GetDirection(Event &event);
 
-    bool isMouseMoved(SDL_Event &event);
+    bool IsMouseMoved(Event &event);
 
-    bool isMouseClicked(SDL_Event &event);
+    bool IsMouseClicked(Event &event);
 
-    int getMousePositionX() const;
+    int GetMousePositionX() const;
 
-    int getMousePositionY() const;
+    int GetMousePositionY() const;
 
-    int calculateMouseAngle(MoveableObject &object);
+    int CalculateMouseAngle(MoveableObject &object);
 
-    int recalculateMouseAngle(MoveableObject &object);
+    int RecalculateMouseAngle(MoveableObject &object);
 
-    bool isKeyUp(SDL_Event &event);
+    bool IsKeyUp(Event &event);
 
-    bool isQuit(SDL_Event &event);
+    bool IsQuit(Event &event);
 
-    bool isPauseResume(SDL_Event &event);
+    bool IsPauseResume(Event &event);
 
-    bool isNumericKeyPressed(SDL_Event &event, int &key);
+    bool IsNumericKeyPressed(Event &event, int &key);
+
+	const bool IsKeyDown(Event& event, const std::string name) const;
 };
 
 

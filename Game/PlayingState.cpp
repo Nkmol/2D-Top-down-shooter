@@ -12,17 +12,17 @@ PlayingState::~PlayingState() {
 }
 
 void PlayingState::HandleEvents(Game &game) {
-    auto &inputManager = InputManager::instance();
+    auto &inputManager = InputManager::Instance();
 
-    SDL_Event event{};
+	Event event;
 
-    while (inputManager.hasEvent(&event)) {
+    while (inputManager.HasEvent(&event)) {
 
-        if (inputManager.isPauseResume(event)) {
+        if (inputManager.IsPauseResume(event)) {
             auto state = std::make_unique<PausedState>();
             game.ChangeState(std::move(state));
         }
-        if (inputManager.isQuit(event)) {
+        if (inputManager.IsQuit(event)) {
             game.Quit();
         }
         game.GetLevel()->HandleEvents(event);
