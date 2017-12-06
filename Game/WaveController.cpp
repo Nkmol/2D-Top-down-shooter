@@ -35,7 +35,7 @@ bool WaveController::Update(float time)
 {
 	_lastWaveTimer += time;
 
-	if (_lastWaveTimer >= _curWave->get_time()) {
+	if (_lastWaveTimer >= _curWave->GetTime()) {
 		_lastWaveTimer = 0.0f;
 		_curWave++;
 		if (_curWave == _waves.end())
@@ -49,9 +49,9 @@ bool WaveController::Update(float time)
 
 void WaveController::SpawnWave()
 {
-	std::string waveText = "Wave: " + _curWave->get_id();
+	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
-	std::cout << "new wave: " << _curWave->get_id() << endl;
+	std::cout << "new wave: " << _curWave->GetId() << endl;
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{

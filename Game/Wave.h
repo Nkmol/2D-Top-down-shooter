@@ -21,13 +21,13 @@ class Wave
 	std::vector<FlockVars> _flocksVars;
 
 public:
-	const int get_id() const { return _id; }
-	void set_id(const int id) { _id = id; }
-	const float get_time() const { return _time; }
-	void set_time(const float time) { _time = time; }
-	const float get_multiplier() const { return _multiplier; }
-	void set_multiplier(const float multiplier) { _multiplier = multiplier; }
-	void set_flocksvars(const std::vector<FlockVars> vars) { _flocksVars = vars; }
+	const int GetId() const { return _id; }
+	void SetId(const int id) { _id = id; }
+	const float GetTime() const { return _time; }
+	void SetTime(const float time) { _time = time; }
+	const float GetMultiplier() const { return _multiplier; }
+	void SetMultiplier(const float multiplier) { _multiplier = multiplier; }
+	void SetFlocksVars(const std::vector<FlockVars> vars) { _flocksVars = vars; }
 	const std::vector<FlockVars> GetFlocksVars() const { return _flocksVars; }
 };
 

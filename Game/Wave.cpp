@@ -11,8 +11,8 @@ static void from_json(const nlohmann::json& j, FlockVars& value)
 
 void from_json(const nlohmann::json& j, Wave& value)
 {
-	value.set_id(j.at("id").get<int>());
-	value.set_time(j.at("time").get<float>());
-	value.set_multiplier(j.at("multiplier").get<float>());
-	value.set_flocksvars(j.at("flocks").get<std::vector<FlockVars>>());
+	value.SetId(j.at("id").get<int>());
+	value.SetTime(j.at("time").get<float>());
+	value.SetMultiplier(j.at("multiplier").get<float>());
+	value.SetFlocksVars(j.at("flocks").get<std::vector<FlockVars>>());
 }
