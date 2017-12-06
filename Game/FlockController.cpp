@@ -18,7 +18,7 @@ void FlockController::GenerateFlock(const int flockSize, const int minPos, const
 	for (auto i = 0; i < flockSize; i++)
 	{
 		auto member = std::make_unique<T>(Point(rand() % maxPos + minPos, rand() % maxPos + minPos), false);
-		newFlock->AddMember(move(member));
+		//newFlock->AddMember(move(member));
 		gameObjects.push_back(move(member));
 	}
 

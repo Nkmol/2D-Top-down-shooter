@@ -9,15 +9,17 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
 
-    auto player = make_shared<Player>("soldier", 100, 300);
+    auto player = make_unique<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(0); // set weapon to Uzi
 
-    _objs.emplace_back(player);
+    //_objs.emplace_back(player);
+
+	_player = move(player);
+
     //_objsNoEnemies.emplace_back(player);
     // save pointer seperate
-    _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(1, 250, 300, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(10, 250, 300, *_player, _objs);
 
 }
 

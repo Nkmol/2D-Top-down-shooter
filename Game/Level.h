@@ -21,7 +21,7 @@ class Level {
 	std::vector<shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<shared_ptr<MoveableObject>> _npcs;
     std::vector<shared_ptr<GameObject>> _loot;
-    shared_ptr<Player> _player;
+    std::unique_ptr<Player> _player;
 
 private:
     FlockController _flockController;
