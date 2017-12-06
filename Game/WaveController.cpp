@@ -7,10 +7,11 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player)
+void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player, std::vector<std::shared_ptr<MoveableObject>> npcs)
 {
 	_waves = waves;
 	_player = player;
+	_npcs = npcs;
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);

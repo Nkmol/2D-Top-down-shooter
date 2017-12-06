@@ -43,9 +43,8 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-
 	
-	_waveController.Init(_waves, _player);
+	_waveController.Init(_waves, _player, _npcs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -124,7 +123,10 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-	_waveController.Update(accSpeed);
+	if (!_waveController.Update(accSpeed)) {
+		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
+		cin.get();
+	}
 }
 
 void Level::Draw() {

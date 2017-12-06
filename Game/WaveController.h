@@ -12,7 +12,7 @@ class WaveController
 {
 public:
 	WaveController();
-	void Init(std::forward_list<Wave> waves, shared_ptr<Player> player);
+	void Init(std::forward_list<Wave> waves, shared_ptr<Player> player, std::vector<std::shared_ptr<MoveableObject>> _npcs);
 	//returns false if there are no more waves
 	bool Update(float time);
 	void Draw();
@@ -24,4 +24,5 @@ private:
 	shared_ptr<Player> _player;
 	std::forward_list<Wave> _waves;
 	std::forward_list<Wave>::iterator _curWave;
+	std::vector<std::shared_ptr<MoveableObject>> _npcs;
 };
