@@ -56,7 +56,20 @@ Mix_Music *AssetManager::loadBGM(string soundToken) {
     cout << "works" << Mix_GetError() << endl;
     return gBGM;
 }
+
+SDL_Texture * AssetManager::loadTexture(string mediaToken)
+{
+	SDL_Surface *surface = loadSurface(mediaToken);
+	if (!surface)
+		cout << SDL_GetError() << endl;
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
 
+
+	if (texture == NULL) {
+		printf(SDL_GetError());
+	}
+	return texture;
+}
 Mix_Chunk *AssetManager::loadEffect(string effectToken) {
     Mix_Chunk *gEffectM = Mix_LoadWAV(effect[effectToken]);
     if (gEffectM == NULL) {
