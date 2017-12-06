@@ -12,8 +12,8 @@ public:
 
 	void Update(EnemiesType& others, int time) override;
 	void Align() override;
-	void Cohese(EnemiesType& others) override;
-	void Seperate(EnemiesType& others) override;
+	void Cohese(GameObject& other) override;
+	void Seperate(GameObject& other) override;
 	void GoTarget() override;
 	~AIDefault();
 };
