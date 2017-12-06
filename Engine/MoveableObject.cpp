@@ -7,10 +7,22 @@
 #include "Point.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
+        MoveableObject(filePath, coordinates, speed, 0) {}
+
+MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed, int damage) :
+        MoveableObject("noname", filePath, coordinates, speed, damage) {}
+
+MoveableObject::MoveableObject(const std::string &name, const std::string &filePath, const Point coordinates,
+                               const float speed, int damage) :
         speed{speed},
         _destination(Point::Empty()),
-        visible{true}, GameObject(coordinates, 0, 0) {
+        visible{true},
+        GameObject(name, coordinates, 0, 0, damage) {
 
+    SetSprite(filePath);
+}
+
+void MoveableObject::SetSprite(const std::string &filePath) {
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
@@ -18,10 +30,11 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
 
     //SDL_FreeSurface(surface);
 
-    if (this->_sprite == NULL) {
-        printf(SDL_GetError());
+    if (this->_sprite == nullptr) {
+        cout << SDL_GetError() << endl;
     }
 }
+
 
 void MoveableObject::draw() {
     if (!visible) return;
@@ -70,3 +83,5 @@ const int MoveableObject::getMidX(float destinationPosition) const {
 const int MoveableObject::getMidY(float destinationPosition) const {
     return destinationPosition + height / 2;
 }
+
+

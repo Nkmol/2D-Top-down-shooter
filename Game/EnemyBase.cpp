@@ -6,23 +6,14 @@
 namespace enemybase_constants {
     const int COLLIDABLEWEIGHTMULTIPLIER = 100000;
 }
-EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward) :
-		MoveableObject(filePath, Point{ xPos, yPos }, speed),
-		destinationPoint{xPos, yPos},
-		isLeader{isLeader},
-		lifepoints(lifepoints),
-		damage(damage),
-		reward(reward) {
-}
 
-EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints, int reward) :
-	MoveableObject(filePath, coordinates, speed),
-	destinationPoint{ coordinates.x, coordinates.y },
-	isLeader{ isLeader },
-	lifepoints(lifepoints),
-	damage(damage),
-	reward(reward)
-{
+EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage,
+                     int lifepoints, int reward) :
+        MoveableObject("enemy", filePath, coordinates, speed, damage),
+        destinationPoint{coordinates.x, coordinates.y},
+        isLeader{isLeader},
+        lifepoints(lifepoints),
+        reward(reward) {
 }
 
 
@@ -32,11 +23,11 @@ void EnemyBase::Align() {
 
 void EnemyBase::UpdatePositions(float time) {
     if (!isLeader) {
-        massCenter = Point(0,0);
+        massCenter = Point(0, 0);
         massSize = 0;
         std::vector<GameObject> neighbours = PhysicsManager::Instance().RetrieveNearbyGameObjects(*this);
         Align();
-        for (auto& other: neighbours) {
+        for (auto &other: neighbours) {
             Cohese(other);
             //apply cohesion force
             massCenter = massCenter / massSize;
@@ -45,8 +36,7 @@ void EnemyBase::UpdatePositions(float time) {
         const auto forceDirection = Helper::calculateAngle(_coordinates.x, _coordinates.y, massCenter.x, massCenter.y);
         ApplyForce(0.1, forceDirection);
 
-    }
-    else {
+    } else {
         GoTarget();
     }
 
@@ -62,7 +52,7 @@ void EnemyBase::UpdatePositions(float time) {
 
 void EnemyBase::Cohese(GameObject &other) {
     if (other.GetId() != this->GetId()) {
-        if(other.GetTeamId() == this->GetTeamId()) {
+        if (other.GetTeamId() == this->GetTeamId()) {
             const auto &oCoordinates = other.GetCoordinates();
             massCenter += oCoordinates;
         }
@@ -72,7 +62,8 @@ void EnemyBase::Cohese(GameObject &other) {
 void EnemyBase::Seperate(GameObject &other) {
     if (other.GetId() != this->GetId()) {
         //teamid -100 are collidables
-        const auto &oWeight = other.getWidth() * other.getHeight() * (other.GetTeamId() != -100 ? weightMultiplier : enemybase_constants::COLLIDABLEWEIGHTMULTIPLIER);
+        const auto &oWeight = other.getWidth() * other.getHeight() * (other.GetTeamId() != -100 ? weightMultiplier
+                                                                                                : enemybase_constants::COLLIDABLEWEIGHTMULTIPLIER);
         const auto &oCoordinates = other.GetCoordinates();
         const Point squared((oCoordinates.x - _coordinates.x) * (oCoordinates.x - _coordinates.x),
                             (oCoordinates.y - _coordinates.y) * (oCoordinates.y - _coordinates.y));
@@ -87,8 +78,8 @@ void EnemyBase::Seperate(GameObject &other) {
 }
 
 void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
-	const auto forceX = float(forcePower * cos(forceDirection));
-	const auto forceY = float(forcePower * sin(forceDirection));
+    const auto forceX = float(forcePower * cos(forceDirection));
+    const auto forceY = float(forcePower * sin(forceDirection));
     this->destinationPoint.x += forceX;
     this->destinationPoint.y += forceY;
 }
@@ -97,48 +88,55 @@ void EnemyBase::GoTarget() {
     this->destinationPoint = _target->GetCoordinates();
 }
 
-const Player& EnemyBase::getTarget() const {
+const Player &EnemyBase::getTarget() const {
     return *_target;
 }
 
-void EnemyBase::setTarget(const Player& target) {
+void EnemyBase::setTarget(const Player &target) {
     EnemyBase::_target = &target;
 }
 
-void EnemyBase::setLeader(const EnemyBase& leader) {
+void EnemyBase::setLeader(const EnemyBase &leader) {
     EnemyBase::_leader = &leader;
 }
 
 void EnemyBase::update(float time) {
-	if (!PhysicsManager::Instance().checkCollision(getMidX(_coordinates.x + _destination.x * speed * time), getMidY(_coordinates.y + _destination.y * speed * time), getRadius())) {
-		MoveableObject::update(time);
-	}
-	else {
-		MoveableObject::stopMove();
-	}
+    if (!PhysicsManager::Instance().checkCollision(getMidX(_coordinates.x + _destination.x * speed * time),
+                                                   getMidY(_coordinates.y + _destination.y * speed * time),
+                                                   getRadius())) {
+        MoveableObject::update(time);
+    } else {
+        MoveableObject::stopMove();
+    }
 }
 
 void EnemyBase::draw() {
     MoveableObject::draw();
 }
 
-const int EnemyBase::getLifepoints() const
-{
-	return lifepoints;
+const int EnemyBase::getLifepoints() const {
+    return lifepoints;
 }
 
-const int EnemyBase::changeLifepoints(const int lp)
-{
-	lifepoints += lp;
-	return lifepoints;
+const int EnemyBase::changeLifepoints(const int lp) {
+    lifepoints += lp;
+    return lifepoints;
 }
 
-const int EnemyBase::getDamage() const
-{
-	return damage;
+//const int EnemyBase::getDamage() const {
+//    return damage;
+//}
+
+const int EnemyBase::getReward() const {
+    return reward;
 }
 
-const int EnemyBase::getReward() const
-{
-	return reward;
+void EnemyBase::onCollision(GameObject object) {
+    if (object.GetName() == "bullet") {
+        this->lifepoints -= object.getDamage();
+
+        if (this->getLifepoints()) {
+            this->hide(); // todo: hide or something else
+        }
+    }
 }

@@ -17,10 +17,10 @@ void Level::Init() {
     _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
-    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(2, 250, 300, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(2, 450, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(2, 100, 200, *_player, _objs);
+//    _flockController.GenerateFlock<BatEnemy>(2, 200, 600, *_player, _objs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -41,48 +41,38 @@ void Level::HandleEvents(SDL_Event event) {
 
     int key = 0;
     if (inputManager.isNumericKeyPressed(event, key)) {
-        _player->changeWeapon(key-1);
+        _player->changeWeapon(key - 1);
     }
 
-	if(inputManager.isKeyDown(event))
-	{
-		if(event.button.button == SDL_SCANCODE_LEFTBRACKET)
-		{
-			_levelSpeed -= .1;
-			if (_levelSpeed < 0) _levelSpeed = 0;
-		}
-		else if(event.button.button == SDL_SCANCODE_RIGHTBRACKET)
-		{
-			_levelSpeed += .1;
-		}
-		else if(event.button.button == SDL_SCANCODE_F5)
-		{
-			// Quicksave prittified json
-			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
-			o << std::setw(4) << json(*_player.get()) << std::endl;
-		}
-		else if(event.button.button == SDL_SCANCODE_F7)
-		{
-			// Quickload
-			// TODO refactor AssetManager
-			std::ifstream i;
-			i.exceptions(ifstream::failbit | ifstream::badbit);
-			try
-			{
-				i.open("../content/saves/quicksave.json");
-			}
-			catch (const ifstream::failure&)
-			{
-				cout << "Exception opening/reading file" << endl;
-				return;
-			}
-			json j;
-			i >> j;
+    if (inputManager.isKeyDown(event)) {
+        if (event.button.button == SDL_SCANCODE_LEFTBRACKET) {
+            _levelSpeed -= .1;
+            if (_levelSpeed < 0) _levelSpeed = 0;
+        } else if (event.button.button == SDL_SCANCODE_RIGHTBRACKET) {
+            _levelSpeed += .1;
+        } else if (event.button.button == SDL_SCANCODE_F5) {
+            // Quicksave prittified json
+            std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
+            o << std::setw(4) << json(*_player.get()) << std::endl;
+        } else if (event.button.button == SDL_SCANCODE_F7) {
+            // Quickload
+            // TODO refactor AssetManager
+            std::ifstream i;
+            i.exceptions(ifstream::failbit | ifstream::badbit);
+            try {
+                i.open("../content/saves/quicksave.json");
+            }
+            catch (const ifstream::failure &) {
+                cout << "Exception opening/reading file" << endl;
+                return;
+            }
+            json j;
+            i >> j;
 
-			// Explicit "from_json" so it used the same reference
-			from_json(j, *_player.get());
-		}
-	}
+            // Explicit "from_json" so it used the same reference
+            from_json(j, *_player.get());
+        }
+    }
 
 
     Point direction = inputManager.getDirection(event);
@@ -95,7 +85,7 @@ void Level::HandleEvents(SDL_Event event) {
 
 void Level::Update(float time) {
     PhysicsManager::Instance().UpdateQuadTree(_objs);
-	const auto accSpeed = time *_levelSpeed;
+    const auto accSpeed = time * _levelSpeed;
 
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);

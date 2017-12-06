@@ -13,50 +13,60 @@
 #include "MoveableObject.h"
 #include "Helper.h"
 
-class EnemyBase : public MoveableObject  {
+class EnemyBase : public MoveableObject {
 
 protected:
-	using EnemiesType = vector<shared_ptr<EnemyBase>>;
-	int lifepoints, damage, reward, weightMultiplier = 100;
-	Point destinationPoint;
+    using EnemiesType = vector<shared_ptr<EnemyBase>>;
+    int lifepoints, reward, weightMultiplier = 100;
+    Point destinationPoint;
 
-	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
-	const Player* _target;
-	const EnemyBase* _leader;
+    // Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
+    const Player *_target;
+    const EnemyBase *_leader;
 
-	bool isLeader;
-	const int getLifepoints() const;
-	const int changeLifepoints(const int lp);
-	const int getDamage() const;
-	const int getReward() const;
+    bool isLeader;
+
+    const int getLifepoints() const;
+
+    const int changeLifepoints(const int lp);
+
+    const int getReward() const;
 
 
 public:
-    EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
-	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
-	          int reward);
+    EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
+              int reward);
 
-	void UpdatePositions(float time);
+    void UpdatePositions(float time);
+
     //algorithms
     void Align();
-	void Cohese(GameObject &other);
-	void Seperate(GameObject &other);
+
+    void Cohese(GameObject &other);
+
+    void Seperate(GameObject &other);
+
     void ApplyForce(float forcePower, int forceDirection);
 
-	virtual void GoTarget();
+    virtual void GoTarget();
 
     //getters
-	const Player& getTarget() const;
+    const Player &getTarget() const;
 
     //setters
-    void setTarget(const Player& target);
-    void setLeader(const EnemyBase& leader);
+    void setTarget(const Player &target);
+
+    void setLeader(const EnemyBase &leader);
 
     void update(float time);
+
     void draw();
+
+    void onCollision(GameObject object) override;
+
 private:
-	Point massCenter = Point(0,0);
-	int massSize = 0;
+    Point massCenter = Point(0, 0);
+    int massSize = 0;
 };
 
 

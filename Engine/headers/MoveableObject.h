@@ -21,13 +21,17 @@ private:
 protected:
     bool visible;
     int angle, radius;
-	float speed, distance;
+    float speed, distance;
     Point _destination;
 
 public:
     ~MoveableObject();
 
     MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+
+    MoveableObject(const std::string &filePath, const Point coordinates, const float speed, const int damage);
+
+    MoveableObject(const std::string &name, const std::string &filePath, const Point coordinates, const float speed, int damage);
 
     virtual void draw();
 
@@ -46,6 +50,8 @@ public:
     const int getMidY(float destinationPosition) const;
 
     void hide();
+
+    void SetSprite(const string &filePath);
 };
 
 

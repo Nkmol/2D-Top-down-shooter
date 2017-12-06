@@ -72,7 +72,7 @@ void MapManager::Init(const string input)
 			}
 
 			if (tileLayers.at(1).at(counter) != 0) {
-				GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
+				GameObject gameObject{"tile", Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
 				gameObject.SetTeamId(-100);
 				collidables.push_back(gameObject);
 				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
