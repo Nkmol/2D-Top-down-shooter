@@ -19,14 +19,14 @@ public:
 	void draw();
 	int GetTeamId() const;
 	void SetTeamId(int teamId);
+	const int getRadius() const ;
 
 protected:
-	const int getRadius() const ;
 	GameObject();
-private:
 	int width, height;
 	float radius, midX, midY;
 	Point _coordinates;
+private:
 	int id;
 	int teamId = -1;
 	static int counter;

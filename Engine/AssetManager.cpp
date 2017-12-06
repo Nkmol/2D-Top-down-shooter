@@ -21,9 +21,9 @@ AssetManager::AssetManager() {
     render["boid"] = "../content/boid.png";
     render["bullet"] = "../content/bullet.png";
 	fonts["Sans Regular"] = "../content/fonts/OpenSans-Regular.ttf";
-	render["newgamebutton"] = "../content/menu/button_new-game.bmp";
-	render["loadgamebutton"] = "../content/menu/button_load-game.bmp";
-	render["creditsbutton"] = "../content/menu/button_credits.bmp";
+	render["newgamebutton"] = "../content/menu/button_new-game.png";
+	render["loadgamebutton"] = "../content/menu/button_load-game.png";
+	render["creditsbutton"] = "../content/menu/button_credits.png";
 	render["mutebutton"] = "../content/menu/audio-unmute2.png";
 	render["quitbutton"] = "../content/menu/button_quit.bmp";
     //render["background"] = "../Assets/Img/wallpaper.png";
@@ -68,6 +68,7 @@ Mix_Chunk *AssetManager::loadEffect(string effectToken) {
 
 SDL_Surface *AssetManager::loadSurface(string mediaToken) {
     //Load image at specified path
+    cout << render[mediaToken] << endl;
     SDL_Surface *loadedSurface = IMG_Load(render[mediaToken]);
     if (loadedSurface == NULL) {
         cout << "Unable to load image %s! SDL_image Error: " << render[mediaToken] << IMG_GetError() << endl;
