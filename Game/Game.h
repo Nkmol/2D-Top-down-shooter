@@ -20,7 +20,9 @@ public:
 	void HandleEvents();
 	void Update(float time);
 	void Draw();
+
 	std::shared_ptr<Level> GetLevel() const;
+	void SetLevel(int levelnumber);
 private:
 	// the stack of states
 	std::vector<std::unique_ptr<State>> _states;

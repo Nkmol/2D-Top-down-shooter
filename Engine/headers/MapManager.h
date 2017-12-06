@@ -10,6 +10,7 @@
 #include <string>
 #include <iterator>
 #include <SDL.h>
+#include "Point.h"
 
 class MapManager {
 public:
@@ -21,7 +22,10 @@ public:
 	void Init(const std::string input);
 	void Render();
 	void RenderTilesText();
+	const SDL_Rect &GetMapRect() const;
+
 private:
+	SDL_Rect mapRect = SDL_Rect();
 	std::vector<GameObject> collidables;
 	TMX::Parser tmx;
 	TSX::Parser tsx;

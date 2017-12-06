@@ -28,7 +28,7 @@ public:
 	* Drawing images on a screen
 	*/
 	void DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
-
+	
 	/* void Render
 	* Render everything on screen
 	*/

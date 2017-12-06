@@ -96,6 +96,8 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
     return calculateMouseAngle(object);
 }
 
+
+
 // used to calculate. Call this method directly if mouse position is NOT changed
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::calculateMouseAngle(MoveableObject &object) {
