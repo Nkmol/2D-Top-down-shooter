@@ -17,7 +17,7 @@ class FlockController
 public:
 	FlockController() = default;
 	template <class T>
-	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
+	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget, std::vector<unique_ptr<GameObject>> &gameObjects);
 	void DrawFlocks();
 	void UpdateFlocks(float time);
 };

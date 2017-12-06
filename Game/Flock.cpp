@@ -9,7 +9,7 @@ Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
 	_members.push_back(move(leader));
 }
 
-void Flock::AddMember(shared_ptr<EnemyBase> newMember)
+void Flock::AddMember(unique_ptr<EnemyBase> newMember)
 {
 	newMember->SetTeamId(_leader.GetId());
 	newMember->setLeader(_leader);

@@ -70,11 +70,11 @@ void PhysicsManager::UpdateQuadTree(std::vector<GameObject> &gameObjects) {
 		_quadtree.Insert(gameObject);
 	}
 	for (const auto& gameObject: gameObjects) {
-		_quadtree.Insert(gameObject);
+		_quadtree.Insert(move(gameObject));
 	}
 }
 
-void PhysicsManager::UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects) {
+void PhysicsManager::UpdateQuadTree(std::vector<unique_ptr<GameObject>> &gameObjects) {
 	this->_quadtree.ClearNode();
 	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
 	for (auto& gameObject: *MapManager::Instance().getCollidables()) {

@@ -7,16 +7,16 @@
 
 
 #include "EnemyBase.h"
-#include "memory"
-#include "vector"
+#include <memory>
+#include <vector>
 
 class Flock
 {
 	EnemyBase& _leader;
-	vector<shared_ptr<EnemyBase>> _members;
+	std::vector<std::unique_ptr<EnemyBase>> _members;
 public:
-	explicit Flock(unique_ptr<EnemyBase> leader);
-	void AddMember(shared_ptr<EnemyBase> newMember);
+	explicit Flock(std::unique_ptr<EnemyBase> leader);
+	void AddMember(std::unique_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
 	void Draw();

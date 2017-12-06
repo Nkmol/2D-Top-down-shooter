@@ -14,7 +14,7 @@ void Level::Init() {
     player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
-    _objsNoEnemies.emplace_back(player);
+    //_objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
     _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
