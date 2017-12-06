@@ -6,7 +6,26 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 }
 
 void Level::Init() {
-    MapManager::Instance().Init("../content/map/halflife.tmx");
+	//json uitlezen
+	std::ifstream i;
+	i.exceptions(ifstream::failbit | ifstream::badbit);
+	try
+	{
+		i.open("../content/level1.json");
+	}
+	catch (const ifstream::failure&)
+	{
+		cout << "Exception opening/reading file" << endl;
+		return;
+	}
+	json j;
+	i >> j;
+
+	// Explicit "from_json" so it used the same reference
+	from_json(j, *this);
+
+	//level init	
+    MapManager::Instance().Init(_map);
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
@@ -16,9 +35,7 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-    _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
-	_waveController.Init(_level, _player, _npcs);
+	_waveController.Init(_waves, _player, _npcs);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -97,16 +114,14 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-	_flockController.UpdateFlocks(accSpeed);
-	_waveController.Update(time);
+	_waveController.Update(accSpeed);
 }
 
 void Level::Draw() {
     for (auto &&obj : _objs) {
         obj->draw();
     }
-    _flockController.DrawFlocks();
-
+	_waveController.Draw();
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
@@ -118,3 +133,9 @@ void Level::Draw() {
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 }
 
+void from_json(const json& j, Level& value)
+{
+	value.SetId(j.at("id").get<int>());
+	value.SetMap(j.at("map").get<std::string>());
+	value.SetWaves(j.at("waves").get<std::forward_list<Wave>>());
+}

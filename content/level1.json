@@ -1,0 +1,82 @@
+{
+	"id": 1,
+	"map": "halflife.tmx",
+	"waves": [
+		{
+			"id": 1,
+			"time": 5,
+			"multiplier": 1,
+			"flocks": [
+				{
+					"amount": 20,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Zombie"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"time": 20,
+			"multiplier": 1.1,
+			"flocks": [
+				{
+					"amount": 10,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Zombie"
+				},
+				{
+					"amount": 20,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Bat"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"time": 30,
+			"multiplier": 1.2,
+			"flocks": [
+				{
+					"amount": 10,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Zombie"
+				},
+				{
+					"amount": 15,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Bat"
+				},
+				{
+					"amount": 15,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Bat"
+				}
+			]
+		},
+		{
+			"id": 4,
+			"time": 40,
+			"multiplier": 2,
+			"flocks": [
+				{
+					"amount": 40,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Zombie"
+				},
+				{
+					"amount": 10,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": "Bat"
+				}
+			]
+		}
+	]	
+}

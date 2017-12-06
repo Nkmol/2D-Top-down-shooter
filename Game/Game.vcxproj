@@ -154,6 +154,7 @@
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Uzi.cpp" />
+    <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

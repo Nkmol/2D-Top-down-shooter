@@ -1,13 +1,19 @@
 #pragma once
 
-#include "Player.h"
+#include <vector>
+#include <memory>
+#include <forward_list>
+#include <json.hpp>
+
+//engine
 #include "MoveableObject.h"
 #include "GameObject.h"
 #include "MapManager.h"
-#include <vector>
-#include <memory>
+#include "InputManager.h"
+
+//game
+#include "Player.h"
 #include "FlockController.h"
-#include <InputManager.h>
 #include "Weapon.h"
 #include "Uzi.h"
 #include "monsters/ZombieEnemy.h"
@@ -16,7 +22,7 @@
 #include "Config.h"
 #include "WaveController.h"
 #include "Wave.h"
-#include <json.hpp>
+
 using json = nlohmann::json;
 
 class Level {
@@ -31,7 +37,7 @@ class Level {
 	FlockController _flockController;
 	WaveController _waveController;
 
-	std::vector<Wave> _waves;
+	std::forward_list<Wave> _waves;
 
 public:
     explicit Level(int level);
@@ -47,12 +53,7 @@ public:
 	const int GetId() const { return _level; }
 	void SetId(const int id) { _level = id; }
 	void SetMap(const std::string map) { _map = map; }
-	void SetWaves(const std::vector<Wave> waves) { _waves = waves; }
+	void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 };
 
-void from_json(const json& j, Level& value)
-{
-	value.SetId(j.at("id").get<int>());
-	value.SetMap(j.at("map").get<std::string>());
-	value.SetWaves(j.at("waves").get<std::vector<Wave>>());
-}
+void from_json(const json& j, Level& value);
