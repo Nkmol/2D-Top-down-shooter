@@ -1,5 +1,4 @@
 #include "Level.h"
-#include "monsters/BatEnemy.h"
 #include "Uzi.h"
 #include "Handgun.h"
 #include "Shotgun.h"
@@ -7,6 +6,7 @@
 #include "Bullet.h"
 #include "Config.h"
 #include "InputManager.h"
+#include "EnemyBase.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -39,6 +39,7 @@ void Level::Init() {
 	}
 	nlohmann::json j;
 	i >> j;
+
 
     _flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
     _flockController.GenerateFlock(j[1], 50, 200, 600, *_player);

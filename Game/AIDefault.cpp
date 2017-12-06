@@ -1,6 +1,5 @@
 
 #include "AIDefault.h"
-#include "Helper.h"
 #include "EnemyBase.h"
 
 void AIDefault::Update(EnemiesType& others, int time)

@@ -5,14 +5,11 @@
 #ifndef SHOOTER_ENEMYBASE_H
 #define SHOOTER_ENEMYBASE_H
 
-
 #include <memory>
 #include "Point.h"
 #include "MoveableObject.h"
 #include <json.hpp>
-//#include "Flock.h"
 
-class AIDefault;
 class IAIBase;
 
 class EnemyBase : public MoveableObject  {

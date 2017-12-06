@@ -1,7 +1,8 @@
 #pragma once
 #include <map>
-#include "IAIBase.h"
 #include "AIBat.h"
+
+class IAIBase;
 
 class FactoryBehaviour
 {

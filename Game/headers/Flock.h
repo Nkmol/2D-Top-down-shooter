@@ -7,7 +7,6 @@
 
 #include <memory>
 #include <vector>
-#include "EnemyBase.h"
 
 class EnemyBase;
 
@@ -17,7 +16,7 @@ public:
 	//using EnemiesType = std::vector<unique_ptr<EnemyBase>>; 
 private:
 	EnemyBase& _leader;
-	std::vector<unique_ptr<EnemyBase>> _members;
+	std::vector<std::unique_ptr<EnemyBase>> _members;
 public:
 	explicit Flock(std::unique_ptr<EnemyBase> leader);
 	void AddMember(std::unique_ptr<EnemyBase> newMember);
