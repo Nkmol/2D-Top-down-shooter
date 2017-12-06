@@ -9,6 +9,7 @@
 #include <memory>
 #include <Point.h>
 #include "../QuadTree.h"
+#include "MoveableObject.h"
 
 
 class MoveableObject;

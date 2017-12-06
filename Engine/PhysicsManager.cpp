@@ -1,5 +1,4 @@
 #include "PhysicsManager.h"
-#include "MoveableObject.h"
 
 PhysicsManager::PhysicsManager()
 {
@@ -40,23 +39,23 @@ bool PhysicsManager::checkStaticObjectCollision(float midX, float midY, float ra
 {
 	bool isCollision = false;
 
-	for (int i = 0; i < collidables->size(); i++) {
-		int xStep = midX - collidables->at(i).getMidX();
-		int yStep = midY - collidables->at(i).getMidY();
-		int collisionRange =radius + collidables->at(i).getRadius();
+	//for (int i = 0; i < collidables->size(); i++) {
+	//	int xStep = midX - collidables->at(i).getMidX();
+	//	int yStep = midY - collidables->at(i).getMidY();
+	//	int collisionRange =radius + collidables->at(i).getRadius();
 
 
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
+	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
-		if (distance < 0) {
-			distance *= -1;
-		}
+	//	if (distance < 0) {
+	//		distance *= -1;
+	//	}
 
-		if (distance < collisionRange) {
-			isCollision = true;
-			break;
-		}
-	}
+	//	if (distance < collisionRange) {
+	//		isCollision = true;
+	//		break;
+	//	}
+	//}
 
 	return isCollision;
 }
@@ -67,7 +66,7 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 	auto midY = m->getPredictionMidY(newPos.y);
 	auto radius = m->getRadius();
 
-	for (int i = 0; i < objects->size(); i++){
+	/*for (int i = 0; i < objects->size(); i++){
 		
 		int xStep = midX - objects->at(i).get()->getMidX();
 		int yStep = midY - objects->at(i).get()->getMidY();
@@ -82,7 +81,7 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 			m->onBaseCollision(objects->at(i));
 			break;
 		}
-	}
+	}*/
 }
 
 void PhysicsManager::setStaticObjects()

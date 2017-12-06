@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include "PhysicsManager.h"
 
 int GameObject::counter = 0;
 GameObject::GameObject(const Point coordinates, const int width, const int height) :

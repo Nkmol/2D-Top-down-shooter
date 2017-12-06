@@ -7,7 +7,7 @@
 
 
 #include <MoveableObject.h>
-
+#include "PhysicsManager.h"
 class Bullet : public MoveableObject {
 
 private:

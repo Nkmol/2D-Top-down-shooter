@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "MoveableObject.h"
 #include "Helper.h"
+#include "PhysicsManager.h"
 
 class EnemyBase : public MoveableObject  {
 

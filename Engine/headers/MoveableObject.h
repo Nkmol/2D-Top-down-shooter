@@ -8,8 +8,9 @@
 #include "RenderManager.h"
 #include <SDL_render.h>
 #include <string>
-#include "PhysicsManager.h"
 #include "Point.h"
+#include <AssetManager.h>
+#include "GameObject.h"
 
 enum classType
 {

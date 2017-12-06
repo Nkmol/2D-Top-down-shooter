@@ -1,7 +1,5 @@
 #include "Level.h"
-#include "monsters/BatEnemy.h"
-#include <algorithm>
-#include <chrono>
+
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -9,7 +7,7 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
-	PhysicsManager::Instance().setStaticObjects();
+	//PhysicsManager::Instance().setStaticObjects();
 	//PhysicsManager::Instance().setMoveableObjects(&_objs);
 
     auto player = make_shared<Player>("soldier", 100, 300);

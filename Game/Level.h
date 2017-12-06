@@ -14,6 +14,10 @@
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Config.h"
+#include "monsters/BatEnemy.h"
+#include <algorithm>
+#include <chrono>
+#include "PhysicsManager.h"
 
 class Level {
     int _level;

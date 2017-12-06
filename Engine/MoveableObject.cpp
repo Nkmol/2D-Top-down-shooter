@@ -2,10 +2,8 @@
 // Created by Mevl�t �zdemir on 09-11-17.
 //
 
-#include <AssetManager.h>
-#include "Point.h"
+
 #include "MoveableObject.h"
-#include "PhysicsManager.h"
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed},

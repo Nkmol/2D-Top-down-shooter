@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
-
 #include <SDL_rect.h>
 #include "Point.h"
-#include "PhysicsManager.h"
 
 class GameObject {
 public:
