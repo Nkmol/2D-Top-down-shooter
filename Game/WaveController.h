@@ -11,7 +11,8 @@ class WaveController
 public:
 	WaveController();
 	void Init(std::forward_list<Wave> waves, shared_ptr<Player> player, shared_ptr<std::vector<shared_ptr<MoveableObject>>> npcs);
-	void Update(float time);
+	//returns false if there are no more waves
+	bool Update(float time);
 	void Draw();
 private:
 	float _lastWaveTimer;

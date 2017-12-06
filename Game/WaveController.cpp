@@ -14,18 +14,20 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> play
 	SpawnWave();
 }
 
-void WaveController::Update(float time)
+bool WaveController::Update(float time)
 {
 	_lastWaveTimer += time;
 
 	if (_lastWaveTimer >= _curWave->get_time()) {
 		_lastWaveTimer = 0.0f;
 		_curWave++;
+		if (_curWave == _waves.end())
+			return false;
 		SpawnWave();		
 	}
-
-
+	
 	_flockController.UpdateFlocks(time);
+	return true;
 }
 
 void WaveController::SpawnWave()

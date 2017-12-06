@@ -27,7 +27,7 @@ void Level::Init() {
 	//level init	
     MapManager::Instance().Init(_map);
 
-    auto player = make_shared<Player>("soldier", 100, 300);
+    auto player = make_shared<Player>("soldier", config::width/2, config::height/2);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(0); // set weapon to Uzi
 
