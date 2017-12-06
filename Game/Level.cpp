@@ -40,7 +40,7 @@ void Level::Init() {
 	nlohmann::json j;
 	i >> j;
 
-    _flockController.GenerateFlock(j[0], 20, 200, 600, *_player.get());
+    _flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
     _flockController.GenerateFlock(j[1], 50, 200, 600, *_player);
 }
 

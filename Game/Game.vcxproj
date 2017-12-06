@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIBat.cpp" />
     <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
@@ -158,8 +159,10 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIBat.h" />
     <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="FactoryBehaviour.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handgun.h" />
     <ClInclude Include="headers\Bullet.h" />

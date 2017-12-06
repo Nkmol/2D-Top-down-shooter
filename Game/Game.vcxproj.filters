@@ -69,6 +69,9 @@
     <ClCompile Include="AIDefault.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AIBat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Player.h">
@@ -129,6 +132,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AIDefault.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AIBat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
