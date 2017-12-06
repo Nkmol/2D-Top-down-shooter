@@ -45,7 +45,7 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
 	
-	_waveController.Init(_waves, _player, _npcs);
+	_waveController.Init(_waves, _player, _objs);
 }
 
 void Level::HandleEvents(Event event) {
