@@ -67,7 +67,12 @@ public:
 		return _isLeader;
 	}
 
-	virtual ~IAIBase() {};
+	void SetWeightMultiplier(const int value)
+	{
+		_weightMultiplier = value;
+	}
+
+	virtual ~IAIBase() {}
 	virtual void Update(EnemiesType& others, int time) = 0;
 	virtual void Align() = 0;
 	virtual void Cohese(EnemiesType& others) = 0;
@@ -75,4 +80,3 @@ public:
 	virtual void GoTarget() = 0;
 	virtual unique_ptr<IAIBase> Clone() const = 0;
 };
-

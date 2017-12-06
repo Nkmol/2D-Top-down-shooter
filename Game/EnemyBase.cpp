@@ -29,8 +29,8 @@ EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<stri
 												 j.at("lifepoints").get<int>(),
                                                  j.at("reward").get<int>() }
 {
-	//_behaviour(FactoryBehaviour::Instance.Create(j.at("behaviour").get<std::string>()));
 	auto a = FactoryBehaviour::Instance().Create(j.at("behaviour").get<std::string>());
+	a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
 	_behaviour = move(a);
 }
 
