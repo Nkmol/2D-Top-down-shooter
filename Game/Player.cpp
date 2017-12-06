@@ -2,9 +2,8 @@
 // Created by Mevlüt Özdemir on 09-11-17.
 //
 
-#include <Weapon.h>
 #include "Player.h"
-#include "Point.h"
+#include "Bullet.h"
 
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y})
@@ -77,16 +76,16 @@ const vector<Weapon>& Player::getWeapons() const
 	return weapons;
 }
 
-void to_json(json& j, const Player& value)
+void to_json(nlohmann::json& j, const Player& value)
 {
-	j = json{
+	j = nlohmann::json{
 		{ "lifepoints", value.getLifepoints() },
 		{ "weapons",  value.getWeapons() },
 		{ "currentWeapon", value.getCurrentWeaponIndex() }
 	};
 }
 
-void from_json(const json& j, Player& value)
+void from_json(const nlohmann::json& j, Player& value)
 {
 	value.changeLifepoints(j.at("lifepoints").get<int>());
 	value.changeWeapon(j.at("currentWeapon").get<int>());

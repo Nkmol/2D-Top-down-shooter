@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -90,6 +90,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIBat.cpp" />
+    <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Flock.cpp" />
@@ -147,8 +151,6 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="monsters\BatEnemy.cpp" />
-    <ClCompile Include="monsters\ZombieEnemy.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -160,7 +162,10 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIBat.h" />
+    <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="FactoryBehaviour.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handgun.h" />
     <ClInclude Include="headers\Bullet.h" />
@@ -171,10 +176,8 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Uzi.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="IAIBase.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="MenuState.h" />
-    <ClInclude Include="monsters\BatEnemy.h" />
-    <ClInclude Include="monsters\ZombieEnemy.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />

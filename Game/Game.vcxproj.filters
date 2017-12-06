@@ -60,10 +60,10 @@
     <ClCompile Include="Shotgun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="monsters\BatEnemy.cpp">
+    <ClCompile Include="AIDefault.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="monsters\ZombieEnemy.cpp">
+    <ClCompile Include="AIBat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WaveController.cpp">
@@ -125,11 +125,17 @@
     <ClInclude Include="Handgun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="monsters\BatEnemy.h">
+    <ClInclude Include="IAIBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="monsters\ZombieEnemy.h">
+    <ClInclude Include="AIDefault.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AIBat.h">
+	  <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WaveController.h">
       <Filter>Header Files</Filter>

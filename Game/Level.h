@@ -2,39 +2,23 @@
 
 #include <vector>
 #include <memory>
-#include <forward_list>
-#include <json.hpp>
+#include <SDL.h>
 
-//engine
-#include "MoveableObject.h"
-#include "GameObject.h"
-#include "MapManager.h"
-#include "InputManager.h"
-
-//game
-#include "Player.h"
-#include "FlockController.h"
-#include "Weapon.h"
-#include "Uzi.h"
-#include "monsters/ZombieEnemy.h"
-#include "Handgun.h"
-#include "Shotgun.h"
-#include "Config.h"
-#include "WaveController.h"
-#include "Wave.h"
-
-using json = nlohmann::json;
+class Player;
+class MoveableObject;
+class GameObject;
 
 class Level {
     int _level;
+    std::vector<std::shared_ptr<MoveableObject>> _objs;
+	std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
+    std::vector<std::shared_ptr<MoveableObject>> _npcs;
+    std::vector<std::shared_ptr<GameObject>> _loot;
+	std::shared_ptr<Player> _player;
 	std::string _map;
-    std::vector<shared_ptr<MoveableObject>> _objs;
-    shared_ptr<std::vector<shared_ptr<MoveableObject>>> _npcs;
-    std::vector<shared_ptr<GameObject>> _loot;
-    shared_ptr<Player> _player;
+
 
 	double _levelSpeed;
-	FlockController _flockController;
 	WaveController _waveController;
 
 	std::forward_list<Wave> _waves;

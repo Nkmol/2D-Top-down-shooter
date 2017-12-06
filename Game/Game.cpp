@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <thread>
 #include <iomanip>
+#include "RenderManager.h"
+#include "Config.h"
+#include "Level.h"
+#include "MapManager.h"
 
 Game::Game()
 {

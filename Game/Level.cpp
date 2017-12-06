@@ -1,5 +1,12 @@
 #include "Level.h"
-#include "monsters/BatEnemy.h"
+#include "Uzi.h"
+#include "Handgun.h"
+#include "Shotgun.h"
+#include "Player.h"
+#include "Bullet.h"
+#include "Config.h"
+#include "InputManager.h"
+#include "EnemyBase.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -35,7 +42,26 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-	_waveController.Init(_waves, _player, _npcs);
+
+	// Quickload
+	// TODO refactor AssetManager
+	std::ifstream i;
+	i.exceptions(ifstream::failbit | ifstream::badbit);
+	try
+	{
+		i.open("../content/config/monsters.meta.json");
+	}
+	catch (const ifstream::failure&)
+	{
+		cout << "Exception opening/reading file" << endl;
+		return;
+	}
+	nlohmann::json j;
+	i >> j;
+
+
+    //_flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
+    //_flockController.GenerateFlock(j[1], 50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -74,7 +100,7 @@ void Level::HandleEvents(SDL_Event event) {
 		{
 			// Quicksave prittified json
 			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
-			o << std::setw(4) << json(*_player.get()) << std::endl;
+			o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
 		}
 		else if(event.button.button == SDL_SCANCODE_F7)
 		{
@@ -91,7 +117,7 @@ void Level::HandleEvents(SDL_Event event) {
 				cout << "Exception opening/reading file" << endl;
 				return;
 			}
-			json j;
+			nlohmann::json j;
 			i >> j;
 
 			// Explicit "from_json" so it used the same reference
