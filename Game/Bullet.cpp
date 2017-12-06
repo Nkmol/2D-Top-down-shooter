@@ -6,7 +6,7 @@
 
 Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
                                                                         damage(damage) {
-
+	_type = BULLET;
 }
 
 

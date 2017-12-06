@@ -9,6 +9,7 @@
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y})
 {
+	_type = PLAYER;
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)

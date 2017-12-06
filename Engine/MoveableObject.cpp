@@ -12,7 +12,7 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
         _destination(Point::Empty()),
         _coordinates(coordinates),
         visible{true} {
-
+	_type = MOVEABLEOBJECT;
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
         cout << SDL_GetError() << endl;
@@ -56,6 +56,11 @@ int MoveableObject::getAngle() const {
 
 void MoveableObject::hide() {
     this->visible = false;
+}
+
+classType MoveableObject::getType()
+{
+	return _type;
 }
 
 void MoveableObject::onBaseCollision(shared_ptr<MoveableObject> moveableObject)

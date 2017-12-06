@@ -11,6 +11,14 @@
 #include "PhysicsManager.h"
 #include "Point.h"
 
+enum classType
+{
+	MOVEABLEOBJECT,
+	BULLET,
+	ENEMY,
+	PLAYER
+};
+
 class MoveableObject {
 
 private:
@@ -25,6 +33,7 @@ protected:
     float distance;
     Point _destination;
     Point _coordinates;
+	classType _type;
 
 public:
     ~MoveableObject();
@@ -60,6 +69,8 @@ public:
 	int getHeight() const;
 
     void hide();
+
+	classType getType();
 
 	virtual void onBaseCollision(shared_ptr<MoveableObject> moveableObject);
 	virtual void onCollision(bool isCollidedOnWall);

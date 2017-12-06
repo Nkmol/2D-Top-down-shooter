@@ -13,6 +13,7 @@ EnemyBase::EnemyBase(const std::string &filePath, float xPos, float yPos, float 
 		lifepoints(lifepoints),
 		damage(damage),
 		reward(reward) {
+	_type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints, int reward) :
@@ -156,11 +157,25 @@ const int EnemyBase::getReward() const
 
 void EnemyBase::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
 {
-	auto henk = typeid(*moveableObject.get()).name();
-	//onCollision(static+cast>object);
+	onCollision(moveableObject.get());
+
+	//switch (moveableObject.get()->getType())
+	//{
+	//case BULLET: dynamic_cast<Bullet*>(moveableObject.get());
+	//case ENEMY:
+	//case PLAYER:
+	//default:
+	//	break;
+	//}
 }
 
 void EnemyBase::onCollision(Bullet bullet)
+{
+	bullet.onCollision(true);
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(EnemyBase enemy)
 {
 	bullet.onCollision(true);
 	MoveableObject::stopMove();
