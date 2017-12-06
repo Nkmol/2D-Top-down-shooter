@@ -4,10 +4,6 @@
 
 #ifndef SHOOTER_HELPER_H
 #define SHOOTER_HELPER_H
-#include <cmath>
-#include <vector>
-#include <deque>
-#include "Point.h"
 
 class Helper{
 public:

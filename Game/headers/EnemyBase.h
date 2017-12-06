@@ -6,17 +6,20 @@
 #define SHOOTER_ENEMYBASE_H
 
 
-#include <Point.h>
-#include <vector>
-#include "memory"
-#include "Player.h"
-#include "../IAIBase.h"
+#include <memory>
+#include "Point.h"
+#include "MoveableObject.h"
+#include <json.hpp>
+//#include "Flock.h"
+
+class AIDefault;
+class IAIBase;
 
 class EnemyBase : public MoveableObject  {
 
 protected:
-	using EnemiesType = vector<unique_ptr<EnemyBase>>;
-	unique_ptr<IAIBase> _behaviour;
+	// TODO share same AI parts (shared_ptr)
+	std::unique_ptr<IAIBase> _behaviour;
 
 	int lifepoints, damage, reward;
 	Point destinationPoint;
@@ -27,11 +30,14 @@ protected:
 	const int getReward() const;
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
-	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
-	          int reward);
-	EnemyBase(const json & j);
+	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,
+	          const int damage, const int lifepoints, const int reward);
+	EnemyBase(const nlohmann::json & j);
+	virtual ~EnemyBase();
+	//EnemyBase() = delete;
+	EnemyBase(const EnemyBase& other);
 
-	void UpdatePosition(EnemiesType& others, const float time);
+	void UpdatePosition(std::vector<unique_ptr<EnemyBase>>& others, const float time);
 
     void ApplyForce(float forcePower, int forceDirection);
 

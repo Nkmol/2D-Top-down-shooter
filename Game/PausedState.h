@@ -1,10 +1,6 @@
 #pragma once
 
 #include "State.h"
-#include "MoveableObject.h"
-#include <memory>
-#include <InputManager.h>
-
 
 class PausedState : public State {
 public:

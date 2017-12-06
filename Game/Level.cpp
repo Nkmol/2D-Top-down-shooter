@@ -1,5 +1,12 @@
 #include "Level.h"
 #include "monsters/BatEnemy.h"
+#include "Uzi.h"
+#include "Handgun.h"
+#include "Shotgun.h"
+#include "Player.h"
+#include "Bullet.h"
+#include "Config.h"
+#include "InputManager.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();

@@ -3,6 +3,7 @@
 //
 
 #include "Flock.h"
+#include "IAIBase.h"
 
 Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
 {
@@ -25,7 +26,7 @@ void Flock::RemoveFarMembers()
 void Flock::Update(const float time)
 {
 	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-  _leader.UpdatePosition(_members, time);
+  //_leader.UpdatePosition(_members, time);
   for (auto const &member: this->_members) {
       member->UpdatePosition(_members, time);
   }

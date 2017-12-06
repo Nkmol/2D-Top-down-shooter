@@ -27,9 +27,8 @@ protected:
     Point _coordinates;
 
 public:
-    ~MoveableObject();
-
-    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	virtual ~MoveableObject();
 
     virtual void draw();
 
@@ -37,6 +36,7 @@ public:
 
     void SetAngle(int angle);
 
+	void SetCoordinates(const Point& value);
     const Point &GetCoordinates() const;
 
     int getAngle() const;

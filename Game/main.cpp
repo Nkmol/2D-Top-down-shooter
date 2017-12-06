@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
 
     Game game;
 
-	auto state = make_unique<PlayingState>();
+	auto state = std::make_unique<PlayingState>();
     game.Init();
     game.ChangeState(std::move(state));
 	
