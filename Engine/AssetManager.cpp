@@ -68,7 +68,6 @@ Mix_Chunk *AssetManager::loadEffect(string effectToken) {
 
 SDL_Surface *AssetManager::loadSurface(string mediaToken) {
     //Load image at specified path
-    cout << render[mediaToken] << endl;
     SDL_Surface *loadedSurface = IMG_Load(render[mediaToken]);
     if (loadedSurface == NULL) {
         cout << "Unable to load image %s! SDL_image Error: " << render[mediaToken] << IMG_GetError() << endl;
