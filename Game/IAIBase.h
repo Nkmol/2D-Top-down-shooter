@@ -28,6 +28,10 @@ public:
 	{
 	}
 
+	IAIBase()
+	{
+	}
+
 	void SetOwner(EnemyBase& owner)
 	{
 		_owner = &owner;

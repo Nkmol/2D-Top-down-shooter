@@ -4,6 +4,7 @@
 #include "EnemyBase.h"
 #include "IAIBase.h"
 #include "AIDefault.h"
+#include "FactoryBehaviour.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
@@ -28,6 +29,9 @@ EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<stri
 												 j.at("lifepoints").get<int>(),
                                                  j.at("reward").get<int>() }
 {
+	//_behaviour(FactoryBehaviour::Instance.Create(j.at("behaviour").get<std::string>()));
+	auto a = FactoryBehaviour::Instance().Create(j.at("behaviour").get<std::string>());
+	_behaviour = move(a);
 }
 
 
