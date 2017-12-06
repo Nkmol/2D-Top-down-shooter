@@ -58,7 +58,7 @@ void MoveableObject::hide() {
     this->visible = false;
 }
 
-void MoveableObject::onBaseCollision(MoveableObject* moveableObject)
+void MoveableObject::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
 {
 	//hide();
 }

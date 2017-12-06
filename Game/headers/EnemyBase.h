@@ -29,9 +29,9 @@ protected:
 	const int getDamage() const;
 	const int getReward() const;
 
-	void onCollision(bool isCollidedOnWall) override;
-	void onBaseCollision(MoveableObject * object);
-	void onCollision(Bullet * bullet);
+	//void onCollision(bool isCollidedOnWall) override;
+	void onBaseCollision(shared_ptr<MoveableObject> moveableObject);
+	void onCollision(Bullet bullet);
 	
 	
 public:

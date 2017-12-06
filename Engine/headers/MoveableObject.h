@@ -61,7 +61,7 @@ public:
 
     void hide();
 
-	virtual void onBaseCollision(MoveableObject* moveableObject);
+	virtual void onBaseCollision(shared_ptr<MoveableObject> moveableObject);
 	virtual void onCollision(bool isCollidedOnWall);
 };
 

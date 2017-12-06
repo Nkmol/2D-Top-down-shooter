@@ -79,7 +79,7 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 		}
 
 		if (distance < collisionRange) {
-			m->onBaseCollision(objects->at(i).get());
+			m->onBaseCollision(objects->at(i));
 			break;
 		}
 	}

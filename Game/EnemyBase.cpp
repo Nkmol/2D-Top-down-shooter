@@ -153,19 +153,15 @@ const int EnemyBase::getReward() const
 	return reward;
 }
 
-void EnemyBase::onCollision(bool isCollidedOnWall)
+
+void EnemyBase::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
 {
-	MoveableObject::stopMove();
+	auto henk = typeid(*moveableObject.get()).name();
+	//onCollision(static+cast>object);
 }
 
-void EnemyBase::onBaseCollision(MoveableObject * object)
+void EnemyBase::onCollision(Bullet bullet)
 {
-	auto henk = typeid(object).name();
-	onCollision(object);
-}
-
-void EnemyBase::onCollision(Bullet* bullet)
-{
-	bullet->onCollision(true);
+	bullet.onCollision(true);
 	MoveableObject::stopMove();
 }
