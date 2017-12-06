@@ -18,7 +18,6 @@ void Game::Init()
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
-	_level = make_shared<Level>(1);
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -85,19 +84,21 @@ void Game::Draw()
 {
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
-	MapManager::Instance().Render();
-
+	_states.back()->Draw(*this);
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(2) << _fps;
 
 	renderManager.DrawText(str.str(), 20, 20, 70, 20);
 
-	_states.back()->Draw(*this);
 	renderManager.Render();
 }
 
 shared_ptr<Level> Game::GetLevel() const
 {
 	return _level;
+}
+
+void Game::SetLevel(int levelnumber) {
+		_level = make_shared<Level>(levelnumber);
 }

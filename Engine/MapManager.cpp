@@ -73,7 +73,7 @@ void MapManager::Init(const string input)
 			}
 
 			if (tileLayers.at(1).at(counter) != 0) {
-				collidables.push_back({ (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
+				collidables.push_back({"", (float)tileWidth*j, (float)tileHeight*i, tileWidth, tileHeight });
 				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
 			}
