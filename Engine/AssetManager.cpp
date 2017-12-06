@@ -67,3 +67,17 @@ TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 
 	return font;
 }
+
+SDL_Texture * AssetManager::loadTexture(string mediaToken)
+{
+	SDL_Surface *surface = loadSurface(mediaToken);
+	if (!surface)
+		cout << SDL_GetError() << endl;
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
+
+
+	if (texture == NULL) {
+		printf(SDL_GetError());
+	}
+	return texture;
+}

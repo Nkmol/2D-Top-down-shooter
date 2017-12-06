@@ -27,10 +27,10 @@ void PhysicsManager::checkWallCollision(MoveableObject* m, Point newPos)
 	auto radius = m->getRadius();
 
 	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
-		m->onCollision(true);
+		m->onBaseCollision(true);
 	}
 	if (checkStaticObjectCollision(midX, midY, radius)) {
-		m->onCollision(true);
+		m->onBaseCollision(true);
 	}
 }
 
@@ -39,23 +39,23 @@ bool PhysicsManager::checkStaticObjectCollision(float midX, float midY, float ra
 {
 	bool isCollision = false;
 
-	//for (int i = 0; i < collidables->size(); i++) {
-	//	int xStep = midX - collidables->at(i).getMidX();
-	//	int yStep = midY - collidables->at(i).getMidY();
-	//	int collisionRange =radius + collidables->at(i).getRadius();
+	for (int i = 0; i < collidables->size(); i++) {
+		int xStep = midX - collidables->at(i).getMidX();
+		int yStep = midY - collidables->at(i).getMidY();
+		int collisionRange =radius + collidables->at(i).getRadius();
 
 
-	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
+		int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
-	//	if (distance < 0) {
-	//		distance *= -1;
-	//	}
+		if (distance < 0) {
+			distance *= -1;
+		}
 
-	//	if (distance < collisionRange) {
-	//		isCollision = true;
-	//		break;
-	//	}
-	//}
+		if (distance < collisionRange) {
+			isCollision = true;
+			break;
+		}
+	}
 
 	return isCollision;
 }
@@ -87,7 +87,7 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 void PhysicsManager::setStaticObjects()
 {
 	if (collidables == NULL) {
-		//collidables = MapManager::Instance().getCollidables();
+		collidables = MapManager::Instance().getCollidables();
 	}
 	_tileSize = 32;
 	_playScreenWidth = 39 * _tileSize;

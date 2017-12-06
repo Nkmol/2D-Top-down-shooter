@@ -113,9 +113,9 @@ void EnemyBase::setLeader(const EnemyBase& leader) {
 
 void EnemyBase::update(float time) {
 	const auto newPostition = _coordinates + (_destination * speed * time);
-	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
 	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
@@ -168,5 +168,10 @@ void EnemyBase::onBaseCollision(GameObject object)
 void EnemyBase::onCollision(Bullet bullet)
 {
 	bullet.onCollision(true);
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onBaseCollision(bool isWall)
+{
 	MoveableObject::stopMove();
 }

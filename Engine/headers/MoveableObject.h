@@ -24,13 +24,10 @@ enum classType
 class MoveableObject : public GameObject {
 
 private:
-    SDL_Texture *_sprite;
-
     std::map<Point, int> directionAngles;
-
+	string token;
 protected:
 
-    int angle;
 	float speed, distance;
     Point _destination;
 	classType _type;
@@ -44,17 +41,7 @@ public:
 
     virtual void update(float time);
 
-    void SetAngle(int angle);
-
-    int getAngle() const;
-
     void stopMove();
-
- 
-
-    const int getMidX() const;
-
-    const int getMidY() const;
 
 	const int getPredictionMidX(float destinationPosition) const;
 
@@ -66,8 +53,10 @@ public:
 
 
 	virtual void onBaseCollision(MoveableObject* object);
+	virtual void onBaseCollision(bool isWall);
 	virtual void onBaseCollision(GameObject object);
 	virtual void onCollision(bool isCollidedOnWall);
+
 };
 
 

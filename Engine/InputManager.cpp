@@ -19,34 +19,34 @@ InputManager::InputManager() {
 }
 
 
-InputManager &InputManager::instance() {
+InputManager &InputManager::Instance() {
 
     static InputManager sInstance;
 
     return sInstance;
 }
 
-bool InputManager::hasEvent(SDL_Event *event) {
-    return static_cast<bool>(SDL_PollEvent(event));
+bool InputManager::HasEvent(Event *event) {
+    return static_cast<bool>(SDL_PollEvent(event->GetEvent()));
 }
 
-bool InputManager::isKeyDown(SDL_Event &event) {
-    return event.type == SDL_KEYDOWN;
+bool InputManager::IsKeyDown(Event &event) {
+    return event.GetEventValue().type == SDL_KEYDOWN;
 }
 
-bool InputManager::isKeyUp(SDL_Event &event) {
-    return event.type == SDL_KEYUP;
+bool InputManager::IsKeyUp(Event &event) {
+    return event.GetEventValue().type == SDL_KEYUP;
 }
 
-bool InputManager::isQuit(SDL_Event &event) {
-    return event.type == SDL_QUIT;
+bool InputManager::IsQuit(Event &event) {
+    return event.GetEventValue().type == SDL_QUIT;
 }
 
-bool InputManager::isPauseResume(SDL_Event &event) {
-    return (event.key.keysym.sym == SDLK_ESCAPE && event.type == SDL_KEYDOWN);
+bool InputManager::IsPauseResume(Event &event) {
+    return (event.GetEventValue().key.keysym.sym == SDLK_ESCAPE && event.GetEventValue().type == SDL_KEYDOWN);
 }
 
-bool InputManager::isNumericKeyPressed(SDL_Event &event, int &key) {
+bool InputManager::IsNumericKeyPressed(Event &event, int &key) {
     std::map<SDL_Keycode, int> keyNumber = {
             {SDL_SCANCODE_1, 1},
             {SDL_SCANCODE_2, 2},
@@ -66,7 +66,7 @@ bool InputManager::isNumericKeyPressed(SDL_Event &event, int &key) {
     return false;
 }
 
-Point InputManager::getDirection(SDL_Event &event) {
+Point InputManager::GetDirection(Event &event) {
     // TODO REFACTOR, NEW CLASS
 
     SDL_PumpEvents();
@@ -85,7 +85,7 @@ Point InputManager::getDirection(SDL_Event &event) {
 
 
 // used this function when the mouse has been moved. (see: isMouseMoved function)
-int InputManager::recalculateMouseAngle(MoveableObject &object) {
+int InputManager::RecalculateMouseAngle(MoveableObject &object) {
     int mouseX, mouseY;
 
     SDL_GetMouseState(&mouseX, &mouseY);
@@ -93,18 +93,18 @@ int InputManager::recalculateMouseAngle(MoveableObject &object) {
     mousePositionX = mouseX;
     mousePositionY = mouseY;
 
-    return calculateMouseAngle(object);
+    return CalculateMouseAngle(object);
 }
 
 
 
 // used to calculate. Call this method directly if mouse position is NOT changed
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
-int InputManager::calculateMouseAngle(MoveableObject &object) {
+int InputManager::CalculateMouseAngle(MoveableObject &object) {
 
     const auto &coordinates = object.GetCoordinates();
-    float deltaY = coordinates.y - InputManager::getMousePositionY();
-    float deltaX = coordinates.x - InputManager::getMousePositionX();
+    float deltaY = coordinates.y - InputManager::GetMousePositionY();
+    float deltaX = coordinates.x - InputManager::GetMousePositionX();
 
     double radian = atan2(deltaY, deltaX);
 
@@ -112,21 +112,25 @@ int InputManager::calculateMouseAngle(MoveableObject &object) {
     return (result + 360) % 360;
 }
 
-bool InputManager::isMouseMoved(SDL_Event &event) {
-    return event.type == SDL_MOUSEMOTION;
+bool InputManager::IsMouseMoved(Event &event) {
+    return event.GetEventValue().type == SDL_MOUSEMOTION;
 }
 
-bool InputManager::isMouseClicked(SDL_Event &event) {
-    return event.type == SDL_MOUSEBUTTONDOWN;
+bool InputManager::IsMouseClicked(Event &event) {
+    return event.GetEventValue().type == SDL_MOUSEBUTTONDOWN;
 }
 
+const bool InputManager::IsKeyDown(Event& event, const std::string name) const
+{
+	return event.GetEventValue().button.button == SDL_GetScancodeFromName(name.c_str());
+}
 
 // Getters & Setters
 
-int InputManager::getMousePositionX() const {
+int InputManager::GetMousePositionX() const {
     return mousePositionX;
 }
 
-int InputManager::getMousePositionY() const {
+int InputManager::GetMousePositionY() const {
     return mousePositionY;
 }

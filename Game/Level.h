@@ -38,7 +38,7 @@ public:
 
     void Init();
 
-    void HandleEvents(SDL_Event event);
+    void HandleEvents(Event event);
 
     void Update(float time);
 

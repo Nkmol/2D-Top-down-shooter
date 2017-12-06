@@ -38,6 +38,8 @@ protected:
 	//void onCollision(bool isCollidedOnWall) override;
 	void onCollision(Bullet bullet);
 
+	void onBaseCollision(bool isWall);
+
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
