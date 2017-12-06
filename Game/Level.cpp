@@ -20,45 +20,45 @@ void Level::Init() {
     _flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
 }
 
-void Level::HandleEvents(SDL_Event event) {
-    auto &inputManager = InputManager::instance();
+void Level::HandleEvents(Event event) {
+    auto &inputManager = InputManager::Instance();
 
-    if (inputManager.isMouseMoved(event)) {
+    if (inputManager.IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
-        int angle = inputManager.recalculateMouseAngle(*_player);
+        int angle = inputManager.RecalculateMouseAngle(*_player);
 
         // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
         _player->SetAngle(angle);
     }
 
-    if (inputManager.isMouseClicked(event)) {
+    if (inputManager.IsMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objs.emplace_back(bullet);
     }
 
     int key = 0;
-    if (inputManager.isNumericKeyPressed(event, key)) {
+    if (inputManager.IsNumericKeyPressed(event, key)) {
         _player->changeWeapon(key-1);
     }
 
-	if(inputManager.isKeyDown(event))
+	if(inputManager.IsKeyDown(event))
 	{
-		if(event.button.button == SDL_SCANCODE_LEFTBRACKET)
+		if (inputManager.IsKeyDown(event, "["))
 		{
 			_levelSpeed -= .1;
 			if (_levelSpeed < 0) _levelSpeed = 0;
 		}
-		else if(event.button.button == SDL_SCANCODE_RIGHTBRACKET)
+		else if(inputManager.IsKeyDown(event, "]"))
 		{
 			_levelSpeed += .1;
 		}
-		else if(event.button.button == SDL_SCANCODE_F5)
+		else if(inputManager.IsKeyDown(event, "F5"))
 		{
 			// Quicksave prittified json
 			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
 			o << std::setw(4) << json(*_player.get()) << std::endl;
 		}
-		else if(event.button.button == SDL_SCANCODE_F7)
+		else if(inputManager.IsKeyDown(event, "F7"))
 		{
 			// Quickload
 			// TODO refactor AssetManager
@@ -82,9 +82,9 @@ void Level::HandleEvents(SDL_Event event) {
 	}
 
 
-    Point direction = inputManager.getDirection(event);
+    Point direction = inputManager.GetDirection(event);
 
-    int angle = inputManager.calculateMouseAngle(*_player);
+    int angle = inputManager.CalculateMouseAngle(*_player);
 
     _player->SetAngle(angle);
     _player->Move(direction);
