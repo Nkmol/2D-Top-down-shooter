@@ -19,7 +19,8 @@ enum classType
 	PLAYER
 };
 
-class MoveableObject {
+
+class MoveableObject : public GameObject {
 
 private:
     SDL_Texture *_sprite;
@@ -28,11 +29,9 @@ private:
 
 protected:
     bool visible;
-    int angle, radius, midX, midY, width, height;
-	float speed;
-    float distance;
+    int angle, radius;
+	float speed, distance;
     Point _destination;
-    Point _coordinates;
 	classType _type;
 
 public:
@@ -45,8 +44,6 @@ public:
     virtual void update(float time);
 
     void SetAngle(int angle);
-
-    const Point &GetCoordinates() const;
 
     int getAngle() const;
 
@@ -61,12 +58,6 @@ public:
 	const int getPredictionMidX(float destinationPosition) const;
 
 	const int getPredictionMidY(float destinationPosition) const;
-
-    const int getRadius() const;
-
-	int getWidth() const;
-
-	int getHeight() const;
 
     void hide();
 

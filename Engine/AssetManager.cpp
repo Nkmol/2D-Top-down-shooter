@@ -3,6 +3,7 @@
 #include "AssetManager.h"
 
 AssetManager::AssetManager() {
+
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 	TTF_Init();
 }
@@ -44,8 +45,12 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
 		loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".jpg" }.c_str());
     }
 	if (loadedSurface == NULL) {
+		loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".bmp" }.c_str());
+	}
+	if (loadedSurface == NULL) {
 		loadedSurface = IMG_Load(string{ "../content/map/" + mediaToken }.c_str());
 	}
+
 	if (loadedSurface == NULL) {
 		cout << "Unable to load image! SDL_image Error: " << mediaToken.c_str() << IMG_GetError() << endl;
 	}

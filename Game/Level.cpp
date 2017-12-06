@@ -1,6 +1,10 @@
 #include "Level.h"
 #include "monsters/BatEnemy.h"
+<<<<<<< HEAD
 #include <algorithm>
+=======
+#include <chrono>
+>>>>>>> develop
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -16,11 +20,18 @@ void Level::Init() {
     player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
-
+    _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
+<<<<<<< HEAD
     _flockController.GenerateFlock<ZombieEnemy>(0, 200, 600, *_player);
     //_flockController.GenerateFlock<BatEnemy>(0, 200, 600, *_player);
+=======
+    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
+    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
+    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
+>>>>>>> develop
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -36,7 +47,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     if (inputManager.isMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objs.emplace_back(bullet);
+        _objsNoEnemies.emplace_back(bullet);
     }
 
     int key = 0;
@@ -94,24 +105,37 @@ void Level::HandleEvents(SDL_Event event) {
 }
 
 void Level::Update(float time) {
+    PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
+<<<<<<< HEAD
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
 
+=======
+
+    for (auto &&obj : _objsNoEnemies) {
+        obj->update(accSpeed);
+    }
+    _player->update(time);
+>>>>>>> develop
     _flockController.UpdateFlocks(accSpeed);
 }
 
 void Level::Draw() {
+<<<<<<< HEAD
 	
 	auto iter(std::remove_if(_objs.begin(), _objs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
 	_objs.erase(iter, _objs.end());
 
     for (auto &&obj : _objs) {
+=======
+    _player->draw();
+    for (auto &&obj : _objsNoEnemies) {
+>>>>>>> develop
         obj->draw();
     }
     _flockController.DrawFlocks();
-
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
@@ -121,5 +145,7 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
+// lines below this are only for debug purpose
+//    PhysicsManager::Instance().DrawQTree();
 }
 

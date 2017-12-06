@@ -13,10 +13,10 @@
 class Flock
 {
 	EnemyBase& _leader;
-	vector<unique_ptr<EnemyBase>> _members;
+	vector<shared_ptr<EnemyBase>> _members;
 public:
 	explicit Flock(unique_ptr<EnemyBase> leader);
-	void AddMember(unique_ptr<EnemyBase> newMember);
+	void AddMember(shared_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
 	void Draw();
