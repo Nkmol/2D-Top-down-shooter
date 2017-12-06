@@ -1,17 +1,17 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <json.hpp>
-using json = nlohmann::json;
+#include "json.hpp"
 
 struct FlockVars
 {
-	std::string type;
+public:
+	int type;
 	int amount;
 	int minPos;
 	int maxPos;
 
-	static void from_json(const json& j, FlockVars& value);
+	static void from_json(const nlohmann::json& j, FlockVars& value);
 };
 class Wave
 {
@@ -28,6 +28,7 @@ public:
 	const float get_multiplier() const { return _multiplier; }
 	void set_multiplier(const float multiplier) { _multiplier = multiplier; }
 	void set_flocksvars(const std::vector<FlockVars> vars) { _flocksVars = vars; }
+	const std::vector<FlockVars> GetFlocksVars() const { return _flocksVars; }
 };
 
-void from_json(const json& j, Wave& value);
+void from_json(const nlohmann::json& j, Wave& value);

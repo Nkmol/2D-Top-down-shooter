@@ -3,10 +3,14 @@
 #include <vector>
 #include <memory>
 #include <SDL.h>
+#include <forward_list>
+#include "WaveController.h"
+#include "json.hpp"
 
 class Player;
 class MoveableObject;
 class GameObject;
+class Wave;
 
 class Level {
     int _level;
@@ -40,4 +44,4 @@ public:
 	void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 };
 
-void from_json(const json& j, Level& value);
+void from_json(const nlohmann::json& j, Level& value);

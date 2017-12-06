@@ -1,15 +1,31 @@
 #include "WaveController.h"
+#include "MoveableObject.h"
+#include "EnemyBase.h"
 
 WaveController::WaveController()
 {
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player, shared_ptr<std::vector<shared_ptr<MoveableObject>>> npcs)
+void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player)
 {
 	_waves = waves;
 	_player = player;
-	_npcs = npcs;
+
+	std::ifstream i;
+	i.exceptions(ifstream::failbit | ifstream::badbit);
+	try
+	{
+		i.open("../content/config/monsters.meta.json");
+	}
+	catch (const ifstream::failure&)
+	{
+		cout << "Exception opening/reading file" << endl;
+		return;
+	}
+	
+	i >> _j;
+
 	_curWave = _waves.begin();
 	SpawnWave();
 }
@@ -35,9 +51,11 @@ void WaveController::SpawnWave()
 	std::string waveText = "Wave: " + _curWave->get_id();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
 	std::cout << "new wave: " << _curWave->get_id() << endl;
-	
-	_flockController.GenerateFlock<ZombieEnemy>(20, 200, 600, *_player);
-	//_flockController.GenerateFlock<BatEnemy>(50, 200, 600, *_player);
+
+	for (auto flock : _curWave->GetFlocksVars())
+	{
+		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player);
+	}
 }
 
 void WaveController::Draw()

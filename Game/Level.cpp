@@ -7,6 +7,7 @@
 #include "Config.h"
 #include "InputManager.h"
 #include "EnemyBase.h"
+#include "Wave.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -25,7 +26,7 @@ void Level::Init() {
 		cout << "Exception opening/reading file" << endl;
 		return;
 	}
-	json j;
+	nlohmann::json j;
 	i >> j;
 
 	// Explicit "from_json" so it used the same reference
@@ -43,22 +44,8 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
 
-	// Quickload
-	// TODO refactor AssetManager
-	std::ifstream i;
-	i.exceptions(ifstream::failbit | ifstream::badbit);
-	try
-	{
-		i.open("../content/config/monsters.meta.json");
-	}
-	catch (const ifstream::failure&)
-	{
-		cout << "Exception opening/reading file" << endl;
-		return;
-	}
-	nlohmann::json j;
-	i >> j;
-
+	
+	_waveController.Init(_waves, _player);
 
     //_flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
     //_flockController.GenerateFlock(j[1], 50, 200, 600, *_player);
@@ -159,7 +146,7 @@ void Level::Draw() {
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 }
 
-void from_json(const json& j, Level& value)
+void from_json(const nlohmann::json& j, Level& value)
 {
 	value.SetId(j.at("id").get<int>());
 	value.SetMap(j.at("map").get<std::string>());
