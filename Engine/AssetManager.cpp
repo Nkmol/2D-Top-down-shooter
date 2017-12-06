@@ -54,7 +54,6 @@ Mix_Music *AssetManager::loadBGM(string soundToken) {
         cout << "failed to load" << Mix_GetError() << endl;
         return nullptr;
     }
-    cout << "works" << Mix_GetError() << endl;
     return gBGM;
 }
 
