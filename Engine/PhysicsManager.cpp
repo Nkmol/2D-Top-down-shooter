@@ -88,9 +88,9 @@ void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
 void PhysicsManager::setStaticObjects()
 {
 	if (collidables == NULL) {
-		collidables = MapManager::Instance().getCollidables();
+		//collidables = MapManager::Instance().getCollidables();
 	}
-	_tileSize = collidables->at(0).getRadius() * 2;
+	_tileSize = 32;
 	_playScreenWidth = 39 * _tileSize;
 	_playScreenHeight = 29 * _tileSize;
 }

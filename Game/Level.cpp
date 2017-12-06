@@ -1,10 +1,7 @@
 #include "Level.h"
 #include "monsters/BatEnemy.h"
-<<<<<<< HEAD
 #include <algorithm>
-=======
 #include <chrono>
->>>>>>> develop
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -13,7 +10,7 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 void Level::Init() {
     MapManager::Instance().Init("../content/map/halflife.tmx");
 	PhysicsManager::Instance().setStaticObjects();
-	PhysicsManager::Instance().setMoveableObjects(&_objs);
+	//PhysicsManager::Instance().setMoveableObjects(&_objs);
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
@@ -23,15 +20,10 @@ void Level::Init() {
     _objsNoEnemies.emplace_back(player);
     // save pointer seperate
     _player = player;
-<<<<<<< HEAD
-    _flockController.GenerateFlock<ZombieEnemy>(0, 200, 600, *_player);
+	_flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
+
     //_flockController.GenerateFlock<BatEnemy>(0, 200, 600, *_player);
-=======
-    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
-    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
->>>>>>> develop
+
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -107,32 +99,20 @@ void Level::HandleEvents(SDL_Event event) {
 void Level::Update(float time) {
     PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
-<<<<<<< HEAD
-    for (auto &&obj : _objs) {
-        obj->update(accSpeed);
-    }
-
-=======
 
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
     _player->update(time);
->>>>>>> develop
+	auto iter(std::remove_if(_objs.begin(), _objs.end(), [](shared_ptr<GameObject> & o) { return !o->isVisible(); }));
+	_objs.erase(iter, _objs.end());
+
     _flockController.UpdateFlocks(accSpeed);
 }
 
 void Level::Draw() {
-<<<<<<< HEAD
-	
-	auto iter(std::remove_if(_objs.begin(), _objs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
-	_objs.erase(iter, _objs.end());
-
-    for (auto &&obj : _objs) {
-=======
     _player->draw();
     for (auto &&obj : _objsNoEnemies) {
->>>>>>> develop
         obj->draw();
     }
     _flockController.DrawFlocks();

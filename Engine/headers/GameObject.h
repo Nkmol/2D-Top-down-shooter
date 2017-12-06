@@ -3,6 +3,7 @@
 
 #include <SDL_rect.h>
 #include "Point.h"
+#include "PhysicsManager.h"
 
 class GameObject {
 public:
@@ -20,8 +21,9 @@ public:
 	int GetTeamId() const;
 	void SetTeamId(int teamId);
 	const int getRadius() const ;
-
+	bool isVisible() const;
 protected:
+	bool visible;
 	GameObject();
 	int width, height;
 	float radius, midX, midY;

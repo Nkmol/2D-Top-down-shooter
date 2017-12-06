@@ -10,7 +10,8 @@
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed},
         _destination(Point::Empty()),
-        visible{true}, GameObject(coordinates, 0, 0) {
+        GameObject(coordinates, 0, 0) {
+	visible = true;
 	_type = MOVEABLEOBJECT;
     SDL_Surface *surface = AssetManager::Instance().loadSurface(filePath);
     if (!surface)
@@ -47,6 +48,7 @@ void MoveableObject::stopMove() {
     _destination = Point{0, 0};
 }
 
+
 int MoveableObject::getAngle() const {
     return angle;
 }
@@ -69,9 +71,7 @@ void MoveableObject::onCollision(bool isCollidedOnWall)
 {
 }
 
-bool MoveableObject::isVisible() const {
-    return visible;
-}
+
 
 MoveableObject::~MoveableObject() {
     // if sdl_destroytexture is called, the bullet's image cannot be found

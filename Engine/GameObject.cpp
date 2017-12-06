@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "PhysicsManager.h"
 
 int GameObject::counter = 0;
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
@@ -28,6 +29,10 @@ const int GameObject::getMidY() const
 const int GameObject::getRadius() const
 {
 	return radius;
+}
+
+bool GameObject::isVisible() const {
+	return visible;
 }
 
 int GameObject::getWidth() const {

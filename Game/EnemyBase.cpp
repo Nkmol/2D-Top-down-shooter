@@ -81,6 +81,7 @@ void EnemyBase::Seperate(GameObject &other) {
         if (squareDist < oWeight) {
             const auto headingVector = Point(_coordinates.x - oCoordinates.x, _coordinates.y - oCoordinates.y);
             const auto scale = sqrt(squareDist) / sqrt(oWeight);
+
             const auto scaledVector = headingVector / sqrt(squareDist) / scale;
             this->destinationPoint += scaledVector;
         }
@@ -145,7 +146,7 @@ const int EnemyBase::getReward() const
 
 void EnemyBase::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
 {
-	onCollision(moveableObject.get());
+	//onCollision(moveableObject.get());
 
 	//switch (moveableObject.get()->getType())
 	//{
@@ -158,12 +159,6 @@ void EnemyBase::onBaseCollision(shared_ptr<MoveableObject> moveableObject)
 }
 
 void EnemyBase::onCollision(Bullet bullet)
-{
-	bullet.onCollision(true);
-	MoveableObject::stopMove();
-}
-
-void EnemyBase::onCollision(EnemyBase enemy)
 {
 	bullet.onCollision(true);
 	MoveableObject::stopMove();

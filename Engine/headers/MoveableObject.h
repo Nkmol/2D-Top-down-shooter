@@ -28,7 +28,7 @@ private:
     std::map<Point, int> directionAngles;
 
 protected:
-    bool visible;
+
     int angle, radius;
 	float speed, distance;
     Point _destination;
@@ -49,7 +49,7 @@ public:
 
     void stopMove();
 
-    bool isVisible() const;
+ 
 
     const int getMidX() const;
 

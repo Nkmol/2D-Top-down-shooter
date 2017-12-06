@@ -12,6 +12,7 @@
 
 
 class MoveableObject;
+class gameObject;
 class PhysicsManager {
 public:
 	PhysicsManager(PhysicsManager const&) = delete;
@@ -38,7 +39,7 @@ public:
 
 private:
 	std::vector<shared_ptr<MoveableObject>>* objects;
-	const std::vector<GameObject>* collidables;
+//	const std::vector<GameObject>* collidables;
 	float _tileSize;
 	float _playScreenWidth;
 	float _playScreenHeight;
