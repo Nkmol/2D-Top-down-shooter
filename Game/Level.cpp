@@ -10,7 +10,7 @@ void Level::Init() {
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
-    player->changeWeapon(1); // set weapon to Uzi
+    player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
 
@@ -39,7 +39,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     int key = 0;
     if (inputManager.isNumericKeyPressed(event, key)) {
-        _player->changeWeapon(key);
+        _player->changeWeapon(key-1);
     }
 
 	if(inputManager.isKeyDown(event))
@@ -62,7 +62,18 @@ void Level::HandleEvents(SDL_Event event) {
 		else if(event.button.button == SDL_SCANCODE_F7)
 		{
 			// Quickload
-			std::ifstream i("../content/saves/quicksave.json"); // TODO refactor AssetManager
+			// TODO refactor AssetManager
+			std::ifstream i;
+			i.exceptions(ifstream::failbit | ifstream::badbit);
+			try
+			{
+				i.open("../content/saves/quicksave.json");
+			}
+			catch (const ifstream::failure&)
+			{
+				cout << "Exception opening/reading file" << endl;
+				return;
+			}
 			json j;
 			i >> j;
 

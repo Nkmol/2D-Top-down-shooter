@@ -23,7 +23,6 @@ protected:
     std::string name;
 
 public:
-	Weapon();
     Weapon(int damage, std::string name, int maxBullets);
 
     bool hasBullets();
