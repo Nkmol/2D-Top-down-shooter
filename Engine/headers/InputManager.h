@@ -26,6 +26,8 @@ class InputManager {
     InputManager();
 
 public:
+	InputManager(InputManager const&) = delete;
+	void operator=(InputManager const&) = delete;
 
     static InputManager &instance();
 

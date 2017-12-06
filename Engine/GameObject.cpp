@@ -1,4 +1,5 @@
 #include "GameObject.h"
+
 int GameObject::counter = 0;
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
 	_coordinates(coordinates), width(width), height(height)
@@ -7,6 +8,20 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 	midY = _coordinates.y + height / 2;
 	radius = (width + height) / 4;
 	this->id = ++counter;
+}
+
+GameObject::GameObject(const std::string mediatoken, float x, const float y, const int width, const int height) :
+	x(x), y(y), width(width), height(height) 
+{
+	midX = _coordinates.x + width / 2;
+	midY = _coordinates.y + height / 2;
+	radius = (width + height) / 4;
+	this->id = ++counter;
+}
+
+GameObject::GameObject()
+{
+
 }
 
 const int GameObject::getMidX() const

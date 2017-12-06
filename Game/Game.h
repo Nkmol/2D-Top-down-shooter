@@ -22,6 +22,7 @@ public:
 	void HandleEvents();
 	void Update(float time);
 	void Draw();
+	void SetLevel(int levelnumber);
 	shared_ptr<Level> GetLevel() const;
 private:
 	// the stack of states
