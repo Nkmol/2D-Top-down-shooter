@@ -8,11 +8,9 @@
 
 #include "MoveableObject.h"
 #include "Weapon.h"
-#include "Point.h"
-#include <Weapon.h>
-
 #include "json.hpp"
-using json = nlohmann::json;
+
+class Point;
 
 class Player : public MoveableObject {
 
@@ -49,8 +47,8 @@ public:
 };
 
 // ReSharper disable once CppInconsistentNaming
-void to_json(json& j, const Player& value);
+void to_json(nlohmann::json& j, const Player& value);
 
-void from_json(const json& j, Player& value);
+void from_json(const nlohmann::json& j, Player& value);
 
 #endif //SHOOTER_PLAYER_H

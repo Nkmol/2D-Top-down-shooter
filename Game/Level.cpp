@@ -1,6 +1,12 @@
 #include "Level.h"
-#include "monsters/BatEnemy.h"
-#include <chrono>
+#include "Uzi.h"
+#include "Handgun.h"
+#include "Shotgun.h"
+#include "Player.h"
+#include "Bullet.h"
+#include "Config.h"
+#include "InputManager.h"
+#include "EnemyBase.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
@@ -14,13 +20,29 @@ void Level::Init() {
     player->changeWeapon(0); // set weapon to Uzi
 
     _objs.emplace_back(player);
-    _objsNoEnemies.emplace_back(player);
+	_objsNoEnemies.emplace_back(player);
+
     // save pointer seperate
     _player = player;
-    _flockController.GenerateFlock<ZombieEnemy>(20, 250, 300, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(10, 450, 600, *_player, _objs);
-    _flockController.GenerateFlock<ZombieEnemy>(15, 100, 200, *_player, _objs);
-    _flockController.GenerateFlock<BatEnemy>(100, 200, 600, *_player, _objs);
+
+	// Quickload
+	// TODO refactor AssetManager
+	std::ifstream i;
+	i.exceptions(ifstream::failbit | ifstream::badbit);
+	try
+	{
+		i.open("../content/config/monsters.meta.json");
+	}
+	catch (const ifstream::failure&)
+	{
+		cout << "Exception opening/reading file" << endl;
+		return;
+	}
+	nlohmann::json j;
+	i >> j;
+
+    _flockController.GenerateFlock(j[0], 20, 200, 600, *_player);
+    _flockController.GenerateFlock(j[1], 50, 200, 600, *_player);
 }
 
 void Level::HandleEvents(SDL_Event event) {
@@ -36,7 +58,7 @@ void Level::HandleEvents(SDL_Event event) {
 
     if (inputManager.isMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objsNoEnemies.emplace_back(bullet);
+        _objs.emplace_back(bullet);
     }
 
     int key = 0;
@@ -59,7 +81,7 @@ void Level::HandleEvents(SDL_Event event) {
 		{
 			// Quicksave prittified json
 			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
-			o << std::setw(4) << json(*_player.get()) << std::endl;
+			o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
 		}
 		else if(event.button.button == SDL_SCANCODE_F7)
 		{
@@ -76,7 +98,7 @@ void Level::HandleEvents(SDL_Event event) {
 				cout << "Exception opening/reading file" << endl;
 				return;
 			}
-			json j;
+			nlohmann::json j;
 			i >> j;
 
 			// Explicit "from_json" so it used the same reference
@@ -94,22 +116,24 @@ void Level::HandleEvents(SDL_Event event) {
 }
 
 void Level::Update(float time) {
-    PhysicsManager::Instance().UpdateQuadTree(_objs);
+	PhysicsManager::Instance().UpdateQuadTree(_objs);
 	const auto accSpeed = time *_levelSpeed;
 
-    for (auto &&obj : _objsNoEnemies) {
+    for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-    _player->update(time);
+
+	_player->update(time);
     _flockController.UpdateFlocks(accSpeed);
 }
 
 void Level::Draw() {
-    _player->draw();
-    for (auto &&obj : _objsNoEnemies) {
+	_player->draw();
+    for (auto &&obj : _objs) {
         obj->draw();
     }
     _flockController.DrawFlocks();
+
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
@@ -119,7 +143,5 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
-// lines below this are only for debug purpose
-//    PhysicsManager::Instance().DrawQTree();
 }
 

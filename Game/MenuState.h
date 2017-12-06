@@ -1,15 +1,9 @@
 #pragma once
-#include "State.h"
-#include "../Engine/Button.h"
 #include <string>
 #include <memory>
-#include "Level.h"
-#include "Player.h"
-#include "InputManager.h"
-#include <memory>
-#include "PlayingState.h"
-#include "MapManager.h"
-#include "AudioManager.h"
+#include "State.h"
+#include "../Engine/Button.h"
+#include "Config.h"
 
 class MenuState : public State
 {

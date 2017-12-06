@@ -1,27 +1,21 @@
 #pragma once
 
-#include "Player.h"
-#include "MoveableObject.h"
-#include "GameObject.h"
-#include "MapManager.h"
 #include <vector>
 #include <memory>
 #include "FlockController.h"
-#include <InputManager.h>
-#include "Weapon.h"
-#include "Uzi.h"
-#include "monsters/ZombieEnemy.h"
-#include "Handgun.h"
-#include "Shotgun.h"
-#include "Config.h"
+#include <SDL.h>
+
+class Player;
+class MoveableObject;
+class GameObject;
 
 class Level {
     int _level;
-	std::vector<shared_ptr<GameObject>> _objs;
-	std::vector<shared_ptr<MoveableObject>> _objsNoEnemies;
-    std::vector<shared_ptr<MoveableObject>> _npcs;
-    std::vector<shared_ptr<GameObject>> _loot;
-    shared_ptr<Player> _player;
+	std::vector<std::shared_ptr<GameObject>> _objs;
+	std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
+	std::vector<std::shared_ptr<MoveableObject>> _npcs;
+	std::vector<std::shared_ptr<GameObject>> _loot;
+	std::shared_ptr<Player> _player;
 
 private:
     FlockController _flockController;

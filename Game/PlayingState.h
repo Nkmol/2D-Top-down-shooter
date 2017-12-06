@@ -1,11 +1,11 @@
 #pragma once
 
-#include "State.h"
-#include "MoveableObject.h"
 #include <memory>
-#include <InputManager.h>
-#include "Player.h"
+#include "State.h"
 #include "FlockController.h"
+
+class Player;
+class MoveableObject;
 
 class PlayingState : public State {
 public:
@@ -25,8 +25,8 @@ private:
     // Todo might actually need to be GameObject
     // Use Pointer so Slicing will not occur
 
-    std::vector<shared_ptr<MoveableObject>> _objs;
-    shared_ptr<Player> _player;
+    std::vector<std::shared_ptr<MoveableObject>> _objs;
+	std::shared_ptr<Player> _player;
     FlockController flockController;
 
 };

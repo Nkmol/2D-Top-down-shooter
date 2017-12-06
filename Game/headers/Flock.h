@@ -5,18 +5,21 @@
 #ifndef SHOOTER_FLOCK_H
 #define SHOOTER_FLOCK_H
 
+#include <memory>
+#include <vector>
 
-#include "EnemyBase.h"
-#include "memory"
-#include "vector"
+class EnemyBase;
 
 class Flock
 {
-	EnemyBase& _leader;
-	vector<shared_ptr<EnemyBase>> _members;
 public:
-	explicit Flock(unique_ptr<EnemyBase> leader);
-	void AddMember(shared_ptr<EnemyBase> newMember);
+	//using EnemiesType = std::vector<unique_ptr<EnemyBase>>; 
+private:
+	EnemyBase& _leader;
+	std::vector<std::unique_ptr<EnemyBase>> _members;
+public:
+	explicit Flock(std::unique_ptr<EnemyBase> leader);
+	void AddMember(std::unique_ptr<EnemyBase> newMember);
 	void RemoveFarMembers();
 	void Update(float time);
 	void Draw();
