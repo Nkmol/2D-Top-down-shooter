@@ -28,10 +28,10 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> play
 	i >> _j;
 
 	_curWave = _waves.begin();
-	SpawnWave();
+	SpawnWave(npcs);
 }
 
-bool WaveController::Update(float time)
+bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs)
 {
 	_lastWaveTimer += time;
 
@@ -40,14 +40,14 @@ bool WaveController::Update(float time)
 		_curWave++;
 		if (_curWave == _waves.end())
 			return false;
-		SpawnWave();		
+		SpawnWave(npcs);		
 	}
 	
 	_flockController.UpdateFlocks(time);
 	return true;
 }
 
-void WaveController::SpawnWave()
+void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs)
 {
 	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
@@ -55,7 +55,7 @@ void WaveController::SpawnWave()
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player, _npcs);
+		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player, npcs);
 	}
 }
 
