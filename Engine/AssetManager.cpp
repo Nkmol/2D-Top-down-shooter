@@ -45,9 +45,6 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
 		loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".jpg" }.c_str());
 	}
 	if (loadedSurface == NULL) {
-		loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".bmp" }.c_str());
-	}
-	if (loadedSurface == NULL) {
 		loadedSurface = IMG_Load(string{ "../content/map/" + mediaToken }.c_str());
 	}
 
