@@ -92,6 +92,6 @@ set(SOURCE_FILES
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
         Engine/tmx/src/TSXParser.cpp)
-add_executable(GroepH ${SOURCE_FILES})
+add_executable(Shooter ${SOURCE_FILES})
 
-target_link_libraries(GroepH ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})
+target_link_libraries(Shooter ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})
