@@ -29,7 +29,7 @@ namespace HelperClasses
 
 		virtual std::unique_ptr<Base> Clone() const
 		{
-			return make_unique<Derived>(static_cast<Derived const &>(*this)); // call the copy ctor.
+			return std::make_unique<Derived>(static_cast<Derived const &>(*this)); // call the copy ctor.
 		}
 	protected:
 		~CloneableBase() {};
