@@ -14,7 +14,7 @@ find_package(SDL2_ttf REQUIRED)
 message(${SDL2_mixer_FOUND})
 
 
-include_directories(${SDL2_TTF_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_MIXER_INCLUDE_DIR} source/headers Engine/headers Game/headers include content)
+include_directories(${SDL2_TTF_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_MIXER_INCLUDE_DIR} source/headers Engine/headers Game/headers include content bin/include)
 
 set(SOURCE_FILES
         Game/MenuState.cpp

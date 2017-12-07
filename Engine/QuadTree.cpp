@@ -13,8 +13,8 @@ QuadTree::QuadTree(int level, SDL_Rect bounds) : level(level), bounds(bounds) {
 void QuadTree::ClearNode(){
     objects.clear();
 
-    for (int i = 0; i < nodes.size(); i++) {
-        nodes.at(i).ClearNode();
+    for (auto &node : nodes) {
+        node.ClearNode();
     }
 }
 
