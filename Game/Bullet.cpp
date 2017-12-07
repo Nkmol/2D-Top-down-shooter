@@ -22,17 +22,23 @@ void Bullet::update(float time) {
 
     const auto newPostition = _coordinates + (_destination * speed * time);
 
-	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
     MoveableObject::update(time);
 
 }
+
 
 
 const int Bullet::getDamage() const {
     return damage;
 }
 
-void Bullet::onCollision(bool isCollidedOnWall)
+void Bullet::onBaseCollision(MoveableObject* object)
+{
+	onCollision(object);
+
+}
+void Bullet::onBaseCollision(bool isCollidedOnWall)
 {
 	MoveableObject::stopMove();
 	MoveableObject::hide();

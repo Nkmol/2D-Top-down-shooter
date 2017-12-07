@@ -116,7 +116,7 @@ void EnemyBase::update(float time) {
 	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
 	PhysicsManager::Instance().checkWallCollision(this, newPostition);
-	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
 
@@ -147,27 +147,35 @@ const int EnemyBase::getReward() const
 
 void EnemyBase::onBaseCollision(MoveableObject* object)
 {
-	string henk = "test";
+	switch (object->getType())
+	{
+	case BULLET: object = dynamic_cast<Bullet*>(object);
+		break;
+	case ENEMY: object = dynamic_cast<EnemyBase*>(object);
+		break;
+	case PLAYER: object = dynamic_cast<Player*>(object);
+		break;
+	default:
+		break;
+	}
+	onCollision(object);
 
 }
 
-void EnemyBase::onBaseCollision(GameObject object)
+void EnemyBase::onBaseCollision(GameObject* object)
 {
-	string henk = "test";
 
-	//switch (moveableObject.get()->getType())
-	//{
-	//case BULLET: dynamic_cast<Bullet*>(moveableObject.get());
-	//case ENEMY:
-	//case PLAYER:
-	//default:
-	//	break;
-	//}
 }
 
-void EnemyBase::onCollision(Bullet bullet)
+void EnemyBase::onCollision(MoveableObject* object)
 {
-	bullet.onCollision(true);
+	object->onBaseCollision(true);
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(Bullet* bullet)
+{
+	bullet->onBaseCollision(true);
 	MoveableObject::stopMove();
 }
 

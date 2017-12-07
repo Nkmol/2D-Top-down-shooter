@@ -39,6 +39,16 @@ classType MoveableObject::getType()
 	return _type;
 }
 
+const int MoveableObject::getMidX() const
+{
+	return _coordinates.x + width / 2;
+}
+
+const int MoveableObject::getMidY() const
+{
+	return _coordinates.y + height / 2;
+}
+
 void MoveableObject::onBaseCollision(MoveableObject* object)
 {
 }

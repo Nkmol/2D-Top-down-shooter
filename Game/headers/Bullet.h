@@ -23,7 +23,9 @@ public:
 
     const int getDamage() const;
 
-	void onCollision(bool isCollidedOnWall);
+	void onBaseCollision(MoveableObject * object);
+
+	void onBaseCollision(bool isCollidedOnWall);
 };
 
 

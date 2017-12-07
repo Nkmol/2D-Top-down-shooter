@@ -32,7 +32,7 @@ public:
 	void CheckQuadTreeCollision(MoveableObject * m, Point newPos);
 	const vector<GameObject>* getCollidables();
 
-	const std::vector<GameObject>* collidables;
+
 	void UpdateQuadTree(std::vector<GameObject> &gameObjects);
 	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects);
 	const QuadTree &GetQuadTree() const;
@@ -40,7 +40,7 @@ public:
 	void DrawQTree();
 private:
 	std::vector<shared_ptr<MoveableObject>>* objects;
-//	const std::vector<GameObject>* collidables;
+	const std::vector<GameObject>* collidables;
 	float _tileSize;
 	float _playScreenWidth;
 	float _playScreenHeight;

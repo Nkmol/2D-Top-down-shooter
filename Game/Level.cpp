@@ -103,8 +103,8 @@ void Level::Update(float time) {
         obj->update(accSpeed);
     }
     _player->update(time);
-	auto iter(std::remove_if(_objs.begin(), _objs.end(), [](shared_ptr<GameObject> & o) { return !o->isVisible(); }));
-	_objs.erase(iter, _objs.end());
+	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
 
     _flockController.UpdateFlocks(accSpeed);
 }

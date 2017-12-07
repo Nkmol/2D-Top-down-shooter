@@ -33,10 +33,12 @@ protected:
 
 	void onBaseCollision(MoveableObject * object);
 
-	void onBaseCollision(GameObject object);
+	void onBaseCollision(GameObject * object);
+
+	void onCollision(MoveableObject * object);
 
 	//void onCollision(bool isCollidedOnWall) override;
-	void onCollision(Bullet bullet);
+	void onCollision(Bullet* bullet);
 
 	void onBaseCollision(bool isWall);
 

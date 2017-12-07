@@ -51,6 +51,8 @@ public:
 
 	classType getType();
 
+	const int getMidX() const;
+	const int getMidY() const;
 
 	virtual void onBaseCollision(MoveableObject* object);
 	virtual void onBaseCollision(bool isWall);
