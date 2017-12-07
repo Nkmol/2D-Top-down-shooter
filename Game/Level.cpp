@@ -6,7 +6,7 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 }
 
 void Level::Init() {
-    MapManager::Instance().Init("../content/map/halflife.tmx");
+    MapManager::Instance().Init("../content/map/space.tmx");
 	PhysicsManager::Instance().setStaticObjects();
 	PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
 
@@ -19,7 +19,7 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
 
-	_flockController.GenerateFlock<ZombieEnemy>(30, 250, 300, *_player, _objs);
+	_flockController.GenerateFlock<ZombieEnemy>(100, 250, 300, *_player, _objs);
 
     //_flockController.GenerateFlock<BatEnemy>(0, 200, 600, *_player);
 
@@ -102,7 +102,8 @@ void Level::Update(float time) {
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
-    _player->update(time);
+   // _player->update(time);
+
 	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
 	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
 
@@ -125,6 +126,6 @@ void Level::Draw() {
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 // lines below this are only for debug purpose
-//    PhysicsManager::Instance().DrawQTree();
+    //PhysicsManager::Instance().DrawQTree();
 }
 

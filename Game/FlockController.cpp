@@ -45,12 +45,3 @@ void FlockController::UpdateFlocks(const float time)
 		flock->Update(time);
 	}
 }
-
-vector<unique_ptr<Flock>> FlockController::getEnemies(vector<shared_ptr<EnemyBase>>* enemies)
-{
-	vector<shared_ptr<EnemyBase>> enemies;
-
-	for(auto const& flock : _flocks){
-
-	}
-}

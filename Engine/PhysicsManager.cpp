@@ -112,13 +112,13 @@ void PhysicsManager::CheckQuadTreeCollision(MoveableObject* m, Point newPos) {
 		int xStep = midX - nearbyObjects.at(i).getMidX();
 		int yStep = midY - nearbyObjects.at(i).getMidY();
 		int collisionRange = radius + nearbyObjects.at(i).getRadius();
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
+		//int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
-		if (distance < 0) {
-			distance *= -1;
-		}
+		//if (distance < 0) {
+			//distance *= -1;
+		//}
 
-		if (distance < collisionRange) {
+		if (0> collisionRange) {
 			m->onBaseCollision(nearbyObjects.at(i));
 			break;
 		}

@@ -115,8 +115,8 @@ void EnemyBase::update(float time) {
 	const auto newPostition = _coordinates + (_destination * speed * time);
 	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-	PhysicsManager::Instance().checkWallCollision(this, newPostition);
-	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
 
