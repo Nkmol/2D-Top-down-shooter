@@ -113,10 +113,10 @@ void EnemyBase::setLeader(const EnemyBase& leader) {
 
 void EnemyBase::update(float time) {
 	const auto newPostition = _coordinates + (_destination * speed * time);
-	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
+	PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-	PhysicsManager::Instance().checkWallCollision(this, newPostition);
-	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
 
@@ -149,17 +149,15 @@ void EnemyBase::onBaseCollision(MoveableObject* object)
 {
 	switch (object->getType())
 	{
-	case BULLET: object = dynamic_cast<Bullet*>(object);
+	case BULLET: onCollision(dynamic_cast<Bullet*>(object));
 		break;
-	case ENEMY: object = dynamic_cast<EnemyBase*>(object);
+	case ENEMY:  onCollision(dynamic_cast<EnemyBase*>(object));
 		break;
-	case PLAYER: object = dynamic_cast<Player*>(object);
+	case PLAYER: onCollision(dynamic_cast<Player*>(object));
 		break;
 	default:
 		break;
 	}
-	onCollision(object);
-
 }
 
 void EnemyBase::onBaseCollision(GameObject* object)
@@ -169,7 +167,6 @@ void EnemyBase::onBaseCollision(GameObject* object)
 
 void EnemyBase::onCollision(MoveableObject* object)
 {
-	object->onBaseCollision(true);
 	MoveableObject::stopMove();
 }
 

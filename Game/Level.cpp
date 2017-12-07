@@ -19,7 +19,7 @@ void Level::Init() {
     // save pointer seperate
     _player = player;
 
-	_flockController.GenerateFlock<ZombieEnemy>(1, 250, 300, *_player, _objs);
+	_flockController.GenerateFlock<ZombieEnemy>(30, 250, 300, *_player, _objs);
 
     //_flockController.GenerateFlock<BatEnemy>(0, 200, 600, *_player);
 
