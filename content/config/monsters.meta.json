@@ -1,6 +1,6 @@
 [
     {
-        "type": "zombieenemy",
+        "type": "zombie",
         "speed": 50,
         "damage": 12,
         "lifepoints": 100,
@@ -9,7 +9,7 @@
         "behaviour": "default"
     },
     {
-        "type": "batenemy",
+        "type": "bat",
         "speed": 260,
         "damage": 5,
         "lifepoints": 15,

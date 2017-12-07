@@ -5,7 +5,7 @@ Button::Button(std::string &mediatoken, int x1, int y1, int width, int height) :
 	x1Pos = x1;
 	y1Pos = y1;
 	setX2andY2(x1, y1, width, height);
-	SDL_Surface* surface = AssetManager::Instance().loadSurface(mediatoken);
+	SDL_Surface* surface = AssetManager::Instance().LoadSurface(mediatoken);
 	if (!surface)
 		cout << SDL_GetError() << endl;
 	_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
