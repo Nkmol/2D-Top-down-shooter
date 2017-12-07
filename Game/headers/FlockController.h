@@ -20,6 +20,7 @@ public:
 	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
 	void DrawFlocks();
 	void UpdateFlocks(float time);
+	vector<unique_ptr<Flock>> getEnemies(vector<shared_ptr<EnemyBase>>* enemies);
 };
 
 #endif //SHOOTER_FLOCKCONTROLLER_H

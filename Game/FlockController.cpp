@@ -26,9 +26,9 @@ void FlockController::GenerateFlock(const int flockSize, const int minPos, const
 }
 
 template void FlockController::GenerateFlock<ZombieEnemy>(const int flockSize, const int minPos, const int maxPos,
-                                                          Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
+	Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
 template void FlockController::GenerateFlock<BatEnemy>(const int flockSize, const int minPos, const int maxPos,
-                                                       Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
+	Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
 
 void FlockController::DrawFlocks()
 {
@@ -43,5 +43,14 @@ void FlockController::UpdateFlocks(const float time)
 	for (auto const& flock : _flocks)
 	{
 		flock->Update(time);
+	}
+}
+
+vector<unique_ptr<Flock>> FlockController::getEnemies(vector<shared_ptr<EnemyBase>>* enemies)
+{
+	vector<shared_ptr<EnemyBase>> enemies;
+
+	for(auto const& flock : _flocks){
+
 	}
 }
