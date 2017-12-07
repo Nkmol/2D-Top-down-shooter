@@ -8,7 +8,6 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <memory>
-#include <memory>
 #include "../CustomDeleter.h"
 #include "RenderManager.h"
 
@@ -18,12 +17,7 @@ using namespace std;
 class AssetManager {
 
 private:
-	map<string, const char* > sounds;
-	map<string, const char* > effect;
-	map<string, const char* > render;
-	map<string, const char* > fonts;
 	AssetManager();
-
 
 public:
 
