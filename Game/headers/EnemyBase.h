@@ -28,7 +28,7 @@ protected:
 	bool isLeader;
 	const int getLifepoints() const;
 	const int changeLifepoints(const int lp);
-	const int getDamage() const;
+
 	const int getReward() const;
 
 	void onBaseCollision(MoveableObject * object);
@@ -40,13 +40,17 @@ protected:
 	//void onCollision(bool isCollidedOnWall) override;
 	void onCollision(Bullet* bullet);
 
+	void onCollision(Player * player);
+
+	void onCollision(EnemyBase * enemy);
+
 	void onBaseCollision(bool isWall);
 
 public:
     EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, Point coordinates, float speed, bool isLeader, int damage, int lifepoints,
 	          int reward);
-
+	const int getDamage() const;
 	void UpdatePositions(float time);
     //algorithms
     void Align();

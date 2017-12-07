@@ -24,6 +24,7 @@ EnemyBase::EnemyBase(const std::string &filePath, Point coordinates, float speed
 	damage(damage),
 	reward(reward)
 {
+	_type = ENEMY;
 }
 
 
@@ -115,8 +116,8 @@ void EnemyBase::update(float time) {
 	const auto newPostition = _coordinates + (_destination * speed * time);
 	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
-	//PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
 		MoveableObject::update(time);
 }
 
@@ -175,11 +176,22 @@ void EnemyBase::onCollision(Bullet* bullet)
 	bullet->onBaseCollision(true);
 	lifepoints -= bullet->getDamage();
 	if (lifepoints < 0) {
+
 		hide();
 	}
 	MoveableObject::stopMove();
 }
 
+void EnemyBase::onCollision(EnemyBase* enemy)
+{
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(Player* player)
+{
+	player->Hit(damage);
+	MoveableObject::stopMove();
+}
 void EnemyBase::onBaseCollision(bool isWall)
 {
 	MoveableObject::stopMove();

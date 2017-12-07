@@ -50,7 +50,7 @@ void Player::Move(const Point direction) {
 void Player::update(float time) {
 
     const auto newPostition = _coordinates + (_destination * speed * time);
-	//PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
     MoveableObject::update(time);
 
 
@@ -99,7 +99,15 @@ void from_json(const json& j, Player& value)
 	value.SetWeapons(weps);
 }
 
-void Player::onCollision(bool isCollidedOnWall)
+void Player::onBaseCollision(bool isCollidedOnWall)
 {
 	MoveableObject::stopMove();
+}
+
+void Player::Hit(int damage) {
+	lifepoints -= damage;
+
+	if (lifepoints) {
+		
+	}
 }

@@ -25,14 +25,13 @@ class Level {
 	std::vector<shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<shared_ptr<MoveableObject>> _npcs;
     std::vector<shared_ptr<GameObject>> _loot;
-    shared_ptr<Player> _player;
 
 private:
     FlockController _flockController;
 	double _levelSpeed;
     int counter = 0;
     int totalms = 0;
-
+	shared_ptr<Player> _player;
 public:
     explicit Level(int level);
 

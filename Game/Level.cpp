@@ -6,9 +6,13 @@ Level::Level(const int level) : _level(level), _levelSpeed(1) {
 }
 
 void Level::Init() {
-    MapManager::Instance().Init("../content/map/space.tmx");
+    MapManager::Instance().Init("../content/map/halflife.tmx");
 	PhysicsManager::Instance().setStaticObjects();
 	PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
+	for each (auto &&var in _objs)
+	{
+
+	}
 
     auto player = make_shared<Player>("soldier", 100, 300);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
@@ -102,10 +106,12 @@ void Level::Update(float time) {
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
-   // _player->update(time);
 
 	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
 	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
+
+	auto it(std::remove_if(_npcs.begin(), _npcs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_npcs.erase(it, _npcs.end());
 
     _flockController.UpdateFlocks(accSpeed);
 }
