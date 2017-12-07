@@ -21,7 +21,8 @@ MapManager::MapManager()
 
 void MapManager::Init(const string input)
 {
-	tmx.load(input.c_str());
+	std::string filepath = "../content/map/" + input;
+	tmx.load(filepath.c_str());
 	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
 	tsx.load(tileset.c_str());
 

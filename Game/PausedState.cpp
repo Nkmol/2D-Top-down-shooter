@@ -1,6 +1,9 @@
 #include "PausedState.h"
-#include "PlayingState.h"
 #include "RenderManager.h"
+#include "Config.h"
+#include "Level.h"
+#include "Game.h"
+#include "InputManager.h"
 
 PausedState::PausedState()
 {

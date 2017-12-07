@@ -1,8 +1,8 @@
-#include <Uzi.h>
 #include "PlayingState.h"
-#include "InputManager.h"
 #include "PausedState.h"
-
+#include "Game.h"
+#include "Level.h"
+#include "InputManager.h"
 
 PlayingState::PlayingState() {
 }
@@ -19,7 +19,7 @@ void PlayingState::HandleEvents(Game &game) {
     while (inputManager.HasEvent(&event)) {
 
         if (inputManager.IsPauseResume(event)) {
-            auto state = make_unique<PausedState>();
+            auto state = std::make_unique<PausedState>();
             game.ChangeState(std::move(state));
         }
         if (inputManager.IsQuit(event)) {

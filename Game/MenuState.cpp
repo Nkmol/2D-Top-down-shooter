@@ -1,4 +1,8 @@
 #include "MenuState.h"
+#include "InputManager.h"
+#include "PlayingState.h"
+#include "AudioManager.h"
+#include "Game.h"
 
 
 MenuState::MenuState()

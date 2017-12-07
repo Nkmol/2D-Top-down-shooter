@@ -6,6 +6,10 @@
 #include "MoveableObject.h"
 #include "Point.h"
 
+MoveableObject::~MoveableObject()
+{
+}
+
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed}, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
 	token = filePath;
@@ -19,7 +23,22 @@ void MoveableObject::draw() {
     RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
 }
 
+int MoveableObject::getAngle() const {
+	return angle;
+}
 
+void MoveableObject::SetAngle(const int angle) {
+	MoveableObject::angle = angle;
+}
+
+void MoveableObject::SetCoordinates(const Point& value)
+{
+	_coordinates = value;
+}
+
+const Point &MoveableObject::GetCoordinates() const {
+	return _coordinates;
+}
 
 void MoveableObject::update(float time) {
     _coordinates += _destination * speed * time;
@@ -28,13 +47,6 @@ void MoveableObject::update(float time) {
 
 void MoveableObject::stopMove() {
     _destination = Point{0, 0};
-}
-
-
-
-MoveableObject::~MoveableObject() {
-    // if sdl_destroytexture is called, the bullet's image cannot be found
-    //    SDL_DestroyTexture(_sprite);
 }
 
 const int MoveableObject::getMidX(float destinationPosition) const {

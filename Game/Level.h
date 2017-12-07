@@ -1,33 +1,32 @@
 #pragma once
 
-#include "Player.h"
-#include "MoveableObject.h"
-#include "GameObject.h"
-#include "MapManager.h"
 #include <vector>
 #include <memory>
-#include "FlockController.h"
-#include <InputManager.h>
-#include "Weapon.h"
-#include "Uzi.h"
-#include "monsters/ZombieEnemy.h"
-#include "Handgun.h"
-#include "Shotgun.h"
-#include "Config.h"
+#include <SDL.h>
+#include <forward_list>
+#include "WaveController.h"
+#include "json.hpp"
+
+class Player;
+class MoveableObject;
+class GameObject;
+class Wave;
+class Event;
 
 class Level {
     int _level;
-	std::vector<shared_ptr<GameObject>> _objs;
-	std::vector<shared_ptr<MoveableObject>> _objsNoEnemies;
-    std::vector<shared_ptr<MoveableObject>> _npcs;
-    std::vector<shared_ptr<GameObject>> _loot;
-    shared_ptr<Player> _player;
+    std::vector<std::shared_ptr<MoveableObject>> _objs;
+	std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
+    std::vector<std::shared_ptr<MoveableObject>> _npcs;
+    std::vector<std::shared_ptr<GameObject>> _loot;
+	std::shared_ptr<Player> _player;
+	std::string _map;
 
-private:
-    FlockController _flockController;
+
 	double _levelSpeed;
-    int counter = 0;
-    int totalms = 0;
+	WaveController _waveController;
+
+	std::forward_list<Wave> _waves;
 
 public:
     explicit Level(int level);
@@ -39,4 +38,11 @@ public:
     void Update(float time);
 
     void Draw();
+
+	const int GetId() const { return _level; }
+	void SetId(const int id) { _level = id; }
+	void SetMap(const std::string map) { _map = map; }
+	void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 };
+
+void from_json(const nlohmann::json& j, Level& value);

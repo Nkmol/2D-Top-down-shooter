@@ -16,20 +16,26 @@ class MoveableObject : public GameObject {
 
 private:
     std::map<Point, int> directionAngles;
-	string token;
+	std::string token;
 protected:
 
 	float speed, distance;
     Point _destination;
 
 public:
-    ~MoveableObject();
-
-    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	virtual ~MoveableObject();
 
     virtual void draw();
 
     virtual void update(float time);
+
+    void SetAngle(int angle);
+
+	void SetCoordinates(const Point& value);
+    const Point &GetCoordinates() const;
+
+    int getAngle() const;
 
     void stopMove();
 

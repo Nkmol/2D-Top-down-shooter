@@ -6,18 +6,22 @@
 #define SHOOTER_FLOCKCONTROLLER_H
 
 
-#include "Player.h"
-#include "Flock.h"
-#include "memory"
-#include "vector"
+#include <memory>
+#include <vector>
+
+class EnemyBase;
+class Player;
+class Flock;
+class MoveableObject;
 
 class FlockController
 {
-	vector<unique_ptr<Flock>> _flocks;
+	std::vector<std::unique_ptr<Flock>> _flocks;
 public:
-	FlockController() = default;
-	template <class T>
-	void GenerateFlock(int flockSize, int minPos, int maxPos, Player& flockTarget, std::vector<shared_ptr<GameObject>> &gameObjects);
+	FlockController();
+	~FlockController();
+	void GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos,
+	                   Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects);
 	void DrawFlocks();
 	void UpdateFlocks(float time);
 };
