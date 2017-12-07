@@ -17,7 +17,7 @@ AssetManager &AssetManager::Instance() {
 	return sInstance;
 }
 
-Mix_Music *AssetManager::loadBGM(string soundToken) {
+Mix_Music *AssetManager::LoadBGM(const string soundToken) {
 	//Load music
 	Mix_Music *gBGM = Mix_LoadMUS(string{ "../content/audio/" + soundToken + ".wav" }.c_str());
 	if (gBGM == NULL) {
@@ -29,7 +29,7 @@ Mix_Music *AssetManager::loadBGM(string soundToken) {
 	return gBGM;
 }
 
-Mix_Chunk *AssetManager::loadEffect(string effectToken) {
+Mix_Chunk *AssetManager::LoadEffect(const string effectToken) {
 	Mix_Chunk *gEffectM = Mix_LoadWAV(string{ "../content/audio/" + effectToken + ".wav" }.c_str());
 	if (gEffectM == NULL) {
 		cout << "Failed to load scratch sound effect! SDL_mixer Error: " << effectToken.c_str() << Mix_GetError() << endl;
@@ -37,7 +37,7 @@ Mix_Chunk *AssetManager::loadEffect(string effectToken) {
 	return gEffectM;
 }
 
-SDL_Surface *AssetManager::loadSurface(string mediaToken) {
+SDL_Surface *AssetManager::LoadSurface(const string mediaToken) {
 	//Load image at specified path
 	SDL_Surface *loadedSurface = IMG_Load(string{ "../content/sprites/" + mediaToken + ".png" }.c_str());
 
@@ -56,7 +56,7 @@ SDL_Surface *AssetManager::loadSurface(string mediaToken) {
 }
 
 
-TTF_Font* AssetManager::loadFont(string fontToken, const int size)
+TTF_Font* AssetManager::LoadFont(const string fontToken, const int size)
 {
 	TTF_Font *font = TTF_OpenFont(string{ "../content/fonts/" + fontToken + ".ttf" }.c_str(), size);
 	if (font == NULL)
@@ -65,16 +65,16 @@ TTF_Font* AssetManager::loadFont(string fontToken, const int size)
 	return font;
 }
 
-SDL_Texture * AssetManager::loadTexture(string mediaToken)
+SDL_Texture * AssetManager::LoadTexture(string mediaToken)
 {
-	SDL_Surface *surface = loadSurface(mediaToken);
+	SDL_Surface *surface = LoadSurface(mediaToken);
 	if (!surface)
 		cout << SDL_GetError() << endl;
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
 
 
 	if (texture == NULL) {
-		printf(SDL_GetError());
+		cout << "Unable to load texture! SDL_image Error: " << mediaToken.c_str() << TTF_GetError() << endl;
 	}
 	return texture;
 }

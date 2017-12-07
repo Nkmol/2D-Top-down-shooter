@@ -39,7 +39,7 @@ int AudioManager::LoadBGM(string audioToken)
 {
 	//Load music
 	//gBGM = Mix_LoadMUS(name);
-	gBGM = AssetManager::Instance().loadBGM(audioToken);
+	gBGM = AssetManager::Instance().LoadBGM(audioToken);
 	if (gBGM == NULL)
 	{
 		cout << "Failed to load beat music! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
@@ -52,7 +52,7 @@ int AudioManager::LoadBGM(string audioToken)
 int AudioManager::PlayEffect(string audioToken)
 {
 	//Mix_Chunk* effectM = Mix_LoadWAV(name);
-	gEffectM = AssetManager::Instance().loadEffect(audioToken);
+	gEffectM = AssetManager::Instance().LoadEffect(audioToken);
 	if (gEffectM == NULL)
 	{
 		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
