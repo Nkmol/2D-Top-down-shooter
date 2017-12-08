@@ -28,7 +28,7 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> play
 	i >> _j;
 
 	_curWave = _waves.begin();
-	SpawnWave(npcs);
+	//SpawnWave(npcs);
 }
 
 bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs)

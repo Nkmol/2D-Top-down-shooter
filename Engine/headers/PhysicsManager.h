@@ -10,6 +10,7 @@
 #include <Point.h>
 #include "../QuadTree.h"
 #include "MoveableObject.h"
+#include <algorithm>
 
 
 class MoveableObject;
@@ -46,5 +47,13 @@ private:
 	float _playScreenHeight;
 	QuadTree _quadtree;
 
+
+
 };
+
+template<class T>
+const T& clamp(const T& x, const T& upper, const T& lower) {
+	return std::min(upper, max(x, lower));
+}
+
 #endif
