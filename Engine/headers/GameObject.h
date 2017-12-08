@@ -46,7 +46,12 @@ public:
 
     void changeSprite(const std::string &spriteToken);
 
+    int getCurrentSprite() const;
+
+    void setCurrentSprite(int currentSprite);
+
 protected:
+
     GameObject();
 
     int width, height, angle;
@@ -54,17 +59,12 @@ protected:
     Point _coordinates;
     bool visible;
     SDL_Texture *_sprite;
+
     std::string spriteToken;
 
 private:
+
     int currentSprite = 0;
-public:
-    int getCurrentSprite() const;
-
-public:
-    void setCurrentSprite(int currentSprite);
-
-private:
     int id;
     int teamId = -1;
     static int counter;

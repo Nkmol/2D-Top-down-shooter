@@ -22,6 +22,7 @@ void AnimationManager::update(float time) {
     for (auto &object : _objs) {
         std::size_t found = object->getSpriteToken().find("soldier");
         if (found != std::string::npos) {
+
             object->animationTimer -= time;
             if (object->animationTimer <= 0) {
                 int index = object->getCurrentSprite() + 1;
@@ -32,7 +33,7 @@ void AnimationManager::update(float time) {
 
                 object->setCurrentSprite(index);
 
-                std::string token = "soldier-idle-";
+                std::string token = "soldier-idle-0";
                 token.append(to_string(object->getCurrentSprite()));
                 object->changeSprite(token);
                 cout << object->getSpriteToken() << endl;
@@ -43,6 +44,6 @@ void AnimationManager::update(float time) {
 }
 
 
-void AnimationManager::addGameObjects(vector<shared_ptr<MoveableObject>> objects) {
+void AnimationManager::addGameObjects(vector<shared_ptr<MoveableObject>> &objects) {
     this->_objs = objects;
 }

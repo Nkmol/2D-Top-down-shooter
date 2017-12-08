@@ -9,22 +9,29 @@
 #include "MoveableObject.h"
 #include "Weapon.h"
 #include "json.hpp"
+#include "Bullet.h"
+
+class PlayerState;
 
 class Point;
 
 class Player : public MoveableObject {
 
     std::vector<Weapon> weapons;
-    unsigned currentWeapon;
+    int currentWeapon;
 
 private:
     // don't need to delete, it's a reference to a weapon inside de weapons vector.
     int lifepoints;
+    std::unique_ptr<PlayerState> _state;
 
 public:
+
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
+
+    ~Player() {}
 
     Bullet shoot();
 
@@ -35,20 +42,24 @@ public:
     const int getLifepoints() const;
 
     const int changeLifepoints(const int lp);
-	Weapon* getWeapon();
 
-	void changeWeapon(unsigned index);
+    Weapon *getWeapon();
 
-	const vector<Weapon>& getWeapons() const;
+    void changeWeapon(unsigned index);
 
-	void addWeapons(std::vector<Weapon> wp);
-	void SetWeapons(const std::vector<Weapon> wp);
-	int getCurrentWeaponIndex() const;
+    const vector<Weapon> &getWeapons() const;
+
+    void addWeapons(std::vector<Weapon> wp);
+
+    void SetWeapons(const std::vector<Weapon> wp);
+
+    int getCurrentWeaponIndex() const;
+
 };
 
 // ReSharper disable once CppInconsistentNaming
-void to_json(nlohmann::json& j, const Player& value);
+void to_json(nlohmann::json &j, const Player &value);
 
-void from_json(const nlohmann::json& j, Player& value);
+void from_json(const nlohmann::json &j, Player &value);
 
 #endif //SHOOTER_PLAYER_H

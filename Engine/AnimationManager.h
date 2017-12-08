@@ -22,7 +22,8 @@ public:
 
     void update(float time);
 
-    void addGameObjects(vector<shared_ptr<MoveableObject>> objects);
+    void addGameObjects(vector<shared_ptr<MoveableObject>> &objects);
+
 };
 
 

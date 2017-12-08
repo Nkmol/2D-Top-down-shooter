@@ -27,6 +27,7 @@ public:
 	float animationTimer = 0.2f;
 
 	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+
 	virtual ~MoveableObject();
 
     virtual void draw();
@@ -47,6 +48,8 @@ public:
     const int getMidY(float destinationPosition) const;
 
     const string &getToken() const;
+
+
 
 };
 

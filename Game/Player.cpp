@@ -2,17 +2,18 @@
 // Created by Mevlüt Özdemir on 09-11-17.
 //
 
+#include <IdleState.h>
 #include "Player.h"
-#include "Bullet.h"
+#include "PlayerState.h"
+
 
 Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y})
-{
+        : Player(filePath, Point{x, y}) {
+
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
-{
+        : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -22,21 +23,19 @@ void Player::addWeapons(std::vector<Weapon> wp) {
 }
 
 void Player::SetWeapons(const std::vector<Weapon> wp) {
-	weapons = wp;
+    weapons = wp;
 }
 
-int Player::getCurrentWeaponIndex() const
-{
-	return currentWeapon;
+int Player::getCurrentWeaponIndex() const {
+    return currentWeapon;
 }
 
 void Player::changeWeapon(const unsigned index) {
-	if(index >= weapons.size() || index < 0)
-	{
-		return;
-	}
+    if (index >= weapons.size() || index < 0) {
+        return;
+    }
 
-	currentWeapon = index;
+    currentWeapon = index;
 }
 
 Bullet Player::shoot() {
@@ -48,7 +47,7 @@ void Player::Move(const Point direction) {
 }
 
 void Player::update(float time) {
-
+    _state->Update();
     const auto newPostition = _coordinates + (_destination * speed * time);
     if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
         MoveableObject::update(time);
@@ -71,32 +70,29 @@ Weapon *Player::getWeapon() {
     return &weapons[currentWeapon];
 }
 
-const vector<Weapon>& Player::getWeapons() const
-{
-	return weapons;
+const vector<Weapon> &Player::getWeapons() const {
+    return weapons;
 }
 
-void to_json(nlohmann::json& j, const Player& value)
-{
-	j = nlohmann::json{
-		{ "lifepoints", value.getLifepoints() },
-		{ "weapons",  value.getWeapons() },
-		{ "currentWeapon", value.getCurrentWeaponIndex() }
-	};
+
+void to_json(nlohmann::json &j, const Player &value) {
+    j = nlohmann::json{
+            {"lifepoints",    value.getLifepoints()},
+            {"weapons",       value.getWeapons()},
+            {"currentWeapon", value.getCurrentWeaponIndex()}
+    };
 }
 
-void from_json(const nlohmann::json& j, Player& value)
-{
-	value.changeLifepoints(j.at("lifepoints").get<int>());
-	value.changeWeapon(j.at("currentWeapon").get<int>());
+void from_json(const nlohmann::json &j, Player &value) {
+    value.changeLifepoints(j.at("lifepoints").get<int>());
+    value.changeWeapon(j.at("currentWeapon").get<int>());
 
-	// TODO resolve with wep id -> refactored when weapons are saved in JSON
-	auto weps = value.getWeapons();
-	auto jsonWeapons = j.at("weapons");
-	for (auto i = 0; i < jsonWeapons.size(); i++)
-	{
-		from_json(jsonWeapons[i], weps[i]);
-	}
+    // TODO resolve with wep id -> refactored when weapons are saved in JSON
+    auto weps = value.getWeapons();
+    auto jsonWeapons = j.at("weapons");
+    for (auto i = 0; i < jsonWeapons.size(); i++) {
+        from_json(jsonWeapons[i], weps[i]);
+    }
 
-	value.SetWeapons(weps);
+    value.SetWeapons(weps);
 }
