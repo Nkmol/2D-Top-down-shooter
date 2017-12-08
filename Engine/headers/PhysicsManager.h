@@ -26,6 +26,7 @@ public:
 	static PhysicsManager& Instance();
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
+
 	bool checkStaticObjectCollision(float midX, float midY, float radius);
 	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
@@ -46,8 +47,8 @@ private:
 	float _playScreenWidth;
 	float _playScreenHeight;
 	QuadTree _quadtree;
-
-
+	bool IntersectsRect(float midX, float midY, float radius, const GameObject * collidable);
+	bool IntersectsCircle(float midX, float midY, float radius, const MoveableObject * collidable);
 
 };
 
