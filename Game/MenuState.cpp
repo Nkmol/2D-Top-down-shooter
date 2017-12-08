@@ -3,7 +3,7 @@
 #include "PlayingState.h"
 #include "AudioManager.h"
 #include "Game.h"
-
+#include "MenuMainState.h"
 
 MenuState::MenuState()
 { 
@@ -22,26 +22,10 @@ void MenuState::HandleEvents(Game& game)
 			game.Quit();
 		else if (inputManager.IsMouseClicked(ev))
 		{
-			if (ev.GetEventValue().button.x > newgamebutton.getX1() && ev.GetEventValue().button.x < newgamebutton.getX2() && ev.GetEventValue().button.y > newgamebutton.getY1() && ev.GetEventValue().button.y < newgamebutton.getY2()) {
-				//New game
-				auto state = make_unique<PlayingState>();
-				game.ChangeState(std::move(state));
-				AudioManager::Instance().StopBGM();
-				game.SetLevel(1);
-				// todo, alle draw functies naar rendermanager: functie: void DrawObject(MoveableObject object);
-			}
-
-			else if (ev.GetEventValue().button.x > loadgamebutton.getX1() && ev.GetEventValue().button.x < loadgamebutton.getX2() && ev.GetEventValue().button.y > loadgamebutton.getY1() && ev.GetEventValue().button.y < loadgamebutton.getY2()) {
-				//Load game
-			}
-
-			else if (ev.GetEventValue().button.x > creditsbutton.getX1() && ev.GetEventValue().button.x < creditsbutton.getX2() && ev.GetEventValue().button.y > creditsbutton.getY1() && ev.GetEventValue().button.y < creditsbutton.getY2()) {
-				//Credits
-			}
-			else if (ev.GetEventValue().button.x > quitbutton.getX1() && ev.GetEventValue().button.x < quitbutton.getX2() && ev.GetEventValue().button.y > quitbutton.getY1() && ev.GetEventValue().button.y < quitbutton.getY2()) {
+			if (ev.GetEventValue().button.x > _quitButton.getX1() && ev.GetEventValue().button.x < _quitButton.getX2() && ev.GetEventValue().button.y > _quitButton.getY1() && ev.GetEventValue().button.y < _quitButton.getY2()) {
 				game.Quit();
 			}
-			else if (ev.GetEventValue().button.x > mutebutton.getX1() && ev.GetEventValue().button.x < mutebutton.getX2() && ev.GetEventValue().button.y > mutebutton.getY1() && ev.GetEventValue().button.y < mutebutton.getY2())
+			else if (ev.GetEventValue().button.x > _muteButton.getX1() && ev.GetEventValue().button.x < _muteButton.getX2() && ev.GetEventValue().button.y > _muteButton.getY1() && ev.GetEventValue().button.y < _muteButton.getY2())
 			{
 				//Mute
 				if (muted == 1) {
@@ -57,30 +41,39 @@ void MenuState::HandleEvents(Game& game)
 				}
 			}
 		}
+		_subStates.back()->HandleEvents(game, *this, ev);
 	}
 }
 
 void MenuState::Update(Game& game, float time)
 {
-
+	_subStates.back()->Update(game, time);
 }
 
 void MenuState::Draw(Game& game)
 {
-	newgamebutton.drawButton();
-	loadgamebutton.drawButton();
-	creditsbutton.drawButton();
-	mutebutton.drawButton();
-	quitbutton.drawButton();
+	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+
+	_muteButton.drawButton();
+	_quitButton.drawButton();
+
+	_subStates.back()->Draw();
 }
 
 void MenuState::Init()
-{
-	newgamebutton = Button(newgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 0.5, 225, 45);
-	loadgamebutton = Button(loadgameString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1, 225, 45);
-	creditsbutton = Button(creditsString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 1.5, 225, 45);
-	mutebutton = Button(muteString, (SCREEN_WIDTH / 2) + 200, (SCREEN_HEIGHT / 3) * 2, 75, 75);
-	quitbutton = Button(quitString, (SCREEN_WIDTH / 2) - 123, (SCREEN_HEIGHT / 3) * 2, 225, 45);
+{	
+	_subStates.push_back(make_unique<MenuMainState>());
+	_muteButton = Button(_muteString, config::width - 100, config::height - 100, 75, 75);
+	_quitButton = Button(_quitString, (config::width / 2) - 123, (config::height / 3) * 2, 225, 45);
+	_background = std::make_unique<Texture>(AssetManager::Instance().LoadTexture("menu-wallpaper"));
 
 	int muted = 0;
+
+	_subStates.back()->Init();
+}
+
+void MenuState::ChangeState(std::unique_ptr<MenuSubState> substate)
+{
+	_subStates.push_back(std::move(substate));
+	_subStates.back()->Init();
 }

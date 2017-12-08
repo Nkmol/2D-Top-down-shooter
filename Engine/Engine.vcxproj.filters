@@ -72,10 +72,13 @@
     <ClInclude Include="QuadTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="headers\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Event.h">
+    <ClInclude Include="headers\Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

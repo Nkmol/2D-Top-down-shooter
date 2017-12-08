@@ -2,8 +2,13 @@
 #include <string>
 #include <memory>
 #include "State.h"
-#include "../Engine/Button.h"
 #include "Config.h"
+#include "Button.h"
+#include "Texture.h"
+#include <json.hpp>
+
+class MenuSubState;
+class Game;
 
 class MenuState : public State
 {
@@ -15,18 +20,15 @@ public:
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
 	void Init() override;
+	void ChangeState(std::unique_ptr<MenuSubState> substate);
 private:
-	std::string newgameString = "newgamebutton";
-	std::string loadgameString = "loadgamebutton";
-	std::string creditsString = "creditsbutton";
-	std::string muteString = "mutebutton";
-	std::string quitString = "quitbutton";
-	const int SCREEN_WIDTH = config::width; 
-	const int SCREEN_HEIGHT = config::height;
+
+	std::string _muteString = "mutebutton";
+	std::string _quitString = "quitbutton";
 	int muted;
-	Button newgamebutton;
-	Button loadgamebutton;
-	Button creditsbutton;
-	Button mutebutton;
-	Button quitbutton;
+
+	Button _muteButton;
+	Button _quitButton;
+	std::unique_ptr<Texture> _background;
+	std::vector<std::unique_ptr<MenuSubState>> _subStates;
 };
