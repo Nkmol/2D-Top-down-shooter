@@ -91,7 +91,7 @@ set(SOURCE_FILES
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
-        Engine/tmx/src/TSXParser.cpp)
+        Engine/tmx/src/TSXParser.cpp Engine/AnimationManager.cpp Engine/AnimationManager.h)
 add_executable(Shooter ${SOURCE_FILES})
 
 target_link_libraries(Shooter ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})

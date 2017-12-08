@@ -14,10 +14,6 @@
 
 class InputManager {
 
-/**
- * Singleton
- */
-
     static InputManager *sInstance;
 
     int mousePositionX, mousePositionY;

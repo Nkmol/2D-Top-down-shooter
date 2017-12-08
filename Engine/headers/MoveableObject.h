@@ -20,9 +20,12 @@ private:
 protected:
 
 	float speed, distance;
-    Point _destination;
 
+	Point _destination;
 public:
+
+	float animationTimer = 0.2f;
+
 	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 	virtual ~MoveableObject();
 
@@ -42,6 +45,8 @@ public:
     const int getMidX(float destinationPosition) const;
 
     const int getMidY(float destinationPosition) const;
+
+    const string &getToken() const;
 
 };
 

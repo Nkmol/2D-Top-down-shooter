@@ -9,34 +9,33 @@
 #include "EnemyBase.h"
 #include "Wave.h"
 #include "Event.h"
+#include "../Engine/AnimationManager.h"
 
 Level::Level(const int level) : _level(level), _levelSpeed(1) {
     Init();
 }
 
 void Level::Init() {
-	//json uitlezen
-	std::ifstream i;
-	i.exceptions(ifstream::failbit | ifstream::badbit);
-	try
-	{
-		i.open("../content/level1.json");
-	}
-	catch (const ifstream::failure&)
-	{
-		cout << "Exception opening/reading file" << endl;
-		return;
-	}
-	nlohmann::json j;
-	i >> j;
+    //json uitlezen
+    std::ifstream i;
+    i.exceptions(ifstream::failbit | ifstream::badbit);
+    try {
+        i.open("../content/level1.json");
+    }
+    catch (const ifstream::failure &) {
+        cout << "Exception opening/reading file" << endl;
+        return;
+    }
+    nlohmann::json j;
+    i >> j;
 
-	// Explicit "from_json" so it used the same reference
-	from_json(j, *this);
+    // Explicit "from_json" so it used the same reference
+    from_json(j, *this);
 
-	//level init	
+    //level init
     MapManager::Instance().Init(_map);
 
-    auto player = make_shared<Player>("soldier", config::width/2, config::height/2);
+    auto player = make_shared<Player>("soldier-idle-0", config::width / 2, config::height / 2);
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(0); // set weapon to Uzi
 
@@ -44,8 +43,8 @@ void Level::Init() {
 
     // save pointer seperate
     _player = player;
-	
-	_waveController.Init(_waves, _player, _objs);
+
+    _waveController.Init(_waves, _player, _objs);
 }
 
 void Level::HandleEvents(Event event) {
@@ -66,48 +65,38 @@ void Level::HandleEvents(Event event) {
 
     int key = 0;
     if (inputManager.IsNumericKeyPressed(event, key)) {
-        _player->changeWeapon(key-1);
+        _player->changeWeapon(key - 1);
     }
 
-	if(inputManager.IsKeyDown(event))
-	{
-		if (inputManager.IsKeyDown(event, "["))
-		{
-			_levelSpeed -= .1;
-			if (_levelSpeed < 0) _levelSpeed = 0;
-		}
-		else if(inputManager.IsKeyDown(event, "]"))
-		{
-			_levelSpeed += .1;
-		}
-		else if(inputManager.IsKeyDown(event, "F5"))
-		{
-			// Quicksave prittified json
-			std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
-			o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
-		}
-		else if(inputManager.IsKeyDown(event, "F7"))
-		{
-			// Quickload
-			// TODO refactor AssetManager
-			std::ifstream i;
-			i.exceptions(ifstream::failbit | ifstream::badbit);
-			try
-			{
-				i.open("../content/saves/quicksave.json");
-			}
-			catch (const ifstream::failure&)
-			{
-				cout << "Exception opening/reading file" << endl;
-				return;
-			}
-			nlohmann::json j;
-			i >> j;
+    if (inputManager.IsKeyDown(event)) {
+        if (inputManager.IsKeyDown(event, "[")) {
+            _levelSpeed -= .1;
+            if (_levelSpeed < 0) _levelSpeed = 0;
+        } else if (inputManager.IsKeyDown(event, "]")) {
+            _levelSpeed += .1;
+        } else if (inputManager.IsKeyDown(event, "F5")) {
+            // Quicksave prittified json
+            std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
+            o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
+        } else if (inputManager.IsKeyDown(event, "F7")) {
+            // Quickload
+            // TODO refactor AssetManager
+            std::ifstream i;
+            i.exceptions(ifstream::failbit | ifstream::badbit);
+            try {
+                i.open("../content/saves/quicksave.json");
+            }
+            catch (const ifstream::failure &) {
+                cout << "Exception opening/reading file" << endl;
+                return;
+            }
+            nlohmann::json j;
+            i >> j;
 
-			// Explicit "from_json" so it used the same reference
-			from_json(j, *_player.get());
-		}
-	}
+            // Explicit "from_json" so it used the same reference
+            from_json(j, *_player.get());
+        }
+    }
 
 
     Point direction = inputManager.GetDirection(event);
@@ -119,21 +108,25 @@ void Level::HandleEvents(Event event) {
 }
 
 void Level::Update(float time) {
-	const auto accSpeed = time *_levelSpeed;
+    _animation.addGameObjects(_objs);
+    const auto accSpeed = time * _levelSpeed;
+    _animation.update(accSpeed);
+    cout << accSpeed << endl;
+
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-	if (!_waveController.Update(accSpeed, _objs)) {
-		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
-		cin.get();
-	}
+//    if (!_waveController.Update(accSpeed, _objs)) {
+//        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
+//        cin.get();
+//    }
 }
 
 void Level::Draw() {
     for (auto &&obj : _objs) {
         obj->draw();
     }
-	_waveController.Draw();
+    _waveController.Draw();
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
@@ -144,12 +137,11 @@ void Level::Draw() {
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
-	//PhysicsManager::Instance().DrawQTree();
+    //PhysicsManager::Instance().DrawQTree();
 }
 
-void from_json(const nlohmann::json& j, Level& value)
-{
-	value.SetId(j.at("id").get<int>());
-	value.SetMap(j.at("map").get<std::string>());
-	value.SetWaves(j.at("waves").get<std::forward_list<Wave>>());
+void from_json(const nlohmann::json &j, Level &value) {
+    value.SetId(j.at("id").get<int>());
+    value.SetMap(j.at("map").get<std::string>());
+    value.SetWaves(j.at("waves").get<std::forward_list<Wave>>());
 }
