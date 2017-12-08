@@ -26,9 +26,9 @@ protected:
 	const int getDamage() const;
 	const int getReward() const;
 public:
-	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
+	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int spritecount, int reward = 50);
 	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,
-		const int damage, const int lifepoints, const int reward);
+		const int damage, const int lifepoints, int spritecount, const int reward);
 	EnemyBase(const nlohmann::json & j);
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();

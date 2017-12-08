@@ -6,13 +6,13 @@
 #include "AIDefault.h"
 #include "FactoryBehaviour.h"
 
-EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
-	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
+EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, int spritecount, const int reward) :
+	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, spritecount, reward)
 {
 }
 
-EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
-	MoveableObject(filePath, coordinates, speed),
+EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, int spritecount, const int reward) :
+	MoveableObject(filePath, coordinates, spritecount, speed),
 	_behaviour(make_unique<AIDefault>(*this, 100, isLeader)),
 	lifepoints(lifepoints),
 	damage(damage),
@@ -27,7 +27,9 @@ EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<stri
                                                  false, 
 												 j.at("damage").get<int>(), 
 												 j.at("lifepoints").get<int>(),
-                                                 j.at("reward").get<int>() }
+												 j.at("sprites").get<int>(),
+                                                 j.at("reward").get<int>()
+												}
 {
 	auto a = FactoryBehaviour::Instance().Create(j.at("behaviour").get<std::string>());
 	a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());

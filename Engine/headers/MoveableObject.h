@@ -19,11 +19,12 @@ private:
 	std::string token;
 protected:
 
+	int spritecount, spritenumber;
 	float speed, distance;
     Point _destination;
 
 public:
-	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	MoveableObject(const std::string &filePath, const Point coordinates, const int spritecount, const float speed);
 	virtual ~MoveableObject();
 
     virtual void draw();

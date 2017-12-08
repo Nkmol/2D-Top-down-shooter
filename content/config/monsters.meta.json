@@ -6,7 +6,8 @@
         "lifepoints": 100,
         "reward": 8,
         "weightmultiplier": 100,
-        "behaviour": "default"
+        "behaviour": "default",
+	"sprites": 17
     },
     {
         "type": "bat",
@@ -15,6 +16,7 @@
         "lifepoints": 15,
         "reward": 5,
         "weightmultiplier": 10,
-        "behaviour": "bat"
+        "behaviour": "bat",
+	"sprites": 1
     }
 ]

@@ -5,13 +5,13 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y})
+Player::Player(const std::string &filePath, const float x, const float y, const int spritecount)
+        : Player(filePath, Point{x, y}, spritecount)
 {
 }
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
+Player::Player(const std::string &filePath, const Point coordinates, const int spritecount, const int lp)
+	: MoveableObject(filePath, coordinates, spritecount, 140.0f), currentWeapon(0), lifepoints(lp)
 {
 }
 

@@ -4,12 +4,14 @@
 #include "Point.h"
 #include "RenderManager.h"
 #include <SDL_render.h>
+#include <sstream>
 
 class GameObject {
 public:
 	GameObject(Point coordinates, int width, int height);
-	GameObject(const std::string & spriteToken, const Point coordinates);
+	GameObject(const std::string & spriteToken, const Point coordinates, int spritecount);
 
+	int spritecount, spritenumber;
 	const int getMidX() const;
 	const int getMidY() const;
 	int getWidth() const;
@@ -32,7 +34,7 @@ protected:
 	float radius, midX, midY;
 	Point _coordinates;
 	bool visible;
-	SDL_Texture *_sprite;
+	SDL_Texture *_sprite[20];
 private:
 
 	int id;

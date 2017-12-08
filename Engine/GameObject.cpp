@@ -12,19 +12,34 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 
 }
 
-GameObject::GameObject(const std::string &spriteToken, const Point coordinates) : _coordinates(coordinates) {
-	_sprite = AssetManager::Instance().LoadTexture(spriteToken);
-	SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
-	visible = true;
-	midX = _coordinates.x + width / 2;
-	midY = _coordinates.y + height / 2;
-	radius = (width + height) / 4;
-	this->id = ++counter;
+GameObject::GameObject(const std::string &spriteToken, const Point coordinates, int spritecount) : _coordinates(coordinates), spritecount(spritecount) {
+
+	for (int i = 0; i < spritecount; i++)
+	{
+		stringstream ss;
+		ss << i;
+
+		_sprite[i] = AssetManager::Instance().LoadTexture(spriteToken + ss.str());
+		SDL_QueryTexture(this->_sprite[i], nullptr, nullptr, &this->width, &this->height);
+
+		//SDL_FreeSurface(surface);
+
+		if (this->_sprite == NULL) {
+			printf(SDL_GetError());
+		}
+
+		visible = true;
+		midX = _coordinates.x + width / 2;
+		midY = _coordinates.y + height / 2;
+		radius = (width + height) / 4;
+		this->id = ++counter;
+	}
+	spritenumber = 0;
 }
 
 GameObject::GameObject()
 {
-
+	
 }
 
 const int GameObject::getMidX() const
@@ -68,7 +83,13 @@ void GameObject::draw() {
 	
 
 	SDL_Rect destinationRectangle = { static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height };
-	RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);
+	RenderManager::Instance().DrawTexture(this->_sprite[spritenumber], nullptr, &destinationRectangle, angle);
+	if (spritenumber < spritecount - 1) {
+		spritenumber = spritenumber + 1;
+	}
+	else {
+		spritenumber = 0;
+	}
 }
 
 int GameObject::GetId() const {

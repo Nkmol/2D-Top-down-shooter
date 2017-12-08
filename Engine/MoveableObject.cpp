@@ -10,9 +10,10 @@ MoveableObject::~MoveableObject()
 {
 }
 
-MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
-        speed{speed}, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
+MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const int spritecount, const float speed) :
+        speed{speed}, spritecount{ spritecount }, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates, spritecount) {
 	token = filePath;
+	spritenumber = 0;
 }
 
 void MoveableObject::draw() {
@@ -20,7 +21,7 @@ void MoveableObject::draw() {
 
     if (!visible) return;
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), GameObject::width, GameObject::height};
-    RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
+    RenderManager::Instance().DrawTexture(GameObject::_sprite[spritenumber], nullptr, &destinationRectangle, GameObject::angle);
 }
 
 int MoveableObject::getAngle() const {
@@ -42,6 +43,12 @@ const Point &MoveableObject::GetCoordinates() const {
 
 void MoveableObject::update(float time) {
     _coordinates += _destination * speed * time;
+	if (spritenumber < spritecount - 1) {
+		spritenumber = spritenumber + 1;
+	}
+	else {
+		spritenumber = 0;
+	}
 }
 
 

@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
+Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 1, 300.0f),
                                                                         damage(damage) {
 }
 
