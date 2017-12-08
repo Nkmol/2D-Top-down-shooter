@@ -48,7 +48,7 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle)
 {
 	if (font == NULL)
-		font = AssetManager::Instance().loadFont("OpenSans-Regular", height);
+		font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
 	SDL_Color color = { 255, 255, 255 };
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
