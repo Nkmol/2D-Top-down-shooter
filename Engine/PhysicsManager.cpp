@@ -1,4 +1,6 @@
 #include "PhysicsManager.h"
+#include <math.h>
+#include<cmath>
 
 PhysicsManager::PhysicsManager()
 {
@@ -43,7 +45,19 @@ bool PhysicsManager::checkStaticObjectCollision(float midX, float midY, float ra
 		int xStep = midX - collidables->at(i).getMidX();
 		int yStep = midY - collidables->at(i).getMidY();
 		int collisionRange =radius + collidables->at(i).getRadius();
+		
+		// Find the closest point to the circle within the rectangle
+		float closestX = clamp(circle.X, rectangle.Left, rectangle.Right);
+		float closestY = clamp(circle.Y, rectangle.Top, rectangle.Bottom);
 
+		// Calculate the distance between the circle's center and this closest point
+		float distanceX = circle.X - closestX;
+		float distanceY = circle.Y - closestY;
+
+		// If the distance is less than the circle's radius, an intersection occurs
+		float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+		return distanceSquared < (circle.Radius * circle.Radius);
+			
 
 		int distance = sqrt((xStep*xStep) + (yStep*yStep));
 
@@ -162,4 +176,9 @@ void PhysicsManager::DrawQTree(){
 
 std::vector<GameObject> PhysicsManager::RetrieveNearbyGameObjects(GameObject &gameObject) {
 	return this->_quadtree.Retrieve(gameObject.GetRect());
+}
+
+template<class T>
+const T& clamp(const T& x, const T& upper, const T& lower) {
+	return min(upper, max(x, lower));
 }
