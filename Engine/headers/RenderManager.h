@@ -58,6 +58,7 @@ private:
 	SDL_Renderer* renderer;
 	map<std::string, SDL_Surface*> sprites;
 	TTF_Font* font;
+	int fontHeight = 0;
 	static RenderManager* sInstance;
 };
 #endif //RENDERMANAGER_H

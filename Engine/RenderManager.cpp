@@ -47,8 +47,11 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 
 void RenderManager::DrawText(const std::string text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
 {
-	if (font == NULL || TTF_FontHeight(font) != height)
+	if (font == NULL || fontHeight != height) {
+		fontHeight = height;
+		TTF_CloseFont(font);
 		font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
+	}
 	TTF_SizeText(font, text.c_str(), &width, &height);
 	SDL_Color color = { r, g, b };
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
