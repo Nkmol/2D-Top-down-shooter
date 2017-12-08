@@ -32,8 +32,6 @@ const int Bullet::getDamage() const {
 
 void Bullet::onBaseCollision(MoveableObject* object)
 {
-	onCollision(object);
-
 }
 void Bullet::onBaseCollision(bool isCollidedOnWall)
 {

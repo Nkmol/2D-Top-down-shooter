@@ -64,6 +64,3 @@ void MoveableObject::onBaseCollision(GameObject object)
 	//hide();
 }
 
-void MoveableObject::onCollision(bool isCollidedOnWall)
-{
-}

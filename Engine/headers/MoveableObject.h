@@ -54,7 +54,7 @@ public:
 	virtual void onBaseCollision(MoveableObject* object);
 	virtual void onBaseCollision(bool isWall);
 	virtual void onBaseCollision(GameObject object);
-	virtual void onCollision(bool isCollidedOnWall);
+
 };
 
 
