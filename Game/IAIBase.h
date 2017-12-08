@@ -75,11 +75,11 @@ public:
 	virtual ~IAIBase() {}
 	virtual void Update(int time) = 0;
 	virtual void NonNeighbourRelatedBehaviour() = 0;
-	virtual void NeighbourRelatedBehaviour(GameObject *other) = 0;
+	virtual void NeighbourRelatedBehaviour(const GameObject *other) = 0;
 	virtual void Align() = 0;
-	virtual void Align(GameObject *other) = 0;
-	virtual void Cohese(GameObject* other) = 0;
-	virtual void Seperate(GameObject* other) = 0;
+	virtual void Align(const GameObject *other) = 0;
+	virtual void Cohese(const GameObject* other) = 0;
+	virtual void Seperate(const GameObject* other) = 0;
 	virtual void GoTarget() = 0;
 	virtual unique_ptr<IAIBase> Clone() const = 0;
 };

@@ -30,7 +30,7 @@ void AIDefault::Update(int time) {
 
 		massCenter = Point(0,0);
 		massSize = 0;
-		std::vector<reference_wrapper<GameObject>> neighbours = PhysicsManager::Instance().RetrieveNearbyGameObjects(*_owner);
+		std::vector<reference_wrapper<const GameObject>> neighbours = PhysicsManager::Instance().RetrieveNearbyGameObjects(*_owner);
 		NonNeighbourRelatedBehaviour();
 		for (auto& other: neighbours) {
 			NeighbourRelatedBehaviour(&other.get());
@@ -53,9 +53,9 @@ void AIDefault::Align()
 	_owner->SetDestinationPoint(dest);
 }
 
-void AIDefault::Align(GameObject *other) {
+void AIDefault::Align(const GameObject *other) {
 	if (other->GetId() != this->_owner->GetId()) {
-		auto *p = dynamic_cast<EnemyBase *>(other);
+		const auto *p = dynamic_cast<const EnemyBase*>(other);
 		if(p) {
 			const auto &oCoordinates = p->GetDestination();
 			massCenter += oCoordinates;
@@ -63,9 +63,15 @@ void AIDefault::Align(GameObject *other) {
 	}
 }
 
-void AIDefault::Cohese(GameObject *other) {
+void AIDefault::Cohese(const GameObject *other) {
 	if (other->GetId() != this->_owner->GetId()) {
-		auto *p = dynamic_cast<EnemyBase *>(other);
+		try {
+			const auto *p = dynamic_cast<const EnemyBase*>(other);
+ } catch (const std::exception& e) {
+
+			cout << e.what() << endl;
+		}
+		const auto *p = dynamic_cast<const EnemyBase*>(other);
 		if(p) {
 			const auto &oCoordinates = other->GetCoordinates();
 			massCenter += oCoordinates;
@@ -73,7 +79,7 @@ void AIDefault::Cohese(GameObject *other) {
 	}
 }
 
-void AIDefault::Seperate(GameObject *other) {
+void AIDefault::Seperate(const GameObject *other) {
 	auto& coordinates = _owner->GetCoordinates();
 	if (other->GetId() != this->_owner->GetId()) {
 		//teamid -100 are collidables
@@ -100,7 +106,7 @@ void AIDefault::NonNeighbourRelatedBehaviour() {
 	GoTarget();
 }
 
-void AIDefault::NeighbourRelatedBehaviour(GameObject *other) {
+void AIDefault::NeighbourRelatedBehaviour(const GameObject *other) {
 	Cohese(other);
 	Align(other);
 	//apply cohesion force

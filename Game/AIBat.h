@@ -11,7 +11,7 @@ public:
 
 	void Update(int time) override;
 	void GoTarget() override;
-	void NeighbourRelatedBehaviour(GameObject *other) override;
+	void NeighbourRelatedBehaviour(const GameObject *other) override;
 	void NonNeighbourRelatedBehaviour() override;
 	// TODO Make sure CRTP can use multiple levels of inheritance
 	// This is a quick for this, but HelperClasses::CloneableBase should be resposible for this

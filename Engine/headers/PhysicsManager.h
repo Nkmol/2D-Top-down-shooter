@@ -25,7 +25,7 @@ public:
 //	void UpdateQuadTree(std::vector<GameObject> &gameObjects);
 	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects);
 	const QuadTree &GetQuadTree() const;
-    std::vector<reference_wrapper<GameObject>> RetrieveNearbyGameObjects(GameObject &gameObject);
+    std::vector<reference_wrapper<const GameObject>> RetrieveNearbyGameObjects(GameObject &gameObject);
 	void DrawQTree();
 private:
 	float _tileSize;

@@ -13,10 +13,10 @@ public:
 	void Update(int time) override;
 	void Align() override;
 	void NonNeighbourRelatedBehaviour() override;
-	void NeighbourRelatedBehaviour(GameObject *other) override;
-	void Align(GameObject *other) override;
-	void Cohese(GameObject* other) override;
-	void Seperate(GameObject* other) override;
+	void NeighbourRelatedBehaviour(const GameObject *other) override;
+	void Align(const GameObject *other) override;
+	void Cohese(const GameObject* other) override;
+	void Seperate(const GameObject* other) override;
 	void GoTarget() override;
 	~AIDefault();
 protected:

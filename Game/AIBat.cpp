@@ -40,7 +40,7 @@ std::unique_ptr<IAIBase> AIBat::Clone() const
 	return make_unique<AIBat>(static_cast<AIBat const &>(*this));
 }
 
-void AIBat::NeighbourRelatedBehaviour(GameObject *other) {
+void AIBat::NeighbourRelatedBehaviour(const GameObject *other) {
 	if(!_isLeader) {
 		Cohese(other);
 		//apply cohesion force
