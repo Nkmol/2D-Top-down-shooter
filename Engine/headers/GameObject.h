@@ -9,7 +9,6 @@ class GameObject {
 public:
 	GameObject(Point coordinates, int width, int height);
 	GameObject(const std::string & spriteToken, const Point coordinates);
-
 	const int getMidX() const;
 	const int getMidY() const;
 	int getWidth() const;
@@ -24,10 +23,11 @@ public:
 	void hide();
 	bool isVisible() const;
 	void SetTeamId(int teamId);
-	const int getRadius() const ;
-
-protected:
+	const int getRadius() const;
+    virtual void update(float time);
 	GameObject();
+	void incrementId();
+protected:
 	int width, height, angle;
 	float radius, midX, midY;
 	Point _coordinates;

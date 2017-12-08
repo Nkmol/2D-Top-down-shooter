@@ -21,7 +21,6 @@ protected:
 
 	float speed, distance;
     Point _destination;
-
 public:
 	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 	virtual ~MoveableObject();
@@ -42,6 +41,7 @@ public:
     const int getMidX(float destinationPosition) const;
 
     const int getMidY(float destinationPosition) const;
+	const Point &GetDestination() const;
 
 };
 

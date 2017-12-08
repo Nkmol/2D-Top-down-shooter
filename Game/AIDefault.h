@@ -10,10 +10,16 @@ public:
 	//http://www.stroustrup.com/C++11FAQ.html#inheriting
 	using CloneableBase<IAIBase, AIDefault>::CloneableBase;
 
-	void Update(EnemiesType& others, int time) override;
+	void Update(int time) override;
 	void Align() override;
-	void Cohese(EnemiesType& others) override;
-	void Seperate(EnemiesType& others) override;
+	void NonNeighbourRelatedBehaviour() override;
+	void NeighbourRelatedBehaviour(GameObject *other) override;
+	void Align(GameObject *other) override;
+	void Cohese(GameObject* other) override;
+	void Seperate(GameObject* other) override;
 	void GoTarget() override;
 	~AIDefault();
+protected:
+	Point massCenter;
+	int massSize;
 };

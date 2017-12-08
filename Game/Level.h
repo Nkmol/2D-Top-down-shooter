@@ -15,7 +15,7 @@ class Event;
 
 class Level {
     int _level;
-    std::vector<std::shared_ptr<MoveableObject>> _objs;
+    std::vector<std::shared_ptr<GameObject>> _objs;
 	std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::shared_ptr<MoveableObject>> _npcs;
     std::vector<std::shared_ptr<GameObject>> _loot;

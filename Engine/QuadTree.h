@@ -11,7 +11,7 @@
 class QuadTree {
 private:
     int MAX_OBJECTS = 50, MAX_LEVEL = 100, level;
-    std::vector<GameObject> objects;
+    std::vector<std::reference_wrapper<GameObject>> objects;
     SDL_Rect bounds;
     std::vector<QuadTree> nodes;
     int getIndex(SDL_Rect objectBounds) const;
@@ -26,8 +26,9 @@ public:
     void CreateSubNodes();
     //for debug purposes
     void Draw();
-    void Insert(GameObject gameObject);
-    std::vector<GameObject> Retrieve(SDL_Rect rect) const;
+    void Insert(std::reference_wrapper<GameObject> gameObject);
+//    void Insert(std::reference_wrapper<GameObject> gameObject);
+    std::vector<std::reference_wrapper<GameObject>> Retrieve(SDL_Rect rect) const;
 };
 
 

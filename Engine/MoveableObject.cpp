@@ -56,3 +56,7 @@ const int MoveableObject::getMidX(float destinationPosition) const {
 const int MoveableObject::getMidY(float destinationPosition) const {
     return destinationPosition + height / 2;
 }
+
+const Point &MoveableObject::GetDestination() const {
+    return _destination;
+}

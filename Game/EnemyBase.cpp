@@ -9,6 +9,7 @@
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
 {
+	GameObject::GameObject();
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
@@ -19,6 +20,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, cons
 	reward(reward),
 	destinationPoint{coordinates}
 {
+
 }
 
 EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<string>(), 
@@ -32,6 +34,7 @@ EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<stri
 	auto a = FactoryBehaviour::Instance().Create(j.at("behaviour").get<std::string>());
 	a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
 	_behaviour = move(a);
+	incrementId();
 }
 
 
@@ -42,6 +45,7 @@ EnemyBase::EnemyBase(const EnemyBase& other) : MoveableObject(other),
                                                destinationPoint(other._coordinates)
 {
 	_behaviour->SetOwner(*this);
+	incrementId();
 }
 
 EnemyBase::~EnemyBase() = default;
@@ -55,7 +59,7 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
 
 void EnemyBase::UpdatePosition(std::vector<shared_ptr<EnemyBase>>& others, const float time)
 {
-	_behaviour->Update(others, time);
+	_behaviour->Update(time);
 
 	update(time);
 }
@@ -112,4 +116,8 @@ const int EnemyBase::getDamage() const
 const int EnemyBase::getReward() const
 {
 	return reward;
+}
+
+Point EnemyBase::GetPointToTarget() {
+	return Point();
 }

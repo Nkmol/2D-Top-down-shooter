@@ -66,8 +66,8 @@ int QuadTree::getIndex(SDL_Rect objectBounds) const {
     return index;
 }
 
-void QuadTree::Insert(GameObject gameObject) {
-    SDL_Rect rect = gameObject.GetRect();
+void QuadTree::Insert(std::reference_wrapper<GameObject> gameObject) {
+    SDL_Rect rect = gameObject.get().GetRect();
     if(this->nodes.size() != 0) {
         int index = getIndex(rect);
     }
@@ -79,7 +79,7 @@ void QuadTree::Insert(GameObject gameObject) {
 
         int i = 0;
         while(i < objects.size()) {
-            int index = getIndex(objects.at(i).GetRect());
+            int index = getIndex(objects.at(i).get().GetRect());
             if (index != -1) {
                 this->nodes.at(index).Insert(objects.at(i));
                 this->objects.erase(objects.begin() + i);
@@ -90,7 +90,7 @@ void QuadTree::Insert(GameObject gameObject) {
     }
 }
 
-std::vector<GameObject> QuadTree::Retrieve(SDL_Rect rect) const {
+std::vector<std::reference_wrapper<GameObject>> QuadTree::Retrieve(SDL_Rect rect) const {
     int index = this->getIndex(rect);
     if (index != -1 && this->nodes.size() != 0) {
         return nodes[index].Retrieve(rect);

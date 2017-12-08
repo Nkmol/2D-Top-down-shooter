@@ -17,12 +17,13 @@ FlockController::~FlockController()
 {
 }
 
-void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects)
+void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget, std::vector<std::shared_ptr<GameObject>>& gameObjects)
 {
 	auto leader = make_unique<EnemyBase>(basedOn);
 	leader->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
 	auto& ai = leader->GetBehaviour();
 	ai.SetIsLeader(true);
+	int leaderid = leader->GetId();
 	ai.SetTarget(flockTarget);
 
 	auto newFlock = std::make_unique<Flock>(move(leader));
@@ -30,6 +31,7 @@ void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSiz
 	{
 		auto member = make_shared<EnemyBase>(basedOn);
 		member->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
+		member->SetTeamId(leaderid);
 
 		newFlock->AddMember(member);
 		gameObjects.push_back(member);
