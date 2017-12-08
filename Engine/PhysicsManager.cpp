@@ -1,5 +1,6 @@
 #include "PhysicsManager.h"
 #include <cmath>
+#include "../Game/Config.h"
 
 PhysicsManager::PhysicsManager()
 {
@@ -151,9 +152,9 @@ void PhysicsManager::setStaticObjects()
 	if (collidables == NULL) {
 		collidables = MapManager::Instance().getCollidables();
 	}
-	_tileSize = 32;
-	_playScreenWidth = 39 * _tileSize;
-	_playScreenHeight = 29 * _tileSize;
+	_tileSize = config::tileSize;
+	_playScreenWidth = config::width - _tileSize;
+	_playScreenHeight = config::height - _tileSize;
 }
 
 void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
