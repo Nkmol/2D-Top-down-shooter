@@ -40,7 +40,7 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		_curWave++;
 		if (_curWave == _waves.end())
 			return false;
-		SpawnWave(npcs);		
+		//SpawnWave(npcs);		
 	}
 	
 	_flockController.UpdateFlocks(time);

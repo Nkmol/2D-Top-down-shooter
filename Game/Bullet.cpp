@@ -6,6 +6,7 @@
 
 Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
                                                                         damage(damage) {
+	_type = BULLET;
 }
 
 
@@ -20,12 +21,8 @@ void Bullet::update(float time) {
     _destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
     const auto newPostition = _coordinates + (_destination * speed * time);
-    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-        MoveableObject::update(time);
-    } else {
-        // verwerk hier wat er moet gebeuren als er collision is
-        MoveableObject::stopMove();
-    }
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	MoveableObject::update(time);
 }
 
 
@@ -33,6 +30,15 @@ const int Bullet::getDamage() const {
     return damage;
 }
 
+void Bullet::onBaseCollision(MoveableObject* object)
+{
+	onCollision(object);
 
+}
+void Bullet::onBaseCollision(bool isCollidedOnWall)
+{
+	MoveableObject::stopMove();
+	MoveableObject::hide();
+}
 
 

@@ -7,6 +7,7 @@
 
 
 #include <MoveableObject.h>
+#include "PhysicsManager.h"
 
 class Bullet : public MoveableObject {
 
@@ -21,6 +22,8 @@ public:
     void update(float time) override;
 
     const int getDamage() const;
+	void onBaseCollision(MoveableObject * object);
+	void onBaseCollision(bool isCollidedOnWall);
 };
 
 
