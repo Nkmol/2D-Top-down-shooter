@@ -96,7 +96,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2_mixer.lib;SDL2main.lib;SDL2test.lib;SDL2.lib;SDL2_image.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2_mixer.lib;SDL2main.lib;SDL2test.lib;SDL2.lib;SDL2_image.lib;Engine.lib;nfd_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -152,8 +152,6 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuLoadState.cpp" />
-    <ClCompile Include="MenuMainState.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -181,10 +179,7 @@
     <ClInclude Include="headers\Weapon.h" />
     <ClInclude Include="IAIBase.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="MenuLoadState.h" />
-    <ClInclude Include="MenuMainState.h" />
     <ClInclude Include="MenuState.h" />
-    <ClInclude Include="MenuSubState.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />
