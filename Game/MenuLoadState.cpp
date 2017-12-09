@@ -1,6 +1,7 @@
 #include "MenuLoadState.h"
 #include <experimental/filesystem>
 #include <iostream>
+#include <comdef.h>
 
 namespace fs = std::experimental::filesystem;
 
@@ -29,6 +30,8 @@ void MenuLoadState::Draw()
 
 void MenuLoadState::Init()
 {
-	for (auto& p : fs::directory_iterator("../content/saves"))
-		_saveFiles.push_back(p.path().c_str());
+	for (auto& p : fs::directory_iterator("../content/saves")) {
+		_bstr_t str(p.path().filename().c_str());
+		_saveFiles.push_back({ str });
+	}
 }

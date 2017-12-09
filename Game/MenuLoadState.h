@@ -1,11 +1,12 @@
 #pragma once
 #include "MenuSubState.h"
 #include <vector>
+#include <string>
 
 class State;
 class MenuLoadState : public MenuSubState
 {
-	std::vector<const char*> _saveFiles;
+	std::vector<std::string> _saveFiles;
 public:
 	MenuLoadState();
 	~MenuLoadState();
