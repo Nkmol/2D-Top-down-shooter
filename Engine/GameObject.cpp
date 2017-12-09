@@ -12,7 +12,6 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 
 }
 
-
 GameObject::GameObject(const std::string &spriteToken, const Point coordinates) : _coordinates(coordinates) {
 	_sprite = AssetManager::Instance().LoadTexture(spriteToken);
 	SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
@@ -22,9 +21,6 @@ GameObject::GameObject(const std::string &spriteToken, const Point coordinates) 
 	radius = (width + height) / 4;
 	this->id = ++counter;
 }
-
-
-
 
 GameObject::GameObject()
 {
