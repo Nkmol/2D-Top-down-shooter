@@ -22,7 +22,7 @@ public:
 	void Draw();
 
 	std::shared_ptr<Level> GetLevel() const;
-	void SetLevel(int levelnumber);
+	void SetLevel(int levelnumber, std::string savedGame);
 private:
 	// the stack of states
 	std::vector<std::unique_ptr<State>> _states;

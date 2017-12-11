@@ -55,7 +55,6 @@ void Player::update(float time) {
     } else {
         MoveableObject::stopMove();
     }
-
 }
 
 const int Player::getLifepoints() const {
@@ -80,6 +79,7 @@ void to_json(nlohmann::json& j, const Player& value)
 {
 	j = nlohmann::json{
 		{ "lifepoints", value.getLifepoints() },
+		{ "highestLevel", value.GetHighestLevel() },
 		{ "weapons",  value.getWeapons() },
 		{ "currentWeapon", value.getCurrentWeaponIndex() }
 	};
@@ -89,6 +89,7 @@ void from_json(const nlohmann::json& j, Player& value)
 {
 	value.changeLifepoints(j.at("lifepoints").get<int>());
 	value.changeWeapon(j.at("currentWeapon").get<int>());
+	value.SetHighestLevel(j.at("highestLevel").get<int>());
 
 	// TODO resolve with wep id -> refactored when weapons are saved in JSON
 	auto weps = value.getWeapons();

@@ -15,17 +15,22 @@ public:
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
 	void Init() override;
+	void StartLevel(const int level, Game& game);
 private:
-	std::string _newgameString = "newgamebutton";
-	std::string _loadgameString = "loadgamebutton";
-	std::string _creditsString = "creditsbutton";
-	std::string _muteString = "mutebutton";
-	std::string _quitString = "quitbutton";
 	int _muted;
+	int _highestLevel = 1;
+
 	Button _newgameButton;
 	Button _loadgameButton;
 	Button _creditsButton;
+	Button _instructions;
 	Button _muteButton;
 	Button _quitButton;
+	Button _level1;
+	Button _level2;
+	Button _level3;
+
+	std::string _savedGame;
+
 	std::unique_ptr<Texture> _background;
 };
