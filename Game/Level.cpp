@@ -75,8 +75,6 @@ void Level::LoadPlayer()
 		from_json(j, *_player.get());
 		i.close();
 	}
-	//_objs.emplace_back(player);
-
 	_objsNoEnemies.emplace_back(_player);
 }
 
