@@ -2,8 +2,8 @@
 #include "Uzi.h"
 #include "Handgun.h"
 #include "Shotgun.h"
-#include "Player.h"
 #include "Bullet.h"
+#include "Player.h"
 #include "Config.h"
 #include "InputManager.h"
 #include "EnemyBase.h"
@@ -30,6 +30,9 @@ void Level::Init() {
 	nlohmann::json j;
 	i >> j;
 
+
+
+
 	// Explicit "from_json" so it used the same reference
 	from_json(j, *this);
 
@@ -40,12 +43,14 @@ void Level::Init() {
     player->addWeapons({Uzi(), Handgun(), Shotgun()});
     player->changeWeapon(0); // set weapon to Uzi
 
-    _objs.emplace_back(player);
+	_objsNoEnemies.emplace_back(player);
 
     // save pointer seperate
     _player = player;
 	
-	_waveController.Init(_waves, _player, _objs);
+	_waveController.Init(_waves, _player, _npcs);
+	PhysicsManager::Instance().setStaticObjects();
+	PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
 }
 
 void Level::HandleEvents(Event event) {
@@ -61,7 +66,7 @@ void Level::HandleEvents(Event event) {
 
     if (inputManager.IsMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objs.emplace_back(bullet);
+		_objsNoEnemies.emplace_back(bullet);
     }
 
     int key = 0;
@@ -120,19 +125,32 @@ void Level::HandleEvents(Event event) {
 
 void Level::Update(float time) {
 	const auto accSpeed = time *_levelSpeed;
-    for (auto &&obj : _objs) {
+    for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
+
+
 	if (!_waveController.Update(accSpeed, _objs)) {
 		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
 		cin.get();
 	}
+	for (auto &&obj : _npcs) {
+		obj->update(accSpeed);
+	}
+	auto it(std::remove_if(_npcs.begin(), _npcs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_npcs.erase(it, _npcs.end());
 }
 
 void Level::Draw() {
-    for (auto &&obj : _objs) {
-        obj->draw();
-    }
+	for (auto &&obj : _objsNoEnemies) {
+		obj->draw();
+	}
+
+	for (auto &&obj : _npcs) {
+		obj->draw();
+	}
 	_waveController.Draw();
 
     // TODO, verplaatsen
