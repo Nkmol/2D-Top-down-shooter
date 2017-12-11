@@ -31,7 +31,7 @@ public:
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
 
-    ~Player() {}
+    ~Player();
 
     Bullet shoot();
 

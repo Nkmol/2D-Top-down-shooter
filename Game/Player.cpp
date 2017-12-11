@@ -2,9 +2,9 @@
 // Created by Mevlüt Özdemir on 09-11-17.
 //
 
-#include <IdleState.h>
 #include "Player.h"
-#include "PlayerState.h"
+#include "PlayerState/PlayerState.h"
+#include "PlayerState/IdleState.h"
 
 
 Player::Player(const std::string &filePath, const float x, const float y)
@@ -14,6 +14,8 @@ Player::Player(const std::string &filePath, const float x, const float y)
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
         : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
+
+    _state = make_unique<IdleState>(*this);
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -72,6 +74,10 @@ Weapon *Player::getWeapon() {
 
 const vector<Weapon> &Player::getWeapons() const {
     return weapons;
+}
+
+Player::~Player() {
+
 }
 
 

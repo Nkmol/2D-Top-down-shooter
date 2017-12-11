@@ -10,13 +10,13 @@
 
 class PlayerState {
 
-    const Player &_player;
+    Player &_player;
 public:
     PlayerState(Player &player) : _player{player} {}
 
-    virtual void Update() = 0;
+    virtual ~PlayerState() = default;
 
-//    Bullet Shoot
+    virtual void Update() {}
 };
 
 
