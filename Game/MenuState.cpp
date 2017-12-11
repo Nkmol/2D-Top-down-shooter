@@ -7,6 +7,7 @@
 #include <nfd.h>
 #include <memory>
 #include <json.hpp>
+#include <regex>
 
 namespace fs = std::experimental::filesystem;
 
@@ -46,6 +47,9 @@ void MenuState::HandleEvents(Game& game)
 				nfdresult_t result = NFD_OpenDialog("json", str.c_str(), &outPath);
 				if (result == NFD_OKAY)
 				{
+					std::regex r("\.json$");
+					if (!std::regex_match(outPath, r)) return;
+
 					_savedGame = outPath;
 
 					free(outPath);
