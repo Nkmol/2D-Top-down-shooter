@@ -2,8 +2,8 @@
 #include "Uzi.h"
 #include "Handgun.h"
 #include "Shotgun.h"
-#include "Player.h"
 #include "Bullet.h"
+#include "Player.h"
 #include "Config.h"
 #include "InputManager.h"
 #include "EnemyBase.h"
@@ -50,7 +50,8 @@ void Level::LoadPlayer()
 	auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2);
 	player->addWeapons({ Handgun(), Uzi(), Shotgun() });
 	player->changeWeapon(0);
-	_objs.emplace_back(player);
+	//_objs.emplace_back(player);
+	_objsNoEnemies.emplace_back(player);
 
 	_player = player;
 
@@ -88,7 +89,7 @@ void Level::HandleEvents(Event event) {
 
     if (inputManager.IsMouseClicked(event)) {
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objs.emplace_back(bullet);
+		_objsNoEnemies.emplace_back(bullet);
     }
 
     int key = 0;
@@ -129,20 +130,33 @@ void Level::HandleEvents(Event event) {
 
 void Level::Update(float time) {
 	const auto accSpeed = time *_levelSpeed;
-    for (auto &&obj : _objs) {
+    for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
+
+
 	if (!_waveController.Update(accSpeed, _objs)) {
 		_player->SetHighestLevel(_level + 1);
 		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
 		cin.get();
 	}
+	for (auto &&obj : _npcs) {
+		obj->update(accSpeed);
+	}
+	auto it(std::remove_if(_npcs.begin(), _npcs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
+	_npcs.erase(it, _npcs.end());
 }
 
 void Level::Draw() {
-    for (auto &&obj : _objs) {
-        obj->draw();
-    }
+	for (auto &&obj : _objsNoEnemies) {
+		obj->draw();
+	}
+
+	for (auto &&obj : _npcs) {
+		obj->draw();
+	}
 	_waveController.Draw();
 
     // TODO, verplaatsen

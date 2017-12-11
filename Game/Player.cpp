@@ -8,11 +8,13 @@
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y})
 {
+	_type = PLAYER;
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
 	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
 {
+	_type = PLAYER;
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -49,12 +51,10 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
 
-    const auto newPostition = _coordinates + (_destination * speed * time);
-    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-        MoveableObject::update(time);
-    } else {
-        MoveableObject::stopMove();
-    }
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	MoveableObject::update(time);
+
 }
 
 const int Player::getLifepoints() const {
@@ -100,4 +100,17 @@ void from_json(const nlohmann::json& j, Player& value)
 	}
 
 	value.SetWeapons(weps);
+}
+
+void Player::onBaseCollision(bool isCollidedOnWall)
+{
+	MoveableObject::stopMove();
+}
+
+void Player::Hit(int damage) {
+	lifepoints -= damage;
+
+	if (lifepoints) {
+
+	}
 }

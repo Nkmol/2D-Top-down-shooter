@@ -71,7 +71,7 @@ void AIDefault::Seperate(EnemiesType& others)
 		}
 	}
 
-	for (const auto& other : *PhysicsManager::Instance().collidables) {
+	for (const auto& other : *PhysicsManager::Instance().getCollidables()) {
 		const auto& oX = other.getMidX();
 		const auto& oY = other.getMidY();
 		const auto& oWeight = other.getWidth() * other.getHeight() * COLLIDABLEWEIGHTMULTIPLIER;

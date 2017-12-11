@@ -50,6 +50,11 @@ int GameObject::getHeight() const {
     return height;
 }
 
+void GameObject::SetCoordinates(const Point& value)
+{
+	_coordinates = value;
+}
+
 const Point &GameObject::GetCoordinates() const {
 	return _coordinates;
 }
@@ -64,8 +69,7 @@ const SDL_Rect GameObject::GetRect() const {
 }
 
 void GameObject::draw() {
-	if (!visible) return;
-	
+	if (!visible) return;	
 
 	SDL_Rect destinationRectangle = { static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height };
 	RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);

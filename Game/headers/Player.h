@@ -8,7 +8,9 @@
 
 #include "MoveableObject.h"
 #include "Weapon.h"
-#include "json.hpp"
+#include "Point.h"
+#include <Weapon.h>
+#include "PhysicsManager.h"
 
 class Point;
 
@@ -40,6 +42,10 @@ public:
 	void changeWeapon(unsigned index);
 
 	const vector<Weapon>& getWeapons() const;
+
+	void onBaseCollision(bool isCollidedOnWall);
+
+	void Hit(int damage);
 
 	void addWeapons(std::vector<Weapon> wp);
 	void SetWeapons(const std::vector<Weapon> wp);
