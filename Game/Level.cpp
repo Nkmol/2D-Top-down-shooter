@@ -23,6 +23,9 @@ void Level::Init() {
 	LoadPlayer();
 	
 	_waveController.Init(_waves, _player, _objs);
+
+	PhysicsManager::Instance().setStaticObjects();
+	PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
 }
 
 void Level::LoadLevel()
@@ -47,7 +50,7 @@ void Level::LoadLevel()
 
 void Level::LoadPlayer()
 {
-	auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2);
+	auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2 + 10);
 	player->addWeapons({ Handgun(), Uzi(), Shotgun() });
 	player->changeWeapon(0);
 
