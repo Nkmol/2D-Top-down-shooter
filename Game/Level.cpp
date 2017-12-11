@@ -50,8 +50,6 @@ void Level::LoadPlayer()
 	auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2);
 	player->addWeapons({ Handgun(), Uzi(), Shotgun() });
 	player->changeWeapon(0);
-	//_objs.emplace_back(player);
-	_objsNoEnemies.emplace_back(player);
 
 	_player = player;
 
@@ -74,6 +72,9 @@ void Level::LoadPlayer()
 		from_json(j, *_player.get());
 		i.close();
 	}
+	//_objs.emplace_back(player);
+
+	_objsNoEnemies.emplace_back(_player);
 }
 
 void Level::HandleEvents(Event event) {
