@@ -132,7 +132,7 @@ void Level::Update(float time) {
 	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
 
 
-	if (!_waveController.Update(accSpeed, _objs)) {
+	if (!_waveController.Update(accSpeed, _objs, _player)) {
 		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
 		cin.get();
 	}
