@@ -44,11 +44,6 @@ public:
 
     const string &getSpriteToken() const;
 
-    void changeSprite(const std::string &spriteToken);
-
-    int getCurrentSprite() const;
-
-    void setCurrentSprite(int currentSprite);
 
 protected:
 
@@ -63,8 +58,6 @@ protected:
     std::string spriteToken;
 
 private:
-
-    int currentSprite = 0;
     int id;
     int teamId = -1;
     static int counter;

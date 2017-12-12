@@ -8,10 +8,10 @@
 
 #include "Weapon.h"
 
-class Uzi : public Weapon {
+class Rifle : public Weapon {
 
 public:
-    explicit Uzi(int damage = 15);
+    explicit Rifle(int damage = 15);
 };
 
 

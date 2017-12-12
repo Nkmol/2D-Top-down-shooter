@@ -156,7 +156,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
-    <ClCompile Include="Uzi.cpp" />
+    <ClCompile Include="Rifle.cpp" />
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -174,7 +174,7 @@
     <ClInclude Include="headers\FlockController.h" />
     <ClInclude Include="headers\Helper.h" />
     <ClInclude Include="headers\Player.h" />
-    <ClInclude Include="headers\Uzi.h" />
+    <ClInclude Include="headers\Rifle.h" />
     <ClInclude Include="headers\Weapon.h" />
     <ClInclude Include="IAIBase.h" />
     <ClInclude Include="Level.h" />

@@ -1,5 +1,5 @@
 #include "Level.h"
-#include "Uzi.h"
+#include "Rifle.h"
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Player.h"
@@ -35,9 +35,9 @@ void Level::Init() {
     //level init
     MapManager::Instance().Init(_map);
 
-    auto player = make_shared<Player>("soldier-idle-0", config::width / 2, config::height / 2);
-    player->addWeapons({Uzi(), Handgun(), Shotgun()});
-    player->changeWeapon(0); // set weapon to Uzi
+    auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2);
+    player->addWeapons({Rifle(), Handgun(), Shotgun()});
+    player->changeWeapon(0); // set weapon to Rifle
 
     _objs.emplace_back(player);
 
@@ -59,9 +59,15 @@ void Level::HandleEvents(Event event) {
     }
 
     if (inputManager.IsMouseClicked(event)) {
+        _player->SetState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objs.emplace_back(bullet);
     }
+
+    if (inputManager.IsKeyDown(event, "r")) {
+        _player->SetState("reload");
+    }
+
 
     int key = 0;
     if (inputManager.IsNumericKeyPressed(event, key)) {
@@ -115,10 +121,10 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-    if (!_waveController.Update(accSpeed, _objs)) {
-        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
-        cin.get();
-    }
+//    if (!_waveController.Update(accSpeed, _objs)) {
+//        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
+//        cin.get();
+//    }
 }
 
 void Level::Draw() {

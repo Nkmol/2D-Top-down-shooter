@@ -16,19 +16,21 @@ class MoveableObject : public GameObject {
 
 private:
     std::map<Point, int> directionAngles;
-	std::string token;
+
 protected:
+    std::string token;
+    float speed, distance;
+    std::string _state;
+    int _frames;
+    Point _destination;
+    float animationTimer;
+    int currentSprite = 0;
 
-	float speed, distance;
-
-	Point _destination;
 public:
 
-	float animationTimer = 0.2f;
+    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 
-	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
-
-	virtual ~MoveableObject();
+    virtual ~MoveableObject();
 
     virtual void draw();
 
@@ -36,7 +38,8 @@ public:
 
     void SetAngle(int angle);
 
-	void SetCoordinates(const Point& value);
+    void SetCoordinates(const Point &value);
+
     const Point &GetCoordinates() const;
 
     int getAngle() const;
@@ -47,10 +50,36 @@ public:
 
     const int getMidY(float destinationPosition) const;
 
-    const string &getToken() const;
 
 
 
+    // all for animation:
+    // todo: new inherticance from Animation ??
+    virtual string getAnimationToken();
+
+    const string &GetState() const;
+
+    virtual void HandleAnimationFinished();
+
+    void SetFrames(int _frames);
+
+    void setAnimationTimer(float animationTimer);
+
+    float getAnimationTimer() const;
+
+    virtual void SetState(const string &_state);
+
+    bool readyForAnimation() const;
+
+    void changeSprite(const std::string &spriteToken);
+
+    void setCurrentSpriteIndex(int index);
+
+    int getNextSpriteIndex();
+
+    bool AnimationFinished();
+
+    void DecreaseAnimationTimer(float by);
 };
 
 

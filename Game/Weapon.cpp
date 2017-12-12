@@ -28,6 +28,10 @@ bool Weapon::hasBullets() {
     return this->shooted < this->maxBullets;
 }
 
+void Weapon::Reload(){
+    shooted = 0;
+}
+
 int Weapon::totalBullets() const {
     return maxBullets;
 }

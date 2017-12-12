@@ -14,8 +14,8 @@ Player::Player(const std::string &filePath, const float x, const float y)
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
         : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
-
-    _state = make_unique<IdleState>(*this);
+    SetState("idle");
+    SetFrames(19);
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -49,7 +49,6 @@ void Player::Move(const Point direction) {
 }
 
 void Player::update(float time) {
-    _state->Update();
     const auto newPostition = _coordinates + (_destination * speed * time);
     if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
         MoveableObject::update(time);
@@ -78,6 +77,32 @@ const vector<Weapon> &Player::getWeapons() const {
 
 Player::~Player() {
 
+}
+
+void Player::HandleAnimationFinished() {
+    MoveableObject::HandleAnimationFinished();
+    this->SetState("idle");
+}
+
+void Player::SetState(const string &_state) {
+    MoveableObject::SetState(_state);
+
+    if (_state == "idle") {
+        _frames = 20;
+    }
+
+    if (_state == "shoot") {
+        _frames = 3;
+    }
+
+    if (_state == "reload") {
+        this->getWeapon()->Reload();
+        _frames = 20;
+    }
+}
+
+string Player::getAnimationToken() {
+    return this->token + "-" + this->getWeapon()->getName();
 }
 
 

@@ -33,6 +33,8 @@ public:
 	void SetCurrentBullets(const int v);
 
 	std::string getName() const;
+
+    void Reload();
 };
 
 void to_json(nlohmann::json& j, const Weapon& value);

@@ -23,7 +23,7 @@ class Player : public MoveableObject {
 private:
     // don't need to delete, it's a reference to a weapon inside de weapons vector.
     int lifepoints;
-    std::unique_ptr<PlayerState> _state;
+
 
 public:
 
@@ -55,6 +55,11 @@ public:
 
     int getCurrentWeaponIndex() const;
 
+    void HandleAnimationFinished() override;
+
+    void SetState(const string &_state) override;
+
+    string getAnimationToken() override;
 };
 
 // ReSharper disable once CppInconsistentNaming

@@ -100,18 +100,3 @@ const string &GameObject::getSpriteToken() const {
     return spriteToken;
 }
 
-void GameObject::changeSprite(const std::string &spriteToken) {
-    _sprite = AssetManager::Instance().loadTexture(spriteToken);
-
-    SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
-    this->spriteToken = spriteToken;
-
-}
-
-void GameObject::setCurrentSprite(int currentSprite) {
-    GameObject::currentSprite = currentSprite;
-}
-
-int GameObject::getCurrentSprite() const {
-    return currentSprite;
-}

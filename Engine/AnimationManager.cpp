@@ -17,30 +17,38 @@ AnimationManager &AnimationManager::Instance() {
 
 void AnimationManager::update(float time) {
 
-    int frames = 19;
-
     for (auto &object : _objs) {
+
+        // just working for the player/soldier
         std::size_t found = object->getSpriteToken().find("soldier");
         if (found != std::string::npos) {
+            object->DecreaseAnimationTimer(time);
 
-            object->animationTimer -= time;
-            if (object->animationTimer <= 0) {
-                int index = object->getCurrentSprite() + 1;
+            if (object->readyForAnimation()) {
+                int nextSprite = object->getNextSpriteIndex();
 
-                if (index > frames) {
-                    index = 0;
+                if (object->AnimationFinished()) {
+                    object->HandleAnimationFinished();
+                    continue;
                 }
 
-                object->setCurrentSprite(index);
-
-                std::string token = "soldier-idle-0";
-                token.append(to_string(object->getCurrentSprite()));
+                auto token = this->GetToken(object, nextSprite);
                 object->changeSprite(token);
-                cout << object->getSpriteToken() << endl;
-                object->animationTimer = 0.1f;
+
+                object->setAnimationTimer(0.1f); // todo: fix
             }
         }
     }
+
+}
+
+// Creates a token like: soldier-rifle-idle-0
+// GetAnimationToken = soldier-rifle
+// GetState = idle
+// sprite = 0
+string AnimationManager::GetToken(shared_ptr<MoveableObject> &object, const int sprite) const {
+    auto token = object->getAnimationToken() + "-" + object->GetState() + "-";
+    return token.append(to_string(sprite));
 }
 
 

@@ -48,7 +48,7 @@ set(SOURCE_FILES
         Game/Wave.h
         Game/Bullet.cpp
         Game/State.h
-        Game/Uzi.cpp
+        Game/Rifle.cpp
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
@@ -58,7 +58,7 @@ set(SOURCE_FILES
         Game/headers/Weapon.h
         Game/headers/Bullet.h
         Game/headers/FlockController.h
-        Game/headers/Uzi.h
+        Game/headers/Rifle.h
         Game/headers/EnemyBase.h
         Engine/Button.cpp
         Engine/MoveableObject.cpp
