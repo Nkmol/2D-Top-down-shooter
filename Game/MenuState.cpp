@@ -47,8 +47,8 @@ void MenuState::HandleEvents(Game& game)
 				nfdresult_t result = NFD_OpenDialog("json", str.c_str(), &outPath);
 				if (result == NFD_OKAY)
 				{
-					std::regex r("\.json$");
-					if (!std::regex_match(outPath, r)) return;
+					//std::regex r("\.json$");
+					//if (!std::regex_match(outPath, r)) return;
 
 					_savedGame = outPath;
 
