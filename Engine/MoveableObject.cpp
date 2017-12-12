@@ -60,10 +60,6 @@ const int MoveableObject::getMidY(float destinationPosition) const {
     return destinationPosition + height / 2;
 }
 
-string &MoveableObject::getToken() {
-    return token;
-}
-
 const string &MoveableObject::GetState() const {
     return _state;
 }
@@ -73,9 +69,6 @@ void MoveableObject::SetState(const string &_state) {
     setCurrentSpriteIndex(-1);
 }
 
-int MoveableObject::GetFrames() const {
-    return _frames;
-}
 
 void MoveableObject::SetFrames(int _frames) {
     MoveableObject::_frames = _frames;
@@ -113,9 +106,6 @@ void MoveableObject::setCurrentSpriteIndex(int index) {
     MoveableObject::currentSprite = index;
 }
 
-int MoveableObject::getCurrentSpriteIndex() const {
-    return currentSprite;
-}
 
 int MoveableObject::getNextSpriteIndex() {
     return ++currentSprite;
