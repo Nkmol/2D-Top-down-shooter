@@ -18,8 +18,7 @@ private:
     int currentSprite = 0;
 
 public:
-    AnimatableObject();
-    AnimatableObject(const string token, string state);
+    AnimatableObject(string token, string state);
 
 //    virtual string GetAnimationToken();
 //

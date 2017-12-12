@@ -3,9 +3,6 @@
 //
 
 #include "Player.h"
-#include "PlayerState/PlayerState.h"
-#include "PlayerState/IdleState.h"
-
 
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y}) {

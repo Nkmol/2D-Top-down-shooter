@@ -4,13 +4,11 @@
 
 #include "AnimatableObject.h"
 
-AnimatableObject::AnimatableObject(){}
-
-AnimatableObject::AnimatableObject(const string token, string state){}
-//        :
-//        _token{token},
-//        _state{state},
-//        currentSprite{-1} {}
+AnimatableObject::AnimatableObject(string token, string state) :
+        _token{token},
+        _state{state},
+        currentSprite{-1} {
+}
 
 //
 //const string &AnimatableObject::GetState() const {

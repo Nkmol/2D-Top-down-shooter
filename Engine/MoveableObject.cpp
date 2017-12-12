@@ -8,7 +8,7 @@
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
         speed{speed}, _destination(Point::Empty()),
         GameObject::GameObject(filePath, coordinates),
-        AnimatableObject::AnimatableObject() {
+        AnimatableObject::AnimatableObject(filePath, "idle") {
     token = filePath;
 }
 
