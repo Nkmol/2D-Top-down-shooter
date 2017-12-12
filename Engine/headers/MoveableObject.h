@@ -11,8 +11,9 @@
 #include "PhysicsManager.h"
 #include "GameObject.h"
 #include "Point.h"
+#include "../AnimatableObject.h"
 
-class MoveableObject : public GameObject {
+class MoveableObject : public GameObject, public AnimatableObject {
 
 private:
     std::map<Point, int> directionAngles;
@@ -20,11 +21,8 @@ private:
 protected:
     std::string token;
     float speed, distance;
-    std::string _state;
-    int _frames;
     Point _destination;
-    float animationTimer;
-    int currentSprite = 0;
+
 
 public:
 
@@ -50,36 +48,9 @@ public:
 
     const int getMidY(float destinationPosition) const;
 
-
-
-
-    // all for animation:
-    // todo: new inherticance from Animation ??
-    virtual string getAnimationToken();
-
-    const string &GetState() const;
-
-    virtual void HandleAnimationFinished();
-
-    void SetFrames(int _frames);
-
-    void SetAnimationTimer(float animationTimer);
-
-    float getAnimationTimer() const;
-
-    virtual void SetState(const string &_state);
-
-    bool IsReadyForAnimation() const;
-
     void ChangeSprite(const std::string &spriteToken);
 
-    void setCurrentSpriteIndex(int index);
 
-    int GetNextSprite();
-
-    bool AnimationFinished();
-
-    void DecreaseAnimationTimer(float by);
 };
 
 

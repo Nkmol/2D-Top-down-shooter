@@ -59,13 +59,13 @@ void Level::HandleEvents(Event event) {
     }
 
     if (inputManager.IsMouseClicked(event)) {
-        _player->SetState("shoot");
+//        _player->SetState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objs.emplace_back(bullet);
     }
 
     if (inputManager.IsKeyDown(event, "r")) {
-        _player->SetState("reload");
+//        _player->SetState("reload");
     }
 
 
@@ -121,10 +121,10 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-    if (!_waveController.Update(accSpeed, _objs)) {
-        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
-        cin.get();
-    }
+//    if (!_waveController.Update(accSpeed, _objs)) {
+//        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
+//        cin.get();
+//    }
 }
 
 void Level::Draw() {

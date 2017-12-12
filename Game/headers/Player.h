@@ -55,11 +55,10 @@ public:
 
     int getCurrentWeaponIndex() const;
 
-    void HandleAnimationFinished() override;
+//    void HandleAnimationFinished() override;
 
-    void SetState(const string &_state) override;
+//    void SetState(const string &_state) override;
 
-    string getAnimationToken() override;
 };
 
 // ReSharper disable once CppInconsistentNaming
