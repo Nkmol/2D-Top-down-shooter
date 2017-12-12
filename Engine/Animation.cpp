@@ -4,15 +4,8 @@
 
 #include "Animation.h"
 
-
-Animation::Animation() : _token{""}, _state{""}, animationTimer{1} {
-
-}
-
-Animation::Animation(const Animation &other) :
-        _token{other._token},
-        _state{other._state},
-        animationTimer{other.animationTimer} {
+Animation::Animation(): _token(), _frames(0), animationTimer(0)
+{
 }
 
 Animation::Animation(string token, string state, float animationTimer) :

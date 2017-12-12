@@ -12,7 +12,7 @@ using namespace std;
 class Animation {
 
 private:
-    std::string &_token;
+    std::string _token;
     std::string _state;
     int _frames;
     float animationTimer;
