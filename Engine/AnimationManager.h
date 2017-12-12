@@ -24,7 +24,7 @@ public:
 
     void addGameObjects(vector<shared_ptr<MoveableObject>> &objects);
 
-    string GetToken(shared_ptr<MoveableObject> &object, const int sprite) const;
+    string GenerateToken(shared_ptr<MoveableObject> &object, const int sprite) const;
 };
 
 

@@ -63,19 +63,19 @@ public:
 
     void SetFrames(int _frames);
 
-    void setAnimationTimer(float animationTimer);
+    void SetAnimationTimer(float animationTimer);
 
     float getAnimationTimer() const;
 
     virtual void SetState(const string &_state);
 
-    bool readyForAnimation() const;
+    bool IsReadyForAnimation() const;
 
-    void changeSprite(const std::string &spriteToken);
+    void ChangeSprite(const std::string &spriteToken);
 
     void setCurrentSpriteIndex(int index);
 
-    int getNextSpriteIndex();
+    int GetNextSprite();
 
     bool AnimationFinished();
 

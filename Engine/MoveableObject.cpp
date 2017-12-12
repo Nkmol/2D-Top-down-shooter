@@ -82,7 +82,7 @@ float MoveableObject::getAnimationTimer() const {
     return animationTimer;
 }
 
-void MoveableObject::setAnimationTimer(float animationTimer) {
+void MoveableObject::SetAnimationTimer(float animationTimer) {
     MoveableObject::animationTimer = animationTimer;
 }
 
@@ -90,11 +90,11 @@ void MoveableObject::DecreaseAnimationTimer(float by) {
     MoveableObject::animationTimer -= by;
 }
 
-bool MoveableObject::readyForAnimation() const {
+bool MoveableObject::IsReadyForAnimation() const {
     return getAnimationTimer() <= 0;
 }
 
-void MoveableObject::changeSprite(const std::string &spriteToken) {
+void MoveableObject::ChangeSprite(const std::string &spriteToken) {
     _sprite = AssetManager::Instance().loadTexture(spriteToken);
 
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
@@ -107,7 +107,7 @@ void MoveableObject::setCurrentSpriteIndex(int index) {
 }
 
 
-int MoveableObject::getNextSpriteIndex() {
+int MoveableObject::GetNextSprite() {
     return ++currentSprite;
 }
 

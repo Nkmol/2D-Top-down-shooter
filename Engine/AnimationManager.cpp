@@ -24,18 +24,18 @@ void AnimationManager::update(float time) {
         if (found != std::string::npos) {
             object->DecreaseAnimationTimer(time);
 
-            if (object->readyForAnimation()) {
-                int nextSprite = object->getNextSpriteIndex();
+            if (object->IsReadyForAnimation()) {
+                int nextSprite = object->GetNextSprite();
 
                 if (object->AnimationFinished()) {
                     object->HandleAnimationFinished();
                     continue;
                 }
 
-                auto token = this->GetToken(object, nextSprite);
-                object->changeSprite(token);
+                auto token = this->GenerateToken(object, nextSprite);
+                object->ChangeSprite(token);
 
-                object->setAnimationTimer(0.1f); // todo: fix
+                object->SetAnimationTimer(0.1f); // todo: fix
             }
         }
     }
@@ -46,7 +46,7 @@ void AnimationManager::update(float time) {
 // GetAnimationToken = soldier-rifle
 // GetState = idle
 // sprite = 0
-string AnimationManager::GetToken(shared_ptr<MoveableObject> &object, const int sprite) const {
+string AnimationManager::GenerateToken(shared_ptr<MoveableObject> &object, const int sprite) const {
     auto token = object->getAnimationToken() + "-" + object->GetState() + "-";
     return token.append(to_string(sprite));
 }
