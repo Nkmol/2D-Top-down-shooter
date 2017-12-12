@@ -121,10 +121,10 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
-    if (!_waveController.Update(accSpeed, _objs)) {
-        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
-        cin.get();
-    }
+//    if (!_waveController.Update(accSpeed, _objs)) {
+//        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
+//        cin.get();
+//    }
 }
 
 void Level::Draw() {

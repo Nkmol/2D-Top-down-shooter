@@ -7,6 +7,7 @@
 
 #include <MoveableObject.h>
 #include "AnimationManager.h"
+#include "Animation.h"
 
 class AnimationManager {
 
@@ -24,7 +25,7 @@ public:
 
     void addGameObjects(vector<shared_ptr<MoveableObject>> &objects);
 
-    string GenerateToken(shared_ptr<MoveableObject> &object, const int sprite) const;
+    string GenerateToken(Animation &animation, const int sprite) const;
 };
 
 

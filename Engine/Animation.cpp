@@ -1,23 +1,79 @@
 //
-// Created by Mevlüt Özdemir on 11-12-17.
+// Created by Mevlüt Özdemir on 12-12-17.
 //
 
 #include "Animation.h"
 
-Animation::Animation() {
-    this->animationTime = 1000;
+
+Animation::Animation() : _token{""}, _state{""}, animationTimer{1} {
+
 }
 
-Animation::Animation(float time) {
-    this->animationTime = time;
+Animation::Animation(const Animation &other) :
+        _token{other._token},
+        _state{other._state},
+        animationTimer{other.animationTimer} {
 }
 
-float Animation::GetAnimationTime() const {
-    return animationTime;
+Animation::Animation(string token, string state, float animationTimer) :
+        _token{token}, _state{std::move(state)}, animationTimer{animationTimer} {
+
 }
 
-bool Animation::ReadyToAnimate() const {
-    return this->animationTime <= 0;
+const string &Animation::GetState() const {
+    return _state;
+}
+
+void Animation::SetState(const string &_state) {
+    this->_state = _state;
+    setCurrentSpriteIndex(-1);
+}
+
+
+void Animation::SetFrames(int _frames) {
+    Animation::_frames = _frames;
+}
+
+void Animation::HandleFinished() {
+    setCurrentSpriteIndex(-1);
+}
+
+float Animation::getAnimationTimer() const {
+    return animationTimer;
+}
+
+void Animation::SetAnimationTimer(float animationTimer) {
+    Animation::animationTimer = animationTimer;
+}
+
+void Animation::DecreaseTimer(float by) {
+    Animation::animationTimer -= by;
+}
+
+bool Animation::IsReady() const {
+    return getAnimationTimer() <= 0;
+}
+
+
+void Animation::setCurrentSpriteIndex(int index) {
+    Animation::currentSprite = index;
+}
+
+
+int Animation::GetNextSprite() {
+    return ++currentSprite;
+}
+
+string Animation::getToken() {
+    return this->_token;
+}
+
+string Animation::GetAnimationToken() {
+    return this->_token;
+}
+
+bool Animation::IsFinished() {
+    return currentSprite >= _frames;
 }
 
 

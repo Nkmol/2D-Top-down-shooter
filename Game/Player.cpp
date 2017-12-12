@@ -14,8 +14,6 @@ Player::Player(const std::string &filePath, const float x, const float y)
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
         : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
-    SetState("idle");
-    SetFrames(19);
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -79,31 +77,31 @@ Player::~Player() {
 
 }
 
-void Player::HandleAnimationFinished() {
-    MoveableObject::HandleAnimationFinished();
-    this->SetState("idle");
-}
+//void Player::HandleAnimationFinished() {
+////    this->GetAnimation().HandleAnimationFinished();
+//    this->GetAnimation().SetState("idle");
+//}
 
 void Player::SetState(const string &_state) {
-    MoveableObject::SetState(_state);
+    _animation.SetState(_state);
 
     if (_state == "idle") {
-        _frames = 20;
+        _animation.SetFrames(20);
     }
 
     if (_state == "shoot") {
-        _frames = 3;
+        _animation.SetFrames(3);
     }
 
     if (_state == "reload") {
         this->getWeapon()->Reload();
-        _frames = 20;
+        _animation.SetFrames(20);
     }
 }
 
-string Player::getAnimationToken() {
-    return this->token + "-" + this->getWeapon()->getName();
-}
+//string Player::getAnimationToken() {
+//    return this->token + "-" + this->getWeapon()->getName();
+//}
 
 
 void to_json(nlohmann::json &j, const Player &value) {

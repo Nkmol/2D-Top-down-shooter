@@ -10,12 +10,11 @@ MoveableObject::~MoveableObject() {
 }
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
-        speed{speed}, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
+        speed{speed},
+        _destination(Point::Empty()),
+        _animation{Animation(filePath, "idle", 0.1f)},
+        GameObject::GameObject(filePath, coordinates) {
     token = filePath;
-    this->_state = "idle";
-    this->_frames = 0;
-    this->animationTimer = 0.1f;
-
 }
 
 void MoveableObject::draw() {
@@ -60,61 +59,18 @@ const int MoveableObject::getMidY(float destinationPosition) const {
     return destinationPosition + height / 2;
 }
 
-const string &MoveableObject::GetState() const {
-    return _state;
-}
-
-void MoveableObject::SetState(const string &_state) {
-    this->_state = _state;
-    setCurrentSpriteIndex(-1);
-}
-
-
-void MoveableObject::SetFrames(int _frames) {
-    MoveableObject::_frames = _frames;
-}
-
-void MoveableObject::HandleAnimationFinished() {
-    setCurrentSpriteIndex(-1);
-}
-
-float MoveableObject::getAnimationTimer() const {
-    return animationTimer;
-}
-
-void MoveableObject::SetAnimationTimer(float animationTimer) {
-    MoveableObject::animationTimer = animationTimer;
-}
-
-void MoveableObject::DecreaseAnimationTimer(float by) {
-    MoveableObject::animationTimer -= by;
-}
-
-bool MoveableObject::IsReadyForAnimation() const {
-    return getAnimationTimer() <= 0;
-}
 
 void MoveableObject::ChangeSprite(const std::string &spriteToken) {
     _sprite = AssetManager::Instance().loadTexture(spriteToken);
 
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
     this->spriteToken = spriteToken;
-
 }
 
-void MoveableObject::setCurrentSpriteIndex(int index) {
-    MoveableObject::currentSprite = index;
+Animation &MoveableObject::GetAnimation() {
+    return this->_animation;
 }
 
 
-int MoveableObject::GetNextSprite() {
-    return ++currentSprite;
-}
 
-string MoveableObject::getAnimationToken() {
-    return this->token;
-}
 
-bool MoveableObject::AnimationFinished() {
-    return currentSprite >= _frames;
-}
