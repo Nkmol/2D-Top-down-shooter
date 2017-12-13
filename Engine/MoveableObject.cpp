@@ -58,9 +58,10 @@ void MoveableObject::onBaseCollision(GameObject object) {
 }
 
 
+/**************************************************************
+ * ALL FOR ANIMATION.. SHOULD ACTUALLY BE IN A ANIMATION OBJECT
+ *************************************************************/
 
-
-// FOR ANIMATION.. SHOULD ACTUALLY BE IN A ANIMATION OBJECT
 const string &MoveableObject::GetState() const {
     return _state;
 }
