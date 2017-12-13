@@ -30,6 +30,11 @@ protected:
     Point _destination;
     classType _type;
 
+    std::string _state;
+    int _frames;
+    float animationTimer;
+    int currentSprite = 0;
+
 public:
     MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 

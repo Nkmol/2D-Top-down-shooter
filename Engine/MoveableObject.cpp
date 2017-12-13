@@ -3,8 +3,7 @@
 //
 #include "MoveableObject.h"
 
-MoveableObject::~MoveableObject()
-{
+MoveableObject::~MoveableObject() {
 }
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
@@ -13,7 +12,8 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
 
 void MoveableObject::draw() {
     if (!visible) return;
-    SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), GameObject::width, GameObject::height};
+    SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y),
+                                     GameObject::width, GameObject::height};
     RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
 }
 
@@ -31,37 +31,30 @@ const int MoveableObject::getPredictionMidX(float destinationPosition) const {
     return destinationPosition + width / 2;;
 }
 
-const int MoveableObject::getMidX() const
-{
-	return _coordinates.x + width / 2;
+const int MoveableObject::getMidX() const {
+    return _coordinates.x + width / 2;
 }
 
-const int MoveableObject::getMidY() const
-{
-	return _coordinates.y + height / 2;
+const int MoveableObject::getMidY() const {
+    return _coordinates.y + height / 2;
 }
 
-const int MoveableObject::getPredictionMidY(float destinationPosition) const
-{
-	return destinationPosition + height / 2;
+const int MoveableObject::getPredictionMidY(float destinationPosition) const {
+    return destinationPosition + height / 2;
 }
 
-classType MoveableObject::getType()
-{
-	return _type;
+classType MoveableObject::getType() {
+    return _type;
 }
 
-void MoveableObject::onBaseCollision(MoveableObject* object)
-{
+void MoveableObject::onBaseCollision(MoveableObject *object) {
 }
 
-void MoveableObject::onBaseCollision(bool isWall)
-{
+void MoveableObject::onBaseCollision(bool isWall) {
 }
 
-void MoveableObject::onBaseCollision(GameObject object)
-{
-	//hide();
+void MoveableObject::onBaseCollision(GameObject object) {
+    //hide();
 }
 
 
@@ -100,7 +93,7 @@ bool MoveableObject::IsReadyForAnimation() const {
 }
 
 void MoveableObject::ChangeSprite(const std::string &spriteToken) {
-    _sprite = AssetManager::Instance().loadTexture(spriteToken);
+    _sprite = AssetManager::Instance().LoadTexture(spriteToken);
 
     SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
     this->spriteToken = spriteToken;
@@ -117,7 +110,7 @@ int MoveableObject::GetNextSprite() {
 }
 
 string MoveableObject::getAnimationToken() {
-    return this->token;
+    return this->spriteToken;
 }
 
 bool MoveableObject::AnimationFinished() {

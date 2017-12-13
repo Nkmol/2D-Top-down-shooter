@@ -34,6 +34,7 @@ protected:
 	Point _coordinates;
 	bool visible;
 	SDL_Texture *_sprite;
+    std::string spriteToken;
 private:
 
 	int id;
