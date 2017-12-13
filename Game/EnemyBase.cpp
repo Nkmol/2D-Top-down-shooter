@@ -9,7 +9,7 @@
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
 {
-	GameObject::GameObject();
+	incrementId();
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :

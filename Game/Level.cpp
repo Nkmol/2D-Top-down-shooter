@@ -144,8 +144,8 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
-
-	PhysicsManager::Instance().DrawQTree();
+//
+//	PhysicsManager::Instance().DrawQTree();
 }
 
 void from_json(const nlohmann::json& j, Level& value)
