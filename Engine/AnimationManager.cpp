@@ -18,29 +18,26 @@ void AnimationManager::update(MoveableObject &object, double time) {
     object.DecreaseAnimationTimer(time);
 
     if (object.IsReadyForAnimation()) {
-        int nextSprite = object.GetNextSpriteIndex();
 
         if (object.IsAnimationFinished()) {
             object.HandleAnimationFinished();
             return;
         }
 
-        auto token = GenerateToken(object, nextSprite);
+        auto token = GenerateToken(object);
         object.ChangeSprite(token);
         object.ResetAnimationTimer();
     }
 }
 
 // Creates a token like: soldier/handgun/idle/0
-string AnimationManager::GenerateToken(MoveableObject &object, const int sprite) const {
-    auto token = object.getAnimationToken();    // eg: soldier/handgun
+string AnimationManager::GenerateToken(MoveableObject &object) const {
+    auto token = object.getAnimationToken();                        // eg: soldier/handgun
     token.append("/");
-    token.append(object.GetState());            // eg: soldier/handgun/idle
+    token.append(object.GetState());                                // eg: soldier/handgun/idle
     token.append("/");
-    return token.append(to_string(sprite));     // eg: soldier/handgun/idle/0
+    int nextSpriteIndex = object.GetNextSpriteIndex();              // eg: 0
+    return token.append(to_string(nextSpriteIndex));                // eg: soldier/handgun/idle/0
 }
 
 
-void AnimationManager::addGameObjects(vector<shared_ptr<MoveableObject>> &objects) {
-    this->_objs = objects;
-}

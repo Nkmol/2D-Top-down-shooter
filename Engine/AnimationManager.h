@@ -15,16 +15,13 @@ private:
 
     AnimationManager();
 
-    std::vector<std::shared_ptr<MoveableObject>> _objs;
 public:
     // singleton
     static AnimationManager &Instance();
 
     void update(MoveableObject &object, double time);
 
-    void addGameObjects(vector<shared_ptr<MoveableObject>> &objects);
-
-    string GenerateToken(MoveableObject &object, const int sprite) const;
+    string GenerateToken(MoveableObject &object) const;
 };
 
 
