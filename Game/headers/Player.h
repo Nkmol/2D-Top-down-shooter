@@ -8,7 +8,9 @@
 
 #include "MoveableObject.h"
 #include "Weapon.h"
-#include "json.hpp"
+#include "Point.h"
+#include <Weapon.h>
+#include "PhysicsManager.h"
 
 class Point;
 
@@ -18,8 +20,8 @@ class Player : public MoveableObject {
     unsigned currentWeapon;
 
 private:
-    // don't need to delete, it's a reference to a weapon inside de weapons vector.
     int lifepoints;
+	int _highestLevel = 1;
 
 public:
     Player(const std::string &filePath, float x, float y);
@@ -41,9 +43,16 @@ public:
 
 	const vector<Weapon>& getWeapons() const;
 
+	void onBaseCollision(bool isCollidedOnWall);
+
+	void Hit(int damage);
+
 	void addWeapons(std::vector<Weapon> wp);
 	void SetWeapons(const std::vector<Weapon> wp);
 	int getCurrentWeaponIndex() const;
+
+	const int GetHighestLevel() const { return _highestLevel; }
+	void SetHighestLevel(int level) { if (level > _highestLevel) _highestLevel = level; }
 };
 
 // ReSharper disable once CppInconsistentNaming

@@ -8,11 +8,13 @@
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y})
 {
+	_type = PLAYER;
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
 	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
 {
+	_type = PLAYER;
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -49,12 +51,9 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
 
-    const auto newPostition = _coordinates + (_destination * speed * time);
-    if (!PhysicsManager::Instance().checkCollision(getMidX(newPostition.x), getMidY(newPostition.y), getRadius())) {
-        MoveableObject::update(time);
-    } else {
-        MoveableObject::stopMove();
-    }
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	MoveableObject::update(time);
 
 }
 
@@ -80,6 +79,7 @@ void to_json(nlohmann::json& j, const Player& value)
 {
 	j = nlohmann::json{
 		{ "lifepoints", value.getLifepoints() },
+		{ "highestLevel", value.GetHighestLevel() },
 		{ "weapons",  value.getWeapons() },
 		{ "currentWeapon", value.getCurrentWeaponIndex() }
 	};
@@ -89,6 +89,7 @@ void from_json(const nlohmann::json& j, Player& value)
 {
 	value.changeLifepoints(j.at("lifepoints").get<int>());
 	value.changeWeapon(j.at("currentWeapon").get<int>());
+	value.SetHighestLevel(j.at("highestLevel").get<int>());
 
 	// TODO resolve with wep id -> refactored when weapons are saved in JSON
 	auto weps = value.getWeapons();
@@ -99,4 +100,17 @@ void from_json(const nlohmann::json& j, Player& value)
 	}
 
 	value.SetWeapons(weps);
+}
+
+void Player::onBaseCollision(bool isCollidedOnWall)
+{
+	MoveableObject::stopMove();
+}
+
+void Player::Hit(int damage) {
+	lifepoints -= damage;
+
+	if (lifepoints) {
+
+	}
 }

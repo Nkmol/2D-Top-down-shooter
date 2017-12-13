@@ -5,11 +5,13 @@
 #include "IAIBase.h"
 #include "AIDefault.h"
 #include "FactoryBehaviour.h"
+#include "Bullet.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
 	EnemyBase(filePath, Point{ xPos, yPos }, speed, isLeader, damage, lifepoints, reward)
 {
 	incrementId();
+	_type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, const float speed, const bool isLeader, const int damage, const int lifepoints, const int reward) :
@@ -20,7 +22,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point& coordinates, cons
 	reward(reward),
 	destinationPoint{coordinates}
 {
-
+	_type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<string>(), 
@@ -35,6 +37,7 @@ EnemyBase::EnemyBase(const nlohmann::json& j) : EnemyBase{ j.at("type").get<stri
 	a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
 	_behaviour = move(a);
 	incrementId();
+	_type = ENEMY;
 }
 
 
@@ -46,6 +49,7 @@ EnemyBase::EnemyBase(const EnemyBase& other) : MoveableObject(other),
 {
 	_behaviour->SetOwner(*this);
 	incrementId();
+	_type = ENEMY;
 }
 
 EnemyBase::~EnemyBase() = default;
@@ -60,17 +64,16 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
 void EnemyBase::UpdatePosition(std::vector<shared_ptr<EnemyBase>>& others, const float time)
 {
 	_behaviour->Update(time);
-
 	update(time);
 }
 
 void EnemyBase::update(const float time) {
-	if (!PhysicsManager::Instance().checkCollision(getMidX(_coordinates.x + _destination.x * speed * time), getMidY(_coordinates.y + _destination.y * speed * time), getRadius())) {
-		MoveableObject::update(time);
-	}
-	else {
-		MoveableObject::stopMove();
-	}
+	const auto newPostition = _coordinates + (_destination * speed * time);
+	//PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
+
+	PhysicsManager::Instance().checkWallCollision(this, newPostition);
+	PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+	MoveableObject::update(time);
 }
 
 void EnemyBase::draw() {
@@ -120,4 +123,54 @@ const int EnemyBase::getReward() const
 
 Point EnemyBase::GetPointToTarget() {
 	return Point();
+}
+void EnemyBase::onBaseCollision(MoveableObject* object)
+{
+	switch (object->getType())
+	{
+	case BULLET: onCollision(dynamic_cast<Bullet*>(object));
+		break;
+	case ENEMY:  onCollision(dynamic_cast<EnemyBase*>(object));
+		break;
+	case PLAYER: onCollision(dynamic_cast<Player*>(object));
+		break;
+	default:
+		break;
+	}
+}
+
+void EnemyBase::onBaseCollision(GameObject* object)
+{
+
+}
+
+void EnemyBase::onCollision(MoveableObject* object)
+{
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(Bullet* bullet)
+{
+	bullet->onBaseCollision(true);
+	lifepoints -= bullet->getDamage();
+	if (lifepoints < 0) {
+
+		hide();
+	}
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(EnemyBase* enemy)
+{
+	MoveableObject::stopMove();
+}
+
+void EnemyBase::onCollision(Player* player)
+{
+	player->Hit(damage);
+	MoveableObject::stopMove();
+}
+void EnemyBase::onBaseCollision(bool isWall)
+{
+	MoveableObject::stopMove();
 }

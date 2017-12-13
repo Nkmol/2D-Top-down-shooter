@@ -45,11 +45,15 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle)
+void RenderManager::DrawText(const std::string text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
 {
-	if (font == NULL)
-		font = AssetManager::Instance().loadFont("Sans Regular", height);
-	SDL_Color color = { 255, 255, 255 };
+	if (font == NULL || fontHeight != height) {
+		fontHeight = height;
+		TTF_CloseFont(font);
+		font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
+	}
+	TTF_SizeText(font, text.c_str(), &width, &height);
+	SDL_Color color = { r, g, b };
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
 	SDL_FreeSurface(sMessage);
@@ -60,10 +64,7 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, c
 	messageRect.w = width;
 	messageRect.h = height;
 
-	const auto resp = SDL_RenderCopyEx(renderer, message, NULL, &messageRect, angle, NULL, SDL_FLIP_NONE);
-	if (resp != 0) {
-		std::cout << SDL_GetError() << std::endl;
-	}
+	this->DrawTexture(message, NULL, &messageRect, angle);
 	SDL_DestroyTexture(message);
 }
 

@@ -13,6 +13,7 @@ public:
 	const int getMidY() const;
 	int getWidth() const;
 	int getHeight() const;
+	void SetCoordinates(const Point & value);
 	int GetId() const;
 	const Point &GetCoordinates() const;
 	const SDL_Rect GetRect() const;

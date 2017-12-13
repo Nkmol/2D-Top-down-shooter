@@ -1,4 +1,4 @@
-#include <algorithm>
+//#include <algorithm>
 #include "Game.h"
 #include "PlayingState.h"
 #include "MenuState.h"

@@ -103,6 +103,6 @@ shared_ptr<Level> Game::GetLevel() const
 	return _level;
 }
 
-void Game::SetLevel(int levelnumber) {
-		_level = make_shared<Level>(levelnumber);
+void Game::SetLevel(int level, std::string savedGame) {
+		_level = make_shared<Level>(level, savedGame);
 }

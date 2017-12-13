@@ -22,14 +22,15 @@ class Level {
 	std::shared_ptr<Player> _player;
 	std::string _map;
 
-
+	std::string _savedGame;
 	double _levelSpeed;
 	WaveController _waveController;
-
 	std::forward_list<Wave> _waves;
 
+	void LoadLevel();
+	void LoadPlayer();
 public:
-    explicit Level(int level);
+    explicit Level(int level, const std::string savedGame);
 
     void Init();
 

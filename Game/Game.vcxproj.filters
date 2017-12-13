@@ -135,7 +135,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AIBat.h">
-	  <Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WaveController.h">
       <Filter>Header Files</Filter>

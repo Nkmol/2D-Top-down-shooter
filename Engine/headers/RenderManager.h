@@ -47,7 +47,7 @@ public:
 	/* void DrawText
 	* Draw Text on screen
 	*/
-	void DrawText(const std::string text, const int x, const int y, const int width, const int height, const double angle = 0);
+	void DrawText(const std::string text, const int x, const int y, int width, int height, const double angle = 0, const int r = 255, const int g = 255, const int b = 255);
 
 	static RenderManager& Instance();
 
@@ -58,6 +58,7 @@ private:
 	SDL_Renderer* renderer;
 	map<std::string, SDL_Surface*> sprites;
 	TTF_Font* font;
+	int fontHeight = 0;
 	static RenderManager* sInstance;
 };
 #endif //RENDERMANAGER_H

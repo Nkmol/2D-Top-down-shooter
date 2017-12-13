@@ -9,6 +9,9 @@
 #include "Point.h"
 #include "MoveableObject.h"
 #include <json.hpp>
+#include "Player.h"
+#include "Helper.h"
+#include "PhysicsManager.h"
 
 class IAIBase;
 
@@ -25,6 +28,13 @@ protected:
 	const int changeLifepoints(const int lp);
 	const int getDamage() const;
 	const int getReward() const;
+	void onBaseCollision(MoveableObject * object);
+	void onBaseCollision(GameObject * object);
+	void onCollision(MoveableObject * object);
+	void onCollision(Bullet * bullet);
+	void onCollision(EnemyBase * enemy);
+	void onCollision(Player * player);
+	void onBaseCollision(bool isWall);
 public:
 	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,

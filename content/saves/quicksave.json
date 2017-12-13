@@ -1,15 +1,16 @@
 {
+	"highestLevel": 2,
     "currentWeapon": 2,
     "lifepoints": 100,
-    "weapons": [
-        {
-            "currentBullets": 100,
-            "name": "Uzi"
-        },
+    "weapons": [        
         {
             "currentBullets": 8,
             "name": "Handgun"
         },
+		{
+            "currentBullets": 100,
+            "name": "Uzi"
+        },		
         {
             "currentBullets": 3,
             "name": "Shotgun"

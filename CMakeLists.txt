@@ -1,22 +1,25 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.9.3)
 project(Shooter)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${Shooter_SOURCE_DIR}/cmake")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wno-narrowing")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wno-narrowing -lstdc++fs") # ${LDFLAGS} -v -Wl, --verbose")
+#set(CMAKE_EXE_LINKER_FLAGS "${LDFLAGS} -v -Wl, --verbose")
+#set(CMAKE_SHARED_LINKER_FLAGS "${LDFLAGS} -v -Wl, --verbose")
+##find_package(AppKit REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(json REQUIRED)
 find_package(SDL2_ttf REQUIRED)
+#
+#message(${APPKIT_FRAMEWORK})
 
-message(${SDL2_mixer_FOUND})
 
-
-include_directories(${SDL2_TTF_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_MIXER_INCLUDE_DIR} source/headers Engine/headers Game/headers include content bin/include)
+include_directories(${Boost_INCLUDE_DIR} ${SDL2_TTF_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_MIXER_INCLUDE_DIR} source/headers Engine/headers Game/headers include content bin/include)
 
 set(SOURCE_FILES
+        bin/include/nfd.h
         Game/MenuState.cpp
         Game/AIBat.h
         Game/PlayingState.cpp
@@ -70,7 +73,6 @@ set(SOURCE_FILES
         Engine/InputManager.cpp
         Engine/Point.cpp
         Engine/AssetManager.cpp
-        Engine/Button.h
         Engine/MapManager.cpp
         Engine/Engine.cpp
         Engine/QuadTree.cpp
@@ -87,11 +89,16 @@ set(SOURCE_FILES
         Engine/headers/AssetManager.h
         Engine/headers/PhysicsManager.h
         Engine/headers/MoveableObject.h
+        Engine/headers/Button.h
+        Engine/headers/Texture.h
         Engine/headers/TickerTime.h
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
-        Engine/tmx/src/TSXParser.cpp)
+        Engine/tmx/src/TSXParser.cpp
+        Engine/headers/Button.h
+        Engine/headers/Texture.h
+        )
 add_executable(Shooter ${SOURCE_FILES})
-
-target_link_libraries(Shooter ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES})
+message(${CMAKE_SOURCE_DIR})
+target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/cmake/libs/libnfd.a)
