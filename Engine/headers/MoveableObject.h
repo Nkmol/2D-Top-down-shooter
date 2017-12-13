@@ -30,7 +30,6 @@ protected:
 	float speed, distance;
     Point _destination;
 	classType _type;
-
 public:
 	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 	virtual ~MoveableObject();
@@ -51,6 +50,8 @@ public:
 
 	classType getType();
 
+    const int getMidY(float destinationPosition) const;
+	const Point &GetDestination() const;
 	virtual void onBaseCollision(MoveableObject* object);
 	virtual void onBaseCollision(bool isWall);
 	virtual void onBaseCollision(GameObject object);

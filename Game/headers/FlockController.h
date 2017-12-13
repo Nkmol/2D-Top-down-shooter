@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <vector>
+#include <GameObject.h>
 
 class EnemyBase;
 class Player;
@@ -21,7 +22,7 @@ public:
 	FlockController();
 	~FlockController();
 	void GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos,
-	                   Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects);
+	                   Player& flockTarget, std::vector<std::shared_ptr<GameObject>>& gameObjects);
 	void DrawFlocks();
 	void UpdateFlocks(float time);
 };

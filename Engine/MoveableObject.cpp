@@ -64,3 +64,10 @@ void MoveableObject::onBaseCollision(GameObject object)
 	//hide();
 }
 
+const int MoveableObject::getMidY(float destinationPosition) const {
+    return destinationPosition + height / 2;
+}
+
+const Point &MoveableObject::GetDestination() const {
+    return _destination;
+}

@@ -22,8 +22,9 @@ public:
 
 	PhysicsManager();
 	~PhysicsManager();
-
 	static PhysicsManager& Instance();
+	const std::vector<GameObject>* collidables;
+    std::vector<reference_wrapper<const GameObject>> RetrieveNearbyGameObjects(GameObject &gameObject);
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
 
@@ -33,16 +34,12 @@ public:
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
 	void CheckQuadTreeCollision(MoveableObject * m, Point newPos);
 	const vector<GameObject>* getCollidables();
-
-
-	void UpdateQuadTree(std::vector<GameObject> &gameObjects);
 	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects);
 	const QuadTree &GetQuadTree() const;
-	std::vector<GameObject> RetrieveNearbyGameObjects(GameObject &gameObject);
 	void DrawQTree();
+
 private:
 	std::vector<shared_ptr<MoveableObject>>* objects;
-	const std::vector<GameObject>* collidables;
 	float _tileSize;
 	float _playScreenWidth;
 	float _playScreenHeight;

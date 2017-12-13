@@ -24,7 +24,7 @@ GameObject::GameObject(const std::string &spriteToken, const Point coordinates) 
 
 GameObject::GameObject()
 {
-
+	this->id = ++counter;
 }
 
 const int GameObject::getMidX() const
@@ -101,4 +101,12 @@ void GameObject::hide() {
 
 bool GameObject::isVisible() const {
 	return visible;
+}
+
+void GameObject::update(float time) {
+
+}
+
+void GameObject::incrementId() {
+	this->id = ++counter;
 }

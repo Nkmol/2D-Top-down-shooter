@@ -1,8 +1,8 @@
 #include "AIBat.h"
 
-void AIBat::Update(EnemiesType& others, int time)
+void AIBat::Update(int time)
 {
-	AIDefault::Update(others, time);
+	AIDefault::Update(time);
 	if (_currentUpdateCounter % 50 == 0)
 	{
 		_weightMultiplier = rand() % 100 + 10;
@@ -38,4 +38,21 @@ void AIBat::GoTarget()
 std::unique_ptr<IAIBase> AIBat::Clone() const
 {
 	return make_unique<AIBat>(static_cast<AIBat const &>(*this));
+}
+
+void AIBat::NeighbourRelatedBehaviour(const GameObject *other) {
+	if(!_isLeader) {
+		Cohese(other);
+		//apply cohesion force
+		massCenter = massCenter / massSize;
+		Seperate(other);
+	}
+}
+
+void AIBat::NonNeighbourRelatedBehaviour() {
+	if(_isLeader) {
+		GoTarget();
+	}else{
+		Align();
+	}
 }

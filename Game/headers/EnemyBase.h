@@ -50,6 +50,7 @@ public:
 	//getters
 	const Point& GetDestinationPoint() const;
 	IAIBase& GetBehaviour() const;
+	Point GetPointToTarget();
 
 	//setters
 	void SetDestination(const Point& point);

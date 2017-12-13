@@ -132,6 +132,10 @@ void Level::HandleEvents(Event event) {
 
 void Level::Update(float time) {
 	const auto accSpeed = time *_levelSpeed;
+	PhysicsManager::Instance().UpdateQuadTree(_objs);
+    for (auto &&obj : _objs) {
+        obj->update(accSpeed);
+    }
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
@@ -143,9 +147,6 @@ void Level::Update(float time) {
 		_player->SetHighestLevel(_level + 1);
 		std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
 		cin.get();
-	}
-	for (auto &&obj : _npcs) {
-		obj->update(accSpeed);
 	}
 	auto it(std::remove_if(_npcs.begin(), _npcs.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
 	_npcs.erase(it, _npcs.end());
@@ -169,8 +170,8 @@ void Level::Draw() {
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
-
-	//PhysicsManager::Instance().DrawQTree();
+//
+//	PhysicsManager::Instance().DrawQTree();
 }
 
 void from_json(const nlohmann::json& j, Level& value)
