@@ -10,11 +10,11 @@
 #include "vector"
 class QuadTree {
 private:
-    int MAX_OBJECTS = 50, MAX_LEVEL = 100, level;
+    int MAX_OBJECTS = 1, MAX_LEVEL = 4, level;
     std::vector<std::reference_wrapper<const GameObject>> objects;
     SDL_Rect bounds;
     std::vector<QuadTree> nodes;
-    int getIndex(SDL_Rect objectBounds) const;
+    std::vector<int> getIndex(SDL_Rect objectBounds) const;
 
 public:
     QuadTree(int level, SDL_Rect bounds);

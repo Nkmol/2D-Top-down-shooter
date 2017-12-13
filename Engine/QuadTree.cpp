@@ -7,7 +7,13 @@
 #include "QuadTree.h"
 using namespace std;
 QuadTree::QuadTree(int level, SDL_Rect bounds) : level(level), bounds(bounds) {
+//    int woffset = bounds.w/4;
+//    int hoffset = bounds.h/4;
 
+//    this->bounds.x -= woffset;
+//    this->bounds.y -= hoffset;
+//    this->bounds.w += woffset*2;
+//    this->bounds.h += hoffset*2;
 }
 
 void QuadTree::ClearNode(){
@@ -33,37 +39,41 @@ void QuadTree::CreateSubNodes() {
 
 QuadTree::QuadTree(int level, int x, int y, int w, int h) : level(level){
     this->bounds = SDL_Rect();
-    bounds.x = x;
-    bounds.y = y;
-    bounds.w = w;
-    bounds.h = h;
+    int woffset = w/4;
+    int hoffset = h/4;
+    bounds.x = x-woffset;
+    bounds.y = y-hoffset;
+    bounds.w = w+(woffset*2);
+    bounds.h = h+(hoffset*2);
 }
 
-int QuadTree::getIndex(SDL_Rect objectBounds) const {
-    int index = -1;
+std::vector<int> QuadTree::getIndex(SDL_Rect objectBounds) const {
+    std::vector<int> indexes;
 
     double midY = this->bounds.y + (bounds.h/2);
     double midX = this->bounds.x + (bounds.w/2);
 
-    bool topQuad = (objectBounds.y < midY && (objectBounds.y + objectBounds.h) < midY);
-    bool botQuad = (objectBounds.y > midY);
+    bool topQuad = (objectBounds.y < midY);
+    bool botQuad = ((objectBounds.y + objectBounds.h) > midY);
 
     //object past in linker kwadraten
-    if(objectBounds.x < midX && (objectBounds.x + objectBounds.w) < midX) {
+    if(objectBounds.x < midX) {
         if(topQuad){
-            index = 0;
-        }else if(botQuad){
-            index = 2;
+            indexes.emplace_back(0);
+        }
+        if(botQuad){
+            indexes.emplace_back(2);
         }
     //object past in rechter kwadraten
-    }else {
+    } if((objectBounds.x + objectBounds.w) > midX) {
         if(topQuad){
-            index = 1;
-        }else if(botQuad){
-            index = 3;
+            indexes.emplace_back(1);
+        }
+        if(botQuad){
+            indexes.emplace_back(3);
         }
     }
-    return index;
+    return indexes;
 }
 
 //void QuadTree::Insert(std::reference_wrapper<GameObject> gameObject) {
@@ -93,7 +103,13 @@ int QuadTree::getIndex(SDL_Rect objectBounds) const {
 void QuadTree::Insert(std::reference_wrapper<const GameObject> gameObject) {
     SDL_Rect rect = gameObject.get().GetRect();
     if(this->nodes.size() != 0) {
-        int index = getIndex(rect);
+        vector<int> indexes = getIndex(rect);
+        if(!indexes.empty()) {
+            for (int &index: indexes) {
+                nodes.at(index).Insert(gameObject);
+            }
+            return;
+        }
     }
     objects.push_back(gameObject);
     if(objects.size() > MAX_OBJECTS && level < MAX_LEVEL){
@@ -103,21 +119,35 @@ void QuadTree::Insert(std::reference_wrapper<const GameObject> gameObject) {
 
         int i = 0;
         while(i < objects.size()) {
-            int index = getIndex(objects.at(i).get().GetRect());
-            if (index != -1) {
-                this->nodes.at(index).Insert(objects.at(i));
-                this->objects.erase(objects.begin() + i);
-            } else {
+            if(objects.size() == 0){
+                cout << "weird" << endl;
+            }
+            bool didAdd = false;
+            vector<int> indexes = getIndex(rect);
+            if(!indexes.empty()) {
+                for (int &index: indexes) {
+                    this->nodes.at(index).Insert(objects.at(i));
+                    didAdd = true;
+                }
+                if(didAdd){
+                    this->objects.erase(objects.begin() + i);
+                }
+            }else{
                 i++;
-            };
+            }
         }
     }
 }
 
-std::vector<std::reference_wrapper<const GameObject>> QuadTree::Retrieve(SDL_Rect rect) const {
-    int index = this->getIndex(rect);
-    if (index != -1 && this->nodes.size() != 0) {
-        return nodes[index].Retrieve(rect);
+vector<reference_wrapper<const GameObject>> QuadTree::Retrieve(SDL_Rect rect) const {
+    vector<int> indexes = this->getIndex(rect);
+    if (!indexes.empty() && this->nodes.size() != 0) {
+        vector<reference_wrapper<const GameObject>> resultObjects;
+        for(int& index: indexes){
+            vector<reference_wrapper<const GameObject>> nodeObjects = this->nodes.at(index).Retrieve(rect);
+            resultObjects.insert(resultObjects.end(), nodeObjects.begin(), nodeObjects.end());
+        }
+        return resultObjects;
         //mergen is tijdrovend!
         //currentNodesObjects.reserve( currentNodesObjects.size() + otherNodessObjects.size() );
         //currentNodesObjects.insert(currentNodesObjects.end(), otherNodesObjects.begin(), otherNodesObjects.end());
@@ -127,12 +157,20 @@ std::vector<std::reference_wrapper<const GameObject>> QuadTree::Retrieve(SDL_Rec
 }
 
 void QuadTree::Draw(){
-    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 255, 0, 0, 50);
     SDL_RenderDrawRect(RenderManager::Instance().GetRenderer(), &bounds);
-    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 0, 0, 0, 0);
-    for(int i = 0; i < nodes.size(); i++){
-        nodes.at(i).Draw();
+
+    RenderManager::Instance().DrawText(to_string(this->objects.size()), this->bounds.x + this->bounds.w / 2,
+                                       this->bounds.y + this->bounds.h / 2, 30, 15, 0);
+    if(level == 0) {
+        double midY = this->bounds.y + (bounds.h / 2);
+        SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 255, 0, 0, 255);
+        SDL_RenderDrawLine(RenderManager::Instance().GetRenderer(), 0, midY, 1000, midY);
     }
+    for(int i = 0; i < nodes.size(); i++){
+       nodes.at(i).Draw();//nodes.at(2).Draw();
+    }
+    SDL_SetRenderDrawColor(RenderManager::Instance().GetRenderer(), 0, 0, 0, 0);
 }
 
 QuadTree::QuadTree() = default;
