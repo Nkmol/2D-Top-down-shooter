@@ -66,7 +66,7 @@ const string &MoveableObject::GetState() const {
     return _state;
 }
 
-void MoveableObject::SetState(const string &_state) {
+void MoveableObject::ChangeState(const string &_state) {
     this->_state = _state;
     this->currentSprite = -1; // will be 0 on animation
 }
@@ -91,7 +91,7 @@ int MoveableObject::GetNextSpriteIndex() {
     return ++currentSprite;
 }
 
-string MoveableObject::getAnimationToken() {
+string MoveableObject::GetAnimationToken() {
     return this->spriteToken;
 }
 

@@ -13,7 +13,7 @@ Player::Player(const std::string &filePath, const float x, const float y)
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
         : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
     _type = PLAYER;
-    this->SetState("idle");
+    this->ChangeState("idle");
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -109,10 +109,10 @@ void Player::Hit(int damage) {
 
 void Player::HandleAnimationFinished() {
     MoveableObject::HandleAnimationFinished();
-    this->SetState("idle");
+    this->ChangeState("idle");
 }
 
-void Player::SetState(const string &_state) {
+void Player::ChangeState(const string &_state) {
     if (_state == "idle") {
         IdleState();
     }
@@ -128,7 +128,7 @@ void Player::SetState(const string &_state) {
 
 
 void Player::IdleState() {
-    MoveableObject::SetState("idle");
+    MoveableObject::ChangeState("idle");
     frames = 20;
     animationTimer = 0.05f; // fix;
 }
@@ -136,7 +136,7 @@ void Player::IdleState() {
 
 void Player::ShootState() {
     if (getWeapon()->hasBullets()) {
-        MoveableObject::SetState("shoot");
+        MoveableObject::ChangeState("shoot");
         frames = 3;
         animationTimer = 0.05f;
     }
@@ -145,7 +145,7 @@ void Player::ShootState() {
 void Player::ReloadState() {
     if (this->getWeapon()->CanReload()) {
 
-        MoveableObject::SetState("reload");
+        MoveableObject::ChangeState("reload");
 
         this->getWeapon()->Reload();
         frames = 20;
@@ -159,7 +159,8 @@ void Player::ReloadState() {
     }
 }
 
-string Player::getAnimationToken() {
+// a player doesnot have his own image, it's based on the weapon.
+string Player::GetAnimationToken() {
     return this->spriteToken + "/" + this->getWeapon()->getName();
 }
 

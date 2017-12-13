@@ -65,12 +65,12 @@ public:
 
     virtual void onBaseCollision(GameObject object);
 
-    virtual string getAnimationToken();
+    virtual string GetAnimationToken();
 
 
     virtual void HandleAnimationFinished();
 
-    virtual void SetState(const string &_state);
+    virtual void ChangeState(const string &_state);
 
 
     const string &GetState() const;

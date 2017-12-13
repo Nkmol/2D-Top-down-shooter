@@ -32,7 +32,7 @@ void AnimationManager::update(MoveableObject &object, double time) {
 
 // Creates a token like: soldier/handgun/idle/0
 string AnimationManager::GenerateToken(MoveableObject &object) const {
-    auto token = object.getAnimationToken();                        // eg: soldier/handgun
+    auto token = object.GetAnimationToken();                        // eg: soldier/handgun
     token.append("/");
     token.append(object.GetState());                                // eg: soldier/handgun/idle
     token.append("/");

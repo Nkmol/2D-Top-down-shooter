@@ -60,9 +60,9 @@ public:
 
     void HandleAnimationFinished() override;
 
-    void SetState(const string &_state) override;
+    void ChangeState(const string &_state) override;
 
-    string getAnimationToken() override;
+    string GetAnimationToken() override;
 
     void ReloadState();
 
