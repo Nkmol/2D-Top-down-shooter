@@ -10,7 +10,7 @@
 #include "vector"
 class QuadTree {
 private:
-    int MAX_OBJECTS = 70, MAX_LEVEL = 4, level;
+    int MAX_OBJECTS = 50, MAX_LEVEL = 6, level;
     std::vector<std::reference_wrapper<GameObject>> objects;
     SDL_Rect bounds;
     std::vector<QuadTree> nodes;
