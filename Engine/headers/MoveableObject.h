@@ -13,12 +13,11 @@
 #include "Point.h"
 #include <AssetManager.h>
 
-enum classType
-{
-	MOVEABLEOBJECT,
-	BULLET,
-	ENEMY,
-	PLAYER
+enum classType {
+    MOVEABLEOBJECT,
+    BULLET,
+    ENEMY,
+    PLAYER
 };
 
 class MoveableObject : public GameObject {
@@ -27,13 +26,14 @@ private:
     std::map<Point, int> directionAngles;
 protected:
 
-	float speed, distance;
+    float speed, distance;
     Point _destination;
-	classType _type;
+    classType _type;
 
 public:
-	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
-	virtual ~MoveableObject();
+    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+
+    virtual ~MoveableObject();
 
     virtual void draw();
 
@@ -41,19 +41,47 @@ public:
 
     void stopMove();
 
-	const int getPredictionMidX(float destinationPosition) const;
+    const int getPredictionMidX(float destinationPosition) const;
 
-	const int getMidX() const;
+    const int getMidX() const;
 
-	const int getMidY() const;
+    const int getMidY() const;
 
-	const int getPredictionMidY(float destinationPosition) const;
+    const int getPredictionMidY(float destinationPosition) const;
 
-	classType getType();
+    classType getType();
 
-	virtual void onBaseCollision(MoveableObject* object);
-	virtual void onBaseCollision(bool isWall);
-	virtual void onBaseCollision(GameObject object);
+    virtual void onBaseCollision(MoveableObject *object);
+
+    virtual void onBaseCollision(bool isWall);
+
+    virtual void onBaseCollision(GameObject object);
+
+    virtual string getAnimationToken();
+
+    const string &GetState() const;
+
+    virtual void HandleAnimationFinished();
+
+    void SetFrames(int _frames);
+
+    void SetAnimationTimer(float animationTimer);
+
+    float getAnimationTimer() const;
+
+    virtual void SetState(const string &_state);
+
+    bool IsReadyForAnimation() const;
+
+    void ChangeSprite(const std::string &spriteToken);
+
+    void setCurrentSpriteIndex(int index);
+
+    int GetNextSprite();
+
+    bool AnimationFinished();
+
+    void DecreaseAnimationTimer(float by);
 
 };
 
