@@ -21,7 +21,7 @@ public:
 
     void update(MoveableObject &object, double time);
 
-    string GenerateToken(MoveableObject &object) const;
+    string GenerateToken(MoveableObject &object, const int sprite) const;
 };
 
 

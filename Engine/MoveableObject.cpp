@@ -87,7 +87,7 @@ void MoveableObject::ChangeSprite(const std::string &spriteToken) {
     _sprite = AssetManager::Instance().LoadTexture(spriteToken);
 }
 
-int MoveableObject::GetNextSpriteIndex() {
+int MoveableObject::NextSpriteIndex() {
     return ++currentSprite;
 }
 

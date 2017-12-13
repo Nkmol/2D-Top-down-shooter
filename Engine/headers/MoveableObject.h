@@ -75,7 +75,7 @@ public:
 
     const string &GetState() const;
 
-    int GetNextSpriteIndex();
+    int NextSpriteIndex();
 
     bool IsAnimationFinished();
 
