@@ -85,7 +85,7 @@ void Level::HandleEvents(Event event) {
     }
 
     if (inputManager.IsMouseClicked(event)) {
-        _player->SetState("shoot");
+        _player->ChangeState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objsNoEnemies.emplace_back(bullet);
     }
@@ -106,7 +106,7 @@ void Level::HandleEvents(Event event) {
             std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
             o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
         } else if (inputManager.IsKeyDown(event, "R")) {
-            _player->SetState("reload");
+            _player->ChangeState("reload");
         }
     }
 
