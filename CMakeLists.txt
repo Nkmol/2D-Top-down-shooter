@@ -98,4 +98,4 @@ set(SOURCE_FILES
         Engine/tmx/src/TSXParser.cpp)
 add_executable(Shooter ${SOURCE_FILES})
 message(${CMAKE_SOURCE_DIR})
-target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/bin/lib/x86/libnfd.a)
+target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/cmake/libs/libnfd.a)
