@@ -15,26 +15,21 @@ AnimationManager &AnimationManager::Instance() {
 
 void AnimationManager::update(MoveableObject &object, double time) {
 
-    cout << object.GetSpriteToken() << endl;
-    // just working for the player/soldier
-    std::size_t found = object.GetSpriteToken().find("soldier");
-    if (found != std::string::npos) {
-        object.DecreaseAnimationTimer(time);
-
-        if (object.IsReadyForAnimation()) {
-            int nextSprite = object.GetNextSprite();
-
-            if (object.AnimationFinished()) {
-                object.HandleAnimationFinished();
-            } else {
-                auto token = this->GenerateToken(object, nextSprite);
-                object.ChangeSprite(token);
-                object.SetAnimationTimer(object.tempAnimationTimer); // todo: fix
-            }
-
-        }
-    }
-
+    cout << this->GenerateToken(object,0) << endl;
+//    object.DecreaseAnimationTimer(time);
+//
+//    if (object.IsReadyForAnimation()) {
+//        int nextSprite = object.GetNextSprite();
+//
+//        if (object.AnimationFinished()) {
+//            object.HandleAnimationFinished();
+//        } else {
+//            auto token = this->GenerateToken(object, nextSprite);
+//            object.ChangeSprite(token);
+//            object.SetAnimationTimer(object.tempAnimationTimer); // todo: fix
+//        }
+//
+//    }
 }
 
 // Creates a token like: soldier-rifle-idle-0
@@ -42,7 +37,7 @@ void AnimationManager::update(MoveableObject &object, double time) {
 // GetState = idle
 // sprite = 0
 string AnimationManager::GenerateToken(MoveableObject &object, const int sprite) const {
-    auto token = object.getAnimationToken() + "-" + object.GetState() + "-";
+    auto token = object.GetSpriteToken() + "/" + object.GetState() + "-";
     return token.append(to_string(sprite));
 }
 

@@ -114,3 +114,33 @@ void Player::Hit(int damage) {
 
 	}
 }
+
+void Player::HandleAnimationFinished() {
+	MoveableObject::HandleAnimationFinished();
+	this->SetState("idle");
+}
+
+void Player::SetState(const string &_state) {
+	// so the state will not change when
+	MoveableObject::SetState(_state);
+
+	if (_state == "idle") {
+		_frames = 20;
+		tempAnimationTimer = 0.05f;
+	}
+
+	if (_state == "shoot") {
+		_frames = 3;
+		tempAnimationTimer = 0.05f;
+	}
+
+	if (_state == "reload") {
+		this->getWeapon()->Reload();
+		_frames = 20;
+		tempAnimationTimer = 0.02f;
+	}
+}
+
+string Player::getAnimationToken() {
+	return this->spriteToken + "/" + this->getWeapon()->getName();
+}
