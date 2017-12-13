@@ -110,3 +110,11 @@ void GameObject::update(float time) {
 void GameObject::incrementId() {
 	this->id = ++counter;
 }
+
+void GameObject::setNearbyObjects(std::vector<reference_wrapper<GameObject>> &nearbyObjects) {
+	this->nearbyObjects = nearbyObjects;
+}
+
+const std::vector<reference_wrapper<GameObject>> &GameObject::getNearbyObjects() const {
+	return nearbyObjects;
+}

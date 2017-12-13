@@ -9,7 +9,7 @@ MapManager& MapManager::Instance()
 	return sInstance;
 }
 
-const std::vector<GameObject>* MapManager::getCollidables() const
+std::vector<GameObject>* MapManager::getCollidables()
 {
 	return &collidables;
 }

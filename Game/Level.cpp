@@ -1,3 +1,4 @@
+#include <chrono>
 #include "Level.h"
 #include "Uzi.h"
 #include "Handgun.h"
@@ -136,12 +137,13 @@ void Level::Update(float time) {
     for (auto &&obj : _objs) {
         obj->update(accSpeed);
     }
+
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+
 	auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(), [](shared_ptr<MoveableObject> & o) { return !o->isVisible(); }));
 	_objsNoEnemies.erase(iter, _objsNoEnemies.end());
-
 
 	if (!_waveController.Update(accSpeed, _objs)) {
 		_player->SetHighestLevel(_level + 1);

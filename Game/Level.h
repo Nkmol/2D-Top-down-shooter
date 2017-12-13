@@ -21,7 +21,6 @@ class Level {
     std::vector<std::shared_ptr<GameObject>> _loot;
 	std::shared_ptr<Player> _player;
 	std::string _map;
-
 	std::string _savedGame;
 	double _levelSpeed;
 	WaveController _waveController;

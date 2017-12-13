@@ -100,7 +100,7 @@ std::vector<int> QuadTree::getIndex(SDL_Rect objectBounds) const {
 //    }
 //}
 
-void QuadTree::Insert(std::reference_wrapper<const GameObject> gameObject) {
+void QuadTree::Insert(std::reference_wrapper<GameObject> gameObject) {
     SDL_Rect rect = gameObject.get().GetRect();
     if(this->nodes.size() != 0) {
         vector<int> indexes = getIndex(rect);
@@ -136,24 +136,31 @@ void QuadTree::Insert(std::reference_wrapper<const GameObject> gameObject) {
                 i++;
             }
         }
+    }else{
+        if(gameObject.get().GetTeamId() != -100) { // -100 == collidables
+            gameObject.get().setNearbyObjects(objects);
+            for(auto object : objects){
+                object.get().setNearbyObjects(objects);
+            }
+        }
     }
 }
 
-vector<reference_wrapper<const GameObject>> QuadTree::Retrieve(SDL_Rect rect) const {
+vector<reference_wrapper<GameObject>> QuadTree::Retrieve(SDL_Rect rect) {
     vector<int> indexes = this->getIndex(rect);
     if (!indexes.empty() && this->nodes.size() != 0) {
-        vector<reference_wrapper<const GameObject>> resultObjects;
+        vector<reference_wrapper<GameObject>> resultObjects;
         for(int& index: indexes){
-            vector<reference_wrapper<const GameObject>> nodeObjects = this->nodes.at(index).Retrieve(rect);
+            vector<reference_wrapper<GameObject>> nodeObjects = this->nodes.at(index).Retrieve(rect);
             resultObjects.insert(resultObjects.end(), nodeObjects.begin(), nodeObjects.end());
         }
         return resultObjects;
         //mergen is tijdrovend!
         //currentNodesObjects.reserve( currentNodesObjects.size() + otherNodessObjects.size() );
         //currentNodesObjects.insert(currentNodesObjects.end(), otherNodesObjects.begin(), otherNodesObjects.end());
-    }else{
-        return objects;
     }
+    return objects;
+
 }
 
 void QuadTree::Draw(){

@@ -17,7 +17,7 @@ public:
 	MapManager(MapManager const&) = delete;
 	void operator=(MapManager const&) = delete;
 	static MapManager& Instance();
-	const std::vector<GameObject>* getCollidables() const;
+	std::vector<GameObject>* getCollidables();
 
 	void Init(const std::string input);
 	void Render();

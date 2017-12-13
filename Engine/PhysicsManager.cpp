@@ -164,7 +164,7 @@ void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _obj
 
 
 void PhysicsManager::CheckQuadTreeCollision(MoveableObject* m, Point newPos) {
-	std::vector<reference_wrapper<const GameObject>> nearbyObjects = RetrieveNearbyGameObjects(*m);
+	std::vector<reference_wrapper<GameObject>> nearbyObjects = RetrieveNearbyGameObjects(*m);
 
 	auto midX = m->getPredictionMidX(newPos.x);
 	auto midY = m->getPredictionMidY(newPos.y);
@@ -197,12 +197,12 @@ const vector<GameObject>* PhysicsManager::getCollidables()
 void PhysicsManager::UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects) {
 	this->_quadtree.ClearNode();
 	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
-	for (const auto& gameObject: *MapManager::Instance().getCollidables()) {
+	for (auto& gameObject: *MapManager::Instance().getCollidables()) {
 		auto r = std::ref(gameObject);
 		_quadtree.Insert(r);
 	}
-	for (const auto& gameObject: gameObjects) {
-		const GameObject* gameObjectC = gameObject.get();
+	for (auto& gameObject: gameObjects) {
+        GameObject* gameObjectC = gameObject.get();
 		auto r = std::ref(*gameObjectC);
 		_quadtree.Insert(r);
 	}
@@ -216,7 +216,7 @@ void PhysicsManager::DrawQTree() {
 	this->_quadtree.Draw();
 }
 
-std::vector<reference_wrapper<const GameObject>> PhysicsManager::RetrieveNearbyGameObjects(GameObject &gameObject) {
+std::vector<reference_wrapper<GameObject>> PhysicsManager::RetrieveNearbyGameObjects(GameObject &gameObject) {
 	return this->_quadtree.Retrieve(gameObject.GetRect());
 }
 

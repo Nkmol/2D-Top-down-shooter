@@ -24,7 +24,7 @@ public:
 	~PhysicsManager();
 	static PhysicsManager& Instance();
 	const std::vector<GameObject>* collidables;
-    std::vector<reference_wrapper<const GameObject>> RetrieveNearbyGameObjects(GameObject &gameObject);
+    std::vector<reference_wrapper<GameObject>> RetrieveNearbyGameObjects(GameObject &gameObject);
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
 

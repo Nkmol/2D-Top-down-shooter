@@ -4,6 +4,7 @@
 #include "Point.h"
 #include "RenderManager.h"
 #include <SDL_render.h>
+#include <vector>
 
 class GameObject {
 public:
@@ -28,6 +29,8 @@ public:
     virtual void update(float time);
 	GameObject();
 	void incrementId();
+	void setNearbyObjects(std::vector<reference_wrapper<GameObject>> &nearbyObjects);
+
 protected:
 	int width, height, angle;
 	float radius, midX, midY;
@@ -35,7 +38,11 @@ protected:
 	bool visible;
 	SDL_Texture *_sprite;
 private:
+	std::vector<reference_wrapper<GameObject>> nearbyObjects;
+public:
+	const std::vector<reference_wrapper<GameObject>> &getNearbyObjects() const;
 
+private:
 	int id;
 	int teamId = -1;
 	static int counter;

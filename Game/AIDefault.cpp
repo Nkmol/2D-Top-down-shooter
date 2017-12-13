@@ -30,7 +30,7 @@ void AIDefault::Update(int time) {
 
 		massCenter = Point(0,0);
 		massSize = 0;
-		std::vector<reference_wrapper<const GameObject>> neighbours = PhysicsManager::Instance().RetrieveNearbyGameObjects(*_owner);
+		std::vector<reference_wrapper<GameObject>> neighbours = this->_owner->getNearbyObjects();//PhysicsManager::Instance().RetrieveNearbyGameObjects(*_owner);
 		NonNeighbourRelatedBehaviour();
 		for (auto& other: neighbours) {
 			NeighbourRelatedBehaviour(&other.get());
@@ -65,12 +65,6 @@ void AIDefault::Align(const GameObject *other) {
 
 void AIDefault::Cohese(const GameObject *other) {
 	if (other->GetId() != this->_owner->GetId()) {
-		try {
-			const auto *p = dynamic_cast<const EnemyBase*>(other);
- } catch (const std::exception& e) {
-
-			cout << e.what() << endl;
-		}
 		const auto *p = dynamic_cast<const EnemyBase*>(other);
 		if(p) {
 			const auto &oCoordinates = other->GetCoordinates();
