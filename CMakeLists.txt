@@ -78,6 +78,8 @@ set(SOURCE_FILES
         Engine/QuadTree.cpp
         Engine/QuadTree.h
         Engine/AudioManager.cpp
+        Engine/AnimationManager.cpp
+        Engine/AnimationManager.h
         Engine/headers/RenderManager.h
         Engine/headers/Engine.h
         Engine/headers/MapManager.h

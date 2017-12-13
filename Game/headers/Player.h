@@ -16,7 +16,7 @@ class Point;
 
 class Player : public MoveableObject {
 
-    std::vector<Weapon> weapons;
+    vector<Weapon> weapons;
     unsigned currentWeapon;
 
 private:

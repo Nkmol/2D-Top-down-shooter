@@ -98,3 +98,8 @@ void GameObject::hide() {
 bool GameObject::isVisible() const {
     return visible;
 }
+
+string GameObject::GetSpriteToken() const {
+    return this->spriteToken;
+}
+

@@ -36,6 +36,8 @@ protected:
     int currentSprite = 0;
 
 public:
+    float tempAnimationTimer = 0;
+
     MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 
     virtual ~MoveableObject();
