@@ -15,30 +15,29 @@ AnimationManager &AnimationManager::Instance() {
 
 void AnimationManager::update(MoveableObject &object, double time) {
 
-    cout << this->GenerateToken(object,0) << endl;
-//    object.DecreaseAnimationTimer(time);
-//
-//    if (object.IsReadyForAnimation()) {
-//        int nextSprite = object.GetNextSprite();
-//
-//        if (object.AnimationFinished()) {
-//            object.HandleAnimationFinished();
-//        } else {
-//            auto token = this->GenerateToken(object, nextSprite);
-//            object.ChangeSprite(token);
-//            object.SetAnimationTimer(object.tempAnimationTimer); // todo: fix
-//        }
-//
-//    }
+    object.DecreaseAnimationTimer(time);
+
+    if (object.IsReadyForAnimation()) {
+        int nextSprite = object.GetNextSpriteIndex();
+
+        if (object.IsAnimationFinished()) {
+            object.HandleAnimationFinished();
+            return;
+        }
+
+        auto token = GenerateToken(object, nextSprite);
+        object.ChangeSprite(token);
+        object.ResetAnimationTimer();
+    }
 }
 
-// Creates a token like: soldier-rifle-idle-0
-// GetAnimationToken = soldier-rifle
-// GetState = idle
-// sprite = 0
+// Creates a token like: soldier/handgun/idle/0
 string AnimationManager::GenerateToken(MoveableObject &object, const int sprite) const {
-    auto token = object.GetSpriteToken() + "/" + object.GetState() + "-";
-    return token.append(to_string(sprite));
+    auto token = object.getAnimationToken();    // eg: soldier/handgun
+    token.append("/");
+    token.append(object.GetState());            // eg: soldier/handgun/idle
+    token.append("/");
+    return token.append(to_string(sprite));     // eg: soldier/handgun/idle/0
 }
 
 

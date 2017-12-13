@@ -1,6 +1,6 @@
-#include <Uzi.h>
+#include <Rifle.h>
 #include "Level.h"
-#include "Uzi.h"
+#include "Rifle.h"
 #include "Handgun.h"
 #include "Shotgun.h"
 #include "Bullet.h"
@@ -49,7 +49,7 @@ void Level::LoadLevel() {
 
 void Level::LoadPlayer() {
     auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2 + 10);
-    player->addWeapons({Handgun(), Uzi(), Shotgun()});
+    player->addWeapons({Handgun(), Rifle(), Shotgun()});
     player->changeWeapon(0);
 
     _player = player;
@@ -85,6 +85,7 @@ void Level::HandleEvents(Event event) {
     }
 
     if (inputManager.IsMouseClicked(event)) {
+        _player->SetState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objsNoEnemies.emplace_back(bullet);
     }
@@ -105,7 +106,7 @@ void Level::HandleEvents(Event event) {
             std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
             o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
         } else if (inputManager.IsKeyDown(event, "R")) {
-            _player->getWeapon()->SetCurrentBullets(_player->getWeapon()->totalBullets());
+            _player->SetState("reload");
         }
     }
 
@@ -119,8 +120,8 @@ void Level::HandleEvents(Event event) {
 
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
-    auto &animationManager = AnimationManager::Instance();
-    animationManager.update(*_player, accSpeed);
+
+    AnimationManager::Instance().update(*_player, accSpeed);
 
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);

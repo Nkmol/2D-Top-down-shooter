@@ -63,6 +63,12 @@ public:
     void SetState(const string &_state) override;
 
     string getAnimationToken() override;
+
+    void ReloadState();
+
+    void ShootState();
+
+    void IdleState();
 };
 
 

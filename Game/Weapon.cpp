@@ -56,6 +56,10 @@ void Weapon::Reload() {
     this->shooted = 0;
 }
 
+bool Weapon::CanReload() const {
+    return shooted > 0;
+}
+
 void to_json(nlohmann::json &j, const Weapon &value) {
     j = nlohmann::json {
             {"name",           value.getName()},

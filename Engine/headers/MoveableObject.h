@@ -24,6 +24,7 @@ class MoveableObject : public GameObject {
 
 private:
     std::map<Point, int> directionAngles;
+
 protected:
 
     float speed, distance;
@@ -31,12 +32,12 @@ protected:
     classType _type;
 
     std::string _state;
-    int _frames;
-    float animationTimer;
+    int frames;
+    float currentAnimationTimer;
+    float animationTimer = 0;
     int currentSprite = 0;
 
 public:
-    float tempAnimationTimer = 0;
 
     MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 
@@ -66,29 +67,25 @@ public:
 
     virtual string getAnimationToken();
 
-    const string &GetState() const;
 
     virtual void HandleAnimationFinished();
 
-    void SetFrames(int _frames);
-
-    void SetAnimationTimer(float animationTimer);
-
-    float getAnimationTimer() const;
-
     virtual void SetState(const string &_state);
+
+
+    const string &GetState() const;
+
+    int GetNextSpriteIndex();
+
+    bool IsAnimationFinished();
 
     bool IsReadyForAnimation() const;
 
     void ChangeSprite(const std::string &spriteToken);
 
-    void setCurrentSpriteIndex(int index);
+    void DecreaseAnimationTimer(double by);
 
-    int GetNextSprite();
-
-    bool AnimationFinished();
-
-    void DecreaseAnimationTimer(float by);
+    void ResetAnimationTimer();
 
 };
 

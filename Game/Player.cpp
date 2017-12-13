@@ -6,15 +6,14 @@
 #include "Bullet.h"
 
 Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y})
-{
-	_type = PLAYER;
+        : Player(filePath, Point{x, y}) {
+    _type = PLAYER;
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-	: MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp)
-{
-	_type = PLAYER;
+        : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
+    _type = PLAYER;
+    this->SetState("idle");
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -24,21 +23,19 @@ void Player::addWeapons(std::vector<Weapon> wp) {
 }
 
 void Player::SetWeapons(const std::vector<Weapon> wp) {
-	weapons = wp;
+    weapons = wp;
 }
 
-int Player::getCurrentWeaponIndex() const
-{
-	return currentWeapon;
+int Player::getCurrentWeaponIndex() const {
+    return currentWeapon;
 }
 
 void Player::changeWeapon(const unsigned index) {
-	if(index >= weapons.size() || index < 0)
-	{
-		return;
-	}
+    if (index >= weapons.size() || index < 0) {
+        return;
+    }
 
-	currentWeapon = index;
+    currentWeapon = index;
 }
 
 Bullet Player::shoot() {
@@ -51,9 +48,9 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
 
-	const auto newPostition = _coordinates + (_destination * speed * time);
-	PhysicsManager::Instance().checkWallCollision(this, newPostition);
-	MoveableObject::update(time);
+    const auto newPostition = _coordinates + (_destination * speed * time);
+    PhysicsManager::Instance().checkWallCollision(this, newPostition);
+    MoveableObject::update(time);
 
 }
 
@@ -70,77 +67,99 @@ Weapon *Player::getWeapon() {
     return &weapons[currentWeapon];
 }
 
-const vector<Weapon>& Player::getWeapons() const
-{
-	return weapons;
+const vector<Weapon> &Player::getWeapons() const {
+    return weapons;
 }
 
-void to_json(nlohmann::json& j, const Player& value)
-{
-	j = nlohmann::json{
-		{ "lifepoints", value.getLifepoints() },
-		{ "highestLevel", value.GetHighestLevel() },
-		{ "weapons",  value.getWeapons() },
-		{ "currentWeapon", value.getCurrentWeaponIndex() }
-	};
+void to_json(nlohmann::json &j, const Player &value) {
+    j = nlohmann::json{
+            {"lifepoints",    value.getLifepoints()},
+            {"highestLevel",  value.GetHighestLevel()},
+            {"weapons",       value.getWeapons()},
+            {"currentWeapon", value.getCurrentWeaponIndex()}
+    };
 }
 
-void from_json(const nlohmann::json& j, Player& value)
-{
-	value.changeLifepoints(j.at("lifepoints").get<int>());
-	value.changeWeapon(j.at("currentWeapon").get<int>());
-	value.SetHighestLevel(j.at("highestLevel").get<int>());
+void from_json(const nlohmann::json &j, Player &value) {
+    value.changeLifepoints(j.at("lifepoints").get<int>());
+    value.changeWeapon(j.at("currentWeapon").get<int>());
+    value.SetHighestLevel(j.at("highestLevel").get<int>());
 
-	// TODO resolve with wep id -> refactored when weapons are saved in JSON
-	auto weps = value.getWeapons();
-	auto jsonWeapons = j.at("weapons");
-	for (auto i = 0; i < jsonWeapons.size(); i++)
-	{
-		from_json(jsonWeapons[i], weps[i]);
-	}
+    // TODO resolve with wep id -> refactored when weapons are saved in JSON
+    auto weps = value.getWeapons();
+    auto jsonWeapons = j.at("weapons");
+    for (auto i = 0; i < jsonWeapons.size(); i++) {
+        from_json(jsonWeapons[i], weps[i]);
+    }
 
-	value.SetWeapons(weps);
+    value.SetWeapons(weps);
 }
 
-void Player::onBaseCollision(bool isCollidedOnWall)
-{
-	MoveableObject::stopMove();
+void Player::onBaseCollision(bool isCollidedOnWall) {
+    MoveableObject::stopMove();
 }
 
 void Player::Hit(int damage) {
-	lifepoints -= damage;
+    lifepoints -= damage;
 
-	if (lifepoints) {
+    if (lifepoints) {
 
-	}
+    }
 }
 
 void Player::HandleAnimationFinished() {
-	MoveableObject::HandleAnimationFinished();
-	this->SetState("idle");
+    MoveableObject::HandleAnimationFinished();
+    this->SetState("idle");
 }
 
 void Player::SetState(const string &_state) {
-	// so the state will not change when
-	MoveableObject::SetState(_state);
+    if (_state == "idle") {
+        IdleState();
+    }
 
-	if (_state == "idle") {
-		_frames = 20;
-		tempAnimationTimer = 0.05f;
-	}
+    if (_state == "shoot") {
+        ShootState();
+    }
 
-	if (_state == "shoot") {
-		_frames = 3;
-		tempAnimationTimer = 0.05f;
-	}
+    if (_state == "reload") {
+        ReloadState();
+    }
+}
 
-	if (_state == "reload") {
-		this->getWeapon()->Reload();
-		_frames = 20;
-		tempAnimationTimer = 0.02f;
-	}
+
+void Player::IdleState() {
+    MoveableObject::SetState("idle");
+    frames = 20;
+    animationTimer = 0.05f; // fix;
+}
+
+
+void Player::ShootState() {
+    if (getWeapon()->hasBullets()) {
+        MoveableObject::SetState("shoot");
+        frames = 3;
+        animationTimer = 0.05f;
+    }
+}
+
+void Player::ReloadState() {
+    if (this->getWeapon()->CanReload()) {
+
+        MoveableObject::SetState("reload");
+
+        this->getWeapon()->Reload();
+        frames = 20;
+
+        // todo: fix, reload for handgun is 15 frames
+        if (this->getWeapon()->getName() == "handgun") {
+            frames = 15;
+        }
+
+        animationTimer = 0.02f;
+    }
 }
 
 string Player::getAnimationToken() {
-	return this->spriteToken + "/" + this->getWeapon()->getName();
+    return this->spriteToken + "/" + this->getWeapon()->getName();
 }
+
