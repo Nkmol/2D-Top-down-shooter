@@ -145,12 +145,14 @@
     <ClCompile Include="AIBat.cpp" />
     <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="InstructionsState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -167,6 +169,7 @@
     <ClInclude Include="AIBat.h" />
     <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="CreditsState.h" />
     <ClInclude Include="FactoryBehaviour.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handgun.h" />
@@ -179,6 +182,7 @@
     <ClInclude Include="headers\Uzi.h" />
     <ClInclude Include="headers\Weapon.h" />
     <ClInclude Include="IAIBase.h" />
+    <ClInclude Include="InstructionsState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
