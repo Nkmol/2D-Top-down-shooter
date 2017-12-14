@@ -34,9 +34,10 @@ void AIDefault::Cohese(EnemiesType& others)
 {
 	Point massCenter(0, 0);
 	for (const auto& other : others) {
-		if (other.get() != _owner) {
+		const auto shOther = other.lock();
+		if (shOther.get() != _owner) {
 
-			const auto& oCoordinates = other->GetCoordinates();
+			const auto& oCoordinates = shOther->GetCoordinates();
 			massCenter += oCoordinates;
 		}
 	}
@@ -55,9 +56,10 @@ void AIDefault::Seperate(EnemiesType& others)
 	auto& coordinates = _owner->GetCoordinates();
 
 	for (const auto& other : others) {
-		if (other.get() != _owner) {
-			const auto& oWeight = other->getWidth() * other->getHeight() * _weightMultiplier;
-			const auto& oCoordinates = other->GetCoordinates();
+		const auto shOther = other.lock();
+		if (shOther.get() != _owner) {
+			const auto& oWeight = shOther->getWidth() * shOther->getHeight() * _weightMultiplier;
+			const auto& oCoordinates = shOther->GetCoordinates();
 			const Point squared((oCoordinates.x - coordinates.x) * (oCoordinates.x - coordinates.x),
 				(oCoordinates.y - coordinates.y) * (oCoordinates.y - coordinates.y));
 			const auto squareDist = squared.x + squared.y;

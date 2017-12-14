@@ -58,7 +58,7 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::UpdatePosition(std::vector<shared_ptr<EnemyBase>>& others, const float time)
+void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time)
 {
 	_behaviour->Update(others, time);
 
