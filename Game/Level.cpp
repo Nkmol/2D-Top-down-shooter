@@ -125,18 +125,9 @@ void Level::Update(float time) {
 
     AnimationManager::Instance().update(*_player, accSpeed);
 
-    for (auto &explosion : _explosion) {
-        AnimationManager::Instance().update(explosion, accSpeed);
-    }
-
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
-
-//    auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(),
-//                             [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
-//    _objsNoEnemies.erase(iter, _objsNoEnemies.end());
-
 
     if (!_waveController.Update(accSpeed, _objs)) {
         _player->SetHighestLevel(_level + 1);
@@ -146,20 +137,28 @@ void Level::Update(float time) {
 
     for (auto &obj : _objs) {
         if (!obj->isVisible()) {
-            auto explosion = ExplosionFactory::Instance().GetRandomExplosion(obj->GetCoordinates());
-//            auto explosion = ExplosionFactory::Instance().GetExplosion("blood-2", obj->GetCoordinates());
-            _explosion.push_back(explosion);
+            this->AddExplosion(obj->GetCoordinates());
         }
+    }
+
+    for (auto &explosion : _explosion) {
+        AnimationManager::Instance().update(explosion, accSpeed);
     }
 
     for (auto &&obj : _npcs) {
         obj->update(accSpeed);
     }
 
+    RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
-    RemoveHiddenExplosionObjects(_explosion);
+}
+
+void Level::AddExplosion(const Point &point) {
+    auto explosion = ExplosionFactory::Instance().GetRandomExplosion(point);
+//            auto explosion = ExplosionFactory::Instance().GetExplosion("blood-2", obj->GetCoordinates());
+    _explosion.push_back(explosion);
 }
 
 void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects) {

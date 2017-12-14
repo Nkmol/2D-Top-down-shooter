@@ -59,6 +59,8 @@ public:
     void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
 
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
+
+    void AddExplosion(const Point &point);
 };
 
 void from_json(const nlohmann::json &j, Level &value);
