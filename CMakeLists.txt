@@ -55,6 +55,9 @@ set(SOURCE_FILES
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
+        Game/Explosion.cpp
+        Game/ExplosionFactory.cpp
+        Game/Explosion.h
         Game/headers/Helper.h
         Game/headers/Player.h
         Game/headers/Flock.h

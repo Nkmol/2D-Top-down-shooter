@@ -6,6 +6,7 @@
 #include <forward_list>
 #include "WaveController.h"
 #include "json.hpp"
+#include "Explosion.h"
 
 class Player;
 class MoveableObject;
@@ -20,6 +21,7 @@ class Level {
     std::vector<std::shared_ptr<MoveableObject>> _npcs;
     std::vector<std::shared_ptr<GameObject>> _loot;
 	std::shared_ptr<Player> _player;
+	std::vector<Explosion> _explosion;
 	std::string _map;
 
 	std::string _savedGame;
@@ -44,6 +46,8 @@ public:
 	void SetId(const int id) { _level = id; }
 	void SetMap(const std::string map) { _map = map; }
 	void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
+
+	void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
 };
 
 void from_json(const nlohmann::json& j, Level& value);

@@ -11,9 +11,11 @@
 #include "Wave.h"
 #include "Event.h"
 #include "../Engine/AnimationManager.h"
+#include "ExplosionFactory.h"
 
 Level::Level(const int level, const ::std::string savedGame) : _level(level), _levelSpeed(1), _savedGame(savedGame) {
     Init();
+    Level::_explosion = {};
 }
 
 void Level::Init() {
@@ -123,9 +125,14 @@ void Level::Update(float time) {
 
     AnimationManager::Instance().update(*_player, accSpeed);
 
+    for (auto &explosion : _explosion) {
+        AnimationManager::Instance().update(explosion, accSpeed);
+    }
+
     for (auto &&obj : _objsNoEnemies) {
         obj->update(accSpeed);
     }
+
     auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(),
                              [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
     _objsNoEnemies.erase(iter, _objsNoEnemies.end());
@@ -136,11 +143,26 @@ void Level::Update(float time) {
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();
     }
+
+    for (auto &obj : _objs) {
+        if (!obj->isVisible()) {
+            auto explotion = ExplosionFactory::Instance().GetRandomExplosion(obj->GetCoordinates());
+            _explosion.push_back(explotion);
+        }
+    }
+
     for (auto &&obj : _npcs) {
         obj->update(accSpeed);
     }
-    auto it(std::remove_if(_npcs.begin(), _npcs.end(), [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
-    _npcs.erase(it, _npcs.end());
+
+    RemoveHiddenObjects(_npcs);
+    RemoveHiddenObjects(_objs);
+}
+
+void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects) {
+    auto y(std::remove_if(objects.begin(), objects.end(),
+                          [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
+    objects.erase(y, objects.end());
 }
 
 void Level::Draw() {
@@ -151,6 +173,11 @@ void Level::Draw() {
     for (auto &&obj : _npcs) {
         obj->draw();
     }
+
+    for (auto explosion : _explosion) {
+        explosion.draw();
+    }
+
     _waveController.Draw();
 
     // TODO, verplaatsen
@@ -162,7 +189,7 @@ void Level::Draw() {
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
-    //PhysicsManager::Instance().DrawQTree();
+//    //PhysicsManager::Instance().DrawQTree();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

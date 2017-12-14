@@ -14,7 +14,6 @@ AnimationManager &AnimationManager::Instance() {
 }
 
 void AnimationManager::update(MoveableObject &object, double time) {
-
     object.DecreaseAnimationTimer(time);
 
     if (object.IsReadyForAnimation()) {
