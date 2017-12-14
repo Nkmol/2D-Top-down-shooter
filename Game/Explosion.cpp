@@ -14,7 +14,9 @@ Explosion::Explosion(string state, int frames, float animationTimer)
 }
 
 void Explosion::SetPoint(Point &point) {
-    this->_coordinates = point;
+    auto midX = point.x - (width / 2);
+    auto midY = point.y - (height / 2);
+    this->_coordinates = Point(midX, midY);
 }
 
 void Explosion::HandleAnimationFinished() {
