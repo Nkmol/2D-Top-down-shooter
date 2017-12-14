@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
-#include <memory>
 #include "State.h"
-#include "../Engine/Button.h"
 #include "Config.h"
+#include "Button.h"
+#include "Texture.h"
 
 class MenuState : public State
 {
@@ -15,18 +15,22 @@ public:
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
 	void Init() override;
+	void StartLevel(const int level, Game& game);
 private:
-	std::string newgameString = "newgamebutton";
-	std::string loadgameString = "loadgamebutton";
-	std::string creditsString = "creditsbutton";
-	std::string muteString = "mutebutton";
-	std::string quitString = "quitbutton";
-	const int SCREEN_WIDTH = config::width; 
-	const int SCREEN_HEIGHT = config::height;
-	int muted;
-	Button newgamebutton;
-	Button loadgamebutton;
-	Button creditsbutton;
-	Button mutebutton;
-	Button quitbutton;
+	int _muted;
+	int _highestLevel = 1;
+
+	Button _newgameButton;
+	Button _loadgameButton;
+	Button _creditsButton;
+	Button _instructions;
+	Button _muteButton;
+	Button _quitButton;
+	Button _level1;
+	Button _level2;
+	Button _level3;
+
+	std::string _savedGame;
+
+	std::unique_ptr<Texture> _background;
 };

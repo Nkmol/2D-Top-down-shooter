@@ -1,6 +1,6 @@
 {
-	"id": 1,
-	"map": "halflife.tmx",
+	"id": 2,
+	"map": "space.tmx",
 	"waves": [
 		{
 			"id": 1,
@@ -78,5 +78,5 @@
 				}
 			]
 		}
-	]
+	]	
 }

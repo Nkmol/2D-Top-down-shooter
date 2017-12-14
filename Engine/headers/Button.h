@@ -4,7 +4,7 @@
 #include "GameObject.h"
 class Button : public GameObject {
 public:
-	Button(std::string &mediatoken, int x1, int y1, int width, int height);
+	Button(const std::string mediatoken, int x1, int y1, int width, int height);
 	Button();
 	void drawButton();
 	int getX1();
