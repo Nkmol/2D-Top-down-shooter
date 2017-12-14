@@ -149,6 +149,7 @@ void Level::Update(float time) {
         obj->update(accSpeed);
     }
 
+    cout << _objsNoEnemies.size() << endl;
     RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);
