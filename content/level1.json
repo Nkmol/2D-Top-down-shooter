@@ -8,7 +8,7 @@
 			"multiplier": 1,
 			"flocks": [
 				{
-					"amount": 1,
+					"amount": 20,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 0
@@ -17,7 +17,7 @@
 		},
 		{
 			"id": 2,
-			"time": 200,
+			"time": 20,
 			"multiplier": 1.1,
 			"flocks": [
 				{
