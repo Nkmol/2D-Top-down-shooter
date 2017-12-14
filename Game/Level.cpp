@@ -133,9 +133,9 @@ void Level::Update(float time) {
         obj->update(accSpeed);
     }
 
-    auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(),
-                             [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
-    _objsNoEnemies.erase(iter, _objsNoEnemies.end());
+//    auto iter(std::remove_if(_objsNoEnemies.begin(), _objsNoEnemies.end(),
+//                             [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
+//    _objsNoEnemies.erase(iter, _objsNoEnemies.end());
 
 
     if (!_waveController.Update(accSpeed, _objs)) {
@@ -155,6 +155,7 @@ void Level::Update(float time) {
         obj->update(accSpeed);
     }
 
+    RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
 }
