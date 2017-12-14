@@ -146,8 +146,9 @@ void Level::Update(float time) {
 
     for (auto &obj : _objs) {
         if (!obj->isVisible()) {
-            auto explotion = ExplosionFactory::Instance().GetRandomExplosion(obj->GetCoordinates());
-            _explosion.push_back(explotion);
+            auto explosion = ExplosionFactory::Instance().GetRandomExplosion(obj->GetCoordinates());
+//            auto explosion = ExplosionFactory::Instance().GetExplosion("blood-2", obj->GetCoordinates());
+            _explosion.push_back(explosion);
         }
     }
 
@@ -158,11 +159,20 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
+    RemoveHiddenExplosionObjects(_explosion);
+
+    cout << _explosion.size() << endl;
 }
 
 void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects) {
     auto y(std::remove_if(objects.begin(), objects.end(),
                           [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
+    objects.erase(y, objects.end());
+}
+
+void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &objects) {
+    auto y(std::remove_if(objects.begin(), objects.end(),
+                          [](MoveableObject &o) { return !o.isVisible(); }));
     objects.erase(y, objects.end());
 }
 

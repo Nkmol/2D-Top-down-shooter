@@ -19,6 +19,11 @@ ExplosionFactory::ExplosionFactory() {
             {"shield",  Explosion("shield", 4, 0.1)},
             {"default", Explosion("default", 25, 0.1)},
             {"long",    Explosion("long", 216, 0.1)},
+            {"middle",  Explosion("middle", 28, 0.1)},
+            {"blood",   Explosion("blood", 16, 0.1)},
+            {"blood-2", Explosion("blood-2", 14, 0.1)},
+            {"blood-3", Explosion("blood-3", 9, 0.1)}
+
     };
 }
 
