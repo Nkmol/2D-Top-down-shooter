@@ -160,8 +160,6 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
     RemoveHiddenExplosionObjects(_explosion);
-
-    cout << _explosion.size() << endl;
 }
 
 void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects) {
