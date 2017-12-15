@@ -16,12 +16,12 @@ class Point;
 
 class Player : public MoveableObject {
 
-    vector<Weapon> weapons;
+    std::vector<Weapon> weapons;
     unsigned currentWeapon;
 
 private:
     int lifepoints;
-    int _highestLevel = 1;
+	int _highestLevel = 1;
 
 public:
     Player(const std::string &filePath, float x, float y);
@@ -37,44 +37,27 @@ public:
     const int getLifepoints() const;
 
     const int changeLifepoints(const int lp);
+	Weapon* getWeapon();
 
-    Weapon *getWeapon();
+	void changeWeapon(unsigned index);
 
-    void changeWeapon(unsigned index);
+	const vector<Weapon>& getWeapons() const;
 
-    const vector<Weapon> &getWeapons() const;
+	void onBaseCollision(bool isCollidedOnWall);
 
-    void onBaseCollision(bool isCollidedOnWall);
+	void Hit(int damage);
 
-    void Hit(int damage);
+	void addWeapons(std::vector<Weapon> wp);
+	void SetWeapons(const std::vector<Weapon> wp);
+	int getCurrentWeaponIndex() const;
 
-    void addWeapons(std::vector<Weapon> wp);
-
-    void SetWeapons(const std::vector<Weapon> wp);
-
-    int getCurrentWeaponIndex() const;
-
-    const int GetHighestLevel() const { return _highestLevel; }
-
-    void SetHighestLevel(int level) { if (level > _highestLevel) _highestLevel = level; }
-
-    void HandleAnimationFinished() override;
-
-    void ChangeState(const string &_state) override;
-
-    string GetAnimationToken() override;
-
-    void ReloadState();
-
-    void ShootState();
-
-    void IdleState();
+	const int GetHighestLevel() const { return _highestLevel; }
+	void SetHighestLevel(int level) { if (level > _highestLevel) _highestLevel = level; }
 };
 
-
 // ReSharper disable once CppInconsistentNaming
-void to_json(nlohmann::json &j, const Player &value);
+void to_json(nlohmann::json& j, const Player& value);
 
-void from_json(const nlohmann::json &j, Player &value);
+void from_json(const nlohmann::json& j, Player& value);
 
 #endif //SHOOTER_PLAYER_H
