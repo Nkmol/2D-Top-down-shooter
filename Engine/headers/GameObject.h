@@ -26,7 +26,6 @@ public:
 	bool isVisible() const;
 	void SetTeamId(int teamId);
 	const int getRadius() const ;
-	string GetSpriteToken() const;
 
 protected:
 	GameObject();
@@ -35,7 +34,6 @@ protected:
 	Point _coordinates;
 	bool visible;
 	SDL_Texture *_sprite;
-    std::string spriteToken;
 private:
 
 	int id;

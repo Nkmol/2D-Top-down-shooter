@@ -13,35 +13,27 @@
 #include "Point.h"
 #include <AssetManager.h>
 
-enum classType {
-    MOVEABLEOBJECT,
-    BULLET,
-    ENEMY,
-    PLAYER
+enum classType
+{
+	MOVEABLEOBJECT,
+	BULLET,
+	ENEMY,
+	PLAYER
 };
 
 class MoveableObject : public GameObject {
 
 private:
     std::map<Point, int> directionAngles;
-
 protected:
 
-    float speed, distance;
+	float speed, distance;
     Point _destination;
-    classType _type;
-
-    std::string _state;
-    int frames;
-    float currentAnimationTimer;
-    float animationTimer = 0;
-    int currentSprite = 0;
+	classType _type;
 
 public:
-
-    MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
-
-    virtual ~MoveableObject();
+	MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
+	virtual ~MoveableObject();
 
     virtual void draw();
 
@@ -49,43 +41,19 @@ public:
 
     void stopMove();
 
-    const int getPredictionMidX(float destinationPosition) const;
+	const int getPredictionMidX(float destinationPosition) const;
 
-    const int getMidX() const;
+	const int getMidX() const;
 
-    const int getMidY() const;
+	const int getMidY() const;
 
-    const int getPredictionMidY(float destinationPosition) const;
+	const int getPredictionMidY(float destinationPosition) const;
 
-    classType getType();
+	classType getType();
 
-    virtual void onBaseCollision(MoveableObject *object);
-
-    virtual void onBaseCollision(bool isWall);
-
-    virtual void onBaseCollision(GameObject object);
-
-    virtual string GetAnimationToken();
-
-
-    virtual void HandleAnimationFinished();
-
-    virtual void ChangeState(const string &_state);
-
-
-    const string &GetState() const;
-
-    int NextSpriteIndex();
-
-    bool IsAnimationFinished();
-
-    bool IsReadyForAnimation() const;
-
-    void ChangeSprite(const std::string &spriteToken);
-
-    void DecreaseAnimationTimer(double by);
-
-    void ResetAnimationTimer();
+	virtual void onBaseCollision(MoveableObject* object);
+	virtual void onBaseCollision(bool isWall);
+	virtual void onBaseCollision(GameObject object);
 
 };
 
