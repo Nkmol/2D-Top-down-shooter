@@ -41,33 +41,29 @@ int Weapon::getShooted() const {
 }
 
 int Weapon::getMaxBullets() const {
-    return maxBullets;
+	return maxBullets;
 }
 
-void Weapon::SetName(const std::string &v) {
-    name = v;
+void Weapon::SetName(const std::string& v)
+{
+	name = v;
 }
 
-void Weapon::SetCurrentBullets(const int v) {
-    shooted = maxBullets - v;
+void Weapon::SetCurrentBullets(const int v)
+{
+	shooted = maxBullets - v;
 }
 
-void Weapon::Reload() {
-    this->shooted = 0;
+void to_json(nlohmann::json& j, const Weapon& value)
+{
+	j = nlohmann::json {
+		{ "name", value.getName() },
+		{ "currentBullets", value.getMaxBullets() - value.getShooted()}
+	};
 }
 
-bool Weapon::CanReload() const {
-    return shooted > 0;
-}
-
-void to_json(nlohmann::json &j, const Weapon &value) {
-    j = nlohmann::json {
-            {"name",           value.getName()},
-            {"currentBullets", value.getMaxBullets() - value.getShooted()}
-    };
-}
-
-void from_json(const nlohmann::json &j, Weapon &value) {
-    value.SetName(j.at("name").get<std::string>());
-    value.SetCurrentBullets(j.at("currentBullets").get<int>());
+void from_json(const nlohmann::json& j, Weapon& value)
+{
+	value.SetName(j.at("name").get<std::string>());
+	value.SetCurrentBullets(j.at("currentBullets").get<int>());
 }

@@ -798,32 +798,32 @@ Game/Shotgun.cpp.s:
 	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Shotgun.cpp.s
 .PHONY : Game/Shotgun.cpp.s
 
-Game/Rifle.o: Game/Rifle.cpp.o
+Game/Uzi.o: Game/Uzi.cpp.o
 
-.PHONY : Game/Rifle.o
+.PHONY : Game/Uzi.o
 
 # target to build an object file
-Game/Rifle.cpp.o:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Rifle.cpp.o
-.PHONY : Game/Rifle.cpp.o
+Game/Uzi.cpp.o:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.o
+.PHONY : Game/Uzi.cpp.o
 
-Game/Rifle.i: Game/Rifle.cpp.i
+Game/Uzi.i: Game/Uzi.cpp.i
 
-.PHONY : Game/Rifle.i
+.PHONY : Game/Uzi.i
 
 # target to preprocess a source file
-Game/Rifle.cpp.i:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Rifle.cpp.i
-.PHONY : Game/Rifle.cpp.i
+Game/Uzi.cpp.i:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.i
+.PHONY : Game/Uzi.cpp.i
 
-Game/Rifle.s: Game/Rifle.cpp.s
+Game/Uzi.s: Game/Uzi.cpp.s
 
-.PHONY : Game/Rifle.s
+.PHONY : Game/Uzi.s
 
 # target to generate assembly for a file
-Game/Rifle.cpp.s:
-	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Rifle.cpp.s
-.PHONY : Game/Rifle.cpp.s
+Game/Uzi.cpp.s:
+	$(MAKE) -f CMakeFiles/GroepH.dir/build.make CMakeFiles/GroepH.dir/Game/Uzi.cpp.s
+.PHONY : Game/Uzi.cpp.s
 
 Game/Weapon.o: Game/Weapon.cpp.o
 
@@ -1017,9 +1017,9 @@ help:
 	@echo "... Game/Shotgun.o"
 	@echo "... Game/Shotgun.i"
 	@echo "... Game/Shotgun.s"
-	@echo "... Game/Rifle.o"
-	@echo "... Game/Rifle.i"
-	@echo "... Game/Rifle.s"
+	@echo "... Game/Uzi.o"
+	@echo "... Game/Uzi.i"
+	@echo "... Game/Uzi.s"
 	@echo "... Game/Weapon.o"
 	@echo "... Game/Weapon.i"
 	@echo "... Game/Weapon.s"
