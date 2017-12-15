@@ -4,6 +4,6 @@
 
 #include "Handgun.h"
 
-Handgun::Handgun(int damage) : Weapon(damage, "Handgun", 10) {
+Handgun::Handgun(int damage) : Weapon(damage, "handgun", 10) {
 
 }
