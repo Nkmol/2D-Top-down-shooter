@@ -13,7 +13,11 @@
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
 
-Level::Level(const int level, const ::std::string savedGame) : _level(level), _levelSpeed(1), _savedGame(savedGame) {
+Level::Level(const int level, const ::std::string savedGame) :
+        _level(level),
+        inputManager{InputManager::Instance()},
+        _levelSpeed(1),
+        _savedGame(savedGame) {
     Init();
     Level::_explosion = {};
 }
@@ -23,7 +27,6 @@ void Level::Init() {
     LoadLevel();
 
     MapManager::Instance().Init(_map);
-
     LoadPlayer();
 
     _waveController.Init(_waves, _player, _objs);
@@ -75,9 +78,19 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
-void Level::HandleEvents(Event event) {
-    auto &inputManager = InputManager::Instance();
 
+void Level::HandleEvents(Event event) {
+    HandleMouseEvents(event);
+    HandleKeyboardEvents(event);
+
+    int angle = inputManager.CalculateMouseAngle(*_player);
+    Point direction = inputManager.GetDirection(event);
+
+    _player->SetAngle(angle);
+    _player->Move(direction);
+}
+
+void Level::HandleMouseEvents(Event event) {
     if (inputManager.IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = inputManager.RecalculateMouseAngle(*_player);
@@ -86,12 +99,20 @@ void Level::HandleEvents(Event event) {
         _player->SetAngle(angle);
     }
 
-    if (inputManager.IsMouseClicked(event)) {
+    if (inputManager.IsMouseDown(event)) {
+        cout << "hold" << endl;
         _player->ChangeState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objsNoEnemies.emplace_back(bullet);
     }
 
+    if (inputManager.IsMouseReleased(event)) {
+        cout << "released" << endl;
+        inputManager.HandleMouseReleased();
+    }
+}
+
+void Level::HandleKeyboardEvents(Event event) {
     int key = 0;
     if (inputManager.IsNumericKeyPressed(event, key)) {
         _player->changeWeapon(key - 1);
@@ -111,13 +132,6 @@ void Level::HandleEvents(Event event) {
             _player->ChangeState("reload");
         }
     }
-
-    Point direction = inputManager.GetDirection(event);
-
-    int angle = inputManager.CalculateMouseAngle(*_player);
-
-    _player->SetAngle(angle);
-    _player->Move(direction);
 }
 
 void Level::Update(float time) {
@@ -148,7 +162,7 @@ void Level::Update(float time) {
     for (auto &&obj : _npcs) {
         obj->update(accSpeed);
     }
-    
+
     RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);

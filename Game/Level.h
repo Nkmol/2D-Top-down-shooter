@@ -4,6 +4,7 @@
 #include <memory>
 #include <SDL.h>
 #include <forward_list>
+#include <InputManager.h>
 #include "WaveController.h"
 #include "json.hpp"
 #include "Explosion.h"
@@ -37,6 +38,8 @@ class Level {
 
     void LoadPlayer();
 
+    InputManager &inputManager;
+
 public:
     explicit Level(int level, const std::string savedGame);
 
@@ -61,6 +64,10 @@ public:
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
 
     void AddExplosion(const Point &point);
+
+    void HandleMouseEvents(Event event);
+
+    void HandleKeyboardEvents(Event event);
 };
 
 void from_json(const nlohmann::json &j, Level &value);

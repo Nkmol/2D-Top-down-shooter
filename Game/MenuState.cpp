@@ -28,7 +28,7 @@ void MenuState::HandleEvents(Game& game)
 	while (inputManager.HasEvent(&ev)) {
 		if (inputManager.IsQuit(ev))
 			game.Quit();
-		else if (inputManager.IsMouseClicked(ev))
+		else if (inputManager.IsMouseDown(ev))
 		{
 			if (ev.GetEventValue().button.x > _newgameButton.getX1() && ev.GetEventValue().button.x < _newgameButton.getX2() && ev.GetEventValue().button.y > _newgameButton.getY1() && ev.GetEventValue().button.y < _newgameButton.getY2()) {
 				//New game
