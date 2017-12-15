@@ -146,6 +146,8 @@
     <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="ExplosionFactory.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="AIBat.h" />
     <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="ExplosionFactory.h" />
     <ClInclude Include="FactoryBehaviour.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handgun.h" />
