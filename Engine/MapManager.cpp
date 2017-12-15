@@ -84,8 +84,8 @@ void MapManager::Init(const string input)
 	}
 
 	mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), tempSurface);
-	SDL_FreeSurface(spritesheet);
-	SDL_FreeSurface(tempSurface);
+	//SDL_FreeSurface(spritesheet);
+	//SDL_FreeSurface(tempSurface);
 }
 
 void MapManager::Render()

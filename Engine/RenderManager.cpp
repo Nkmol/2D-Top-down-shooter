@@ -56,7 +56,7 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, i
 	SDL_Color color = { r, g, b };
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
-	SDL_FreeSurface(sMessage);
+	//SDL_FreeSurface(sMessage);
 
 	SDL_Rect messageRect;
 	messageRect.x = x;

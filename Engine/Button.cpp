@@ -10,7 +10,7 @@ Button::Button(const std::string mediatoken, int x1, int y1, int width, int heig
 		cout << SDL_GetError() << endl;
 	_sprite = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
 
-	SDL_FreeSurface(surface);
+	//SDL_FreeSurface(surface);
 	if (this->_sprite == NULL)
 	{
 		printf(SDL_GetError());
