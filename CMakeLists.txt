@@ -51,17 +51,20 @@ set(SOURCE_FILES
         Game/Wave.h
         Game/Bullet.cpp
         Game/State.h
-        Game/Uzi.cpp
+        Game/Rifle.cpp
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
+        Game/Explosion.cpp
+        Game/ExplosionFactory.cpp
+        Game/Explosion.h
         Game/headers/Helper.h
         Game/headers/Player.h
         Game/headers/Flock.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
         Game/headers/FlockController.h
-        Game/headers/Uzi.h
+        Game/headers/Rifle.h
         Game/headers/EnemyBase.h
         Engine/Button.cpp
         Engine/MoveableObject.cpp
@@ -78,6 +81,8 @@ set(SOURCE_FILES
         Engine/QuadTree.cpp
         Engine/QuadTree.h
         Engine/AudioManager.cpp
+        Engine/AnimationManager.cpp
+        Engine/AnimationManager.h
         Engine/headers/RenderManager.h
         Engine/headers/Engine.h
         Engine/headers/MapManager.h
