@@ -12,14 +12,17 @@
 #include "Event.h"
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
+#include "Hud.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
         _levelSpeed(1),
-        _savedGame(savedGame),
-        inputManager{InputManager::Instance()} {
+        _savedGame(savedGame)
+{
+
     Init();
     Level::_explosion = {};
+
 }
 
 void Level::Init() {
@@ -34,6 +37,9 @@ void Level::Init() {
 
     PhysicsManager::Instance().setStaticObjects();
     PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
+
+	_weaponComponent = std::make_unique<TextComponent>("", Point(config::width - 360, 0), 360, 40, 0);
+
 }
 
 void Level::LoadLevel() {
@@ -84,23 +90,23 @@ void Level::HandleEvents(Event event) {
     this->HandleMouseEvents(event);
     this->HandleKeyboardEvents(event);
 
-    Point direction = inputManager.GetDirection(event);
-    int angle = inputManager.CalculateMouseAngle(*_player);
+    Point direction = InputManager::Instance().GetDirection(event);
+    int angle = InputManager::Instance().CalculateMouseAngle(*_player);
 
     _player->SetAngle(angle);
     _player->Move(direction);
 }
 
 void Level::HandleMouseEvents(Event &event) {
-    if (inputManager.IsMouseMoved(event)) {
+    if (InputManager::Instance().IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
-        int angle = inputManager.RecalculateMouseAngle(*_player);
+        int angle = InputManager::Instance().RecalculateMouseAngle(*_player);
 
         // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
         _player->SetAngle(angle);
     }
 
-    if (inputManager.IsMouseClicked(event)) {
+    if (InputManager::Instance().IsMouseClicked(event)) {
         _player->ChangeState("shoot");
         auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
         _objsNoEnemies.emplace_back(bullet);
@@ -110,31 +116,31 @@ void Level::HandleMouseEvents(Event &event) {
 void Level::HandleKeyboardEvents(Event &event) {
     int key = 0;
 
-    if (inputManager.IsNumericKeyPressed(event, key)) {
+    if (InputManager::Instance().IsNumericKeyPressed(event, key)) {
         _player->changeWeapon(key - 1);
     }
 
-    if (inputManager.IsKeyDown(event)) {
+    if (InputManager::Instance().IsKeyDown(event)) {
 
-        if (inputManager.IsKeyDown(event, "[")) {
+        if (InputManager::Instance().IsKeyDown(event, "[")) {
             _levelSpeed -= .1;
             if (_levelSpeed < 0) _levelSpeed = 0;
             return;
         }
 
-        if (inputManager.IsKeyDown(event, "]")) {
+        if (InputManager::Instance().IsKeyDown(event, "]")) {
             _levelSpeed += .1;
             return;
         }
 
-        if (inputManager.IsKeyDown(event, "F5")) {
+        if (InputManager::Instance().IsKeyDown(event, "F5")) {
             // Quicksave prittified json
             std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
             o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
             return;
         }
 
-        if (inputManager.IsKeyDown(event, "R")) {
+        if (InputManager::Instance().IsKeyDown(event, "R")) {
             _player->ChangeState("reload");
             return;
         }
@@ -174,6 +180,10 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
+
+	//Hud::Instance().Update(accSpeed);
+	auto weaponName = "Weapon: " + _player->getWeapon()->getName();
+	//_weaponComponent->ChangeText(weaponName);
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -210,14 +220,16 @@ void Level::Draw() {
     _waveController.Draw();
 
     // TODO, verplaatsen
-    auto weaponName = _player->getWeapon()->getName();
+    
     auto totalBullets = _player->getWeapon()->totalBullets();
     auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
-    RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
+
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
+	//Hud::Instance().Draw();
+	//_weaponComponent->Draw();
 //    //PhysicsManager::Instance().DrawQTree();
 }
 

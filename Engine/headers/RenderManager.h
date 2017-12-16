@@ -47,7 +47,7 @@ public:
 	/* void DrawText
 	* Draw Text on screen
 	*/
-	void DrawText(const std::string text, const int x, const int y, int width, int height, const double angle = 0, const int r = 255, const int g = 255, const int b = 255);
+	void DrawText(const std::string text, const int x, const int y, int width, int height, const double angle = 0, const int opacity = 0, const int r = 255, const int g = 255, const int b = 255);
 
 	static RenderManager& Instance();
 

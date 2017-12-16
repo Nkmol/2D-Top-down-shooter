@@ -8,6 +8,8 @@
 #include "WaveController.h"
 #include "json.hpp"
 #include "Explosion.h"
+#include "TextComponent.h"
+
 
 class Player;
 
@@ -19,8 +21,8 @@ class Wave;
 
 class Event;
 
+
 class Level {
-    InputManager &inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
@@ -38,6 +40,9 @@ class Level {
     void LoadLevel();
 
     void LoadPlayer();
+
+	std::unique_ptr<TextComponent> _weaponComponent;
+	//std::shared_ptr<IHudComponent> _ammoComponent;
 
 public:
     explicit Level(int level, const std::string savedGame);

@@ -153,6 +153,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Rifle.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -182,13 +184,16 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="IAIBase.h" />
+    <ClInclude Include="IHudComponent.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Wave.h" />
     <ClInclude Include="WaveController.h" />
   </ItemGroup>
