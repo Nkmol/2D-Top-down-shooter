@@ -4,6 +4,7 @@
 #include <memory>
 #include <SDL.h>
 #include <forward_list>
+#include <InputManager.h>
 #include "WaveController.h"
 #include "json.hpp"
 #include "Explosion.h"
@@ -19,6 +20,7 @@ class Wave;
 class Event;
 
 class Level {
+    InputManager &inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
@@ -61,6 +63,10 @@ public:
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
 
     void AddExplosion(const Point &point);
+
+    void HandleMouseEvents(Event &event);
+
+    void HandleKeyboardEvents(Event &event);
 };
 
 void from_json(const nlohmann::json &j, Level &value);
