@@ -183,7 +183,7 @@ void Level::Update(float time) {
 
 	//Hud::Instance().Update(accSpeed);
 	auto weaponName = "Weapon: " + _player->getWeapon()->getName();
-	//_weaponComponent->ChangeText(weaponName);
+	_weaponComponent->ChangeText(weaponName);
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -229,7 +229,7 @@ void Level::Draw() {
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
 	//Hud::Instance().Draw();
-	//_weaponComponent->Draw();
+	_weaponComponent->Draw();
 //    //PhysicsManager::Instance().DrawQTree();
 }
 
