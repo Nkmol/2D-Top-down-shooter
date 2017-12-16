@@ -10,10 +10,10 @@ public:
 	//http://www.stroustrup.com/C++11FAQ.html#inheriting
 	using CloneableBase<IAIBase, AIDefault>::CloneableBase;
 
-	void Update(EnemiesType& others, int time) override;
+	void Update(float time) override;
 	void Align() override;
-	void Cohese(EnemiesType& others) override;
-	void Seperate(EnemiesType& others) override;
+	void Cohese() override;
+	void Seperate() override;
 	void GoTarget() override;
 	~AIDefault();
 };

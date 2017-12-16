@@ -2,12 +2,12 @@
 #include "AIDefault.h"
 #include "EnemyBase.h"
 
-void AIDefault::Update(EnemiesType& others, int time)
+void AIDefault::Update(float time)
 {
 	if (!_isLeader) {
 		Align();
-		Cohese(others);
-		Seperate(others);
+		Cohese();
+		Seperate();
 	}
 	else {
 		GoTarget();
@@ -26,23 +26,24 @@ void AIDefault::Update(EnemiesType& others, int time)
 
 void AIDefault::Align()
 {
-	auto& dest = _leader->GetDestinationPoint();
-	_owner->SetDestinationPoint(dest);
+	//auto& dest = _leader->GetDestinationPoint();
+	//_owner->SetDestinationPoint(dest);
+	_owner->SetDestinationPoint(_owner->_player->GetCoordinates());
 }
 
-void AIDefault::Cohese(EnemiesType& others)
+void AIDefault::Cohese()
 {
 	Point massCenter(0, 0);
-	for (const auto& other : others) {
-		if (auto shOther = other.lock()) {
-			if (shOther.get() != _owner) {
-				const auto& oCoordinates = shOther->GetCoordinates();
+	for (const auto& other : *_owner->npcs) {
+		
+			if (other.get() != _owner) {
+				const auto& oCoordinates = other->GetCoordinates();
 				massCenter += oCoordinates;
 			}
-		}
+		
 	}
 
-	const auto othersSize = others.size() - 1;
+	const auto othersSize = _owner->npcs->size() - 1;
 	massCenter = massCenter / othersSize;
 
 	auto& coordinates = _owner->GetCoordinates();
@@ -51,15 +52,15 @@ void AIDefault::Cohese(EnemiesType& others)
 	_owner->ApplyForce(0.1, forceDirection);
 }
 
-void AIDefault::Seperate(EnemiesType& others)
+void AIDefault::Seperate()
 {
 	auto& coordinates = _owner->GetCoordinates();
 
-	for (const auto& other : others) {
-		if (auto shOther = other.lock()) {
-			if (shOther.get() != _owner) {
-				const auto& oWeight = shOther->getWidth() * shOther->getHeight() * _weightMultiplier;
-				const auto& oCoordinates = shOther->GetCoordinates();
+	for (const auto& other : *_owner->npcs) {
+		//if (auto shOther = other.lock()) {
+			if (other.get() != _owner) {
+				const auto& oWeight = other->getWidth() * other->getHeight() * _weightMultiplier;
+				const auto& oCoordinates = other->GetCoordinates();
 				const Point squared((oCoordinates.x - coordinates.x) * (oCoordinates.x - coordinates.x),
 					(oCoordinates.y - coordinates.y) * (oCoordinates.y - coordinates.y));
 				const auto squareDist = squared.x + squared.y;
@@ -71,7 +72,7 @@ void AIDefault::Seperate(EnemiesType& others)
 					_owner->SetDestinationPoint(_owner->GetDestinationPoint() + scaledVector);
 				}
 			}
-		}
+		//}
 	}
 
 	for (const auto& other : *PhysicsManager::Instance().getCollidables()) {

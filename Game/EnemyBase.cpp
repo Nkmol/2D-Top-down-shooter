@@ -24,7 +24,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, cons
     _type = ENEMY;
 }
 
-EnemyBase::EnemyBase(const nlohmann::json &j) : EnemyBase{j.at("type").get<string>(),
+EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player) : EnemyBase{j.at("type").get<string>(),
                                                           Point(0, 0),
                                                           j.at("speed").get<int>(),
                                                           false,
@@ -35,6 +35,9 @@ EnemyBase::EnemyBase(const nlohmann::json &j) : EnemyBase{j.at("type").get<strin
     a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
     _behaviour = move(a);
     _type = ENEMY;
+	_behaviour->SetOwner(*this);
+	npcs = { npcList };
+	_player = { player };
 }
 
 
@@ -56,9 +59,9 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time)
+void EnemyBase::UpdatePosition(const float time)
 {
-	_behaviour->Update(others, time);
+	_behaviour->Update(time);
     update(time);
 }
 

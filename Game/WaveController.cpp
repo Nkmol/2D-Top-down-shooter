@@ -1,15 +1,19 @@
 #include "WaveController.h"
 #include "MoveableObject.h"
-#include "EnemyBase.h"
+#include "Player.h"
+#include "Wave.h"
+
 
 WaveController::WaveController()
 {
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
+void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
 {
 	_waves = waves;
+	_npcs = npcs;
+	_player = player;
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -26,10 +30,10 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& pla
 	i >> _j;
 
 	_curWave = _waves.begin();
-	SpawnWave(npcs, player);
+	SpawnWave();
 }
 
-bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+bool WaveController::Update(float time)
 {
 	_lastWaveTimer += time;
 
@@ -38,14 +42,12 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		_curWave++;
 		if (_curWave == _waves.end())
 			return false;
-		SpawnWave(npcs, player);
+		SpawnWave();
 	}
-	
-	_flockController.UpdateFlocks(time);
 	return true;
 }
 
-void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+void WaveController::SpawnWave()
 {
 	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
@@ -53,11 +55,12 @@ void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npc
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
-	}
-}
+		for (int i = 0; i < flock.amount; i++) {
+			auto member = make_unique<EnemyBase>(_j[flock.type], _npcs, _player);
+			member->SetCoordinates(Point(rand() % flock.maxPos + flock.minPos, rand() % flock.maxPos + flock.minPos));
 
-void WaveController::Draw()
-{
-	_flockController.DrawFlocks();
+			_npcs->push_back(move(member));
+		}
+		
+	}
 }
