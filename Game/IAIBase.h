@@ -77,6 +77,7 @@ public:
 	virtual void Align() = 0;
 	virtual void Cohese() = 0;
 	virtual void Seperate() = 0;
+	virtual void CohesePlayer() = 0;
 	virtual void GoTarget() = 0;
 	virtual unique_ptr<IAIBase> Clone() const = 0;
 };

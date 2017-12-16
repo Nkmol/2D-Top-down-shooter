@@ -14,6 +14,7 @@ public:
 	void Align() override;
 	void Cohese() override;
 	void Seperate() override;
+	void CohesePlayer() override;
 	void GoTarget() override;
 	~AIDefault();
 };
