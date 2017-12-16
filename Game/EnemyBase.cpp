@@ -52,7 +52,7 @@ EnemyBase::EnemyBase(const EnemyBase &other) : MoveableObject(other),
 EnemyBase::~EnemyBase() = default;
 
 
-void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time)
+void EnemyBase::UpdatePosition(std::vector<std::shared_ptr<EnemyBase>>& others, const float time)
 {
 	_behaviour->Update(others, time);
     update(time);

@@ -7,7 +7,7 @@
 class IAIBase
 {
 protected:
-	using EnemiesType = std::vector<weak_ptr<EnemyBase>>;
+	using EnemiesType = std::vector<std::shared_ptr<EnemyBase>>;
 	int _weightMultiplier;
 
 

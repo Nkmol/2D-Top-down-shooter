@@ -43,7 +43,7 @@ public:
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();
 
-	void UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time);
+	void UpdatePosition(std::vector<std::shared_ptr<EnemyBase>>& others, const float time);
 
 	std::unique_ptr<Point> Velocity;
 	std::unique_ptr<Point> Acceleration;

@@ -34,9 +34,9 @@ void AIDefault::Align(EnemiesType& others)
 	int count = 0;
 	Point p(0.0f, 0.0f);
 
-	for (auto& other : others)
+	for (auto& a : others)
 	{
-		if (auto a = other.lock()) {
+		//if (auto a = other.lock()) {
 
 			float dis_x = ((a->getMidX() / 2.0f) - (_owner->getMidX() / 2.0f));
 			float dis_y = ((a->getMidY() / 2.0f) - (_owner->getMidY() / 2.0f));
@@ -47,7 +47,7 @@ void AIDefault::Align(EnemiesType& others)
 				p += (*_owner->Velocity.get());
 				count++;
 			}
-		}
+		//}
 	}
 
 	if (count > 0)
@@ -61,10 +61,10 @@ void AIDefault::Cohese(EnemiesType& others)
 	Point sum(0.0f, 0.0f);
 	int count = 0;
 
-	for (auto& other : others)
+	for (auto& a : others)
 	{
-		if (auto a = other.lock())
-		{
+		//if (auto a = other.lock())
+		//{
 
 			float dis_x = ((a->getMidX() / 2.0f) - (_owner->getMidX() / 2.0f));
 			float dis_y = ((a->getMidY() / 2.0f) - (_owner->getMidY() / 2.0f));
@@ -76,7 +76,7 @@ void AIDefault::Cohese(EnemiesType& others)
 				count++;
 			}
 
-		}
+		//}
 	}
 
 	if (count > 0)
@@ -111,8 +111,8 @@ void AIDefault::Seperate(EnemiesType& others)
 {
 	auto& coordinates = _owner->GetCoordinates();
 
-	for (const auto& other : others) {
-		if (auto shOther = other.lock()) {
+	for (const auto& shOther : others) {
+		//if (auto shOther = other.lock()) {
 			if (shOther.get() != _owner) {
 				const auto& oWeight = shOther->getWidth() * shOther->getHeight() * _weightMultiplier;
 				const auto& oCoordinates = shOther->GetCoordinates();
@@ -127,7 +127,7 @@ void AIDefault::Seperate(EnemiesType& others)
 					_owner->SetDestinationPoint(_owner->GetDestinationPoint() + scaledVector);
 				}
 			}
-		}
+		//}
 	}
 
 	for (const auto& other : *PhysicsManager::Instance().getCollidables()) {

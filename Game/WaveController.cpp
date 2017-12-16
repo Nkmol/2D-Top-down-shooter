@@ -7,7 +7,7 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
+void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<EnemyBase>>& npcs)
 {
 	_waves = waves;
 
@@ -29,7 +29,7 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& pla
 	SpawnWave(npcs, player);
 }
 
-bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+bool WaveController::Update(float time, std::vector<std::shared_ptr<EnemyBase>>& npcs, shared_ptr<Player>& player)
 {
 	_lastWaveTimer += time;
 
@@ -45,7 +45,7 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 	return true;
 }
 
-void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+void WaveController::SpawnWave(std::vector<std::shared_ptr<EnemyBase>>& npcs, shared_ptr<Player>& player)
 {
 	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);

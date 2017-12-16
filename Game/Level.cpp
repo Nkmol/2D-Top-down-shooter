@@ -157,7 +157,7 @@ void Level::Update(float time) {
     }
 
     for (auto &&npc : _npcs) {
-        npc->update(accSpeed);
+        npc->UpdatePosition(_npcs, accSpeed);
     }
 
     for (auto &obj : _objs) {
@@ -172,7 +172,7 @@ void Level::Update(float time) {
 
     RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
-    RemoveHiddenObjects(_npcs);
+    //RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
 }
 
