@@ -27,7 +27,7 @@ private:
 
 protected:
 
-    float speed, distance;
+    float distance;
     Point _destination;
     classType _type;
 
@@ -38,6 +38,7 @@ protected:
     int currentSprite = 0;
 
 public:
+	float speed;
 
     MoveableObject(const std::string &filePath, const Point coordinates, const float speed);
 

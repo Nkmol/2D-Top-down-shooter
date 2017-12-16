@@ -35,6 +35,8 @@ EnemyBase::EnemyBase(const nlohmann::json &j) : EnemyBase{j.at("type").get<strin
     a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
     _behaviour = move(a);
     _type = ENEMY;
+	_coordinates = { 0, 0 };
+	Velocity = std::make_unique<Point>();
 }
 
 
@@ -49,12 +51,6 @@ EnemyBase::EnemyBase(const EnemyBase &other) : MoveableObject(other),
 
 EnemyBase::~EnemyBase() = default;
 
-void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
-    const auto forceX = float(forcePower * cos(forceDirection));
-    const auto forceY = float(forcePower * sin(forceDirection));
-    this->destinationPoint.x += forceX;
-    this->destinationPoint.y += forceY;
-}
 
 void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time)
 {
@@ -63,11 +59,12 @@ void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const f
 }
 
 void EnemyBase::update(const float time) {
+	const auto newPosition = _coordinates + *Velocity.get() * time;
     const auto newPostition = _coordinates + (_destination * speed * time);
     //PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-    PhysicsManager::Instance().checkWallCollision(this, newPostition);
-    PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
+    PhysicsManager::Instance().checkWallCollision(this, newPosition);
+    PhysicsManager::Instance().checkMoveableCollision(this, newPosition);
     MoveableObject::update(time);
 }
 

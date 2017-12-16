@@ -11,7 +11,7 @@ public:
 	using CloneableBase<IAIBase, AIDefault>::CloneableBase;
 
 	void Update(EnemiesType& others, int time) override;
-	void Align() override;
+	void Align(EnemiesType& others) override;
 	void Cohese(EnemiesType& others) override;
 	void Seperate(EnemiesType& others) override;
 	void GoTarget() override;

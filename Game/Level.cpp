@@ -30,7 +30,7 @@ void Level::Init() {
 
     LoadPlayer();
 
-    _waveController.Init(_waves, _player, _objs);
+    _waveController.Init(_waves, _player, _npcs);
 
     PhysicsManager::Instance().setStaticObjects();
     PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
@@ -150,7 +150,7 @@ void Level::Update(float time) {
         objNoEnemie->update(accSpeed);
     }
 
-    if (!_waveController.Update(accSpeed, _objs, _player)) {
+    if (!_waveController.Update(accSpeed, _npcs, _player)) {
         _player->SetHighestLevel(_level + 1);
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();

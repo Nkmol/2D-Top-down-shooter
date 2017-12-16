@@ -9,6 +9,7 @@ class GameObject {
 public:
 	GameObject(Point coordinates, int width, int height);
 	GameObject(const std::string & spriteToken, const Point coordinates);
+	Point _coordinates;
 
 	const int getMidX() const;
 	const int getMidY() const;
@@ -32,7 +33,6 @@ protected:
 	GameObject();
 	int width, height, angle;
 	float radius, midX, midY;
-	Point _coordinates;
 	bool visible;
 	SDL_Texture *_sprite;
     std::string spriteToken;

@@ -18,7 +18,7 @@ class FactoryBehaviour
 	FactoryBehaviour()
 	{
 		_processors["default"] = Creator<AIDefault>;
-		_processors["bat"] = Creator<AIBat>;
+		//_processors["bat"] = Creator<AIBat>;
 	}
 public:
 	FactoryBehaviour(FactoryBehaviour const&) = delete;

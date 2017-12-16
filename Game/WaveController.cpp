@@ -41,7 +41,7 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		SpawnWave(npcs, player);
 	}
 	
-	_flockController.UpdateFlocks(time);
+	//_flockController.UpdateFlocks(time);
 	return true;
 }
 
@@ -53,11 +53,19 @@ void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npc
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
+		//_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
+		for (auto i = 0; i < flock.amount; i++)
+		{
+			auto member = make_shared<EnemyBase>(_j[flock.type]);
+			member->SetCoordinates(Point(rand() % flock.maxPos + flock.minPos, rand() % flock.maxPos + flock.minPos));
+
+			npcs.push_back(move(member));
+			//newFlock->AddMember(weak_ptr<EnemyBase>(weak_ptr<EnemyBase>(static_pointer_cast<EnemyBase>(gameObjects.back()))));
+		}
 	}
 }
 
 void WaveController::Draw()
 {
-	_flockController.DrawFlocks();
+	//_flockController.DrawFlocks();
 }

@@ -45,7 +45,8 @@ public:
 
 	void UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time);
 
-	void ApplyForce(float forcePower, int forceDirection);
+	std::unique_ptr<Point> Velocity;
+	std::unique_ptr<Point> Acceleration;
 
 	//getters
 	const Point& GetDestinationPoint() const;

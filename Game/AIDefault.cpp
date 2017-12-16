@@ -4,51 +4,107 @@
 
 void AIDefault::Update(EnemiesType& others, int time)
 {
-	if (!_isLeader) {
-		Align();
-		Cohese(others);
-		Seperate(others);
-	}
-	else {
-		GoTarget();
-	}
+	_owner->Acceleration->Empty();
+
+	Align(others);
+	Cohese(others);
+	Seperate(others);
+
+	*_owner->Velocity += *_owner->Acceleration;
+
+	auto coords = _owner->GetCoordinates();
+	_owner->SetDestination((coords + *_owner->Velocity) * _owner->speed);
+	//_owner->_coordinates += *_owner->Velocity;
+		//GoTarget();
+	
 
 	auto& coordinates = _owner->GetCoordinates();
 	auto& destinationPoint = _owner->GetDestinationPoint();
 
 	const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
 	const auto dir = Helper::radiansToDegrees(rad);
-	const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
+	//const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
 	_owner->SetAngle(dir);
 
-	_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
+	//_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
 }
 
-void AIDefault::Align()
+void AIDefault::Align(EnemiesType& others)
 {
-	auto& dest = _leader->GetDestinationPoint();
-	_owner->SetDestinationPoint(dest);
-}
+	int count = 0;
+	Point p(0.0f, 0.0f);
 
-void AIDefault::Cohese(EnemiesType& others)
-{
-	Point massCenter(0, 0);
-	for (const auto& other : others) {
-		if (auto shOther = other.lock()) {
-			if (shOther.get() != _owner) {
-				const auto& oCoordinates = shOther->GetCoordinates();
-				massCenter += oCoordinates;
+	for (auto& other : others)
+	{
+		if (auto a = other.lock()) {
+
+			float dis_x = ((a->getMidX() / 2.0f) - (_owner->getMidX() / 2.0f));
+			float dis_y = ((a->getMidY() / 2.0f) - (_owner->getMidY() / 2.0f));
+			float distance = abs(sqrtf(dis_x * dis_x + dis_y * dis_y));
+
+			if (distance > 0 && distance <= 60.0f)
+			{
+				p += (*_owner->Velocity.get());
+				count++;
 			}
 		}
 	}
 
-	const auto othersSize = others.size() - 1;
-	massCenter = massCenter / othersSize;
+	if (count > 0)
+		p/((float)count);
 
-	auto& coordinates = _owner->GetCoordinates();
-	const auto forceDirection = Helper::calculateAngle(coordinates.x, coordinates.y, massCenter.x, massCenter.y);
+	*_owner->Acceleration.get()+=p;
+}
 
-	_owner->ApplyForce(0.1, forceDirection);
+void AIDefault::Cohese(EnemiesType& others)
+{
+	Point sum(0.0f, 0.0f);
+	int count = 0;
+
+	for (auto& other : others)
+	{
+		if (auto a = other.lock())
+		{
+
+			float dis_x = ((a->getMidX() / 2.0f) - (_owner->getMidX() / 2.0f));
+			float dis_y = ((a->getMidY() / 2.0f) - (_owner->getMidY() / 2.0f));
+			float distance = abs(sqrtf(dis_x * dis_x + dis_y * dis_y));
+
+			if (distance > 0 && distance <= 60.0f)
+			{
+				sum+=a->GetCoordinates();
+				count++;
+			}
+
+		}
+	}
+
+	if (count > 0)
+	{
+		Point steer(0.0f, 0.0f);
+		sum/(float)count;
+
+		// A vector pointing from the location to the target
+		Point desired = (sum + (_owner->GetCoordinates()*-1));
+
+		// Distance from the target is the magnitude of the vector
+		float dis = sqrtf(desired.x * desired.x + desired.y * desired.y);
+
+		// If the distance is greater than 0, calc steering
+		// (otherwise return zero vector)
+		if (dis > 0)
+		{
+			desired.x /= dis;
+			desired.y /= dis;
+
+			// Two options for desired vector magnitude
+			// (1 -- based on distance, 2 -- maxspeed)
+			if (dis < 60.0f * 0.5f)
+				desired*(_owner->speed * (dis / 60.0f)); // This damping is arbitrary
+
+		}
+		*_owner->Acceleration.get() += desired;
+	}
 }
 
 void AIDefault::Seperate(EnemiesType& others)
