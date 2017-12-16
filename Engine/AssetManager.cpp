@@ -70,7 +70,7 @@ SDL_Texture *AssetManager::LoadTexture(string mediaToken) {
     if (!surface)
         cout << SDL_GetError() << endl;
     SDL_Texture *texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
-
+	SDL_FreeSurface(surface);
 
     if (texture == NULL) {
         cout << "Unable to load texture! SDL_image Error: " << mediaToken.c_str() << TTF_GetError() << endl;
