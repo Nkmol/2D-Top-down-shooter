@@ -1,6 +1,5 @@
 #pragma once
 #include "InstructionsState.h"
-#include "MenuState.h"
 
 InstructionsState::InstructionsState()
 {

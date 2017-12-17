@@ -1,5 +1,4 @@
 #include "CreditsState.h"
-#include "MenuState.h"
 
 CreditsState::CreditsState()
 {
@@ -38,7 +37,7 @@ void CreditsState::Draw(Game & game)
 	RenderManager::Instance().DrawText("THIS GAME IS CREATED BY:", config::width / 2 - 250, config::height / 3 - 170, 360, 40);
 	RenderManager::Instance().DrawText("Niels Kop - ", config::width / 2 - 250, config::height / 3 - 70, 360, 40);
 	RenderManager::Instance().DrawText("Sander Mol - ", config::width / 2 - 250, config::height / 3 + 30, 360, 40);
-	RenderManager::Instance().DrawText("Mevlut Özdemir -", config::width / 2 - 250, config::height / 3 + 130, 360, 40);
+	RenderManager::Instance().DrawText("Mevlut ï¿½zdemir -", config::width / 2 - 250, config::height / 3 + 130, 360, 40);
 	RenderManager::Instance().DrawText("Ahmad Rahimi -", config::width / 2 - 250, config::height / 3 + 230, 360, 40);
 	RenderManager::Instance().DrawText("Jeroen Brekelmans -", config::width / 2 - 250, config::height / 3 + 330, 360, 40);
 

@@ -6,6 +6,7 @@
 #include "InputManager.h"
 #include "Game.h"
 #include "Button.h"
+#include "MenuState.h"
 
 class CreditsState : public State
 {

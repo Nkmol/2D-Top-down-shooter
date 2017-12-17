@@ -4,6 +4,16 @@
 #include "Config.h"
 #include "Button.h"
 #include "Texture.h"
+#include "InputManager.h"
+#include "PlayingState.h"
+#include "InstructionsState.h"
+#include "CreditsState.h"
+#include "AudioManager.h"
+#include "Game.h"
+#include <experimental/filesystem>
+#include "nfd.h"
+#include <json.hpp>
+#include <regex>
 
 class MenuState : public State
 {

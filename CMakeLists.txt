@@ -58,6 +58,10 @@ set(SOURCE_FILES
         Game/Explosion.cpp
         Game/ExplosionFactory.cpp
         Game/Explosion.h
+        Game/InstructionsState.h
+        Game/InstructionsState.cpp
+        Game/CreditsState.cpp
+        Game/CreditsState.h
         Game/headers/Helper.h
         Game/headers/Player.h
         Game/headers/Flock.h
