@@ -2,6 +2,7 @@
 #include "MoveableObject.h"
 #include "Player.h"
 #include "Wave.h"
+#include "Config.h"
 
 
 WaveController::WaveController()
@@ -47,17 +48,26 @@ bool WaveController::Update(float time)
 	return true;
 }
 
+
 void WaveController::SpawnWave()
 {
 	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 
+	Point screenCenter;
+	screenCenter.x = config::width / 2;
+	screenCenter.y = config::height / 2;
+	int minRadius = config::width / 2 * 1.1;
+	int maxRadius = config::width / 2 * 1.5;
+
 	for (auto flock : _curWave->GetFlocksVars())
 	{
 		for (int i = 0; i < flock.amount; i++) {
+			int randomDistance = rand() % (maxRadius - minRadius + 1) + minRadius;
+			int randomAngle = rand() % 360 + 1;
 			auto member = make_unique<EnemyBase>(_j[flock.type], _npcs, _player);
-			member->SetCoordinates(Point(rand() % flock.maxPos + flock.minPos, rand() % flock.maxPos + flock.minPos));
+			member->SetCoordinates(Point(randomDistance * cos(randomAngle) + screenCenter.x, randomDistance * sin(randomAngle) + screenCenter.y));
 
 			_npcs->push_back(move(member));
 		}

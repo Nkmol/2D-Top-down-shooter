@@ -27,14 +27,13 @@ public:
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
 
-	bool checkStaticObjectCollision(float midX, float midY, float radius);
 	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
 	void CheckQuadTreeCollision(MoveableObject * m, Point newPos);
 	const vector<GameObject>* getCollidables();
 
-
+	void checkStaticObjectCollision(MoveableObject * m, Point newPos);
 	void UpdateQuadTree(std::vector<GameObject> &gameObjects);
 	void UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects);
 	const QuadTree &GetQuadTree() const;
@@ -49,6 +48,8 @@ private:
 	QuadTree _quadtree;
 	bool IntersectsRect(float midX, float midY, float radius, const GameObject * collidable);
 	bool IntersectsCircle(float midX, float midY, float radius, const MoveableObject * collidable);
+
+
 
 };
 
