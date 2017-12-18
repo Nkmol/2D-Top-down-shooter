@@ -10,18 +10,9 @@ MoveableObject::MoveableObject(const std::string &filePath, const Point coordina
         speed{speed}, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
 }
 
-void MoveableObject::draw() {
-    if (!visible) return;
-    SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y),
-                                     GameObject::width, GameObject::height};
-    RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
-}
-
-
 void MoveableObject::update(float time) {
     _coordinates += _destination * speed * time;
 }
-
 
 void MoveableObject::stopMove() {
     _destination = Point{0, 0};
@@ -84,9 +75,6 @@ bool MoveableObject::IsReadyForAnimation() const {
 }
 
 void MoveableObject::ChangeSprite(const std::string &spriteToken) {
-	if (_sprite)
-		SDL_DestroyTexture(_sprite);
-	_sprite = nullptr;
     _sprite = AssetManager::Instance().LoadTexture(spriteToken);
 }
 

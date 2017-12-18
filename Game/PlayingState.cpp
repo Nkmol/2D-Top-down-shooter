@@ -31,7 +31,6 @@ void PlayingState::HandleEvents(Game &game) {
 
 void PlayingState::Update(Game &game, float time) {
     game.GetLevel()->Update(time);
-
 }
 
 void PlayingState::Draw(Game &game) {
