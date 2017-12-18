@@ -3,13 +3,14 @@
 int GameObject::counter = 0;
 
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
-        _coordinates(coordinates), width(width), height(height) {
-    visible = true;
-    midX = _coordinates.x + width / 2;
-    midY = _coordinates.y + height / 2;
-    radius = (width + height) / 4;
-    this->id = ++counter;
-
+	angle(0),
+	_coordinates(coordinates), width(width), height(height)
+{
+	visible = true;
+	midX = _coordinates.x + width / 2;
+	midY = _coordinates.y + height / 2;
+	radius = (width + height) / 4;
+	this->id = ++counter;
 }
 
 GameObject::GameObject(const std::string &spriteToken, const Point coordinates) : _coordinates(coordinates) {

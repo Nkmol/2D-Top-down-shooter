@@ -118,19 +118,19 @@ void MenuState::Draw(Game& game)
 {
     RenderManager::Instance().DrawTexture(_background.get(), NULL, NULL);
 
-    _newgameButton.drawButton();
-    _loadgameButton.drawButton();
-    _creditsButton.drawButton();
-    _muteButton.drawButton();
-    _quitButton.drawButton();
-    _instructions.drawButton();
+    _newgameButton.draw();
+    _loadgameButton.draw();
+    _creditsButton.draw();
+    _muteButton.draw();
+    _quitButton.draw();
+    _instructions.draw();
 
     if (_highestLevel >= 1)
-        _level1.drawButton();
+        _level1.draw();
     if(_highestLevel >= 2)
-        _level2.drawButton();
+        _level2.draw();
     if (_highestLevel >= 3)
-        _level3.drawButton();
+        _level3.draw();
 }
 
 void MenuState::Init()
