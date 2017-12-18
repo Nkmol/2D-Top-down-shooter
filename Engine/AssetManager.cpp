@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AssetManager.h"
+#include "Texture.h"
 
 AssetManager::AssetManager() {
 
@@ -65,7 +66,7 @@ TTF_Font *AssetManager::LoadFont(const string fontToken, const int size) {
     return font;
 }
 
-std::unique_ptr<SDL_Texture, CustomDeleter> AssetManager::LoadTexture(const std::string& str)
+std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 {
 	if (str.empty()) return {};
 
@@ -75,5 +76,5 @@ std::unique_ptr<SDL_Texture, CustomDeleter> AssetManager::LoadTexture(const std:
 	{
 		std::cout << "Failed to load texture " << str << ". Error: " << SDL_GetError() << std::endl;
 	}
-	return unique_ptr<SDL_Texture, CustomDeleter>(texture);
+	return make_unique<Texture>(texture);
 }

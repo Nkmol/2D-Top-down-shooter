@@ -116,7 +116,7 @@ void MenuState::Update(Game& game, float time)
 
 void MenuState::Draw(Game& game)
 {
-    RenderManager::Instance().DrawTexture(_background.get(), NULL, NULL);
+    RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
 
     _newgameButton.draw();
     _loadgameButton.draw();

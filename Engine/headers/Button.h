@@ -19,6 +19,5 @@ private:
 	int y2Pos;
 	int width;
 	int height;
-	SDL_Texture* _sprite;
 	void setX2andY2(int, int, int, int);
 };

@@ -2,8 +2,8 @@
 #include <string>
 #include <SDL_rect.h>
 #include "Point.h"
-#include "RenderManager.h"
-#include <SDL_render.h>
+#include "../Texture.h"
+#include <memory>
 
 class GameObject 
 {
@@ -58,7 +58,7 @@ protected:
 	float radius, midX, midY;
 	Point _coordinates;
 	bool visible;
-	std::unique_ptr<SDL_Texture, CustomDeleter> _sprite;
+	unique_ptr<Texture> _sprite;
     std::string spriteToken;
 private:
 

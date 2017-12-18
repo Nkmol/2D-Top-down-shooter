@@ -3,6 +3,7 @@
 #include "State.h"
 #include "Config.h"
 #include "Button.h"
+#include "../Engine/Texture.h"
 
 class MenuState : public State
 {
@@ -31,5 +32,5 @@ private:
 
 	std::string _savedGame;
 
-	std::unique_ptr<SDL_Texture, CustomDeleter> _background;
+	std::unique_ptr<Texture> _background;
 };
