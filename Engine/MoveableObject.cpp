@@ -84,6 +84,9 @@ bool MoveableObject::IsReadyForAnimation() const {
 }
 
 void MoveableObject::ChangeSprite(const std::string &spriteToken) {
+	if (_sprite)
+		SDL_DestroyTexture(_sprite);
+	_sprite = nullptr;
     _sprite = AssetManager::Instance().LoadTexture(spriteToken);
 }
 
