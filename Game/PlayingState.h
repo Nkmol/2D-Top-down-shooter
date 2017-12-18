@@ -19,7 +19,7 @@ public:
 
     void Draw(Game &game) override;
 
-    void Init() override;
+    void Init(Game& game) override;
 
 private:
     // Todo might actually need to be GameObject

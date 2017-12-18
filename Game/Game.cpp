@@ -29,7 +29,7 @@ void Game::ChangeState(unique_ptr<State>&& state)
 {
 	// Move ownership to the state vector
 	_states.push_back(std::move(state));
-	_states.back()->Init();
+	_states.back()->Init(*this);
 }
 
 void Game::PopState()

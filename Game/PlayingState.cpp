@@ -38,5 +38,6 @@ void PlayingState::Draw(Game &game) {
     game.GetLevel()->Draw();
 }
 
-void PlayingState::Init() {
+void PlayingState::Init(Game& game)
+{
 }

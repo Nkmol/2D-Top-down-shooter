@@ -4,6 +4,8 @@
 #include "Level.h"
 #include "Game.h"
 #include "InputManager.h"
+#include "Button.h"
+#include "MenuState.h"
 
 PausedState::PausedState()
 {
@@ -28,6 +30,14 @@ void PausedState::HandleEvents(Game & game)
 		if (inputManager.IsQuit(event)) {
 			game.Quit();
 		}
+		if(inputManager.IsMouseClicked(event))
+		{
+			// Check clicks on button
+			for (auto& button : _buttons)
+			{
+				if (button->IsClicked(event)) button->Click();
+			}
+		}
 	}
 }
 
@@ -40,8 +50,17 @@ void PausedState::Draw(Game & game)
 	MapManager::Instance().Render();
 	game.GetLevel()->Draw();
 	RenderManager::Instance().DrawText("Press ESC to resume game", config::width/2 - 155, config::height/2 - 20, 360, 40);
+	
+	// Draw all buttons
+	for (auto& button : _buttons)
+	{
+		button->draw();
+	}
 }
 
-void PausedState::Init()
+void PausedState::Init(Game& game)
 {
+	_buttons.emplace_back(make_unique<Button>("button_give-up", Point(config::width / 2 - 52, config::height / 4 ),Point( 114, 40 ), [&]{ 
+		game.ChangeState(make_unique<MenuState>());
+	}));
 }

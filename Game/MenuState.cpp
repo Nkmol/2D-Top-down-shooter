@@ -133,7 +133,7 @@ void MenuState::Draw(Game& game)
         _level3.draw();
 }
 
-void MenuState::Init()
+void MenuState::Init(Game & game)
 {
 	_background = AssetManager::Instance().LoadTexture("menu-wallpaper");
 
