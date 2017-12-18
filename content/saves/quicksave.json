@@ -5,15 +5,15 @@
     "weapons": [        
         {
             "currentBullets": 8,
-            "name": "Handgun"
+            "name": "handgun"
         },
 		{
             "currentBullets": 100,
-            "name": "Uzi"
+            "name": "rifle"
         },		
         {
             "currentBullets": 3,
-            "name": "Shotgun"
+            "name": "shotgun"
         }
     ]
 }

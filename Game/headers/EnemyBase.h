@@ -43,7 +43,7 @@ public:
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();
 
-	void UpdatePosition(std::vector<shared_ptr<EnemyBase>>& others, const float time);
+	void UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time);
 
 	void ApplyForce(float forcePower, int forceDirection);
 
@@ -56,7 +56,6 @@ public:
 	void SetDestinationPoint(const Point& point);
 
 	void update(const float time);
-	void draw();
 };
 
 

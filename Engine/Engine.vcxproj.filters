@@ -78,10 +78,10 @@
     <ClInclude Include="headers\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Texture.h">
+    <ClInclude Include="AnimationManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationManager.h">
+    <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

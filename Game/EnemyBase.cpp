@@ -56,9 +56,9 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::UpdatePosition(std::vector<shared_ptr<EnemyBase>> &others, const float time) {
-    _behaviour->Update(others, time);
-
+void EnemyBase::UpdatePosition(std::vector<weak_ptr<EnemyBase>>& others, const float time)
+{
+	_behaviour->Update(others, time);
     update(time);
 }
 
@@ -69,10 +69,6 @@ void EnemyBase::update(const float time) {
     PhysicsManager::Instance().checkWallCollision(this, newPostition);
     PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
     MoveableObject::update(time);
-}
-
-void EnemyBase::draw() {
-    MoveableObject::draw();
 }
 
 const Point &EnemyBase::GetDestinationPoint() const {
