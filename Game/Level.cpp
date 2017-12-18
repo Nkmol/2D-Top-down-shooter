@@ -150,7 +150,7 @@ void Level::Update(float time) {
         objNoEnemie->update(accSpeed);
     }
 
-    if (!_waveController.Update(accSpeed, _objs, _player)) {
+    if (!_waveController.Update(accSpeed, _objs, _player, _level)) {
         _player->SetHighestLevel(_level + 1);
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();

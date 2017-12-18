@@ -29,15 +29,19 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& pla
 	SpawnWave(npcs, player);
 }
 
-bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player, int levelnumber)
 {
 	_lastWaveTimer += time;
 
 	if (_lastWaveTimer >= _curWave->GetTime()) {
 		_lastWaveTimer = 0.0f;
 		_curWave++;
-		if (_curWave == _waves.end())
+		if (_curWave == _waves.end() & levelnumber != 3){
 			return false;
+		}
+		else if (_curWave == _waves.end() & levelnumber == 3){
+			_curWave = _waves.begin();
+		}
 		SpawnWave(npcs, player);
 	}
 	
@@ -47,9 +51,9 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 
 void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
 {
-	std::string waveText = "Wave: " + _curWave->GetId();
+	std::string waveText = "Wave: " + wavenumber;
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
-	std::cout << "new wave: " << _curWave->GetId() << endl;
+	std::cout << "new wave: " << wavenumber << endl;
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{

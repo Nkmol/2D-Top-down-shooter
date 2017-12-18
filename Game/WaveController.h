@@ -14,11 +14,12 @@ public:
 	WaveController();
 	void Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<MoveableObject>>& npcs);
 	//returns false if there are no more waves
-	bool Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player);
+	bool Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player, int levelnumber);
 	void Draw();
 private:
 	nlohmann::json _j;
 	float _lastWaveTimer;
+	int wavenumber = 1;
 	void SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player);
 	FlockController _flockController;
 	std::forward_list<Wave> _waves;
