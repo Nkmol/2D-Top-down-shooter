@@ -1,14 +1,11 @@
 #include "GameObject.h"
 
-int GameObject::counter = 0;
-
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
         _coordinates(coordinates), width(width), height(height) {
     visible = true;
     midX = _coordinates.x + width / 2;
     midY = _coordinates.y + height / 2;
     radius = (width + height) / 4;
-    this->id = ++counter;
 
 }
 
@@ -19,7 +16,6 @@ GameObject::GameObject(const std::string &spriteToken, const Point coordinates) 
     midX = _coordinates.x + width / 2;
     midY = _coordinates.y + height / 2;
     radius = (width + height) / 4;
-    this->id = ++counter;
     this->spriteToken = spriteToken;
 }
 
@@ -69,18 +65,6 @@ void GameObject::draw() {
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
     RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);
-}
-
-int GameObject::GetId() const {
-    return id;
-}
-
-void GameObject::SetTeamId(int teamId) {
-    GameObject::teamId = teamId;
-}
-
-int GameObject::GetTeamId() const {
-    return teamId;
 }
 
 int GameObject::getAngle() const {
