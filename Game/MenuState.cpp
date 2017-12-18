@@ -155,10 +155,7 @@ void MenuState::Init(Game & game)
 
 void MenuState::StartLevel(const int level, Game& game)
 {
-
-
-    auto state = std::make_unique<PlayingState>();
+    auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
-    game.SetLevel(level, _savedGame);
 }

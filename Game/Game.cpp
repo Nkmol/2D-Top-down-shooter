@@ -32,9 +32,25 @@ void Game::ChangeState(unique_ptr<State>&& state)
 	_states.back()->Init(*this);
 }
 
+void Game::SetState(unique_ptr<State>&& state)
+{
+	ClearStates();
+	ChangeState(move(state));
+}
+
+const unique_ptr<State>& Game::GetStateBack(const int at)
+{
+	return _states.end()[- (at+1)];
+}
+
 void Game::PopState()
 {
 	_states.pop_back();
+}
+
+void Game::ClearStates()
+{
+	_states.clear();
 }
 
 void Game::Quit()
@@ -96,13 +112,4 @@ void Game::Draw()
 	renderManager.DrawText(str.str(), 20, 20, 70, 20);
 
 	renderManager.Render();
-}
-
-shared_ptr<Level> Game::GetLevel() const
-{
-	return _level;
-}
-
-void Game::SetLevel(int level, std::string savedGame) {
-		_level = make_shared<Level>(level, savedGame);
 }

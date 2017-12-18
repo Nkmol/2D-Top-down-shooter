@@ -3,6 +3,7 @@
 #include <memory>
 #include "State.h"
 #include "FlockController.h"
+#include "Level.h"
 
 class Player;
 class MoveableObject;
@@ -10,8 +11,9 @@ class MoveableObject;
 class PlayingState : public State {
 public:
     PlayingState();
+	PlayingState(int level, const std::string& savedGame);
 
-    ~PlayingState();
+	~PlayingState();
 
     void HandleEvents(Game &game) override;
 
@@ -29,5 +31,6 @@ private:
 	std::shared_ptr<Player> _player;
     FlockController flockController;
 
+	Level _level;
 };
 

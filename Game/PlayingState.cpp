@@ -4,12 +4,15 @@
 #include "Level.h"
 #include "InputManager.h"
 
-PlayingState::PlayingState() {
+PlayingState::PlayingState() : PlayingState(0, "")
+{
+}
+
+PlayingState::PlayingState(const int level, const std::string& savedGame) : _level(Level{ level, savedGame }) {
 }
 
 
-PlayingState::~PlayingState() {
-}
+PlayingState::~PlayingState() = default;
 
 void PlayingState::HandleEvents(Game &game) {
     auto &inputManager = InputManager::Instance();
@@ -25,17 +28,17 @@ void PlayingState::HandleEvents(Game &game) {
         if (inputManager.IsQuit(event)) {
             game.Quit();
         }
-        game.GetLevel()->HandleEvents(event);
+        _level.HandleEvents(event);
     }
 }
 
 void PlayingState::Update(Game &game, float time) {
-    game.GetLevel()->Update(time);
+	_level.Update(time);
 }
 
 void PlayingState::Draw(Game &game) {
 	MapManager::Instance().Render();
-    game.GetLevel()->Draw();
+	_level.Draw();
 }
 
 void PlayingState::Init(Game& game)
