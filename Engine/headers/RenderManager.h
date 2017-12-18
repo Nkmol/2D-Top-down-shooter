@@ -10,7 +10,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <SDL_ttf.h>
-#include "AssetManager.h"
+
 using namespace std;
 
 class RenderManager {

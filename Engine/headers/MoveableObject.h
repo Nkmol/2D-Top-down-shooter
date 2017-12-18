@@ -43,8 +43,6 @@ public:
 
     virtual ~MoveableObject();
 
-    virtual void draw();
-
     virtual void update(float time);
 
     void stopMove();
