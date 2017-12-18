@@ -65,15 +65,15 @@ TTF_Font *AssetManager::LoadFont(const string fontToken, const int size) {
     return font;
 }
 
-SDL_Texture *AssetManager::LoadTexture(string mediaToken) {
-    SDL_Surface *surface = LoadSurface(mediaToken);
-    if (!surface)
-        cout << SDL_GetError() << endl;
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
-	SDL_FreeSurface(surface);
+std::unique_ptr<SDL_Texture, CustomDeleter> AssetManager::LoadTexture(const std::string& str)
+{
+	if (str.empty()) return {};
 
-    if (texture == NULL) {
-        cout << "Unable to load texture! SDL_image Error: " << mediaToken.c_str() << TTF_GetError() << endl;
-    }
-    return texture;
+	// TODO call this from RenderManager, so it gives the Render instance as parameter to this function (DI)
+	const auto texture = IMG_LoadTexture(RenderManager::Instance().GetRenderer(), ("../content/sprites/" + str + ".png").c_str());
+	if (texture == nullptr)
+	{
+		std::cout << "Failed to load texture " << str << ". Error: " << SDL_GetError() << std::endl;
+	}
+	return unique_ptr<SDL_Texture, CustomDeleter>(texture);
 }

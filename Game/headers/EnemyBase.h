@@ -56,7 +56,6 @@ public:
 	void SetDestinationPoint(const Point& point);
 
 	void update(const float time);
-	void draw();
 };
 
 

@@ -1,6 +1,7 @@
 #include "RenderManager.h"
 #include "AssetManager.h"
 #include "Button.h"
+
 Button::Button(const std::string mediatoken, int x1, int y1, int width, int height) : GameObject(Point(x1, y1), width, height) {
 	x1Pos = x1;
 	y1Pos = y1;
@@ -37,4 +38,3 @@ int Button::getX1() { return this->x1Pos; }
 int Button::getY1() { return this->y1Pos; }
 int Button::getY2() { return this->y2Pos; }
 int Button::getX2() { return this->x2Pos; }
-

@@ -28,6 +28,6 @@ public:
 	Mix_Music* LoadBGM(const string soundToken);
 	Mix_Chunk* LoadEffect(const string effectToken);
 	SDL_Surface* LoadSurface(const string mediaToken);
-	SDL_Texture* LoadTexture(const string mediaToken);
+	static std::unique_ptr<SDL_Texture, CustomDeleter> LoadTexture(const std::string& str);
 	TTF_Font* LoadFont(const string fontToken, const int size);
 };

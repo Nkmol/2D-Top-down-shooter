@@ -116,7 +116,7 @@ void MenuState::Update(Game& game, float time)
 
 void MenuState::Draw(Game& game)
 {
-    RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+    RenderManager::Instance().DrawTexture(_background.get(), NULL, NULL);
 
     _newgameButton.drawButton();
     _loadgameButton.drawButton();
@@ -135,9 +135,9 @@ void MenuState::Draw(Game& game)
 
 void MenuState::Init()
 {
-    _background = std::make_unique<Texture>(AssetManager::Instance().LoadTexture("menu-wallpaper"));
+	_background = AssetManager::Instance().LoadTexture("menu-wallpaper");
 
-    _newgameButton = Button("button_new", (config::width / 2) - 150, 200, 300, 50);
+    _newgameButton = Button ("button_new", (config::width / 2) - 150, 200, 300, 50);
     _loadgameButton = Button("button_load", (config::width / 2) - 150, 300, 300, 50);
     _creditsButton = Button("button_credits", (config::width / 2) - 150, 400, 300, 50);
     _instructions = Button("button_instructions", (config::width / 2) - 150, 500, 300, 50);
