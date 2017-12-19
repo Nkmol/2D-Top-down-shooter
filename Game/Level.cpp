@@ -138,6 +138,11 @@ void Level::HandleKeyboardEvents(Event &event) {
             _player->ChangeState("reload");
             return;
         }
+
+		if (inputManager.IsKeyDown(event, "K")) {
+			_player->ToggleCheats();
+			return;
+		}
     }
 }
 
