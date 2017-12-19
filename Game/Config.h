@@ -5,11 +5,11 @@
 #include <array>
 namespace config 
 {
-	const int width = 1280;
-	const int height = 960;
+	const int width = 1920;
+	const int height = 1080;
 	const int tileSize = 32;
 	const std::string title = "Shooter Game";
-	const bool fullscreen = false;
+	const bool fullscreen = true;
 
 	const std::array<std::string, 3> levels{
 		"../content/level1.json",
