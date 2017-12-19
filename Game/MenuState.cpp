@@ -129,9 +129,10 @@ void MenuState::Draw(Game &game) {
         _level3.draw();
 }
 
-void MenuState::Init() {
-    _background = AssetManager::Instance().LoadTexture("menu-wallpaper");
 
+void MenuState::Init(Game & game)
+{
+	_background = AssetManager::Instance().LoadTexture("menu-wallpaper");
     _newgameButton = Button("button_new", (config::width / 2) - 150, 200, 300, 50);
     _loadgameButton = Button("button_load", (config::width / 2) - 150, 300, 300, 50);
     _creditsButton = Button("button_credits", (config::width / 2) - 150, 400, 300, 50);
@@ -148,11 +149,10 @@ void MenuState::Init() {
     int muted = 0;
 }
 
-void MenuState::StartLevel(const int level, Game &game) {
 
-
-    auto state = std::make_unique<PlayingState>();
+void MenuState::StartLevel(const int level, Game& game)
+{
+    auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
-    game.SetLevel(level, _savedGame);
 }
