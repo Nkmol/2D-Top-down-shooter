@@ -33,7 +33,7 @@ void Button::setX2andY2(int x1, int y1, int width, int height)
 
 bool Button::IsClicked(Event ev) const
 {
-	if (!InputManager::Instance().IsMousePressed(ev)) return false;
+	if (!InputManager::Instance().IsMouseClicked(ev)) return false;
 
 	auto& mouse = ev.GetEventValue().button;
 	return mouse.x > x1Pos && mouse.x < x2Pos && mouse.y > y1Pos && mouse.y < y2Pos;
