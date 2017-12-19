@@ -69,19 +69,16 @@
     <ClInclude Include="CustomDeleter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QuadTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Texture.h">
+    <ClInclude Include="AnimationManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationManager.h">
+    <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -123,9 +120,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TickerTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">

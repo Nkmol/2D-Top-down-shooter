@@ -71,10 +71,6 @@ void EnemyBase::update(const float time) {
     MoveableObject::update(time);
 }
 
-void EnemyBase::draw() {
-    MoveableObject::draw();
-}
-
 const Point &EnemyBase::GetDestinationPoint() const {
     return destinationPoint;
 }
