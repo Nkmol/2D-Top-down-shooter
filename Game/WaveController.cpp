@@ -34,7 +34,7 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	SpawnWave();
 }
 
-bool WaveController::Update(float time)
+bool WaveController::Update(float time, int levelnumber)
 {
 	_lastWaveTimer += time * multiplier;
 
@@ -48,7 +48,7 @@ bool WaveController::Update(float time)
 			_curWave = _waves.begin();
 			multiplier = multiplier * 1.2;
 		}
-		SpawnWave(npcs, player);
+		SpawnWave();
 	}
 	return true;
 }

@@ -16,7 +16,7 @@ public:
 	WaveController();
 	void Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs);
 	//returns false if there are no more waves
-	bool Update(float time);
+	bool Update(float time, int levelnumber);
 private:
 	nlohmann::json _j;
 	float _lastWaveTimer, multiplier = 1.0;
