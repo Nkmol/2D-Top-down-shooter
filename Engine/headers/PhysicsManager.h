@@ -25,8 +25,7 @@ public:
 	static PhysicsManager& Instance();
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
-
-	bool checkStaticObjectCollision(float midX, float midY, float radius);
+	void PhysicsManager::checkStaticObjectCollision(MoveableObject* m, Point newPos);	
 	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);

@@ -7,11 +7,10 @@
 #include "Player.h"
 #include "Config.h"
 #include "InputManager.h"
-#include "EnemyBase.h"
-#include "Wave.h"
 #include "Event.h"
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
+#include "EnemyBase.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
@@ -30,7 +29,7 @@ void Level::Init() {
 
     LoadPlayer();
 
-    _waveController.Init(_waves, _player, _objs);
+    _waveController.Init(_waves, _player, &_npcs);
 
     PhysicsManager::Instance().setStaticObjects();
     PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
@@ -150,14 +149,17 @@ void Level::Update(float time) {
         objNoEnemie->update(accSpeed);
     }
 
-    if (!_waveController.Update(accSpeed, _objs, _player)) {
+    if (!_waveController.Update(accSpeed)) {
         _player->SetHighestLevel(_level + 1);
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();
     }
 
-    for (auto &&npc : _npcs) {
-        npc->update(accSpeed);
+    for (auto &npc : _npcs) {
+        npc->UpdatePosition(accSpeed);
+		if (!npc->isVisible()) {
+			this->AddExplosion(npc->GetCoordinates());
+		}
     }
 
     for (auto &obj : _objs) {
@@ -172,7 +174,7 @@ void Level::Update(float time) {
 
     RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
-    RemoveHiddenObjects(_npcs);
+	RemoveHiddenNpcs();
     RemoveHiddenObjects(_objs);
 }
 
@@ -186,6 +188,13 @@ void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &ob
     auto y(std::remove_if(objects.begin(), objects.end(),
                           [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
     objects.erase(y, objects.end());
+}
+
+void Level::RemoveHiddenNpcs()
+{
+	auto y(std::remove_if(_npcs.begin(), _npcs.end(),
+		[](std::unique_ptr<EnemyBase> &o) { return !o->isVisible(); }));
+	_npcs.erase(y, _npcs.end());
 }
 
 void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &objects) {
@@ -206,8 +215,6 @@ void Level::Draw() {
     for (auto& explosion : _explosion) {
         explosion.draw();
     }
-
-    _waveController.Draw();
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();

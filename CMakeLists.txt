@@ -25,7 +25,6 @@ set(SOURCE_FILES
         Game/PlayingState.cpp
         Game/EnemyBase.cpp
         Game/Handgun.cpp
-        Game/FlockController.cpp
         Game/AIDefault.h
         Game/Player.cpp
         Game/PlayingState.h
@@ -43,7 +42,6 @@ set(SOURCE_FILES
         Game/IAIBase.h
         Game/Level.h
         Game/Game.h
-        Game/Flock.cpp
         Game/PausedState.cpp
         Game/MenuState.h
         Game/WaveController.h
@@ -60,10 +58,8 @@ set(SOURCE_FILES
         Game/Explosion.h
         Game/headers/Helper.h
         Game/headers/Player.h
-        Game/headers/Flock.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
-        Game/headers/FlockController.h
         Game/headers/Rifle.h
         Game/headers/EnemyBase.h
         Engine/Button.cpp
