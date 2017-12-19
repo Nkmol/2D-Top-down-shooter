@@ -101,8 +101,8 @@ void Level::HandleMouseEvents(Event &event) {
         _player->SetAngle(angle);
     }
 
-    if (inputManager.IsMouseDown(event)) {
-        cout << _player->CanShoot() << endl;
+
+    if (inputManager.IsMousePressed(event)) {
         if (_player->CanShoot()) {
             _player->ChangeState("shoot");
             auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
@@ -222,7 +222,7 @@ void Level::Draw() {
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
     auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
     RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +

@@ -43,7 +43,7 @@ public:
 
     bool IsMouseMoved(Event &event);
 
-    bool IsMouseDown(Event &event);
+    bool IsMousePressed(Event &event);
 
     int GetMousePositionX() const;
 
@@ -64,8 +64,6 @@ public:
     const bool IsKeyDown(Event &event, const std::string name) const;
 
     bool IsMouseReleased(Event &event);
-
-    bool IsMouseHeld();
 
     void HandleMouseReleased();
 };

@@ -115,10 +115,11 @@ bool InputManager::IsMouseMoved(Event &event) {
     return event.GetEventValue().type == SDL_MOUSEMOTION;
 }
 
-bool InputManager::IsMouseDown(Event &event) {
-    buttonState = event.GetEventValue().type == SDL_MOUSEBUTTONDOWN
-                  || IsMouseHeld(); // if mouse is clicked or held..
-
+bool InputManager::IsMousePressed(Event &event) {
+    if (event.GetEventValue().type == SDL_MOUSEBUTTONDOWN) {
+        buttonState = true;
+    }
+    cout << buttonState << endl;
     return buttonState;
 }
 
@@ -130,9 +131,6 @@ void InputManager::HandleMouseReleased() {
     buttonState = false;
 }
 
-bool InputManager::IsMouseHeld() {
-    return buttonState;
-}
 
 const bool InputManager::IsKeyDown(Event &event, const std::string name) const {
     return event.GetEventValue().button.button == SDL_GetScancodeFromName(name.c_str());
