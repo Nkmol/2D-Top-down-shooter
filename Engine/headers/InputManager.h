@@ -66,6 +66,8 @@ public:
     bool IsMouseReleased(Event &event);
 
     void HandleMouseReleased();
+
+    bool IsMouseClicked(Event &event);
 };
 
 

@@ -25,7 +25,7 @@ void MenuState::HandleEvents(Game &game) {
     while (inputManager.HasEvent(&ev)) {
         if (inputManager.IsQuit(ev))
             game.Quit();
-        else if (inputManager.IsMousePressed(ev)) {
+        else if (inputManager.IsMouseClicked(ev)) {
             if (ev.GetEventValue().button.x > _newgameButton.getX1() &&
                 ev.GetEventValue().button.x < _newgameButton.getX2() &&
                 ev.GetEventValue().button.y > _newgameButton.getY1() &&
@@ -91,7 +91,6 @@ void MenuState::HandleEvents(Game &game) {
             } else if (ev.GetEventValue().button.x > _level1.getX1() && ev.GetEventValue().button.x < _level1.getX2() &&
                        ev.GetEventValue().button.y > _level1.getY1() && ev.GetEventValue().button.y < _level1.getY2()) {
                 if (_highestLevel >= 1) {
-                    inputManager.HandleMouseReleased(); // otherwise the buttonState will be true, and it will shoot immediately when the level is started.
                     StartLevel(1, game);
                 }
             } else if (ev.GetEventValue().button.x > _level2.getX1() && ev.GetEventValue().button.x < _level2.getX2() &&

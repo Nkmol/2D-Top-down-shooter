@@ -115,8 +115,12 @@ bool InputManager::IsMouseMoved(Event &event) {
     return event.GetEventValue().type == SDL_MOUSEMOTION;
 }
 
+bool InputManager::IsMouseClicked(Event &event) {
+    return event.GetEventValue().type == SDL_MOUSEBUTTONDOWN;
+}
+
 bool InputManager::IsMousePressed(Event &event) {
-    if (event.GetEventValue().type == SDL_MOUSEBUTTONDOWN) {
+    if (IsMouseClicked(event)) {
         buttonState = true;
     }
 
