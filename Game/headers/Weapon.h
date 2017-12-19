@@ -21,9 +21,9 @@ protected:
 public:
 	Weapon(int damage, std::string name, int maxBullets);
 
-	bool hasBullets();
+	Bullet getBullet(int angle, Point coordinates, bool isCheatActive);
 
-	Bullet getBullet(int angle, Point coordinates);
+	bool hasBullets();
 
 	int totalBullets() const;
 

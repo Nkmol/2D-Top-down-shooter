@@ -8,12 +8,14 @@
 Player::Player(const std::string &filePath, const float x, const float y)
         : Player(filePath, Point{x, y}) {
     _type = PLAYER;
+	isCheatActive = false;
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp)
         : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
     _type = PLAYER;
     this->ChangeState("idle");
+	isCheatActive = false;
 }
 
 void Player::addWeapons(std::vector<Weapon> wp) {
@@ -39,7 +41,7 @@ void Player::changeWeapon(const unsigned index) {
 }
 
 Bullet Player::shoot() {
-    return getWeapon()->getBullet(getAngle(), _coordinates);
+    return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
 }
 
 void Player::Move(const Point direction) {
@@ -100,10 +102,8 @@ void Player::onBaseCollision(bool isCollidedOnWall) {
 }
 
 void Player::Hit(int damage) {
-    lifepoints -= damage;
-
-    if (lifepoints) {
-
+    if (!isCheatActive) {
+		lifepoints -= damage;
     }
 }
 
@@ -164,3 +164,6 @@ string Player::GetAnimationToken() {
     return this->spriteToken + "/" + this->getWeapon()->getName();
 }
 
+void Player::ToggleCheats() {
+	isCheatActive = !isCheatActive;
+}
