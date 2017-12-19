@@ -9,7 +9,7 @@ class AIBat : public AIDefault
 public:
 	using AIDefault::AIDefault;
 
-	void Update(EnemiesType& others, int time) override;
+	void Update(float time) override;
 	void GoTarget() override;
 
 	// TODO Make sure CRTP can use multiple levels of inheritance

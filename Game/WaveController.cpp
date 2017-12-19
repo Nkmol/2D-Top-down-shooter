@@ -1,15 +1,20 @@
 #include "WaveController.h"
 #include "MoveableObject.h"
-#include "EnemyBase.h"
+#include "Player.h"
+#include "Wave.h"
+#include "Config.h"
+
 
 WaveController::WaveController()
 {
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
+void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
 {
 	_waves = waves;
+	_npcs = npcs;
+	_player = player;
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -26,10 +31,10 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& pla
 	i >> _j;
 
 	_curWave = _waves.begin();
-	SpawnWave(npcs, player);
+	SpawnWave();
 }
 
-bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player, int levelnumber)
+bool WaveController::Update(float time)
 {
 	_lastWaveTimer += time * multiplier;
 
@@ -45,25 +50,33 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		}
 		SpawnWave(npcs, player);
 	}
-	
-	_flockController.UpdateFlocks(time);
 	return true;
 }
 
-void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
+
+void WaveController::SpawnWave()
 {
 	std::string waveText = "Wave: " + wavenumber;
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
 	std::cout << "new wave: " << wavenumber << endl;
 
+	Point screenCenter;
+	screenCenter.x = config::width / 2;
+	screenCenter.y = config::height / 2;
+	int minRadius = config::width / 2 * 1.1;
+	int maxRadius = config::width / 2 * 1.5;
+
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount * multiplier, flock.minPos, flock.maxPos, *player, npcs);
+		for (int i = 0; i < flock.amount; i++) {
+			int randomDistance = rand() % (maxRadius - minRadius + 1) + minRadius;
+			int randomAngle = rand() % 360 + 1;
+			auto member = make_unique<EnemyBase>(_j[flock.type], _npcs, _player);
+			member->SetCoordinates(Point(randomDistance * cos(randomAngle) + screenCenter.x, randomDistance * sin(randomAngle) + screenCenter.y));
+
+			_npcs->push_back(move(member));
+		}
+		
 	}
 	wavenumber++;
-}
-
-void WaveController::Draw()
-{
-	_flockController.DrawFlocks();
 }
