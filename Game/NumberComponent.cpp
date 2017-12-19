@@ -1,15 +1,15 @@
 #include "NumberComponent.h"
 #include "RenderManager.h"
 
-NumberComponent::NumberComponent(int* number, Point pos, int w, int h, double angle)
-	: IHudComponent(pos, w, h, angle), _number{ number }
+NumberComponent::NumberComponent(int* number, Point pos, int w, int h, float time, double angle)
+	: IHudComponent(pos, w, h, time, angle), _number{ number }
 {
 
 }
 
 void NumberComponent::Update(float time)
 {
-
+	_livingtime += time;
 }
 
 void NumberComponent::Draw()

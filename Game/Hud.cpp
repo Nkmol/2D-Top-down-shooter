@@ -1,4 +1,5 @@
 #include "Hud.h"
+#include <algorithm>
 
 Hud& Hud::Instance()
 {
@@ -16,6 +17,9 @@ void Hud::Update(float time)
 {
 	for (auto comps : _components)
 		comps->Update(time);
+
+	auto y(std::remove_if(_components.begin(), _components.end(), [](IHudComponent* c) { return c->Destroyable(); }));
+	_components.erase(y, _components.end());
 }
 
 void Hud::Draw()

@@ -39,7 +39,7 @@ void Level::Init() {
     PhysicsManager::Instance().setStaticObjects();
     PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
 		
-	Hud::Instance().AddComponent(new TextComponent(&_player->teststring, Point(config::width - 360, 0), 360, 40, 0));
+	Hud::Instance().AddComponent(new TextComponent(_player->teststring, Point(config::width - 360, 0), 360, 40, 0));
 	Hud::Instance().AddComponent(new NumberComponent(&count, Point(400, 400), 260, 40, 0));
 }
 
@@ -188,7 +188,7 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_objs);
 
 	
-	//Hud::Instance().Update(accSpeed);
+	Hud::Instance().Update(accSpeed);
 	//_weaponComponent->Update(accSpeed);
 }
 
