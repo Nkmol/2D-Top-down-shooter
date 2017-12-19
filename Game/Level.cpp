@@ -15,9 +15,9 @@
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
-        inputManager{InputManager::Instance()},
         _levelSpeed(1),
-        _savedGame(savedGame) {
+        _savedGame(savedGame),
+        inputManager{InputManager::Instance()} {
     Init();
     Level::_explosion = {};
 }
@@ -80,17 +80,19 @@ void Level::LoadPlayer() {
 
 
 void Level::HandleEvents(Event event) {
-    HandleMouseEvents(event);
-    HandleKeyboardEvents(event);
+    this->HandleMouseEvents(event);
+    this->HandleKeyboardEvents(event);
 
-    int angle = inputManager.CalculateMouseAngle(*_player);
     Point direction = inputManager.GetDirection(event);
+    int angle = inputManager.CalculateMouseAngle(*_player);
 
     _player->SetAngle(angle);
     _player->Move(direction);
 }
 
-void Level::HandleMouseEvents(Event event) {
+
+void Level::HandleMouseEvents(Event &event) {
+
     if (inputManager.IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = inputManager.RecalculateMouseAngle(*_player);
@@ -100,6 +102,7 @@ void Level::HandleMouseEvents(Event event) {
     }
 
     if (inputManager.IsMouseDown(event)) {
+        cout << _player->CanShoot() << endl;
         if (_player->CanShoot()) {
             _player->ChangeState("shoot");
             auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
@@ -108,29 +111,42 @@ void Level::HandleMouseEvents(Event event) {
     }
 
     if (inputManager.IsMouseReleased(event)) {
-        cout << "released" << endl;
         inputManager.HandleMouseReleased();
     }
 }
 
-void Level::HandleKeyboardEvents(Event event) {
+
+void Level::HandleKeyboardEvents(Event &event) {
+
     int key = 0;
+
     if (inputManager.IsNumericKeyPressed(event, key)) {
         _player->changeWeapon(key - 1);
     }
 
     if (inputManager.IsKeyDown(event)) {
+
         if (inputManager.IsKeyDown(event, "[")) {
             _levelSpeed -= .1;
             if (_levelSpeed < 0) _levelSpeed = 0;
-        } else if (inputManager.IsKeyDown(event, "]")) {
+            return;
+        }
+
+        if (inputManager.IsKeyDown(event, "]")) {
             _levelSpeed += .1;
-        } else if (inputManager.IsKeyDown(event, "F5")) {
+            return;
+        }
+
+        if (inputManager.IsKeyDown(event, "F5")) {
             // Quicksave prittified json
             std::ofstream o("../content/saves/quicksave.json"); // TODO refactor AssetManager
             o << std::setw(4) << nlohmann::json(*_player.get()) << std::endl;
-        } else if (inputManager.IsKeyDown(event, "R")) {
+            return;
+        }
+
+        if (inputManager.IsKeyDown(event, "R")) {
             _player->ChangeState("reload");
+            return;
         }
     }
 }
@@ -140,14 +156,18 @@ void Level::Update(float time) {
 
     AnimationManager::Instance().update(*_player, accSpeed);
 
-    for (auto &&obj : _objsNoEnemies) {
-        obj->update(accSpeed);
+    for (auto &&objNoEnemie : _objsNoEnemies) {
+        objNoEnemie->update(accSpeed);
     }
 
-    if (!_waveController.Update(accSpeed, _objs)) {
+    if (!_waveController.Update(accSpeed, _objs, _player)) {
         _player->SetHighestLevel(_level + 1);
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();
+    }
+
+    for (auto &&npc : _npcs) {
+        npc->update(accSpeed);
     }
 
     for (auto &obj : _objs) {
@@ -158,10 +178,6 @@ void Level::Update(float time) {
 
     for (auto &explosion : _explosion) {
         AnimationManager::Instance().update(explosion, accSpeed);
-    }
-
-    for (auto &&obj : _npcs) {
-        obj->update(accSpeed);
     }
 
     RemoveHiddenExplosionObjects(_explosion);

@@ -20,6 +20,7 @@ class Wave;
 class Event;
 
 class Level {
+    InputManager &inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
@@ -37,8 +38,6 @@ class Level {
     void LoadLevel();
 
     void LoadPlayer();
-
-    InputManager &inputManager;
 
 public:
     explicit Level(int level, const std::string savedGame);
@@ -65,9 +64,11 @@ public:
 
     void AddExplosion(const Point &point);
 
-    void HandleMouseEvents(Event event);
 
-    void HandleKeyboardEvents(Event event);
+    void HandleMouseEvents(Event &event);
+
+    void HandleKeyboardEvents(Event &event);
+
 };
 
 void from_json(const nlohmann::json &j, Level &value);

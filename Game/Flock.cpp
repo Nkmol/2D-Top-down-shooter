@@ -5,15 +5,19 @@
 #include "Flock.h"
 #include "IAIBase.h"
 
-Flock::Flock(unique_ptr<EnemyBase> leader) : _leader(*leader)
+Flock::Flock(EnemyRef leader) : _leader()
 {
 	_members.push_back(move(leader));
+	_leader = _members.back();
 }
 
-void Flock::AddMember(shared_ptr<EnemyBase> newMember)
+void Flock::AddMember(const EnemyRef newMember)
 {
-	newMember->GetBehaviour().SetLeader(_leader);
-	newMember->GetBehaviour().SetTarget(_leader.GetBehaviour().GetTarget());
+	const auto shEnemy = newMember.lock();
+	auto shLeader = _leader.lock();
+
+	shEnemy->GetBehaviour().SetLeader(*shLeader.get());
+	shEnemy->GetBehaviour().SetTarget(shLeader->GetBehaviour().GetTarget());
 	_members.push_back(newMember);
 }
 
@@ -25,17 +29,30 @@ void Flock::RemoveFarMembers()
 
 void Flock::Update(const float time)
 {
-	//todo een manier vinden om alleen objecten mee te sturen die in de buurt zijn
-  //_leader.UpdatePosition(_members, time);
-  for (auto const &member: this->_members) {
-      member->UpdatePosition(_members, time);
-  }
+	auto member = _members.begin();
+	while (member != _members.end())
+	{
+		if (const auto shMember = member->lock())
+		{
+			shMember->UpdatePosition(_members, time);
+		}
+		else
+		{
+			// Cleanup expired references
+			member = _members.erase(member);
+			continue;
+		}
+
+		++member;
+	}
 }
 
 void Flock::Draw()
 {
 	for (auto const& member : _members)
 	{
-		member->draw();
+		if (const auto shMember = member.lock()) {
+			shMember->draw();
+		}
 	}
 }

@@ -7,11 +7,9 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
-void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
+void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& player, std::vector<std::shared_ptr<MoveableObject>>& npcs)
 {
 	_waves = waves;
-	_player = player;
-	_npcs = npcs;
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -28,10 +26,10 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player> play
 	i >> _j;
 
 	_curWave = _waves.begin();
-	SpawnWave(npcs);
+	SpawnWave(npcs, player);
 }
 
-bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs)
+bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
 {
 	_lastWaveTimer += time;
 
@@ -40,14 +38,14 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		_curWave++;
 		if (_curWave == _waves.end())
 			return false;
-		SpawnWave(npcs);		
+		SpawnWave(npcs, player);
 	}
 	
 	_flockController.UpdateFlocks(time);
 	return true;
 }
 
-void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs)
+void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player)
 {
 	std::string waveText = "Wave: " + _curWave->GetId();
 	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
@@ -55,7 +53,7 @@ void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npc
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *_player, npcs);
+		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
 	}
 }
 

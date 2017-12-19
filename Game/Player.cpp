@@ -39,14 +39,11 @@ void Player::changeWeapon(const unsigned index) {
 }
 
 bool Player::CanShoot() {
-    if (firerate <= 0) {
-        firerate = 0.2;
-        return true;
-    }
-    return false;
+    return getWeapon()->CanShoot();
 }
 
 Bullet Player::shoot() {
+    getWeapon()->ResetLastShot();
     return getWeapon()->getBullet(getAngle(), _coordinates);
 }
 
@@ -55,7 +52,7 @@ void Player::Move(const Point direction) {
 }
 
 void Player::update(float time) {
-    firerate -= time;
+    getWeapon()->UpdateFireRate(time);
 
     const auto newPostition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPostition);

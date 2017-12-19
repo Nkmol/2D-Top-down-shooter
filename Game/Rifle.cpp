@@ -4,6 +4,5 @@
 
 #include "Rifle.h"
 
-Rifle::Rifle(int damage) : Weapon(2000, "rifle", 100) {
-
+Rifle::Rifle(int damage, float fireRate) : Weapon(2000, "rifle", 100, fireRate) {
 }
