@@ -15,9 +15,5 @@ public:
 	void Draw(Game &game) override;
 
 	void Init() override;
-
-private:
-	// Todo might actually need to be GameObject
-	// Use Pointer so Slicing will not occur
 };
 

@@ -148,8 +148,6 @@
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="ExplosionFactory.cpp" />
-    <ClCompile Include="Flock.cpp" />
-    <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
@@ -179,8 +177,6 @@
     <ClInclude Include="Handgun.h" />
     <ClInclude Include="headers\Bullet.h" />
     <ClInclude Include="headers\EnemyBase.h" />
-    <ClInclude Include="headers\Flock.h" />
-    <ClInclude Include="headers\FlockController.h" />
     <ClInclude Include="headers\Helper.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
