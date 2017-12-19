@@ -39,16 +39,13 @@ public:
 	int getWidth() const;
 	int getHeight() const;
 	void SetCoordinates(const Point & value);
-	int GetId() const;
 	const Point &GetCoordinates() const;
 	const SDL_Rect GetRect() const;
 	void draw();
-	int GetTeamId() const;
 	int getAngle() const;
 	void SetAngle(const int angle);
 	void hide();
 	bool isVisible() const;
-	void SetTeamId(int teamId);
 	const int getRadius() const ;
 	string GetSpriteToken() const;
 
@@ -60,11 +57,5 @@ protected:
 	bool visible;
 	unique_ptr<Texture> _sprite;
     std::string spriteToken;
-private:
-
-	int id;
-	int teamId = -1;
-	static int counter;
-
-
 };
+
