@@ -59,6 +59,7 @@ void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npc
 	{
 		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
 	}
+	wavenumber++;
 }
 
 void WaveController::Draw()
