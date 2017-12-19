@@ -133,7 +133,7 @@ void MenuState::Draw(Game& game)
         _level3.draw();
 }
 
-void MenuState::Init()
+void MenuState::Init(Game & game)
 {
 	_background = AssetManager::Instance().LoadTexture("menu-wallpaper");
 
@@ -155,10 +155,7 @@ void MenuState::Init()
 
 void MenuState::StartLevel(const int level, Game& game)
 {
-
-
-    auto state = std::make_unique<PlayingState>();
+    auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
-    game.SetLevel(level, _savedGame);
 }

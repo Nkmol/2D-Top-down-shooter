@@ -5,18 +5,16 @@
 #include <SDL.h>
 #include <forward_list>
 #include <InputManager.h>
-#include "WaveController.h"
 #include "json.hpp"
 #include "Explosion.h"
+#include "WaveController.h"
+#include "Wave.h"
 
+
+class EnemyBase;
 class Player;
-
 class MoveableObject;
-
 class GameObject;
-
-class Wave;
-
 class Event;
 
 class Level {
@@ -24,7 +22,7 @@ class Level {
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
-    std::vector<std::shared_ptr<MoveableObject>> _npcs;
+    std::vector<std::unique_ptr<EnemyBase>> _npcs;
     std::vector<std::shared_ptr<GameObject>> _loot;
     std::shared_ptr<Player> _player;
     std::vector<Explosion> _explosion;
@@ -41,8 +39,9 @@ class Level {
 
 public:
     explicit Level(int level, const std::string savedGame);
+	~Level();
 
-    void Init();
+	void Init();
 
     void HandleEvents(Event event);
 
@@ -59,6 +58,8 @@ public:
     void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 
     void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
+
+	void RemoveHiddenNpcs();
 
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
 

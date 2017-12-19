@@ -18,6 +18,8 @@ Player::Player(const std::string &filePath, const Point coordinates, const int l
 	isCheatActive = false;
 }
 
+Player::~Player() = default;
+
 void Player::addWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
         weapons.push_back(weapon);
@@ -50,8 +52,9 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
 
-    const auto newPostition = _coordinates + (_destination * speed * time);
-    PhysicsManager::Instance().checkWallCollision(this, newPostition);
+    const auto newPosition = _coordinates + (_destination * speed * time);
+    PhysicsManager::Instance().checkWallCollision(this, newPosition);
+	PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
 
 }

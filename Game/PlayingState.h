@@ -1,8 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "State.h"
-#include "FlockController.h"
+#include "Level.h"
 
 class Player;
 class MoveableObject;
@@ -10,8 +11,9 @@ class MoveableObject;
 class PlayingState : public State {
 public:
     PlayingState();
+	PlayingState(int level, const std::string& savedGame);
 
-    ~PlayingState();
+	~PlayingState();
 
     void HandleEvents(Game &game) override;
 
@@ -19,7 +21,7 @@ public:
 
     void Draw(Game &game) override;
 
-    void Init() override;
+    void Init(Game& game) override;
 
 private:
     // Todo might actually need to be GameObject
@@ -27,7 +29,6 @@ private:
 
     std::vector<std::shared_ptr<MoveableObject>> _objs;
 	std::shared_ptr<Player> _player;
-    FlockController flockController;
-
+	Level _level;
 };
 
