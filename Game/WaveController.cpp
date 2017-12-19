@@ -31,7 +31,7 @@ void WaveController::Init(std::forward_list<Wave> waves, shared_ptr<Player>& pla
 
 bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player, int levelnumber)
 {
-	_lastWaveTimer += time;
+	_lastWaveTimer += time * multiplier;
 
 	if (_lastWaveTimer >= _curWave->GetTime()) {
 		_lastWaveTimer = 0.0f;
@@ -41,6 +41,7 @@ bool WaveController::Update(float time, std::vector<std::shared_ptr<MoveableObje
 		}
 		else if (_curWave == _waves.end() & levelnumber == 3){
 			_curWave = _waves.begin();
+			multiplier = multiplier * 1.2;
 		}
 		SpawnWave(npcs, player);
 	}
@@ -57,7 +58,7 @@ void WaveController::SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npc
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		_flockController.GenerateFlock(_j[flock.type], flock.amount, flock.minPos, flock.maxPos, *player, npcs);
+		_flockController.GenerateFlock(_j[flock.type], flock.amount * multiplier, flock.minPos, flock.maxPos, *player, npcs);
 	}
 	wavenumber++;
 }

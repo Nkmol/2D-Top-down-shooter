@@ -18,7 +18,7 @@ public:
 	void Draw();
 private:
 	nlohmann::json _j;
-	float _lastWaveTimer;
+	float _lastWaveTimer, multiplier = 1.0;
 	int wavenumber = 1;
 	void SpawnWave(std::vector<std::shared_ptr<MoveableObject>>& npcs, shared_ptr<Player>& player);
 	FlockController _flockController;
