@@ -57,7 +57,6 @@ public:
 	void SetDestinationPoint(const Point& point);
 
 	void update(const float time);
-	void draw();
 
 	std::vector<std::unique_ptr<EnemyBase>>* npcs;
 	std::shared_ptr<Player> _player;

@@ -10,6 +10,7 @@
 #include "Event.h"
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
+#include "EnemyBase.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
