@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "RenderManager.h"
+#include "AssetManager.h"
 
 class Texture
 {

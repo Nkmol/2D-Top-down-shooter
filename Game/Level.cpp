@@ -211,7 +211,7 @@ void Level::Draw() {
         obj->draw();
     }
 
-    for (auto explosion : _explosion) {
+    for (auto& explosion : _explosion) {
         explosion.draw();
     }
 
