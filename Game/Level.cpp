@@ -176,19 +176,12 @@ void Level::Update(float time) {
 		}
     }
 
-    for (auto &obj : _objs) {
-//        if (!obj->isVisible()) {
-//            this->AddExplosion(obj->GetCoordinates());
-//        }
-    }
-
     for (auto &explosion : _explosion) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
-    RemoveHiddenObjects(_objs);
     RemoveHiddenExplosionObjects(_explosion);
 }
 
