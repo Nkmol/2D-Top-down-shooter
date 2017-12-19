@@ -22,6 +22,7 @@ class Player : public MoveableObject {
 private:
     int lifepoints;
     int _highestLevel = 1;
+    float firerate = 0.2;
 
 public:
     Player(const std::string &filePath, float x, float y);
@@ -69,6 +70,8 @@ public:
     void ShootState();
 
     void IdleState();
+
+    bool CanShoot();
 };
 
 

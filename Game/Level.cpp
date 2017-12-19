@@ -100,10 +100,11 @@ void Level::HandleMouseEvents(Event event) {
     }
 
     if (inputManager.IsMouseDown(event)) {
-        cout << "hold" << endl;
-        _player->ChangeState("shoot");
-        auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objsNoEnemies.emplace_back(bullet);
+        if (_player->CanShoot()) {
+            _player->ChangeState("shoot");
+            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+            _objsNoEnemies.emplace_back(bullet);
+        }
     }
 
     if (inputManager.IsMouseReleased(event)) {
