@@ -53,9 +53,11 @@ void RenderManager::DrawText(const std::string text, const int x, const int y, i
 		font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
 	}
 	TTF_SizeText(font, text.c_str(), &width, &height);
-	SDL_Color color = { r, g, b };
+	SDL_Color color = { r, g, b};
+	//SDL_Surface* sMessage = TTF_RenderText_Blended(font, text.c_str(), color);
 	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
 	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
+	SDL_SetTextureAlphaMod(message, opacity);
 	SDL_FreeSurface(sMessage);
 
 	SDL_Rect messageRect;

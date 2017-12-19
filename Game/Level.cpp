@@ -13,6 +13,8 @@
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
 #include "Hud.h"
+#include "TextComponent.h"
+#include "NumberComponent.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
@@ -37,9 +39,9 @@ void Level::Init() {
 
     PhysicsManager::Instance().setStaticObjects();
     PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
-
-	_weaponComponent = std::make_unique<TextComponent>("", Point(config::width - 360, 0), 360, 40, 0);
-
+		
+	Hud::Instance().AddComponent(new TextComponent(&_player->teststring, Point(config::width - 360, 0), 360, 40, 0));
+	Hud::Instance().AddComponent(new NumberComponent(&count, Point(400, 400), 260, 40, 0));
 }
 
 void Level::LoadLevel() {
@@ -150,6 +152,8 @@ void Level::HandleKeyboardEvents(Event &event) {
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
 
+	count++;
+
     AnimationManager::Instance().update(*_player, accSpeed);
 
     for (auto &&objNoEnemie : _objsNoEnemies) {
@@ -181,9 +185,9 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_npcs);
     RemoveHiddenObjects(_objs);
 
+	
 	//Hud::Instance().Update(accSpeed);
-	auto weaponName = "Weapon: " + _player->getWeapon()->getName();
-	_weaponComponent->ChangeText(weaponName);
+	//_weaponComponent->Update(accSpeed);
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -228,9 +232,9 @@ void Level::Draw() {
                                        to_string(remainingBullets) + "/" +
                                        to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
-	//Hud::Instance().Draw();
-	_weaponComponent->Draw();
-//    //PhysicsManager::Instance().DrawQTree();
+	Hud::Instance().Draw();
+	//_weaponComponent->Draw();
+    //PhysicsManager::Instance().DrawQTree();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

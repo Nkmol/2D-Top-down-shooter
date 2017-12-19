@@ -24,6 +24,8 @@ private:
     int _highestLevel = 1;
 
 public:
+	std::string teststring = "hoi";
+
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
