@@ -162,69 +162,7 @@ void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _obj
 	objects = _objs;
 }
 
-
-void PhysicsManager::CheckQuadTreeCollision(MoveableObject* m, Point newPos) {
-	std::vector<GameObject> nearbyObjects = RetrieveNearbyGameObjects(*m);
-
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
-
-	for (int i = 0; i < nearbyObjects.size(); i++) {
-
-		int xStep = midX - nearbyObjects.at(i).getMidX();
-		int yStep = midY - nearbyObjects.at(i).getMidY();
-		int collisionRange = radius + nearbyObjects.at(i).getRadius();
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-		if (distance < 0) {
-		distance *= -1;
-		}
-
-		if (distance < collisionRange) {
-			m->onBaseCollision(nearbyObjects.at(i));
-			break;
-		}
-	}
-}
-
-
 const vector<GameObject>* PhysicsManager::getCollidables()
 {
 	return collidables;
 }
-
-void PhysicsManager::UpdateQuadTree(std::vector<GameObject> &gameObjects) {
-	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
-	for (auto& gameObject : *MapManager::Instance().getCollidables()) {
-		_quadtree.Insert(gameObject);
-	}
-	for (const auto& gameObject : gameObjects) {
-		_quadtree.Insert(gameObject);
-	}
-}
-
-void PhysicsManager::UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects) {
-	this->_quadtree.ClearNode();
-	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
-	for (auto& gameObject : *MapManager::Instance().getCollidables()) {
-		_quadtree.Insert(gameObject);
-	}
-	for (const auto& gameObject : gameObjects) {
-		_quadtree.Insert(*gameObject.get());
-	}
-}
-
-const QuadTree &PhysicsManager::GetQuadTree() const {
-	return _quadtree;
-}
-
-void PhysicsManager::DrawQTree() {
-	this->_quadtree.Draw();
-}
-
-std::vector<GameObject> PhysicsManager::RetrieveNearbyGameObjects(GameObject &gameObject) {
-	return this->_quadtree.Retrieve(gameObject.GetRect());
-}
-
-
