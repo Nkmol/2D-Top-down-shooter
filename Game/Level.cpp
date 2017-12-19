@@ -13,12 +13,16 @@
 #include "EnemyBase.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
+        inputManager{InputManager::Instance()},
         _level(level),
-        _levelSpeed(1),
         _savedGame(savedGame),
-        inputManager{InputManager::Instance()} {
+        _levelSpeed(1) {
     Init();
     Level::_explosion = {};
+}
+
+Level::~Level()
+{
 }
 
 void Level::Init() {

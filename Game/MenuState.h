@@ -14,7 +14,7 @@ public:
 	void HandleEvents(Game& game) override;
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
-	void Init() override;
+	void Init(Game& game) override;
 	void StartLevel(const int level, Game& game);
 private:
 	int _muted;
