@@ -16,6 +16,8 @@ Player::Player(const std::string &filePath, const Point coordinates, const int l
     this->ChangeState("idle");
 }
 
+Player::~Player() = default;
+
 void Player::addWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
         weapons.push_back(weapon);

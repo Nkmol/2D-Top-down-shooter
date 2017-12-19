@@ -39,8 +39,9 @@ class Level {
 
 public:
     explicit Level(int level, const std::string savedGame);
+	~Level();
 
-    void Init();
+	void Init();
 
     void HandleEvents(Event event);
 
