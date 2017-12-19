@@ -50,8 +50,9 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
 
-    const auto newPostition = _coordinates + (_destination * speed * time);
-    PhysicsManager::Instance().checkWallCollision(this, newPostition);
+    const auto newPosition = _coordinates + (_destination * speed * time);
+    PhysicsManager::Instance().checkWallCollision(this, newPosition);
+	PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
 
 }

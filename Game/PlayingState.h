@@ -1,8 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "State.h"
-#include "FlockController.h"
 #include "Level.h"
 
 class Player;
@@ -29,8 +29,6 @@ private:
 
     std::vector<std::shared_ptr<MoveableObject>> _objs;
 	std::shared_ptr<Player> _player;
-    FlockController flockController;
-
 	Level _level;
 };
 
