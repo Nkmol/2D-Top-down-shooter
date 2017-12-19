@@ -11,7 +11,7 @@ Weapon::Weapon(int damage, std::string name, int maxBullets) :
         damage{damage},
         maxBullets{maxBullets} {}
 
-Bullet Weapon::getBullet(int angle, Point coordinates, bool isCheatActive) {
+Bullet Weapon::getBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, damage);
     bullet.SetAngle(angle);
 
