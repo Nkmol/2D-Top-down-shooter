@@ -35,11 +35,12 @@ void CreditsState::Draw(Game & game)
 {
 	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
 	RenderManager::Instance().DrawText("THIS GAME IS CREATED BY:", config::width / 2 - 250, config::height / 3 - 170, 360, 40);
-	RenderManager::Instance().DrawText("Niels Kop - ", config::width / 2 - 250, config::height / 3 - 70, 360, 40);
-	RenderManager::Instance().DrawText("Sander Mol - ", config::width / 2 - 250, config::height / 3 + 30, 360, 40);
-	RenderManager::Instance().DrawText("Mevlut �zdemir -", config::width / 2 - 250, config::height / 3 + 130, 360, 40);
-	RenderManager::Instance().DrawText("Ahmad Rahimi -", config::width / 2 - 250, config::height / 3 + 230, 360, 40);
-	RenderManager::Instance().DrawText("Jeroen Brekelmans -", config::width / 2 - 250, config::height / 3 + 330, 360, 40);
+	RenderManager::Instance().DrawText("Niels Kop", config::width / 2 - 250, config::height / 3 - 90, 360, 40);
+	RenderManager::Instance().DrawText("Sander Mol", config::width / 2 - 250, config::height / 3 - 10, 360, 40);
+	RenderManager::Instance().DrawText("Mevlut Ozdemir", config::width / 2 - 250, config::height / 3 + 80, 360, 40);
+	RenderManager::Instance().DrawText("Ahmad Rahimi", config::width / 2 - 250, config::height / 3 + 170, 360, 40);
+	RenderManager::Instance().DrawText("Jeroen Brekelmans", config::width / 2 - 250, config::height / 3 + 260, 360, 40);
+	RenderManager::Instance().DrawText("Jarric van Krieken", config::width / 2 - 250, config::height / 3 + 350, 360, 40);
 
 	_backButton.drawButton();
 }
