@@ -153,8 +153,8 @@ void PhysicsManager::setStaticObjects()
 		collidables = MapManager::Instance().getCollidables();
 	}
 	_tileSize = config::tileSize;
-	_playScreenWidth = config::width - _tileSize;
-	_playScreenHeight = config::height - _tileSize;
+	_playScreenWidth = SDL_GetWindowSurface(RenderManager::Instance().GetWindow())->w - _tileSize;
+	_playScreenHeight = SDL_GetWindowSurface(RenderManager::Instance().GetWindow())->h - _tileSize;
 }
 
 void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
