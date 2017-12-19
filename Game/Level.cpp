@@ -186,8 +186,6 @@ void Level::Update(float time) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
-    std::cout << _explosion.size() << endl;
-
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
     RemoveHiddenObjects(_objs);
