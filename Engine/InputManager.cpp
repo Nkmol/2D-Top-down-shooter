@@ -119,7 +119,7 @@ bool InputManager::IsMousePressed(Event &event) {
     if (event.GetEventValue().type == SDL_MOUSEBUTTONDOWN) {
         buttonState = true;
     }
-    cout << buttonState << endl;
+
     return buttonState;
 }
 

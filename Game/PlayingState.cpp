@@ -20,7 +20,6 @@ void PlayingState::HandleEvents(Game &game) {
     }
 
     while (inputManager.HasEvent(&event)) {
-        cout << "while" << endl;
         if (inputManager.IsPauseResume(event)) {
             auto state = std::make_unique<PausedState>();
             game.ChangeState(std::move(state));

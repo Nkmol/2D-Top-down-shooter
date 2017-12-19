@@ -173,19 +173,21 @@ void Level::Update(float time) {
     }
 
     for (auto &obj : _objs) {
-        if (!obj->isVisible()) {
-            this->AddExplosion(obj->GetCoordinates());
-        }
+//        if (!obj->isVisible()) {
+//            this->AddExplosion(obj->GetCoordinates());
+//        }
     }
 
     for (auto &explosion : _explosion) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
-    RemoveHiddenExplosionObjects(_explosion);
+    std::cout << _explosion.size() << endl;
+
     RemoveHiddenObjects(_objsNoEnemies);
-	RemoveHiddenNpcs();
+    RemoveHiddenNpcs();
     RemoveHiddenObjects(_objs);
+    RemoveHiddenExplosionObjects(_explosion);
 }
 
 void Level::AddExplosion(const Point &point) {

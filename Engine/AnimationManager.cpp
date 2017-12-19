@@ -17,7 +17,6 @@ void AnimationManager::update(MoveableObject &object, double time) {
     object.DecreaseAnimationTimer(time);
 
     if (object.IsReadyForAnimation()) {
-
         // NextSpriteIndex() should be called BECORE: IsAnimationFinished().
         // Because this func increases and returns the objects currenSpriteIndex;
         int nextSpriteIndex = object.NextSpriteIndex();
