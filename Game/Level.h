@@ -4,25 +4,25 @@
 #include <memory>
 #include <SDL.h>
 #include <forward_list>
-#include "WaveController.h"
+#include <InputManager.h>
 #include "json.hpp"
 #include "Explosion.h"
+#include "WaveController.h"
+#include "Wave.h"
 
+
+class EnemyBase;
 class Player;
-
 class MoveableObject;
-
 class GameObject;
-
-class Wave;
-
 class Event;
 
 class Level {
+    InputManager &inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
-    std::vector<std::shared_ptr<MoveableObject>> _npcs;
+    std::vector<std::unique_ptr<EnemyBase>> _npcs;
     std::vector<std::shared_ptr<GameObject>> _loot;
     std::shared_ptr<Player> _player;
     std::vector<Explosion> _explosion;
@@ -39,8 +39,9 @@ class Level {
 
 public:
     explicit Level(int level, const std::string savedGame);
+	~Level();
 
-    void Init();
+	void Init();
 
     void HandleEvents(Event event);
 
@@ -58,9 +59,15 @@ public:
 
     void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
 
+	void RemoveHiddenNpcs();
+
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
 
     void AddExplosion(const Point &point);
+
+    void HandleMouseEvents(Event &event);
+
+    void HandleKeyboardEvents(Event &event);
 };
 
 void from_json(const nlohmann::json &j, Level &value);

@@ -24,7 +24,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, cons
     _type = ENEMY;
 }
 
-EnemyBase::EnemyBase(const nlohmann::json &j) : EnemyBase{j.at("type").get<string>(),
+EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player) : EnemyBase{j.at("type").get<string>(),
                                                           Point(0, 0),
                                                           j.at("speed").get<int>(),
                                                           false,
@@ -35,6 +35,9 @@ EnemyBase::EnemyBase(const nlohmann::json &j) : EnemyBase{j.at("type").get<strin
     a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
     _behaviour = move(a);
     _type = ENEMY;
+	_behaviour->SetOwner(*this);
+	npcs = { npcList };
+	_player = { player };
 }
 
 
@@ -56,23 +59,18 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
     this->destinationPoint.y += forceY;
 }
 
-void EnemyBase::UpdatePosition(std::vector<shared_ptr<EnemyBase>> &others, const float time) {
-    _behaviour->Update(others, time);
-
+void EnemyBase::UpdatePosition(const float time)
+{
+	_behaviour->Update(time);
     update(time);
 }
 
 void EnemyBase::update(const float time) {
     const auto newPostition = _coordinates + (_destination * speed * time);
-    //PhysicsManager::Instance().CheckQuadTreeCollision(this, newPostition);
 
-    PhysicsManager::Instance().checkWallCollision(this, newPostition);
+    PhysicsManager::Instance().checkStaticObjectCollision(this, newPostition);
     PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
     MoveableObject::update(time);
-}
-
-void EnemyBase::draw() {
-    MoveableObject::draw();
 }
 
 const Point &EnemyBase::GetDestinationPoint() const {

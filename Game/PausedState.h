@@ -1,6 +1,8 @@
 #pragma once
 
 #include "State.h"
+#include "Button.h"
+#include <vector>
 
 class PausedState : public State {
 public:
@@ -14,10 +16,9 @@ public:
 
 	void Draw(Game &game) override;
 
-	void Init() override;
+	void Init(Game& game) override;
 
 private:
-	// Todo might actually need to be GameObject
-	// Use Pointer so Slicing will not occur
+	vector<unique_ptr<Button>> _buttons;
 };
 

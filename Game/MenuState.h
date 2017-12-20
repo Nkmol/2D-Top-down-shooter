@@ -3,17 +3,9 @@
 #include "State.h"
 #include "Config.h"
 #include "Button.h"
-#include "Texture.h"
-#include "InputManager.h"
-#include "PlayingState.h"
 #include "InstructionsState.h"
 #include "CreditsState.h"
-#include "AudioManager.h"
-#include "Game.h"
-#include <experimental/filesystem>
-#include "nfd.h"
-#include <json.hpp>
-#include <regex>
+#include "../Engine/Texture.h"
 
 class MenuState : public State
 {
@@ -24,7 +16,7 @@ public:
 	void HandleEvents(Game& game) override;
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
-	void Init() override;
+	void Init(Game& game) override;
 	void StartLevel(const int level, Game& game);
 private:
 	int _muted;

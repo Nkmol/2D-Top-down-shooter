@@ -1,26 +1,43 @@
 #include "GameObject.h"
-
-int GameObject::counter = 0;
+#include "AssetManager.h"
 
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
-        _coordinates(coordinates), width(width), height(height) {
-    visible = true;
-    midX = _coordinates.x + width / 2;
-    midY = _coordinates.y + height / 2;
-    radius = (width + height) / 4;
-    this->id = ++counter;
-
+	angle(0),
+	_coordinates(coordinates), width(width), height(height)
+{
+	visible = true;
+	midX = _coordinates.x + width / 2;
+	midY = _coordinates.y + height / 2;
+	radius = (width + height) / 4;
 }
 
 GameObject::GameObject(const std::string &spriteToken, const Point coordinates) : _coordinates(coordinates) {
     _sprite = AssetManager::Instance().LoadTexture(spriteToken);
-    SDL_QueryTexture(this->_sprite, nullptr, nullptr, &this->width, &this->height);
+	// TODO Move to RenderManager
+    SDL_QueryTexture(_sprite->GetTexture(), nullptr, nullptr, &this->width, &this->height);
     visible = true;
     midX = _coordinates.x + width / 2;
     midY = _coordinates.y + height / 2;
     radius = (width + height) / 4;
-    this->id = ++counter;
     this->spriteToken = spriteToken;
+}
+
+GameObject::GameObject(const GameObject& other) : width(other.width), height(other.height), angle(other.angle),
+                                                  radius(other.radius),
+                                                  midX(other.midX),
+                                                  midY(other.midY),
+                                                  _coordinates(other._coordinates), visible(other.visible),
+												  // TODO Would be cool to copy this directly
+                                                  _sprite(AssetManager::Instance().LoadTexture(other.spriteToken)),
+                                                  spriteToken{other.spriteToken}
+
+{
+}
+
+GameObject& GameObject::operator=(GameObject that)
+{
+	Swap(*this, that);
+	return *this;
 }
 
 GameObject::GameObject() {
@@ -68,19 +85,7 @@ void GameObject::draw() {
     if (!visible) return;
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
-    RenderManager::Instance().DrawTexture(this->_sprite, nullptr, &destinationRectangle, angle);
-}
-
-int GameObject::GetId() const {
-    return id;
-}
-
-void GameObject::SetTeamId(int teamId) {
-    GameObject::teamId = teamId;
-}
-
-int GameObject::GetTeamId() const {
-    return teamId;
+    RenderManager::Instance().DrawTexture(_sprite->GetTexture(), nullptr, &destinationRectangle, angle);
 }
 
 int GameObject::getAngle() const {

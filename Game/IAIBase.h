@@ -7,7 +7,7 @@
 class IAIBase
 {
 protected:
-	using EnemiesType = std::vector<std::shared_ptr<EnemyBase>>;
+	using EnemiesType = std::vector<weak_ptr<EnemyBase>>;
 	int _weightMultiplier;
 
 
@@ -73,10 +73,11 @@ public:
 	}
 
 	virtual ~IAIBase() {}
-	virtual void Update(EnemiesType& others, int time) = 0;
+	virtual void Update(float time) = 0;
 	virtual void Align() = 0;
-	virtual void Cohese(EnemiesType& others) = 0;
-	virtual void Seperate(EnemiesType& others) = 0;
+	virtual void Cohese() = 0;
+	virtual void Seperate() = 0;
+	virtual void CohesePlayer() = 0;
 	virtual void GoTarget() = 0;
 	virtual unique_ptr<IAIBase> Clone() const = 0;
 };

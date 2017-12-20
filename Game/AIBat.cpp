@@ -1,8 +1,8 @@
 #include "AIBat.h"
 
-void AIBat::Update(EnemiesType& others, int time)
+void AIBat::Update(float time)
 {
-	AIDefault::Update(others, time);
+	AIDefault::Update(time);
 	if (_currentUpdateCounter % 50 == 0)
 	{
 		_weightMultiplier = rand() % 100 + 10;

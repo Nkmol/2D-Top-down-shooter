@@ -13,26 +13,26 @@ FlockController::FlockController()
 {
 }
 
-FlockController::~FlockController()
-{
-}
+FlockController::~FlockController() = default;
 
 void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects)
 {
-	auto leader = make_unique<EnemyBase>(basedOn);
+	auto leader = make_shared<EnemyBase>(basedOn);
 	leader->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
 	auto& ai = leader->GetBehaviour();
 	ai.SetIsLeader(true);
 	ai.SetTarget(flockTarget);
 
-	auto newFlock = std::make_unique<Flock>(move(leader));
+	gameObjects.push_back(move(leader));
+	auto newFlock = std::make_unique<Flock>(weak_ptr<EnemyBase>(static_pointer_cast<EnemyBase>(gameObjects.back())));
+
 	for (auto i = 0; i < flockSize; i++)
 	{
 		auto member = make_shared<EnemyBase>(basedOn);
 		member->SetCoordinates(Point(rand() % maxPos + minPos, rand() % maxPos + minPos));
 
-		newFlock->AddMember(member);
-		gameObjects.push_back(member);
+		gameObjects.push_back(move(member));
+		newFlock->AddMember(weak_ptr<EnemyBase>(weak_ptr<EnemyBase>(static_pointer_cast<EnemyBase>(gameObjects.back()))));
 	}
 
 	_flocks.push_back(move(newFlock));

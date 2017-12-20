@@ -3,8 +3,8 @@
 //
 
 #include "RenderManager.h"
-#include <memory>
 #include "CustomDeleter.h"
+#include "AssetManager.h"
 
 RenderManager::RenderManager(): window(nullptr), renderer(nullptr)
 {
