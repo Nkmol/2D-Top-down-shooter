@@ -105,6 +105,7 @@ void MenuState::HandleEvents(Game& game)
 				//if (_highestLevel >= 3)
 				//StartLevel(3, game);
 			}
+			else if (_advertisement.IsClicked(ev)) _advertisement.Click();
 		}
 	}
 }
@@ -124,6 +125,7 @@ void MenuState::Draw(Game& game)
     _muteButton.draw();
     _quitButton.draw();
     _instructions.draw();
+	_advertisement.draw();
 
     if (_highestLevel >= 1)
         _level1.draw();
@@ -147,9 +149,12 @@ void MenuState::Init(Game & game)
     _level2 = Button("button_level2", 50, 300, 300, 50);
     _level3 = Button("button_level3", 50, 400, 300, 50);
 
-
     _muteButton = Button("button_mute", (config::width) - 100, (config::height) - 100, 75, 75);
 
+	_advertisement = Button("button_level3", Point(config::width / 6, config::height * 0.9), Point(config::width / 6 * 4, config::height * 0.1), [&]() {
+		system("start http://google.com");
+		std::cout << "hoi" << std::endl;
+	});
     int muted = 0;
 }
 
@@ -158,4 +163,8 @@ void MenuState::StartLevel(const int level, Game& game)
     auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
+}
+
+Button MenuState::getRandomAd() {
+
 }
