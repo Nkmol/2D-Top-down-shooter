@@ -5,17 +5,15 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y}) {
-    _type = PLAYER;
-	isCheatActive = false;
+Player::Player(const std::string &filePath, const float x, const float y) :
+        Player(filePath, Point{x, y}) {
 }
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-        : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
+Player::Player(const std::string &filePath, const Point coordinates, const int lp) :
+        isCheatActive{false},
+        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
     _type = PLAYER;
     this->ChangeState("idle");
-	isCheatActive = false;
 }
 
 Player::~Player() = default;
@@ -54,7 +52,7 @@ void Player::update(float time) {
 
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
-	PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
 
 }
@@ -106,7 +104,7 @@ void Player::onBaseCollision(bool isCollidedOnWall) {
 
 void Player::Hit(int damage) {
     if (!isCheatActive) {
-		lifepoints -= damage;
+        lifepoints -= damage;
     }
 }
 
@@ -168,5 +166,5 @@ string Player::GetAnimationToken() {
 }
 
 void Player::ToggleCheats() {
-	isCheatActive = !isCheatActive;
+    isCheatActive = !isCheatActive;
 }
