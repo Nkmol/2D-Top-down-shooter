@@ -1,12 +1,4 @@
 #include "MenuState.h"
-#include "InputManager.h"
-#include "PlayingState.h"
-#include "AudioManager.h"
-#include "Game.h"
-#include <experimental/filesystem>
-#include "nfd.h"
-#include <json.hpp>
-#include <regex>
 
 namespace fs = std::experimental::filesystem;
 
@@ -79,9 +71,13 @@ void MenuState::HandleEvents(Game& game)
 
 			else if (ev.GetEventValue().button.x > _creditsButton.getX1() && ev.GetEventValue().button.x < _creditsButton.getX2() && ev.GetEventValue().button.y > _creditsButton.getY1() && ev.GetEventValue().button.y < _creditsButton.getY2()) {
 				//Credits
+				auto state = std::make_unique<CreditsState>();
+				game.ChangeState(std::move(state));
 			}
 			else if (ev.GetEventValue().button.x > _instructions.getX1() && ev.GetEventValue().button.x < _instructions.getX2() && ev.GetEventValue().button.y > _instructions.getY1() && ev.GetEventValue().button.y < _instructions.getY2()) {
 				//Instructions
+				auto state = std::make_unique<InstructionsState>();
+				game.ChangeState(std::move(state));
 			}
 			else if (ev.GetEventValue().button.x > _quitButton.getX1() && ev.GetEventValue().button.x < _quitButton.getX2() && ev.GetEventValue().button.y > _quitButton.getY1() && ev.GetEventValue().button.y < _quitButton.getY2()) {
 				game.Quit();

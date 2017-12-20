@@ -3,6 +3,8 @@
 #include "State.h"
 #include "Config.h"
 #include "Button.h"
+#include "InstructionsState.h"
+#include "CreditsState.h"
 #include "../Engine/Texture.h"
 
 class MenuState : public State
