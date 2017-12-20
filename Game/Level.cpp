@@ -146,6 +146,18 @@ void Level::HandleKeyboardEvents(Event &event) {
 			_player->ToggleCheats();
 			return;
 		}
+
+		if (inputManager.IsKeyDown(event, "N")) {
+			if (_player->GetIsCheatActive()) {
+				for (auto &npc : _npcs) {
+					npc.get()->hide();
+					if (!npc->isVisible()) {
+						this->AddExplosion(npc->GetCoordinates());
+					}
+				}
+			}
+			return;
+		}
     }
 }
 

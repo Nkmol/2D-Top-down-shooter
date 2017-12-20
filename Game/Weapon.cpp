@@ -16,8 +16,10 @@ Bullet Weapon::getBullet(int angle, Point coordinates, bool &isCheatActive) {
     bullet.SetAngle(angle);
 
     if (hasBullets()) {
-		if(!isCheatActive)
+		if (!isCheatActive)
 			shooted++;
+		else
+			bullet.SetDamage(10000000);
     } else {
         bullet.hide(); // returns a hidden bullet, so it will not be drawn
     }

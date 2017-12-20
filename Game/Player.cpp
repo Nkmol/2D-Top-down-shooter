@@ -42,6 +42,10 @@ void Player::changeWeapon(const unsigned index) {
     currentWeapon = index;
 }
 
+bool Player::GetIsCheatActive() {
+	return isCheatActive;
+}
+
 Bullet Player::shoot() {
     return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
 }

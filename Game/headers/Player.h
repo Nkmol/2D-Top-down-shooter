@@ -44,6 +44,8 @@ public:
 
     void changeWeapon(unsigned index);
 
+	bool GetIsCheatActive();
+
     const vector<Weapon> &getWeapons() const;
 
     void onBaseCollision(bool isCollidedOnWall);
