@@ -70,6 +70,8 @@ public:
     void ShootState();
 
     void IdleState();
+
+    bool CanShoot();
 };
 
 

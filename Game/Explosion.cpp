@@ -7,7 +7,6 @@
 
 Explosion::Explosion(string state, int frames, float animationTimer)
         : MoveableObject("explosion", Point(), 0.1f) {
-
     this->_state = state;
     this->frames = frames;
     this->animationTimer = animationTimer;
@@ -20,6 +19,6 @@ void Explosion::SetPoint(Point &point) {
 }
 
 void Explosion::HandleAnimationFinished() {
-    this->hide();
     this->frames = 0;
+    this->hide();
 }
