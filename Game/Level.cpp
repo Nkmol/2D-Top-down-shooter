@@ -21,8 +21,7 @@ Level::Level(const int level, const ::std::string savedGame) :
     Level::_explosion = {};
 }
 
-Level::~Level()
-{
+Level::~Level() {
 }
 
 void Level::Init() {
@@ -151,6 +150,20 @@ void Level::HandleKeyboardEvents(Event &event) {
             _player->ChangeState("reload");
             return;
         }
+
+        if (inputManager.IsKeyDown(event, "K")) {
+            _player->ToggleCheats();
+            return;
+        }
+
+        if (inputManager.IsKeyDown(event, "N")) {
+            if (_player->IsCheatActive()) {
+                for (auto &npc : _npcs) {
+                    npc.get()->hide();
+                }
+            }
+            return;
+        }
     }
 }
 
@@ -171,9 +184,9 @@ void Level::Update(float time) {
 
     for (auto &npc : _npcs) {
         npc->UpdatePosition(accSpeed);
-		if (!npc->isVisible()) {
-			this->AddExplosion(npc->GetCoordinates());
-		}
+        if (!npc->isVisible()) {
+            this->AddExplosion(npc->GetCoordinates());
+        }
     }
 
     for (auto &explosion : _explosion) {
@@ -197,11 +210,10 @@ void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &ob
     objects.erase(y, objects.end());
 }
 
-void Level::RemoveHiddenNpcs()
-{
-	auto y(std::remove_if(_npcs.begin(), _npcs.end(),
-		[](std::unique_ptr<EnemyBase> &o) { return !o->isVisible(); }));
-	_npcs.erase(y, _npcs.end());
+void Level::RemoveHiddenNpcs() {
+    auto y(std::remove_if(_npcs.begin(), _npcs.end(),
+                          [](std::unique_ptr<EnemyBase> &o) { return !o->isVisible(); }));
+    _npcs.erase(y, _npcs.end());
 }
 
 void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &objects) {
@@ -219,7 +231,7 @@ void Level::Draw() {
         obj->draw();
     }
 
-    for (auto& explosion : _explosion) {
+    for (auto &explosion : _explosion) {
         explosion.draw();
     }
 

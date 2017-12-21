@@ -31,6 +31,10 @@ const int Bullet::getDamage() const {
     return damage;
 }
 
+void Bullet::SetDamage(int damage)  {
+	this->damage = damage;
+}
+
 void Bullet::onBaseCollision(MoveableObject *object) {
 }
 
