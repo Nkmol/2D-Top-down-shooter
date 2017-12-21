@@ -6,10 +6,11 @@
 #include "Point.h"
 #include "Bullet.h"
 
-Weapon::Weapon(int damage, std::string name, int maxBullets) :
+Weapon::Weapon(int damage, std::string name, int maxBullets, float fireRate) :
         name{std::move(name)},
         damage{damage},
-        maxBullets{maxBullets} {}
+        maxBullets{maxBullets},
+        fireRate{fireRate} {}
 
 Bullet Weapon::getBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, damage);
@@ -39,7 +40,7 @@ std::string Weapon::getName() const {
     return this->name;
 }
 
-int Weapon::getShooted() const {
+int Weapon::getShot() const {
     return this->shooted;
 }
 
@@ -63,10 +64,22 @@ bool Weapon::CanReload() const {
     return shooted > 0;
 }
 
+bool Weapon::CanShoot() const{
+    return this->lastShot <= 0;
+}
+
+void Weapon::ResetLastShot(){
+    this->lastShot = fireRate;
+}
+
+void Weapon::UpdateFireRate(float time) {
+    this->lastShot -= time;
+}
+
 void to_json(nlohmann::json &j, const Weapon &value) {
     j = nlohmann::json {
             {"name",           value.getName()},
-            {"currentBullets", value.getMaxBullets() - value.getShooted()}
+            {"currentBullets", value.getMaxBullets() - value.getShot()}
     };
 }
 

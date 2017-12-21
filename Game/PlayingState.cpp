@@ -18,9 +18,11 @@ void PlayingState::HandleEvents(Game &game) {
     auto &inputManager = InputManager::Instance();
 
 	Event event;
+    if(inputManager.IsMousePressed(event)){
+        _level.HandleEvents(event);
+    }
 
     while (inputManager.HasEvent(&event)) {
-
         if (inputManager.IsPauseResume(event)) {
             auto state = std::make_unique<PausedState>();
             game.ChangeState(std::move(state));

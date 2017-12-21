@@ -8,39 +8,54 @@
 #include "json.hpp"
 
 class Point;
+
 class Bullet;
 
-class Weapon
-{
+class Weapon {
+
 protected:
-	int damage;
-	int maxBullets;
-	int shooted = 0;
-	std::string name;
+    int damage;
+    std::string name;
+    int shooted = 0;
+    int maxBullets;
+    float fireRate;
+    float lastShot;
 
 public:
-	Weapon(int damage, std::string name, int maxBullets);
+    Weapon(int damage, std::string name, int maxBullets, float fireRate);
+
+    bool hasBullets();
+
+    Bullet getBullet(int angle, Point coordinates);
+
+    int totalBullets() const;
+
+    int getShot() const;
+
+    int getMaxBullets() const;
+
+    void SetName(const std::string &v);
+
 
 	Bullet getBullet(int angle, Point coordinates, bool &isCheatActive);
 
-	bool hasBullets();
+    void SetCurrentBullets(const int v);
 
-	int totalBullets() const;
+    std::string getName() const;
 
-	int getShooted() const;
-	int getMaxBullets() const;
-	void SetName(const std::string& v);
-	void SetCurrentBullets(const int v);
+    void Reload();
 
-	std::string getName() const;
+    bool CanReload() const;
 
-	void Reload();
+    bool CanShoot() const;
 
-	bool CanReload() const;
+    void UpdateFireRate(float time);
+
+    void ResetLastShot();
 };
 
-void to_json(nlohmann::json& j, const Weapon& value);
+void to_json(nlohmann::json &j, const Weapon &value);
 
-void from_json(const nlohmann::json& j, Weapon& value);
+void from_json(const nlohmann::json &j, Weapon &value);
 
 #endif //SHOOTER_WEAPON_H

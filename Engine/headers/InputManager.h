@@ -26,11 +26,14 @@ class InputManager {
 
     InputManager();
 
-public:
-	InputManager(InputManager const&) = delete;
-	void operator=(InputManager const&) = delete;
+    bool buttonState;
 
-    static InputManager& Instance();
+public:
+    InputManager(InputManager const &) = delete;
+
+    void operator=(InputManager const &) = delete;
+
+    static InputManager &Instance();
 
     bool HasEvent(Event *event);
 
@@ -40,7 +43,7 @@ public:
 
     bool IsMouseMoved(Event &event);
 
-    bool IsMouseClicked(Event &event);
+    bool IsMousePressed(Event &event);
 
     int GetMousePositionX() const;
 
@@ -58,7 +61,13 @@ public:
 
     bool IsNumericKeyPressed(Event &event, int &key);
 
-	const bool IsKeyDown(Event& event, const std::string name) const;
+    const bool IsKeyDown(Event &event, const std::string name) const;
+
+    bool IsMouseReleased(Event &event);
+
+    void HandleMouseReleased();
+
+    bool IsMouseClicked(Event &event);
 };
 
 

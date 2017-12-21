@@ -30,7 +30,6 @@ void Level::Init() {
     LoadLevel();
 
     MapManager::Instance().Init(_map);
-
     LoadPlayer();
 
     _waveController.Init(_waves, _player, &_npcs);
@@ -82,8 +81,8 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
-void Level::HandleEvents(Event event) {
 
+void Level::HandleEvents(Event event) {
     this->HandleMouseEvents(event);
     this->HandleKeyboardEvents(event);
 
@@ -94,7 +93,9 @@ void Level::HandleEvents(Event event) {
     _player->Move(direction);
 }
 
+
 void Level::HandleMouseEvents(Event &event) {
+
     if (inputManager.IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = inputManager.RecalculateMouseAngle(*_player);
@@ -103,14 +104,23 @@ void Level::HandleMouseEvents(Event &event) {
         _player->SetAngle(angle);
     }
 
-    if (inputManager.IsMouseClicked(event)) {
-        _player->ChangeState("shoot");
-        auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objsNoEnemies.emplace_back(bullet);
+
+    if (inputManager.IsMousePressed(event)) {
+        if (_player->CanShoot()) {
+            _player->ChangeState("shoot");
+            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+            _objsNoEnemies.emplace_back(bullet);
+        }
+    }
+
+    if (inputManager.IsMouseReleased(event)) {
+        inputManager.HandleMouseReleased();
     }
 }
 
+
 void Level::HandleKeyboardEvents(Event &event) {
+
     int key = 0;
 
     if (inputManager.IsNumericKeyPressed(event, key)) {
@@ -183,20 +193,13 @@ void Level::Update(float time) {
 		}
     }
 
-    for (auto &obj : _objs) {
-        if (!obj->isVisible()) {
-            this->AddExplosion(obj->GetCoordinates());
-        }
-    }
-
     for (auto &explosion : _explosion) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
-    RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
-	RemoveHiddenNpcs();
-    RemoveHiddenObjects(_objs);
+    RemoveHiddenNpcs();
+    RemoveHiddenExplosionObjects(_explosion);
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -240,7 +243,7 @@ void Level::Draw() {
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
     auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
     RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +

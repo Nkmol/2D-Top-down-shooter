@@ -45,7 +45,12 @@ bool Player::GetIsCheatActive() {
 }
 
 Bullet Player::shoot() {
-    return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
+	getWeapon()->ResetLastShot();
+	return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
+}
+
+bool Player::CanShoot() {
+    return getWeapon()->CanShoot();
 }
 
 void Player::Move(const Point direction) {
@@ -53,12 +58,12 @@ void Player::Move(const Point direction) {
 }
 
 void Player::update(float time) {
+    getWeapon()->UpdateFireRate(time);
 
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
     PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
-
 }
 
 const int Player::getLifepoints() const {
