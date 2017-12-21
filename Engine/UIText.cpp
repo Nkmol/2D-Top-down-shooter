@@ -2,6 +2,10 @@
 #include "../Game/Config.h"
 
 
+UIText::UIText(const std::string& text, const unsigned fontSize) : UIText(text, fontSize, { 0, 0 }, { 0, 0, 0, 1 })
+{
+}
+
 UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position) : UIText(text, fontSize, position, {0, 0, 0, 1})
 {
 }
@@ -17,14 +21,12 @@ void UIText::Draw() const
 	auto* text = TTF_RenderText_Blended(_font.get(), _text.c_str(), _colour);
 	SDL_Rect dst = { _coordinates.x, _coordinates.y, text->w, text->h };
 
-	auto& renderManager = RenderManager::Instance();
-	auto* texture = SDL_CreateTextureFromSurface(renderManager.GetRenderer(), text);
+	RenderManager::Instance().DrawTexture(*text, nullptr, dst, angle);
+}
 
-	renderManager.DrawTexture(texture, nullptr, &dst, angle);
-
-	SDL_FreeSurface(text);
-	SDL_DestroyTexture(texture);
-
+void UIText::Center()
+{
+	
 }
 
 UIText::~UIText() = default;

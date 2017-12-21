@@ -21,9 +21,11 @@ private:
 	RGBA _colour;
 	std::string _text;
 public:
+	UIText(const std::string& text, const unsigned fontSize);
 	UIText(const std::string& text, unsigned fontSize, const Point& position);
 	UIText(const std::string& text, unsigned fontSize, const Point& position, const RGBA& colour);
 	void Draw() const;
+	void Center();
 	~UIText();
 };
 

@@ -10,11 +10,15 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <SDL_ttf.h>
+#include "Point.h"
+#include "../../Game/Config.h"
 
 using namespace std;
 
 class RenderManager {
 public:
+	inline static const Point WINDOW_CENTER = { config::height / 2, config::width / 2 };
+
 	RenderManager(RenderManager const&) = delete;
 	void operator=(RenderManager const&) = delete;
 
@@ -23,6 +27,7 @@ public:
 	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
 
 	SDL_Surface* LoadImage(const std::string &filePath);
+	void DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle) const;
 
 	/* void DrawTexture
 	* Drawing images on a screen
@@ -47,7 +52,8 @@ public:
 	/* void DrawText
 	* Draw Text on screen
 	*/
-	void DrawText(const std::string text, const int x, const int y, int width, int height, const double angle = 0, const int r = 255, const int g = 255, const int b = 255);
+	void DrawText(const std::string& text, const int x, const int y, int width, int height, const double angle = 0, const int r = 255, const
+	              int g = 255, const int b = 255);
 
 	static RenderManager& Instance();
 
