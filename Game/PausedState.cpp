@@ -13,23 +13,19 @@ PausedState::PausedState() {
 PausedState::~PausedState() {
 }
 
-void PausedState::HandleEvents(Game &game) {
+void PausedState::HandleEvents(Game &game, Event& event) {
     auto &inputManager = InputManager::Instance();
 
-    Event event;
-
-    while (inputManager.HasEvent(&event)) {
-        if (inputManager.IsPauseResume(event)) {
-            game.PopState();
-        }
-        if (inputManager.IsQuit(event)) {
-            game.Quit();
-        }
-        if (inputManager.IsMousePressed(event)) {
-            // Check clicks on button
-            for (auto &button : _buttons) {
-                if (button->IsClicked(event)) button->Click();
-            }
+    if (inputManager.IsPauseResume(event)) {
+        game.PopState();
+    }
+    if (inputManager.IsQuit(event)) {
+        game.Quit();
+    }
+    if (inputManager.IsMousePressed(event)) {
+        // Check clicks on button
+        for (auto &button : _buttons) {
+            if (button->IsClicked(event)) button->Click();
         }
     }
 }

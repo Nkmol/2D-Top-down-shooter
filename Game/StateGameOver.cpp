@@ -18,17 +18,14 @@ void StateGameOver::Init(Game& game)
 {
 }
 
-void StateGameOver::HandleEvents(Game& game)
+void StateGameOver::HandleEvents(Game& game, Event& event)
 {
 	auto& inputManager = InputManager::Instance();
 
-	Event event;
-	while (inputManager.HasEvent(&event)) {
-		// If any key is pressed
-		if (inputManager.IsKeyDown(event))
-		{
-			game.PopState(2);
-		}
+	// If any key is pressed
+	if (inputManager.IsKeyDown(event))
+	{
+		game.PopState(2);
 	}
 }
 

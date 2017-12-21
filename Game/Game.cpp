@@ -100,7 +100,17 @@ void Game::Run(const unsigned int targetFps)
 
 void Game::HandleEvents()
 {
-	_states.back()->HandleEvents(*this);
+	auto &inputManager = InputManager::Instance();
+
+	Event event;
+	while (inputManager.HasEvent(&event)) {
+		if (inputManager.IsQuit(event)) {
+			Quit();
+			return;
+		}
+
+		_states.back()->HandleEvents(*this, event);
+	}
 }
 
 void Game::Update(float time)
