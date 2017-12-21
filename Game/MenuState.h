@@ -35,4 +35,10 @@ private:
 	std::string _savedGame;
 
 	std::unique_ptr<Texture> _background;
+
+	bool IsButtonClicked(Event event, Button button);
+
+	void LoadGame();
+
+	void DrawButtons(std::vector<Button> buttons);
 };
