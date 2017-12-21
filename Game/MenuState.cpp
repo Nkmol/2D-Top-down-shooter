@@ -73,11 +73,15 @@ void MenuState::HandleEvents(Game &game) {
                        ev.GetEventValue().button.y > _creditsButton.getY1() &&
                        ev.GetEventValue().button.y < _creditsButton.getY2()) {
                 //Credits
+				auto state = std::make_unique<CreditsState>();
+				game.ChangeState(std::move(state));
             } else if (ev.GetEventValue().button.x > _instructions.getX1() &&
                        ev.GetEventValue().button.x < _instructions.getX2() &&
                        ev.GetEventValue().button.y > _instructions.getY1() &&
                        ev.GetEventValue().button.y < _instructions.getY2()) {
                 //Instructions
+				auto state = std::make_unique<InstructionsState>();
+				game.ChangeState(std::move(state));
             } else if (ev.GetEventValue().button.x > _quitButton.getX1() &&
                        ev.GetEventValue().button.x < _quitButton.getX2() &&
                        ev.GetEventValue().button.y > _quitButton.getY1() &&

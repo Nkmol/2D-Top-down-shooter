@@ -52,7 +52,7 @@ void InstructionsState::Draw(Game & game)
 
 void InstructionsState::Init(Game& game)
 {
-	_background = std::make_unique<Texture>(AssetManager::Instance().LoadTexture("menu-wallpaper"));
+	_background = AssetManager::Instance().LoadTexture("menu-wallpaper");
 	_buttons.emplace_back(make_unique<Button>("button_back", Point((config::width / 2) - 150, 800), Point(300, 50), [&]() {
 		// Can only delete myself from outside
 		// Set clears all states and sets a states
