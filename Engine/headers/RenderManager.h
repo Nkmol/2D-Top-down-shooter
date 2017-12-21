@@ -27,11 +27,11 @@ public:
 	void CreateWindow(const std::string& title, bool fullscreen, const int width, const int height);
 
 	SDL_Surface* LoadImage(const std::string &filePath);
-	void DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle) const;
 
 	/* void DrawTexture
 	* Drawing images on a screen
 	*/
+	void DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle = 0) const;
 	void DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
 	
 	/* void Render
