@@ -39,6 +39,7 @@ void PausedState::Update(Game &game, float time) {
 
 void PausedState::Draw(Game &game) {
     MapManager::Instance().Render();
+	// Draw previous state (the game)
     game.GetStateBack(1)->Draw(game);
     RenderManager::Instance().DrawText("Press ESC to resume game", config::width / 2 - 155, config::height / 2 - 20,
                                        360, 40);
@@ -50,11 +51,12 @@ void PausedState::Draw(Game &game) {
 }
 
 void PausedState::Init(Game &game) {
-    _buttons.emplace_back(
-            make_unique<Button>("button_give-up", Point(config::width / 2 - 52, config::height / 4), Point(114, 40),
-                                [&]() {
-                                    // Can only delete myself from outside
-                                    // Set clears all states and sets a states
-                                    game.SetState(make_unique<MenuState>());
-                                }));
+	_buttons.emplace_back(
+		make_unique<Button>("button_give-up", Point(config::width / 2 - 52, config::height / 4), Point(114, 40),
+		                    [&]()
+		                    {
+			                    // Can only delete myself from outside
+			                    // Set clears all states and sets a states
+			                    game.PopState(2);
+		                    }));
 }
