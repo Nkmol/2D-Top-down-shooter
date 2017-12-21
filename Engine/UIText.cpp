@@ -1,0 +1,30 @@
+#include "UIText.h"
+#include "../Game/Config.h"
+
+
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position) : UIText(text, fontSize, position, {0, 0, 0, 1})
+{
+}
+
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour) : GameObject(position, config::width + 100, config::width + 100), _colour(colour), _text(text) {
+	_font = AssetManager::Instance().LoadFont("OpenSans-Regular", fontSize);
+}
+
+void UIText::Draw() const
+{
+	if (!_font.get()) return;
+
+	auto* text = TTF_RenderText_Blended(_font.get(), _text.c_str(), _colour);
+	SDL_Rect dst = { _coordinates.x, _coordinates.y, text->w, text->h };
+
+	auto& renderManager = RenderManager::Instance();
+	auto* texture = SDL_CreateTextureFromSurface(renderManager.GetRenderer(), text);
+
+	renderManager.DrawTexture(texture, nullptr, &dst, angle);
+
+	SDL_FreeSurface(text);
+	SDL_DestroyTexture(texture);
+
+}
+
+UIText::~UIText() = default;

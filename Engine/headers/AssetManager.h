@@ -9,6 +9,8 @@
 #include <SDL_ttf.h>
 #include <memory>
 #include "RenderManager.h"
+#include "../CustomDeleter.h"
+#include <memory>
 
 using namespace std;
 
@@ -29,5 +31,7 @@ public:
 	Mix_Chunk* LoadEffect(const string effectToken);
 	SDL_Surface* LoadSurface(const string mediaToken);
 	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
-	TTF_Font* LoadFont(const string fontToken, const int size);
+
+	typedef unique_ptr<TTF_Font, CustomDeleter> Font;
+	Font LoadFont(const string & fontToken, const int size) const;
 };
