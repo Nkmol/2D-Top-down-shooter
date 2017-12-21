@@ -81,6 +81,10 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
+const Player& Level::GetPlayer() const
+{
+	return *_player;
+}
 
 void Level::HandleEvents(Event event) {
     this->HandleMouseEvents(event);

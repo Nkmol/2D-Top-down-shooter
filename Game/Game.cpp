@@ -45,8 +45,8 @@ const unique_ptr<State>& Game::GetStateBack(const int at)
 
 void Game::PopState(unsigned val)
 {
-	while (val > 0) {
-		_states.pop_back();
+	while (val > 0 && val <= _states.size()) {
+		PopState();
 		val = val - 1;
 	}
 }

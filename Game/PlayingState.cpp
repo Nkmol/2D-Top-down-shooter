@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Level.h"
 #include "InputManager.h"
+#include "StateGameOver.h"
 
 PlayingState::PlayingState() : PlayingState(0, "")
 {
@@ -35,6 +36,12 @@ void PlayingState::HandleEvents(Game &game) {
 }
 
 void PlayingState::Update(Game &game, float time) {
+	if(_level.GetPlayer().GetState() == "dead")
+	{
+		game.ChangeState(make_unique<StateGameOver>());
+		return;
+	}
+
 	_level.Update(time);
 }
 

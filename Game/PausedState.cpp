@@ -38,7 +38,6 @@ void PausedState::Update(Game &game, float time) {
 }
 
 void PausedState::Draw(Game &game) {
-    MapManager::Instance().Render();
 	// Draw previous state (the game)
     game.GetStateBack(1)->Draw(game);
     RenderManager::Instance().DrawText("Press ESC to resume game", config::width / 2 - 155, config::height / 2 - 20,
