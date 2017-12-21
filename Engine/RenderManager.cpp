@@ -36,6 +36,11 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	return this->sprites[filePath];
 }
 
+void RenderManager::DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle) const
+{
+	DrawTexture(SDL_CreateTextureFromSurface(renderer, &surface), sourceRectangle, &destinationRectangle, angle);
+}
+
 void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
 	double angle) const
 {
@@ -45,27 +50,8 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
+void RenderManager::DrawText(const std::string& text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
 {
-	if (font == NULL || fontHeight != height) {
-		fontHeight = height;
-		TTF_CloseFont(font);
-		font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
-	}
-	TTF_SizeText(font, text.c_str(), &width, &height);
-	SDL_Color color = { r, g, b };
-	SDL_Surface* sMessage = TTF_RenderText_Solid(font, text.c_str(), color);
-	SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, sMessage);
-	SDL_FreeSurface(sMessage);
-
-	SDL_Rect messageRect;
-	messageRect.x = x;
-	messageRect.y = y;
-	messageRect.w = width;
-	messageRect.h = height;
-
-	this->DrawTexture(message, NULL, &messageRect, angle);
-	SDL_DestroyTexture(message);
 }
 
 RenderManager& RenderManager::Instance() {
