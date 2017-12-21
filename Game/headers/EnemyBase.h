@@ -35,6 +35,7 @@ protected:
 	void onCollision(EnemyBase * enemy);
 	void onCollision(Player * player);
 	void onBaseCollision(bool isWall);
+	void dropDropable();
 
 public:
 	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);

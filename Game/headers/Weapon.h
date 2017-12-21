@@ -19,6 +19,7 @@ protected:
     int shooted = 0;
     int maxBullets;
     float fireRate;
+    float standardFireRate;
     float lastShot;
 
 public:
@@ -49,6 +50,13 @@ public:
     void UpdateFireRate(float time);
 
     void ResetLastShot();
+
+    void setFireRate(float fireRate);
+
+    float getFireRate() const;
+
+    float getStandardFireRate() const;
+
 };
 
 void to_json(nlohmann::json &j, const Weapon &value);
