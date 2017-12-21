@@ -27,6 +27,7 @@ public:
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
+	~Player();
 
     Bullet shoot();
 
@@ -69,6 +70,8 @@ public:
     void ShootState();
 
     void IdleState();
+
+    bool CanShoot();
 };
 
 

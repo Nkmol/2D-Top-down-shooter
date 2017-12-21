@@ -11,7 +11,7 @@
 class Rifle : public Weapon {
 
 public:
-    explicit Rifle(int damage = 15);
+    explicit Rifle(int damage = 15, float fireRate = 0.15);
 };
 
 

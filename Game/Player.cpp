@@ -16,6 +16,8 @@ Player::Player(const std::string &filePath, const Point coordinates, const int l
     this->ChangeState("idle");
 }
 
+Player::~Player() = default;
+
 void Player::addWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
         weapons.push_back(weapon);
@@ -38,7 +40,12 @@ void Player::changeWeapon(const unsigned index) {
     currentWeapon = index;
 }
 
+bool Player::CanShoot() {
+    return getWeapon()->CanShoot();
+}
+
 Bullet Player::shoot() {
+    getWeapon()->ResetLastShot();
     return getWeapon()->getBullet(getAngle(), _coordinates);
 }
 
@@ -47,12 +54,12 @@ void Player::Move(const Point direction) {
 }
 
 void Player::update(float time) {
+    getWeapon()->UpdateFireRate(time);
 
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
 	PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
-
 }
 
 const int Player::getLifepoints() const {

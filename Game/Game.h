@@ -14,15 +14,17 @@ public:
 	~Game();
 	void Init();
 	void ChangeState(std::unique_ptr<State>&& state);
+	void SetState(std::unique_ptr<State>&& state);
+	const std::unique_ptr<State>& GetStateBack(const int at);
+	// Get state starting at back (1 is before last)
 	void PopState();
+	void ClearStates();
 	void Quit();
 	void Run(const unsigned fps);
 	void HandleEvents();
 	void Update(float time);
 	void Draw();
 
-	std::shared_ptr<Level> GetLevel() const;
-	void SetLevel(int levelnumber, std::string savedGame);
 private:
 	// the stack of states
 	std::vector<std::unique_ptr<State>> _states;
