@@ -2,6 +2,7 @@
 #include <vector>
 #include "Engine.h"
 #include <memory>
+#include "../Engine/UIText.h"
 
 class Level;
 class State;
@@ -32,5 +33,7 @@ private:
 	bool isRunning;
 	Engine _mainManager;
 	double _fps;
+
+	UIText _fpsUI;
 };
 

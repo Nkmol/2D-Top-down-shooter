@@ -32,6 +32,5 @@ public:
 	SDL_Surface* LoadSurface(const string mediaToken);
 	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
 
-	typedef unique_ptr<TTF_Font, CustomDeleter> Font;
-	Font LoadFont(const string & fontToken, const int size) const;
+	TTF_Font* LoadFont(const string & fontToken, const int size) const;
 };

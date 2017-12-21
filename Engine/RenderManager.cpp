@@ -50,10 +50,6 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string& text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
-{
-}
-
 RenderManager& RenderManager::Instance() {
 	static RenderManager sInstance; // Guaranteed to be destroyed.
 								    // Instantiated on first use.

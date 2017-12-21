@@ -7,9 +7,8 @@
 #include "RenderManager.h"
 #include "Config.h"
 #include "Level.h"
-#include "MapManager.h"
 
-Game::Game()
+Game::Game(): _fpsUI("0,0", 18)
 {
 }
 
@@ -22,6 +21,7 @@ void Game::Init()
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
+	_fpsUI = UIText("0.00", 48, { 20, 20 });
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -123,11 +123,12 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	_states.back()->Draw(*this);
+
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(2) << _fps;
-
-	renderManager.DrawText(str.str(), 20, 20, 70, 20);
+	_fpsUI.ChangeText(str.str());
+	_fpsUI.Draw();
 
 	renderManager.Render();
 }

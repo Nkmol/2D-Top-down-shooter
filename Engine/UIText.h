@@ -17,16 +17,23 @@ public:
 		}
 	};
 private:
-	unique_ptr<SDL_Surface, CustomDeleter> _surface;
+	// TODO Smart
+	SDL_Surface* _surface;
+	TTF_Font* _font;
+
 	SDL_Rect _rect{};
 	RGBA _colour;
 	std::string _text;
+	void LoadSurface();
 public:
+	UIText();
 	UIText(const std::string& text, const unsigned fontSize);
 	UIText(const std::string& text, unsigned fontSize, const Point& position);
-	UIText(std::string  text, unsigned fontSize, const Point& position, const RGBA& colour);
+	UIText(const std::string&  text, unsigned fontSize, const Point& position, const RGBA& colour);
+	~UIText();
 	void Draw();
 	void Center();
-	~UIText();
+	void ChangeText(const std::string& text);
+	UIText& operator=(const UIText& uiText) = default;
 };
 

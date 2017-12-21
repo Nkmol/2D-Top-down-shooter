@@ -11,6 +11,7 @@
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
 #include "EnemyBase.h"
+#include "../Engine/UIText.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         inputManager{InputManager::Instance()},
@@ -26,6 +27,10 @@ Level::~Level()
 }
 
 void Level::Init() {
+
+	// init UI
+	_UIWeapon = UIText("", 24, { config::width - 300, 0 });
+	_UIBullets = UIText("", 24, { config::width - 300, 40 });
 
     LoadLevel();
 
@@ -231,12 +236,14 @@ void Level::Draw() {
     auto weaponName = _player->getWeapon()->getName();
     auto totalBullets = _player->getWeapon()->totalBullets();
     auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
-    RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
-    RenderManager::Instance().DrawText("Bullets: " +
-                                       to_string(remainingBullets) + "/" +
-                                       to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
 
-//    //PhysicsManager::Instance().DrawQTree();
+	_UIWeapon.ChangeText("Weapon: " + weaponName);
+	_UIWeapon.Draw();
+
+	_UIBullets.ChangeText("Bullets: " +
+		to_string(remainingBullets) + "/" +
+		to_string(totalBullets));
+	_UIBullets.Draw();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

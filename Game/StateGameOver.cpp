@@ -17,6 +17,10 @@ StateGameOver::~StateGameOver()
 
 void StateGameOver::Init(Game& game)
 {
+	_UITitle = UIText("Game over", 72);
+	_UITitle.Center();
+
+	_UIContinue = UIText("Press any button to return to main menu...", 24, { config::width / 2 - 200, config::height - 100 - 20 });
 }
 
 void StateGameOver::HandleEvents(Game& game, Event& event)
@@ -39,8 +43,6 @@ void StateGameOver::Draw(Game& game)
 	// Draw previous state (the game)
 	game.GetStateBack(1)->Draw(game);
 
-	RenderManager::Instance().DrawText("Game Over", config::width / 2 - 360/2, config::height / 2 - 40/2,
-		360, 40, 0, 227, 20, 20);
-	RenderManager::Instance().DrawText("Press any button to return to main menu...", config::width / 2 - 200, config::height - 100 - 20,
-		200, 20);
+	_UITitle.Draw();
+	_UIContinue.Draw();
 }

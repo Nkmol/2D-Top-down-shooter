@@ -58,13 +58,13 @@ SDL_Surface *AssetManager::LoadSurface(const string mediaToken) {
     return loadedSurface;
 }
 
-AssetManager::Font AssetManager::LoadFont(const string& fontToken, const int size) const
+TTF_Font* AssetManager::LoadFont(const string& fontToken, const int size) const
 {
 	auto* font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
     if (font == nullptr)
         cout << "Unable to load font! SDL_image Error: " << fontToken.c_str() << TTF_GetError() << endl;
 
-    return Font(font);
+    return font;
 }
 
 std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
