@@ -99,8 +99,8 @@ void MenuState::HandleEvents(Game &game) {
                     StartLevel(2, game);
             } else if (ev.GetEventValue().button.x > _level3.getX1() && ev.GetEventValue().button.x < _level3.getX2() &&
                        ev.GetEventValue().button.y > _level3.getY1() && ev.GetEventValue().button.y < _level3.getY2()) {
-                //if (_highestLevel >= 3)
-                //StartLevel(3, game);
+                if (_highestLevel >= 3)
+                StartLevel(3, game);
             }
         }
     }

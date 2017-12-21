@@ -36,9 +36,10 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 
 bool WaveController::Update(float time, int levelnumber)
 {
-	_lastWaveTimer += time * multiplier;
 
-	if (_lastWaveTimer >= _curWave->GetTime()) {
+	_lastWaveTimer += time;
+
+	if (_lastWaveTimer >= _curWave->GetTime() * multiplier) {
 		_lastWaveTimer = 0.0f;
 		_curWave++;
 		if (_curWave == _waves.end() & levelnumber != 3){
