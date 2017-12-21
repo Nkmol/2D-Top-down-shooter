@@ -44,7 +44,7 @@ public:
 
     void changeWeapon(unsigned index);
 
-	bool GetIsCheatActive();
+	bool IsCheatActive();
 
     const vector<Weapon> &getWeapons() const;
 

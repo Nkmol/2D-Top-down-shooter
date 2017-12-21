@@ -40,7 +40,7 @@ void Player::changeWeapon(const unsigned index) {
     currentWeapon = index;
 }
 
-bool Player::GetIsCheatActive() {
+bool Player::IsCheatActive() {
 	return isCheatActive;
 }
 
