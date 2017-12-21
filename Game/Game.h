@@ -2,6 +2,7 @@
 #include <vector>
 #include "Engine.h"
 #include <memory>
+#include "../Engine/UIText.h"
 
 class Level;
 class State;
@@ -15,8 +16,9 @@ public:
 	void Init();
 	void ChangeState(std::unique_ptr<State>&& state);
 	void SetState(std::unique_ptr<State>&& state);
-	const std::unique_ptr<State>& GetStateBack(const int at);
 	// Get state starting at back (1 is before last)
+	const std::unique_ptr<State>& GetStateBack(const int at);
+	void PopState(unsigned val);
 	void PopState();
 	void ClearStates();
 	void Quit();
@@ -31,5 +33,7 @@ private:
 	bool isRunning;
 	Engine _mainManager;
 	double _fps;
+
+	UIText _fpsUI;
 };
 

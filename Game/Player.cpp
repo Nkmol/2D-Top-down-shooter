@@ -110,8 +110,8 @@ void Player::onBaseCollision(bool isCollidedOnWall) {
 void Player::Hit(int damage) {
     lifepoints -= damage;
 
-    if (lifepoints) {
-
+    if (lifepoints <= 0) {
+		this->ChangeState("dead");
     }
 }
 
@@ -132,8 +132,16 @@ void Player::ChangeState(const string &_state) {
     if (_state == "reload") {
         ReloadState();
     }
+
+	if (_state == "dead") {
+		DeadState();
+	}
 }
 
+void Player::DeadState()
+{
+	MoveableObject::ChangeState("dead");
+}
 
 void Player::IdleState() {
     MoveableObject::ChangeState("idle");

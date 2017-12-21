@@ -10,11 +10,15 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <SDL_ttf.h>
+#include "Point.h"
+#include "../../Game/Config.h"
 
 using namespace std;
 
 class RenderManager {
 public:
+	inline static const Point WINDOW_CENTER = { config::height / 2, config::width / 2 };
+
 	RenderManager(RenderManager const&) = delete;
 	void operator=(RenderManager const&) = delete;
 
@@ -27,6 +31,7 @@ public:
 	/* void DrawTexture
 	* Drawing images on a screen
 	*/
+	void DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle = 0) const;
 	void DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle, double angle = 0) const;
 	
 	/* void Render
@@ -43,11 +48,6 @@ public:
 	* Returns the renderer
 	*/
 	SDL_Renderer* GetRenderer() const;
-
-	/* void DrawText
-	* Draw Text on screen
-	*/
-	void DrawText(const std::string text, const int x, const int y, int width, int height, const double angle = 0, const int r = 255, const int g = 255, const int b = 255);
 
 	static RenderManager& Instance();
 

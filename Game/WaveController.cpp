@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Wave.h"
 #include "Config.h"
+#include "../Engine/UIText.h"
 
 
 WaveController::WaveController()
@@ -15,6 +16,8 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	_waves = waves;
 	_npcs = npcs;
 	_player = player;
+
+	_UIWaveText = UIText("Wave: ", 48);
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -51,8 +54,9 @@ bool WaveController::Update(float time)
 
 void WaveController::SpawnWave()
 {
-	std::string waveText = "Wave: " + _curWave->GetId();
-	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
+	_UIWaveText.ChangeText("Wave: " + _curWave->GetId());
+	_UIWaveText.Draw();
+
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 
 	Point screenCenter;

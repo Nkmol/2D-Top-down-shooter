@@ -3,6 +3,7 @@
 #include "State.h"
 #include "Button.h"
 #include <vector>
+#include "../Engine/UIText.h"
 
 class PausedState : public State {
 public:
@@ -10,7 +11,7 @@ public:
 
 	~PausedState();
 
-	void HandleEvents(Game &game) override;
+	void HandleEvents(Game &game, Event& event) override;
 
 	void Update(Game &game, float time) override;
 
@@ -20,5 +21,6 @@ public:
 
 private:
 	vector<unique_ptr<Button>> _buttons;
+	UIText _UIPauseText;
 };
 

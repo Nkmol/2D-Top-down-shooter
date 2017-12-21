@@ -2,6 +2,7 @@
 
 #include "AssetManager.h"
 #include "Texture.h"
+#include "CustomDeleter.h"
 
 AssetManager::AssetManager() {
 
@@ -57,10 +58,10 @@ SDL_Surface *AssetManager::LoadSurface(const string mediaToken) {
     return loadedSurface;
 }
 
-
-TTF_Font *AssetManager::LoadFont(const string fontToken, const int size) {
-    TTF_Font *font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
-    if (font == NULL)
+TTF_Font* AssetManager::LoadFont(const string& fontToken, const int size) const
+{
+	auto* font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
+    if (font == nullptr)
         cout << "Unable to load font! SDL_image Error: " << fontToken.c_str() << TTF_GetError() << endl;
 
     return font;
