@@ -6,6 +6,10 @@
 #include "AIDefault.h"
 #include "FactoryBehaviour.h"
 #include "Bullet.h"
+#include "powerups/PowerupHP.h"
+#include "powerups/DropableFactory.h"
+#include "Level.h"
+#include "powerups/PowerupFastShot.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed,
                      const bool isLeader, const int damage, const int lifepoints, const int reward) :
@@ -133,6 +137,7 @@ void EnemyBase::onCollision(MoveableObject *object) {
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->getDamage();
     if (lifepoints < 0) {
+        dropDropable();
         hide();
     }
 
@@ -152,4 +157,21 @@ void EnemyBase::onCollision(Player *player) {
 
 void EnemyBase::onBaseCollision(bool isWall) {
     MoveableObject::stopMove();
+}
+
+void EnemyBase::dropDropable() {
+    int dropchance = DropableFactory::Instance().dropChance;
+    int hp = 1;
+    int fastshoot = 2;
+    int rollNumber = rand() % 10 + 0;
+    if(rollNumber <= dropchance){
+
+        if(rollNumber == 1){
+            PowerupHP powerup = PowerupHP(_coordinates);
+            Level::_loot.emplace_back(make_unique<PowerupHP>(powerup));
+        }else{
+            PowerupFastShot powerup = PowerupFastShot(_coordinates);
+            Level::_loot.emplace_back(make_unique<PowerupFastShot>(powerup));
+        }
+    }
 }

@@ -12,8 +12,6 @@
 class Bullet : public MoveableObject {
 
 private:
-    float BULLET_SPEED = 0.8f;
-
     int damage;
 public:
 

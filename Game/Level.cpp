@@ -12,6 +12,7 @@
 #include "ExplosionFactory.h"
 #include "EnemyBase.h"
 
+std::vector<unique_ptr<DropableObject>> Level::_loot;
 Level::Level(const int level, const ::std::string savedGame) :
         inputManager{InputManager::Instance()},
         _level(level),
@@ -197,6 +198,10 @@ void Level::Update(float time) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
+    for (std::unique_ptr<DropableObject> &loot : _loot) {
+        loot->checkForCollision(*_player);
+    }
+
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
@@ -237,6 +242,10 @@ void Level::Draw() {
 
     for (auto &explosion : _explosion) {
         explosion.draw();
+    }
+
+    for (auto& loot : _loot) {
+        loot->draw();
     }
 
     // TODO, verplaatsen

@@ -59,7 +59,7 @@ void Player::Move(const Point direction) {
 
 void Player::update(float time) {
     getWeapon()->UpdateFireRate(time);
-
+    updatePowerups(time);
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
     PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
@@ -184,6 +184,28 @@ void Player::ReloadState() {
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
     return this->spriteToken + "/" + this->getWeapon()->getName();
+}
+
+void Player::setLifepoints(int lifepoints) {
+    if(lifepoints > 100)
+        lifepoints = 100;
+    Player::lifepoints = lifepoints;
+}
+
+void Player::updatePowerups(float time) {
+    int i = 0;
+    std::vector<int> ids;
+    for( std::unique_ptr<PowerupMode> &powerup : powerupmodes){
+        if(powerup->getCounter() >= powerup->getMaxTime()){
+            ids.emplace_back(i);
+        }else{
+            powerup->update(time, *this);
+        }
+        i++;
+    }
+    for(auto id : ids){
+        powerupmodes.erase(powerupmodes.begin() + id);
+    }
 }
 
 void Player::ToggleCheats() {

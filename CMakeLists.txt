@@ -93,7 +93,7 @@ set(SOURCE_FILES
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
-        Engine/tmx/src/TSXParser.cpp)
+        Engine/tmx/src/TSXParser.cpp Game/powerups/DropableObject.cpp Game/powerups/DropableObject.h Game/powerups/PowerupHP.cpp Game/powerups/PowerupHP.h Game/powerups/DropableFactory.cpp Game/powerups/DropableFactory.h Game/powerups/PowerupFastShot.cpp Game/powerups/PowerupFastShot.h Game/powerups/PowerupMode.cpp Game/powerups/PowerupMode.h Game/powerups/PowerupModeFastShot.cpp Game/powerups/PowerupModeFastShot.h)
 add_executable(Shooter ${SOURCE_FILES})
 message(${CMAKE_SOURCE_DIR})
 target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/cmake/libs/libnfd.a)
