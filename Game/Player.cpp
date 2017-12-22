@@ -115,6 +115,10 @@ void Player::Hit(int damage) {
     if (!isCheatActive) {
         lifepoints -= damage;
     }
+    if (lifepoints <= 0) {
+	this->ChangeState("dead");
+    }
+
 }
 
 void Player::HandleAnimationFinished() {
@@ -134,8 +138,16 @@ void Player::ChangeState(const string &_state) {
     if (_state == "reload") {
         ReloadState();
     }
+
+	if (_state == "dead") {
+		DeadState();
+	}
 }
 
+void Player::DeadState()
+{
+	MoveableObject::ChangeState("dead");
+}
 
 void Player::IdleState() {
     MoveableObject::ChangeState("idle");

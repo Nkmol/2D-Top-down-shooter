@@ -53,6 +53,8 @@ public:
 
     void Draw();
 
+	const Player& GetPlayer() const;
+
     const int GetId() const { return _level; }
 
     void SetId(const int id) { _level = id; }
