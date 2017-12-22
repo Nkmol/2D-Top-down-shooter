@@ -14,7 +14,7 @@ Weapon::Weapon(int damage, std::string name, int maxBullets, float fireRate) :
         fireRate{fireRate},
         standardFireRate{fireRate} {}
 
-Bullet Weapon::getBullet(int angle, Point coordinates) {
+Bullet Weapon::getBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, damage);
     if(fireRate != standardFireRate) {
         float s1 = (standardFireRate/fireRate)*bullet.GetSpeed();
@@ -23,7 +23,10 @@ Bullet Weapon::getBullet(int angle, Point coordinates) {
     bullet.SetAngle(angle);
 
     if (hasBullets()) {
-        shooted++;
+		if (!isCheatActive)
+			shooted++;
+		else
+			bullet.SetDamage(10000000);
     } else {
         bullet.hide(); // returns a hidden bullet, so it will not be drawn
     }

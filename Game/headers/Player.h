@@ -22,7 +22,8 @@ class Player : public MoveableObject {
 
 private:
     int lifepoints;
-	int _highestLevel = 1;
+    int _highestLevel = 1;
+	  bool isCheatActive;
 
 public:
 	vector<std::unique_ptr<PowerupMode>> powerupmodes;
@@ -49,6 +50,8 @@ public:
 
     void changeWeapon(unsigned index);
 
+	bool IsCheatActive();
+
     const vector<Weapon> &getWeapons() const;
 
     void onBaseCollision(bool isCollidedOnWall);
@@ -70,6 +73,8 @@ public:
     void ChangeState(const string &_state) override;
 
     string GetAnimationToken() override;
+
+	void ToggleCheats();
 
     void ReloadState();
 

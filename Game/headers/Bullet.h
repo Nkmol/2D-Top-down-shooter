@@ -20,6 +20,7 @@ public:
     void update(float time) override;
 
     const int getDamage() const;
+	void SetDamage(int damage);
 	void onBaseCollision(MoveableObject * object);
 	void onBaseCollision(bool isCollidedOnWall);
 };
