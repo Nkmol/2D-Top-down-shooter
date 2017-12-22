@@ -116,7 +116,7 @@ void Player::Hit(int damage) {
         lifepoints -= damage;
     }
     if (lifepoints <= 0) {
-		    this->ChangeState("dead");
+	this->ChangeState("dead");
     }
 
 }
