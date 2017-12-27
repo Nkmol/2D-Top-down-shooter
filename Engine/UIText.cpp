@@ -1,7 +1,4 @@
-#include <utility>
-
 #include "UIText.h"
-#include "../Game/Config.h"
 
 UIText::UIText() : UIText("", 14)
 {
@@ -15,7 +12,7 @@ UIText::UIText(const std::string& text, const unsigned fontSize, const Point& po
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour) : GameObject(position, 0, 0), _colour(colour), _text(text) 
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour) : _colour(colour), _text(text), _coordinates(position)
 {
 	_font = AssetManager::Instance().LoadFont("OpenSans-Regular", fontSize);
 
@@ -26,22 +23,23 @@ UIText::UIText(const std::string& text, const unsigned fontSize, const Point& po
 
 void UIText::LoadSurface()
 {
-	_surface = TTF_RenderText_Blended(_font, _text.c_str(), _colour);
-	_rect = { int(_coordinates.x), int(_coordinates.y), _surface->w, _surface->h };
+	auto* t = TTF_RenderText_Blended(_font.get(), _text.c_str(), _colour);
+	_texture = std::move(Texture(t));
+	_rect = { int(_coordinates.x), int(_coordinates.y), _texture.width, _texture.height };
 }
 
 void UIText::Draw()
 {
-	if (!_surface) return;
+	if (!_texture.GetTexture()) return;
 
-	RenderManager::Instance().DrawTexture(*_surface, nullptr, _rect, angle);
+	RenderManager::Instance().DrawTexture(_texture.GetTexture(), nullptr, &_rect, _angle);
 }
 
 void UIText::Center()
 {
 	// Seems that X is already centred?
-	const auto diff = RenderManager::WINDOW_CENTER - Point(0, _surface->w / 2.0);
-	_rect = {int(diff.x), int(diff.y), _surface->w, _surface->h};
+	const auto diff = RenderManager::WINDOW_CENTER - Point(0, _texture.width / 2.0);
+	_rect = {int(diff.x), int(diff.y), _texture.width, _texture.height };
 }
 
 void UIText::ChangeText(const std::string& text)
@@ -53,4 +51,3 @@ void UIText::ChangeText(const std::string& text)
 	LoadSurface();
 }
 
-UIText::~UIText() = default;

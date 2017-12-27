@@ -1,9 +1,7 @@
 #pragma once
 #include "GameObject.h"
-#include "CustomDeleter.h"
 
-class UIText :
-	public GameObject
+class UIText
 {
 public:
 	struct RGBA
@@ -18,22 +16,24 @@ public:
 	};
 private:
 	// TODO Smart
-	SDL_Surface* _surface;
-	TTF_Font* _font;
+	Texture _texture{};
+	AssetManager::Font _font;
 
 	SDL_Rect _rect{};
-	RGBA _colour;
+	RGBA _colour{};
 	std::string _text;
+	Point _coordinates;
+	int _angle{};
+
 	void LoadSurface();
 public:
 	UIText();
-	UIText(const std::string& text, const unsigned fontSize);
+	UIText(const std::string& text, unsigned fontSize);
 	UIText(const std::string& text, unsigned fontSize, const Point& position);
 	UIText(const std::string&  text, unsigned fontSize, const Point& position, const RGBA& colour);
-	~UIText();
+
 	void Draw();
 	void Center();
 	void ChangeText(const std::string& text);
-	UIText& operator=(const UIText& uiText) = default;
 };
 
