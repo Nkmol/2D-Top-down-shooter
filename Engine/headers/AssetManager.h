@@ -29,8 +29,12 @@ public:
 
 	Mix_Music* LoadBGM(const string soundToken);
 	Mix_Chunk* LoadEffect(const string effectToken);
+
+	typedef std::unique_ptr<SDL_Surface, CustomDeleter> Surface;
 	SDL_Surface* LoadSurface(const string mediaToken);
+
 	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
 
-	TTF_Font* LoadFont(const string & fontToken, const int size) const;
+	typedef std::unique_ptr<TTF_Font, CustomDeleter> Font;
+	Font LoadFont(const string & fontToken, const int size) const;
 };

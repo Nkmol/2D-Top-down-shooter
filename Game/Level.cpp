@@ -17,7 +17,10 @@ Level::Level(const int level, const ::std::string savedGame) :
         inputManager{InputManager::Instance()},
         _level(level),
         _savedGame(savedGame),
-        _levelSpeed(1) {
+        _levelSpeed(1),
+		_UIWeapon("", 24, { config::width - 300, 0 }),
+		_UIBullets("", 24, { config::width - 300, 40 })
+{
     Init();
     Level::_explosion = {};
 }
@@ -27,11 +30,6 @@ Level::~Level()
 }
 
 void Level::Init() {
-
-	// init UI
-	_UIWeapon = UIText("", 24, { config::width - 300, 0 });
-	_UIBullets = UIText("", 24, { config::width - 300, 40 });
-
     LoadLevel();
 
     MapManager::Instance().Init(_map);

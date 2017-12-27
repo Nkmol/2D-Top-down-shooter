@@ -29,9 +29,9 @@ public:
 
 private:
 	// the stack of states
+	Engine _mainManager;
 	std::vector<std::unique_ptr<State>> _states;
 	bool isRunning;
-	Engine _mainManager;
 	double _fps;
 
 	UIText _fpsUI;

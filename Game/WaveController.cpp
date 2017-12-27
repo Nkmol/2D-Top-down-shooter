@@ -6,7 +6,7 @@
 #include "../Engine/UIText.h"
 
 
-WaveController::WaveController()
+WaveController::WaveController() : _UIWaveText("Wave: ", 48)
 {
 	_lastWaveTimer = 0.0f;
 }
@@ -16,8 +16,6 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	_waves = waves;
 	_npcs = npcs;
 	_player = player;
-
-	_UIWaveText = UIText("Wave: ", 48);
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);

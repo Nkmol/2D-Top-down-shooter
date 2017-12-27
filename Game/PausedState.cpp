@@ -7,7 +7,8 @@
 #include "Button.h"
 #include "MenuState.h"
 
-PausedState::PausedState() {
+PausedState::PausedState() : _UIPauseText("Press ESC to resume game", 24, { config::width / 2 - 155, config::height / 2 - 20 }) 
+{
 }
 
 PausedState::~PausedState() {
@@ -45,8 +46,6 @@ void PausedState::Draw(Game &game) {
 }
 
 void PausedState::Init(Game &game) {
-	_UIPauseText = UIText("Press ESC to resume game", 24, { config::width / 2 - 155, config::height / 2 - 20 });
-
 	_buttons.emplace_back(
 		make_unique<Button>("button_give-up", Point(config::width / 2 - 52, config::height / 4), Point(114, 40),
 		                    [&]()

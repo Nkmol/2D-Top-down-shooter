@@ -8,20 +8,17 @@
 #include "Config.h"
 #include "Level.h"
 
-Game::Game(): _fpsUI("0,0", 18)
-{
-}
+Game::Game() = default;
 
-Game::~Game()
-{
-}
+Game::~Game() = default;
 
 void Game::Init()
 {
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
-	_fpsUI = UIText("0.00", 48, { 20, 20 });
+	// Init after window renderer has been created
+	_fpsUI = std::move(UIText{ "0.00", 48,{ 20, 20 } });
 }
 
 // Explicity force user to transfer ownership with std::move

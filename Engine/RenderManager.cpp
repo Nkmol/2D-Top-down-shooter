@@ -36,11 +36,6 @@ SDL_Surface* RenderManager::LoadImage(const std::string &filePath) {
 	return this->sprites[filePath];
 }
 
-void RenderManager::DrawTexture(SDL_Surface& surface, SDL_Rect* sourceRectangle, SDL_Rect& destinationRectangle, const double angle) const
-{
-	DrawTexture(SDL_CreateTextureFromSurface(renderer, &surface), sourceRectangle, &destinationRectangle, angle);
-}
-
 void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle, SDL_Rect *destinationRectangle,
 	double angle) const
 {

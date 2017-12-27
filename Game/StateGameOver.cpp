@@ -6,8 +6,9 @@
 #include "../Engine/UIText.h"
 
 
-StateGameOver::StateGameOver()
+StateGameOver::StateGameOver() : _UITitle("Game over", 72), _UIContinue("Press any button to return to main menu...", 24, { config::width / 2 - 200, config::height - 100 - 20 })
 {
+	_UITitle.Center();
 }
 
 
@@ -17,10 +18,6 @@ StateGameOver::~StateGameOver()
 
 void StateGameOver::Init(Game& game)
 {
-	_UITitle = UIText("Game over", 72);
-	_UITitle.Center();
-
-	_UIContinue = UIText("Press any button to return to main menu...", 24, { config::width / 2 - 200, config::height - 100 - 20 });
 }
 
 void StateGameOver::HandleEvents(Game& game, Event& event)

@@ -10,7 +10,7 @@ PlayingState::PlayingState() : PlayingState(0, "")
 {
 }
 
-PlayingState::PlayingState(const int level, const std::string& savedGame) : _level(Level{ level, savedGame }) {
+PlayingState::PlayingState(const int level, const std::string& savedGame) : _level(level, savedGame) {
 }
 
 
