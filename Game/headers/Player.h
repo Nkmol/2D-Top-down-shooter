@@ -22,6 +22,7 @@ class Player : public MoveableObject {
 private:
     int lifepoints;
     int _highestLevel = 1;
+	bool isCheatActive;
 
 public:
     Player(const std::string &filePath, float x, float y);
@@ -42,6 +43,8 @@ public:
     Weapon *getWeapon();
 
     void changeWeapon(unsigned index);
+
+	bool IsCheatActive();
 
     const vector<Weapon> &getWeapons() const;
 
@@ -65,6 +68,8 @@ public:
 	void DeadState();
 
 	string GetAnimationToken() override;
+
+	void ToggleCheats();
 
     void ReloadState();
 

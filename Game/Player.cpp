@@ -5,13 +5,13 @@
 #include "Player.h"
 #include "Bullet.h"
 
-Player::Player(const std::string &filePath, const float x, const float y)
-        : Player(filePath, Point{x, y}) {
-    _type = PLAYER;
+Player::Player(const std::string &filePath, const float x, const float y) :
+        Player(filePath, Point{x, y}) {
 }
 
-Player::Player(const std::string &filePath, const Point coordinates, const int lp)
-        : MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
+Player::Player(const std::string &filePath, const Point coordinates, const int lp) :
+        isCheatActive{false},
+        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
     _type = PLAYER;
     this->ChangeState("idle");
 }
@@ -40,13 +40,17 @@ void Player::changeWeapon(const unsigned index) {
     currentWeapon = index;
 }
 
-bool Player::CanShoot() {
-    return getWeapon()->CanShoot();
+bool Player::IsCheatActive() {
+	return isCheatActive;
 }
 
 Bullet Player::shoot() {
-    getWeapon()->ResetLastShot();
-    return getWeapon()->getBullet(getAngle(), _coordinates);
+	getWeapon()->ResetLastShot();
+	return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
+}
+
+bool Player::CanShoot() {
+    return getWeapon()->CanShoot();
 }
 
 void Player::Move(const Point direction) {
@@ -58,7 +62,7 @@ void Player::update(float time) {
 
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
-	PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
 }
 
@@ -108,11 +112,13 @@ void Player::onBaseCollision(bool isCollidedOnWall) {
 }
 
 void Player::Hit(int damage) {
-    lifepoints -= damage;
-
-    if (lifepoints <= 0) {
-		this->ChangeState("dead");
+    if (!isCheatActive) {
+        lifepoints -= damage;
     }
+    if (lifepoints <= 0) {
+	this->ChangeState("dead");
+    }
+
 }
 
 void Player::HandleAnimationFinished() {
@@ -120,7 +126,7 @@ void Player::HandleAnimationFinished() {
     this->ChangeState("idle");
 }
 
-void Player::ChangeState(const string &_state) {
+void Player::ChangeState(const std::string &_state) {
     if (_state == "idle") {
         IdleState();
     }
@@ -180,3 +186,6 @@ string Player::GetAnimationToken() {
     return this->spriteToken + "/" + this->getWeapon()->getName();
 }
 
+void Player::ToggleCheats() {
+    isCheatActive = !isCheatActive;
+}
