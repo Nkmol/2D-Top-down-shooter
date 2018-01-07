@@ -12,15 +12,18 @@
 
 
 class EnemyBase;
+
 class Player;
+
 class MoveableObject;
+
 class GameObject;
+
 class Event;
 
 class Level {
     InputManager &inputManager;
     int _level;
-    std::vector<std::shared_ptr<MoveableObject>> _objs;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::unique_ptr<EnemyBase>> _npcs;
     std::vector<std::shared_ptr<GameObject>> _loot;
@@ -39,15 +42,18 @@ class Level {
 
 public:
     explicit Level(int level, const std::string savedGame);
-	~Level();
 
-	void Init();
+    ~Level();
+
+    void Init();
 
     void HandleEvents(Event event);
 
     void Update(float time);
 
     void Draw();
+
+	const Player& GetPlayer() const;
 
     const int GetId() const { return _level; }
 
@@ -59,15 +65,17 @@ public:
 
     void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
 
-	void RemoveHiddenNpcs();
+    void RemoveHiddenNpcs();
 
     void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
 
     void AddExplosion(const Point &point);
 
+
     void HandleMouseEvents(Event &event);
 
     void HandleKeyboardEvents(Event &event);
+
 };
 
 void from_json(const nlohmann::json &j, Level &value);

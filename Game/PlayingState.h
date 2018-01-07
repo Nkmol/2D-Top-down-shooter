@@ -15,7 +15,7 @@ public:
 
 	~PlayingState();
 
-    void HandleEvents(Game &game) override;
+    void HandleEvents(Game &game, Event& event) override;
 
     void Update(Game& game, float time) override;
 
@@ -24,11 +24,6 @@ public:
     void Init(Game& game) override;
 
 private:
-    // Todo might actually need to be GameObject
-    // Use Pointer so Slicing will not occur
-
-    std::vector<std::shared_ptr<MoveableObject>> _objs;
-	std::shared_ptr<Player> _player;
 	Level _level;
 };
 

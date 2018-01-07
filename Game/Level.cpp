@@ -21,8 +21,7 @@ Level::Level(const int level, const ::std::string savedGame) :
     Level::_explosion = {};
 }
 
-Level::~Level()
-{
+Level::~Level() {
 }
 
 void Level::Init() {
@@ -30,7 +29,6 @@ void Level::Init() {
     LoadLevel();
 
     MapManager::Instance().Init(_map);
-
     LoadPlayer();
 
     _waveController.Init(_waves, _player, &_npcs);
@@ -82,8 +80,12 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
-void Level::HandleEvents(Event event) {
+const Player& Level::GetPlayer() const
+{
+	return *_player;
+}
 
+void Level::HandleEvents(Event event) {
     this->HandleMouseEvents(event);
     this->HandleKeyboardEvents(event);
 
@@ -94,7 +96,9 @@ void Level::HandleEvents(Event event) {
     _player->Move(direction);
 }
 
+
 void Level::HandleMouseEvents(Event &event) {
+
     if (inputManager.IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = inputManager.RecalculateMouseAngle(*_player);
@@ -103,14 +107,23 @@ void Level::HandleMouseEvents(Event &event) {
         _player->SetAngle(angle);
     }
 
-    if (inputManager.IsMouseClicked(event)) {
-        _player->ChangeState("shoot");
-        auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objsNoEnemies.emplace_back(bullet);
+
+    if (inputManager.IsMousePressed(event)) {
+        if (_player->CanShoot()) {
+            _player->ChangeState("shoot");
+            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+            _objsNoEnemies.emplace_back(bullet);
+        }
+    }
+
+    if (inputManager.IsMouseReleased(event)) {
+        inputManager.HandleMouseReleased();
     }
 }
 
+
 void Level::HandleKeyboardEvents(Event &event) {
+
     int key = 0;
 
     if (inputManager.IsNumericKeyPressed(event, key)) {
@@ -141,6 +154,20 @@ void Level::HandleKeyboardEvents(Event &event) {
             _player->ChangeState("reload");
             return;
         }
+
+        if (inputManager.IsKeyDown(event, "K")) {
+            _player->ToggleCheats();
+            return;
+        }
+
+        if (inputManager.IsKeyDown(event, "N")) {
+            if (_player->IsCheatActive()) {
+                for (auto &npc : _npcs) {
+                    npc.get()->hide();
+                }
+            }
+            return;
+        }
     }
 }
 
@@ -161,14 +188,8 @@ void Level::Update(float time) {
 
     for (auto &npc : _npcs) {
         npc->UpdatePosition(accSpeed);
-		if (!npc->isVisible()) {
-			this->AddExplosion(npc->GetCoordinates());
-		}
-    }
-
-    for (auto &obj : _objs) {
-        if (!obj->isVisible()) {
-            this->AddExplosion(obj->GetCoordinates());
+        if (!npc->isVisible()) {
+            this->AddExplosion(npc->GetCoordinates());
         }
     }
 
@@ -176,10 +197,9 @@ void Level::Update(float time) {
         AnimationManager::Instance().update(explosion, accSpeed);
     }
 
-    RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
-	RemoveHiddenNpcs();
-    RemoveHiddenObjects(_objs);
+    RemoveHiddenNpcs();
+    RemoveHiddenExplosionObjects(_explosion);
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -194,11 +214,10 @@ void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &ob
     objects.erase(y, objects.end());
 }
 
-void Level::RemoveHiddenNpcs()
-{
-	auto y(std::remove_if(_npcs.begin(), _npcs.end(),
-		[](std::unique_ptr<EnemyBase> &o) { return !o->isVisible(); }));
-	_npcs.erase(y, _npcs.end());
+void Level::RemoveHiddenNpcs() {
+    auto y(std::remove_if(_npcs.begin(), _npcs.end(),
+                          [](std::unique_ptr<EnemyBase> &o) { return !o->isVisible(); }));
+    _npcs.erase(y, _npcs.end());
 }
 
 void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &objects) {
@@ -216,14 +235,14 @@ void Level::Draw() {
         obj->draw();
     }
 
-    for (auto& explosion : _explosion) {
+    for (auto &explosion : _explosion) {
         explosion.draw();
     }
 
     // TODO, verplaatsen
     auto weaponName = _player->getWeapon()->getName();
     auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
     RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
     RenderManager::Instance().DrawText("Bullets: " +
                                        to_string(remainingBullets) + "/" +

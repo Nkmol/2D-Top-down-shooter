@@ -74,8 +74,6 @@ set(SOURCE_FILES
         Engine/AssetManager.cpp
         Engine/MapManager.cpp
         Engine/Engine.cpp
-        Engine/QuadTree.cpp
-        Engine/QuadTree.h
         Engine/AudioManager.cpp
         Engine/AnimationManager.cpp
         Engine/AnimationManager.h
@@ -91,7 +89,6 @@ set(SOURCE_FILES
         Engine/headers/PhysicsManager.h
         Engine/headers/MoveableObject.h
         Engine/headers/Button.h
-        Engine/headers/Texture.h
         Engine/headers/TickerTime.h
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h

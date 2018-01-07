@@ -43,6 +43,14 @@ const unique_ptr<State>& Game::GetStateBack(const int at)
 	return _states.end()[- (at+1)];
 }
 
+void Game::PopState(unsigned val)
+{
+	while (val > 0 && val <= _states.size()) {
+		PopState();
+		val = val - 1;
+	}
+}
+
 void Game::PopState()
 {
 	_states.pop_back();
@@ -92,7 +100,17 @@ void Game::Run(const unsigned int targetFps)
 
 void Game::HandleEvents()
 {
-	_states.back()->HandleEvents(*this);
+	auto &inputManager = InputManager::Instance();
+
+	Event event;
+	while (inputManager.HasEvent(&event)) {
+		if (inputManager.IsQuit(event)) {
+			Quit();
+			return;
+		}
+
+		_states.back()->HandleEvents(*this, event);
+	}
 }
 
 void Game::Update(float time)
