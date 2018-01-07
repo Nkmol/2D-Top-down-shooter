@@ -128,6 +128,7 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 			//if (_highestLevel >= 3)
 			//StartLevel(3, game);
 		}
+		else if (_advertisement.IsClicked(ev)) _advertisement.Click();
 	}
 }
 
@@ -170,10 +171,14 @@ void MenuState::Init(Game & game)
 
     _muteButton = Button("button_mute", (config::width) - 100, (config::height) - 100, 75, 75);
 
-	_advertisement = Button("button_level3", Point(config::width / 6, config::height * 0.9), Point(config::width / 6 * 4, config::height * 0.1), [&]() {
-		system("start http://google.com");
-		std::cout << "hoi" << std::endl;
-	});
+	_advertisementsLinks.push_back({ "advertisement/ad1", "https://nl.wikipedia.org/wiki/Canada" });
+	_advertisementsLinks.push_back({ "advertisement/ad2", "https://marktplaats.nl" });
+	_advertisementsLinks.push_back({ "advertisement/ad3", "https://google.nl" });
+
+	srand(time(0));
+	_adnr = rand() % _advertisementsLinks.size();
+	SetRandomAd();
+
     int muted = 0;
 }
 
@@ -185,6 +190,13 @@ void MenuState::StartLevel(const int level, Game& game)
     AudioManager::Instance().StopBGM();
 }
 
-Button MenuState::getRandomAd() {
-
+void MenuState::SetRandomAd() {
+	_advertisement = Button(_advertisementsLinks.at(_adnr).at(0), Point(config::width / 6, config::height * 0.9), Point(config::width / 6 * 4, config::height * 0.1), [&]() {
+		auto temp = "start " + _advertisementsLinks.at(_adnr).at(1);
+		char *cstr = new char[temp.length() + 1];
+		strcpy(cstr, temp.c_str());
+		system(cstr);
+		delete[] cstr;
+	});
+	
 }

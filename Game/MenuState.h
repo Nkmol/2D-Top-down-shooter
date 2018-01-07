@@ -16,7 +16,7 @@ public:
 	void Draw(Game& game) override;
 	void Init(Game& game) override;
 	void StartLevel(const int level, Game& game);
-	Button getRandomAd();
+	void SetRandomAd();
 private:
 	int _muted;
 	int _highestLevel = 1;
@@ -32,6 +32,8 @@ private:
 	Button _level3;
 	Button _advertisement;
 
+	std::vector<std::vector<std::string>> _advertisementsLinks;
+	int _adnr;
 	std::string _savedGame;
 
 	std::unique_ptr<Texture> _background;
