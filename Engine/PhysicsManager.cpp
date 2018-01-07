@@ -76,6 +76,7 @@ void PhysicsManager::checkStaticObjectCollision(MoveableObject* m, Point newPos)
 	for (int i = 0; i < collidables->size(); i++) {
 		if (IntersectsRect(midX, midY, radius, &collidables->at(i))) {
 			m->onBaseCollision(true);
+			break;
 		}
 	}
 }
@@ -86,10 +87,12 @@ void PhysicsManager::checkNewStaticObjectCollision(MoveableObject* m, Point newP
 	auto midX = m->getPredictionMidX(newPos.x);
 	auto midY = m->getPredictionMidY(newPos.y);
 	auto radius = m->getRadius();
-	std::vector<GameObject*> tmep = MapManager::Instance().getNearbyCollidables(newPos);
+	std::vector<GameObject*> tmep = {};
+	MapManager::Instance().getNearbyCollidables(newPos, &tmep);
 	for (int i = 0; i < tmep.size(); i++) {
 		if (IntersectsRect(midX, midY, radius, tmep.at(i))) {
 			m->onBaseCollision(true);
+			break;
 		}
 	}
 }

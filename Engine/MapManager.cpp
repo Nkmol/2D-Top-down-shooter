@@ -189,9 +189,8 @@ const SDL_Rect &MapManager::GetMapRect() const {
 	return mapRect;
 }
 
-std::vector<GameObject*> MapManager::getNearbyCollidables(Point position)
+void MapManager::getNearbyCollidables(Point position, std::vector<GameObject*>* nearby)
 {
-	std::vector<GameObject*> nearby;
 	const int tileWidth = tsx.tileset.tileWidth;
 	const int tileHeight = tsx.tileset.tileHeight;
 	int radius = 2;
@@ -211,10 +210,8 @@ std::vector<GameObject*> MapManager::getNearbyCollidables(Point position)
 				}
 				else
 					if(_collidables.at(j).at(i).get()->_isCollidable)
-						nearby.push_back(_collidables.at(j).at(i).get());
+						nearby->push_back(_collidables.at(j).at(i).get());
 			}
 		}
 	}
-
-	return nearby;
 }

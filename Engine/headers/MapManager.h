@@ -24,7 +24,7 @@ public:
 	void RenderTilesText();
 	const SDL_Rect &GetMapRect() const;
 
-	std::vector<GameObject*> getNearbyCollidables(Point position);
+	void getNearbyCollidables(Point position, std::vector<GameObject*>* nearby);
 
 private:
 	std::vector<std::vector<std::unique_ptr<GameObject>>> _collidables;
