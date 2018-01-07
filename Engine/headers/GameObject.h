@@ -34,6 +34,8 @@ public:
 	GameObject(const GameObject& other);
 	GameObject& operator=(GameObject that);
 
+	bool _isCollidable = false;
+	void SetIsCollidable(bool isCollidable);
 	const int getMidX() const;
 	const int getMidY() const;
 	int getWidth() const;

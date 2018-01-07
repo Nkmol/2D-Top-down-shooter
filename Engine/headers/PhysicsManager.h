@@ -26,6 +26,7 @@ public:
 
 	void checkWallCollision(MoveableObject* m, Point newPos);
 	void checkStaticObjectCollision(MoveableObject* m, Point newPos);
+	void checkNewStaticObjectCollision(MoveableObject * m, Point newPos);
 	void checkMoveableCollision(MoveableObject* m, Point newPos);
 	void setStaticObjects();
 	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);

@@ -62,6 +62,7 @@ void MapManager::Init(const string input)
 	int counter = 0;
 	for (int i = 0; i < height; i++)
 	{
+		_collidables.emplace_back();
 		for (int j = 0; j < width; j++)
 		{
 			destRect.y = i*tileWidth;
@@ -72,12 +73,16 @@ void MapManager::Init(const string input)
 					std::cout << SDL_GetError() << endl;
 			}
 
-			if (tileLayers.at(1).at(counter) != 0) {
-				GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
-				collidables.push_back(gameObject);
+			GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
+			_collidables.at(i).push_back(make_unique<GameObject>(gameObject));
+			if (tileLayers.at(1).at(counter) != 0) {				
+				//collidables.push_back(gameObject);
+				_collidables.at(i).at(j).get()->SetIsCollidable(true);
 				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
 			}
+			
+			
 			counter++;
 		}
 	}
@@ -182,4 +187,34 @@ void MapManager::GetTileLayers()
 
 const SDL_Rect &MapManager::GetMapRect() const {
 	return mapRect;
+}
+
+std::vector<GameObject*> MapManager::getNearbyCollidables(Point position)
+{
+	std::vector<GameObject*> nearby;
+	const int tileWidth = tsx.tileset.tileWidth;
+	const int tileHeight = tsx.tileset.tileHeight;
+	int radius = 2;
+	int x = ((position.x) / tileWidth) < 0 ? 0 : ((position.x ) / tileWidth);
+	int y = ((position.y ) / tileHeight) < 0 ? 0 : ((position.y) / tileHeight);
+
+	for (int j = y - radius; j <= radius + y; j++)
+	{
+		if (j < 0 || j >= _collidables.size())
+		{
+		}
+		else {
+			for (int i = x - radius; i <= radius + x; i++)
+			{
+				if (i < 0 || i >= _collidables.at(j).size())
+				{
+				}
+				else
+					if(_collidables.at(j).at(i).get()->_isCollidable)
+						nearby.push_back(_collidables.at(j).at(i).get());
+			}
+		}
+	}
+
+	return nearby;
 }

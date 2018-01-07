@@ -62,7 +62,7 @@ void Player::update(float time) {
 
     const auto newPosition = _coordinates + (_destination * speed * time);
     PhysicsManager::Instance().checkWallCollision(this, newPosition);
-    PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().checkNewStaticObjectCollision(this, newPosition);
     MoveableObject::update(time);
 }
 
