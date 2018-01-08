@@ -15,7 +15,6 @@
 #include "Hud.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
-        _inputManager{InputManager::Instance()},
         _level(level),
         _savedGame(savedGame),
         _levelSpeed(1),
@@ -113,7 +112,7 @@ void Level::HandleMouseEvents(Event &event) {
     }
 
 
-    if (_inputManager.IsMousePressed(event)) {
+    if (InputManager::Instance().IsMousePressed(event)) {
         if (_player->CanShoot()) {
             _player->ChangeState("shoot");
             auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
@@ -121,8 +120,8 @@ void Level::HandleMouseEvents(Event &event) {
         }
     }
 
-    if (_inputManager.IsMouseReleased(event)) {
-        _inputManager.HandleMouseReleased();
+    if (InputManager::Instance().IsMouseReleased(event)) {
+		InputManager::Instance().HandleMouseReleased();
     }
 }
 
@@ -160,12 +159,12 @@ void Level::HandleKeyboardEvents(Event &event) {
             return;
         }
 
-        if (_inputManager.IsKeyDown(event, "K")) {
+        if (InputManager::Instance().IsKeyDown(event, "K")) {
             _player->ToggleCheats();
             return;
         }
 
-        if (_inputManager.IsKeyDown(event, "N")) {
+        if (InputManager::Instance().IsKeyDown(event, "N")) {
             if (_player->IsCheatActive()) {
                 for (auto &npc : _npcs) {
                     npc.get()->Hide();
@@ -249,8 +248,9 @@ void Level::Draw() {
 
     // TODO, verplaatsen
     
-    auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
+    auto totalBullets = _player->GetWeapon()->TotalBullets();
+    auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
+	auto weaponName = _player->GetWeapon()->GetName();
 	_UIWeapon.ChangeText("Weapon: " + weaponName);
 	_UIWeapon.Draw();
 

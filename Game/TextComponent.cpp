@@ -14,7 +14,7 @@ void TextComponent::Update(float time)
 
 void TextComponent::Draw()
 {
-	RenderManager::Instance().DrawText(_text, _pos.x, _pos.y, _w, _h, _angle);
+	//RenderManager::Instance().DrawText(_text, _pos.x, _pos.y, _w, _h, _angle);
 }
 
 void TextComponent::ChangeText(const std::string text)
