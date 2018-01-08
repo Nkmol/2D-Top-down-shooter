@@ -1,7 +1,5 @@
 #pragma once
 #include <vector>
-
-#include "IHudComponent.h"
 #include "../Engine/UIText.h"
 
 class Hud

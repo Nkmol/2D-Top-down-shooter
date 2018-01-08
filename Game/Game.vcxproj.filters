@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\hud">
-      <UniqueIdentifier>{b9f74a09-4a07-42e3-b6b5-0782a042d226}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\hud">
-      <UniqueIdentifier>{bbaf533d-3a85-4c8e-b68b-67d3c0db428b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,17 +75,11 @@
     <ClCompile Include="ExplosionFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hud.cpp">
-      <Filter>Source Files\hud</Filter>
-    </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
-      <Filter>Source Files\hud</Filter>
-    </ClCompile>
     <ClCompile Include="StateGameOver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NumberComponent.cpp">
-      <Filter>Source Files\hud</Filter>
+    <ClCompile Include="Hud.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,20 +152,11 @@
     <ClInclude Include="ExplosionFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hud.h">
-      <Filter>Header Files\hud</Filter>
-    </ClInclude>
-    <ClInclude Include="IHudComponent.h">
-      <Filter>Header Files\hud</Filter>
-    </ClInclude>
-    <ClInclude Include="TextComponent.h">
-      <Filter>Header Files\hud</Filter>
-    </ClInclude>
     <ClInclude Include="StateGameOver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NumberComponent.h">
-      <Filter>Header Files\hud</Filter>
+    <ClInclude Include="Hud.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
