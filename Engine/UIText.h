@@ -24,16 +24,20 @@ private:
 	std::string _text;
 	Point _coordinates;
 	int _angle{};
+	float _lifetime = 0;
+	float _livingtime = 0;
 
 	void LoadSurface();
 public:
 	UIText();
-	UIText(const std::string& text, unsigned fontSize);
-	UIText(const std::string& text, unsigned fontSize, const Point& position);
-	UIText(const std::string&  text, unsigned fontSize, const Point& position, const RGBA& colour);
+	UIText(const std::string& text, unsigned fontSize, float lifetime = 0);
+	UIText(const std::string& text, unsigned fontSize, const Point& position, float lifetime = 0);
+	UIText(const std::string&  text, unsigned fontSize, const Point& position, const RGBA& colour, float lifetime = 0);
 
 	void Draw();
 	void Center();
 	void ChangeText(const std::string& text);
+	void Update(float time);
+	const bool Destroyable() const { return _livingtime > _lifetime; }
 };
 

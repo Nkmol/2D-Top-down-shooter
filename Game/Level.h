@@ -37,8 +37,8 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
-	UIText _UIWeapon;
-	UIText _UIBullets;
+	std::unique_ptr<UIText> _UIWeapon;
+	std::unique_ptr<UIText> _UIBullets;
 
 	void LoadLevel();
 

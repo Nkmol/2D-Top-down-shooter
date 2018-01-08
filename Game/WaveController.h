@@ -21,7 +21,6 @@ public:
 private:
 	nlohmann::json _j;
 	float _lastWaveTimer;
-	UIText _UIWaveText;
 	void SpawnWave();
 	std::forward_list<Wave> _waves;
 	std::forward_list<Wave>::iterator _curWave;

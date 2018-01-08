@@ -4,15 +4,15 @@ UIText::UIText() : UIText("", 14)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize) : UIText(text, fontSize, { 0, 0 })
+UIText::UIText(const std::string& text, const unsigned fontSize, float lifetime) : UIText(text, fontSize, { 0, 0 }, lifetime)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position) : UIText(text, fontSize, position, { 255, 255, 255, 1 })
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, float lifetime) : UIText(text, fontSize, position, { 255, 255, 255, 1 }, lifetime)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour) : _colour(colour), _text(text), _coordinates(position)
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour, float lifetime) : _colour(colour), _text(text), _coordinates(position), _lifetime(lifetime)
 {
 	_font = AssetManager::Instance().LoadFont("OpenSans-Regular", fontSize);
 
@@ -48,5 +48,11 @@ void UIText::ChangeText(const std::string& text)
 	_text = text;
 
 	LoadSurface();
+}
+
+void UIText::Update(float time)
+{
+	if (_lifetime > 0)
+		_livingtime += time;
 }
 

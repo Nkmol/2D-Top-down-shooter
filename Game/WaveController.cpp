@@ -3,10 +3,11 @@
 #include "Player.h"
 #include "Wave.h"
 #include "Config.h"
+#include "Hud.h"
 #include "../Engine/UIText.h"
 
 
-WaveController::WaveController() : _UIWaveText("Wave: ", 48)
+WaveController::WaveController()
 {
 	_lastWaveTimer = 0.0f;
 }
@@ -52,12 +53,9 @@ bool WaveController::Update(float time)
 
 void WaveController::SpawnWave()
 {
-	_UIWaveText.ChangeText("Wave: " + _curWave->GetId());
-	_UIWaveText.Draw();
-
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 	std::string waveText = "Wave " + std::to_string(_curWave->GetId()) + " incoming!";
-	Hud::Instance().AddComponent(new TextComponent(waveText, Point(config::width / 2 - 100, 100), 200, 40, 2.0f));
+	Hud::Instance().AddComponent(new UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f));
 
 	Point screenCenter;
 	screenCenter.x = config::width / 2;
@@ -74,7 +72,6 @@ void WaveController::SpawnWave()
 			member->SetCoordinates(Point(randomDistance * cos(randomAngle) + screenCenter.x, randomDistance * sin(randomAngle) + screenCenter.y));
 
 			_npcs->push_back(move(member));
-		}
-		
+		}		
 	}
 }

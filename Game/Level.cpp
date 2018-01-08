@@ -17,16 +17,20 @@
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
         _savedGame(savedGame),
-        _levelSpeed(1),
-		_UIWeapon("", 24, { config::width - 300, 0 }),
-		_UIBullets("", 24, { config::width - 300, 40 })
+        _levelSpeed(1)
 {
     Init();
     Level::_explosion = {};
 
+	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 300, 0 }));
+	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 300, 40 }));
+	Hud::Instance().AddComponent(_UIBullets.get());
+	Hud::Instance().AddComponent(_UIWeapon.get());
 }
 
 Level::~Level() {
+	Hud::Instance().RemoveComponent(_UIBullets.get());
+	Hud::Instance().RemoveComponent(_UIWeapon.get());
 }
 
 void Level::Init() {
@@ -39,7 +43,6 @@ void Level::Init() {
 
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
-	_weaponComponent = std::make_unique<TextComponent>("", Point(config::width - 360, 0), 360, 40, 0);
 }
 
 void Level::LoadLevel() {
@@ -205,13 +208,18 @@ void Level::Update(float time) {
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
 
-	auto weaponName = "Weapon: " + _player->GetWeapon()->GetName();
-	_weaponComponent->ChangeText(weaponName);
+	auto totalBullets = _player->GetWeapon()->TotalBullets();
+	auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
+	auto weaponName = _player->GetWeapon()->GetName();
+	_UIWeapon->ChangeText("Weapon: " + weaponName);
+
+	_UIBullets->ChangeText("Bullets: " +
+		to_string(remainingBullets) + "/" +
+		to_string(totalBullets));
 }
 
 void Level::AddExplosion(const Point &point) {
     auto explosion = ExplosionFactory::Instance().GetRandomExplosion(point);
-//            auto explosion = ExplosionFactory::Instance().GetExplosion("blood-2", obj->GetCoordinates());
     _explosion.push_back(explosion);
 }
 
@@ -245,19 +253,6 @@ void Level::Draw() {
     for (auto &explosion : _explosion) {
         explosion.Draw();
     }
-
-    // TODO, verplaatsen
-    
-    auto totalBullets = _player->GetWeapon()->TotalBullets();
-    auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
-	auto weaponName = _player->GetWeapon()->GetName();
-	_UIWeapon.ChangeText("Weapon: " + weaponName);
-	_UIWeapon.Draw();
-
-	_UIBullets.ChangeText("Bullets: " +
-		to_string(remainingBullets) + "/" +
-		to_string(totalBullets));
-	_UIBullets.Draw();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {
