@@ -15,29 +15,29 @@ AssetManager &AssetManager::Instance() {
     // Guaranteed to be lazy initialized
     // Guaranteed that it will be destroyed correctly
 
-    static AssetManager sInstance;
-    return sInstance;
+    static AssetManager _instance;
+    return _instance;
 }
 
 Mix_Music *AssetManager::LoadBGM(const string soundToken) {
     //Load music
-    Mix_Music *gBGM = Mix_LoadMUS(string{"../content/audio/" + soundToken + ".wav"}.c_str());
-    if (gBGM == NULL) {
-        gBGM = Mix_LoadMUS(string{"../content/audio/" + soundToken + ".mp3"}.c_str());
+    Mix_Music *_bgm = Mix_LoadMUS(string{"../content/audio/" + soundToken + ".wav"}.c_str());
+    if (_bgm == NULL) {
+        _bgm = Mix_LoadMUS(string{"../content/audio/" + soundToken + ".mp3"}.c_str());
     }
-    if (gBGM == NULL) {
+    if (_bgm == NULL) {
         cout << "failed to load" << Mix_GetError() << endl;
     }
-    return gBGM;
+    return _bgm;
 }
 
 Mix_Chunk *AssetManager::LoadEffect(const string effectToken) {
-    Mix_Chunk *gEffectM = Mix_LoadWAV(string{"../content/audio/" + effectToken + ".wav"}.c_str());
-    if (gEffectM == NULL) {
+    Mix_Chunk *_effectMusic = Mix_LoadWAV(string{"../content/audio/" + effectToken + ".wav"}.c_str());
+    if (_effectMusic == NULL) {
         cout << "Failed to load scratch sound effect! SDL_mixer Error: " << effectToken.c_str() << Mix_GetError()
              << endl;
     }
-    return gEffectM;
+    return _effectMusic;
 }
 
 SDL_Surface* AssetManager::LoadSurface(const string mediaToken) {

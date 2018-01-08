@@ -18,15 +18,15 @@ class InputManager {
  * Singleton
  */
 
-    static InputManager *sInstance;
+    static InputManager *_instance;
 
-    int mousePositionX, mousePositionY;
+    int _mousePositionX, _mousePositionY;
 
-    std::map<SDL_Keycode, Point> keyDirections;
+    std::map<SDL_Keycode, Point> _keyDirections;
 
     InputManager();
 
-    bool buttonState;
+    bool _buttonState;
 
 public:
     InputManager(InputManager const &) = delete;

@@ -53,11 +53,11 @@ public:
 	SDL_Window* GetWindow() const;
 
 private:
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	map<std::string, SDL_Surface*> sprites;
-	TTF_Font* font;
-	int fontHeight = 0;
-	static RenderManager* sInstance;
+	SDL_Window* _window;
+	SDL_Renderer* _renderer;
+	map<std::string, SDL_Surface*> _sprites;
+	TTF_Font* _font;
+	int _fontHeight = 0;
+	static RenderManager* _instance;
 };
 #endif //RENDERMANAGER_H

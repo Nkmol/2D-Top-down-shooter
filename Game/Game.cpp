@@ -60,7 +60,7 @@ void Game::ClearStates()
 
 void Game::Quit()
 {
-	isRunning = false;
+	_isRunning = false;
 }
 
 void Game::Run(const unsigned int targetFps)
@@ -91,8 +91,8 @@ void Game::Run(const unsigned int targetFps)
 	});
 	#pragma endregion 
 
-	isRunning = true;;
-	timer.Run(isRunning);
+	_isRunning = true;;
+	timer.Run(_isRunning);
 }
 
 void Game::HandleEvents()

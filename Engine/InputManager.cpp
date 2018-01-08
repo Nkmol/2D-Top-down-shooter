@@ -7,10 +7,10 @@
 #include "InputManager.h"
 #include "MoveableObject.h"
 
-InputManager *InputManager::sInstance = nullptr;
+InputManager *InputManager::_instance = nullptr;
 
-InputManager::InputManager() : buttonState{false} {
-    InputManager::keyDirections = {
+InputManager::InputManager() : _buttonState{false} {
+    InputManager::_keyDirections = {
             {SDL_SCANCODE_W, Point::Up()},
             {SDL_SCANCODE_D, Point::Right()},
             {SDL_SCANCODE_S, Point::Down()},
@@ -21,9 +21,9 @@ InputManager::InputManager() : buttonState{false} {
 
 InputManager &InputManager::Instance() {
 
-    static InputManager sInstance;
+    static InputManager _instance;
 
-    return sInstance;
+    return _instance;
 }
 
 bool InputManager::HasEvent(Event *event) {
@@ -75,7 +75,7 @@ Point InputManager::GetDirection(Event &event) {
     // update keyboard state
     const auto keysArray = SDL_GetKeyboardState(nullptr);
 
-    for (auto const &value : keyDirections) {
+    for (auto const &value : _keyDirections) {
         if (keysArray[value.first])
             direction += value.second;
     }
@@ -90,8 +90,8 @@ int InputManager::RecalculateMouseAngle(MoveableObject &object) {
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    mousePositionX = mouseX;
-    mousePositionY = mouseY;
+    _mousePositionX = mouseX;
+    _mousePositionY = mouseY;
 
     return CalculateMouseAngle(object);
 }
@@ -121,10 +121,10 @@ bool InputManager::IsMouseClicked(Event &event) {
 
 bool InputManager::IsMousePressed(Event &event) {
     if (IsMouseClicked(event)) {
-        buttonState = true;
+        _buttonState = true;
     }
 
-    return buttonState;
+    return _buttonState;
 }
 
 bool InputManager::IsMouseReleased(Event &event) {
@@ -132,7 +132,7 @@ bool InputManager::IsMouseReleased(Event &event) {
 }
 
 void InputManager::HandleMouseReleased() {
-    buttonState = false;
+    _buttonState = false;
 }
 
 
@@ -143,9 +143,9 @@ const bool InputManager::IsKeyDown(Event &event, const std::string name) const {
 // Getters & Setters
 
 int InputManager::GetMousePositionX() const {
-    return mousePositionX;
+    return _mousePositionX;
 }
 
 int InputManager::GetMousePositionY() const {
-    return mousePositionY;
+    return _mousePositionY;
 }
