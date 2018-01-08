@@ -114,6 +114,7 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 			{
 				StartLevel(1, game);
 			}
+			else if (_advertisement.IsClicked(ev)) _advertisement.Click();
 		}
 		else if (ev.GetEventValue().button.x > _level2.getX1() && ev.GetEventValue().button.x < _level2.getX2() &&
 			ev.GetEventValue().button.y > _level2.getY1() && ev.GetEventValue().button.y < _level2.getY2())
@@ -127,6 +128,7 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 			//if (_highestLevel >= 3)
 			//StartLevel(3, game);
 		}
+		else if (_advertisement.IsClicked(ev)) _advertisement.Click();
 	}
 }
 
@@ -143,6 +145,7 @@ void MenuState::Draw(Game &game) {
     _muteButton.draw();
     _quitButton.draw();
     _instructions.draw();
+	_advertisement.draw();
 
     if (_highestLevel >= 1)
         _level1.draw();
@@ -166,8 +169,15 @@ void MenuState::Init(Game & game)
     _level2 = Button("button_level2", 50, 300, 300, 50);
     _level3 = Button("button_level3", 50, 400, 300, 50);
 
-
     _muteButton = Button("button_mute", (config::width) - 100, (config::height) - 100, 75, 75);
+
+	_advertisementsLinks.push_back({ "advertisement/ad1", "https://nl.wikipedia.org/wiki/Canada" });
+	_advertisementsLinks.push_back({ "advertisement/ad2", "https://marktplaats.nl" });
+	_advertisementsLinks.push_back({ "advertisement/ad3", "https://google.nl" });
+
+	srand(time(0));
+	_adnr = rand() % _advertisementsLinks.size();
+	SetRandomAd();
 
     int muted = 0;
 }
@@ -178,4 +188,15 @@ void MenuState::StartLevel(const int level, Game& game)
     auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
+}
+
+void MenuState::SetRandomAd() {
+	_advertisement = Button(_advertisementsLinks.at(_adnr).at(0), Point(config::width / 6, config::height * 0.9), Point(config::width / 6 * 4, config::height * 0.1), [&]() {
+		auto temp = "start " + _advertisementsLinks.at(_adnr).at(1);
+		char *cstr = new char[temp.length() + 1];
+		strcpy(cstr, temp.c_str());
+		system(cstr);
+		delete[] cstr;
+	});
+	
 }
