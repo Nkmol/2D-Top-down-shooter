@@ -3,9 +3,10 @@
 #include "Player.h"
 #include "Wave.h"
 #include "Config.h"
+#include "../Engine/UIText.h"
 
 
-WaveController::WaveController()
+WaveController::WaveController() : _UIWaveText("Wave: ", 48)
 {
 	_lastWaveTimer = 0.0f;
 }
@@ -51,8 +52,9 @@ bool WaveController::Update(float time)
 
 void WaveController::SpawnWave()
 {
-	std::string waveText = "Wave: " + _curWave->GetId();
-	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
+	_UIWaveText.ChangeText("Wave: " + _curWave->GetId());
+	_UIWaveText.Draw();
+
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 
 	Point screenCenter;

@@ -11,12 +11,16 @@
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
 #include "EnemyBase.h"
+#include "../Engine/UIText.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _inputManager{InputManager::Instance()},
         _level(level),
         _savedGame(savedGame),
-        _levelSpeed(1) {
+        _levelSpeed(1),
+		_UIWeapon("", 24, { config::width - 300, 0 }),
+		_UIBullets("", 24, { config::width - 300, 40 })
+{
     Init();
     Level::_explosion = {};
 }
@@ -25,7 +29,6 @@ Level::~Level() {
 }
 
 void Level::Init() {
-
     LoadLevel();
 
     MapManager::Instance().Init(_map);
@@ -240,15 +243,16 @@ void Level::Draw() {
     }
 
     // TODO, verplaatsen
-    auto weaponName = _player->GetWeapon()->GetName();
-    auto TotalBullets = _player->GetWeapon()->TotalBullets();
-    auto remainingBullets = TotalBullets - _player->GetWeapon()->GetShot();
-    RenderManager::Instance().DrawText("Weapon: " + weaponName, config::width - 360, 0, 360, 40, 0);
-    RenderManager::Instance().DrawText("Bullets: " +
-                                       to_string(remainingBullets) + "/" +
-                                       to_string(TotalBullets), config::width - 360, 40, 360, 40, 0);
+    auto weaponName = _player->getWeapon()->getName();
+    auto totalBullets = _player->getWeapon()->totalBullets();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
+	_UIWeapon.ChangeText("Weapon: " + weaponName);
+	_UIWeapon.Draw();
 
-//    //PhysicsManager::Instance().DrawQTree();
+	_UIBullets.ChangeText("Bullets: " +
+		to_string(remainingBullets) + "/" +
+		to_string(totalBullets));
+	_UIBullets.Draw();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

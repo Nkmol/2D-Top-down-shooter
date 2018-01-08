@@ -2,6 +2,7 @@
 
 #include "AssetManager.h"
 #include "Texture.h"
+#include "CustomDeleter.h"
 
 AssetManager::AssetManager() {
 
@@ -39,7 +40,7 @@ Mix_Chunk *AssetManager::LoadEffect(const string effectToken) {
     return _effectMusic;
 }
 
-SDL_Surface *AssetManager::LoadSurface(const string mediaToken) {
+SDL_Surface* AssetManager::LoadSurface(const string mediaToken) {
     //Load image at specified path
     SDL_Surface *loadedSurface = IMG_Load(string{"../content/sprites/" + mediaToken + ".png"}.c_str());
 
@@ -57,13 +58,13 @@ SDL_Surface *AssetManager::LoadSurface(const string mediaToken) {
     return loadedSurface;
 }
 
-
-TTF_Font *AssetManager::LoadFont(const string fontToken, const int size) {
-    TTF_Font *_font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
-    if (_font == NULL)
+AssetManager::Font AssetManager::LoadFont(const string& fontToken, const int size) const
+{
+	auto* font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
+    if (font == nullptr)
         cout << "Unable to load font! SDL_image Error: " << fontToken.c_str() << TTF_GetError() << endl;
 
-    return _font;
+    return Font(font);
 }
 
 std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)

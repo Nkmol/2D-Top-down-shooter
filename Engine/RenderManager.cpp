@@ -45,29 +45,6 @@ void RenderManager::DrawTexture(SDL_Texture *texture, SDL_Rect *sourceRectangle,
 	}
 }
 
-void RenderManager::DrawText(const std::string text, const int x, const int y, int width, int height, const double angle, const int r, const int g, const int b)
-{
-	if (_font == NULL || _fontHeight != height) {
-		_fontHeight = height;
-		TTF_CloseFont(_font);
-		_font = AssetManager::Instance().LoadFont("OpenSans-Regular", height);
-	}
-	TTF_SizeText(_font, text.c_str(), &width, &height);
-	SDL_Color color = { r, g, b };
-	SDL_Surface* sMessage = TTF_RenderText_Solid(_font, text.c_str(), color);
-	SDL_Texture* message = SDL_CreateTextureFromSurface(_renderer, sMessage);
-	SDL_FreeSurface(sMessage);
-
-	SDL_Rect messageRect;
-	messageRect.x = x;
-	messageRect.y = y;
-	messageRect.w = width;
-	messageRect.h = height;
-
-	this->DrawTexture(message, NULL, &messageRect, angle);
-	SDL_DestroyTexture(message);
-}
-
 RenderManager& RenderManager::Instance() {
 	static RenderManager _instance; // Guaranteed to be destroyed.
 								    // Instantiated on first use.

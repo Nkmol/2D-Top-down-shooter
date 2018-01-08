@@ -2,6 +2,7 @@
 #include <vector>
 #include "Engine.h"
 #include <memory>
+#include "../Engine/UIText.h"
 
 class Level;
 class State;
@@ -14,6 +15,7 @@ class Game
 	Engine _mainManager;
 	double _fps;
 	std::shared_ptr<Level> _level;
+	UIText _fpsUI;
 public:
 	Game();
 	~Game();

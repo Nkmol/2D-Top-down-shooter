@@ -5,6 +5,7 @@
 #include "RenderManager.h"
 #include "json.hpp"
 #include "EnemyBase.h"
+#include "../Engine/UIText.h"
 
 class MoveableObject;
 class Wave;
@@ -20,6 +21,7 @@ public:
 private:
 	nlohmann::json _j;
 	float _lastWaveTimer;
+	UIText _UIWaveText;
 	void SpawnWave();
 	std::forward_list<Wave> _waves;
 	std::forward_list<Wave>::iterator _curWave;

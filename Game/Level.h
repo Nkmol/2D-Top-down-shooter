@@ -9,6 +9,7 @@
 #include "Explosion.h"
 #include "WaveController.h"
 #include "Wave.h"
+#include "../Engine/UIText.h"
 
 
 class EnemyBase;
@@ -35,8 +36,10 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
+	UIText _UIWeapon;
+	UIText _UIBullets;
 
-    void LoadLevel();
+	void LoadLevel();
 
     void LoadPlayer();
 
