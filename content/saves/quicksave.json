@@ -5,15 +5,15 @@
     "weapons": [        
         {
             "currentBullets": 8,
-            "name": "handgun"
+            "name": "Glock"
         },
 		{
             "currentBullets": 100,
-            "name": "rifle"
+            "name": "AR-15"
         },		
         {
             "currentBullets": 3,
-            "name": "shotgun"
+            "name": "Saiga 12"
         }
     ]
 }

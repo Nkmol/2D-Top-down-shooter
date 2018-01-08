@@ -22,8 +22,10 @@ Level::Level(const int level, const ::std::string savedGame) :
     Init();
     Level::_explosion = {};
 
-	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 300, 0 }));
-	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 300, 40 }));
+	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }));
+	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
+	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
+	Hud::Instance().AddComponent(_UIHealth.get());
 	Hud::Instance().AddComponent(_UIBullets.get());
 	Hud::Instance().AddComponent(_UIWeapon.get());
 }
@@ -216,6 +218,10 @@ void Level::Update(float time) {
 	_UIBullets->ChangeText("Bullets: " +
 		to_string(remainingBullets) + "/" +
 		to_string(totalBullets));
+
+	_UIHealth->ChangeText("Health: " +
+		std::to_string(_player->GetLifepoints()) + "/" + 
+		std::to_string(_player->GetMaxLifepoints()));
 }
 
 void Level::AddExplosion(const Point &point) {

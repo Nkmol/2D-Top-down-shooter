@@ -39,6 +39,7 @@ class Level {
     std::forward_list<Wave> _waves;
 	std::unique_ptr<UIText> _UIWeapon;
 	std::unique_ptr<UIText> _UIBullets;
+	std::unique_ptr<UIText> _UIHealth;
 
 	void LoadLevel();
 

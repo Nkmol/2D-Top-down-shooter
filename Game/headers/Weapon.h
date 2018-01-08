@@ -20,6 +20,7 @@ protected:
     int maxBullets;
     float fireRate;
     float lastShot;
+	std::string type;
 
 public:
     Weapon(int _damage, std::string name, int maxBullets, float fireRate);
@@ -49,6 +50,8 @@ public:
     void UpdateFireRate(float time);
 
     void ResetLastShot();
+
+	const std::string GetType() const;
 };
 
 void to_json(nlohmann::json &j, const Weapon &value);
