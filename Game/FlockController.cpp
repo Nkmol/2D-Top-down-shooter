@@ -13,9 +13,7 @@ FlockController::FlockController()
 {
 }
 
-FlockController::~FlockController()
-{
-}
+FlockController::~FlockController() = default;
 
 void FlockController::GenerateFlock(const EnemyBase& basedOn, const int flockSize, const int minPos, const int maxPos, Player& flockTarget, std::vector<std::shared_ptr<MoveableObject>>& gameObjects)
 {

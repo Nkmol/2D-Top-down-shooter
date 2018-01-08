@@ -148,8 +148,6 @@
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="ExplosionFactory.cpp" />
-    <ClCompile Include="Flock.cpp" />
-    <ClCompile Include="FlockController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
@@ -163,6 +161,7 @@
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Rifle.cpp" />
     <ClCompile Include="TextComponent.cpp" />
+    <ClCompile Include="StateGameOver.cpp" />
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -178,8 +177,6 @@
     <ClInclude Include="Handgun.h" />
     <ClInclude Include="headers\Bullet.h" />
     <ClInclude Include="headers\EnemyBase.h" />
-    <ClInclude Include="headers\Flock.h" />
-    <ClInclude Include="headers\FlockController.h" />
     <ClInclude Include="headers\Helper.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
@@ -194,6 +191,7 @@
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="TextComponent.h" />
+    <ClInclude Include="StateGameOver.h" />
     <ClInclude Include="Wave.h" />
     <ClInclude Include="WaveController.h" />
   </ItemGroup>

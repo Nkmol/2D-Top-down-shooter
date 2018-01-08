@@ -4,39 +4,44 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, Point coordinates, int damage) : MoveableObject(filePath, coordinates, 300.0f),
-                                                                        damage(damage) {
-    _type = BULLET;
+Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : MoveableObject(filePath, coordinates, 300.0f),
+                                                                        _damage(_damage) {
+    type = BULLET;
 }
 
 
-void Bullet::update(float time) {
-    double correctedAngle = this->getAngle() + 270;
+void Bullet::Update(float time) {
+    double correctedAngle = this->GetAngle() + 270;
 
-    if (this->getAngle() > 90)
-        correctedAngle = this->getAngle() - 90;
+    if (this->GetAngle() > 90)
+        correctedAngle = this->GetAngle() - 90;
 
     double correctedAngleRadians = correctedAngle / 180 * M_PI;
 
-    _destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
+    destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
-    const auto newPostition = _coordinates + (_destination * speed * time);
-    PhysicsManager::Instance().checkWallCollision(this, newPostition);
-    MoveableObject::update(time);
+    const auto newPostition = _coordinates + (destination * speed * time);
+	PhysicsManager::Instance().CheckWallCollision(this, newPostition);
+	PhysicsManager::Instance().CheckStaticObjectCollision(this, newPostition);
+    MoveableObject::Update(time);
 }
 
 
-const int Bullet::getDamage() const {
-    return damage;
+const int Bullet::GetDamage() const {
+    return _damage;
 }
 
-void Bullet::onBaseCollision(MoveableObject *object) {
+void Bullet::SetDamage(int _damage)  {
+	this->_damage = _damage;
 }
 
-void Bullet::onBaseCollision(bool isCollidedOnWall) {
-    this->damage = 0;
-    MoveableObject::stopMove();
-    MoveableObject::hide();
+void Bullet::OnBaseCollision(MoveableObject *object) {
+}
+
+void Bullet::OnBaseCollision(bool isCollidedOnWall) {
+    this->_damage = 0;
+    MoveableObject::StopMove();
+    MoveableObject::Hide();
 }
 
 

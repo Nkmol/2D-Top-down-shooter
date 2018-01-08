@@ -7,53 +7,44 @@ MoveableObject::~MoveableObject() {
 }
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
-        speed{speed}, _destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
+        speed{speed}, destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
 }
 
-void MoveableObject::draw() {
-    if (!visible) return;
-    SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y),
-                                     GameObject::width, GameObject::height};
-    RenderManager::Instance().DrawTexture(GameObject::_sprite, nullptr, &destinationRectangle, GameObject::angle);
+void MoveableObject::Update(float time) {
+    _coordinates += destination * speed * time;
 }
 
-
-void MoveableObject::update(float time) {
-    _coordinates += _destination * speed * time;
+void MoveableObject::StopMove() {
+    destination = Point{0, 0};
 }
 
-
-void MoveableObject::stopMove() {
-    _destination = Point{0, 0};
-}
-
-const int MoveableObject::getPredictionMidX(float destinationPosition) const {
+const int MoveableObject::GetPredictionMidX(float destinationPosition) const {
     return destinationPosition + width / 2;;
 }
 
-const int MoveableObject::getMidX() const {
+const int MoveableObject::GetMidX() const {
     return _coordinates.x + width / 2;
 }
 
-const int MoveableObject::getMidY() const {
+const int MoveableObject::GetMidY() const {
     return _coordinates.y + height / 2;
 }
 
-const int MoveableObject::getPredictionMidY(float destinationPosition) const {
+const int MoveableObject::GetPredictionMidY(float destinationPosition) const {
     return destinationPosition + height / 2;
 }
 
-classType MoveableObject::getType() {
-    return _type;
+classType MoveableObject::GetType() {
+    return type;
 }
 
-void MoveableObject::onBaseCollision(MoveableObject *object) {
+void MoveableObject::OnBaseCollision(MoveableObject *object) {
 }
 
-void MoveableObject::onBaseCollision(bool isWall) {
+void MoveableObject::OnBaseCollision(bool isWall) {
 }
 
-void MoveableObject::onBaseCollision(GameObject object) {
+void MoveableObject::OnBaseCollision(GameObject object) {
     //hide();
 }
 
@@ -63,11 +54,11 @@ void MoveableObject::onBaseCollision(GameObject object) {
  *************************************************************/
 
 const string &MoveableObject::GetState() const {
-    return _state;
+    return state;
 }
 
-void MoveableObject::ChangeState(const string &_state) {
-    this->_state = _state;
+void MoveableObject::ChangeState(const string &state) {
+    this->state = state;
     this->currentSprite = -1; // will be 0 on animation
 }
 
@@ -83,8 +74,8 @@ bool MoveableObject::IsReadyForAnimation() const {
     return currentAnimationTimer <= 0;
 }
 
-void MoveableObject::ChangeSprite(const std::string &spriteToken) {
-    _sprite = AssetManager::Instance().LoadTexture(spriteToken);
+void MoveableObject::ChangeSprite(const std::string &_spriteToken) {
+    _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
 }
 
 int MoveableObject::NextSpriteIndex() {
@@ -92,7 +83,7 @@ int MoveableObject::NextSpriteIndex() {
 }
 
 string MoveableObject::GetAnimationToken() {
-    return this->spriteToken;
+    return this->_spriteToken;
 }
 
 bool MoveableObject::IsAnimationFinished() {

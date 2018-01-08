@@ -18,19 +18,22 @@ class InputManager {
  * Singleton
  */
 
-    static InputManager *sInstance;
+    static InputManager *_instance;
 
-    int mousePositionX, mousePositionY;
+    int _mousePositionX, _mousePositionY;
 
-    std::map<SDL_Keycode, Point> keyDirections;
+    std::map<SDL_Keycode, Point> _keyDirections;
 
     InputManager();
 
-public:
-	InputManager(InputManager const&) = delete;
-	void operator=(InputManager const&) = delete;
+    bool _buttonState;
 
-    static InputManager& Instance();
+public:
+    InputManager(InputManager const &) = delete;
+
+    void operator=(InputManager const &) = delete;
+
+    static InputManager &Instance();
 
     bool HasEvent(Event *event);
 
@@ -40,7 +43,7 @@ public:
 
     bool IsMouseMoved(Event &event);
 
-    bool IsMouseClicked(Event &event);
+    bool IsMousePressed(Event &event);
 
     int GetMousePositionX() const;
 
@@ -58,7 +61,13 @@ public:
 
     bool IsNumericKeyPressed(Event &event, int &key);
 
-	const bool IsKeyDown(Event& event, const std::string name) const;
+    const bool IsKeyDown(Event &event, const std::string name) const;
+
+    bool IsMouseReleased(Event &event);
+
+    void HandleMouseReleased();
+
+    bool IsMouseClicked(Event &event);
 };
 
 

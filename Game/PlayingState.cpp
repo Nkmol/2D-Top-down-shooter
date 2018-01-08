@@ -3,41 +3,49 @@
 #include "Game.h"
 #include "Level.h"
 #include "InputManager.h"
+#include "StateGameOver.h"
+#include "Event.h"
 
-PlayingState::PlayingState() {
+PlayingState::PlayingState() : PlayingState(0, "")
+{
+}
+
+PlayingState::PlayingState(const int level, const std::string& savedGame) : _level(level, savedGame) {
 }
 
 
-PlayingState::~PlayingState() {
-}
+PlayingState::~PlayingState() = default;
 
-void PlayingState::HandleEvents(Game &game) {
+void PlayingState::HandleEvents(Game &game, Event& event) {
     auto &inputManager = InputManager::Instance();
 
-	Event event;
-
-    while (inputManager.HasEvent(&event)) {
-
-        if (inputManager.IsPauseResume(event)) {
-            auto state = std::make_unique<PausedState>();
-            game.ChangeState(std::move(state));
-        }
-        if (inputManager.IsQuit(event)) {
-            game.Quit();
-        }
-        game.GetLevel()->HandleEvents(event);
+    if(inputManager.IsMousePressed(event)){
+        _level.HandleEvents(event);
     }
+
+	if (inputManager.IsPauseResume(event)) {
+		auto state = std::make_unique<PausedState>();
+		game.ChangeState(std::move(state));
+	}
+
+	_level.HandleEvents(event);
 }
 
 void PlayingState::Update(Game &game, float time) {
-    game.GetLevel()->Update(time);
+	if(_level.GetPlayer().GetState() == "dead")
+	{
+		game.ChangeState(make_unique<StateGameOver>());
+		return;
+	}
 
+	_level.Update(time);
 }
 
 void PlayingState::Draw(Game &game) {
 	MapManager::Instance().Render();
-    game.GetLevel()->Draw();
+	_level.Draw();
 }
 
-void PlayingState::Init() {
+void PlayingState::Init(Game& game)
+{
 }

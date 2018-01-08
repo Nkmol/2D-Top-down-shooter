@@ -11,7 +11,7 @@
 class AnimationManager {
 
 private:
-    static AnimationManager *sInstance;
+    static AnimationManager *_instance;
 
     AnimationManager();
 
@@ -19,9 +19,9 @@ public:
     // singleton
     static AnimationManager &Instance();
 
-    void update(MoveableObject &object, double time);
+    void Update(MoveableObject &object, double time);
 
-    string GenerateToken(MoveableObject &object, const int sprite) const;
+    std::string GenerateToken(MoveableObject &object, const int sprite) const;
 };
 
 

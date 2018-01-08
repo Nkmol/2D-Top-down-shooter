@@ -8,11 +8,13 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <memory>
-#include "../CustomDeleter.h"
 #include "RenderManager.h"
-
+#include "../CustomDeleter.h"
+#include <memory>
 
 using namespace std;
+
+class Texture;
 
 class AssetManager {
 
@@ -27,7 +29,12 @@ public:
 
 	Mix_Music* LoadBGM(const string soundToken);
 	Mix_Chunk* LoadEffect(const string effectToken);
+
+	typedef std::unique_ptr<SDL_Surface, CustomDeleter> Surface;
 	SDL_Surface* LoadSurface(const string mediaToken);
-	SDL_Texture* LoadTexture(const string mediaToken);
-	TTF_Font* LoadFont(const string fontToken, const int size);
+
+	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
+
+	typedef std::unique_ptr<TTF_Font, CustomDeleter> Font;
+	Font LoadFont(const string & fontToken, const int size) const;
 };

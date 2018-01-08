@@ -23,15 +23,15 @@ enum classType {
 class MoveableObject : public GameObject {
 
 private:
-    std::map<Point, int> directionAngles;
+    std::map<Point, int> _directionAngles;
 
 protected:
 
     float speed, distance;
-    Point _destination;
-    classType _type;
+    Point destination;
+    classType type;
 
-    std::string _state;
+    std::string state;
     int frames;
     float currentAnimationTimer;
     float animationTimer = 0;
@@ -43,34 +43,32 @@ public:
 
     virtual ~MoveableObject();
 
-    virtual void draw();
+    virtual void Update(float time);
 
-    virtual void update(float time);
+    void StopMove();
 
-    void stopMove();
+    const int GetPredictionMidX(float destinationPosition) const;
 
-    const int getPredictionMidX(float destinationPosition) const;
+    const int GetMidX() const;
 
-    const int getMidX() const;
+    const int GetMidY() const;
 
-    const int getMidY() const;
+    const int GetPredictionMidY(float destinationPosition) const;
 
-    const int getPredictionMidY(float destinationPosition) const;
+    classType GetType();
 
-    classType getType();
+    virtual void OnBaseCollision(MoveableObject *object);
 
-    virtual void onBaseCollision(MoveableObject *object);
+    virtual void OnBaseCollision(bool isWall);
 
-    virtual void onBaseCollision(bool isWall);
-
-    virtual void onBaseCollision(GameObject object);
+    virtual void OnBaseCollision(GameObject object);
 
     virtual string GetAnimationToken();
 
 
     virtual void HandleAnimationFinished();
 
-    virtual void ChangeState(const string &_state);
+    virtual void ChangeState(const string &state);
 
 
     const string &GetState() const;
@@ -81,12 +79,11 @@ public:
 
     bool IsReadyForAnimation() const;
 
-    void ChangeSprite(const std::string &spriteToken);
+    void ChangeSprite(const std::string &_spriteToken);
 
     void DecreaseAnimationTimer(double by);
 
     void ResetAnimationTimer();
-
 };
 
 

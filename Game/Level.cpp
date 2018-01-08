@@ -7,39 +7,40 @@
 #include "Player.h"
 #include "Config.h"
 #include "InputManager.h"
-#include "EnemyBase.h"
-#include "Wave.h"
 #include "Event.h"
 #include "../Engine/AnimationManager.h"
 #include "ExplosionFactory.h"
+#include "EnemyBase.h"
+#include "../Engine/UIText.h"
 #include "Hud.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
+        _inputManager{InputManager::Instance()},
         _level(level),
+        _savedGame(savedGame),
         _levelSpeed(1),
-        _savedGame(savedGame)
+		_UIWeapon("", 24, { config::width - 300, 0 }),
+		_UIBullets("", 24, { config::width - 300, 40 })
 {
-
     Init();
     Level::_explosion = {};
 
 }
 
-void Level::Init() {
+Level::~Level() {
+}
 
+void Level::Init() {
     LoadLevel();
 
     MapManager::Instance().Init(_map);
-
     LoadPlayer();
 
-    _waveController.Init(_waves, _player, _objs);
+    _waveController.Init(_waves, _player, &_npcs);
 
-    PhysicsManager::Instance().setStaticObjects();
-    PhysicsManager::Instance().setMoveableObjects(&_objsNoEnemies);
-
+    PhysicsManager::Instance().SetStaticObjects();
+    PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
 	_weaponComponent = std::make_unique<TextComponent>("", Point(config::width - 360, 0), 360, 40, 0);
-
 }
 
 void Level::LoadLevel() {
@@ -61,8 +62,8 @@ void Level::LoadLevel() {
 
 void Level::LoadPlayer() {
     auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2 + 10);
-    player->addWeapons({Handgun(), Rifle(), Shotgun()});
-    player->changeWeapon(0);
+    player->AddWeapons({Handgun(), Rifle(), Shotgun()});
+    player->ChangeWeapon(0);
 
     _player = player;
 
@@ -85,8 +86,12 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
-void Level::HandleEvents(Event event) {
+const Player& Level::GetPlayer() const
+{
+	return *_player;
+}
 
+void Level::HandleEvents(Event event) {
     this->HandleMouseEvents(event);
     this->HandleKeyboardEvents(event);
 
@@ -97,6 +102,7 @@ void Level::HandleEvents(Event event) {
     _player->Move(direction);
 }
 
+
 void Level::HandleMouseEvents(Event &event) {
     if (InputManager::Instance().IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
@@ -106,18 +112,27 @@ void Level::HandleMouseEvents(Event &event) {
         _player->SetAngle(angle);
     }
 
-    if (InputManager::Instance().IsMouseClicked(event)) {
-        _player->ChangeState("shoot");
-        auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-        _objsNoEnemies.emplace_back(bullet);
+
+    if (_inputManager.IsMousePressed(event)) {
+        if (_player->CanShoot()) {
+            _player->ChangeState("shoot");
+            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+            _objsNoEnemies.emplace_back(bullet);
+        }
+    }
+
+    if (_inputManager.IsMouseReleased(event)) {
+        _inputManager.HandleMouseReleased();
     }
 }
 
+
 void Level::HandleKeyboardEvents(Event &event) {
+
     int key = 0;
 
     if (InputManager::Instance().IsNumericKeyPressed(event, key)) {
-        _player->changeWeapon(key - 1);
+        _player->ChangeWeapon(key - 1);
     }
 
     if (InputManager::Instance().IsKeyDown(event)) {
@@ -144,45 +159,54 @@ void Level::HandleKeyboardEvents(Event &event) {
             _player->ChangeState("reload");
             return;
         }
+
+        if (_inputManager.IsKeyDown(event, "K")) {
+            _player->ToggleCheats();
+            return;
+        }
+
+        if (_inputManager.IsKeyDown(event, "N")) {
+            if (_player->IsCheatActive()) {
+                for (auto &npc : _npcs) {
+                    npc.get()->Hide();
+                }
+            }
+            return;
+        }
     }
 }
 
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
 
-    AnimationManager::Instance().update(*_player, accSpeed);
+    AnimationManager::Instance().Update(*_player, accSpeed);
 
     for (auto &&objNoEnemie : _objsNoEnemies) {
-        objNoEnemie->update(accSpeed);
+        objNoEnemie->Update(accSpeed);
     }
 
-    if (!_waveController.Update(accSpeed, _objs, _player)) {
+    if (!_waveController.Update(accSpeed)) {
         _player->SetHighestLevel(_level + 1);
         std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
         cin.get();
     }
 
-    for (auto &&npc : _npcs) {
-        npc->update(accSpeed);
-    }
-
-    for (auto &obj : _objs) {
-        if (!obj->isVisible()) {
-            this->AddExplosion(obj->GetCoordinates());
+    for (auto &npc : _npcs) {
+        npc->UpdatePosition(accSpeed);
+        if (!npc->IsVisible()) {
+            this->AddExplosion(npc->GetCoordinates());
         }
     }
 
     for (auto &explosion : _explosion) {
-        AnimationManager::Instance().update(explosion, accSpeed);
+        AnimationManager::Instance().Update(explosion, accSpeed);
     }
 
-    RemoveHiddenExplosionObjects(_explosion);
     RemoveHiddenObjects(_objsNoEnemies);
-    RemoveHiddenObjects(_npcs);
-    RemoveHiddenObjects(_objs);
+    RemoveHiddenNpcs();
+    RemoveHiddenExplosionObjects(_explosion);
 
-	//Hud::Instance().Update(accSpeed);
-	auto weaponName = "Weapon: " + _player->getWeapon()->getName();
+	auto weaponName = "Weapon: " + _player->GetWeapon()->GetName();
 	_weaponComponent->ChangeText(weaponName);
 }
 
@@ -192,45 +216,48 @@ void Level::AddExplosion(const Point &point) {
     _explosion.push_back(explosion);
 }
 
-void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects) {
-    auto y(std::remove_if(objects.begin(), objects.end(),
-                          [](shared_ptr<MoveableObject> &o) { return !o->isVisible(); }));
-    objects.erase(y, objects.end());
+void Level::RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &_objects) {
+    auto y(std::remove_if(_objects.begin(), _objects.end(),
+                          [](shared_ptr<MoveableObject> &o) { return !o->IsVisible(); }));
+    _objects.erase(y, _objects.end());
 }
 
-void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &objects) {
-    auto y(std::remove_if(objects.begin(), objects.end(),
-                          [](MoveableObject &o) { return !o.isVisible(); }));
-    objects.erase(y, objects.end());
+void Level::RemoveHiddenNpcs() {
+    auto y(std::remove_if(_npcs.begin(), _npcs.end(),
+                          [](std::unique_ptr<EnemyBase> &o) { return !o->IsVisible(); }));
+    _npcs.erase(y, _npcs.end());
+}
+
+void Level::RemoveHiddenExplosionObjects(std::vector<Explosion> &_objects) {
+    auto y(std::remove_if(_objects.begin(), _objects.end(),
+                          [](MoveableObject &o) { return !o.IsVisible(); }));
+    _objects.erase(y, _objects.end());
 }
 
 void Level::Draw() {
     for (auto &&obj : _objsNoEnemies) {
-        obj->draw();
+        obj->Draw();
     }
 
     for (auto &&obj : _npcs) {
-        obj->draw();
+        obj->Draw();
     }
 
-    for (auto explosion : _explosion) {
-        explosion.draw();
+    for (auto &explosion : _explosion) {
+        explosion.Draw();
     }
-
-    _waveController.Draw();
 
     // TODO, verplaatsen
     
     auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShooted();
+    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
+	_UIWeapon.ChangeText("Weapon: " + weaponName);
+	_UIWeapon.Draw();
 
-    RenderManager::Instance().DrawText("Bullets: " +
-                                       to_string(remainingBullets) + "/" +
-                                       to_string(totalBullets), config::width - 360, 40, 360, 40, 0);
-
-	//Hud::Instance().Draw();
-	_weaponComponent->Draw();
-//    //PhysicsManager::Instance().DrawQTree();
+	_UIBullets.ChangeText("Bullets: " +
+		to_string(remainingBullets) + "/" +
+		to_string(totalBullets));
+	_UIBullets.Draw();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

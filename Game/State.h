@@ -1,15 +1,16 @@
 #pragma once
 
 class Game;
+class Event;
 
 class State
 {
 public:
 	virtual ~State() = default;
 
-	virtual void Init() = 0;
+	virtual void Init(Game& game) = 0;
 
-	virtual void HandleEvents(Game& game) = 0;
+	virtual void HandleEvents(Game& game, Event& event) = 0;
 	virtual void Update(Game& game, float time) = 0;
 	virtual void Draw(Game& game) = 0;
 

@@ -39,8 +39,8 @@ public:
 		// Guaranteed to be lazy initialized
 		// Guaranteed that it will be destroyed correctly
 
-		static FactoryBehaviour sInstance;
-		return sInstance;
+		static FactoryBehaviour _instance;
+		return _instance;
 	}
 };
 

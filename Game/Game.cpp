@@ -7,21 +7,18 @@
 #include "RenderManager.h"
 #include "Config.h"
 #include "Level.h"
-#include "MapManager.h"
 
-Game::Game()
-{
-}
+Game::Game() = default;
 
-Game::~Game()
-{
-}
+Game::~Game() = default;
 
 void Game::Init()
 {
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
+	// Init after window renderer has been created
+	_fpsUI = std::move(UIText{ "0.00", 48,{ 20, 20 } });
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -29,7 +26,26 @@ void Game::ChangeState(unique_ptr<State>&& state)
 {
 	// Move ownership to the state vector
 	_states.push_back(std::move(state));
-	_states.back()->Init();
+	_states.back()->Init(*this);
+}
+
+void Game::SetState(unique_ptr<State>&& state)
+{
+	ClearStates();
+	ChangeState(move(state));
+}
+
+const unique_ptr<State>& Game::GetStateBack(const int at)
+{
+	return _states.end()[- (at+1)];
+}
+
+void Game::PopState(unsigned val)
+{
+	while (val > 0 && val <= _states.size()) {
+		PopState();
+		val = val - 1;
+	}
 }
 
 void Game::PopState()
@@ -37,9 +53,14 @@ void Game::PopState()
 	_states.pop_back();
 }
 
+void Game::ClearStates()
+{
+	_states.clear();
+}
+
 void Game::Quit()
 {
-	isRunning = false;
+	_isRunning = false;
 }
 
 void Game::Run(const unsigned int targetFps)
@@ -70,13 +91,23 @@ void Game::Run(const unsigned int targetFps)
 	});
 	#pragma endregion 
 
-	isRunning = true;;
-	timer.Run(isRunning);
+	_isRunning = true;;
+	timer.Run(_isRunning);
 }
 
 void Game::HandleEvents()
 {
-	_states.back()->HandleEvents(*this);
+	auto &inputManager = InputManager::Instance();
+
+	Event event;
+	while (inputManager.HasEvent(&event)) {
+		if (inputManager.IsQuit(event)) {
+			Quit();
+			return;
+		}
+
+		_states.back()->HandleEvents(*this, event);
+	}
 }
 
 void Game::Update(float time)
@@ -89,20 +120,12 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	_states.back()->Draw(*this);
+
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(2) << _fps;
-
-	renderManager.DrawText(str.str(), 20, 20, 70, 20);
+	_fpsUI.ChangeText(str.str());
+	_fpsUI.Draw();
 
 	renderManager.Render();
-}
-
-shared_ptr<Level> Game::GetLevel() const
-{
-	return _level;
-}
-
-void Game::SetLevel(int level, std::string savedGame) {
-		_level = make_shared<Level>(level, savedGame);
 }

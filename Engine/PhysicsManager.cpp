@@ -15,41 +15,39 @@ PhysicsManager::~PhysicsManager()
 PhysicsManager& PhysicsManager::Instance()
 {
 	// TODO to refernece, can never be nullptr (should never)
-	static PhysicsManager sInstance; // Guaranteed to be destroyed.
+	static PhysicsManager _instance; // Guaranteed to be destroyed.
 									 // Instantiated on first use.
 
-	return sInstance;
+	return _instance;
 }
 
-void PhysicsManager::checkWallCollision(MoveableObject* m, Point newPos)
+void PhysicsManager::CheckWallCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
 
 	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
-		m->onBaseCollision(true);
+		m->OnBaseCollision(true);
 	}
-	if (checkStaticObjectCollision(midX, midY, radius)) {
-		m->onBaseCollision(true);
-	}
+
 }
 
 bool PhysicsManager::IntersectsRect(float midX, float midY, float radius, const GameObject* collidable)
 {
 	Point circleDistance;
-	circleDistance.x = abs(midX - collidable->getMidX());
-	circleDistance.y = abs(midY - collidable->getMidY());
+	circleDistance.x = abs(midX - collidable->GetMidX());
+	circleDistance.y = abs(midY - collidable->GetMidY());
 
-	if (circleDistance.x >(collidable->getWidth() / 2 + radius)) { return false; }
-	if (circleDistance.y > (collidable->getHeight() / 2 + radius)) { return false; }
+	if (circleDistance.x >(collidable->GetWidth() / 2 + radius)) { return false; }
+	if (circleDistance.y > (collidable->GetHeight() / 2 + radius)) { return false; }
 
-	if (circleDistance.x <= (collidable->getWidth() /2) ) { return true; }
-	if (circleDistance.y <= (collidable->getHeight() /2)) { return true; }
+	if (circleDistance.x <= (collidable->GetWidth() /2) ) { return true; }
+	if (circleDistance.y <= (collidable->GetHeight() /2)) { return true; }
 
-	int cornerDistance_sq = pow(circleDistance.x - collidable->getWidth() / 2, 2) +
-		pow(circleDistance.y - collidable->getHeight() / 2, 2);
+	int cornerDistance_sq = pow(circleDistance.x - collidable->GetWidth() / 2, 2) +
+		pow(circleDistance.y - collidable->GetHeight() / 2, 2);
 
 	return (cornerDistance_sq <= radius * radius);
 }
@@ -57,174 +55,62 @@ bool PhysicsManager::IntersectsRect(float midX, float midY, float radius, const 
 bool PhysicsManager::IntersectsCircle(float midX, float midY, float radius, const MoveableObject* collidable)
 {
 	Point circleDistance;
-	circleDistance.x = abs(midX - collidable->getMidX());
-	circleDistance.y = abs(midY - collidable->getMidY());
+	circleDistance.x = abs(midX - collidable->GetMidX());
+	circleDistance.y = abs(midY - collidable->GetMidY());
 
-	if (circleDistance.x >(collidable->getWidth() / 2 + radius)) { return false; }
-	if (circleDistance.y > (collidable->getHeight() / 2 + radius)) { return false; }
+	if (circleDistance.x >(collidable->GetWidth() / 2 + radius)) { return false; }
+	if (circleDistance.y > (collidable->GetHeight() / 2 + radius)) { return false; }
 
-	if (circleDistance.x <= (collidable->getWidth() / 2)) { return true; }
-	if (circleDistance.y <= (collidable->getHeight() / 2)) { return true; }
+	if (circleDistance.x <= (collidable->GetWidth() / 2)) { return true; }
+	if (circleDistance.y <= (collidable->GetHeight() / 2)) { return true; }
 
 	return (false);
 }
 
-bool PhysicsManager::checkStaticObjectCollision(float midX, float midY, float radius)
+void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
-
-	for (int i = 0; i < collidables->size(); i++) {
-		if (IntersectsRect(midX, midY, radius, &collidables->at(i))) {
-			return true;
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
+	for (int i = 0; i < _collidables->size(); i++) {
+		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
+			m->OnBaseCollision(true);
 		}
 	}
+}
 
-	return false;
-		//int xStep = midX - collidables->at(i).getMidX();
-		//int yStep = midY - collidables->at(i).getMidY();
-		//int collisionRange = radius + collidables->at(i).getRadius();
-
-
-
-		//// Find the closest point to the circle within the rectangle
-		//float closestX = clamp(midX, , collidables->at(i).GetCoordinates().x + collidables->at(i).getWidth());
-		//float closestY = clamp(midY, collidables->at(i).GetCoordinates().y, collidables->at(i).GetCoordinates().y + collidables->at(i).getHeight());
-
-		//// Calculate the distance between the circle's center and this closest point
-		//float distanceX = midX - closestX;
-		//float distanceY = midY - closestY;
-
-
-
-		// If the distance is less than the circle's radius, an intersection occurs
-		//float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
-
-		//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-		//	if (distance < 0) {
-		//		distance *= -1;
-		//	}
-
-		//	if (distance < collisionRange) {
-		//		isCollision = true;
-		//		break;
-		//	}
-		//}
-
-		//return isCollision;
-
-	}
-
-void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
+void PhysicsManager::CheckMoveableCollision(MoveableObject* m, Point newPos)
 {
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
 
 
-	for (int i = 0; i < objects->size(); i++) {
-		if (IntersectsCircle(midX, midY, radius, objects->at(i).get())) {
-			m->onBaseCollision(objects->at(i).get());
+	for (int i = 0; i < _objects->size(); i++) {
+		if (IntersectsCircle(midX, midY, radius, _objects->at(i).get())) {
+			m->OnBaseCollision(_objects->at(i).get());
 			break;
 		}
 	}
-
-	//for (int i = 0; i < objects->size(); i++) {
-
-	//	int xStep = midX - objects->at(i).get()->getMidX();
-	//	int yStep = midY - objects->at(i).get()->getMidY();
-	//	int collisionRange = radius + objects->at(i).get()->getRadius();
-	//	int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-	//	if (distance < 0) {
-	//		distance *= -1;
-	//	}
-
-	//	if (distance < collisionRange) {
-	//		m->onBaseCollision(objects->at(i).get());
-	//		break;
-	//	}
-	//}
 }
 
-void PhysicsManager::setStaticObjects()
+void PhysicsManager::SetStaticObjects()
 {
-	if (collidables == NULL) {
-		collidables = MapManager::Instance().getCollidables();
+	if (_collidables == NULL) {
+		_collidables = MapManager::Instance().GetCollidables();
 	}
 	_tileSize = config::tileSize;
 	_playScreenWidth = config::width - _tileSize;
 	_playScreenHeight = config::height - _tileSize;
 }
 
-void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
+void PhysicsManager::SetMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
 {
-	objects = _objs;
+	_objects = _objs;
 }
 
-
-void PhysicsManager::CheckQuadTreeCollision(MoveableObject* m, Point newPos) {
-	std::vector<GameObject> nearbyObjects = RetrieveNearbyGameObjects(*m);
-
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
-
-	for (int i = 0; i < nearbyObjects.size(); i++) {
-
-		int xStep = midX - nearbyObjects.at(i).getMidX();
-		int yStep = midY - nearbyObjects.at(i).getMidY();
-		int collisionRange = radius + nearbyObjects.at(i).getRadius();
-		int distance = sqrt((xStep*xStep) + (yStep*yStep));
-
-		if (distance < 0) {
-		distance *= -1;
-		}
-
-		if (distance < collisionRange) {
-			m->onBaseCollision(nearbyObjects.at(i));
-			break;
-		}
-	}
-}
-
-
-const vector<GameObject>* PhysicsManager::getCollidables()
+const vector<GameObject>* PhysicsManager::GetCollidables()
 {
-	return collidables;
+	return _collidables;
 }
-
-void PhysicsManager::UpdateQuadTree(std::vector<GameObject> &gameObjects) {
-	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
-	for (auto& gameObject : *MapManager::Instance().getCollidables()) {
-		_quadtree.Insert(gameObject);
-	}
-	for (const auto& gameObject : gameObjects) {
-		_quadtree.Insert(gameObject);
-	}
-}
-
-void PhysicsManager::UpdateQuadTree(std::vector<shared_ptr<GameObject>> &gameObjects) {
-	this->_quadtree.ClearNode();
-	this->_quadtree = QuadTree(0, MapManager::Instance().GetMapRect());
-	for (auto& gameObject : *MapManager::Instance().getCollidables()) {
-		_quadtree.Insert(gameObject);
-	}
-	for (const auto& gameObject : gameObjects) {
-		_quadtree.Insert(*gameObject.get());
-	}
-}
-
-const QuadTree &PhysicsManager::GetQuadTree() const {
-	return _quadtree;
-}
-
-void PhysicsManager::DrawQTree() {
-	this->_quadtree.Draw();
-}
-
-std::vector<GameObject> PhysicsManager::RetrieveNearbyGameObjects(GameObject &gameObject) {
-	return this->_quadtree.Retrieve(gameObject.GetRect());
-}
-
-

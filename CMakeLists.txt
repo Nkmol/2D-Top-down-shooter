@@ -25,7 +25,6 @@ set(SOURCE_FILES
         Game/PlayingState.cpp
         Game/EnemyBase.cpp
         Game/Handgun.cpp
-        Game/FlockController.cpp
         Game/AIDefault.h
         Game/Player.cpp
         Game/PlayingState.h
@@ -43,7 +42,6 @@ set(SOURCE_FILES
         Game/IAIBase.h
         Game/Level.h
         Game/Game.h
-        Game/Flock.cpp
         Game/PausedState.cpp
         Game/MenuState.h
         Game/WaveController.h
@@ -60,10 +58,8 @@ set(SOURCE_FILES
         Game/Explosion.h
         Game/headers/Helper.h
         Game/headers/Player.h
-        Game/headers/Flock.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
-        Game/headers/FlockController.h
         Game/headers/Rifle.h
         Game/headers/EnemyBase.h
         Engine/Button.cpp
@@ -78,8 +74,6 @@ set(SOURCE_FILES
         Engine/AssetManager.cpp
         Engine/MapManager.cpp
         Engine/Engine.cpp
-        Engine/QuadTree.cpp
-        Engine/QuadTree.h
         Engine/AudioManager.cpp
         Engine/AnimationManager.cpp
         Engine/AnimationManager.h
@@ -95,7 +89,6 @@ set(SOURCE_FILES
         Engine/headers/PhysicsManager.h
         Engine/headers/MoveableObject.h
         Engine/headers/Button.h
-        Engine/headers/Texture.h
         Engine/headers/TickerTime.h
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h

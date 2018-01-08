@@ -18,6 +18,7 @@ public:
 	static Point Down();
 	static Point Empty();
 	Point operator+(const Point& p) const;
+	Point operator-(const Point& p) const;
 	Point operator*(const float p) const;
 	void operator+=(const Point& p);
 	Point operator/(const float v) const;

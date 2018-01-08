@@ -7,10 +7,10 @@
 #include "InputManager.h"
 #include "MoveableObject.h"
 
-InputManager *InputManager::sInstance = nullptr;
+InputManager *InputManager::_instance = nullptr;
 
-InputManager::InputManager() {
-    InputManager::keyDirections = {
+InputManager::InputManager() : _buttonState{false} {
+    InputManager::_keyDirections = {
             {SDL_SCANCODE_W, Point::Up()},
             {SDL_SCANCODE_D, Point::Right()},
             {SDL_SCANCODE_S, Point::Down()},
@@ -21,9 +21,9 @@ InputManager::InputManager() {
 
 InputManager &InputManager::Instance() {
 
-    static InputManager sInstance;
+    static InputManager _instance;
 
-    return sInstance;
+    return _instance;
 }
 
 bool InputManager::HasEvent(Event *event) {
@@ -75,7 +75,7 @@ Point InputManager::GetDirection(Event &event) {
     // update keyboard state
     const auto keysArray = SDL_GetKeyboardState(nullptr);
 
-    for (auto const &value : keyDirections) {
+    for (auto const &value : _keyDirections) {
         if (keysArray[value.first])
             direction += value.second;
     }
@@ -90,12 +90,11 @@ int InputManager::RecalculateMouseAngle(MoveableObject &object) {
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    mousePositionX = mouseX;
-    mousePositionY = mouseY;
+    _mousePositionX = mouseX;
+    _mousePositionY = mouseY;
 
     return CalculateMouseAngle(object);
 }
-
 
 
 // used to calculate. Call this method directly if mouse position is NOT changed
@@ -120,17 +119,33 @@ bool InputManager::IsMouseClicked(Event &event) {
     return event.GetEventValue().type == SDL_MOUSEBUTTONDOWN;
 }
 
-const bool InputManager::IsKeyDown(Event& event, const std::string name) const
-{
-	return event.GetEventValue().button.button == SDL_GetScancodeFromName(name.c_str());
+bool InputManager::IsMousePressed(Event &event) {
+    if (IsMouseClicked(event)) {
+        _buttonState = true;
+    }
+
+    return _buttonState;
+}
+
+bool InputManager::IsMouseReleased(Event &event) {
+    return event.GetEventValue().type == SDL_MOUSEBUTTONUP;
+}
+
+void InputManager::HandleMouseReleased() {
+    _buttonState = false;
+}
+
+
+const bool InputManager::IsKeyDown(Event &event, const std::string name) const {
+    return event.GetEventValue().button.button == SDL_GetScancodeFromName(name.c_str());
 }
 
 // Getters & Setters
 
 int InputManager::GetMousePositionX() const {
-    return mousePositionX;
+    return _mousePositionX;
 }
 
 int InputManager::GetMousePositionY() const {
-    return mousePositionY;
+    return _mousePositionY;
 }
