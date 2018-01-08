@@ -41,7 +41,7 @@ void PausedState::Draw(Game &game) {
 
     // Draw all buttons
     for (auto &button : _buttons) {
-        button->draw();
+        button->Draw();
     }
 }
 

@@ -10,30 +10,30 @@ Player::Player(const std::string &filePath, const float x, const float y) :
 }
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp) :
-        isCheatActive{false},
-        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), lifepoints(lp) {
-    _type = PLAYER;
+        _isCheatActive{false},
+        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), _lifepoints(lp) {
+    type = PLAYER;
     this->ChangeState("idle");
 }
 
 Player::~Player() = default;
 
-void Player::addWeapons(std::vector<Weapon> wp) {
+void Player::AddWeapons(std::vector<Weapon> wp) {
     for (auto &weapon : wp) {
-        weapons.push_back(weapon);
+        _weapons.push_back(weapon);
     }
 }
 
 void Player::SetWeapons(const std::vector<Weapon> wp) {
-    weapons = wp;
+    _weapons = wp;
 }
 
-int Player::getCurrentWeaponIndex() const {
+int Player::GetCurrentWeaponIndex() const {
     return currentWeapon;
 }
 
-void Player::changeWeapon(const unsigned index) {
-    if (index >= weapons.size() || index < 0) {
+void Player::ChangeWeapon(const unsigned index) {
+    if (index >= _weapons.size() || index < 0) {
         return;
     }
 
@@ -41,64 +41,64 @@ void Player::changeWeapon(const unsigned index) {
 }
 
 bool Player::IsCheatActive() {
-	return isCheatActive;
+	return _isCheatActive;
 }
 
 Bullet Player::shoot() {
-	getWeapon()->ResetLastShot();
-	return getWeapon()->getBullet(getAngle(), _coordinates, isCheatActive);
+	GetWeapon()->ResetLastShot();
+	return GetWeapon()->GetBullet(GetAngle(), _coordinates, _isCheatActive);
 }
 
 bool Player::CanShoot() {
-    return getWeapon()->CanShoot();
+    return GetWeapon()->CanShoot();
 }
 
 void Player::Move(const Point direction) {
-    _destination = direction;
+    destination = direction;
 }
 
-void Player::update(float time) {
-    getWeapon()->UpdateFireRate(time);
+void Player::Update(float time) {
+    GetWeapon()->UpdateFireRate(time);
 
-    const auto newPosition = _coordinates + (_destination * speed * time);
-    PhysicsManager::Instance().checkWallCollision(this, newPosition);
-    PhysicsManager::Instance().checkStaticObjectCollision(this, newPosition);
-    MoveableObject::update(time);
+    const auto newPosition = _coordinates + (destination * speed * time);
+    PhysicsManager::Instance().CheckWallCollision(this, newPosition);
+    PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
+    MoveableObject::Update(time);
 }
 
-const int Player::getLifepoints() const {
-    return lifepoints;
+const int Player::GetLifepoints() const {
+    return _lifepoints;
 }
 
-const int Player::changeLifepoints(const int lp) {
-    lifepoints += lp;
-    return lifepoints;
+const int Player::ChangeLifepoints(const int lp) {
+    _lifepoints += lp;
+    return _lifepoints;
 }
 
-Weapon *Player::getWeapon() {
-    return &weapons[currentWeapon];
+Weapon *Player::GetWeapon() {
+    return &_weapons[currentWeapon];
 }
 
-const vector<Weapon> &Player::getWeapons() const {
-    return weapons;
+const vector<Weapon> &Player::GetWeapons() const {
+    return _weapons;
 }
 
 void to_json(nlohmann::json &j, const Player &value) {
     j = nlohmann::json{
-            {"lifepoints",    value.getLifepoints()},
+            {"lifepoints",    value.GetLifepoints()},
             {"highestLevel",  value.GetHighestLevel()},
-            {"weapons",       value.getWeapons()},
-            {"currentWeapon", value.getCurrentWeaponIndex()}
+            {"weapons",       value.GetWeapons()},
+            {"currentWeapon", value.GetCurrentWeaponIndex()}
     };
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.changeLifepoints(j.at("lifepoints").get<int>());
-    value.changeWeapon(j.at("currentWeapon").get<int>());
+    value.ChangeLifepoints(j.at("lifepoints").get<int>());
+    value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
-    auto weps = value.getWeapons();
+    auto weps = value.GetWeapons();
     auto jsonWeapons = j.at("weapons");
     for (auto i = 0; i < jsonWeapons.size(); i++) {
         from_json(jsonWeapons[i], weps[i]);
@@ -107,15 +107,15 @@ void from_json(const nlohmann::json &j, Player &value) {
     value.SetWeapons(weps);
 }
 
-void Player::onBaseCollision(bool isCollidedOnWall) {
-    MoveableObject::stopMove();
+void Player::OnBaseCollision(bool isCollidedOnWall) {
+    MoveableObject::StopMove();
 }
 
-void Player::Hit(int damage) {
-    if (!isCheatActive) {
-        lifepoints -= damage;
+void Player::Hit(int _damage) {
+    if (!_isCheatActive) {
+        _lifepoints -= _damage;
     }
-    if (lifepoints <= 0) {
+    if (_lifepoints <= 0) {
 	this->ChangeState("dead");
     }
 
@@ -126,20 +126,20 @@ void Player::HandleAnimationFinished() {
     this->ChangeState("idle");
 }
 
-void Player::ChangeState(const string &_state) {
-    if (_state == "idle") {
+void Player::ChangeState(const string &state) {
+    if (state == "idle") {
         IdleState();
     }
 
-    if (_state == "shoot") {
+    if (state == "shoot") {
         ShootState();
     }
 
-    if (_state == "reload") {
+    if (state == "reload") {
         ReloadState();
     }
 
-	if (_state == "dead") {
+	if (state == "dead") {
 		DeadState();
 	}
 }
@@ -157,7 +157,7 @@ void Player::IdleState() {
 
 
 void Player::ShootState() {
-    if (getWeapon()->hasBullets()) {
+    if (GetWeapon()->HasBullets()) {
         MoveableObject::ChangeState("shoot");
         frames = 3;
         animationTimer = 0.05f;
@@ -165,15 +165,15 @@ void Player::ShootState() {
 }
 
 void Player::ReloadState() {
-    if (this->getWeapon()->CanReload()) {
+    if (this->GetWeapon()->CanReload()) {
 
         MoveableObject::ChangeState("reload");
 
-        this->getWeapon()->Reload();
+        this->GetWeapon()->Reload();
         frames = 20;
 
         // todo: fix, reload for handgun is 15 frames
-        if (this->getWeapon()->getName() == "handgun") {
+        if (this->GetWeapon()->GetName() == "handgun") {
             frames = 15;
         }
 
@@ -183,9 +183,9 @@ void Player::ReloadState() {
 
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
-    return this->spriteToken + "/" + this->getWeapon()->getName();
+    return this->_spriteToken + "/" + this->GetWeapon()->GetName();
 }
 
 void Player::ToggleCheats() {
-    isCheatActive = !isCheatActive;
+    _isCheatActive = !_isCheatActive;
 }

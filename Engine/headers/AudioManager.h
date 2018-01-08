@@ -22,7 +22,7 @@ public:
 private:
 	AudioManager();
 
-	static AudioManager* sInstance;
-	Mix_Music* gBGM;
-	Mix_Chunk* gEffectM;
+	static AudioManager* _instance;
+	Mix_Music* _bgm;
+	Mix_Chunk* _effectMusic;
 };
