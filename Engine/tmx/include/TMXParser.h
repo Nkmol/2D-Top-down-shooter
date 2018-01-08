@@ -38,7 +38,7 @@ namespace TMX
 
 	struct TileLayer {
 		std::string name;
-		bool visible;
+		bool _visible;
 		float opacity;
 		Data data;
 		std::map<std::string, std::string> property;
@@ -52,7 +52,7 @@ namespace TMX
 		unsigned int width;
 		unsigned int height;
 		unsigned int gid;
-		bool visible;
+		bool _visible;
 		std::map<std::string, std::string> property;
 	};
 
@@ -60,7 +60,7 @@ namespace TMX
 		std::string color;
 		std::string name;
 		float opacity;
-		bool visible;
+		bool _visible;
 		std::map<std::string, Object> object;
 		std::map<std::string, std::string> property;
 	};
@@ -73,7 +73,7 @@ namespace TMX
 	struct ImageLayer {
 		std::string name;
 		float opacity;
-		bool visible;
+		bool _visible;
 		std::map<std::string, std::string> property;
 		Image image;
 	};

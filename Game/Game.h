@@ -8,6 +8,11 @@ class State;
 
 class Game
 {
+	// the stack of states
+	std::vector<std::unique_ptr<State>> _states;
+	bool _isRunning;
+	Engine _mainManager;
+	double _fps;
 	std::shared_ptr<Level> _level;
 public:
 	Game();
@@ -21,16 +26,9 @@ public:
 	void PopState();
 	void ClearStates();
 	void Quit();
-	void Run(const unsigned fps);
+	void Run(const unsigned int fps);
 	void HandleEvents();
 	void Update(float time);
-	void Draw();
-
-private:
-	// the stack of states
-	std::vector<std::unique_ptr<State>> _states;
-	bool isRunning;
-	Engine _mainManager;
-	double _fps;
+	void Draw();	
 };
 

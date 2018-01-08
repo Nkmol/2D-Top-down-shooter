@@ -139,20 +139,20 @@ void MenuState::Update(Game &game, float time) {
 void MenuState::Draw(Game &game) {
     RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
 
-    _newgameButton.draw();
-    _loadgameButton.draw();
-    _creditsButton.draw();
-    _muteButton.draw();
-    _quitButton.draw();
-    _instructions.draw();
-	_advertisement.draw();
+    _newgameButton.Draw();
+    _loadgameButton.Draw();
+    _creditsButton.Draw();
+    _muteButton.Draw();
+    _quitButton.Draw();
+    _instructions.Draw();
+	_advertisement.Draw();
 
     if (_highestLevel >= 1)
-        _level1.draw();
+        _level1.Draw();
     if (_highestLevel >= 2)
-        _level2.draw();
+        _level2.Draw();
     if (_highestLevel >= 3)
-        _level3.draw();
+        _level3.Draw();
 }
 
 

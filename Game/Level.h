@@ -22,7 +22,7 @@ class GameObject;
 class Event;
 
 class Level {
-    InputManager &inputManager;
+    InputManager &_inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::unique_ptr<EnemyBase>> _npcs;
@@ -63,11 +63,11 @@ public:
 
     void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 
-    void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
+    void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &_objects);
 
     void RemoveHiddenNpcs();
 
-    void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
+    void RemoveHiddenExplosionObjects(std::vector<Explosion> &_objects);
 
     void AddExplosion(const Point &point);
 

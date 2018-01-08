@@ -3,17 +3,17 @@
 //
 #include "AnimationManager.h"
 
-AnimationManager *AnimationManager::sInstance = nullptr;
+AnimationManager *AnimationManager::_instance = nullptr;
 
 AnimationManager::AnimationManager() = default;
 
 AnimationManager &AnimationManager::Instance() {
-    static AnimationManager sInstance;
+    static AnimationManager _instance;
 
-    return sInstance;
+    return _instance;
 }
 
-void AnimationManager::update(MoveableObject &object, double time) {
+void AnimationManager::Update(MoveableObject &object, double time) {
     object.DecreaseAnimationTimer(time);
 
     if (object.IsReadyForAnimation()) {
