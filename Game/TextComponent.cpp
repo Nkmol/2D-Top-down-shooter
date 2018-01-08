@@ -1,15 +1,16 @@
 #include "TextComponent.h"
 #include "RenderManager.h"
 
-TextComponent::TextComponent(std::string text, Point pos, int w, int h, double angle)
-	: IHudComponent(pos, w, h, angle), _text{ text }
+TextComponent::TextComponent(std::string text, Point pos, int w, int h, float time, double angle)
+	: IHudComponent(pos, w, h, time, angle), _text{ text }
 {
 
 }
 
 void TextComponent::Update(float time)
 {
-
+	if (_lifetime > 0)
+		_livingtime += time;
 }
 
 void TextComponent::Draw()

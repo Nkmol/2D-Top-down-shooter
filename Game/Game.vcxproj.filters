@@ -90,6 +90,9 @@
     <ClCompile Include="StateGameOver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NumberComponent.cpp">
+      <Filter>Source Files\hud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Player.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="StateGameOver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberComponent.h">
+      <Filter>Header Files\hud</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

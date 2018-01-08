@@ -56,6 +56,8 @@ void WaveController::SpawnWave()
 	_UIWaveText.Draw();
 
 	std::cout << "new wave: " << _curWave->GetId() << endl;
+	std::string waveText = "Wave " + std::to_string(_curWave->GetId()) + " incoming!";
+	Hud::Instance().AddComponent(new TextComponent(waveText, Point(config::width / 2 - 100, 100), 200, 40, 2.0f));
 
 	Point screenCenter;
 	screenCenter.x = config::width / 2;

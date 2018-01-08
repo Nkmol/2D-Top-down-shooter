@@ -44,7 +44,9 @@ class Level {
 
     void LoadPlayer();
 
-	std::unique_ptr<TextComponent> _weaponComponent;
+	int count = 0;
+
+	//std::unique_ptr<TextComponent> _weaponComponent;
 	//std::shared_ptr<IHudComponent> _ammoComponent;
 
 public:
