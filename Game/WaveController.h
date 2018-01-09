@@ -15,6 +15,7 @@ class WaveController
 {
 public:
 	WaveController();
+	~WaveController();
 	void Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs);
 	//returns false if there are no more waves
 	bool Update(float time);

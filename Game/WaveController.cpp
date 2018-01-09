@@ -12,6 +12,11 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
+WaveController::~WaveController()
+{
+	Hud::Instance().RemoveComponent(_waveCounter.get());
+}
+
 void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
 {
 	_waves = waves;
