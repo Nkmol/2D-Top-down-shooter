@@ -18,6 +18,9 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	_npcs = npcs;
 	_player = player;
 
+	_waveCounter = std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 }));
+	Hud::Instance().AddComponent(_waveCounter.get());
+
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
 	try
@@ -56,6 +59,7 @@ void WaveController::SpawnWave()
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 	std::string waveText = "Wave " + std::to_string(_curWave->GetId()) + " incoming!";
 	Hud::Instance().AddComponent(new UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f));
+	_waveCounter->ChangeText("Wave: " + std::to_string(_curWave->GetId()));
 
 	Point screenCenter;
 	screenCenter.x = config::width / 2;
