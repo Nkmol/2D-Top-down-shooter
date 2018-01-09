@@ -1,6 +1,7 @@
 #include "Hud.h"
 #include <algorithm>
 
+
 Hud& Hud::Instance()
 {
 	static Hud _instance;
@@ -18,7 +19,7 @@ void Hud::Update(float time)
 	for (auto comps : _components)
 		comps->Update(time);
 
-	auto y(std::remove_if(_components.begin(), _components.end(), [](UIText* c) { return c->Destroyable(); }));
+	auto y(std::remove_if(_components.begin(), _components.end(), [](UIElement* c) { return c->Destroyable(); }));
 	_components.erase(y, _components.end());
 }
 
@@ -28,13 +29,13 @@ void Hud::Draw()
 		comps->Draw();
 }
 
-void Hud::AddComponent(UIText* comp)
+void Hud::AddComponent(UIElement* comp)
 {
 	_components.push_back(comp);
 }
 
-void Hud::RemoveComponent(UIText* comp)
+void Hud::RemoveComponent(UIElement* comp)
 {
-	auto y(std::remove_if(_components.begin(), _components.end(), [&comp](UIText* c) { return c == comp; }));
+	auto y(std::remove_if(_components.begin(), _components.end(), [&comp](UIElement* c) { return c == comp; }));
 	_components.erase(y, _components.end());
 }

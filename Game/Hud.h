@@ -1,11 +1,11 @@
 #pragma once
 #include <vector>
-#include "../Engine/UIText.h"
+#include "../Engine/UIElement.h"
 
 class Hud
 {
 	static Hud* _instance;
-	std::vector<UIText*> _components;
+	std::vector<UIElement*> _components;
 
 	Hud();
 public:
@@ -17,6 +17,6 @@ public:
 	void Update(float time);
 	void Draw();
 
-	void AddComponent(UIText* comp);
-	void RemoveComponent(UIText* comp);
+	void AddComponent(UIElement* comp);
+	void RemoveComponent(UIElement* comp);
 };

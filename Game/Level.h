@@ -10,7 +10,7 @@
 #include "WaveController.h"
 #include "Wave.h"
 #include "../Engine/UIText.h"
-#include "TextComponent.h"
+#include "../Engine/UIIcon.h"
 
 
 class EnemyBase;
@@ -40,15 +40,17 @@ class Level {
 	std::unique_ptr<UIText> _UIWeapon;
 	std::unique_ptr<UIText> _UIBullets;
 	std::unique_ptr<UIText> _UIHealth;
+	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
 
 	void LoadLevel();
 
     void LoadPlayer();
 
-	int count = 0;
+	void LoadUIElements();
 
-	//std::unique_ptr<TextComponent> _weaponComponent;
-	//std::shared_ptr<IHudComponent> _ammoComponent;
+	void ChangeWeapon(const int num);
+
+	int count = 0;
 
 public:
     explicit Level(int level, const std::string savedGame);

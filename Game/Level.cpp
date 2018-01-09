@@ -20,23 +20,21 @@ Level::Level(const int level, const ::std::string savedGame) :
         _levelSpeed(1)
 {
     Init();
-    Level::_explosion = {};
-
-	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }));
-	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
-	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
-	Hud::Instance().AddComponent(_UIHealth.get());
-	Hud::Instance().AddComponent(_UIBullets.get());
-	Hud::Instance().AddComponent(_UIWeapon.get());
+    Level::_explosion = {};		
 }
 
 Level::~Level() {
 	Hud::Instance().RemoveComponent(_UIBullets.get());
 	Hud::Instance().RemoveComponent(_UIWeapon.get());
+	Hud::Instance().RemoveComponent(_UIHealth.get());
+	for (auto &w : _weaponSlots)
+		Hud::Instance().RemoveComponent(w.get());
 }
 
 void Level::Init() {
     LoadLevel();
+
+	LoadUIElements();
 
     MapManager::Instance().Init(_map);
     LoadPlayer();
@@ -45,6 +43,22 @@ void Level::Init() {
 
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
+}
+
+void Level::LoadUIElements()
+{
+	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }));
+	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
+	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 100)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 100)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 100)));
+
+	Hud::Instance().AddComponent(_UIHealth.get());
+	Hud::Instance().AddComponent(_UIBullets.get());
+	Hud::Instance().AddComponent(_UIWeapon.get());
+	for (auto &w : _weaponSlots)
+		Hud::Instance().AddComponent(w.get());
 }
 
 void Level::LoadLevel() {
@@ -67,9 +81,9 @@ void Level::LoadLevel() {
 void Level::LoadPlayer() {
     auto player = make_shared<Player>("soldier", config::width / 2, config::height / 2 + 10);
     player->AddWeapons({Handgun(), Rifle(), Shotgun()});
-    player->ChangeWeapon(0);
 
     _player = player;
+	ChangeWeapon(0);
 
     if (!_savedGame.empty()) {
         std::ifstream i;
@@ -136,7 +150,7 @@ void Level::HandleKeyboardEvents(Event &event) {
     int key = 0;
 
     if (InputManager::Instance().IsNumericKeyPressed(event, key)) {
-        _player->ChangeWeapon(key - 1);
+        ChangeWeapon(key - 1);
     }
 
     if (InputManager::Instance().IsKeyDown(event)) {
@@ -259,6 +273,18 @@ void Level::Draw() {
     for (auto &explosion : _explosion) {
         explosion.Draw();
     }
+}
+
+void Level::ChangeWeapon(const int num)
+{
+	_player->ChangeWeapon(num);
+	for (size_t i = 0; i < _player->GetWeapons().size(); i++)
+	{
+		if (i == num)
+			_weaponSlots.at(i)->SetOpacity(200);
+		else
+			_weaponSlots.at(i)->SetOpacity(100);
+	}
 }
 
 void from_json(const nlohmann::json &j, Level &value) {
