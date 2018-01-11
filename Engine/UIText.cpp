@@ -37,7 +37,7 @@ void UIText::Draw()
 void UIText::Center()
 {
 	// Seems that X is already centred?
-	const auto diff = RenderManager::WINDOW_CENTER - Point(0, _texture.width / 2.0);
+	const auto diff = config::WINDOW_CENTER - Point(0, _texture.width / 2.0);
 	_rect = {int(diff.x), int(diff.y), _texture.width, _texture.height };
 }
 
