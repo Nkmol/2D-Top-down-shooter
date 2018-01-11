@@ -51,9 +51,9 @@ void Level::LoadUIElements()
 	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }));
 	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
 	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 100)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 100)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 100)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
 
 	Hud::Instance().AddComponent(_UIHealth.get());
 	Hud::Instance().AddComponent(_UIBullets.get());
@@ -282,9 +282,9 @@ void Level::ChangeWeapon(const int num)
 	for (size_t i = 0; i < _player->GetWeapons().size(); i++)
 	{
 		if (i == num)
-			_weaponSlots.at(i)->SetOpacity(200);
+			_weaponSlots.at(i)->SetOpacity(250);
 		else
-			_weaponSlots.at(i)->SetOpacity(100);
+			_weaponSlots.at(i)->SetOpacity(120);
 	}
 }
 
