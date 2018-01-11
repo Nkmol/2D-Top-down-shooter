@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Bullet.h"
+#include <chrono>
 
 Player::Player(const std::string &filePath, const float x, const float y) :
         Player(filePath, Point{x, y}) {
@@ -112,12 +113,19 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 }
 
 void Player::Hit(int _damage) {
-    if (!_isCheatActive) {
-        _lifepoints -= _damage;
-    }
-    if (_lifepoints <= 0) {
-	this->ChangeState("dead");
-    }
+	if (_isCheatActive) return;
+	
+	auto hittime = clock();
+	if (_lastHit + _invTime <= hittime)
+	{
+		_lastHit = hittime;
+		_lifepoints -= _damage;
+		if (_lifepoints <= 0) {
+			this->ChangeState("dead");
+		}
+	}
+
+    
 
 }
 
