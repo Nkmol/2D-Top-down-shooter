@@ -4,9 +4,10 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : MoveableObject(filePath, coordinates, 300.0f),
+Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : MoveableObject(filePath, coordinates,BULLET_SPEED),
                                                                         _damage(_damage) {
     type = BULLET;
+	speed = BULLET_SPEED;
 }
 
 
@@ -20,9 +21,9 @@ void Bullet::Update(float time) {
 
     destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
-    const auto newPostition = _coordinates + (destination * speed * time);
-	PhysicsManager::Instance().CheckWallCollision(this, newPostition);
-	PhysicsManager::Instance().CheckStaticObjectCollision(this, newPostition);
+    const auto newPosition = _coordinates + (destination * speed * time);
+	PhysicsManager::Instance().CheckWallCollision(this, newPosition);
+	PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
     MoveableObject::Update(time);
 }
 
