@@ -34,6 +34,13 @@ void UIText::Draw()
 	RenderManager::Instance().DrawTexture(_texture.GetTexture(), nullptr, &_rect, _angle);
 }
 
+void UIText::Center()
+{
+	// Seems that X is already centred?
+	const auto diff = config::WINDOW_CENTER - Point(0, _texture.width / 2.0);
+	_rect = {int(diff.x), int(diff.y), _texture.width, _texture.height };
+}
+
 void UIText::ChangeText(const std::string& text)
 {
 	if (text == _text) return;
