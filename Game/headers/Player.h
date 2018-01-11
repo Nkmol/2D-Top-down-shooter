@@ -11,6 +11,7 @@
 #include "Point.h"
 #include <Weapon.h>
 #include "PhysicsManager.h"
+#include <time.h>
 
 class Point;
 
@@ -22,6 +23,8 @@ class Player : public MoveableObject {
 	int _maxLifepoints;
     int _highestLevel = 1;
 	bool _isCheatActive;
+	clock_t _lastHit = clock();
+	double _invTime = 500;
 
 public:
 	std::string teststring = "hoi";

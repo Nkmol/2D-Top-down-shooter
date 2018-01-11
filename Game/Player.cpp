@@ -63,7 +63,7 @@ void Player::Update(float time) {
 
     const auto newPosition = _coordinates + (destination * speed * time);
     PhysicsManager::Instance().CheckWallCollision(this, newPosition);
-    PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPosition);
     MoveableObject::Update(time);
 }
 
@@ -113,13 +113,18 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 }
 
 void Player::Hit(int _damage) {
-    if (!_isCheatActive) {
-        _lifepoints -= _damage;
-    }
-    if (_lifepoints <= 0) {
-	this->ChangeState("dead");
-    }
-
+	if (_isCheatActive) return;
+	
+	auto hittime = clock();
+	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
+	{
+		_lastHit = hittime;
+		_lifepoints -= _damage;
+		if (_lifepoints <= 0) {
+			_lifepoints = 0;
+			this->ChangeState("dead");
+		}
+	}
 }
 
 void Player::HandleAnimationFinished() {

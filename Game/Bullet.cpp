@@ -21,9 +21,9 @@ void Bullet::Update(float time) {
 
     destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 
-    const auto newPosition = _coordinates + (destination * speed * time);
-	PhysicsManager::Instance().CheckWallCollision(this, newPosition);
-	PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
+    const auto newPostition = _coordinates + (destination * speed * time);
+	PhysicsManager::Instance().CheckWallCollision(this, newPostition);
+	PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
     MoveableObject::Update(time);
 }
 
