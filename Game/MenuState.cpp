@@ -150,7 +150,6 @@ void MenuState::Init(Game &game) {
     _instructions = Button("button_instructions", (config::width / 2) - 150, 500, 300, 50);
     _quitButton = Button("button_quit", (config::width / 2) - 150, 600, 300, 50);
 
-	_allButtons = { _newgameButton, _loadgameButton, _creditsButton, _muteButton, _quitButton, _instructions };
 
     _level1 = Button("button_level1", 50, 200, 300, 50);
     _level2 = Button("button_level2", 50, 300, 300, 50);
@@ -162,9 +161,13 @@ void MenuState::Init(Game &game) {
 	_advertisementsLinks.push_back({ "advertisement/ad2", "https://marktplaats.nl" });
 	_advertisementsLinks.push_back({ "advertisement/ad3", "https://google.nl" });
 
+
+
 	srand(time(0));
 	_adnr = rand() % _advertisementsLinks.size();
 	SetRandomAd();
+
+	_allButtons = { _newgameButton, _loadgameButton, _creditsButton, _muteButton, _quitButton, _instructions, _advertisement };
 
     int muted = 0;
 }
