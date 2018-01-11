@@ -285,17 +285,6 @@ void Level::ChangeWeapon(const int num)
 		else
 			_weaponSlots.at(i)->SetOpacity(100);
 	}
-    // TODO, verplaatsen
-    auto weaponName = _player->GetWeapon()->GetName();
-    auto totalBullets = _player->GetWeapon()->TotalBullets();
-    auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
-	_UIWeapon.ChangeText("Weapon: " + weaponName);
-	_UIWeapon.Draw();
-
-	_UIBullets.ChangeText("Bullets: " +
-		to_string(remainingBullets) + "/" +
-		to_string(totalBullets));
-	_UIBullets.Draw();
 }
 
 void from_json(const nlohmann::json &j, Level &value) {
