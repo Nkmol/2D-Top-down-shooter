@@ -15,7 +15,7 @@ class Game
 	Engine _mainManager;
 	double _fps;
 	std::shared_ptr<Level> _level;
-	UIText _fpsUI;
+	std::unique_ptr<UIText> _fpsUI;
 public:
 	Game();
 	~Game();

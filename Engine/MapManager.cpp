@@ -9,11 +9,6 @@ MapManager& MapManager::Instance()
 	return _instance;
 }
 
-const std::vector<GameObject>* MapManager::GetCollidables() const
-{
-	return &_collidables;
-}
-
 MapManager::MapManager()
 {
 	_mapTexture = nullptr;
@@ -62,6 +57,7 @@ void MapManager::Init(const string input)
 	int counter = 0;
 	for (int i = 0; i < height; i++)
 	{
+		_newCollidables.emplace_back();
 		for (int j = 0; j < width; j++)
 		{
 			destRect.y = i*tileWidth;
@@ -72,12 +68,17 @@ void MapManager::Init(const string input)
 					std::cout << SDL_GetError() << endl;
 			}
 
-			if (_tileLayers.at(1).at(counter) != 0) {
-				GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
-				_collidables.push_back(gameObject);
+			GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
+			_newCollidables.at(i).push_back(make_unique<GameObject>(gameObject));
+			if (_tileLayers.at(1).at(counter) != 0) {				
+				//collidables.push_back(gameObject);
+				_newCollidables.at(i).at(j).get()->SetIsCollidable(true);
 				if (SDL_BlitSurface(spritesheet, &_tilesMap.at(_tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
+
 					std::cout << SDL_GetError() << endl;
 			}
+			
+			
 			counter++;
 		}
 	}
@@ -182,4 +183,31 @@ void MapManager::GetTileLayers()
 
 const SDL_Rect &MapManager::GetMapRect() const {
 	return _mapRect;
+}
+
+void MapManager::getNearbyCollidables(Point position, std::vector<GameObject*>* nearby)
+{
+	const int tileWidth = _tsx.tileset.tileWidth;
+	const int tileHeight = _tsx.tileset.tileHeight;
+	int radius = 2;
+	int x = ((position.x) / tileWidth) < 0 ? 0 : ((position.x ) / tileWidth);
+	int y = ((position.y ) / tileHeight) < 0 ? 0 : ((position.y) / tileHeight);
+
+	for (int j = y - radius; j <= radius + y; j++)
+	{
+		if (j < 0 || j >= _newCollidables.size())
+		{
+		}
+		else {
+			for (int i = x - radius; i <= radius + x; i++)
+			{
+				if (i < 0 || i >= _newCollidables.at(j).size())
+				{
+				}
+				else
+					if(_newCollidables.at(j).at(i).get()->GetIsCollidable())
+						nearby->push_back(_newCollidables.at(j).at(i).get());
+			}
+		}
+	}
 }

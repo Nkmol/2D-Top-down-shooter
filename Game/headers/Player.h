@@ -22,11 +22,13 @@ class Player : public MoveableObject {
 
 private:
     int _lifepoints;
+	int _maxLifepoints;
     int _highestLevel = 1;
 	bool _isCheatActive;
 
 public:
 	vector<std::unique_ptr<PowerupMode>> powerupmodes;
+
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
@@ -43,6 +45,10 @@ public:
     const int GetLifepoints() const;
 
     const int ChangeLifepoints(const int lp);
+
+	const int GetMaxLifepoints() const { return _maxLifepoints; }
+
+	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; }
 
     Weapon *GetWeapon();
 

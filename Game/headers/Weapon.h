@@ -21,6 +21,7 @@ protected:
     float fireRate;
     float standardFireRate;
     float lastShot;
+	std::string type;
 
 public:
     Weapon(int _damage, std::string name, int maxBullets, float fireRate);
@@ -56,7 +57,8 @@ public:
     float getFireRate() const;
 
     float getStandardFireRate() const;
-
+  
+	const std::string GetType() const;
 };
 
 void to_json(nlohmann::json &j, const Weapon &value);

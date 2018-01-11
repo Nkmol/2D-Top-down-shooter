@@ -71,12 +71,25 @@ set(SOURCE_FILES
         Game/powerups/PowerupFastShot.cpp
         Game/powerups/PowerupHP.cpp
         Game/powerups/PowerupHP.h
+        Game/Explosion.cpp
+        Game/ExplosionFactory.cpp
+        Game/Explosion.h
+        Game/Hud.cpp
+        Game/Hud.h
         Game/headers/Helper.h
         Game/headers/Rifle.h
         Game/headers/Player.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
         Game/headers/EnemyBase.h
+        Game/StateGameOver.cpp
+        Game/StateGameOver.h
+        Engine/UIElement.cpp
+        Engine/UIElement.h
+        Engine/UIIcon.cpp
+        Engine/UIIcon.h
+        Engine/UIText.cpp
+        Engine/UIText.h
         Engine/Button.cpp
         Engine/MoveableObject.cpp
         Engine/CustomDeleter.h
