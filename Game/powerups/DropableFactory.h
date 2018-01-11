@@ -5,8 +5,6 @@
 #ifndef SHOOTER_DROPABLEFACTORY_H
 #define SHOOTER_DROPABLEFACTORY_H
 
-
-#include <bits/unique_ptr.h>
 #include "DropableObject.h"
 
 class DropableFactory {
