@@ -115,7 +115,7 @@ void Player::Hit(int _damage) {
 	if (_isCheatActive) return;
 	
 	auto hittime = clock();
-	if (difftime(hittime, _lastHit) >= _invTime)
+	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
 	{
 		_lastHit = hittime;
 		_lifepoints -= _damage;
