@@ -11,6 +11,7 @@
 #include "Wave.h"
 #include "powerups/DropableObject.h"
 #include "../Engine/UIText.h"
+#include "../Engine/UIIcon.h"
 
 class EnemyBase;
 
@@ -22,8 +23,8 @@ class GameObject;
 
 class Event;
 
+
 class Level {
-    InputManager &_inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::unique_ptr<EnemyBase>> _npcs;
@@ -35,12 +36,20 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
-	UIText _UIWeapon;
-	UIText _UIBullets;
+	std::unique_ptr<UIText> _UIWeapon;
+	std::unique_ptr<UIText> _UIBullets;
+	std::unique_ptr<UIText> _UIHealth;
+	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
 
 	void LoadLevel();
 
     void LoadPlayer();
+
+	void LoadUIElements();
+
+	void ChangeWeapon(const int num);
+
+	int count = 0;
 
 public:
     static std::vector<std::unique_ptr<DropableObject>> _loot;

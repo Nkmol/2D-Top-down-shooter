@@ -11,7 +11,7 @@ Player::Player(const std::string &filePath, const float x, const float y) :
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp) :
         _isCheatActive{false},
-        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), _lifepoints(lp) {
+        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), _lifepoints(lp), _maxLifepoints(lp) {
     type = PLAYER;
     this->ChangeState("idle");
 }
@@ -62,7 +62,7 @@ void Player::Update(float time) {
     updatePowerups(time);
     const auto newPosition = _coordinates + (destination * speed * time);
     PhysicsManager::Instance().CheckWallCollision(this, newPosition);
-    PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPosition);
     MoveableObject::Update(time);
 }
 
@@ -176,7 +176,7 @@ void Player::ReloadState() {
         frames = 20;
 
         // todo: fix, reload for handgun is 15 frames
-        if (this->GetWeapon()->GetName() == "handgun") {
+        if (this->GetWeapon()->GetType() == "handgun") {
             frames = 15;
         }
 
@@ -186,7 +186,7 @@ void Player::ReloadState() {
 
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
-    return this->_spriteToken + "/" + this->GetWeapon()->GetName();
+    return this->_spriteToken + "/" + this->GetWeapon()->GetType();
 }
 
 void Player::updatePowerups(float time) {
