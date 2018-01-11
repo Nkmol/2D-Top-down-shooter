@@ -88,7 +88,7 @@ namespace TMX {
       oGroup.color = oGroup_node->first_attribute( "color" )->value();
       oGroup.name = oGroup_node->first_attribute( "name" )->value();
       oGroup.opacity = std::atof( oGroup_node->first_attribute( "opacity" )->value() );
-      oGroup.visible = std::atoi( oGroup_node->first_attribute( "visible" )->value() );
+      oGroup._visible = std::atoi( oGroup_node->first_attribute( "visible" )->value() );
 
       if( oGroup_node->first_node( "properties" ) != 0 ) {
         for( rapidxml::xml_node<>* properties_node = oGroup_node->first_node( "properties" )->first_node( "property" ); properties_node; properties_node = properties_node->next_sibling() ) {
@@ -107,7 +107,7 @@ namespace TMX {
         imgLayer.opacity = std::atof( image_node->first_attribute( "opacity" )->value() );
       }
 
-      imgLayer.visible = std::atoi( image_node->first_attribute( "visible" )->value() );
+      imgLayer._visible = std::atoi( image_node->first_attribute( "visible" )->value() );
 
       imgLayer.image.source = image_node->first_node( "image" )->first_attribute( "source" )->value();
 

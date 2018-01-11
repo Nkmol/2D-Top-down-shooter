@@ -15,21 +15,21 @@ PhysicsManager::~PhysicsManager()
 PhysicsManager& PhysicsManager::Instance()
 {
 	// TODO to refernece, can never be nullptr (should never)
-	static PhysicsManager sInstance; // Guaranteed to be destroyed.
+	static PhysicsManager _instance; // Guaranteed to be destroyed.
 									 // Instantiated on first use.
 
-	return sInstance;
+	return _instance;
 }
 
-void PhysicsManager::checkWallCollision(MoveableObject* m, Point newPos)
+void PhysicsManager::CheckWallCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
 
 	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
-		m->onBaseCollision(true);
+		m->OnBaseCollision(true);
 	}
 
 }
@@ -37,17 +37,17 @@ void PhysicsManager::checkWallCollision(MoveableObject* m, Point newPos)
 bool PhysicsManager::IntersectsRect(float midX, float midY, float radius, const GameObject* collidable)
 {
 	Point circleDistance;
-	circleDistance.x = abs(midX - collidable->getMidX());
-	circleDistance.y = abs(midY - collidable->getMidY());
+	circleDistance.x = abs(midX - collidable->GetMidX());
+	circleDistance.y = abs(midY - collidable->GetMidY());
 
-	if (circleDistance.x >(collidable->getWidth() / 2 + radius)) { return false; }
-	if (circleDistance.y > (collidable->getHeight() / 2 + radius)) { return false; }
+	if (circleDistance.x >(collidable->GetWidth() / 2 + radius)) { return false; }
+	if (circleDistance.y > (collidable->GetHeight() / 2 + radius)) { return false; }
 
-	if (circleDistance.x <= (collidable->getWidth() /2) ) { return true; }
-	if (circleDistance.y <= (collidable->getHeight() /2)) { return true; }
+	if (circleDistance.x <= (collidable->GetWidth() /2) ) { return true; }
+	if (circleDistance.y <= (collidable->GetHeight() /2)) { return true; }
 
-	int cornerDistance_sq = pow(circleDistance.x - collidable->getWidth() / 2, 2) +
-		pow(circleDistance.y - collidable->getHeight() / 2, 2);
+	int cornerDistance_sq = pow(circleDistance.x - collidable->GetWidth() / 2, 2) +
+		pow(circleDistance.y - collidable->GetHeight() / 2, 2);
 
 	return (cornerDistance_sq <= radius * radius);
 }
@@ -55,62 +55,80 @@ bool PhysicsManager::IntersectsRect(float midX, float midY, float radius, const 
 bool PhysicsManager::IntersectsCircle(float midX, float midY, float radius, const MoveableObject* collidable)
 {
 	Point circleDistance;
-	circleDistance.x = abs(midX - collidable->getMidX());
-	circleDistance.y = abs(midY - collidable->getMidY());
+	circleDistance.x = abs(midX - collidable->GetMidX());
+	circleDistance.y = abs(midY - collidable->GetMidY());
 
-	if (circleDistance.x >(collidable->getWidth() / 2 + radius)) { return false; }
-	if (circleDistance.y > (collidable->getHeight() / 2 + radius)) { return false; }
+	if (circleDistance.x >(collidable->GetWidth() / 2 + radius)) { return false; }
+	if (circleDistance.y > (collidable->GetHeight() / 2 + radius)) { return false; }
 
-	if (circleDistance.x <= (collidable->getWidth() / 2)) { return true; }
-	if (circleDistance.y <= (collidable->getHeight() / 2)) { return true; }
+	if (circleDistance.x <= (collidable->GetWidth() / 2)) { return true; }
+	if (circleDistance.y <= (collidable->GetHeight() / 2)) { return true; }
 
 	return (false);
 }
+//
+//void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
+//{
+//	bool isCollision = false;
+//
+//	auto midX = m->GetPredictionMidX(newPos.x);
+//	auto midY = m->GetPredictionMidY(newPos.y);
+//	auto radius = m->GetRadius();
+//	for (int i = 0; i < _collidables->size(); i++) {
+//		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
+//			m->OnBaseCollision(true);
+//			break;
+//		}
+//	}
+//}
 
-void PhysicsManager::checkStaticObjectCollision(MoveableObject* m, Point newPos)
+void PhysicsManager::CheckNewStaticObjectCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
-	for (int i = 0; i < collidables->size(); i++) {
-		if (IntersectsRect(midX, midY, radius, &collidables->at(i))) {
-			m->onBaseCollision(true);
-		}
-	}
-}
-
-void PhysicsManager::checkMoveableCollision(MoveableObject* m, Point newPos)
-{
-	auto midX = m->getPredictionMidX(newPos.x);
-	auto midY = m->getPredictionMidY(newPos.y);
-	auto radius = m->getRadius();
-
-
-	for (int i = 0; i < objects->size(); i++) {
-		if (IntersectsCircle(midX, midY, radius, objects->at(i).get())) {
-			m->onBaseCollision(objects->at(i).get());
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
+	std::vector<GameObject*> tmep = {};
+	MapManager::Instance().getNearbyCollidables(newPos, &tmep);
+	for (int i = 0; i < tmep.size(); i++) {
+		if (IntersectsRect(midX, midY, radius, tmep.at(i))) {
+			m->OnBaseCollision(true);
 			break;
 		}
 	}
 }
 
-void PhysicsManager::setStaticObjects()
+void PhysicsManager::CheckMoveableCollision(MoveableObject* m, Point newPos)
 {
-	if (collidables == NULL) {
-		collidables = MapManager::Instance().getCollidables();
+	auto midX = m->GetPredictionMidX(newPos.x);
+	auto midY = m->GetPredictionMidY(newPos.y);
+	auto radius = m->GetRadius();
+
+
+	for (int i = 0; i < _objects->size(); i++) {
+		if (IntersectsCircle(midX, midY, radius, _objects->at(i).get())) {
+			m->OnBaseCollision(_objects->at(i).get());
+			break;
+		}
+	}
+}
+
+void PhysicsManager::SetStaticObjects()
+{
+	if (_collidables == NULL) {
+		//_collidables = MapManager::Instance().GetCollidables();
 	}
 	_tileSize = config::tileSize;
 	_playScreenWidth = config::width - _tileSize;
 	_playScreenHeight = config::height - _tileSize;
 }
 
-void PhysicsManager::setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
+void PhysicsManager::SetMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)
 {
-	objects = _objs;
+	_objects = _objs;
 }
 
-const vector<GameObject>* PhysicsManager::getCollidables()
+const vector<GameObject>* PhysicsManager::GetCollidables()
 {
-	return collidables;
+	return _collidables;
 }

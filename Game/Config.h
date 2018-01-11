@@ -3,6 +3,8 @@
 
 #include <string>
 #include <array>
+#include "Point.h"
+
 namespace config 
 {
 	const int width = 1280;
@@ -16,5 +18,7 @@ namespace config
 		"../content/level2.json",
 		"../content/level3.json"
 	};
+
+	const Point WINDOW_CENTER { height / 2, width / 2 };
 }
 #endif CONFIG_H

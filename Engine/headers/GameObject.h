@@ -23,39 +23,44 @@ class GameObject
 		swap(first.radius, second.radius);
 		swap(first.midX, second.midX);
 		swap(first._coordinates, second._coordinates);
-		swap(first.visible, second.visible);
-		swap(first.spriteToken, second.spriteToken);
+		swap(first._visible, second._visible);
+		swap(first._spriteToken, second._spriteToken);
 		swap(first._sprite, second._sprite);
 		//first._sprite = unique_ptr<SDL_Texture, CustomDeleter>(move(second._sprite.get()), move(second._sprite.get_deleter()));
 	}
 public:
 	GameObject(Point coordinates, int width, int height);
-	GameObject(const std::string & spriteToken, const Point coordinates);
+	GameObject(const std::string & _spriteToken, const Point coordinates);
 	GameObject(const GameObject& other);
 	GameObject& operator=(GameObject that);
 
-	const int getMidX() const;
-	const int getMidY() const;
-	int getWidth() const;
-	int getHeight() const;
+	
+	void SetIsCollidable(bool isCollidable);
+
+	const int GetMidX() const;
+	const int GetMidY() const;
+	int GetWidth() const;
+	int GetHeight() const;
 	void SetCoordinates(const Point & value);
 	const Point &GetCoordinates() const;
 	const SDL_Rect GetRect() const;
-	void draw();
-	int getAngle() const;
+	void Draw();
+	int GetAngle() const;
 	void SetAngle(const int angle);
-	void hide();
-	bool isVisible() const;
-	const int getRadius() const ;
+	void Hide();
+	bool IsVisible() const;
+	const int GetRadius() const ;
 	string GetSpriteToken() const;
+	bool GetIsCollidable() { return _isCollidable; }
 
 protected:
 	GameObject();
 	int width, height, angle;
 	float radius, midX, midY;
 	Point _coordinates;
-	bool visible;
+	bool _visible;
+	bool _isCollidable = false;
 	unique_ptr<Texture> _sprite;
-    std::string spriteToken;
+    std::string _spriteToken;
 };
 

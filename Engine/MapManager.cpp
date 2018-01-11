@@ -4,38 +4,33 @@ using namespace std;
 
 MapManager& MapManager::Instance()
 {
-	static MapManager sInstance;
+	static MapManager _instance;
 
-	return sInstance;
-}
-
-const std::vector<GameObject>* MapManager::getCollidables() const
-{
-	return &collidables;
+	return _instance;
 }
 
 MapManager::MapManager()
 {
-	mapTexture = nullptr;
+	_mapTexture = nullptr;
 }
 
 void MapManager::Init(const string input)
 {
 	std::string filepath = "../content/map/" + input;
-	tmx.load(filepath.c_str());
-	string tileset = "../content/map/" + tmx.tilesetList.at(0).source;
-	tsx.load(tileset.c_str());
+	_tmx.load(filepath.c_str());
+	string tileset = "../content/map/" + _tmx.tilesetList.at(0).source;
+	_tsx.load(tileset.c_str());
 
-	SDL_Surface* spritesheet = AssetManager::Instance().LoadSurface(tsx.tileset.image.source.c_str());
+	SDL_Surface* spritesheet = AssetManager::Instance().LoadSurface(_tsx.tileset.image.source.c_str());
 	if (!spritesheet)
 		cout << SDL_GetError() << endl;
 	
 	GetTilesMap();
 	GetTileLayers();
-	const int tileWidth = tmx.mapInfo.tileWidth;
-	const int tileHeight = tmx.mapInfo.tileHeight;
-	const int width = tmx.mapInfo.width;
-	const int height = tmx.mapInfo.height;
+	const int tileWidth = _tmx.mapInfo.tileWidth;
+	const int tileHeight = _tmx.mapInfo.tileHeight;
+	const int width = _tmx.mapInfo.width;
+	const int height = _tmx.mapInfo.height;
 
 	SDL_Rect destRect;
 	destRect.w = tileWidth;
@@ -62,58 +57,64 @@ void MapManager::Init(const string input)
 	int counter = 0;
 	for (int i = 0; i < height; i++)
 	{
+		_newCollidables.emplace_back();
 		for (int j = 0; j < width; j++)
 		{
 			destRect.y = i*tileWidth;
 			destRect.x = j*tileHeight;
 
-			if (tileLayers.at(0).at(counter) != 0) {
-				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(0).at(counter)), tempSurface, &destRect) != 0)
+			if (_tileLayers.at(0).at(counter) != 0) {
+				if (SDL_BlitSurface(spritesheet, &_tilesMap.at(_tileLayers.at(0).at(counter)), tempSurface, &destRect) != 0)
 					std::cout << SDL_GetError() << endl;
 			}
 
-			if (tileLayers.at(1).at(counter) != 0) {
-				GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
-				collidables.push_back(gameObject);
-				if (SDL_BlitSurface(spritesheet, &tilesMap.at(tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
+			GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
+			_newCollidables.at(i).push_back(make_unique<GameObject>(gameObject));
+			if (_tileLayers.at(1).at(counter) != 0) {				
+				//collidables.push_back(gameObject);
+				_newCollidables.at(i).at(j).get()->SetIsCollidable(true);
+				if (SDL_BlitSurface(spritesheet, &_tilesMap.at(_tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
+
 					std::cout << SDL_GetError() << endl;
 			}
+			
+			
 			counter++;
 		}
 	}
 
-	mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), tempSurface);
+	_mapTexture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), tempSurface);
 	SDL_FreeSurface(spritesheet);
 	SDL_FreeSurface(tempSurface);
 }
 
 void MapManager::Render()
 {
-	mapRect.x = mapRect.y = 0;
-	mapRect.w = tmx.mapInfo.width * tmx.mapInfo.tileWidth;
-	mapRect.h = tmx.mapInfo.height * tmx.mapInfo.tileHeight;
+	_mapRect.x = _mapRect.y = 0;
+	_mapRect.w = _tmx.mapInfo.width * _tmx.mapInfo.tileWidth;
+	_mapRect.h = _tmx.mapInfo.height * _tmx.mapInfo.tileHeight;
 
-	RenderManager::Instance().DrawTexture(mapTexture, &mapRect, NULL);
+	RenderManager::Instance().DrawTexture(_mapTexture, &_mapRect, NULL);
 }
 
 void MapManager::RenderTilesText()
 {
-	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
+	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx.tileLayer.begin(); it != _tmx.tileLayer.end(); ++it) {
 		std::cout << std::endl;
 		std::cout << "Tile Layer Name: " << it->first << std::endl;
-		std::cout << "Tile Layer Visibility: " << tmx.tileLayer[it->first].visible << std::endl;
-		std::cout << "Tile Layer Opacity: " << tmx.tileLayer[it->first].opacity << std::endl;
+		std::cout << "Tile Layer Visibility: " << _tmx.tileLayer[it->first]._visible << std::endl;
+		std::cout << "Tile Layer Opacity: " << _tmx.tileLayer[it->first].opacity << std::endl;
 		std::cout << "Tile Layer Properties:" << std::endl;
-		if (tmx.tileLayer[it->first].property.size() != 0) {
-			for (std::map<std::string, std::string>::iterator it2 = tmx.tileLayer[it->first].property.begin(); it2 != tmx.tileLayer[it->first].property.end(); ++it2) {
+		if (_tmx.tileLayer[it->first].property.size() != 0) {
+			for (std::map<std::string, std::string>::iterator it2 = _tmx.tileLayer[it->first].property.begin(); it2 != _tmx.tileLayer[it->first].property.end(); ++it2) {
 				std::cout << "-> " << it2->first << " : " << it2->second << std::endl;
 			}
 		}
-		std::cout << "Tile Layer Data Encoding: " << tmx.tileLayer[it->first].data.encoding << std::endl;
-		if (tmx.tileLayer[it->first].data.compression != "none") {
-			std::cout << "Tile Layer Data Compression: " << tmx.tileLayer[it->first].data.compression << std::endl;
+		std::cout << "Tile Layer Data Encoding: " << _tmx.tileLayer[it->first].data.encoding << std::endl;
+		if (_tmx.tileLayer[it->first].data.compression != "none") {
+			std::cout << "Tile Layer Data Compression: " << _tmx.tileLayer[it->first].data.compression << std::endl;
 		}
-		std::cout << "Tile Layer Data Contents: " << tmx.tileLayer[it->first].data.contents << std::endl;
+		std::cout << "Tile Layer Data Contents: " << _tmx.tileLayer[it->first].data.contents << std::endl;
 	}
 }
 
@@ -133,13 +134,13 @@ void MapManager::Split(const std::string &s, char delim, Out result)
 
 void MapManager::GetTilesMap()
 {
-	const int columns = tsx.tileset.columns;
-	const int tileWidth = tsx.tileset.tileWidth;
-	const int tileHeight = tsx.tileset.tileHeight;
+	const int columns = _tsx.tileset.columns;
+	const int tileWidth = _tsx.tileset.tileWidth;
+	const int tileHeight = _tsx.tileset.tileHeight;
 	
 	int counter = 1;
 
-	for (int i = 0; i < tsx.tileset.tilecount / columns; i++)
+	for (int i = 0; i < _tsx.tileset.tilecount / columns; i++)
 	{
 		for (int j = 0; j < columns; j++)
 		{
@@ -148,9 +149,9 @@ void MapManager::GetTilesMap()
 			rect.w = tileWidth;
 			rect.x = j * tileWidth;
 			rect.y = i * tileHeight;
-			tilesMap.emplace(counter, rect);
+			_tilesMap.emplace(counter, rect);
 			counter++;
-			if (counter == tsx.tileset.tilecount)
+			if (counter == _tsx.tileset.tilecount)
 				break;
 		}
 	}
@@ -159,8 +160,8 @@ void MapManager::GetTilesMap()
 void MapManager::GetTileLayers()
 {
 	vector<vector<string>> tempLayers;
-	for (std::map<std::string, TMX::TileLayer>::iterator it = tmx.tileLayer.begin(); it != tmx.tileLayer.end(); ++it) {
-		string content = tmx.tileLayer[it->first].data.contents;
+	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx.tileLayer.begin(); it != _tmx.tileLayer.end(); ++it) {
+		string content = _tmx.tileLayer[it->first].data.contents;
 
 		vector<string> tiles;
 		string next;
@@ -175,11 +176,38 @@ void MapManager::GetTileLayers()
 		for (string tile : tempLayers.at(counter)) {
 			intlayer.push_back(atoi(tile.c_str()));
 		}
-		tileLayers.push_back(intlayer);
+		_tileLayers.push_back(intlayer);
 		counter++;
 	}
 }
 
 const SDL_Rect &MapManager::GetMapRect() const {
-	return mapRect;
+	return _mapRect;
+}
+
+void MapManager::getNearbyCollidables(Point position, std::vector<GameObject*>* nearby)
+{
+	const int tileWidth = _tsx.tileset.tileWidth;
+	const int tileHeight = _tsx.tileset.tileHeight;
+	int radius = 2;
+	int x = ((position.x) / tileWidth) < 0 ? 0 : ((position.x ) / tileWidth);
+	int y = ((position.y ) / tileHeight) < 0 ? 0 : ((position.y) / tileHeight);
+
+	for (int j = y - radius; j <= radius + y; j++)
+	{
+		if (j < 0 || j >= _newCollidables.size())
+		{
+		}
+		else {
+			for (int i = x - radius; i <= radius + x; i++)
+			{
+				if (i < 0 || i >= _newCollidables.at(j).size())
+				{
+				}
+				else
+					if(_newCollidables.at(j).at(i).get()->GetIsCollidable())
+						nearby->push_back(_newCollidables.at(j).at(i).get());
+			}
+		}
+	}
 }

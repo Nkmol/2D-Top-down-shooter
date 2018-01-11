@@ -24,15 +24,16 @@ public:
 
 	static PhysicsManager& Instance();
 
-	void checkWallCollision(MoveableObject* m, Point newPos);
-	void checkStaticObjectCollision(MoveableObject* m, Point newPos);
-	void checkMoveableCollision(MoveableObject* m, Point newPos);
-	void setStaticObjects();
-	void setMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
-	const vector<GameObject>* getCollidables();
+	void CheckNewStaticObjectCollision(MoveableObject * m, Point newPos);
+	void CheckWallCollision(MoveableObject* m, Point newPos);
+	//void CheckStaticObjectCollision(MoveableObject* m, Point newPos);
+	void CheckMoveableCollision(MoveableObject* m, Point newPos);
+	void SetStaticObjects();
+	void SetMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs);
+	const vector<GameObject>* GetCollidables();
 private:
-	std::vector<shared_ptr<MoveableObject>>* objects;
-	const std::vector<GameObject>* collidables;
+	std::vector<shared_ptr<MoveableObject>>* _objects;
+	const std::vector<GameObject>* _collidables;
 	float _tileSize;
 	float _playScreenWidth;
 	float _playScreenHeight;

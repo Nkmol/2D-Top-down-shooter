@@ -16,14 +16,16 @@ class Point;
 
 class Player : public MoveableObject {
 
-    vector<Weapon> weapons;
+    vector<Weapon> _weapons;
     unsigned currentWeapon;
-
-private:
-    int lifepoints;
+    int _lifepoints;
+	int _maxLifepoints;
     int _highestLevel = 1;
+	bool _isCheatActive;
 
 public:
+	std::string teststring = "hoi";
+
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
@@ -33,27 +35,33 @@ public:
 
     void Move(const Point direction);
 
-    void update(float time) override;
+    void Update(float time) override;
 
-    const int getLifepoints() const;
+    const int GetLifepoints() const;
 
-    const int changeLifepoints(const int lp);
+    const int ChangeLifepoints(const int lp);
 
-    Weapon *getWeapon();
+	const int GetMaxLifepoints() const { return _maxLifepoints; }
 
-    void changeWeapon(unsigned index);
+	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; }
 
-    const vector<Weapon> &getWeapons() const;
+    Weapon *GetWeapon();
 
-    void onBaseCollision(bool isCollidedOnWall);
+    void ChangeWeapon(unsigned index);
 
-    void Hit(int damage);
+	bool IsCheatActive();
 
-    void addWeapons(std::vector<Weapon> wp);
+    const vector<Weapon> &GetWeapons() const;
+
+    void OnBaseCollision(bool isCollidedOnWall);
+
+    void Hit(int _damage);
+
+    void AddWeapons(std::vector<Weapon> wp);
 
     void SetWeapons(const std::vector<Weapon> wp);
 
-    int getCurrentWeaponIndex() const;
+    int GetCurrentWeaponIndex() const;
 
     const int GetHighestLevel() const { return _highestLevel; }
 
@@ -61,9 +69,12 @@ public:
 
     void HandleAnimationFinished() override;
 
-    void ChangeState(const string &_state) override;
+    void ChangeState(const string &state) override;
+	void DeadState();
 
-    string GetAnimationToken() override;
+	string GetAnimationToken() override;
+
+	void ToggleCheats();
 
     void ReloadState();
 

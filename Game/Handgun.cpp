@@ -4,6 +4,6 @@
 
 #include "Handgun.h"
 
-Handgun::Handgun(int damage, float fireRate) : Weapon(damage, "handgun", 10, fireRate) {
-
+Handgun::Handgun(int _damage, float fireRate) : Weapon(_damage, "Glock", 10, fireRate) {
+	type = "handgun";
 }
