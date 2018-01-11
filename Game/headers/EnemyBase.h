@@ -21,25 +21,25 @@ protected:
 	// TODO share same AI parts (shared_ptr)
 	std::unique_ptr<IAIBase> _behaviour;
 
-	int lifepoints, damage, reward;
+	int lifepoints, _damage, reward;
 	Point destinationPoint;
 
-	const int getLifepoints() const;
-	const int changeLifepoints(const int lp);
-	const int getDamage() const;
-	const int getReward() const;
-	void onBaseCollision(MoveableObject * object);
-	void onBaseCollision(GameObject * object);
+	const int GetLifepoints() const;
+	const int ChangeLifepoints(const int lp);
+	const int GetDamage() const;
+	const int GetReward() const;
+	void OnBaseCollision(MoveableObject * object);
+	void OnBaseCollision(GameObject * object);
 	void onCollision(MoveableObject * object);
 	void onCollision(Bullet * bullet);
 	void onCollision(EnemyBase * enemy);
 	void onCollision(Player * player);
-	void onBaseCollision(bool isWall);
+	void OnBaseCollision(bool isWall);
 
 public:
-	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int damage, int lifepoints, int reward = 50);
+	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int _damage, int lifepoints, int reward = 50);
 	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,
-		const int damage, const int lifepoints, const int reward);
+		const int _damage, const int lifepoints, const int reward);
 	EnemyBase(const nlohmann::json & j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player);
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();
@@ -56,7 +56,7 @@ public:
 	void SetDestination(const Point& point);
 	void SetDestinationPoint(const Point& point);
 
-	void update(const float time);
+	void Update(const float time);
 
 	std::vector<std::unique_ptr<EnemyBase>>* npcs;
 	std::shared_ptr<Player> _player;

@@ -5,12 +5,12 @@
 #include <InputManager.h>
 #include "ExplosionFactory.h"
 
-ExplosionFactory *ExplosionFactory::sInstance = nullptr;
+ExplosionFactory *ExplosionFactory::_instance = nullptr;
 
 ExplosionFactory &ExplosionFactory::Instance() {
-    static ExplosionFactory sInstance;
+    static ExplosionFactory _instance;
 
-    return sInstance;
+    return _instance;
 }
 
 ExplosionFactory::ExplosionFactory() {

@@ -161,6 +161,7 @@
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Rifle.cpp" />
+    <ClCompile Include="StateGameOver.cpp" />
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateGameOver.h" />
     <ClInclude Include="Wave.h" />
     <ClInclude Include="WaveController.h" />
   </ItemGroup>

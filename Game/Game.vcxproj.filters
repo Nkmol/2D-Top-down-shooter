@@ -81,6 +81,9 @@
     <ClCompile Include="CreditsState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StateGameOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Player.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreditsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateGameOver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

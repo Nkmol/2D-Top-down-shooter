@@ -6,42 +6,45 @@
 #include "Point.h"
 #include "Bullet.h"
 
-Weapon::Weapon(int damage, std::string name, int maxBullets, float fireRate) :
+Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate) :
         name{std::move(name)},
-        damage{damage},
+        _damage{_damage},
         maxBullets{maxBullets},
         fireRate{fireRate} {}
 
-Bullet Weapon::getBullet(int angle, Point coordinates) {
-    Bullet bullet("bullet", coordinates, damage);
+Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
+    Bullet bullet("bullet", coordinates, _damage);
     bullet.SetAngle(angle);
 
-    if (hasBullets()) {
-        shooted++;
+    if (HasBullets()) {
+		if (!isCheatActive)
+			shooted++;
+		else
+			bullet.SetDamage(10000000);
     } else {
-        bullet.hide(); // returns a hidden bullet, so it will not be drawn
+        bullet.Hide(); // returns a hidden bullet, so it will not be drawn
     }
 
     return bullet;
 }
 
-bool Weapon::hasBullets() {
+bool Weapon::HasBullets() {
     return this->shooted < this->maxBullets;
 }
 
-int Weapon::totalBullets() const {
+int Weapon::TotalBullets() const {
     return maxBullets;
 }
 
-std::string Weapon::getName() const {
+std::string Weapon::GetName() const {
     return this->name;
 }
 
-int Weapon::getShot() const {
+int Weapon::GetShot() const {
     return this->shooted;
 }
 
-int Weapon::getMaxBullets() const {
+int Weapon::GetMaxBullets() const {
     return maxBullets;
 }
 
@@ -75,8 +78,8 @@ void Weapon::UpdateFireRate(float time) {
 
 void to_json(nlohmann::json &j, const Weapon &value) {
     j = nlohmann::json {
-            {"name",           value.getName()},
-            {"currentBullets", value.getMaxBullets() - value.getShot()}
+            {"name",           value.GetName()},
+            {"currentBullets", value.GetMaxBullets() - value.GetShot()}
     };
 }
 
