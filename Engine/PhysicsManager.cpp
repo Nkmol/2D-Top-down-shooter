@@ -66,21 +66,21 @@ bool PhysicsManager::IntersectsCircle(float midX, float midY, float radius, cons
 
 	return (false);
 }
-
-void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
-{
-	bool isCollision = false;
-
-	auto midX = m->GetPredictionMidX(newPos.x);
-	auto midY = m->GetPredictionMidY(newPos.y);
-	auto radius = m->GetRadius();
-	for (int i = 0; i < _collidables->size(); i++) {
-		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
-			m->OnBaseCollision(true);
-			break;
-		}
-	}
-}
+//
+//void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
+//{
+//	bool isCollision = false;
+//
+//	auto midX = m->GetPredictionMidX(newPos.x);
+//	auto midY = m->GetPredictionMidY(newPos.y);
+//	auto radius = m->GetRadius();
+//	for (int i = 0; i < _collidables->size(); i++) {
+//		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
+//			m->OnBaseCollision(true);
+//			break;
+//		}
+//	}
+//}
 
 void PhysicsManager::CheckNewStaticObjectCollision(MoveableObject* m, Point newPos)
 {

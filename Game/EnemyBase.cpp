@@ -69,7 +69,7 @@ void EnemyBase::Update(const float time) {
     const auto newPostition = _coordinates + (destination * speed * time);
 
 
-    //PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
+    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
     PhysicsManager::Instance().CheckMoveableCollision(this, newPostition);
     MoveableObject::Update(time);
 }
