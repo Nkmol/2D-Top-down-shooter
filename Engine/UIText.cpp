@@ -4,15 +4,15 @@ UIText::UIText() : UIText("", 14)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize) : UIText(text, fontSize, { 0, 0 })
+UIText::UIText(const std::string& text, const unsigned fontSize, float lifetime) : UIText(text, fontSize, { 0, 0 }, lifetime)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position) : UIText(text, fontSize, position, { 255, 255, 255, 1 })
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, float lifetime) : UIText(text, fontSize, position, { 255, 255, 255, 1 }, lifetime)
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour) : _colour(colour), _text(text), _coordinates(position)
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour, float lifetime) : UIElement(position, lifetime), _colour(colour), _text(text)
 {
 	_font = AssetManager::Instance().LoadFont("OpenSans-Regular", fontSize);
 
@@ -34,13 +34,6 @@ void UIText::Draw()
 	RenderManager::Instance().DrawTexture(_texture.GetTexture(), nullptr, &_rect, _angle);
 }
 
-void UIText::Center()
-{
-	// Seems that X is already centred?
-	const auto diff = config::WINDOW_CENTER - Point(0, _texture.width / 2.0);
-	_rect = {int(diff.x), int(diff.y), _texture.width, _texture.height };
-}
-
 void UIText::ChangeText(const std::string& text)
 {
 	if (text == _text) return;
@@ -49,4 +42,3 @@ void UIText::ChangeText(const std::string& text)
 
 	LoadSurface();
 }
-
