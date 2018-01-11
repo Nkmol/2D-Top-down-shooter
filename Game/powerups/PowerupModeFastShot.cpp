@@ -10,7 +10,7 @@ PowerupModeFastShot::PowerupModeFastShot(float maxTime) : PowerupMode(maxTime) {
 
 void PowerupModeFastShot::powerupPlayer(Player &player) {
     if(player.getWeapon()->getStandardFireRate() == player.getWeapon()->getFireRate()) {
-        player.getWeapon()->setFireRate(player.getWeapon()->getFireRate() / 5);
+        player.getWeapon()->setFireRate(player.getWeapon()->getFireRate() / 2);
     }
 }
 

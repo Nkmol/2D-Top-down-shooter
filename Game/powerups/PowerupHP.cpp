@@ -8,6 +8,6 @@ PowerupHP::PowerupHP(const Point &coordinates, const string &spriteToken) : Drop
 }
 
 void PowerupHP::ActivateDropable(Player &player) {
-    player.setLifepoints(player.getLifepoints() + increaseBy);
+    player.changeLifepoints(increaseBy);
     DropableObject::ActivateDropable(player);
 }

@@ -67,7 +67,10 @@ const int Player::getLifepoints() const {
 }
 
 const int Player::changeLifepoints(const int lp) {
-    lifepoints += lp;
+    if((lifepoints+lp) >= 100)
+        lifepoints = 100;
+    else
+        lifepoints += lp;
     return lifepoints;
 }
 
@@ -170,12 +173,6 @@ void Player::ReloadState() {
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
     return this->spriteToken + "/" + this->getWeapon()->getName();
-}
-
-void Player::setLifepoints(int lifepoints) {
-    if(lifepoints > 100)
-        lifepoints = 100;
-    Player::lifepoints = lifepoints;
 }
 
 void Player::updatePowerups(float time) {

@@ -39,8 +39,6 @@ public:
 
     void update(float time) override;
 
-	void setLifepoints(int lifepoints);
-
     const int getLifepoints() const;
 
     const int changeLifepoints(const int lp);
