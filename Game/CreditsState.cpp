@@ -58,7 +58,7 @@ void CreditsState::Init(Game& game)
 	_texts.push_back({ "THIS GAME IS CREATED BY:", 40, {config::width / 2 - 250, config::height / 3 - 170} });
 	_texts.push_back({ "Niels Kop", 40, { config::width / 2 - 250, config::height / 3 - 90 } });
 	_texts.push_back({ "Sander Mol", 40, { config::width / 2 - 250, config::height / 3 - 10 } });
-	_texts.push_back({ "Mevlut Ozdemir", 40,{ config::width / 2 - 250, config::height / 3 + 80 } });
+	_texts.push_back({ "Mevlut Özdemir", 40,{ config::width / 2 - 250, config::height / 3 + 80 } });
 	_texts.push_back({ "Ahmad Rahimi", 40,{ config::width / 2 - 250, config::height / 3 + 170 } });
 	_texts.push_back({ "Jarric van Krieken", 40,{ config::width / 2 - 250, config::height / 3 + 260 } });
 }
