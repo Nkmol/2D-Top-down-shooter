@@ -67,14 +67,16 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 			StartLevel(1, game);
 		}
 	}
-	else if (IsButtonClicked(ev, _level1)) {
+	else if (IsButtonClicked(ev, _level2)) {
 		if (_highestLevel >= 2)
 			StartLevel(2, game);
 	}
-	else if (IsButtonClicked(ev, _level1)) {
-		//if (_highestLevel >= 3)
-		//StartLevel(3, game);
+	else if (IsButtonClicked(ev, _level3)) {
+		if (_highestLevel >= 3)
+		StartLevel(3, game);
 	}
+	else if (_advertisement.IsClicked(ev)) _advertisement.Click();
+
 }
 
 
