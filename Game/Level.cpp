@@ -243,9 +243,9 @@ void Level::Draw() {
     }
 
     // TODO, verplaatsen
-    auto weaponName = _player->getWeapon()->getName();
-    auto totalBullets = _player->getWeapon()->totalBullets();
-    auto remainingBullets = totalBullets - _player->getWeapon()->getShot();
+    auto weaponName = _player->GetWeapon()->GetName();
+    auto totalBullets = _player->GetWeapon()->TotalBullets();
+    auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
 	_UIWeapon.ChangeText("Weapon: " + weaponName);
 	_UIWeapon.Draw();
 
