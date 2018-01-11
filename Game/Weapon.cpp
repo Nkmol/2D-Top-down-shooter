@@ -40,6 +40,11 @@ std::string Weapon::GetName() const {
     return this->name;
 }
 
+const std::string Weapon::GetType() const
+{
+	return type;
+}
+
 int Weapon::GetShot() const {
     return this->shooted;
 }

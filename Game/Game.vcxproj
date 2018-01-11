@@ -153,6 +153,7 @@
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="InstructionsState.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="IAIBase.h" />
     <ClInclude Include="InstructionsState.h" />
     <ClInclude Include="Level.h" />

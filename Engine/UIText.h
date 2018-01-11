@@ -1,39 +1,23 @@
 #pragma once
-#include "GameObject.h"
+#include "UIElement.h"
 
-class UIText
+class UIText : public UIElement
 {
 public:
-	struct RGBA
-	{
-		Uint8 R, G, B, A;
 
-		// Implicit from struct to SDL_Color
-		operator SDL_Color() const {
-			// Use Implicit constructor of SDL_Color
-			return { R, G, B, A };
-		}
-	};
 private:
-	// TODO Smart
-	Texture _texture{};
+	// TODO Smart	
 	AssetManager::Font _font;
-
-	SDL_Rect _rect{};
 	RGBA _colour{};
 	std::string _text;
-	Point _coordinates;
-	int _angle{};
-
 	void LoadSurface();
 public:
 	UIText();
-	UIText(const std::string& text, unsigned fontSize);
-	UIText(const std::string& text, unsigned fontSize, const Point& position);
-	UIText(const std::string&  text, unsigned fontSize, const Point& position, const RGBA& colour);
+	UIText(const std::string& text, unsigned fontSize, float lifetime = 0);
+	UIText(const std::string& text, unsigned fontSize, const Point& position, float lifetime = 0);
+	UIText(const std::string& text, unsigned fontSize, const Point& position, const RGBA& colour, float lifetime = 0);
 
-	void Draw();
-	void Center();
+	void Draw() override;
 	void ChangeText(const std::string& text);
 };
 
