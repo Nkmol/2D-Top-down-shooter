@@ -21,9 +21,11 @@ protected:
     float fireRate;
     float lastShot;
 	std::string type;
+	std::string _soundName;
+	void PlaySound(std::string soundName);
 
 public:
-    Weapon(int _damage, std::string name, int maxBullets, float fireRate);
+    Weapon(int _damage, std::string name, int maxBullets, float fireRate, std::string soundName);
 
     bool HasBullets();
 

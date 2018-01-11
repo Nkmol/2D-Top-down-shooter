@@ -5,12 +5,14 @@
 #include "Weapon.h"
 #include "Point.h"
 #include "Bullet.h"
+#include "AudioManager.h"
 
-Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate) :
+Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate, std::string soundName) :
         name{std::move(name)},
         _damage{_damage},
         maxBullets{maxBullets},
-        fireRate{fireRate} {}
+        fireRate{fireRate},
+	_soundName{ soundName}{}
 
 Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, _damage);
@@ -21,6 +23,7 @@ Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
 			shooted++;
 		else
 			bullet.SetDamage(10000000);
+		PlaySound(_soundName);
     } else {
         bullet.Hide(); // returns a hidden bullet, so it will not be drawn
     }
@@ -63,6 +66,7 @@ void Weapon::SetCurrentBullets(const int v) {
 
 void Weapon::Reload() {
     this->shooted = 0;
+	PlaySound("reload");
 }
 
 bool Weapon::CanReload() const {
@@ -79,6 +83,11 @@ void Weapon::ResetLastShot(){
 
 void Weapon::UpdateFireRate(float time) {
     this->lastShot -= time;
+}
+
+void Weapon::PlaySound(std::string soudName)
+{
+	AudioManager::Instance().PlayEffect(soudName);
 }
 
 void to_json(nlohmann::json &j, const Weapon &value) {

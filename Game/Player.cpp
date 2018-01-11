@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Bullet.h"
+#include "AudioManager.h"
 
 Player::Player(const std::string &filePath, const float x, const float y) :
         Player(filePath, Point{x, y}) {
@@ -36,7 +37,7 @@ void Player::ChangeWeapon(const unsigned index) {
     if (index >= _weapons.size() || index < 0) {
         return;
     }
-
+	AudioManager::Instance().PlayEffect("switchweapon");
     currentWeapon = index;
 }
 
