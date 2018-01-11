@@ -44,6 +44,11 @@ GameObject::GameObject() {
 
 }
 
+void GameObject::SetIsCollidable(bool isCollidable)
+{
+	_isCollidable = isCollidable;
+}
+
 const int GameObject::GetMidX() const {
     return midX;
 }
