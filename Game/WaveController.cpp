@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Wave.h"
 #include "Config.h"
+#include "Hud.h"
+#include "../Engine/UIText.h"
 
 
 WaveController::WaveController()
@@ -10,11 +12,19 @@ WaveController::WaveController()
 	_lastWaveTimer = 0.0f;
 }
 
+WaveController::~WaveController()
+{
+	Hud::Instance().RemoveComponent(_waveCounter.get());
+}
+
 void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
 {
 	_waves = waves;
 	_npcs = npcs;
 	_player = player;
+
+	_waveCounter = std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 }));
+	Hud::Instance().AddComponent(_waveCounter.get());
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -57,9 +67,11 @@ bool WaveController::Update(float time, int levelnumber)
 
 void WaveController::SpawnWave()
 {
-	std::string waveText = "Wave: " + wavenumber;
-	RenderManager::Instance().DrawText(waveText, 200, 100, 140, 20);
-	std::cout << "new wave: " << wavenumber << endl;
+
+	std::cout << "new wave: " << _curWave->GetId() << endl;
+	std::string waveText = "Wave " + std::to_string(_waveNumber) + " incoming!";
+	Hud::Instance().AddComponent(new UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f));
+	_waveCounter->ChangeText("Wave: " + std::to_string(_waveNumber));
 
 	Point screenCenter;
 	screenCenter.x = config::width / 2;
@@ -69,15 +81,14 @@ void WaveController::SpawnWave()
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		for (int i = 0; i < flock.amount; i++) {
+		for (int i = 0; i < flock.amount*multiplier; i++) {
 			int randomDistance = rand() % (maxRadius - minRadius + 1) + minRadius;
 			int randomAngle = rand() % 360 + 1;
 			auto member = make_unique<EnemyBase>(_j[flock.type], _npcs, _player);
 			member->SetCoordinates(Point(randomDistance * cos(randomAngle) + screenCenter.x, randomDistance * sin(randomAngle) + screenCenter.y));
 
 			_npcs->push_back(move(member));
-		}
-		
+		}		
 	}
-	wavenumber++;
+	_waveNumber++;
 }

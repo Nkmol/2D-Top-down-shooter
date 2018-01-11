@@ -9,6 +9,8 @@
 #include "Explosion.h"
 #include "WaveController.h"
 #include "Wave.h"
+#include "../Engine/UIText.h"
+#include "../Engine/UIIcon.h"
 
 
 class EnemyBase;
@@ -21,8 +23,8 @@ class GameObject;
 
 class Event;
 
+
 class Level {
-    InputManager &inputManager;
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::unique_ptr<EnemyBase>> _npcs;
@@ -35,10 +37,20 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
+	std::unique_ptr<UIText> _UIWeapon;
+	std::unique_ptr<UIText> _UIBullets;
+	std::unique_ptr<UIText> _UIHealth;
+	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
 
-    void LoadLevel();
+	void LoadLevel();
 
     void LoadPlayer();
+
+	void LoadUIElements();
+
+	void ChangeWeapon(const int num);
+
+	int count = 0;
 
 public:
     explicit Level(int level, const std::string savedGame);
@@ -53,6 +65,8 @@ public:
 
     void Draw();
 
+	const Player& GetPlayer() const;
+
     const int GetId() const { return _level; }
 
     void SetId(const int id) { _level = id; }
@@ -61,11 +75,11 @@ public:
 
     void SetWaves(const std::forward_list<Wave> waves) { _waves = waves; }
 
-    void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &objects);
+    void RemoveHiddenObjects(std::vector<std::shared_ptr<MoveableObject>> &_objects);
 
     void RemoveHiddenNpcs();
 
-    void RemoveHiddenExplosionObjects(std::vector<Explosion> &objects);
+    void RemoveHiddenExplosionObjects(std::vector<Explosion> &_objects);
 
     void AddExplosion(const Point &point);
 

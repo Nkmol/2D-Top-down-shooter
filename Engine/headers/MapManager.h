@@ -17,23 +17,29 @@ public:
 	MapManager(MapManager const&) = delete;
 	void operator=(MapManager const&) = delete;
 	static MapManager& Instance();
-	const std::vector<GameObject>* getCollidables() const;
+	//const std::vector<GameObject>* GetCollidables() const;
 
 	void Init(const std::string input);
 	void Render();
 	void RenderTilesText();
 	const SDL_Rect &GetMapRect() const;
 
+	void getNearbyCollidables(Point position, std::vector<GameObject*>* nearby);
+
 private:
-	SDL_Rect mapRect = SDL_Rect();
-	std::vector<GameObject> collidables;
-	TMX::Parser tmx;
-	TSX::Parser tsx;
-	static MapManager sInstance;
-	SDL_Texture* mapTexture;
+	std::vector<std::vector<std::unique_ptr<GameObject>>> _newCollidables;
+	//std::vector<GameObject> collidables;
+
+	SDL_Rect _mapRect = SDL_Rect();
+	//std::vector<GameObject> _collidables;
+	TMX::Parser _tmx;
+	TSX::Parser _tsx;
+	static MapManager _instance;
+	SDL_Texture* _mapTexture;
+
 	MapManager();
-	std::map<int, SDL_Rect> tilesMap;
-	vector<vector<int>> tileLayers;
+	std::map<int, SDL_Rect> _tilesMap;
+	vector<vector<int>> _tileLayers;
 
 	template<typename Out>
 	void Split(const std::string &s, char delim, Out result);

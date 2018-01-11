@@ -2,6 +2,8 @@
 #include "Engine.h"
 #include <SDL.h>
 #include <iostream>
+#include <SDL_ttf.h>
+#include <SDL_image.h>
 
 Engine::Engine()
 {
@@ -9,6 +11,8 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 }
 

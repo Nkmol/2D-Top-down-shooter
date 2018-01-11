@@ -145,12 +145,15 @@
     <ClCompile Include="AIBat.cpp" />
     <ClCompile Include="AIDefault.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="ExplosionFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="InstructionsState.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -159,6 +162,7 @@
     <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Rifle.cpp" />
+    <ClCompile Include="StateGameOver.cpp" />
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -167,6 +171,7 @@
     <ClInclude Include="AIBat.h" />
     <ClInclude Include="AIDefault.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="CreditsState.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="ExplosionFactory.h" />
     <ClInclude Include="FactoryBehaviour.h" />
@@ -178,13 +183,16 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="IAIBase.h" />
+    <ClInclude Include="InstructionsState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateGameOver.h" />
     <ClInclude Include="Wave.h" />
     <ClInclude Include="WaveController.h" />
   </ItemGroup>
