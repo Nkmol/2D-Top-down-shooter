@@ -4,7 +4,6 @@
 
 #include "Player.h"
 #include "Bullet.h"
-#include <chrono>
 
 Player::Player(const std::string &filePath, const float x, const float y) :
         Player(filePath, Point{x, y}) {
@@ -116,17 +115,15 @@ void Player::Hit(int _damage) {
 	if (_isCheatActive) return;
 	
 	auto hittime = clock();
-	if (_lastHit + _invTime <= hittime)
+	if (difftime(hittime, _lastHit) >= _invTime)
 	{
 		_lastHit = hittime;
 		_lifepoints -= _damage;
 		if (_lifepoints <= 0) {
+			_lifepoints = 0;
 			this->ChangeState("dead");
 		}
 	}
-
-    
-
 }
 
 void Player::HandleAnimationFinished() {

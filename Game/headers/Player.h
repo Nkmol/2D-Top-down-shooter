@@ -11,8 +11,7 @@
 #include "Point.h"
 #include <Weapon.h>
 #include "PhysicsManager.h"
-#include <chrono>
-#include <ctime>
+#include <time.h>
 
 class Point;
 
@@ -25,7 +24,7 @@ class Player : public MoveableObject {
     int _highestLevel = 1;
 	bool _isCheatActive;
 	clock_t _lastHit = clock();
-	float _invTime = 500;
+	double _invTime = 500;
 
 public:
 	std::string teststring = "hoi";
