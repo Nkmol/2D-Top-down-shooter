@@ -22,7 +22,7 @@ public:
 private:
 	nlohmann::json _j;
 	float _lastWaveTimer, multiplier = 1.0;
-	int wavenumber = 1;
+	int _waveNumber = 1;
 	void SpawnWave();
 	std::forward_list<Wave> _waves;
 	std::forward_list<Wave>::iterator _curWave;
