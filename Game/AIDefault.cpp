@@ -12,8 +12,8 @@ void AIDefault::Update(float time)
 	auto& destinationPoint = _owner->GetDestinationPoint();
 
 	const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
-	const auto dir = Helper::radiansToDegrees(rad);
-	const auto correctedAngleRadians = Helper::degreesToRadians(dir - 90);
+	const auto dir = Helper::RadiansToDegrees(rad);
+	const auto correctedAngleRadians = Helper::DegreesToRadians(dir - 90);
 	_owner->SetAngle(dir);
 
 	_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
@@ -40,7 +40,7 @@ void AIDefault::Cohese()
 	massCenter = massCenter / othersSize;
 
 	auto& coordinates = _owner->GetCoordinates();
-	const auto forceDirection = Helper::calculateAngle(coordinates.x, coordinates.y, massCenter.x, massCenter.y);
+	const auto forceDirection = Helper::CalculateAngle(coordinates.x, coordinates.y, massCenter.x, massCenter.y);
 
 	_owner->ApplyForce(0.1, forceDirection);
 }
@@ -51,7 +51,7 @@ void AIDefault::Seperate()
 
 	for (const auto& other : *_owner->npcs) {
 			if (other.get() != _owner) {
-				const auto& oWeight = other->getWidth() * other->getHeight() * _weightMultiplier;
+				const auto& oWeight = other->GetWidth() * other->GetHeight() * _weightMultiplier;
 				const auto& oCoordinates = other->GetCoordinates();
 				const Point squared((oCoordinates.x - coordinates.x) * (oCoordinates.x - coordinates.x),
 					(oCoordinates.y - coordinates.y) * (oCoordinates.y - coordinates.y));
@@ -66,12 +66,14 @@ void AIDefault::Seperate()
 			}
 	}
 
+
 	std::vector<GameObject*> temp = {};
 	MapManager::Instance().getNearbyCollidables(coordinates, &temp);
 	for (const auto& other : temp) {
-		const auto& oX = other->getMidX();
-		const auto& oY = other->getMidY();
-		const auto& oWeight = other->getWidth() * other->getHeight() * COLLIDABLEWEIGHTMULTIPLIER;
+		const auto& oX = other->GetMidX();
+		const auto& oY = other->GetMidY();
+		const auto& oWeight = other->GetWidth() * other->GetHeight() * COLLIDABLEWEIGHTMULTIPLIER;
+
 		const auto& m = coordinates;
 		const Point squared((oX - m.x) * (oX - m.x), (oY - m.y) * (oY - m.y));
 		const auto squareDist = squared.x + squared.y;

@@ -8,11 +8,11 @@
 
 class Helper{
 public:
-    static int calculateAngle(float x1, float y1, float x2, float y2);
-    static float degreesToRadians(double degrees);
-    static int distance(float x1, float y1, float x2, float y2);
-    static int correctAngle(int angle);
-    static float radiansToDegrees(double radians);
+    static int CalculateAngle(float x1, float y1, float x2, float y2);
+    static float DegreesToRadians(double degrees);
+    static int Distance(float x1, float y1, float x2, float y2);
+    static int CorrectAngle(int angle);
+    static float RadiansToDegrees(double radians);
 };
 
 namespace HelperClasses

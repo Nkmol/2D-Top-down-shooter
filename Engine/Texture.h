@@ -5,31 +5,37 @@
 
 class Texture
 {
-	SDL_Texture* _texture;
+	typedef std::unique_ptr<SDL_Texture, CustomDeleter> TextureType;
+	TextureType _texture;
 
 public:
-	Texture(SDL_Surface* surface)
+	// Only init with Surface
+	int width{}, height{};
+	Texture() = default;
+
+	explicit Texture(SDL_Surface* surface)
 	{
-		_texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface);
+		width = surface->w;
+		height = surface->h;
+
+		const auto& t = RenderManager::Instance().GetRenderer();
+		_texture = TextureType(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface));
+		SDL_FreeSurface(surface);
 	}
 
-	Texture(SDL_Texture* texture)
+	explicit Texture(SDL_Texture* texture)
 	{
-		_texture = texture;
+		_texture = TextureType(texture);
 	}
 
-	Texture(std::string token)
+	explicit Texture(const std::string& token)
 	{
-		_texture = SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), AssetManager::Instance().LoadSurface(token));
+		_texture = TextureType(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), AssetManager::Instance().LoadSurface(token)));
 	}
 
-	~Texture()
+	// TODO: Return the smartptr
+	SDL_Texture* GetTexture() const
 	{
-		SDL_DestroyTexture(_texture);
-	}
-
-	SDL_Texture* GetTexture()
-	{
-		return _texture;
+		return _texture.get();
 	}
 };

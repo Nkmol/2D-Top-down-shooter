@@ -7,7 +7,8 @@
 #include "Button.h"
 #include "MenuState.h"
 
-PausedState::PausedState() {
+PausedState::PausedState() : _UIPauseText("Press ESC to resume game", 24, { config::width / 2 - 155, config::height / 2 - 20 }) 
+{
 }
 
 PausedState::~PausedState() {
@@ -36,12 +37,11 @@ void PausedState::Update(Game &game, float time) {
 void PausedState::Draw(Game &game) {
 	// Draw previous state (the game)
     game.GetStateBack(1)->Draw(game);
-    RenderManager::Instance().DrawText("Press ESC to resume game", config::width / 2 - 155, config::height / 2 - 20,
-                                       360, 40);
+	_UIPauseText.Draw();
 
     // Draw all buttons
     for (auto &button : _buttons) {
-        button->draw();
+        button->Draw();
     }
 }
 

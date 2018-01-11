@@ -5,31 +5,31 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 	angle(0),
 	_coordinates(coordinates), width(width), height(height)
 {
-	visible = true;
+	_visible = true;
 	midX = _coordinates.x + width / 2;
 	midY = _coordinates.y + height / 2;
 	radius = (width + height) / 4;
 }
 
-GameObject::GameObject(const std::string &spriteToken, const Point coordinates) : _coordinates(coordinates) {
-    _sprite = AssetManager::Instance().LoadTexture(spriteToken);
+GameObject::GameObject(const std::string &_spriteToken, const Point coordinates) : _coordinates(coordinates) {
+    _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
 	// TODO Move to RenderManager
     SDL_QueryTexture(_sprite->GetTexture(), nullptr, nullptr, &this->width, &this->height);
-    visible = true;
+    _visible = true;
     midX = _coordinates.x + width / 2;
     midY = _coordinates.y + height / 2;
     radius = (width + height) / 4;
-    this->spriteToken = spriteToken;
+    this->_spriteToken = _spriteToken;
 }
 
 GameObject::GameObject(const GameObject& other) : width(other.width), height(other.height), angle(other.angle),
                                                   radius(other.radius),
                                                   midX(other.midX),
                                                   midY(other.midY),
-                                                  _coordinates(other._coordinates), visible(other.visible),
+                                                  _coordinates(other._coordinates), _visible(other._visible),
 												  // TODO Would be cool to copy this directly
-                                                  _sprite(AssetManager::Instance().LoadTexture(other.spriteToken)),
-                                                  spriteToken{other.spriteToken}
+                                                  _sprite(AssetManager::Instance().LoadTexture(other._spriteToken)),
+                                                  _spriteToken{other._spriteToken}
 
 {
 }
@@ -49,23 +49,23 @@ void GameObject::SetIsCollidable(bool isCollidable)
 	_isCollidable = isCollidable;
 }
 
-const int GameObject::getMidX() const {
+const int GameObject::GetMidX() const {
     return midX;
 }
 
-const int GameObject::getMidY() const {
+const int GameObject::GetMidY() const {
     return midY;
 }
 
-const int GameObject::getRadius() const {
+const int GameObject::GetRadius() const {
     return radius;
 }
 
-int GameObject::getWidth() const {
+int GameObject::GetWidth() const {
     return width;
 }
 
-int GameObject::getHeight() const {
+int GameObject::GetHeight() const {
     return height;
 }
 
@@ -86,14 +86,14 @@ const SDL_Rect GameObject::GetRect() const {
     return rect;
 }
 
-void GameObject::draw() {
-    if (!visible) return;
+void GameObject::Draw() {
+    if (!_visible) return;
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
     RenderManager::Instance().DrawTexture(_sprite->GetTexture(), nullptr, &destinationRectangle, angle);
 }
 
-int GameObject::getAngle() const {
+int GameObject::GetAngle() const {
     return angle;
 }
 
@@ -101,15 +101,15 @@ void GameObject::SetAngle(const int angle) {
     this->angle = angle;
 }
 
-void GameObject::hide() {
-    visible = false;
+void GameObject::Hide() {
+    _visible = false;
 }
 
-bool GameObject::isVisible() const {
-    return visible;
+bool GameObject::IsVisible() const {
+    return _visible;
 }
 
 string GameObject::GetSpriteToken() const {
-    return this->spriteToken;
+    return this->_spriteToken;
 }
 

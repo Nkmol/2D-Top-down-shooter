@@ -8,20 +8,20 @@
 #include "Bullet.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed,
-                     const bool isLeader, const int damage, const int lifepoints, const int reward) :
-        EnemyBase(filePath, Point{xPos, yPos}, speed, isLeader, damage, lifepoints, reward) {
-    _type = ENEMY;
+                     const bool isLeader, const int _damage, const int lifepoints, const int reward) :
+        EnemyBase(filePath, Point{xPos, yPos}, speed, isLeader, _damage, lifepoints, reward) {
+    type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, const float speed, const bool isLeader,
-                     const int damage, const int lifepoints, const int reward) :
+                     const int _damage, const int lifepoints, const int reward) :
         MoveableObject(filePath, coordinates, speed),
         _behaviour(make_unique<AIDefault>(*this, 100, isLeader)),
         lifepoints(lifepoints),
-        damage(damage),
+        _damage(_damage),
         reward(reward),
         destinationPoint{coordinates} {
-    _type = ENEMY;
+    type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player) : EnemyBase{j.at("type").get<string>(),
@@ -34,7 +34,7 @@ EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyB
     auto a = FactoryBehaviour::Instance().Create(j.at("behaviour").get<std::string>());
     a->SetWeightMultiplier(j.at("weightmultiplier").get<int>());
     _behaviour = move(a);
-    _type = ENEMY;
+    type = ENEMY;
 	_behaviour->SetOwner(*this);
 	npcs = { npcList };
 	_player = { player };
@@ -44,10 +44,10 @@ EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyB
 EnemyBase::EnemyBase(const EnemyBase &other) : MoveableObject(other),
                                                _behaviour(other._behaviour->Clone()),
                                                lifepoints(other.lifepoints),
-                                               damage(other.damage), reward(other.reward),
+                                               _damage(other._damage), reward(other.reward),
                                                destinationPoint(other._coordinates) {
     _behaviour->SetOwner(*this);
-    _type = ENEMY;
+    type = ENEMY;
 }
 
 EnemyBase::~EnemyBase() = default;
@@ -62,15 +62,16 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
 void EnemyBase::UpdatePosition(const float time)
 {
 	_behaviour->Update(time);
-    update(time);
+    Update(time);
 }
 
-void EnemyBase::update(const float time) {
-    const auto newPostition = _coordinates + (_destination * speed * time);
+void EnemyBase::Update(const float time) {
+    const auto newPostition = _coordinates + (destination * speed * time);
 
-    //PhysicsManager::Instance().checkNewStaticObjectCollision(this, newPostition);
-    PhysicsManager::Instance().checkMoveableCollision(this, newPostition);
-    MoveableObject::update(time);
+
+    //PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
+    PhysicsManager::Instance().CheckMoveableCollision(this, newPostition);
+    MoveableObject::Update(time);
 }
 
 const Point &EnemyBase::GetDestinationPoint() const {
@@ -86,28 +87,28 @@ void EnemyBase::SetDestinationPoint(const Point &point) {
 }
 
 void EnemyBase::SetDestination(const Point &point) {
-    _destination = point;
+    destination = point;
 }
 
-const int EnemyBase::getLifepoints() const {
+const int EnemyBase::GetLifepoints() const {
     return lifepoints;
 }
 
-const int EnemyBase::changeLifepoints(const int lp) {
+const int EnemyBase::ChangeLifepoints(const int lp) {
     lifepoints += lp;
     return lifepoints;
 }
 
-const int EnemyBase::getDamage() const {
-    return damage;
+const int EnemyBase::GetDamage() const {
+    return _damage;
 }
 
-const int EnemyBase::getReward() const {
+const int EnemyBase::GetReward() const {
     return reward;
 }
 
-void EnemyBase::onBaseCollision(MoveableObject *object) {
-    switch (object->getType()) {
+void EnemyBase::OnBaseCollision(MoveableObject *object) {
+    switch (object->GetType()) {
         case BULLET:
             onCollision(dynamic_cast<Bullet *>(object));
             break;
@@ -122,34 +123,34 @@ void EnemyBase::onBaseCollision(MoveableObject *object) {
     }
 }
 
-void EnemyBase::onBaseCollision(GameObject *object) {
+void EnemyBase::OnBaseCollision(GameObject *object) {
 
 }
 
 void EnemyBase::onCollision(MoveableObject *object) {
-    MoveableObject::stopMove();
+    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(Bullet *bullet) {
-    lifepoints -= bullet->getDamage();
+    lifepoints -= bullet->GetDamage();
     if (lifepoints < 0) {
-        hide();
+        Hide();
     }
 
-    bullet->onBaseCollision(true);
+    bullet->OnBaseCollision(true);
 
-    MoveableObject::stopMove();
+    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(EnemyBase *enemy) {
-    MoveableObject::stopMove();
+    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(Player *player) {
-    player->Hit(damage);
-    MoveableObject::stopMove();
+    player->Hit(_damage);
+    MoveableObject::StopMove();
 }
 
-void EnemyBase::onBaseCollision(bool isWall) {
-    MoveableObject::stopMove();
+void EnemyBase::OnBaseCollision(bool isWall) {
+    MoveableObject::StopMove();
 }

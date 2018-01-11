@@ -4,16 +4,16 @@
 AudioManager& AudioManager::Instance()
 {
 	// TODO to refernece, can never be nullptr (should never)
-	static AudioManager sInstance; // Guaranteed to be destroyed.
+	static AudioManager _instance; // Guaranteed to be destroyed.
 									// Instantiated on first use.
 
-	return sInstance;
+	return _instance;
 }
 
 AudioManager::AudioManager()
 {
-	gBGM = nullptr;
-	gEffectM = nullptr;
+	_bgm = nullptr;
+	_effectMusic = nullptr;
 }
 
 int AudioManager::InitMusicPlayer()
@@ -39,8 +39,8 @@ int AudioManager::LoadBGM(string audioToken)
 {
 	//Load music
 	//gBGM = Mix_LoadMUS(name);
-	gBGM = AssetManager::Instance().LoadBGM(audioToken);
-	if (gBGM == NULL)
+	_bgm = AssetManager::Instance().LoadBGM(audioToken);
+	if (_bgm == NULL)
 	{
 		cout << "Failed to load beat music! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
 		return 1;
@@ -52,13 +52,13 @@ int AudioManager::LoadBGM(string audioToken)
 int AudioManager::PlayEffect(string audioToken)
 {
 	//Mix_Chunk* effectM = Mix_LoadWAV(name);
-	gEffectM = AssetManager::Instance().LoadEffect(audioToken);
-	if (gEffectM == NULL)
+	_effectMusic = AssetManager::Instance().LoadEffect(audioToken);
+	if (_effectMusic == NULL)
 	{
 		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
 		return 1;
 	}
-	Mix_PlayChannel(-1, gEffectM, 0);
+	Mix_PlayChannel(-1, _effectMusic, 0);
 	return 0;
 }
 
@@ -69,7 +69,7 @@ void AudioManager::PlayBGM()
 	if (Mix_PlayingMusic() == 0)
 	{
 		//Play the music
-		Mix_PlayMusic(gBGM, -1);
+		Mix_PlayMusic(_bgm, -1);
 	}
 }
 
@@ -103,8 +103,8 @@ void AudioManager::StopBGM()
 void AudioManager::Close()
 {
 	//Free the music
-	Mix_FreeMusic(gBGM);
-	gBGM = NULL;
+	Mix_FreeMusic(_bgm);
+	_bgm = NULL;
 
 	//Quit SDL subsystems
 	Mix_Quit();

@@ -7,21 +7,18 @@
 #include "RenderManager.h"
 #include "Config.h"
 #include "Level.h"
-#include "MapManager.h"
 
-Game::Game()
-{
-}
+Game::Game() = default;
 
-Game::~Game()
-{
-}
+Game::~Game() = default;
 
 void Game::Init()
 {
 	_mainManager.Init();
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
+	// Init after window renderer has been created
+	_fpsUI = std::move(UIText{ "0.00", 48,{ 20, 20 } });
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -63,7 +60,7 @@ void Game::ClearStates()
 
 void Game::Quit()
 {
-	isRunning = false;
+	_isRunning = false;
 }
 
 void Game::Run(const unsigned int targetFps)
@@ -94,8 +91,8 @@ void Game::Run(const unsigned int targetFps)
 	});
 	#pragma endregion 
 
-	isRunning = true;;
-	timer.Run(isRunning);
+	_isRunning = true;;
+	timer.Run(_isRunning);
 }
 
 void Game::HandleEvents()
@@ -123,11 +120,12 @@ void Game::Draw()
 	auto& renderManager = RenderManager::Instance();
 	renderManager.Clear();
 	_states.back()->Draw(*this);
+
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(2) << _fps;
-
-	renderManager.DrawText(str.str(), 20, 20, 70, 20);
+	_fpsUI.ChangeText(str.str());
+	_fpsUI.Draw();
 
 	renderManager.Render();
 }

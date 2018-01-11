@@ -3,6 +3,7 @@
 #include "State.h"
 #include "Button.h"
 #include <vector>
+#include "../Engine/UIText.h"
 
 class PausedState : public State {
 public:
@@ -20,5 +21,6 @@ public:
 
 private:
 	vector<unique_ptr<Button>> _buttons;
+	UIText _UIPauseText;
 };
 
