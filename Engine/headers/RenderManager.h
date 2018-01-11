@@ -17,7 +17,7 @@ using namespace std;
 
 class RenderManager {
 public:
-	inline static const Point WINDOW_CENTER = { config::height / 2, config::width / 2 };
+	//inline static const Point WINDOW_CENTER = { config::height / 2, config::width / 2 };
 
 	RenderManager(RenderManager const&) = delete;
 	void operator=(RenderManager const&) = delete;
