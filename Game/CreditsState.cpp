@@ -9,22 +9,20 @@ CreditsState::~CreditsState()
 {
 }
 
-void CreditsState::HandleEvents(Game & game)
+void CreditsState::HandleEvents(Game & game, Event& ev)
 {
 	auto& inputManager = InputManager::Instance();
-	Event event;
-	while (inputManager.HasEvent(&event)) {
-		if (inputManager.IsQuit(event))
-			game.Quit();
-		if (inputManager.IsMouseClicked(event))
+	
+	if (inputManager.IsQuit(ev))
+		game.Quit();
+	if (inputManager.IsMouseClicked(ev))
+	{
+		// Check clicks on button
+		for (auto& button : _buttons)
 		{
-			// Check clicks on button
-			for (auto& button : _buttons)
-			{
-				if (button->IsClicked(event)) button->Click();
-			}
+			if (button->IsClicked(ev)) button->Click();
 		}
-	}
+	}	
 }
 
 void CreditsState::Update(Game & game, float time)
@@ -34,18 +32,18 @@ void CreditsState::Update(Game & game, float time)
 void CreditsState::Draw(Game & game)
 {
 	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
-	RenderManager::Instance().DrawText("THIS GAME IS CREATED BY:", config::width / 2 - 250, config::height / 3 - 170, 360, 40);
-	RenderManager::Instance().DrawText("Niels Kop", config::width / 2 - 250, config::height / 3 - 90, 360, 40);
-	RenderManager::Instance().DrawText("Sander Mol", config::width / 2 - 250, config::height / 3 - 10, 360, 40);
-	RenderManager::Instance().DrawText("Mevlut Ozdemir", config::width / 2 - 250, config::height / 3 + 80, 360, 40);
-	RenderManager::Instance().DrawText("Ahmad Rahimi", config::width / 2 - 250, config::height / 3 + 170, 360, 40);
-	RenderManager::Instance().DrawText("Jeroen Brekelmans", config::width / 2 - 250, config::height / 3 + 260, 360, 40);
-	RenderManager::Instance().DrawText("Jarric van Krieken", config::width / 2 - 250, config::height / 3 + 350, 360, 40);
+	//RenderManager::Instance().DrawText("THIS GAME IS CREATED BY:", config::width / 2 - 250, config::height / 3 - 170, 360, 40);
+	//RenderManager::Instance().DrawText("Niels Kop", config::width / 2 - 250, config::height / 3 - 90, 360, 40);
+	//RenderManager::Instance().DrawText("Sander Mol", config::width / 2 - 250, config::height / 3 - 10, 360, 40);
+	//RenderManager::Instance().DrawText("Mevlut Ozdemir", config::width / 2 - 250, config::height / 3 + 80, 360, 40);
+	//RenderManager::Instance().DrawText("Ahmad Rahimi", config::width / 2 - 250, config::height / 3 + 170, 360, 40);
+	//RenderManager::Instance().DrawText("Jeroen Brekelmans", config::width / 2 - 250, config::height / 3 + 260, 360, 40);
+	//RenderManager::Instance().DrawText("Jarric van Krieken", config::width / 2 - 250, config::height / 3 + 350, 360, 40);
 
 	// Draw all buttons
 	for (auto& button : _buttons)
 	{
-		button->draw();
+		button->Draw();
 	}
 }
 

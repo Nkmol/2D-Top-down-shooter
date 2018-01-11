@@ -33,6 +33,7 @@ private:
 	Button _level2;
 	Button _level3;
 	Button _advertisement;
+	std::vector<Button> _allButtons;
 
 	std::vector<std::vector<std::string>> _advertisementsLinks;
 	int _adnr;

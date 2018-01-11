@@ -10,20 +10,18 @@ InstructionsState::~InstructionsState()
 {
 }
 
-void InstructionsState::HandleEvents(Game& game)
+void InstructionsState::HandleEvents(Game& game, Event& ev)
 {
 	auto& inputManager = InputManager::Instance();
-	Event event;
-	while (inputManager.HasEvent(&event)) {
-		if (inputManager.IsQuit(event))
-			game.Quit();
-		if (inputManager.IsMouseClicked(event))
+	
+	if (inputManager.IsQuit(ev))
+		game.Quit();
+	if (inputManager.IsMouseClicked(ev))
+	{
+		// Check clicks on button
+		for (auto& button : _buttons)
 		{
-			// Check clicks on button
-			for (auto& button : _buttons)
-			{
-				if (button->IsClicked(event)) button->Click();
-			}
+			if (button->IsClicked(ev)) button->Click();
 		}
 	}
 }
@@ -34,19 +32,19 @@ void InstructionsState::Update(Game & game, float time)
 
 void InstructionsState::Draw(Game & game)
 {
-	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
-	RenderManager::Instance().DrawText("First person shooter", config::width / 2 - 250, config::height / 3 - 170, 160, 40);
-	//RenderManager::Instance().DrawText("Kill all the enemies to win the game", config::width / 2 - 250, config::height / 3 - 120, 160, 40);
-	RenderManager::Instance().DrawText("Controls: ", config::width / 2 - 250, config::height / 3 - 100, 160, 25);
-	RenderManager::Instance().DrawText("Moving: W,A,S & D ", config::width / 2 - 250, config::height / 3 - 50, 160, 25);
-	RenderManager::Instance().DrawText("Aiming: Mouse move", config::width / 2 - 250, config::height / 3 - 0, 160, 25);
-	RenderManager::Instance().DrawText("Shooting: Left Mouse button", config::width / 2 - 250, config::height / 3 + 50, 160, 25);
-	RenderManager::Instance().DrawText("Pause: Esc Button", config::width / 2 - 250, config::height / 3 + 100, 160, 25);
+	//RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+	//RenderManager::Instance().DrawText("First person shooter", config::width / 2 - 250, config::height / 3 - 170, 160, 40);
+	////RenderManager::Instance().DrawText("Kill all the enemies to win the game", config::width / 2 - 250, config::height / 3 - 120, 160, 40);
+	//RenderManager::Instance().DrawText("Controls: ", config::width / 2 - 250, config::height / 3 - 100, 160, 25);
+	//RenderManager::Instance().DrawText("Moving: W,A,S & D ", config::width / 2 - 250, config::height / 3 - 50, 160, 25);
+	//RenderManager::Instance().DrawText("Aiming: Mouse move", config::width / 2 - 250, config::height / 3 - 0, 160, 25);
+	//RenderManager::Instance().DrawText("Shooting: Left Mouse button", config::width / 2 - 250, config::height / 3 + 50, 160, 25);
+	//RenderManager::Instance().DrawText("Pause: Esc Button", config::width / 2 - 250, config::height / 3 + 100, 160, 25);
 
 	// Draw all buttons
 	for (auto& button : _buttons)
 	{
-		button->draw();
+		button->Draw();
 	}
 }
 
@@ -58,4 +56,9 @@ void InstructionsState::Init(Game& game)
 		// Set clears all states and sets a states
 		game.SetState(make_unique<MenuState>());
 	}));
+
+
+
+
+
 }

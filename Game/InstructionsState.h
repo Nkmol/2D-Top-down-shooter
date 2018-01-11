@@ -14,7 +14,7 @@ public:
 
 	~InstructionsState();
 
-	void HandleEvents(Game &game) override;
+	void HandleEvents(Game &game, Event &ev) override;
 
 	void Update(Game &game, float time) override;
 
