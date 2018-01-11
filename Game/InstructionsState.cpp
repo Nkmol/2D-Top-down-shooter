@@ -32,14 +32,12 @@ void InstructionsState::Update(Game & game, float time)
 
 void InstructionsState::Draw(Game & game)
 {
-	//RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
-	//RenderManager::Instance().DrawText("First person shooter", config::width / 2 - 250, config::height / 3 - 170, 160, 40);
-	////RenderManager::Instance().DrawText("Kill all the enemies to win the game", config::width / 2 - 250, config::height / 3 - 120, 160, 40);
-	//RenderManager::Instance().DrawText("Controls: ", config::width / 2 - 250, config::height / 3 - 100, 160, 25);
-	//RenderManager::Instance().DrawText("Moving: W,A,S & D ", config::width / 2 - 250, config::height / 3 - 50, 160, 25);
-	//RenderManager::Instance().DrawText("Aiming: Mouse move", config::width / 2 - 250, config::height / 3 - 0, 160, 25);
-	//RenderManager::Instance().DrawText("Shooting: Left Mouse button", config::width / 2 - 250, config::height / 3 + 50, 160, 25);
-	//RenderManager::Instance().DrawText("Pause: Esc Button", config::width / 2 - 250, config::height / 3 + 100, 160, 25);
+	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+
+	_miniBackground->Draw();
+
+	for (auto& t : _texts)
+		t.Draw();
 
 	// Draw all buttons
 	for (auto& button : _buttons)
@@ -57,8 +55,11 @@ void InstructionsState::Init(Game& game)
 		game.SetState(make_unique<MenuState>());
 	}));
 
-
-
-
-
+	_miniBackground = std::make_unique<UIIcon>(UIIcon("zwartkader", { config::width / 2 - 270, config::height / 3 - 180 }, 150));
+	_texts.push_back({ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } });
+	_texts.push_back({ "Moving: W,A,S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } });
+	_texts.push_back({ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } });
+	_texts.push_back({ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } });
+	_texts.push_back({ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } });
+	_texts.push_back({ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} });
 }

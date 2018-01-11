@@ -1,12 +1,13 @@
 #pragma once
 
-#include <string>
 #include "State.h"
 #include "Config.h"
 #include "InputManager.h"
 #include "Game.h"
 #include "Button.h"
 #include "MenuState.h"
+#include "../Engine/UIText.h"
+#include "../Engine/UIIcon.h"
 
 class InstructionsState : public State {
 public:
@@ -24,6 +25,8 @@ public:
 
 private:
 
-	vector<unique_ptr<Button>> _buttons;
+	std::vector<unique_ptr<Button>> _buttons;
 	std::unique_ptr<Texture> _background;
+	std::vector<UIText> _texts;
+	std::unique_ptr<UIIcon> _miniBackground;
 };
