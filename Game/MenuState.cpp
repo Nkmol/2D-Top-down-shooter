@@ -19,91 +19,117 @@ MenuState::~MenuState() {
     RenderManager::Instance().Clear();
 }
 
-void MenuState::HandleEvents(Game &game) {
+void MenuState::HandleEvents(Game &game, Event& ev) {
     auto &inputManager = InputManager::Instance();
-    Event ev;
-    while (inputManager.HasEvent(&ev)) {
-        if (inputManager.IsQuit(ev))
-            game.Quit();
-        else if (inputManager.IsMouseClicked(ev)) {
-            if (ev.GetEventValue().button.x > _newgameButton.getX1() &&
-                ev.GetEventValue().button.x < _newgameButton.getX2() &&
-                ev.GetEventValue().button.y > _newgameButton.getY1() &&
-                ev.GetEventValue().button.y < _newgameButton.getY2()) {
-                //New game
-            } else if (ev.GetEventValue().button.x > _loadgameButton.getX1() &&
-                       ev.GetEventValue().button.x < _loadgameButton.getX2() &&
-                       ev.GetEventValue().button.y > _loadgameButton.getY1() &&
-                       ev.GetEventValue().button.y < _loadgameButton.getY2()) {
-                //Load Game
-                fs::path path{fs::current_path().parent_path()};
 
-                path += "\\content\\saves";
-                std::string str = path.string();
+	if (inputManager.IsQuit(ev))
+		game.Quit();
+	else if (inputManager.IsMouseClicked(ev))
+	{
+		if (ev.GetEventValue().button.x > _newgameButton.getX1() &&
+			ev.GetEventValue().button.x < _newgameButton.getX2() &&
+			ev.GetEventValue().button.y > _newgameButton.getY1() &&
+			ev.GetEventValue().button.y < _newgameButton.getY2())
+		{
+			//New game
+		}
+		else if (ev.GetEventValue().button.x > _loadgameButton.getX1() &&
+			ev.GetEventValue().button.x < _loadgameButton.getX2() &&
+			ev.GetEventValue().button.y > _loadgameButton.getY1() &&
+			ev.GetEventValue().button.y < _loadgameButton.getY2())
+		{
+			//Load Game
+			fs::path path{fs::current_path().parent_path()};
 
-                nfdchar_t *outPath = NULL;
-                nfdresult_t result = NFD_OpenDialog("json", str.c_str(), &outPath);
-                if (result == NFD_OKAY) {
-                    //std::regex r("\.json$");
-                    //if (!std::regex_match(outPath, r)) return;
+			path += "\\content\\saves";
+			std::string str = path.string();
 
-                    _savedGame = outPath;
+			nfdchar_t* outPath = NULL;
+			nfdresult_t result = NFD_OpenDialog("json", str.c_str(), &outPath);
+			if (result == NFD_OKAY)
+			{
+				//std::regex r("\.json$");
+				//if (!std::regex_match(outPath, r)) return;
 
-                    free(outPath);
-                    std::ifstream i;
-                    i.exceptions(ifstream::failbit | ifstream::badbit);
-                    try {
-                        i.open(_savedGame);
-                    }
-                    catch (const ifstream::failure &) {
-                        cout << "Exception opening/reading file" << endl;
-                        return;
-                    }
-                    nlohmann::json j;
-                    i >> j;
+				_savedGame = outPath;
 
-                    _highestLevel = j.at("highestLevel").get<int>();
-                } else if (result == NFD_CANCEL) {
-                    puts("User pressed cancel.");
-                } else {
-                    printf("Error: %s\n", NFD_GetError());
-                }
-            } else if (ev.GetEventValue().button.x > _creditsButton.getX1() &&
-                       ev.GetEventValue().button.x < _creditsButton.getX2() &&
-                       ev.GetEventValue().button.y > _creditsButton.getY1() &&
-                       ev.GetEventValue().button.y < _creditsButton.getY2()) {
-                //Credits
-            } else if (ev.GetEventValue().button.x > _instructions.getX1() &&
-                       ev.GetEventValue().button.x < _instructions.getX2() &&
-                       ev.GetEventValue().button.y > _instructions.getY1() &&
-                       ev.GetEventValue().button.y < _instructions.getY2()) {
-                //Instructions
-            } else if (ev.GetEventValue().button.x > _quitButton.getX1() &&
-                       ev.GetEventValue().button.x < _quitButton.getX2() &&
-                       ev.GetEventValue().button.y > _quitButton.getY1() &&
-                       ev.GetEventValue().button.y < _quitButton.getY2()) {
-                game.Quit();
-            } else if (ev.GetEventValue().button.x > _muteButton.getX1() &&
-                       ev.GetEventValue().button.x < _muteButton.getX2() &&
-                       ev.GetEventValue().button.y > _muteButton.getY1() &&
-                       ev.GetEventValue().button.y < _muteButton.getY2()) {
-                AudioManager::Instance().PauseResumeBGM();
-            } else if (ev.GetEventValue().button.x > _level1.getX1() && ev.GetEventValue().button.x < _level1.getX2() &&
-                       ev.GetEventValue().button.y > _level1.getY1() && ev.GetEventValue().button.y < _level1.getY2()) {
-                if (_highestLevel >= 1) {
-                    StartLevel(1, game);
-                }
-            } else if (ev.GetEventValue().button.x > _level2.getX1() && ev.GetEventValue().button.x < _level2.getX2() &&
-                       ev.GetEventValue().button.y > _level2.getY1() && ev.GetEventValue().button.y < _level2.getY2()) {
-                if (_highestLevel >= 2)
-                    StartLevel(2, game);
-            } else if (ev.GetEventValue().button.x > _level3.getX1() && ev.GetEventValue().button.x < _level3.getX2() &&
-                       ev.GetEventValue().button.y > _level3.getY1() && ev.GetEventValue().button.y < _level3.getY2()) {
-                //if (_highestLevel >= 3)
-                //StartLevel(3, game);
-            }
-        }
-    }
+				free(outPath);
+				std::ifstream i;
+				i.exceptions(ifstream::failbit | ifstream::badbit);
+				try
+				{
+					i.open(_savedGame);
+				}
+				catch (const ifstream::failure&)
+				{
+					cout << "Exception opening/reading file" << endl;
+					return;
+				}
+				nlohmann::json j;
+				i >> j;
+
+				_highestLevel = j.at("highestLevel").get<int>();
+			}
+			else if (result == NFD_CANCEL)
+			{
+				puts("User pressed cancel.");
+			}
+			else
+			{
+				printf("Error: %s\n", NFD_GetError());
+			}
+		}
+		else if (ev.GetEventValue().button.x > _creditsButton.getX1() &&
+			ev.GetEventValue().button.x < _creditsButton.getX2() &&
+			ev.GetEventValue().button.y > _creditsButton.getY1() &&
+			ev.GetEventValue().button.y < _creditsButton.getY2())
+		{
+			//Credits
+		}
+		else if (ev.GetEventValue().button.x > _instructions.getX1() &&
+			ev.GetEventValue().button.x < _instructions.getX2() &&
+			ev.GetEventValue().button.y > _instructions.getY1() &&
+			ev.GetEventValue().button.y < _instructions.getY2())
+		{
+			//Instructions
+		}
+		else if (ev.GetEventValue().button.x > _quitButton.getX1() &&
+			ev.GetEventValue().button.x < _quitButton.getX2() &&
+			ev.GetEventValue().button.y > _quitButton.getY1() &&
+			ev.GetEventValue().button.y < _quitButton.getY2())
+		{
+			game.Quit();
+		}
+		else if (ev.GetEventValue().button.x > _muteButton.getX1() &&
+			ev.GetEventValue().button.x < _muteButton.getX2() &&
+			ev.GetEventValue().button.y > _muteButton.getY1() &&
+			ev.GetEventValue().button.y < _muteButton.getY2())
+		{
+			AudioManager::Instance().PauseResumeBGM();
+		}
+		else if (ev.GetEventValue().button.x > _level1.getX1() && ev.GetEventValue().button.x < _level1.getX2() &&
+			ev.GetEventValue().button.y > _level1.getY1() && ev.GetEventValue().button.y < _level1.getY2())
+		{
+			if (_highestLevel >= 1)
+			{
+				StartLevel(1, game);
+			}
+			else if (_advertisement.IsClicked(ev)) _advertisement.Click();
+		}
+		else if (ev.GetEventValue().button.x > _level2.getX1() && ev.GetEventValue().button.x < _level2.getX2() &&
+			ev.GetEventValue().button.y > _level2.getY1() && ev.GetEventValue().button.y < _level2.getY2())
+		{
+			if (_highestLevel >= 2)
+				StartLevel(2, game);
+		}
+		else if (ev.GetEventValue().button.x > _level3.getX1() && ev.GetEventValue().button.x < _level3.getX2() &&
+			ev.GetEventValue().button.y > _level3.getY1() && ev.GetEventValue().button.y < _level3.getY2())
+		{
+			//if (_highestLevel >= 3)
+			//StartLevel(3, game);
+		}
+		else if (_advertisement.IsClicked(ev)) _advertisement.Click();
+	}
 }
 
 void MenuState::Update(Game &game, float time) {
@@ -113,19 +139,20 @@ void MenuState::Update(Game &game, float time) {
 void MenuState::Draw(Game &game) {
     RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
 
-    _newgameButton.draw();
-    _loadgameButton.draw();
-    _creditsButton.draw();
-    _muteButton.draw();
-    _quitButton.draw();
-    _instructions.draw();
+    _newgameButton.Draw();
+    _loadgameButton.Draw();
+    _creditsButton.Draw();
+    _muteButton.Draw();
+    _quitButton.Draw();
+    _instructions.Draw();
+	_advertisement.Draw();
 
     if (_highestLevel >= 1)
-        _level1.draw();
+        _level1.Draw();
     if (_highestLevel >= 2)
-        _level2.draw();
+        _level2.Draw();
     if (_highestLevel >= 3)
-        _level3.draw();
+        _level3.Draw();
 }
 
 
@@ -142,8 +169,15 @@ void MenuState::Init(Game & game)
     _level2 = Button("button_level2", 50, 300, 300, 50);
     _level3 = Button("button_level3", 50, 400, 300, 50);
 
-
     _muteButton = Button("button_mute", (config::width) - 100, (config::height) - 100, 75, 75);
+
+	_advertisementsLinks.push_back({ "advertisement/ad1", "https://nl.wikipedia.org/wiki/Canada" });
+	_advertisementsLinks.push_back({ "advertisement/ad2", "https://marktplaats.nl" });
+	_advertisementsLinks.push_back({ "advertisement/ad3", "https://google.nl" });
+
+	srand(time(0));
+	_adnr = rand() % _advertisementsLinks.size();
+	SetRandomAd();
 
     int muted = 0;
 }
@@ -154,4 +188,15 @@ void MenuState::StartLevel(const int level, Game& game)
     auto state = std::make_unique<PlayingState>(level, _savedGame);
     game.ChangeState(std::move(state));
     AudioManager::Instance().StopBGM();
+}
+
+void MenuState::SetRandomAd() {
+	_advertisement = Button(_advertisementsLinks.at(_adnr).at(0), Point(config::width / 6, config::height * 0.9), Point(config::width / 6 * 4, config::height * 0.1), [&]() {
+		auto temp = "start " + _advertisementsLinks.at(_adnr).at(1);
+		char *cstr = new char[temp.length() + 1];
+		strcpy(cstr, temp.c_str());
+		system(cstr);
+		delete[] cstr;
+	});
+	
 }

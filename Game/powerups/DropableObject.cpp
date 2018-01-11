@@ -9,14 +9,14 @@ DropableObject::DropableObject(const string &spriteToken, const Point &coordinat
                                                                                                  coordinates) {}
 
 void DropableObject::ActivateDropable(Player &player) {
-    this->hide();
+    this->Hide();
 }
 
 void DropableObject::checkForCollision(Player &player) {
-    if(this->visible){
+    if(this->IsVisible()){
         Point pCoordinates = player.GetCoordinates();
-        Point pOrigin = {(pCoordinates.x + (player.getWidth()/2)), (pCoordinates.y + (player.getHeight()/2))};
-        Point origin = {(_coordinates.x + (getWidth()/2)), (_coordinates.y + (getHeight()/2))};
+        Point pOrigin = {(pCoordinates.x + (player.GetWidth()/2)), (pCoordinates.y + (player.GetHeight()/2))};
+        Point origin = {(_coordinates.x + (GetWidth()/2)), (_coordinates.y + (GetHeight()/2))};
         float distance = int(abs(hypot(pOrigin.x - origin.x, pOrigin.y - origin.y)));
         if(distance < 32){
             ActivateDropable(player);

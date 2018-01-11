@@ -11,7 +11,7 @@ Button::Button(const std::string& mediatoken, int x1, int y1, int width, int hei
 	
 	// TODO Let GameObject handle this
 	GameObject::_sprite = AssetManager::Instance().LoadTexture(mediatoken);
-	GameObject::spriteToken = mediatoken;
+	GameObject::_spriteToken = mediatoken;
 }
 
 Button::Button(const std::string& mediatoken, const Point& startPosition, const Point& size) : Button(mediatoken, startPosition.x, startPosition.y, size.x, size.y)

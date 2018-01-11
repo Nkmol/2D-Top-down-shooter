@@ -12,16 +12,19 @@
 class Bullet : public MoveableObject {
 
 private:
-    int damage;
+    float BULLET_SPEED = 0.8f;
+
+    int _damage;
 public:
 
-    Bullet(const string &filePath, Point coordinates, int damage);
+    Bullet(const string &filePath, Point coordinates, int _damage);
 
-    void update(float time) override;
+    void Update(float time) override;
 
-    const int getDamage() const;
-	void onBaseCollision(MoveableObject * object);
-	void onBaseCollision(bool isCollidedOnWall);
+    const int GetDamage() const;
+	void SetDamage(int _damage);
+	void OnBaseCollision(MoveableObject * object);
+	void OnBaseCollision(bool isCollidedOnWall);
 };
 
 

@@ -13,7 +13,7 @@ class ExplosionFactory {
 private:
     std::map<string, Explosion> explosions;
 
-    static ExplosionFactory *sInstance;
+    static ExplosionFactory *_instance;
 
     ExplosionFactory();
 

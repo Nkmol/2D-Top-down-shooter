@@ -14,7 +14,7 @@ class Bullet;
 class Weapon {
 
 protected:
-    int damage;
+    int _damage;
     std::string name;
     int shooted = 0;
     int maxBullets;
@@ -23,23 +23,23 @@ protected:
     float lastShot;
 
 public:
-    Weapon(int damage, std::string name, int maxBullets, float fireRate);
+    Weapon(int _damage, std::string name, int maxBullets, float fireRate);
 
-    bool hasBullets();
+    bool HasBullets();
 
-    Bullet getBullet(int angle, Point coordinates);
+    int TotalBullets() const;
 
-    int totalBullets() const;
+    int GetShot() const;
 
-    int getShot() const;
-
-    int getMaxBullets() const;
+    int GetMaxBullets() const;
 
     void SetName(const std::string &v);
 
+	Bullet GetBullet(int angle, Point coordinates, bool &isCheatActive);
+
     void SetCurrentBullets(const int v);
 
-    std::string getName() const;
+    std::string GetName() const;
 
     void Reload();
 

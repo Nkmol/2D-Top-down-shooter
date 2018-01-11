@@ -31,11 +31,14 @@ set(SOURCE_FILES
         Game/AIDefault.cpp
         Game/Config.h
         Game/Shotgun.cpp
+        Game/Explosion.cpp
         Game/Shotgun.h
         Game/Wave.cpp
         Game/WaveController.cpp
         Game/Level.cpp
+        Game/StateGameOver.h
         Game/AIBat.cpp
+        Game/ExplosionFactory.cpp
         Game/Weapon.cpp
         Game/Helper.cpp
         Game/PausedState.h
@@ -44,39 +47,54 @@ set(SOURCE_FILES
         Game/Game.h
         Game/PausedState.cpp
         Game/MenuState.h
+        Game/ExplosionFactory.h
         Game/WaveController.h
         Game/Handgun.h
+        Game/Rifle.cpp
+        Game/StateGameOver.cpp
+        Game/Explosion.h
         Game/Wave.h
         Game/Bullet.cpp
         Game/State.h
-        Game/Rifle.cpp
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
-        Game/Explosion.cpp
-        Game/ExplosionFactory.cpp
-        Game/Explosion.h
+        Game/powerups/DropableObject.cpp
+        Game/powerups/PowerupModeFastShot.cpp
+        Game/powerups/PowerupMode.h
+        Game/powerups/PowerupMode.cpp
+        Game/powerups/DropableObject.h
+        Game/powerups/PowerupFastShot.h
+        Game/powerups/DropableFactory.cpp
+        Game/powerups/PowerupModeFastShot.h
+        Game/powerups/DropableFactory.h
+        Game/powerups/PowerupFastShot.cpp
+        Game/powerups/PowerupHP.cpp
+        Game/powerups/PowerupHP.h
         Game/headers/Helper.h
+        Game/headers/Rifle.h
         Game/headers/Player.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
-        Game/headers/Rifle.h
         Game/headers/EnemyBase.h
         Engine/Button.cpp
         Engine/MoveableObject.cpp
         Engine/CustomDeleter.h
         Engine/TickerTime.cpp
         Engine/GameObject.cpp
+        Engine/AnimationManager.cpp
+        Engine/UIText.cpp
         Engine/RenderManager.cpp
         Engine/PhysicsManager.cpp
         Engine/InputManager.cpp
+        Engine/UIText.h
         Engine/Point.cpp
         Engine/AssetManager.cpp
+        Engine/AnimationManager.h
         Engine/MapManager.cpp
+        Engine/Texture.h
         Engine/Engine.cpp
         Engine/AudioManager.cpp
-        Engine/AnimationManager.cpp
-        Engine/AnimationManager.h
         Engine/headers/RenderManager.h
         Engine/headers/Engine.h
         Engine/headers/MapManager.h
@@ -93,7 +111,7 @@ set(SOURCE_FILES
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
-        Engine/tmx/src/TSXParser.cpp Game/powerups/DropableObject.cpp Game/powerups/DropableObject.h Game/powerups/PowerupHP.cpp Game/powerups/PowerupHP.h Game/powerups/DropableFactory.cpp Game/powerups/DropableFactory.h Game/powerups/PowerupFastShot.cpp Game/powerups/PowerupFastShot.h Game/powerups/PowerupMode.cpp Game/powerups/PowerupMode.h Game/powerups/PowerupModeFastShot.cpp Game/powerups/PowerupModeFastShot.h)
+        Engine/tmx/src/TSXParser.cpp)
 add_executable(Shooter ${SOURCE_FILES})
 message(${CMAKE_SOURCE_DIR})
 target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/cmake/libs/libnfd.a)
