@@ -23,6 +23,9 @@ public:
 	void operator+=(const Point& p);
 	Point operator/(const float v) const;
 	friend bool operator<(const Point& p1, const Point& p2);
+
+	float Magnitude();
+	void Normalize();
 };
 
 

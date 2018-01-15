@@ -80,6 +80,7 @@ Point InputManager::GetDirection(Event &event) {
             direction += value.second;
     }
 
+
     return direction;
 }
 

@@ -119,6 +119,7 @@ void Level::HandleEvents(Event event) {
 
     Point direction = InputManager::Instance().GetDirection(event);
     int angle = InputManager::Instance().CalculateMouseAngle(*_player);
+	direction.Normalize();
 
     _player->SetAngle(angle);
     _player->Move(direction);
