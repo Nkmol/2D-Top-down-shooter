@@ -11,10 +11,7 @@ void AIDefault::Update(float time)
 
 	const auto separate = Seperate();
 	ApplyForce(separate);
-	
-	//int x = 0, y = 0;
-	//SDL_GetMouseState(&x, &y);
-	//auto to = seek({static_cast<float>(x), static_cast<float>(y)});
+
 	auto to = seek(*_target);
 	to *= 1;
 	ApplyForce(to);
@@ -28,7 +25,7 @@ void AIDefault::Update(float time)
 
 	const auto rad = atan2(to.y, to.x);
 	auto deg = Helper::RadiansToDegrees(rad);
-	deg -= 180;
+	deg -= 180; // TODO is quickfix
 	_owner->SetAngle(deg);
 
 	//std::cout << "Object wants to move to " << Point(float(x), float(y)) << " with a steering translation of " << acceleration_ << " relative on current coordinates " << _owner->GetCoordinates() << std::endl;
@@ -158,6 +155,25 @@ Point AIDefault::Seperate()
 	// For every boid in the system, check if it's too close
 	for (auto && other : *_owner->npcs)
 	{
+		const auto dist = _owner->GetCoordinates().dist(other->GetCoordinates());
+		if(dist > 0 && dist < desired_seperation)
+		{
+			// Calculate vector pointing away from neighbor
+			auto heading_vector = _owner->GetCoordinates() - other->GetCoordinates();
+
+			heading_vector.normalize();
+			heading_vector /= dist;
+
+			// The closer we are, the more intense the force vector will be
+			sum += heading_vector;
+
+			count++;
+		}
+	}
+
+	std::vector<GameObject*> temp = {};
+	MapManager::Instance().getNearbyCollidables(_owner->GetCoordinates(), &temp);
+	for (const auto& other : temp) {
 		const auto dist = _owner->GetCoordinates().dist(other->GetCoordinates());
 		if(dist > 0 && dist < desired_seperation)
 		{

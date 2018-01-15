@@ -7,7 +7,7 @@ class AIDefault :
 	public HelperClasses::CloneableBase<IAIBase, AIDefault>
 {
 	float _maxSpeed = 2.0;
-	float _maxForce = 0.1;
+	float _maxForce = 2.0;
 	Point acceleration_;
 	Point _velocity;
 public:
