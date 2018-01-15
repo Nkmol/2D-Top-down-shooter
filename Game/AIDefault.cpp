@@ -4,44 +4,39 @@
 void AIDefault::Update(float time)
 {
 	const auto align = Align();
-	//ApplyForce(align);
+	ApplyForce(align);
 
 	const auto cohese = Cohese();
-	//ApplyForce(cohese);
+	ApplyForce(cohese);
 
 	const auto separate = Seperate();
 	ApplyForce(separate);
 	
-	int x, y;
-	SDL_GetMouseState(&x, &y);
-	auto to = seek({static_cast<float>(x), static_cast<float>(y)});
+	//int x = 0, y = 0;
+	//SDL_GetMouseState(&x, &y);
+	//auto to = seek({static_cast<float>(x), static_cast<float>(y)});
+	auto to = seek(*_target);
 	to *= 1;
-
-	//ApplyForce(to);
-
-	Point p {float(x), float(y)};
-	auto delta = p - _owner->GetCoordinates();
-
-	ApplyForce(delta.normalize().limit(0.1));
-
+	ApplyForce(to);
 
 	_velocity += acceleration_;
 	_velocity.limit(_maxSpeed);
-	//_owner->SetSpeed(acceleration_.x);
+	_owner->SetSpeed(_velocity.x);
 
-	//auto& coordinates = _owner->GetCoordinates();
+	auto& coordinates = _owner->GetCoordinates();
 	//auto& destinationPoint = _owner->GetDestinationPoint();
 
-	//const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
-	//const auto dir = Helper::RadiansToDegrees(rad);
-	//const auto correctedAngleRadians = Helper::DegreesToRadians(dir - 90);
-	//_owner->SetAngle(dir);
+	const auto rad = atan2(to.y, to.x);
+	auto deg = Helper::RadiansToDegrees(rad);
+	deg -= 180;
+	_owner->SetAngle(deg);
 
+	//std::cout << "Object wants to move to " << Point(float(x), float(y)) << " with a steering translation of " << acceleration_ << " relative on current coordinates " << _owner->GetCoordinates() << std::endl;
 	//auto& coordinates = _owner->GetCoordinates();
 	_owner->SetCoordinates(_owner->GetCoordinates() + _velocity);
 	//auto& t = _owner->GetCoordinates();
 	//owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
-
+	
 	// reset
 	acceleration_ = {};
 }
@@ -243,7 +238,7 @@ Point AIDefault::Seperate()
 
 void AIDefault::GoTarget()
 {
-	_owner->SetDestinationPoint(_target->GetCoordinates());
+	_owner->SetDestinationPoint(*_target);
 }
 
 AIDefault::~AIDefault() = default;

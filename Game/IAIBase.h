@@ -12,7 +12,7 @@ protected:
 
 
 	// Todo Smart pointer for non-owning pointer? (actually a nullable-reference) -> probably weak_ptr?
-	const Player* _target;
+	const Point* _target;
 	const EnemyBase* _leader;
 	EnemyBase* _owner;
 
@@ -20,11 +20,11 @@ protected:
 
 	const int COLLIDABLEWEIGHTMULTIPLIER = 7500;
 public:
-	IAIBase(EnemyBase& owner, const unsigned weightMultiplier, const bool isLeader) : _owner(&owner), _weightMultiplier(weightMultiplier), _isLeader(isLeader)
+	IAIBase(EnemyBase& owner, const unsigned weightMultiplier, const bool isLeader, const Point& target) : _weightMultiplier(weightMultiplier), _target(&target), _owner(&owner), _isLeader(isLeader)
 	{
 	}
 
-	IAIBase(EnemyBase& owner) : IAIBase(owner, 100, false)
+	IAIBase(EnemyBase& owner) : IAIBase(owner, 100, false, {})
 	{
 	}
 
@@ -42,7 +42,7 @@ public:
 		_isLeader = value;
 	}
 
-	void SetTarget(const Player& target)
+	void SetTarget(const Point& target)
 	{
 		_target = &target;
 	}
@@ -57,7 +57,7 @@ public:
 		return *_leader;
 	}
 
-	const Player& GetTarget() const
+	const Point& GetTarget() const
 	{
 		return *_target;
 	}

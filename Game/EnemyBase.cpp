@@ -16,7 +16,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float 
 EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, const float speed, const bool isLeader,
                      const int _damage, const int lifepoints, const int reward, float multiplier) :
         MoveableObject(filePath, coordinates, speed*multiplier),
-        _behaviour(make_unique<AIDefault>(*this, 100* multiplier, isLeader)),
+        _behaviour(make_unique<AIDefault>(*this, 100* multiplier, isLeader, _player->GetCoordinates())),
         lifepoints(lifepoints*multiplier),
         _damage(_damage*multiplier),
         reward(reward*multiplier),
@@ -24,7 +24,8 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, cons
     type = ENEMY;
 }
 
-EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player) : EnemyBase{j.at("type").get<string>(),
+// TODO should be much easier and possibly not needed
+EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player>& player) : EnemyBase{j.at("type").get<string>(),
                                                           Point(0, 0),
                                                           j.at("speed").get<int>(),
                                                           false,
@@ -36,17 +37,20 @@ EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyB
     _behaviour = move(a);
     type = ENEMY;
 	_behaviour->SetOwner(*this);
+	_behaviour->SetTarget(player->GetCoordinates()),
 	npcs = { npcList };
 	_player = { player };
 }
 
-
+// TODO should be much easier and possibly not needed
 EnemyBase::EnemyBase(const EnemyBase &other) : MoveableObject(other),
                                                _behaviour(other._behaviour->Clone()),
                                                lifepoints(other.lifepoints),
                                                _damage(other._damage), reward(other.reward),
                                                destinationPoint(other._coordinates) {
     _behaviour->SetOwner(*this);
+	_behaviour->SetTarget(other._player->GetCoordinates()),
+
     type = ENEMY;
 }
 
