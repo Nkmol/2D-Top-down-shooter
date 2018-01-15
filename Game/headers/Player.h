@@ -20,19 +20,23 @@ class Player : public MoveableObject {
     vector<Weapon> _weapons;
     unsigned currentWeapon;
     int _lifepoints;
-	int _maxLifepoints;
+    int _maxLifepoints;
     int _highestLevel = 1;
-	bool _isCheatActive;
-	clock_t _lastHit = clock();
-	double _invTime = 500;
+    bool _isCheatActive;
+    clock_t _lastHit = clock();
+    double _invTime = 500;
 
 public:
-	std::string teststring = "hoi";
+
+    int tempX, tempY, tempZ;
+
+    std::string teststring = "hoi";
 
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
-	~Player();
+
+    ~Player();
 
     Bullet shoot();
 
@@ -44,15 +48,15 @@ public:
 
     const int ChangeLifepoints(const int lp);
 
-	const int GetMaxLifepoints() const { return _maxLifepoints; }
+    const int GetMaxLifepoints() const { return _maxLifepoints; }
 
-	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; }
+    const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; }
 
     Weapon *GetWeapon();
 
     void ChangeWeapon(unsigned index);
 
-	bool IsCheatActive();
+    bool IsCheatActive();
 
     const vector<Weapon> &GetWeapons() const;
 
@@ -73,11 +77,12 @@ public:
     void HandleAnimationFinished() override;
 
     void ChangeState(const string &state) override;
-	void DeadState();
 
-	string GetAnimationToken() override;
+    void DeadState();
 
-	void ToggleCheats();
+    string GetAnimationToken() override;
+
+    void ToggleCheats();
 
     void ReloadState();
 

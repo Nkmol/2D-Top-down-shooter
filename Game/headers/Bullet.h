@@ -17,14 +17,21 @@ private:
     int _damage;
 public:
 
+    int tempX = 0;
+    int tempY = 0;
+
     Bullet(const string &filePath, Point coordinates, int _damage);
 
     void Update(float time) override;
 
     const int GetDamage() const;
-	void SetDamage(int _damage);
-	void OnBaseCollision(MoveableObject * object);
-	void OnBaseCollision(bool isCollidedOnWall);
+
+    void SetDamage(int _damage);
+
+    void OnBaseCollision(MoveableObject *object);
+
+    void OnBaseCollision(bool isCollidedOnWall);
+
 };
 
 

@@ -18,24 +18,23 @@
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
         _savedGame(savedGame),
-        _levelSpeed(1)
-{
+        _levelSpeed(1) {
     Init();
-    Level::_explosion = {};		
+    Level::_explosion = {};
 }
 
 Level::~Level() {
-	Hud::Instance().RemoveComponent(_UIBullets.get());
-	Hud::Instance().RemoveComponent(_UIWeapon.get());
-	Hud::Instance().RemoveComponent(_UIHealth.get());
-	for (auto &w : _weaponSlots)
-		Hud::Instance().RemoveComponent(w.get());
+    Hud::Instance().RemoveComponent(_UIBullets.get());
+    Hud::Instance().RemoveComponent(_UIWeapon.get());
+    Hud::Instance().RemoveComponent(_UIHealth.get());
+    for (auto &w : _weaponSlots)
+        Hud::Instance().RemoveComponent(w.get());
 }
 
 void Level::Init() {
     LoadLevel();
 
-	LoadUIElements();
+    LoadUIElements();
 
     MapManager::Instance().Init(_map);
     LoadPlayer();
@@ -46,20 +45,19 @@ void Level::Init() {
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
 }
 
-void Level::LoadUIElements()
-{
-	_UIWeapon = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }));
-	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
-	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
+void Level::LoadUIElements() {
+    _UIWeapon = std::make_unique<UIText>(UIText("", 24, {config::width - 200, 0}));
+    _UIBullets = std::make_unique<UIText>(UIText("", 24, {config::width - 200, 40}));
+    _UIHealth = std::make_unique<UIText>(UIText("", 23, {config::width - 200, 80}));
+    _weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", {50, 20}, 120)));
+    _weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", {120, 20}, 120)));
+    _weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", {190, 20}, 120)));
 
-	Hud::Instance().AddComponent(_UIHealth.get());
-	Hud::Instance().AddComponent(_UIBullets.get());
-	Hud::Instance().AddComponent(_UIWeapon.get());
-	for (auto &w : _weaponSlots)
-		Hud::Instance().AddComponent(w.get());
+    Hud::Instance().AddComponent(_UIHealth.get());
+    Hud::Instance().AddComponent(_UIBullets.get());
+    Hud::Instance().AddComponent(_UIWeapon.get());
+    for (auto &w : _weaponSlots)
+        Hud::Instance().AddComponent(w.get());
 }
 
 void Level::LoadLevel() {
@@ -84,7 +82,7 @@ void Level::LoadPlayer() {
     player->AddWeapons({Handgun(), Rifle(), Shotgun()});
 
     _player = player;
-	ChangeWeapon(0);
+    ChangeWeapon(0);
 
     if (!_savedGame.empty()) {
         std::ifstream i;
@@ -105,9 +103,8 @@ void Level::LoadPlayer() {
     _objsNoEnemies.emplace_back(_player);
 }
 
-const Player& Level::GetPlayer() const
-{
-	return *_player;
+const Player &Level::GetPlayer() const {
+    return *_player;
 }
 
 void Level::HandleEvents(Event event) {
@@ -141,7 +138,7 @@ void Level::HandleMouseEvents(Event &event) {
     }
 
     if (InputManager::Instance().IsMouseReleased(event)) {
-		InputManager::Instance().HandleMouseReleased();
+        InputManager::Instance().HandleMouseReleased();
     }
 }
 
@@ -166,6 +163,53 @@ void Level::HandleKeyboardEvents(Event &event) {
             _levelSpeed += .1;
             return;
         }
+
+        if (InputManager::Instance().IsKeyDown(event, "z")) {
+            _player->tempX -= 1;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "x")) {
+            _player->tempX += 1;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "c")) {
+            _player->tempX = 0;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "t")) {
+            _player->tempY -= 1;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "y")) {
+            _player->tempY += 1;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "u")) {
+            _player->tempY = 0;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "j")) {
+            _player->tempZ -= 1;
+            return;
+        }
+
+        if (InputManager::Instance().IsKeyDown(event, "k")) {
+            _player->tempZ += 1;
+            return;
+        }
+
+
+        if (InputManager::Instance().IsKeyDown(event, "l")) {
+            _player->tempZ = 0;
+            return;
+        }
+
 
         if (InputManager::Instance().IsKeyDown(event, "F5")) {
             // Quicksave prittified json
@@ -225,18 +269,18 @@ void Level::Update(float time) {
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
 
-	auto totalBullets = _player->GetWeapon()->TotalBullets();
-	auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
-	auto weaponName = _player->GetWeapon()->GetName();
-	_UIWeapon->ChangeText("Weapon: " + weaponName);
+    auto totalBullets = _player->GetWeapon()->TotalBullets();
+    auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
+    auto weaponName = _player->GetWeapon()->GetName();
+    _UIWeapon->ChangeText("Weapon: " + weaponName);
 
-	_UIBullets->ChangeText("Bullets: " +
-		to_string(remainingBullets) + "/" +
-		to_string(totalBullets));
+    _UIBullets->ChangeText("Bullets: " +
+                           to_string(remainingBullets) + "/" +
+                           to_string(totalBullets));
 
-	_UIHealth->ChangeText("Health: " +
-		std::to_string(_player->GetLifepoints()) + "/" + 
-		std::to_string(_player->GetMaxLifepoints()));
+    _UIHealth->ChangeText("Health: " +
+                          std::to_string(_player->GetLifepoints()) + "/" +
+                          std::to_string(_player->GetMaxLifepoints()));
 }
 
 void Level::AddExplosion(const Point &point) {
@@ -276,16 +320,14 @@ void Level::Draw() {
     }
 }
 
-void Level::ChangeWeapon(const int num)
-{
-	_player->ChangeWeapon(num);
-	for (size_t i = 0; i < _player->GetWeapons().size(); i++)
-	{
-		if (i == num)
-			_weaponSlots.at(i)->SetOpacity(250);
-		else
-			_weaponSlots.at(i)->SetOpacity(120);
-	}
+void Level::ChangeWeapon(const int num) {
+    _player->ChangeWeapon(num);
+    for (size_t i = 0; i < _player->GetWeapons().size(); i++) {
+        if (i == num)
+            _weaponSlots.at(i)->SetOpacity(250);
+        else
+            _weaponSlots.at(i)->SetOpacity(120);
+    }
 }
 
 void from_json(const nlohmann::json &j, Level &value) {

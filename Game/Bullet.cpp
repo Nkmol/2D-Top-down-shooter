@@ -9,7 +9,6 @@ Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : Moveabl
     type = BULLET;
 }
 
-
 void Bullet::Update(float time) {
     double correctedAngle = this->GetAngle() + 270;
 
@@ -17,6 +16,7 @@ void Bullet::Update(float time) {
         correctedAngle = this->GetAngle() - 90;
 
     double correctedAngleRadians = correctedAngle / 180 * M_PI;
+
 
     destination = Point(sin(correctedAngleRadians), -cos(correctedAngleRadians));
 

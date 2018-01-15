@@ -46,6 +46,10 @@ bool Player::IsCheatActive() {
 
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
+    GetWeapon()->tempY = tempY;
+    GetWeapon()->tempX = tempX;
+    GetWeapon()->tempZ = tempZ;
+
 	return GetWeapon()->GetBullet(GetAngle(), _coordinates, _isCheatActive);
 }
 

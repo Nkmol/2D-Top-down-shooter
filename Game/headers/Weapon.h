@@ -23,6 +23,11 @@ protected:
 	std::string type;
 
 public:
+	int tempX = 0;
+	int tempY = 0;
+	int tempZ = 0;
+
+
     Weapon(int _damage, std::string name, int maxBullets, float fireRate);
 
     bool HasBullets();

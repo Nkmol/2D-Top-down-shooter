@@ -65,7 +65,7 @@
 			"multiplier": 2,
 			"flocks": [
 				{
-					"amount": 40,
+					"amount": 80000,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 0
