@@ -200,13 +200,13 @@ void Level::SetCompleted()
 	_isDone = true;
 	const auto highest = _player->GetHighestLevel();
 	const auto current = GetId();
-	if(highest < current)
+	if(highest <= current)
 	{
-		_player->SetHighestLevel(current);
+		_player->SetHighestLevel(current + 1);
 	}
 }
 
-bool Level::isCompleted() const
+bool Level::IsCompleted() const
 {
 	return _isDone;
 }
@@ -221,10 +221,8 @@ void Level::Update(float time) {
     }
 
     if (!_waveController.Update(accSpeed, _level)) {
-        _player->SetHighestLevel(_level + 1);
-        std::cout << "Level af, maak iets leuks om dit op te vangen" << endl;
 		SetCompleted();
-
+		std::cout << "Level af, maak iets leuks om dit op te vangen" << std::endl;
 		return;
     }
 

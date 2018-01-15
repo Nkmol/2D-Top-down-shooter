@@ -52,6 +52,8 @@ class Level {
 
 	int count = 0;
 
+	bool _isDone = false;
+
 public:
     explicit Level(int level, const std::string savedGame);
 
@@ -87,6 +89,10 @@ public:
     void HandleMouseEvents(Event &event);
 
     void HandleKeyboardEvents(Event &event);
+
+	void SetCompleted();
+
+	bool IsCompleted() const;
 
 };
 

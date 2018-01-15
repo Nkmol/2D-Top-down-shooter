@@ -31,21 +31,22 @@ void PlayingState::HandleEvents(Game &game, Event& event) {
 	_level.HandleEvents(event);
 }
 
-void PlayingState::Update(Game &game, float time) {
-	if(_level.isCompleted())
+void PlayingState::Update(Game &game, float time) 
+{	
+	_level.Update(time);
+
+	if (_level.IsCompleted())
 	{
-		game.PopState();
 		AssetManager::Instance().SaveJson(this->_level.GetPlayer());
+		game.PopState();
 		return;
 	}
 
-	if(_level.GetPlayer().GetState() == "dead")
+	if (_level.GetPlayer().GetState() == "dead")
 	{
 		game.ChangeState(make_unique<StateGameOver>());
 		return;
 	}
-
-	_level.Update(time);
 }
 
 void PlayingState::Draw(Game &game) {

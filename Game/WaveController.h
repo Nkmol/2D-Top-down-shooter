@@ -21,7 +21,7 @@ public:
 	bool Update(float time, int levelnumber);
 private:
 	nlohmann::json _j;
-	float _lastWaveTimer, multiplier = 1.0;
+	float _lastWaveTimer, _multiplier = 1.0;
 	int _waveNumber = 1;
 	void SpawnWave();
 	std::forward_list<Wave> _waves;

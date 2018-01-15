@@ -46,10 +46,24 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 
 bool WaveController::Update(float time, int levelnumber)
 {
+	if (_npcs->empty()) {
+		_curWave++;
+		if (_curWave == _waves.end() & levelnumber != 3)
+		{
+			return false;
+		}
+		else if (_curWave == _waves.end() & levelnumber == 3)
+		{
+			_curWave = _waves.begin();
+			_multiplier *= 1.2;
+		}
+		SpawnWave();
+	}
+	return true;
 
-	_lastWaveTimer += time;
+	/*_lastWaveTimer += time;
 
-	if (_lastWaveTimer >= _curWave->GetTime() * multiplier) {
+	if (_lastWaveTimer >= _curWave->GetTime() * _multiplier) {
 		_lastWaveTimer = 0.0f;
 		_curWave++;
 		if (_curWave == _waves.end() & levelnumber != 3){
@@ -57,17 +71,16 @@ bool WaveController::Update(float time, int levelnumber)
 		}
 		else if (_curWave == _waves.end() & levelnumber == 3){
 			_curWave = _waves.begin();
-			multiplier = multiplier * 1.2;
+			_multiplier = _multiplier * 1.2;
 		}
 		SpawnWave();
 	}
-	return true;
+	return true;*/
 }
 
 
 void WaveController::SpawnWave()
 {
-
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 	std::string waveText = "Wave " + std::to_string(_waveNumber) + " incoming!";
 	Hud::Instance().AddComponent(new UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f));
@@ -81,7 +94,7 @@ void WaveController::SpawnWave()
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
-		for (int i = 0; i < flock.amount*multiplier; i++) {
+		for (int i = 0; i < flock.amount*_multiplier; i++) {
 			int randomDistance = rand() % (maxRadius - minRadius + 1) + minRadius;
 			int randomAngle = rand() % 360 + 1;
 			auto member = make_unique<EnemyBase>(_j[flock.type], _npcs, _player);
