@@ -15,6 +15,7 @@
 #include "../Engine/UIText.h"
 #include "Hud.h"
 
+std::vector<unique_ptr<DropableObject>> Level::_loot;
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
         _savedGame(savedGame),
@@ -238,6 +239,10 @@ void Level::Update(float time) {
         AnimationManager::Instance().Update(explosion, accSpeed);
     }
 
+    for (std::unique_ptr<DropableObject> &loot : _loot) {
+        loot->CheckForCollision(*_player);
+    }
+
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
@@ -291,8 +296,11 @@ void Level::Draw() {
     for (auto &explosion : _explosion) {
         explosion.Draw();
     }
-}
 
+    for (auto& loot : Level::_loot) {
+        loot->Draw();
+    }
+}
 void Level::ChangeWeapon(const int num)
 {
 	_player->ChangeWeapon(num);
@@ -304,7 +312,6 @@ void Level::ChangeWeapon(const int num)
 			_weaponSlots.at(i)->SetOpacity(120);
 	}
 }
-
 void from_json(const nlohmann::json &j, Level &value) {
     value.SetId(j.at("id").get<int>());
     value.SetMap(j.at("map").get<std::string>());

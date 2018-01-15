@@ -2,6 +2,7 @@
 // Created by Mevlüt Özdemir on 15-11-17.
 //
 
+#include <Helper.h>
 #include "Weapon.h"
 #include "Point.h"
 #include "Bullet.h"
@@ -10,10 +11,15 @@ Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate) :
         name{std::move(name)},
         _damage{_damage},
         maxBullets{maxBullets},
-        fireRate{fireRate} {}
+        fireRate{fireRate},
+        standardFireRate{fireRate} {}
 
 Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, _damage);
+    if(fireRate != standardFireRate) {
+        float s1 = (standardFireRate/fireRate)*bullet.GetSpeed();
+        bullet.SetSpeed(s1);
+    }
     bullet.SetAngle(angle);
 
     if (HasBullets()) {
@@ -79,6 +85,18 @@ void Weapon::ResetLastShot(){
 
 void Weapon::UpdateFireRate(float time) {
     this->lastShot -= time;
+}
+
+void Weapon::setFireRate(float fireRate) {
+    Weapon::fireRate = fireRate;
+}
+
+float Weapon::getFireRate() const {
+    return fireRate;
+}
+
+float Weapon::getStandardFireRate() const {
+    return standardFireRate;
 }
 
 void to_json(nlohmann::json &j, const Weapon &value) {

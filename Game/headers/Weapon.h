@@ -19,6 +19,7 @@ protected:
     int shooted = 0;
     int maxBullets;
     float fireRate;
+    float standardFireRate;
     float lastShot;
 	std::string type;
 
@@ -51,6 +52,12 @@ public:
 
     void ResetLastShot();
 
+    void setFireRate(float fireRate);
+
+    float getFireRate() const;
+
+    float getStandardFireRate() const;
+  
 	const std::string GetType() const;
 };
 
