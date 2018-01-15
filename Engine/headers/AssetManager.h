@@ -11,6 +11,7 @@
 #include "RenderManager.h"
 #include "../CustomDeleter.h"
 #include <memory>
+#include <json.hpp>
 
 using namespace std;
 
@@ -34,6 +35,8 @@ public:
 	SDL_Surface* LoadSurface(const string mediaToken);
 
 	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
+
+	void SaveJson(const nlohmann::json & json) const;
 
 	typedef std::unique_ptr<TTF_Font, CustomDeleter> Font;
 	Font LoadFont(const string & fontToken, const int size) const;

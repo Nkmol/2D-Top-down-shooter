@@ -32,6 +32,13 @@ void PlayingState::HandleEvents(Game &game, Event& event) {
 }
 
 void PlayingState::Update(Game &game, float time) {
+	if(_level.isCompleted())
+	{
+		game.PopState();
+		AssetManager::Instance().SaveJson(this->_level.GetPlayer());
+		return;
+	}
+
 	if(_level.GetPlayer().GetState() == "dead")
 	{
 		game.ChangeState(make_unique<StateGameOver>());
