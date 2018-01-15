@@ -15,14 +15,14 @@ ExplosionFactory &ExplosionFactory::Instance() {
 
 ExplosionFactory::ExplosionFactory() {
     explosions = {
-            {"short",   Explosion("short", 4, 0.1)},
-            {"shield",  Explosion("shield", 4, 0.1)},
-            {"default", Explosion("default", 25, 0.1)},
-            {"long",    Explosion("long", 216, 0.01)},
-            {"middle",  Explosion("middle", 28, 0.1)},
-            {"blood-1", Explosion("blood-1", 16, 0.1)},
-            {"blood-2", Explosion("blood-2", 14, 0.1)},
-            {"blood-3", Explosion("blood-3", 9, 0.1)}
+//            {"short",   Explosion("short", 4, 0.1)},
+//            {"shield",  Explosion("shield", 4, 0.1)},
+//            {"default", Explosion("default", 25, 0.1)},
+            {"long",    Explosion("long", 21, 0.01)},
+//            {"middle",  Explosion("middle", 28, 0.1)},
+//            {"blood-1", Explosion("blood-1", 16, 0.1)},
+//            {"blood-2", Explosion("blood-2", 14, 0.1)},
+//            {"blood-3", Explosion("blood-3", 9, 0.1)}
 
     };
 }

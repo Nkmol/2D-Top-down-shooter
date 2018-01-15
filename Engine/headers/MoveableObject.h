@@ -84,6 +84,8 @@ public:
     void DecreaseAnimationTimer(double by);
 
     void ResetAnimationTimer();
+
+    void ChangeTexture(std::unique_ptr<Texture> texture);
 };
 
 

@@ -78,6 +78,10 @@ void MoveableObject::ChangeSprite(const std::string &_spriteToken) {
     _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
 }
 
+void MoveableObject::ChangeTexture(std::unique_ptr<Texture> texture) {
+    _sprite = std::move(texture);
+}
+
 int MoveableObject::NextSpriteIndex() {
     return ++currentSprite;
 }
