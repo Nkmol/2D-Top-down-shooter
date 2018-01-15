@@ -47,7 +47,17 @@ bool Player::IsCheatActive() {
 
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
-	return GetWeapon()->GetBullet(GetAngle(), _coordinates, _isCheatActive);
+
+	float x = -28;
+	float y = -11;
+
+	float corrangle = angle;
+
+	float newx = x * cos(corrangle) - y * sin(corrangle);
+	float newy = x * sin(corrangle) + y * cos(corrangle);
+
+	//_coordinates.x - newx, _coordinates.y - newy
+	return GetWeapon()->GetBullet(GetAngle(), { float(GetMidX()), float(GetMidY())  }, _isCheatActive);
 }
 
 bool Player::CanShoot() {
