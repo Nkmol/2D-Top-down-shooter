@@ -17,7 +17,9 @@ public:
 	/*void ChangeState(Game& game, State* state) {
 		game.ChangeState(state);
 	}*/
+	void SetHighestLevel(const int i) { _highestLevel = i; }
 
 protected:
 	State() { }
+	int  _highestLevel = 1;
 };

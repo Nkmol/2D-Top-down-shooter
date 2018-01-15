@@ -66,6 +66,10 @@ set(SOURCE_FILES
         Game/headers/EnemyBase.h
         Game/StateGameOver.cpp
         Game/StateGameOver.h
+        Game/InstructionsState.cpp
+        Game/InstructionsState.h
+        Game/CreditsState.h
+        Game/CreditsState.cpp
         Engine/UIElement.cpp
         Engine/UIElement.h
         Engine/UIIcon.cpp
