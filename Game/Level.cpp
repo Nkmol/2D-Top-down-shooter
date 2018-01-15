@@ -45,7 +45,7 @@ void Level::Init() {
 
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
-	AudioManager::Instance().PlayEffect("level3");
+	//AudioManager::Instance().PlayEffect("level3");
 }
 
 void Level::LoadUIElements()
