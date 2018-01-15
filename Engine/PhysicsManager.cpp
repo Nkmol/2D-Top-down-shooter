@@ -28,7 +28,7 @@ void PhysicsManager::CheckWallCollision(MoveableObject* m, Point newPos)
 	auto midY = m->GetPredictionMidY(newPos.y);
 	auto radius = m->GetRadius();
 
-	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
+	if (midX - radius < 0 || midY - radius < 0 || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
 		m->OnBaseCollision(true);
 	}
 
@@ -119,8 +119,8 @@ void PhysicsManager::SetStaticObjects()
 		//_collidables = MapManager::Instance().GetCollidables();
 	}
 	_tileSize = config::tileSize;
-	_playScreenWidth = config::width - _tileSize;
-	_playScreenHeight = config::height - _tileSize;
+	_playScreenWidth = config::width;
+	_playScreenHeight = config::height;
 }
 
 void PhysicsManager::SetMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)

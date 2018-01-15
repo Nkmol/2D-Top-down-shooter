@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AnimationManager.h" />
-    <ClInclude Include="Audio.h" />
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
     <ClInclude Include="headers\Button.h" />

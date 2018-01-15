@@ -122,6 +122,7 @@ void Player::Hit(int _damage) {
 		_lifepoints -= _damage;
 		if (_lifepoints <= 0) {
 			_lifepoints = 0;
+			AudioManager::Instance().PlayEffect("wasted");
 			this->ChangeState("dead");
 		}
 	}
