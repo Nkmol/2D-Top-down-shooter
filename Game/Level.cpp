@@ -129,9 +129,6 @@ void Level::HandleMouseEvents(Event &event) {
     if (InputManager::Instance().IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = InputManager::Instance().RecalculateMouseAngle(*_player);
-
-        // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
-        _player->SetAngle(angle);
     }
 
 
@@ -216,6 +213,12 @@ bool Level::IsCompleted() const
 
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
+
+	if (_player->CanShoot() && InputManager::Instance().LMBState()) {
+		_player->ChangeState("shoot");
+		auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+		_objsNoEnemies.emplace_back(bullet);
+	}
 
     AnimationManager::Instance().Update(*_player, accSpeed);
 

@@ -122,7 +122,6 @@ bool InputManager::IsMousePressed(Event &event) {
     if (IsMouseClicked(event)) {
         _buttonState = true;
     }
-
     return _buttonState;
 }
 

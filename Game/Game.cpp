@@ -110,6 +110,7 @@ void Game::HandleEvents()
 		}
 
 		_states.back()->HandleEvents(*this, event);
+		std::cout << "has event" << std::endl;
 	}
 }
 
