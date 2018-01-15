@@ -108,7 +108,7 @@ void PhysicsManager::CheckMoveableCollision(MoveableObject* m, Point newPos)
 	for (int i = 0; i < _objects->size(); i++) {
 		if (IntersectsCircle(midX, midY, radius, _objects->at(i).get())) {
 			m->OnBaseCollision(_objects->at(i).get());
-			break;
+			
 		}
 	}
 }
