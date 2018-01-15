@@ -14,6 +14,7 @@
 #include "ExplosionFactory.h"
 #include "../Engine/UIText.h"
 #include "Hud.h"
+#include "AudioManager.h"
 
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
@@ -44,6 +45,7 @@ void Level::Init() {
 
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
+	AudioManager::Instance().PlayEffect("level3");
 }
 
 void Level::LoadUIElements()
