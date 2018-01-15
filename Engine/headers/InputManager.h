@@ -68,6 +68,8 @@ public:
     void HandleMouseReleased();
 
     bool IsMouseClicked(Event &event);
+
+	const bool& LMBState() const { return _buttonState; }
 };
 
 

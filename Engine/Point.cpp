@@ -3,6 +3,7 @@
 //
 
 #include "Point.h"
+#include <math.h>
 
 Point::Point() : Point(0, 0)
 {
@@ -66,4 +67,20 @@ Point Point::operator/(const float v) const
 
 bool operator<(const Point &p1, const Point &p2) {
 	return (p1.x == p2.x && p1.y == p2.y);
+}
+
+float Point::Magnitude()
+{
+	return sqrtf(this->x * this->x + this->y * this->y);
+}
+
+void Point::Normalize()
+{
+	float length = this->Magnitude();
+
+	if (length > 0)
+	{
+		this->x /= length;
+		this->y /= length;
+	}
 }

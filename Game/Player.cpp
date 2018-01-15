@@ -47,7 +47,17 @@ bool Player::IsCheatActive() {
 
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
-	return GetWeapon()->GetBullet(GetAngle(), _coordinates, _isCheatActive);
+
+	float x = -28;
+	float y = -11;
+
+	float radians = angle * M_PI / 180;
+	float newx = x * cos(radians) - y * sin(radians);
+	float newy = x * sin(radians) + y * cos(radians);
+
+	
+	//float(GetMidX()), float(GetMidY())
+	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
 }
 
 bool Player::CanShoot() {
@@ -94,8 +104,8 @@ void to_json(nlohmann::json &j, const Player &value) {
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.ChangeLifepoints(j.at("lifepoints").get<int>());
-    value.ChangeWeapon(j.at("currentWeapon").get<int>());
+    value.SetMaxLifepoints(j.at("lifepoints").get<int>());
+    //value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON

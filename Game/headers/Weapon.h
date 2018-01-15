@@ -24,6 +24,9 @@ protected:
 	std::string _soundName;
 	void PlaySound(std::string soundName);
 
+	bool _automatic = false;
+	bool _triggerDown = false;
+
 public:
     Weapon(int _damage, std::string name, int maxBullets, float fireRate, std::string soundName);
 
@@ -52,6 +55,8 @@ public:
     void UpdateFireRate(float time);
 
     void ResetLastShot();
+
+	void ReleaseTrigger() { _triggerDown = false; }
 
 	const std::string GetType() const;
 };

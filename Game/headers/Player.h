@@ -46,7 +46,7 @@ public:
 
 	const int GetMaxLifepoints() const { return _maxLifepoints; }
 
-	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; }
+	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; return _maxLifepoints; }
 
     Weapon *GetWeapon();
 

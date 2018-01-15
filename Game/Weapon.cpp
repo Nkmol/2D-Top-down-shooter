@@ -27,7 +27,7 @@ Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     } else {
         bullet.Hide(); // returns a hidden bullet, so it will not be drawn
     }
-
+	_triggerDown = true;
     return bullet;
 }
 
@@ -74,7 +74,8 @@ bool Weapon::CanReload() const {
 }
 
 bool Weapon::CanShoot() const{
-    return this->lastShot <= 0;
+
+    return (this->lastShot <= 0 && (_automatic || (!_automatic && !_triggerDown)));
 }
 
 void Weapon::ResetLastShot(){

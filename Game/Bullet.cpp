@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : MoveableObject(filePath, coordinates,BULLET_SPEED),
+Bullet::Bullet(const string &filePath, Point coordinates, int _damage) : MoveableObject(filePath, coordinates, BULLET_SPEED),
                                                                         _damage(_damage) {
     type = BULLET;
 	speed = BULLET_SPEED;

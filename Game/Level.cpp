@@ -119,6 +119,7 @@ void Level::HandleEvents(Event event) {
 
     Point direction = InputManager::Instance().GetDirection(event);
     int angle = InputManager::Instance().CalculateMouseAngle(*_player);
+	direction.Normalize();
 
     _player->SetAngle(angle);
     _player->Move(direction);
@@ -129,22 +130,16 @@ void Level::HandleMouseEvents(Event &event) {
     if (InputManager::Instance().IsMouseMoved(event)) {
         // RECALCULATE players angle to mouse ONLY IF the mouse has been moved.
         int angle = InputManager::Instance().RecalculateMouseAngle(*_player);
-
-        // setAngle is called, so that the player aims towards the mouse, even when the player is not moving.
-        _player->SetAngle(angle);
     }
 
 
     if (InputManager::Instance().IsMousePressed(event)) {
-        if (_player->CanShoot()) {
-            _player->ChangeState("shoot");
-            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-            _objsNoEnemies.emplace_back(bullet);
-        }
+		// No need to do anything here anymore :)
     }
 
     if (InputManager::Instance().IsMouseReleased(event)) {
 		InputManager::Instance().HandleMouseReleased();
+		_player->GetWeapon()->ReleaseTrigger();
     }
 }
 
@@ -216,6 +211,12 @@ bool Level::IsCompleted() const
 
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
+
+	if (_player->CanShoot() && InputManager::Instance().LMBState()) {
+		_player->ChangeState("shoot");
+		auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
+		_objsNoEnemies.emplace_back(bullet);
+	}
 
     AnimationManager::Instance().Update(*_player, accSpeed);
 

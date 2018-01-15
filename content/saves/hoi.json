@@ -1,7 +1,7 @@
 {
     "currentWeapon": 1,
     "highestLevel": 3,
-    "lifepoints": 400,
+    "lifepoints": 100,
     "weapons": [
         {
             "currentBullets": 9,
