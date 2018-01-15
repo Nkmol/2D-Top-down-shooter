@@ -133,15 +133,12 @@ void Level::HandleMouseEvents(Event &event) {
 
 
     if (InputManager::Instance().IsMousePressed(event)) {
-        if (_player->CanShoot()) {
-            _player->ChangeState("shoot");
-            auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-            _objsNoEnemies.emplace_back(bullet);
-        }
+		// No need to do anything here anymore :)
     }
 
     if (InputManager::Instance().IsMouseReleased(event)) {
 		InputManager::Instance().HandleMouseReleased();
+		_player->GetWeapon()->ReleaseTrigger();
     }
 }
 
