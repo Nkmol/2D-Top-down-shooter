@@ -102,6 +102,7 @@ void Level::LoadPlayer() {
         from_json(j, *_player.get());
         i.close();
     }
+	_player->SetSaveName(_savedGame);
     _objsNoEnemies.emplace_back(_player);
 }
 

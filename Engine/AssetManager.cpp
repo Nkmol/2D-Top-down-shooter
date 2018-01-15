@@ -81,9 +81,9 @@ std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 	return make_unique<Texture>(texture);
 }
 
-void AssetManager::SaveJson(const nlohmann::json& json) const
+void AssetManager::SaveJson(const nlohmann::json& json, const std::string savedGame) const
 {
 	// TODO refactor AssetManager
-	std::ofstream o("../content/saves/quicksave.json");
+	std::ofstream o(savedGame);
     o << std::setw(4) << json << std::endl;
 }

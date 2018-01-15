@@ -36,7 +36,7 @@ public:
 
 	static std::unique_ptr<Texture> LoadTexture(const std::string& str);
 
-	void SaveJson(const nlohmann::json & json) const;
+	void SaveJson(const nlohmann::json & json, const std::string savedGame) const;
 
 	typedef std::unique_ptr<TTF_Font, CustomDeleter> Font;
 	Font LoadFont(const string & fontToken, const int size) const;

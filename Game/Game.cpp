@@ -38,9 +38,9 @@ void Game::SetState(unique_ptr<State>&& state)
 	ChangeState(move(state));
 }
 
-const unique_ptr<State>& Game::GetStateBack(const int at)
+const std::unique_ptr<State>& Game::GetStateBack()
 {
-	return _states.end()[- (at+1)];
+	return _states.back();
 }
 
 void Game::PopState(unsigned val)

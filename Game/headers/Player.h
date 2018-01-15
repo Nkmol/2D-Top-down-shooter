@@ -17,7 +17,7 @@ class Point;
 
 class Player : public MoveableObject {
 
-    vector<Weapon> _weapons;
+    std::vector<Weapon> _weapons;
     unsigned currentWeapon;
     int _lifepoints;
 	int _maxLifepoints;
@@ -25,7 +25,7 @@ class Player : public MoveableObject {
 	bool _isCheatActive;
 	clock_t _lastHit = clock();
 	double _invTime = 500;
-
+	std::string _saveName;
 public:
 	std::string teststring = "hoi";
 
@@ -86,6 +86,10 @@ public:
     void IdleState();
 
     bool CanShoot();
+
+	const std::string& GetSaveName() const { return _saveName; }
+
+	void SetSaveName(const std::string value) { _saveName = value; }
 };
 
 
