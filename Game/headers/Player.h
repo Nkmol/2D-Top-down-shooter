@@ -11,6 +11,7 @@
 #include "Point.h"
 #include <Weapon.h>
 #include "PhysicsManager.h"
+#include <time.h>
 #include "../powerups/PowerupMode.h"
 
 class Point;
@@ -25,6 +26,8 @@ private:
 	int _maxLifepoints;
     int _highestLevel = 1;
 	bool _isCheatActive;
+	clock_t _lastHit = clock();
+	double _invTime = 500;
 
 public:
 	vector<std::unique_ptr<PowerupMode>> powerupmodes;

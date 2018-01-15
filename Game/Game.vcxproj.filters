@@ -81,6 +81,12 @@
     <ClCompile Include="ExplosionFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InstructionsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="StateGameOver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -174,6 +180,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExplosionFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StateGameOver.h">
