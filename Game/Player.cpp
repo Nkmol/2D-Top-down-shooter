@@ -51,13 +51,13 @@ Bullet Player::shoot() {
 	float x = -28;
 	float y = -11;
 
-	float corrangle = angle;
+	float radians = angle * M_PI / 180;
+	float newx = x * cos(radians) - y * sin(radians);
+	float newy = x * sin(radians) + y * cos(radians);
 
-	float newx = x * cos(corrangle) - y * sin(corrangle);
-	float newy = x * sin(corrangle) + y * cos(corrangle);
-
-	//_coordinates.x - newx, _coordinates.y - newy
-	return GetWeapon()->GetBullet(GetAngle(), { float(GetMidX()), float(GetMidY())  }, _isCheatActive);
+	
+	//float(GetMidX()), float(GetMidY())
+	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
 }
 
 bool Player::CanShoot() {
