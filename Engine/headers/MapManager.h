@@ -11,29 +11,27 @@
 #include <iterator>
 #include <SDL.h>
 #include "Point.h"
+#include <memory>
 
 class MapManager {
 public:
 	MapManager(MapManager const&) = delete;
 	void operator=(MapManager const&) = delete;
 	static MapManager& Instance();
-	//const std::vector<GameObject>* GetCollidables() const;
 
 	void Init(const std::string input);
 	void Render();
 	void RenderTilesText();
 	const SDL_Rect &GetMapRect() const;
 
-	void getNearbyCollidables(Point position, std::vector<GameObject*>* nearby);
+	void GetNearbyCollidables(Point position, std::vector<GameObject*>* nearby);
 
 private:
 	std::vector<std::vector<std::unique_ptr<GameObject>>> _newCollidables;
-	//std::vector<GameObject> collidables;
 
 	SDL_Rect _mapRect = SDL_Rect();
-	//std::vector<GameObject> _collidables;
-	TMX::Parser _tmx;
-	TSX::Parser _tsx;
+	std::unique_ptr<TMX::Parser> _tmx;
+	std::unique_ptr<TSX::Parser> _tsx;
 	static MapManager _instance;
 	SDL_Texture* _mapTexture;
 
