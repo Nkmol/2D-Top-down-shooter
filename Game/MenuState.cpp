@@ -31,61 +31,53 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 		return;
 	}
 
-	if (this->IsButtonClicked(ev, _newgameButton)) {
+	if (_newgameButton.IsClicked(ev)) {
 		return;
 	}
 
-	if (this->IsButtonClicked(ev, _loadgameButton)) {
+	if (_loadgameButton.IsClicked(ev)) {
 		this->LoadGame();
 		return;
 	}
 
-	if (IsButtonClicked(ev, _creditsButton)) {
+	if (_creditsButton.IsClicked(ev)) {
 		auto state = std::make_unique<CreditsState>();
 		game.ChangeState(std::move(state));
 		return;
 	}
 
-	if (IsButtonClicked(ev, _instructions)) {
+	if (_instructions.IsClicked(ev)) {
 		auto state = std::make_unique<InstructionsState>();
 		game.ChangeState(std::move(state));
 		return;
 	}
 
-	if (IsButtonClicked(ev, _quitButton)) {
+	if (_quitButton.IsClicked(ev)) {
 		game.Quit();
 		return;
 	}
 
-	if (IsButtonClicked(ev, _muteButton)) {
+	if (_muteButton.IsClicked(ev)) {
 		AudioManager::Instance().PauseResumeBGM();
 		return;
 	}
 
-	if (IsButtonClicked(ev, _level1)) {
+	if (_level1.IsClicked(ev)) {
 		if (_highestLevel >= 1) {
 			StartLevel(1, game);
 		}
 	}
-	else if (IsButtonClicked(ev, _level2)) {
+	else if (_level2.IsClicked(ev)) {
 		if (_highestLevel >= 2)
 			StartLevel(2, game);
 	}
-	else if (IsButtonClicked(ev, _level3)) {
+	else if (_level3.IsClicked(ev)) {
 		if (_highestLevel >= 3)
 		StartLevel(3, game);
 	}
-	else if (_advertisement.IsClicked(ev)) _advertisement.Click();
+	else if (_advertisement.IsClicked(ev)) 
+		_advertisement.Click();
 
-}
-
-
-
-bool MenuState::IsButtonClicked(Event ev, Button button) {
-	return ev.GetEventValue().button.x > button.getX1() &&
-		ev.GetEventValue().button.x < button.getX2() &&
-		ev.GetEventValue().button.y > button.getY1() &&
-		ev.GetEventValue().button.y < button.getY2();
 }
 
 void MenuState::LoadGame() {
@@ -146,18 +138,18 @@ void MenuState::Draw(Game &game) {
 
 void MenuState::Init(Game &game) {
     _background = AssetManager::Instance().LoadTexture("menu-wallpaper");
-    _newgameButton = Button("button_new", (config::width / 2) - 150, 200, 300, 50);
-    _loadgameButton = Button("button_load", (config::width / 2) - 150, 300, 300, 50);
-    _creditsButton = Button("button_credits", (config::width / 2) - 150, 400, 300, 50);
-    _instructions = Button("button_instructions", (config::width / 2) - 150, 500, 300, 50);
-    _quitButton = Button("button_quit", (config::width / 2) - 150, 600, 300, 50);
+	_newgameButton = Button("button_new", { (config::width / 2) - 150, 200 }, { 300, 50 });
+	_loadgameButton = Button("button_load", { (config::width / 2) - 150, 300 }, { 300, 50 });
+	_creditsButton = Button("button_credits", { (config::width / 2) - 150, 400 }, { 300, 50 });
+	_instructions = Button("button_instructions", { (config::width / 2) - 150, 500 }, { 300, 50 });
+	_quitButton = Button("button_quit", { (config::width / 2) - 150, 600 }, { 300, 50 });
 
 
-    _level1 = Button("button_level1", 50, 200, 300, 50);
-    _level2 = Button("button_level2", 50, 300, 300, 50);
-    _level3 = Button("button_level3", 50, 400, 300, 50);
+	_level1 = Button("button_level1", { 50, 200 }, { 300, 50 });
+	_level2 = Button("button_level2", { 50, 300 }, { 300, 50 });
+	_level3 = Button("button_level3", { 50, 400 }, { 300, 50 });
 
-    _muteButton = Button("button_mute", (config::width) - 100, (config::height) - 100, 75, 75);
+	_muteButton = Button("button_mute", { (config::width) - 100, (config::height) - 100 }, { 75, 75 });
 
 	_advertisementsLinks.push_back({ "advertisement/ad1", "https://nl.wikipedia.org/wiki/Canada" });
 	_advertisementsLinks.push_back({ "advertisement/ad2", "https://marktplaats.nl" });
