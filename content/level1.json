@@ -8,7 +8,7 @@
 			"multiplier": 1,
 			"flocks": [
 				{
-					"amount": 20,
+					"amount": 5,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 0
@@ -18,16 +18,16 @@
 		{
 			"id": 2,
 			"time": 20,
-			"multiplier": 1.1,
+			"multiplier": 1,
 			"flocks": [
 				{
-					"amount": 10,
+					"amount": 5,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 0
 				},
 				{
-					"amount": 20,
+					"amount": 5,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 1
@@ -37,7 +37,7 @@
 		{
 			"id": 3,
 			"time": 10,
-			"multiplier": 1.2,
+			"multiplier": 1,
 			"flocks": [
 				{
 					"amount": 10,
@@ -46,13 +46,7 @@
 					"type": 0
 				},
 				{
-					"amount": 15,
-					"minPos": 200,
-					"maxPos": 600,
-					"type": 1
-				},
-				{
-					"amount": 15,
+					"amount": 5,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 1
@@ -62,16 +56,54 @@
 		{
 			"id": 4,
 			"time": 20,
-			"multiplier": 2,
+			"multiplier": 1,
 			"flocks": [
 				{
-					"amount": 40,
+					"amount": 10,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 0
 				},
 				{
 					"amount": 10,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 1
+				}
+			]
+		},
+		{
+			"id": 5,
+			"time": 20,
+			"multiplier": 1,
+			"flocks": [
+				{
+					"amount": 15,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 0
+				},
+				{
+					"amount": 10,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 1
+				}
+			]
+		},
+		{
+			"id": 6,
+			"time": 20,
+			"multiplier": 1,
+			"flocks": [
+				{
+					"amount": 15,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 0
+				},
+				{
+					"amount": 15,
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 1

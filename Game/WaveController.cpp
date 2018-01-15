@@ -89,8 +89,8 @@ void WaveController::SpawnWave()
 	Point screenCenter;
 	screenCenter.x = config::width / 2;
 	screenCenter.y = config::height / 2;
-	int minRadius = config::width / 2 * 1.3;
-	int maxRadius = config::width / 2 * 3;
+	int minRadius = config::width / 2 * 1.1;
+	int maxRadius = config::width / 2 * 2.7;
 
 	for (auto flock : _curWave->GetFlocksVars())
 	{
