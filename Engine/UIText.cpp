@@ -23,7 +23,7 @@ UIText::UIText(const std::string& text, const unsigned fontSize, const Point& po
 
 void UIText::LoadSurface()
 {
-	_texture = Texture(TTF_RenderText_Blended(_font.get(), _text.c_str(), _colour));
+	_texture = Texture(TTF_RenderText_Blended(_font.GetPointer(), _text.c_str(), _colour));
 	_rect = { int(_coordinates.x), int(_coordinates.y), _texture.width, _texture.height };
 }
 

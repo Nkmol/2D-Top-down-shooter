@@ -13,6 +13,11 @@ public:
 	{
 	}
 
+	// TODO We do not ever want to use this, just convenience for default init
+	SdlWrapper() : SdlWrapper(nullptr)
+	{
+	}
+
 	// Only use when you have to directly use the raw pointer
 	T* GetPointer() const
 	{

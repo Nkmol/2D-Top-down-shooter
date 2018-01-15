@@ -59,7 +59,7 @@ SDL_Surface* AssetManager::LoadSurface(const string mediaToken) {
     return loadedSurface;
 }
 
-AssetManager::Font AssetManager::LoadFont(const string& fontToken, const int size) const
+Font AssetManager::LoadFont(const string& fontToken, const int size) const
 {
 	auto* font = TTF_OpenFont(string{"../content/fonts/" + fontToken + ".ttf"}.c_str(), size);
     if (font == nullptr)

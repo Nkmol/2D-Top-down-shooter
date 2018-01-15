@@ -17,15 +17,15 @@ private:
 	}
 public:
 	// TODO Not what we actually want
-	Texture() : SdlWrapper(nullptr)
-	{
-
-	}
+	Texture() = default;
 
 	explicit Texture(SDL_Surface* surface) : SdlWrapper(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface))
 	{
 		width = surface->w;
 		height = surface->h;
+
+		// Free Surface after it has been transformed to a Texture
+		CustomDeleter()(surface);
 	}
 
 	explicit Texture(SDL_Texture* texture) : SdlWrapper(texture)
