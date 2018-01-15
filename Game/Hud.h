@@ -1,11 +1,12 @@
 #pragma once
-#include <vector>
 #include "../Engine/UIElement.h"
 
 class Hud
 {
 	static Hud* _instance;
-	std::vector<UIElement*> _components;
+
+	typedef UIElement Base;
+	std::unordered_map<std::string, std::unique_ptr<UIElement>> _components;
 
 	Hud();
 public:
@@ -17,6 +18,13 @@ public:
 	void Update(float time);
 	void Draw();
 
-	void AddComponent(UIElement* comp);
-	void RemoveComponent(UIElement* comp);
+	template<typename T>
+	T* Get(const std::string& id)
+	{
+		// Force cast to derrived
+		return static_cast<T*>(_components.at(id).get());
+	}
+
+	// use r-value to force moving of ownership
+	void AddComponent(const std::string& identifier, std::unique_ptr<Base>&& comp);
 };
