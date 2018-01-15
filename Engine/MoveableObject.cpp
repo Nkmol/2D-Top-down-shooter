@@ -75,11 +75,11 @@ bool MoveableObject::IsReadyForAnimation() const {
 }
 
 void MoveableObject::ChangeSprite(const std::string &_spriteToken) {
-    _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
+    _sprite = AssetManager::Instance().LoadTexture(_spriteToken).get();
 }
 
-void MoveableObject::ChangeTexture(std::unique_ptr<Texture> texture) {
-    _sprite = std::move(texture);
+void MoveableObject::ChangeTexture(Texture &texture) {
+    _sprite = &texture;
 }
 
 int MoveableObject::NextSpriteIndex() {

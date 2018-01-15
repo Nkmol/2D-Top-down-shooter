@@ -31,8 +31,7 @@ void AnimationManager::Update(MoveableObject &object, double time) {
         auto it = textures.find(token);
 
         if (it != textures.end()) {
-            auto found = it->second;
-//            object.ChangeTexture(it->second.get());
+            object.ChangeTexture(*it->second.get());
             std::cout << "found" << std::endl;
         } else {
             textures.insert(std::make_pair(token, AssetManager::Instance().LoadTexture(token)));
