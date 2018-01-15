@@ -74,10 +74,10 @@ public:
 
 	virtual ~IAIBase() {}
 	virtual void Update(float time) = 0;
-	virtual void Align() = 0;
-	virtual void Cohese() = 0;
-	virtual void Seperate() = 0;
-	virtual void CohesePlayer() = 0;
+	virtual Point Align() = 0;
+	virtual Point Cohese() = 0;
+	virtual Point Seperate() = 0;
+	//virtual Point CohesePlayer() = 0;
 	virtual void GoTarget() = 0;
 	virtual unique_ptr<IAIBase> Clone() const = 0;
 };

@@ -52,7 +52,7 @@ public:
 	const int GetRadius() const ;
 	string GetSpriteToken() const;
 	bool GetIsCollidable() { return _isCollidable; }
-
+	Point GetSize() const;
 protected:
 	GameObject();
 	int width, height, angle;

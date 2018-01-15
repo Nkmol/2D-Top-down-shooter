@@ -3,10 +3,10 @@
 void AIBat::Update(float time)
 {
 	AIDefault::Update(time);
-	if (_currentUpdateCounter % 50 == 0)
+	/*if (_currentUpdateCounter % 50 == 0)
 	{
 		_weightMultiplier = rand() % 100 + 10;
-	}
+	}*/
 }
 
 void AIBat::GoTarget()

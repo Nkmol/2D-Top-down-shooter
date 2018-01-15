@@ -7,7 +7,7 @@ MoveableObject::~MoveableObject() {
 }
 
 MoveableObject::MoveableObject(const std::string &filePath, const Point coordinates, const float speed) :
-        speed{speed}, destination(Point::Empty()), GameObject::GameObject(filePath, coordinates) {
+        speed{speed}, GameObject(filePath, coordinates) {
 }
 
 void MoveableObject::Update(float time) {
@@ -16,6 +16,16 @@ void MoveableObject::Update(float time) {
 
 void MoveableObject::StopMove() {
     destination = Point{0, 0};
+}
+
+float MoveableObject::GetSpeed() const
+{
+	return speed;
+}
+
+void MoveableObject::SetSpeed(const float value)
+{
+	speed = value;
 }
 
 const int MoveableObject::GetPredictionMidX(float destinationPosition) const {

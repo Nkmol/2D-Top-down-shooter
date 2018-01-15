@@ -187,7 +187,6 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MoveableObject.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="TickerTime.cpp" />

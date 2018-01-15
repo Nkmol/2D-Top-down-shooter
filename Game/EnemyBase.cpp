@@ -62,7 +62,7 @@ void EnemyBase::ApplyForce(const float forcePower, const int forceDirection) {
 void EnemyBase::UpdatePosition(const float time)
 {
 	_behaviour->Update(time);
-    Update(time);
+    //Update(time);
 }
 
 void EnemyBase::Update(const float time) {

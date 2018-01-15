@@ -47,7 +47,10 @@ public:
 
     void StopMove();
 
-    const int GetPredictionMidX(float destinationPosition) const;
+	float GetSpeed() const;
+	void SetSpeed(const float value);
+
+	const int GetPredictionMidX(float destinationPosition) const;
 
     const int GetMidX() const;
 

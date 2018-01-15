@@ -40,6 +40,12 @@ GameObject& GameObject::operator=(GameObject that)
 	return *this;
 }
 
+// TODO Make size a Point
+Point GameObject::GetSize() const
+{
+	return {float(width), float(height)};
+}
+
 GameObject::GameObject() {
 
 }
