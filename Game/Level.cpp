@@ -29,6 +29,7 @@ Level::~Level() {
 	Hud::Instance().RemoveComponent(_UIBullets.get());
 	Hud::Instance().RemoveComponent(_UIWeapon.get());
 	Hud::Instance().RemoveComponent(_UIHealth.get());
+	Hud::Instance().RemoveComponent(_miniBackground.get());
 	for (auto &w : _weaponSlots)
 		Hud::Instance().RemoveComponent(w.get());
 }
@@ -54,9 +55,11 @@ void Level::LoadUIElements()
 	_UIBullets = std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }));
 	_UIHealth = std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }));
 	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
+	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 170)));
 	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
+	_miniBackground = std::make_unique<UIIcon>(UIIcon("hudkader", { config::width / 6 *5, 0 }, 200));
 
+	Hud::Instance().AddComponent(_miniBackground.get());
 	Hud::Instance().AddComponent(_UIHealth.get());
 	Hud::Instance().AddComponent(_UIBullets.get());
 	Hud::Instance().AddComponent(_UIWeapon.get());
@@ -248,6 +251,7 @@ void Level::Update(float time) {
 	auto totalBullets = _player->GetWeapon()->TotalBullets();
 	auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
 	auto weaponName = _player->GetWeapon()->GetName();
+
 	_UIWeapon->ChangeText("Weapon: " + weaponName);
 
 	_UIBullets->ChangeText("Bullets: " +

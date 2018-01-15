@@ -41,7 +41,7 @@ class Level {
 	std::unique_ptr<UIText> _UIBullets;
 	std::unique_ptr<UIText> _UIHealth;
 	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
-
+	std::unique_ptr<UIIcon> _miniBackground;
 	void LoadLevel();
 
     void LoadPlayer();

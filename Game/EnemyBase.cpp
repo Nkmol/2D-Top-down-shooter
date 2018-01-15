@@ -129,7 +129,7 @@ void EnemyBase::OnBaseCollision(GameObject *object) {
 }
 
 void EnemyBase::onCollision(MoveableObject *object) {
-    MoveableObject::StopMove();
+
 }
 
 void EnemyBase::onCollision(Bullet *bullet) {
@@ -141,12 +141,9 @@ void EnemyBase::onCollision(Bullet *bullet) {
     }
 
     bullet->OnBaseCollision(true);
-
-    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(EnemyBase *enemy) {
-    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(Player *player) {
@@ -155,5 +152,5 @@ void EnemyBase::onCollision(Player *player) {
 }
 
 void EnemyBase::OnBaseCollision(bool isWall) {
-    MoveableObject::StopMove();
+
 }

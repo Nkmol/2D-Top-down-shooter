@@ -61,6 +61,6 @@ void InstructionsState::Init(Game& game)
 	_texts.push_back({ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } });
 	_texts.push_back({ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } });
 	_texts.push_back({ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } });
-	_texts.push_back({ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} });
-	_texts.push_back({ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} });
+	_texts.push_back({ "Cheats: K = cheats, N = nuke", 25, {config::width / 2 - 120, config::height / 3 + 150} });
+	_texts.push_back({ "Level speed: slower = [ faster = ]", 25, {config::width / 2 - 120, config::height / 3 + 200} });
 }
