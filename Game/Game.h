@@ -23,7 +23,7 @@ public:
 	void ChangeState(std::unique_ptr<State>&& state);
 	void SetState(std::unique_ptr<State>&& state);
 	// Get state starting at back (1 is before last)
-	const std::unique_ptr<State>& GetStateBack();
+	const std::unique_ptr<State>& GetStateBack(const int at);
 	void PopState(unsigned val);
 	void PopState();
 	void ClearStates();

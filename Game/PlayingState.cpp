@@ -40,7 +40,7 @@ void PlayingState::Update(Game &game, float time)
 		int highestLevel = _level.GetPlayer().GetHighestLevel();
 		AssetManager::Instance().SaveJson(_level.GetPlayer(), _level.GetPlayer().GetSaveName());
 		game.PopState();
-		game.GetStateBack()->SetHighestLevel(highestLevel);
+		game.GetStateBack(0)->SetHighestLevel(highestLevel);
 		return;
 	}
 

@@ -38,7 +38,7 @@ void StateGameOver::Update(Game& game, float time)
 void StateGameOver::Draw(Game& game)
 {
 	// Draw previous state (the game)
-	game.GetStateBack()->Draw(game);
+	game.GetStateBack(1)->Draw(game);
 
 	_UITitle.Draw();
 	_UIContinue.Draw();

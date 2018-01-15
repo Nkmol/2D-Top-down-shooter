@@ -36,7 +36,7 @@ void PausedState::Update(Game &game, float time) {
 
 void PausedState::Draw(Game &game) {
 	// Draw previous state (the game)
-    game.GetStateBack()->Draw(game);
+    game.GetStateBack(1)->Draw(game);
 	_UIPauseText.Draw();
 
     // Draw all buttons
