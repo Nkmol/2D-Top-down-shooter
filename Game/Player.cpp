@@ -104,8 +104,8 @@ void to_json(nlohmann::json &j, const Player &value) {
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.ChangeLifepoints(j.at("lifepoints").get<int>());
-    value.ChangeWeapon(j.at("currentWeapon").get<int>());
+    value.SetMaxLifepoints(j.at("lifepoints").get<int>());
+    //value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
