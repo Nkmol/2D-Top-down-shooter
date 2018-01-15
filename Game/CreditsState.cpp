@@ -32,7 +32,7 @@ void CreditsState::Update(Game & game, float time)
 
 void CreditsState::Draw(Game & game)
 {
-	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+	RenderManager::Instance().DrawTexture(_background->GetPointer(), NULL, NULL);
 	_miniBackground->Draw();
 
 	// Draw all buttons

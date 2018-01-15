@@ -2,40 +2,39 @@
 #include <SDL.h>
 #include "RenderManager.h"
 #include "AssetManager.h"
+#include "SdlWrapper.h"
 
-class Texture
+class Texture : public SdlWrapper<SDL_Texture>
 {
-	typedef std::unique_ptr<SDL_Texture, CustomDeleter> TextureType;
-	TextureType _texture;
-
 public:
 	// Only init with Surface
 	int width{}, height{};
-	Texture() = default;
+private:
+	// Init size of texture by query
+	void InitSize()
+	{
+		SDL_QueryTexture(GetPointer(), nullptr, nullptr, &width, &height);
+	}
+public:
+	// TODO Not what we actually want
+	Texture() : SdlWrapper(nullptr)
+	{
 
-	explicit Texture(SDL_Surface* surface)
+	}
+
+	explicit Texture(SDL_Surface* surface) : SdlWrapper(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface))
 	{
 		width = surface->w;
 		height = surface->h;
-
-		const auto& t = RenderManager::Instance().GetRenderer();
-		_texture = TextureType(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), surface));
-		SDL_FreeSurface(surface);
 	}
 
-	explicit Texture(SDL_Texture* texture)
+	explicit Texture(SDL_Texture* texture) : SdlWrapper(texture)
 	{
-		_texture = TextureType(texture);
+		InitSize();
 	}
 
-	explicit Texture(const std::string& token)
+	explicit Texture(const std::string& token) : SdlWrapper(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), AssetManager::Instance().LoadSurface(token)))
 	{
-		_texture = TextureType(SDL_CreateTextureFromSurface(RenderManager::Instance().GetRenderer(), AssetManager::Instance().LoadSurface(token)));
-	}
-
-	// TODO: Return the smartptr
-	SDL_Texture* GetTexture() const
-	{
-		return _texture.get();
+		InitSize();
 	}
 };

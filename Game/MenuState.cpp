@@ -121,7 +121,7 @@ void MenuState::Update(Game &game, float time) {
 }
 
 void MenuState::Draw(Game &game) {
-    RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+    RenderManager::Instance().DrawTexture(_background->GetPointer(), NULL, NULL);
 	for (auto button : _allButtons) {
 		button.Draw();		
 	}

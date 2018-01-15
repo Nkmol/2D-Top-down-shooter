@@ -32,7 +32,7 @@ void InstructionsState::Update(Game & game, float time)
 
 void InstructionsState::Draw(Game & game)
 {
-	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+	RenderManager::Instance().DrawTexture(_background->GetPointer(), NULL, NULL);
 
 	_miniBackground->Draw();
 

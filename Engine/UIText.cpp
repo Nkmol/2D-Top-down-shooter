@@ -29,9 +29,9 @@ void UIText::LoadSurface()
 
 void UIText::Draw()
 {
-	if (!_texture.GetTexture()) return;
+	if (!_texture.GetPointer()) return;
 
-	RenderManager::Instance().DrawTexture(_texture.GetTexture(), nullptr, &_rect, _angle);
+	RenderManager::Instance().DrawTexture(_texture.GetPointer(), nullptr, &_rect, _angle);
 }
 
 void UIText::ChangeText(const std::string& text)
