@@ -57,9 +57,10 @@ void InstructionsState::Init(Game& game)
 
 	_miniBackground = std::make_unique<UIIcon>(UIIcon("zwartkader", { config::width / 2 - 270, config::height / 3 - 180 }, 150));
 	_texts.push_back({ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } });
-	_texts.push_back({ "Moving: W,A,S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } });
+	_texts.push_back({ "Moving: W, A, S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } });
 	_texts.push_back({ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } });
 	_texts.push_back({ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } });
 	_texts.push_back({ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } });
 	_texts.push_back({ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} });
+	_texts.push_back({ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} });
 }
