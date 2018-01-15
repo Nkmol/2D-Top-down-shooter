@@ -223,7 +223,7 @@ void Level::Update(float time) {
     }
 
     for (std::unique_ptr<DropableObject> &loot : _loot) {
-        loot->checkForCollision(*_player);
+        loot->CheckForCollision(*_player);
     }
 
     RemoveHiddenObjects(_objsNoEnemies);

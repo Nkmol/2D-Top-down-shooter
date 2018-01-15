@@ -8,12 +8,12 @@ PowerupModeFastShot::PowerupModeFastShot(float maxTime) : PowerupMode(maxTime) {
 
 }
 
-void PowerupModeFastShot::powerupPlayer(Player &player) {
+void PowerupModeFastShot::PowerupPlayer(Player &player) {
     if(player.GetWeapon()->getStandardFireRate() == player.GetWeapon()->getFireRate()) {
         player.GetWeapon()->setFireRate(player.GetWeapon()->getFireRate() / 2);
     }
 }
 
-void PowerupModeFastShot::removePowerup(Player &player) {
+void PowerupModeFastShot::RemovePowerup(Player &player) {
     player.GetWeapon()->setFireRate(player.GetWeapon()->getStandardFireRate());
 }

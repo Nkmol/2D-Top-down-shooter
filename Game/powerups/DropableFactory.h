@@ -9,13 +9,13 @@
 
 class DropableFactory {
 private:
-    static DropableFactory *sInstance;
-    std::vector<DropableObject> dropables;
+    static DropableFactory *_instance;
+    std::vector<DropableObject> _dropables;
 public:
     int dropChance = 1;
     static DropableFactory& Instance();
     DropableFactory();
-    DropableObject getDropable(int i);
+    DropableObject GetDropable(int i);
 };
 
 

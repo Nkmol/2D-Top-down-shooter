@@ -13,7 +13,7 @@ class DropableObject : public GameObject {
 public:
     DropableObject(const string &spriteToken, const Point &coordinates);
     virtual void ActivateDropable(Player &player);
-    void checkForCollision(Player &player);
+    void CheckForCollision(Player &player);
 };
 
 

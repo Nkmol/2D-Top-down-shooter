@@ -14,11 +14,11 @@ protected:
 
 public:
     PowerupMode(float maxTime);
-    void update(float time, Player &player);
-    virtual void powerupPlayer(Player &player);
-    virtual void removePowerup(Player &player);
-    float getCounter() const;
-    float getMaxTime() const;
+    void Update(float time, Player &player);
+    virtual void PowerupPlayer(Player &player);
+    virtual void RemovePowerup(Player &player);
+    float GetCounter() const;
+    float GetMaxTime() const;
 };
 
 
