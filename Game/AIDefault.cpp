@@ -68,7 +68,7 @@ void AIDefault::Seperate()
 
 
 	std::vector<GameObject*> temp = {};
-	MapManager::Instance().getNearbyCollidables(coordinates, &temp);
+	MapManager::Instance().GetNearbyCollidables(coordinates, &temp);
 	for (const auto& other : temp) {
 		const auto& oX = other->GetMidX();
 		const auto& oY = other->GetMidY();

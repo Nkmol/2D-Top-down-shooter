@@ -3,6 +3,7 @@
 #include "AssetManager.h"
 #include "Texture.h"
 #include "CustomDeleter.h"
+#include <fstream>
 
 AssetManager::AssetManager() {
 
@@ -78,4 +79,11 @@ std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 		std::cout << "Failed to load texture " << str << ". Error: " << SDL_GetError() << std::endl;
 	}
 	return make_unique<Texture>(texture);
+}
+
+void AssetManager::SaveJson(const nlohmann::json& json, const std::string savedGame) const
+{
+	// TODO refactor AssetManager
+	std::ofstream o(savedGame);
+    o << std::setw(4) << json << std::endl;
 }

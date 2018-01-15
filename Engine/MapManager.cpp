@@ -1,6 +1,5 @@
 #include "MapManager.h"
 
-using namespace std;
 
 MapManager& MapManager::Instance()
 {
@@ -16,21 +15,24 @@ MapManager::MapManager()
 
 void MapManager::Init(const string input)
 {
-	std::string filepath = "../content/map/" + input;
-	_tmx.load(filepath.c_str());
-	string tileset = "../content/map/" + _tmx.tilesetList.at(0).source;
-	_tsx.load(tileset.c_str());
+	_tmx.reset(new TMX::Parser());
+	_tsx.reset(new TSX::Parser());
 
-	SDL_Surface* spritesheet = AssetManager::Instance().LoadSurface(_tsx.tileset.image.source.c_str());
+	std::string filepath = "../content/map/" + input;
+	_tmx->load(filepath.c_str());
+	string tileset = "../content/map/" + _tmx->tilesetList.at(0).source;
+	_tsx->load(tileset.c_str());
+
+	SDL_Surface* spritesheet = AssetManager::Instance().LoadSurface(_tsx->tileset.image.source.c_str());
 	if (!spritesheet)
-		cout << SDL_GetError() << endl;
+		std::cout << SDL_GetError() << std::endl;
 	
 	GetTilesMap();
 	GetTileLayers();
-	const int tileWidth = _tmx.mapInfo.tileWidth;
-	const int tileHeight = _tmx.mapInfo.tileHeight;
-	const int width = _tmx.mapInfo.width;
-	const int height = _tmx.mapInfo.height;
+	const int tileWidth = _tmx->mapInfo.tileWidth;
+	const int tileHeight = _tmx->mapInfo.tileHeight;
+	const int width = _tmx->mapInfo.width;
+	const int height = _tmx->mapInfo.height;
 
 	SDL_Rect destRect;
 	destRect.w = tileWidth;
@@ -55,6 +57,7 @@ void MapManager::Init(const string input)
 													rmask, gmask, bmask, amask);
 	std::cout << SDL_GetError() << endl;
 	int counter = 0;
+	_newCollidables.clear();
 	for (int i = 0; i < height; i++)
 	{
 		_newCollidables.emplace_back();
@@ -65,7 +68,7 @@ void MapManager::Init(const string input)
 
 			if (_tileLayers.at(0).at(counter) != 0) {
 				if (SDL_BlitSurface(spritesheet, &_tilesMap.at(_tileLayers.at(0).at(counter)), tempSurface, &destRect) != 0)
-					std::cout << SDL_GetError() << endl;
+					std::cout << SDL_GetError() << std::endl;
 			}
 
 			GameObject gameObject{ Point((float)tileWidth*j, (float)tileHeight*i), tileWidth, tileHeight };
@@ -75,7 +78,7 @@ void MapManager::Init(const string input)
 				_newCollidables.at(i).at(j).get()->SetIsCollidable(true);
 				if (SDL_BlitSurface(spritesheet, &_tilesMap.at(_tileLayers.at(1).at(counter)), tempSurface, &destRect) != 0)
 
-					std::cout << SDL_GetError() << endl;
+					std::cout << SDL_GetError() << std::endl;
 			}
 			
 			
@@ -91,30 +94,30 @@ void MapManager::Init(const string input)
 void MapManager::Render()
 {
 	_mapRect.x = _mapRect.y = 0;
-	_mapRect.w = _tmx.mapInfo.width * _tmx.mapInfo.tileWidth;
-	_mapRect.h = _tmx.mapInfo.height * _tmx.mapInfo.tileHeight;
+	_mapRect.w = _tmx->mapInfo.width * _tmx->mapInfo.tileWidth;
+	_mapRect.h = _tmx->mapInfo.height * _tmx->mapInfo.tileHeight;
 
 	RenderManager::Instance().DrawTexture(_mapTexture, &_mapRect, NULL);
 }
 
 void MapManager::RenderTilesText()
 {
-	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx.tileLayer.begin(); it != _tmx.tileLayer.end(); ++it) {
+	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx->tileLayer.begin(); it != _tmx->tileLayer.end(); ++it) {
 		std::cout << std::endl;
 		std::cout << "Tile Layer Name: " << it->first << std::endl;
-		std::cout << "Tile Layer Visibility: " << _tmx.tileLayer[it->first]._visible << std::endl;
-		std::cout << "Tile Layer Opacity: " << _tmx.tileLayer[it->first].opacity << std::endl;
+		std::cout << "Tile Layer Visibility: " << _tmx->tileLayer[it->first]._visible << std::endl;
+		std::cout << "Tile Layer Opacity: " << _tmx->tileLayer[it->first].opacity << std::endl;
 		std::cout << "Tile Layer Properties:" << std::endl;
-		if (_tmx.tileLayer[it->first].property.size() != 0) {
-			for (std::map<std::string, std::string>::iterator it2 = _tmx.tileLayer[it->first].property.begin(); it2 != _tmx.tileLayer[it->first].property.end(); ++it2) {
+		if (_tmx->tileLayer[it->first].property.size() != 0) {
+			for (std::map<std::string, std::string>::iterator it2 = _tmx->tileLayer[it->first].property.begin(); it2 != _tmx->tileLayer[it->first].property.end(); ++it2) {
 				std::cout << "-> " << it2->first << " : " << it2->second << std::endl;
 			}
 		}
-		std::cout << "Tile Layer Data Encoding: " << _tmx.tileLayer[it->first].data.encoding << std::endl;
-		if (_tmx.tileLayer[it->first].data.compression != "none") {
-			std::cout << "Tile Layer Data Compression: " << _tmx.tileLayer[it->first].data.compression << std::endl;
+		std::cout << "Tile Layer Data Encoding: " << _tmx->tileLayer[it->first].data.encoding << std::endl;
+		if (_tmx->tileLayer[it->first].data.compression != "none") {
+			std::cout << "Tile Layer Data Compression: " << _tmx->tileLayer[it->first].data.compression << std::endl;
 		}
-		std::cout << "Tile Layer Data Contents: " << _tmx.tileLayer[it->first].data.contents << std::endl;
+		std::cout << "Tile Layer Data Contents: " << _tmx->tileLayer[it->first].data.contents << std::endl;
 	}
 }
 
@@ -134,13 +137,15 @@ void MapManager::Split(const std::string &s, char delim, Out result)
 
 void MapManager::GetTilesMap()
 {
-	const int columns = _tsx.tileset.columns;
-	const int tileWidth = _tsx.tileset.tileWidth;
-	const int tileHeight = _tsx.tileset.tileHeight;
+	_tilesMap.clear();
+
+	const int columns = _tsx->tileset.columns;
+	const int tileWidth = _tsx->tileset.tileWidth;
+	const int tileHeight = _tsx->tileset.tileHeight;
 	
 	int counter = 1;
 
-	for (int i = 0; i < _tsx.tileset.tilecount / columns; i++)
+	for (int i = 0; i < _tsx->tileset.tilecount / columns; i++)
 	{
 		for (int j = 0; j < columns; j++)
 		{
@@ -151,7 +156,7 @@ void MapManager::GetTilesMap()
 			rect.y = i * tileHeight;
 			_tilesMap.emplace(counter, rect);
 			counter++;
-			if (counter == _tsx.tileset.tilecount)
+			if (counter == _tsx->tileset.tilecount)
 				break;
 		}
 	}
@@ -159,9 +164,11 @@ void MapManager::GetTilesMap()
 
 void MapManager::GetTileLayers()
 {
-	vector<vector<string>> tempLayers;
-	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx.tileLayer.begin(); it != _tmx.tileLayer.end(); ++it) {
-		string content = _tmx.tileLayer[it->first].data.contents;
+	_tileLayers.clear();
+
+	std::vector<vector<string>> tempLayers;
+	for (std::map<std::string, TMX::TileLayer>::iterator it = _tmx->tileLayer.begin(); it != _tmx->tileLayer.end(); ++it) {
+		string content = _tmx->tileLayer[it->first].data.contents;
 
 		vector<string> tiles;
 		string next;
@@ -185,10 +192,10 @@ const SDL_Rect &MapManager::GetMapRect() const {
 	return _mapRect;
 }
 
-void MapManager::getNearbyCollidables(Point position, std::vector<GameObject*>* nearby)
+void MapManager::GetNearbyCollidables(Point position, std::vector<GameObject*>* nearby)
 {
-	const int tileWidth = _tsx.tileset.tileWidth;
-	const int tileHeight = _tsx.tileset.tileHeight;
+	const int tileWidth = _tsx->tileset.tileWidth;
+	const int tileHeight = _tsx->tileset.tileHeight;
 	int radius = 2;
 	int x = ((position.x) / tileWidth) < 0 ? 0 : ((position.x ) / tileWidth);
 	int y = ((position.y ) / tileHeight) < 0 ? 0 : ((position.y) / tileHeight);

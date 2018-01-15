@@ -19,9 +19,9 @@ public:
 	void Init(Game& game) override;
 	void StartLevel(const int level, Game& game);
 	void SetRandomAd();
+
 private:
 	int _muted;
-	int _highestLevel = 1;
 
 	Button _newgameButton;
 	Button _loadgameButton;

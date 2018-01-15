@@ -77,7 +77,6 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 	}
 	else if (_advertisement.IsClicked(ev)) 
 		_advertisement.Click();
-
 }
 
 void MenuState::LoadGame() {
