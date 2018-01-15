@@ -51,6 +51,7 @@ int AudioManager::LoadBGM(string audioToken)
 
 int AudioManager::PlayEffect(string audioToken)
 {
+	Mix_FreeChunk(_effectMusic);
 	//Mix_Chunk* effectM = Mix_LoadWAV(name);
 	_effectMusic = AssetManager::Instance().LoadEffect(audioToken);
 	if (_effectMusic == NULL)
@@ -104,6 +105,7 @@ void AudioManager::Close()
 {
 	//Free the music
 	Mix_FreeMusic(_bgm);
+	Mix_FreeChunk(_effectMusic);
 	_bgm = NULL;
 
 	//Quit SDL subsystems

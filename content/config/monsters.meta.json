@@ -1,16 +1,16 @@
 [
     {
         "type": "zombie",
-        "speed": 50,
+        "speed": 35,
         "damage": 12,
-        "lifepoints": 100,
+        "lifepoints": 45,
         "reward": 8,
         "weightmultiplier": 100,
         "behaviour": "default"
     },
     {
         "type": "bat",
-        "speed": 260,
+        "speed": 90,
         "damage": 5,
         "lifepoints": 15,
         "reward": 5,
