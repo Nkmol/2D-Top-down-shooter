@@ -4,7 +4,7 @@
 
 #include "Rifle.h"
 
-Rifle::Rifle(int _damage, float fireRate) : Weapon(_damage, "AR-15", 100, fireRate,"assaultrifle") {
+Rifle::Rifle(int _damage, float fireRate) : Weapon(_damage, "AR-15", 30, fireRate,"assaultrifle") {
 	type = "rifle";
 	_automatic = true;
 }

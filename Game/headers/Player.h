@@ -18,10 +18,8 @@ class Point;
 
 class Player : public MoveableObject {
 
-    std::vector<Weapon> _weapons;
+    std::vector<std::unique_ptr<Weapon>> _weapons;
     unsigned currentWeapon;
-
-private:
     int _lifepoints;
 	int _maxLifepoints;
     int _highestLevel = 1;
@@ -32,7 +30,7 @@ private:
     bool isCheatActive;
 
 public:
-	vector<std::unique_ptr<PowerupMode>> powerupmodes;
+	std::vector<std::unique_ptr<PowerupMode>> powerupmodes;
 
     Player(const std::string &filePath, float x, float y);
 
@@ -40,7 +38,7 @@ public:
 
 	~Player();
 
-    Bullet shoot();
+    std::vector<Bullet> Shoot();
 
     void Move(const Point direction);
 
@@ -56,13 +54,13 @@ public:
 
 	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; return _maxLifepoints; }
 
-    Weapon *GetWeapon();
+    Weapon* GetWeapon();
 
     void ChangeWeapon(unsigned index);
 
 	bool IsCheatActive();
 
-    const vector<Weapon> &GetWeapons() const;
+    const std::vector<std::unique_ptr<Weapon>>& GetWeapons() const;
 
     void OnBaseCollision(bool isCollidedOnWall);
 

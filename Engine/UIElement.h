@@ -1,4 +1,6 @@
 #pragma once
+
+#include <climits>
 #include "Texture.h"
 #include "Point.h"
 
