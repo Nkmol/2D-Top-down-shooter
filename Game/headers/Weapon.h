@@ -41,7 +41,7 @@ public:
 
     void SetName(const std::string &v);
 
-	Bullet GetBullet(int angle, Point coordinates, bool &isCheatActive);
+	virtual std::vector<Bullet> GetBullet(int angle, Point coordinates, bool &isCheatActive);
 
     void SetCurrentBullets(const int v);
 
