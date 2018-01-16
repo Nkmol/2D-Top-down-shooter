@@ -40,7 +40,6 @@ void PausedState::Update(Game &game, float time) {
 void PausedState::Draw(Game &game) {
 	// Draw previous state (the game)
     game.GetStateBack(1)->Draw(game);
-	Hud::Instance().Get<UIText>("Continue")->Draw();
 
     // Draw all buttons
     for (auto &button : _buttons) {
