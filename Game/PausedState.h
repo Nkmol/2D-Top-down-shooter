@@ -21,6 +21,5 @@ public:
 
 private:
 	vector<unique_ptr<Button>> _buttons;
-	UIText _UIPauseText;
 };
 
