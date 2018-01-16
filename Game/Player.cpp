@@ -60,7 +60,6 @@ std::vector<Bullet> Player::Shoot() {
 	float radians = angle * M_PI / 180;
 	float newx = x * cos(radians) - y * sin(radians);
 	float newy = x * sin(radians) + y * cos(radians);
-
 	
 	//float(GetMidX()), float(GetMidY())
 	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);

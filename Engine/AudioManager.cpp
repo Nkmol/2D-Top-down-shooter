@@ -33,12 +33,18 @@ int AudioManager::InitMusicPlayer() {
 int AudioManager::LoadBGM(string audioToken) {
     //Load music
     //gBGM = Mix_LoadMUS(name);
+	if (Mix_PlayingMusic() == 1) {
+		StopBGM();
+	}
+	Mix_FreeMusic(_bgm);
+
     _bgm = AssetManager::Instance().LoadBGM(audioToken);
     if (_bgm == NULL) {
         cout << "Failed to load beat music! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
         return 1;
     }
     return 0;
+
 }
 
 
@@ -55,8 +61,11 @@ int AudioManager::PlayEffect(string audioToken) {
     return 0;
 }
 
-void AudioManager::PlayBGM() {
-    Mix_VolumeMusic(MIX_MAX_VOLUME / 8);
+	// -1 is infinite
+void AudioManager::PlayBGM(int loops = -1)
+{
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 8);
+
 
     if (Mix_PlayingMusic() == 0) {
         //Play the music
@@ -64,21 +73,26 @@ void AudioManager::PlayBGM() {
     }
 }
 
-void AudioManager::PauseResumeBGM() {
-    if (Mix_PlayingMusic() == 1) {
-        //If the music is paused
-        if (Mix_PausedMusic() == 1) {
-            //Resume the music
-            Mix_ResumeMusic();
-        }
-            //If the music is playing
-        else {
-            //Pause the music
-            Mix_PauseMusic();
-        }
-    } else {
-        PlayBGM();
-    }
+void AudioManager::PauseResumeBGM()
+{
+	if (Mix_PlayingMusic() == 1)
+	{
+		//If the music is paused
+		if (Mix_PausedMusic() == 1)
+		{
+			//Resume the music
+			Mix_ResumeMusic();
+		}
+		//If the music is playing
+		else
+		{
+			//Pause the music
+			Mix_PauseMusic();
+		}
+	}
+	else {
+		PlayBGM(-1);
+	}
 }
 
 void AudioManager::StopBGM() {
