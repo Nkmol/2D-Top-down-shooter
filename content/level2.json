@@ -158,6 +158,12 @@
 					"minPos": 200,
 					"maxPos": 600,
 					"type": 2
+				},
+				{
+					"amount": 15,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 1
 				}
 			]
 		}
