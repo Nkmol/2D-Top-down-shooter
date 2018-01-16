@@ -41,6 +41,25 @@ Mix_Chunk *AssetManager::LoadEffect(const string effectToken) {
     return _effectMusic;
 }
 
+nlohmann::json AssetManager::LoadJson(const std::string& path) const
+{
+	const auto pathcontent = "../content/" + path;
+
+	 std::ifstream i;
+    i.exceptions(ifstream::failbit | ifstream::badbit);
+    try {
+        i.open(pathcontent);
+    }
+    catch (const ifstream::failure &) {
+        cout << "Exception opening/reading file: " << pathcontent << endl;
+        return {};
+    }
+    nlohmann::json j;
+    i >> j;
+
+	return j;
+}
+
 SDL_Surface* AssetManager::LoadSurface(const string mediaToken) {
     //Load image at specified path
     SDL_Surface *loadedSurface = IMG_Load(string{"../content/sprites/" + mediaToken + ".png"}.c_str());
@@ -84,6 +103,6 @@ std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 void AssetManager::SaveJson(const nlohmann::json& json, const std::string savedGame) const
 {
 	// TODO refactor AssetManager
-	std::ofstream o(savedGame);
+	std::ofstream o("../content/" + savedGame);
     o << std::setw(4) << json << std::endl;
 }

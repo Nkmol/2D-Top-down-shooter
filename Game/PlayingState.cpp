@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "StateGameOver.h"
 #include "Event.h"
+#include <chrono>
 
 PlayingState::PlayingState() : PlayingState(0, "")
 {
@@ -42,6 +43,25 @@ void PlayingState::Update(Game &game, float time)
 
 	if (_level.GetPlayer().GetState() == "dead")
 	{
+		// Save top 10 highscores on level 3
+		if(_level.GetLevelNumber() == 3) {
+			auto j = AssetManager::Instance().LoadJson("highscores.json");
+			std::map<string, std::string> highscores;
+			if(!j.is_null())
+			{
+				highscores = j.get<decltype(highscores)>();
+			}
+
+			auto& p = _level.GetPlayer();
+
+			auto t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+			auto a = std::string(std::ctime(&t));
+
+			//std::pair<std::string, std::string> tq (std::to_string(p.GetPoints()), a);
+			highscores.emplace(a, std::to_string(p.GetPoints()));
+
+			AssetManager::Instance().SaveJson(highscores, "highscores.json");
+		}
 		game.ChangeState(make_unique<StateGameOver>());
 		return;
 	}

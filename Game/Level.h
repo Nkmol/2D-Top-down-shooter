@@ -93,7 +93,7 @@ public:
 	void SetCompleted();
 
 	bool IsCompleted() const;
-
+	int GetLevelNumber() const;
 };
 
 void from_json(const nlohmann::json &j, Level &value);

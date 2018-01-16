@@ -216,6 +216,11 @@ bool Level::IsCompleted() const
 	return _isDone;
 }
 
+int Level::GetLevelNumber() const
+{
+	return _level;
+}
+
 void Level::Update(float time) {
     const auto accSpeed = time * _levelSpeed;
 
