@@ -152,6 +152,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handgun.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="HighscoreState.cpp" />
     <ClCompile Include="InstructionsState.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Rifle.h" />
     <ClInclude Include="headers\Weapon.h" />
+    <ClInclude Include="HighscoreState.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="IAIBase.h" />
     <ClInclude Include="InstructionsState.h" />
