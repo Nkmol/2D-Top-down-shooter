@@ -19,6 +19,7 @@ protected:
     int shooted = 0;
     int maxBullets;
     float fireRate;
+    float standardFireRate;
     float lastShot;
 	std::string type;
 	std::string _soundName;
@@ -55,6 +56,12 @@ public:
     void UpdateFireRate(float time);
 
     void ResetLastShot();
+
+    void SetFireRate(float fireRate);
+
+    float GetFireRate() const;
+
+    float GetStandardFireRate() const;
 
 	void ReleaseTrigger() { _triggerDown = false; }
 

@@ -24,73 +24,87 @@ set(SOURCE_FILES
         Game/AIBat.h
         Game/PlayingState.cpp
         Game/EnemyBase.cpp
+        Game/CreditsState.h
         Game/Handgun.cpp
         Game/AIDefault.h
         Game/Player.cpp
         Game/PlayingState.h
         Game/AIDefault.cpp
+        Game/Hud.h
         Game/Config.h
         Game/Shotgun.cpp
+        Game/Explosion.cpp
         Game/Shotgun.h
         Game/Wave.cpp
+        Game/InstructionsState.h
         Game/WaveController.cpp
         Game/Level.cpp
+        Game/StateGameOver.h
         Game/AIBat.cpp
+        Game/ExplosionFactory.cpp
         Game/Weapon.cpp
         Game/Helper.cpp
         Game/PausedState.h
         Game/IAIBase.h
         Game/Level.h
+        Game/InstructionsState.cpp
         Game/Game.h
         Game/PausedState.cpp
         Game/MenuState.h
+        Game/ExplosionFactory.h
         Game/WaveController.h
         Game/Handgun.h
+        Game/Rifle.cpp
+        Game/StateGameOver.cpp
+        Game/Explosion.h
         Game/Wave.h
         Game/Bullet.cpp
+        Game/CreditsState.cpp
+        Game/Hud.cpp
         Game/State.h
-        Game/Rifle.cpp
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
-        Game/Explosion.cpp
-        Game/ExplosionFactory.cpp
-        Game/Explosion.h
-        Game/Hud.cpp
-        Game/Hud.h
+        Game/powerups/DropableObject.cpp
+        Game/powerups/PowerupModeFastShot.cpp
+        Game/powerups/PowerupMode.h
+        Game/powerups/PowerupMode.cpp
+        Game/powerups/DropableObject.h
+        Game/powerups/PowerupFastShot.h
+        Game/powerups/DropableFactory.cpp
+        Game/powerups/PowerupModeFastShot.h
+        Game/powerups/DropableFactory.h
+        Game/powerups/PowerupFastShot.cpp
+        Game/powerups/PowerupHP.cpp
+        Game/powerups/PowerupHP.h
         Game/headers/Helper.h
+        Game/headers/Rifle.h
         Game/headers/Player.h
         Game/headers/Weapon.h
         Game/headers/Bullet.h
-        Game/headers/Rifle.h
         Game/headers/EnemyBase.h
-        Game/StateGameOver.cpp
-        Game/StateGameOver.h
-        Game/InstructionsState.cpp
-        Game/InstructionsState.h
-        Game/CreditsState.h
-        Game/CreditsState.cpp
-        Engine/UIElement.cpp
         Engine/UIElement.h
-        Engine/UIIcon.cpp
-        Engine/UIIcon.h
-        Engine/UIText.cpp
-        Engine/UIText.h
+        Engine/UIElement.cpp
         Engine/Button.cpp
         Engine/MoveableObject.cpp
         Engine/CustomDeleter.h
         Engine/TickerTime.cpp
         Engine/GameObject.cpp
+        Engine/AnimationManager.cpp
+        Engine/UIText.cpp
         Engine/RenderManager.cpp
         Engine/PhysicsManager.cpp
         Engine/InputManager.cpp
+        Engine/UIText.h
         Engine/Point.cpp
         Engine/AssetManager.cpp
+        Engine/UIIcon.cpp
+        Engine/AnimationManager.h
         Engine/MapManager.cpp
+        Engine/Texture.h
         Engine/Engine.cpp
         Engine/AudioManager.cpp
-        Engine/AnimationManager.cpp
-        Engine/AnimationManager.h
+        Engine/UIIcon.h
         Engine/headers/RenderManager.h
         Engine/headers/Engine.h
         Engine/headers/MapManager.h

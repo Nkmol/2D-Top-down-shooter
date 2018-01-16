@@ -2,6 +2,7 @@
 // Created by Mevlüt Özdemir on 15-11-17.
 //
 
+#include <Helper.h>
 #include "Weapon.h"
 #include "Point.h"
 #include "Bullet.h"
@@ -12,10 +13,15 @@ Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate, st
         _damage{_damage},
         maxBullets{maxBullets},
         fireRate{fireRate},
-	_soundName{ soundName}{}
+        standardFireRate{fireRate},
+	    _soundName{soundName}{}
 
 Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, _damage);
+    if(fireRate != standardFireRate) {
+        float s1 = (standardFireRate/fireRate)*bullet.GetSpeed();
+        bullet.SetSpeed(s1);
+    }
     bullet.SetAngle(angle);
 
     if (HasBullets()) {
@@ -84,6 +90,18 @@ void Weapon::ResetLastShot(){
 
 void Weapon::UpdateFireRate(float time) {
     this->lastShot -= time;
+}
+
+void Weapon::SetFireRate(float fireRate) {
+    Weapon::fireRate = fireRate;
+}
+
+float Weapon::GetFireRate() const {
+    return fireRate;
+}
+
+float Weapon::GetStandardFireRate() const {
+    return standardFireRate;
 }
 
 void Weapon::PlaySound(std::string soudName)

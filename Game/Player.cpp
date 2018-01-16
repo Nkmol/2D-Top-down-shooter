@@ -48,13 +48,18 @@ bool Player::IsCheatActive() {
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
 
-	float x = -28;
+	float x = -20;
 	float y = -11;
 
 	float radians = angle * M_PI / 180;
 	float newx = x * cos(radians) - y * sin(radians);
 	float newy = x * sin(radians) + y * cos(radians);
 
+	x = 9;
+	y = 5;
+
+	newx =+ x * cos(radians) - y * sin(radians);
+	newy =+ x * sin(radians) + y * cos(radians);
 	
 	//float(GetMidX()), float(GetMidY())
 	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
@@ -70,7 +75,7 @@ void Player::Move(const Point direction) {
 
 void Player::Update(float time) {
     GetWeapon()->UpdateFireRate(time);
-
+    UpdatePowerups(time);
     const auto newPosition = _coordinates + (destination * speed * time);
     PhysicsManager::Instance().CheckWallCollision(this, newPosition);
     PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPosition);
@@ -82,7 +87,10 @@ const int Player::GetLifepoints() const {
 }
 
 const int Player::ChangeLifepoints(const int lp) {
-    _lifepoints += lp;
+    if((_lifepoints+lp) >= 100)
+        _lifepoints = 100;
+    else
+        _lifepoints += lp;
     return _lifepoints;
 }
 
@@ -201,6 +209,22 @@ void Player::ReloadState() {
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
     return this->_spriteToken + "/" + this->GetWeapon()->GetType();
+}
+
+void Player::UpdatePowerups(float time) {
+    int i = 0;
+    std::vector<int> ids;
+    for( std::unique_ptr<PowerupMode> &powerup : powerupmodes){
+        if(powerup->GetCounter() >= powerup->GetMaxTime()){
+            ids.emplace_back(i);
+        }else{
+            powerup->Update(time, *this);
+        }
+        i++;
+    }
+    for(auto id : ids){
+        powerupmodes.erase(powerupmodes.begin() + id);
+    }
 }
 
 void Player::ToggleCheats() {

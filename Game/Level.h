@@ -9,9 +9,9 @@
 #include "Explosion.h"
 #include "WaveController.h"
 #include "Wave.h"
+#include "powerups/DropableObject.h"
 #include "../Engine/UIText.h"
 #include "../Engine/UIIcon.h"
-
 
 class EnemyBase;
 
@@ -28,7 +28,6 @@ class Level {
     int _level;
     std::vector<std::shared_ptr<MoveableObject>> _objsNoEnemies;
     std::vector<std::unique_ptr<EnemyBase>> _npcs;
-    std::vector<std::shared_ptr<GameObject>> _loot;
     std::shared_ptr<Player> _player;
     std::vector<Explosion> _explosion;
     std::string _map;
@@ -37,11 +36,13 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
-	std::unique_ptr<UIText> _UIWeapon;
-	std::unique_ptr<UIText> _UIBullets;
-	std::unique_ptr<UIText> _UIHealth;
-	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
+
 	std::unique_ptr<UIIcon> _miniBackground;
+
+
+	// Map of the UI based on index
+	std::map<int, std::string> _weaponUIMapping;
+
 	void LoadLevel();
 
     void LoadPlayer();
@@ -55,6 +56,7 @@ class Level {
 	bool _isDone = false;
 
 public:
+    static std::vector<std::unique_ptr<DropableObject>> _loot;
     explicit Level(int level, const std::string savedGame);
 
     ~Level();

@@ -11,6 +11,7 @@
 #include "Point.h"
 #include <Weapon.h>
 #include "PhysicsManager.h"
+#include "../powerups/PowerupMode.h"
 #include <time.h>
 
 class Point;
@@ -19,6 +20,8 @@ class Player : public MoveableObject {
 
     std::vector<Weapon> _weapons;
     unsigned currentWeapon;
+
+private:
     int _lifepoints;
 	int _maxLifepoints;
     int _highestLevel = 1;
@@ -26,17 +29,22 @@ class Player : public MoveableObject {
 	clock_t _lastHit = clock();
 	double _invTime = 500;
 	std::string _saveName;
+    bool isCheatActive;
+
 public:
-	std::string teststring = "hoi";
+	vector<std::unique_ptr<PowerupMode>> powerupmodes;
 
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
+
 	~Player();
 
     Bullet shoot();
 
     void Move(const Point direction);
+
+	void UpdatePowerups(float time);
 
     void Update(float time) override;
 

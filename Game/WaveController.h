@@ -28,6 +28,4 @@ private:
 	std::forward_list<Wave>::iterator _curWave;
 	std::vector<std::unique_ptr<EnemyBase>>* _npcs;
 	std::shared_ptr<Player> _player;
-
-	std::unique_ptr<UIText> _waveCounter;
 };

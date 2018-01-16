@@ -93,3 +93,11 @@ bool MoveableObject::IsAnimationFinished() {
 void MoveableObject::ResetAnimationTimer() {
     currentAnimationTimer = animationTimer;
 }
+
+void MoveableObject::SetSpeed(float speed) {
+    MoveableObject::speed = speed;
+}
+
+float MoveableObject::GetSpeed() const {
+    return speed;
+}
