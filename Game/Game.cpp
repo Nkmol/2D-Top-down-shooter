@@ -20,8 +20,7 @@ void Game::Init()
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
 	// Init after window renderer has been created
-	_fpsUI = std::make_unique<UIText>(UIText("0.00", 16,{ 2, 2 }));
-	Hud::Instance().AddComponent(_fpsUI.get());
+	Hud::Instance().AddComponent("fps", std::make_unique<UIText>(UIText("0.00", 16,{ 2, 2 })));
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -128,7 +127,8 @@ void Game::Draw()
 	// Fps to string and 2 decimal
 	std::stringstream str;
 	str << fixed << std::setprecision(0) << _fps;
-	_fpsUI->ChangeText(str.str());
+	auto* t = Hud::Instance().Get<UIText>("fps");
+	t->ChangeText(str.str());
 	Hud::Instance().Draw();
 
 	renderManager.Render();

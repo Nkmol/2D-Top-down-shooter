@@ -9,33 +9,33 @@ Hud& Hud::Instance()
 	return _instance;
 }
 
-Hud::Hud()
-{
-
-}
+Hud::Hud() = default;
 
 void Hud::Update(float time)
 {
-	for (auto comps : _components)
-		comps->Update(time);
+	for (auto it = _components.begin(); it != _components.end();) {
+		auto& kv = *it;
 
-	auto y(std::remove_if(_components.begin(), _components.end(), [](UIElement* c) { return c->Destroyable(); }));
-	_components.erase(y, _components.end());
+		if(kv.second->Destroyable())
+		{
+			it = _components.erase(it);
+		}
+		else
+		{
+			kv.second->Update(time);
+			 ++it;
+		}
+	}
 }
 
 void Hud::Draw()
 {
-	for (auto comps : _components)
-		comps->Draw();
+	for (const auto& kv : _components) {
+		kv.second->Draw();
+	}
 }
 
-void Hud::AddComponent(UIElement* comp)
+void Hud::AddComponent(const std::string & identifier, std::unique_ptr<Base>&& comp)
 {
-	_components.push_back(comp);
-}
-
-void Hud::RemoveComponent(UIElement* comp)
-{
-	auto y(std::remove_if(_components.begin(), _components.end(), [&comp](UIElement* c) { return c == comp; }));
-	_components.erase(y, _components.end());
+	_components.emplace(identifier, std::move(comp));
 }

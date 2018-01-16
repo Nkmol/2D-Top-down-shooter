@@ -37,10 +37,9 @@ class Level {
     double _levelSpeed;
     WaveController _waveController;
     std::forward_list<Wave> _waves;
-	std::unique_ptr<UIText> _UIWeapon;
-	std::unique_ptr<UIText> _UIBullets;
-	std::unique_ptr<UIText> _UIHealth;
-	std::vector<std::unique_ptr<UIIcon>> _weaponSlots;
+
+	// Map of the UI based on index
+	std::map<int, std::string> _weaponUIMapping;
 
 	void LoadLevel();
 
