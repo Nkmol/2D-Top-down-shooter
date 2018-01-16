@@ -16,7 +16,7 @@ Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate, st
         standardFireRate{fireRate},
 	    _soundName{soundName}{}
 
-Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
+std::vector<Bullet> Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, _damage);
     if(fireRate != standardFireRate) {
         float s1 = (standardFireRate/fireRate)*bullet.GetSpeed();
@@ -34,7 +34,8 @@ Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
         bullet.Hide(); // returns a hidden bullet, so it will not be drawn
     }
 	_triggerDown = true;
-    return bullet;
+
+	return std::vector<Bullet>{bullet};
 }
 
 bool Weapon::HasBullets() {
