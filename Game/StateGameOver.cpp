@@ -19,6 +19,8 @@ StateGameOver::StateGameOver()
 
 StateGameOver::~StateGameOver()
 {
+	Hud::Instance().Get<UIText>("ContinueGameover")->Destroy();
+	Hud::Instance().Get<UIText>("TitelGameover")->Destroy();
 }
 
 void StateGameOver::Init(Game& game)

@@ -157,7 +157,7 @@ void EnemyBase::onCollision(Player *player) {
 
 void EnemyBase::DropDropable() {
     int dropchance = DropableFactory::Instance()._dropChance;
-    int rollNumber = rand() % 20;
+    int rollNumber = rand() % 40;
     if(rollNumber <= dropchance){
         if(rollNumber == 1){
             PowerupHP powerup = PowerupHP(_coordinates);
