@@ -26,7 +26,15 @@ Level::Level(const int level, const ::std::string savedGame) :
     Level::_explosion = {};
 }
 
-Level::~Level() = default;
+Level::~Level()
+{
+	Hud::Instance().Get<UIText>("TextWeapon")->Destroy();
+	Hud::Instance().Get<UIText>("TextBullets")->Destroy();
+	Hud::Instance().Get<UIText>("TextHealth")->Destroy();
+	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
+	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
+	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
+}
 
 void Level::Init() {
     LoadLevel();
