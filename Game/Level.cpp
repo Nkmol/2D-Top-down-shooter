@@ -35,8 +35,7 @@ Level::~Level()
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
-	AudioManager::Instance().StopBGM();
-
+	//AudioManager::Instance().LoadBGM("mainmenu");
 }
 
 void Level::Init() {
