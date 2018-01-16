@@ -130,7 +130,7 @@ set(SOURCE_FILES
         Engine/tmx/include/TMXParser.h
         Engine/tmx/include/TSXParser.h
         Engine/tmx/src/TMXParser.cpp
-        Engine/tmx/src/TSXParser.cpp)
+        Engine/tmx/src/TSXParser.cpp Engine/Timer.cpp Engine/Timer.h)
 add_executable(Shooter ${SOURCE_FILES})
 message(${CMAKE_SOURCE_DIR})
 target_link_libraries(Shooter LINK_PUBLIC ${Boost_LIBRARIES} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${CMAKE_SOURCE_DIR}/cmake/libs/libnfd.a)
