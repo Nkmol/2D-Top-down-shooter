@@ -11,7 +11,5 @@ public:
 	void HandleEvents(Game& game, Event& event) override;
 	void Update(Game& game, float time) override;
 	void Draw(Game& game) override;
-	UIText _UITitle;
-	UIText _UIContinue;
 };
 
