@@ -12,8 +12,9 @@ UIText::UIText(const std::string& text, const unsigned fontSize, const Point& po
 {
 }
 
-UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour, float lifetime) : UIElement(position, lifetime), _colour(colour), _text(text)
+UIText::UIText(const std::string& text, const unsigned fontSize, const Point& position, const RGBA& colour, float lifetime) : UIElement(position, lifetime), _colour(colour), _text(text)//memleak
 {
+	//memleak
 	_font = AssetManager::Instance().LoadFont("OpenSans-Regular", fontSize);
 
 	if (text.empty()) return;
@@ -40,5 +41,5 @@ void UIText::ChangeText(const std::string& text)
 
 	_text = text;
 
-	LoadSurface();
+	LoadSurface();//memleak
 }

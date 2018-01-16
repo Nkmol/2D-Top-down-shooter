@@ -20,7 +20,7 @@ void Game::Init()
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
 	// Init after window renderer has been created
-	Hud::Instance().AddComponent("fps", std::make_unique<UIText>(UIText("0.00", 16,{ 2, 2 })));
+	Hud::Instance().AddComponent("fps", std::make_unique<UIText>(UIText("0.00", 16,{ 2, 2 })));//memleak
 }
 
 // Explicity force user to transfer ownership with std::move

@@ -33,7 +33,8 @@ int AudioManager::InitMusicPlayer() {
 int AudioManager::LoadBGM(string audioToken) {
     //Load music
     //gBGM = Mix_LoadMUS(name);
-    _bgm = AssetManager::Instance().LoadBGM(audioToken);
+    //memleak
+	_bgm = AssetManager::Instance().LoadBGM(audioToken);
     if (_bgm == NULL) {
         cout << "Failed to load beat music! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
         return 1;

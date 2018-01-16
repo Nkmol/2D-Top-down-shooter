@@ -56,17 +56,17 @@ void Level::LoadUIElements()
 	auto& hud = Hud::Instance();
 
 	// Add text
-	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 })));
-	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 })));
-	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 })));
+	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 })));//memleak
+	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 })));//memleak
+	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 })));//memleak
 
 	// Add weapon UI
 	_weaponUIMapping.emplace(0, "IconHandgun");
 	_weaponUIMapping.emplace(1, "IconRifle");
 	_weaponUIMapping.emplace(2, "IconShotgun");
-	hud.AddComponent(_weaponUIMapping[0], std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
-	hud.AddComponent(_weaponUIMapping[1], std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
-	hud.AddComponent(_weaponUIMapping[2], std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
+	hud.AddComponent(_weaponUIMapping[0], std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));//memleak
+	hud.AddComponent(_weaponUIMapping[1], std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));//memleak
+	hud.AddComponent(_weaponUIMapping[2], std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));//memleak
 
 	/*_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
 	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));

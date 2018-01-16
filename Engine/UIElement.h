@@ -27,7 +27,6 @@ protected:
 	float _livingtime = 0;
 public:
 	UIElement(Point position, float lifetime);
-
 	virtual void Draw() = 0;
 	void Center();
 

@@ -23,7 +23,7 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	_npcs = npcs;
 	_player = player;
 
-	Hud::Instance().AddComponent("Counter", std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 })));
+	Hud::Instance().AddComponent("Counter", std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 })));//memleak
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);

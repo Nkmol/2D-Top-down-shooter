@@ -73,12 +73,12 @@ std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 	if (str.empty()) return {};
 
 	// TODO call this from RenderManager, so it gives the Render instance as parameter to this function (DI)
-	const auto texture = IMG_LoadTexture(RenderManager::Instance().GetRenderer(), ("../content/sprites/" + str + ".png").c_str());
+	auto texture = IMG_LoadTexture(RenderManager::Instance().GetRenderer(), ("../content/sprites/" + str + ".png").c_str());
 	if (texture == nullptr)
 	{
 		std::cout << "Failed to load texture " << str << ". Error: " << SDL_GetError() << std::endl;
 	}
-	return make_unique<Texture>(texture);
+	return std::make_unique<Texture>(texture);//memleak
 }
 
 void AssetManager::SaveJson(const nlohmann::json& json, const std::string savedGame) const
