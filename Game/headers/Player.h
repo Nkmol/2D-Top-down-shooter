@@ -29,6 +29,8 @@ private:
 	clock_t _lastHit = clock();
 	double _invTime = 500;
 	std::string _saveName;
+    bool isCheatActive;
+
 public:
 	vector<std::unique_ptr<PowerupMode>> powerupmodes;
 

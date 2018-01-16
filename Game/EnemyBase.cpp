@@ -161,11 +161,8 @@ void EnemyBase::onCollision(Player *player) {
 
 void EnemyBase::dropDropable() {
     int dropchance = DropableFactory::Instance().dropChance;
-    int hp = 1;
-    int fastshoot = 2;
     int rollNumber = rand() % 10 + 0;
     if(rollNumber <= dropchance){
-
         if(rollNumber == 1){
             PowerupHP powerup = PowerupHP(_coordinates);
             Level::_loot.emplace_back(make_unique<PowerupHP>(powerup));
