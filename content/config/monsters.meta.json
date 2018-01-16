@@ -1,7 +1,7 @@
 [
     {
         "type": "zombie",
-        "speed": 45,
+        "speed": 60,
         "damage": 12,
         "lifepoints": 45,
         "reward": 8,
@@ -19,8 +19,8 @@
     },
     {
         "type": "spider",
-        "speed": 150,
-        "damage": 25,
+        "speed": 50,
+        "damage": 50,
         "lifepoints": 1000,
         "reward": 50,
         "weightmultiplier": 1000,
