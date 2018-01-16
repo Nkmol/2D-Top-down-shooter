@@ -70,6 +70,16 @@ bool Player::CanShoot() {
     return GetWeapon()->CanShoot();
 }
 
+int Player::GetPoints() const
+{
+	return _points;
+}
+
+void Player::AddPoints(const int value)
+{
+	_points += value;
+}
+
 void Player::Move(const Point direction) {
     destination = direction;
 }

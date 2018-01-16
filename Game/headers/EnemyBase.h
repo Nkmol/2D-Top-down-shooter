@@ -21,7 +21,7 @@ protected:
 	// TODO share same AI parts (shared_ptr)
 	std::unique_ptr<IAIBase> _behaviour;
 
-	int lifepoints, _damage, reward;
+	int lifepoints, _damage, _reward;
 	Point destinationPoint;
 
 	const int GetLifepoints() const;

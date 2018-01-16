@@ -34,6 +34,7 @@ Level::~Level()
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
+	Hud::Instance().Get<UIText>("TextPoints")->Destroy();
 }
 
 void Level::Init() {
@@ -59,6 +60,7 @@ void Level::LoadUIElements()
 	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 })));
 	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 })));
 	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 })));
+	hud.AddComponent("TextPoints", std::make_unique<UIText>(UIText("", 22, { config::width - 200, 120 })));
 
 	// Add weapon UI
 	_weaponUIMapping.emplace(0, "IconHandgun");
@@ -67,13 +69,6 @@ void Level::LoadUIElements()
 	hud.AddComponent(_weaponUIMapping[0], std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
 	hud.AddComponent(_weaponUIMapping[1], std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
 	hud.AddComponent(_weaponUIMapping[2], std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
-
-	/*_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
-	_weaponSlots.emplace_back(std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
-
-	for (auto &w : _weaponSlots)
-		Hud::Instance().AddComponent(w.get());*/
 }
 
 void Level::LoadLevel() {
@@ -277,6 +272,7 @@ void Level::Update(float time) {
 	hud.Get<UIText>("TextHealth")->ChangeText("Health: " +
 		std::to_string(_player->GetLifepoints()) + "/" + 
 		std::to_string(_player->GetMaxLifepoints()));
+	hud.Get<UIText>("TextPoints")->ChangeText("Points: " + std::to_string(_player->GetPoints()));
 }
 
 void Level::AddExplosion(const Point &point) {
