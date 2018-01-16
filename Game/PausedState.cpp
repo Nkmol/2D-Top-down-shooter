@@ -6,12 +6,15 @@
 #include "InputManager.h"
 #include "Button.h"
 #include "MenuState.h"
+#include "Hud.h"
 
-PausedState::PausedState() : _UIPauseText("Press ESC to resume game", 24, { config::width / 2 - 155, config::height / 2 - 20 }) 
+PausedState::PausedState()
 {
+	Hud::Instance().AddComponent("Continue", std::make_unique<UIText>(UIText("Press ESC to resume game", 24, { config::width / 2 - 155, config::height / 2 - 20 })));
 }
 
 PausedState::~PausedState() {
+	Hud::Instance().Get<UIText>("Continue")->Destroy();
 }
 
 void PausedState::HandleEvents(Game &game, Event& event) {
@@ -37,7 +40,7 @@ void PausedState::Update(Game &game, float time) {
 void PausedState::Draw(Game &game) {
 	// Draw previous state (the game)
     game.GetStateBack(1)->Draw(game);
-	_UIPauseText.Draw();
+	Hud::Instance().Get<UIText>("Continue")->Draw();
 
     // Draw all buttons
     for (auto &button : _buttons) {
