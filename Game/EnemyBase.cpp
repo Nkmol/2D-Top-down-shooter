@@ -6,6 +6,7 @@
 #include "AIDefault.h"
 #include "FactoryBehaviour.h"
 #include "Bullet.h"
+#include "AudioManager.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed,
 	const bool isLeader, const int _damage, const int lifepoints, const int reward, float multiplier) :
@@ -133,7 +134,9 @@ void EnemyBase::onCollision(MoveableObject *object) {
 
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
+	AudioManager::Instance().PlayEffect("hitmarker");
     if (lifepoints < 0) {
+		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
     }
 

@@ -1,7 +1,7 @@
 [
     {
         "type": "zombie",
-        "speed": 35,
+        "speed": 45,
         "damage": 12,
         "lifepoints": 45,
         "reward": 8,
