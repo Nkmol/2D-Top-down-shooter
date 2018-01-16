@@ -6,8 +6,7 @@ class UIText : public UIElement
 public:
 
 private:
-	// TODO Smart	
-	AssetManager::Font _font;
+	Font _font;
 	RGBA _colour{};
 	std::string _text;
 	void LoadSurface();

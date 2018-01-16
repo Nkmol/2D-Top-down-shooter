@@ -87,6 +87,7 @@ set(SOURCE_FILES
         Engine/UIElement.cpp
         Engine/Button.cpp
         Engine/MoveableObject.cpp
+        Engine/SdlWrapper.h
         Engine/CustomDeleter.h
         Engine/TickerTime.cpp
         Engine/GameObject.cpp
@@ -101,6 +102,7 @@ set(SOURCE_FILES
         Engine/UIIcon.cpp
         Engine/AnimationManager.h
         Engine/MapManager.cpp
+        Engine/Font.h
         Engine/Texture.h
         Engine/Engine.cpp
         Engine/AudioManager.cpp

@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AnimationManager.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="headers\AssetManager.h" />
     <ClInclude Include="headers\AudioManager.h" />
     <ClInclude Include="headers\Button.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="headers\MapManager.h" />
     <ClInclude Include="headers\TickerTime.h" />
     <ClInclude Include="CustomDeleter.h" />
+    <ClInclude Include="SdlWrapper.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />

@@ -14,7 +14,10 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 GameObject::GameObject(const std::string &_spriteToken, const Point coordinates) : _coordinates(coordinates) {
     _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
 	// TODO Move to RenderManager
-    SDL_QueryTexture(_sprite->GetTexture(), nullptr, nullptr, &this->width, &this->height);
+    //SDL_QueryTexture(_sprite->GetPointer(), nullptr, nullptr, &this->width, &this->height);
+	width = _sprite->width;
+	height = _sprite->height;
+
     _visible = true;
     midX = _coordinates.x + width / 2;
     midY = _coordinates.y + height / 2;
@@ -90,7 +93,7 @@ void GameObject::Draw() {
     if (!_visible) return;
 
     SDL_Rect destinationRectangle = {static_cast<int>(_coordinates.x), static_cast<int>(_coordinates.y), width, height};
-    RenderManager::Instance().DrawTexture(_sprite->GetTexture(), nullptr, &destinationRectangle, angle);
+    RenderManager::Instance().DrawTexture(_sprite->GetPointer(), nullptr, &destinationRectangle, angle);
 }
 
 int GameObject::GetAngle() const {
