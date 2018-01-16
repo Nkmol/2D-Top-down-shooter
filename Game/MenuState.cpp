@@ -88,7 +88,7 @@ void MenuState::NewGame()
 	fs::path path{ fs::current_path().parent_path() };
 	path += "\\content\\saves";		
 	std::string str = path.string();
-	str += "\SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));	
+	str += "\\SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));	
 	str += ".json";
 
 	std::ofstream newsave (str);
