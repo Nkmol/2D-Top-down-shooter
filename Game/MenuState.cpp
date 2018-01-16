@@ -7,6 +7,9 @@
 #include "nfd.h"
 #include <json.hpp>
 #include <regex>
+#include <iostream>
+#include <fstream>
+
 
 namespace fs = std::experimental::filesystem;
 
@@ -32,6 +35,7 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 	}
 
 	if (_newgameButton.IsClicked(ev)) {
+		this->NewGame();
 		return;
 	}
 
@@ -77,6 +81,23 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 	}
 	else if (_advertisement.IsClicked(ev)) 
 		_advertisement.Click();
+}
+
+void MenuState::NewGame()
+{
+	fs::path path{ fs::current_path().parent_path() };
+	path += "\\content\\saves";		
+	std::string str = path.string();
+	str += "\SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));	
+	str += ".json";
+
+	std::ofstream newsave (str);
+	newsave << "{\n";
+	newsave << "\t\"highestLevel\": 1\n";
+	newsave << "}";
+	newsave.close();
+	_highestLevel = 1;
+	_savedGame = str;
 }
 
 void MenuState::LoadGame() {

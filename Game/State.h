@@ -21,5 +21,5 @@ public:
 
 protected:
 	State() { }
-	int  _highestLevel = 1;
+	int  _highestLevel = 0;
 };
