@@ -151,7 +151,7 @@ void EnemyBase::onCollision(Bullet *bullet) {
 }
 
 void EnemyBase::onCollision(EnemyBase *enemy) {
-    MoveableObject::StopMove();
+    //MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(Player *player) {
@@ -174,5 +174,5 @@ void EnemyBase::dropDropable() {
 }
 
 void EnemyBase::OnBaseCollision(bool isWall) {
-    MoveableObject::StopMove();
+    //MoveableObject::StopMove();
 }
