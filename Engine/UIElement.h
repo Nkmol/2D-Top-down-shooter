@@ -1,4 +1,6 @@
 #pragma once
+
+#include <climits>
 #include "Texture.h"
 #include "Point.h"
 
@@ -16,7 +18,7 @@ public:
 		}
 	};
 protected:
-	Texture _texture{};
+	Texture _texture;
 	Point _coordinates;
 	int _angle{};
 	SDL_Rect _rect{};

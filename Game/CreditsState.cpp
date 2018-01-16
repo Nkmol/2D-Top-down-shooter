@@ -1,5 +1,6 @@
-#include "CreditsState.h"
+ï»¿#include "CreditsState.h"
 #include "../Engine/UIText.h"
+#include "Hud.h"
 
 CreditsState::CreditsState()
 {
@@ -8,6 +9,13 @@ CreditsState::CreditsState()
 
 CreditsState::~CreditsState()
 {
+	auto& hud = Hud::Instance();
+	hud.Get<UIText>("TitelCredit")->Destroy();
+	hud.Get<UIText>("Niels")->Destroy();
+	hud.Get<UIText>("Sander")->Destroy();
+	hud.Get<UIText>("Mevlut")->Destroy();
+	hud.Get<UIText>("Ahmad")->Destroy();
+	hud.Get<UIText>("Jarric")->Destroy();
 }
 
 void CreditsState::HandleEvents(Game & game, Event& ev)
@@ -32,7 +40,7 @@ void CreditsState::Update(Game & game, float time)
 
 void CreditsState::Draw(Game & game)
 {
-	RenderManager::Instance().DrawTexture(_background->GetTexture(), NULL, NULL);
+	RenderManager::Instance().DrawTexture(_background->GetPointer(), NULL, NULL);
 	_miniBackground->Draw();
 
 	// Draw all buttons
@@ -40,9 +48,6 @@ void CreditsState::Draw(Game & game)
 	{
 		button->Draw();
 	}
-
-	for (auto& t : _texts)
-		t.Draw();
 }
 
 void CreditsState::Init(Game& game)
@@ -55,10 +60,12 @@ void CreditsState::Init(Game& game)
 	}));
 
 	_miniBackground = std::make_unique<UIIcon>(UIIcon("zwartkader", { config::width / 2 - 270, config::height / 3 - 180 }, 150));
-	_texts.push_back({ "THIS GAME IS CREATED BY:", 40, {config::width / 2 - 250, config::height / 3 - 170} });
-	_texts.push_back({ "Niels Kop", 40, { config::width / 2 - 250, config::height / 3 - 90 } });
-	_texts.push_back({ "Sander Mol", 40, { config::width / 2 - 250, config::height / 3 - 10 } });
-	_texts.push_back({ "Mevlut Özdemir", 40,{ config::width / 2 - 250, config::height / 3 + 80 } });
-	_texts.push_back({ "Ahmad Rahimi", 40,{ config::width / 2 - 250, config::height / 3 + 170 } });
-	_texts.push_back({ "Jarric van Krieken", 40,{ config::width / 2 - 250, config::height / 3 + 260 } });
+
+	auto& hud = Hud::Instance();
+	hud.AddComponent("TitelCredit", std::make_unique<UIText>(UIText{ "THIS GAME IS CREATED BY:", 40, {config::width / 2 - 250, config::height / 3 - 170} }));
+	hud.AddComponent("Niels", std::make_unique<UIText>(UIText{ "Niels Kop", 40, { config::width / 2 - 250, config::height / 3 - 90 } }));
+	hud.AddComponent("Sander", std::make_unique<UIText>(UIText{ "Sander Mol", 40, { config::width / 2 - 250, config::height / 3 - 10 } }));
+	hud.AddComponent("Mevlut", std::make_unique<UIText>(UIText{ "Mevlut ï¿½zdemir", 40, {config::width / 2 - 250, config::height / 3 + 80} }));
+	hud.AddComponent("Ahmad", std::make_unique<UIText>(UIText{ "Ahmad Rahimi", 40, {config::width / 2 - 250, config::height / 3 + 170} }));
+	hud.AddComponent("Jarric", std::make_unique<UIText>(UIText{ "Jarric van Krieken", 40, {config::width / 2 - 250, config::height / 3 + 260} }));
 }

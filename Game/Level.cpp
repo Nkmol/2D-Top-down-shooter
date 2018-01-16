@@ -35,7 +35,7 @@ Level::~Level()
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
-	//AudioManager::Instance().LoadBGM("mainmenu");
+	AudioManager::Instance().LoadBGM("mainmenu");
 }
 
 void Level::Init() {
@@ -230,8 +230,12 @@ void Level::Update(float time) {
 
 	if (_player->CanShoot() && InputManager::Instance().LMBState()) {
 		_player->ChangeState("shoot");
-		auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-		_objsNoEnemies.emplace_back(bullet);
+		std::vector<Bullet> bullets = _player->Shoot();
+		for (auto& b : bullets)
+		{
+			auto bullet = make_shared<Bullet>(b); // returns a bullet
+			_objsNoEnemies.emplace_back(bullet);
+		}		
 	}
 
     AnimationManager::Instance().Update(*_player, accSpeed);

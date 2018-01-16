@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "AudioManager.h"
+#include "Shotgun.h"
+#include "Rifle.h"
+#include "Handgun.h"
 
 Player::Player(const std::string &filePath, const float x, const float y) :
         Player(filePath, Point{x, y}) {
@@ -20,13 +23,16 @@ Player::Player(const std::string &filePath, const Point coordinates, const int l
 Player::~Player() = default;
 
 void Player::AddWeapons(std::vector<Weapon> wp) {
-    for (auto &weapon : wp) {
-        _weapons.push_back(weapon);
-    }
+    _weapons.emplace_back(std::make_unique<Handgun>(Handgun()));
+	_weapons.emplace_back(std::make_unique<Rifle>(Rifle()));
+	_weapons.emplace_back(std::make_unique<Shotgun>(Shotgun()));
 }
 
 void Player::SetWeapons(const std::vector<Weapon> wp) {
-    _weapons = wp;
+	//_weapons.clear();
+	//for (auto &weapon : wp) {
+	//	_weapons.push_back(std::make_unique<Weapon>(weapon));
+	//}
 }
 
 int Player::GetCurrentWeaponIndex() const {
@@ -45,7 +51,7 @@ bool Player::IsCheatActive() {
 	return _isCheatActive;
 }
 
-Bullet Player::shoot() {
+std::vector<Bullet> Player::Shoot() {
 	GetWeapon()->ResetLastShot();
 
 	float x = -28;
@@ -88,11 +94,11 @@ const int Player::ChangeLifepoints(const int lp) {
     return _lifepoints;
 }
 
-Weapon *Player::GetWeapon() {
-    return &_weapons[currentWeapon];
+Weapon* Player::GetWeapon() {
+    return _weapons[currentWeapon].get();
 }
 
-const vector<Weapon> &Player::GetWeapons() const {
+const std::vector<std::unique_ptr<Weapon>>& Player::GetWeapons() const {
     return _weapons;
 }
 
@@ -100,7 +106,7 @@ void to_json(nlohmann::json &j, const Player &value) {
     j = nlohmann::json{
             {"lifepoints",    value.GetLifepoints()},
             {"highestLevel",  value.GetHighestLevel()},
-            {"weapons",       value.GetWeapons()},
+            //{"weapons",       value.GetWeapons()},
             {"currentWeapon", value.GetCurrentWeaponIndex()}
     };
 }
@@ -111,13 +117,13 @@ void from_json(const nlohmann::json &j, Player &value) {
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
-    auto weps = value.GetWeapons();
-    auto jsonWeapons = j.at("weapons");
-    for (auto i = 0; i < jsonWeapons.size(); i++) {
-        from_json(jsonWeapons[i], weps[i]);
-    }
+    //auto weps = value.GetWeapons();
+    //auto jsonWeapons = j.at("weapons");
+    //for (auto i = 0; i < jsonWeapons.size(); i++) {
+    //    from_json(jsonWeapons[i], weps[i]);
+    //}
 
-    value.SetWeapons(weps);
+    //value.SetWeapons(weps);
 }
 
 void Player::OnBaseCollision(bool isCollidedOnWall) {
@@ -126,11 +132,9 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 
 void Player::Hit(int _damage) {
 	if (_isCheatActive) return;
-	
-	auto hittime = clock();
-	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
+    if (_lastHit.GetTimePassed() >= _invTime)
 	{
-		_lastHit = hittime;
+		_lastHit = Timer();
 		_lifepoints -= _damage;
 		if (_lifepoints <= 0) {
 			_lifepoints = 0;
