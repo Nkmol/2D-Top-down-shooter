@@ -12,7 +12,7 @@ private:
     static DropableFactory *_instance;
     std::vector<DropableObject> _dropables;
 public:
-    int dropChance = 1;
+    int _dropChance = 1;
     static DropableFactory& Instance();
     DropableFactory();
     DropableObject GetDropable(int i);

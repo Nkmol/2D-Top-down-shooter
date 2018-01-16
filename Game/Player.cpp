@@ -48,18 +48,12 @@ bool Player::IsCheatActive() {
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
 
-	float x = -20;
+	float x = -28;
 	float y = -11;
 
 	float radians = angle * M_PI / 180;
 	float newx = x * cos(radians) - y * sin(radians);
 	float newy = x * sin(radians) + y * cos(radians);
-
-	x = 9;
-	y = 5;
-
-	newx =+ x * cos(radians) - y * sin(radians);
-	newy =+ x * sin(radians) + y * cos(radians);
 	
 	//float(GetMidX()), float(GetMidY())
 	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);

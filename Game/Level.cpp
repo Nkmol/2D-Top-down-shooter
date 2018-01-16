@@ -31,7 +31,7 @@ Level::~Level()
 	Hud::Instance().Get<UIText>("TextWeapon")->Destroy();
 	Hud::Instance().Get<UIText>("TextBullets")->Destroy();
 	Hud::Instance().Get<UIText>("TextHealth")->Destroy();
-	//Hud::Instance().Get<UIIcon>("hudkader")->Destroy();
+	Hud::Instance().Get<UIIcon>("hudkader")->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
@@ -59,10 +59,10 @@ void Level::LoadUIElements()
 	auto& hud = Hud::Instance();
 
 	// Add text
-	//hud.AddComponent("hudkader", std::make_unique<UIIcon>(UIIcon("hudkader", { config::width / 6 * 5, 0 }, 200)));
-	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 })));
-	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 })));
-	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 })));
+	hud.AddComponent("hudkader", std::make_unique<UIIcon>(UIIcon("hudkader", { config::width / 6 * 5, 0 }, 150)));
+	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }, { 0, 255, 0, 0 })));
+	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }, { 0, 255, 0, 0 })));
+	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }, { 0, 255, 0, 0 })));
 
 	// Add weapon UI
 	_weaponUIMapping.emplace(0, "IconHandgun");

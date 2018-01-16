@@ -139,7 +139,7 @@ void EnemyBase::onCollision(MoveableObject *object) {
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
     if (lifepoints < 0) {
-        dropDropable();
+        DropDropable();
 		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
     }
@@ -155,9 +155,9 @@ void EnemyBase::onCollision(Player *player) {
     MoveableObject::StopMove();
 }
 
-void EnemyBase::dropDropable() {
-    int dropchance = DropableFactory::Instance().dropChance;
-    int rollNumber = rand() % 10 + 0;
+void EnemyBase::DropDropable() {
+    int dropchance = DropableFactory::Instance()._dropChance;
+    int rollNumber = rand() % 20;
     if(rollNumber <= dropchance){
         if(rollNumber == 1){
             PowerupHP powerup = PowerupHP(_coordinates);
