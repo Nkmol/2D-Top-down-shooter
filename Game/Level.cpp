@@ -35,7 +35,7 @@ Level::~Level()
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
-
+	AudioManager::Instance().StopBGM();
 
 }
 
@@ -51,7 +51,8 @@ void Level::Init() {
     Level::_loot.clear();
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
-	//AudioManager::Instance().PlayEffect("level3");
+
+	AudioManager::Instance().LoadBGM("level" + std::to_string(_level));
 }
 
 void Level::LoadUIElements()
@@ -203,6 +204,9 @@ void Level::HandleKeyboardEvents(Event &event) {
             }
             return;
         }
+		if (InputManager::Instance().IsKeyDown(event, "M")) {
+			AudioManager::Instance().PauseResumeBGM();
+		}
     }
 }
 
@@ -328,6 +332,7 @@ void Level::ChangeWeapon(const int num)
 		else
 			hud.Get<UIIcon>(_weaponUIMapping.at(i))->SetOpacity(120);
 	}
+
 }
 void from_json(const nlohmann::json &j, Level &value) {
     value.SetId(j.at("id").get<int>());

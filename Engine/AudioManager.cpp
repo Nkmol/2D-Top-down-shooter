@@ -39,6 +39,10 @@ int AudioManager::LoadBGM(string audioToken)
 {
 	//Load music
 	//gBGM = Mix_LoadMUS(name);
+	if (Mix_PlayingMusic() == 1){
+		StopBGM();
+		Mix_FreeMusic(_bgm);
+	}
 	_bgm = AssetManager::Instance().LoadBGM(audioToken);
 	if (_bgm == NULL)
 	{
@@ -64,7 +68,8 @@ int AudioManager::PlayEffect(string audioToken)
 	return 0;
 }
 
-void AudioManager::PlayBGM()
+	// -1 is infinite
+void AudioManager::PlayBGM(int loops = -1)
 {
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 8);
 
@@ -93,7 +98,7 @@ void AudioManager::PauseResumeBGM()
 		}
 	}
 	else {
-		PlayBGM();
+		PlayBGM(-1);
 	}
 }
 

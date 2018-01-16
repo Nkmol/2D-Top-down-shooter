@@ -14,7 +14,7 @@ public:
 	int InitMusicPlayer();
 	static AudioManager& Instance();
 	int LoadBGM(string audioToken);
-	void PlayBGM();
+	void PlayBGM(int loops);
 	void PauseResumeBGM();
 	void StopBGM();
 	int PlayEffect(string audioToken);
