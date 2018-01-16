@@ -58,7 +58,7 @@ void PlayingState::Update(Game &game, float time)
 			auto a = std::string(std::ctime(&t));
 
 			//std::pair<std::string, std::string> tq (std::to_string(p.GetPoints()), a);
-			highscores.emplace(a, std::to_string(p.GetPoints()));
+			highscores.emplace(std::to_string(p.GetPoints()), a);
 
 			AssetManager::Instance().SaveJson(highscores, "highscores.json");
 		}

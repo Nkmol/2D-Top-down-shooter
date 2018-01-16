@@ -46,7 +46,7 @@ void HighscoreState::Init(Game& game)
 	auto i = 0;
 	for (auto && highscore : _highscores)
 	{
-		hud.AddComponent(std::string(&"H" [ i]), make_unique<UIText>(UIText{ std::string(highscore.first) + " - " + std::string(highscore.second), 25,{ config::width / 2 - 180, config::height / 3 - 100 + 50.f*i } }));
+		hud.AddComponent(std::string(&"H" [ i]), make_unique<UIText>(UIText{ std::string(highscore.second) + " - " + std::string(highscore.first), 25,{ config::width / 2 - 180, config::height / 3 - 100 + 50.f*i } }));
 		i++;
 	}
 	//hud.AddComponent("Titel", make_unique<UIText>(UIText{ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } }));
