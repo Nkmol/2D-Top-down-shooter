@@ -27,6 +27,7 @@ private:
 	Button _loadgameButton;
 	Button _creditsButton;
 	Button _instructions;
+	Button _highscores;
 	Button _muteButton;
 	Button _quitButton;
 	Button _level1;
