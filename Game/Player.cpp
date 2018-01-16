@@ -60,7 +60,6 @@ std::vector<Bullet> Player::Shoot() {
 	float radians = angle * M_PI / 180;
 	float newx = x * cos(radians) - y * sin(radians);
 	float newy = x * sin(radians) + y * cos(radians);
-
 	
 	//float(GetMidX()), float(GetMidY())
 	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
@@ -115,26 +114,23 @@ const std::vector<std::unique_ptr<Weapon>>& Player::GetWeapons() const {
 
 void to_json(nlohmann::json &j, const Player &value) {
     j = nlohmann::json{
-            {"lifepoints",    value.GetLifepoints()},
-            {"highestLevel",  value.GetHighestLevel()},
-            //{"weapons",       value.GetWeapons()},
-            {"currentWeapon", value.GetCurrentWeaponIndex()}
+            {"highestLevel",  value.GetHighestLevel()}
     };
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.SetMaxLifepoints(j.at("lifepoints").get<int>());
+    //value.SetMaxLifepoints(j.at("lifepoints").get<int>());
     //value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
-    //auto weps = value.GetWeapons();
-    //auto jsonWeapons = j.at("weapons");
-    //for (auto i = 0; i < jsonWeapons.size(); i++) {
-    //    from_json(jsonWeapons[i], weps[i]);
-    //}
+    /*auto weps = value.GetWeapons();
+    auto jsonWeapons = j.at("weapons");
+    for (auto i = 0; i < jsonWeapons.size(); i++) {
+        from_json(jsonWeapons[i], weps[i]);
+    }
 
-    //value.SetWeapons(weps);
+    value.SetWeapons(weps);*/
 }
 
 void Player::OnBaseCollision(bool isCollidedOnWall) {
@@ -143,11 +139,9 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 
 void Player::Hit(int _damage) {
 	if (_isCheatActive) return;
-	
-	auto hittime = clock();
-	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
+    if (_lastHit.GetTimePassed() >= _invTime)
 	{
-		_lastHit = hittime;
+		_lastHit = Timer();
 		_lifepoints -= _damage;
 		if (_lifepoints <= 0) {
 			_lifepoints = 0;

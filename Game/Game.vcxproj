@@ -173,6 +173,7 @@
     <ClCompile Include="Wave.cpp" />
     <ClCompile Include="WaveController.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIBat.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="StateGameOver.h" />
     <ClInclude Include="Wave.h" />
     <ClInclude Include="WaveController.h" />
+    <ClInclude Include="WinState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

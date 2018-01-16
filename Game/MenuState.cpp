@@ -8,6 +8,8 @@
 #include <json.hpp>
 #include <regex>
 #include "HighscoreState.h"
+#include <iostream>
+#include <fstream>
 
 namespace fs = std::experimental::filesystem;
 
@@ -33,6 +35,7 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 	}
 
 	if (_newgameButton.IsClicked(ev)) {
+		this->NewGame();
 		return;
 	}
 
@@ -84,6 +87,23 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 	}
 	else if (_advertisement.IsClicked(ev)) 
 		_advertisement.Click();
+}
+
+void MenuState::NewGame()
+{
+	fs::path path{ fs::current_path().parent_path() };
+	path += "/content/saves";
+	std::string str = path.string();
+	str += "/SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));
+	str += ".json";
+
+	std::ofstream newsave (str);
+	newsave << "{\n";
+	newsave << "\t\"highestLevel\": 1\n";
+	newsave << "}";
+	newsave.close();
+	_highestLevel = 1;
+	_savedGame = str;
 }
 
 void MenuState::LoadGame() {
@@ -152,9 +172,9 @@ void MenuState::Init(Game &game) {
 	_quitButton = Button("button_quit", { (config::width / 2) - 150, 700 }, { 300, 50 });
 
 
-	_level1 = Button("button_level1", { 50, 200 }, { 300, 50 });
-	_level2 = Button("button_level2", { 50, 300 }, { 300, 50 });
-	_level3 = Button("button_level3", { 50, 400 }, { 300, 50 });
+	_level1 = Button("button_level1", { 900, 200 }, { 300, 50 });
+	_level2 = Button("button_level2", { 900, 300 }, { 300, 50 });
+	_level3 = Button("button_level3", { 900, 400 }, { 300, 50 });
 
 	_muteButton = Button("button_mute", { (config::width) - 100, (config::height) - 100 }, { 75, 75 });
 

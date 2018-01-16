@@ -31,10 +31,12 @@ Level::~Level()
 	Hud::Instance().Get<UIText>("TextWeapon")->Destroy();
 	Hud::Instance().Get<UIText>("TextBullets")->Destroy();
 	Hud::Instance().Get<UIText>("TextHealth")->Destroy();
+	Hud::Instance().Get<UIIcon>("hudkader")->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[0])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[1])->Destroy();
 	Hud::Instance().Get<UIText>(_weaponUIMapping[2])->Destroy();
 	Hud::Instance().Get<UIText>("TextPoints")->Destroy();
+	AudioManager::Instance().LoadBGM("mainmenu");
 }
 
 void Level::Init() {
@@ -49,7 +51,8 @@ void Level::Init() {
     Level::_loot.clear();
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
-	//AudioManager::Instance().PlayEffect("level3");
+
+	AudioManager::Instance().LoadBGM("level" + std::to_string(_level));
 }
 
 void Level::LoadUIElements()
@@ -61,11 +64,18 @@ void Level::LoadUIElements()
 	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 })));
 	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 })));
 	hud.AddComponent("TextPoints", std::make_unique<UIText>(UIText("", 22, { config::width - 200, 120 })));
+	hud.AddComponent("hudkader", std::make_unique<UIIcon>(UIIcon("hudkader", { config::width / 6 * 5, 0 }, 150)));
+	hud.AddComponent("TextWeapon", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 0 }, { 0, 255, 0, 0 })));
+	hud.AddComponent("TextBullets", std::make_unique<UIText>(UIText("", 24, { config::width - 200, 40 }, { 0, 255, 0, 0 })));
+	hud.AddComponent("TextHealth", std::make_unique<UIText>(UIText("", 23, { config::width - 200, 80 }, { 0, 255, 0, 0 })));
+	hud.AddComponent("TextPoints", std::make_unique<UIText>(UIText("", 22, { config::width - 200, 120 })));
 
 	// Add weapon UI
 	_weaponUIMapping.emplace(0, "IconHandgun");
 	_weaponUIMapping.emplace(1, "IconRifle");
 	_weaponUIMapping.emplace(2, "IconShotgun");
+
+
 	hud.AddComponent(_weaponUIMapping[0], std::make_unique<UIIcon>(UIIcon("handgun", { 50, 20 }, 120)));
 	hud.AddComponent(_weaponUIMapping[1], std::make_unique<UIIcon>(UIIcon("rifle", { 120, 20 }, 120)));
 	hud.AddComponent(_weaponUIMapping[2], std::make_unique<UIIcon>(UIIcon("shotgun", { 190, 20 }, 120)));
@@ -197,6 +207,9 @@ void Level::HandleKeyboardEvents(Event &event) {
             }
             return;
         }
+		if (InputManager::Instance().IsKeyDown(event, "M")) {
+			AudioManager::Instance().PauseResumeBGM();
+		}
     }
 }
 
@@ -242,7 +255,6 @@ void Level::Update(float time) {
 
     if (!_waveController.Update(accSpeed, _level)) {
 		SetCompleted();
-		std::cout << "Level af, maak iets leuks om dit op te vangen" << std::endl;
 		return;
     }
 
@@ -264,6 +276,7 @@ void Level::Update(float time) {
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
+
 
 	const auto totalBullets = _player->GetWeapon()->TotalBullets();
 	const auto remainingBullets = totalBullets - _player->GetWeapon()->GetShot();
@@ -332,6 +345,7 @@ void Level::ChangeWeapon(const int num)
 		else
 			hud.Get<UIIcon>(_weaponUIMapping.at(i))->SetOpacity(120);
 	}
+
 }
 void from_json(const nlohmann::json &j, Level &value) {
     value.SetId(j.at("id").get<int>());

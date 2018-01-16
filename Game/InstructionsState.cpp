@@ -18,6 +18,7 @@ InstructionsState::~InstructionsState()
 	hud.Get<UIText>("Pause")->Destroy();
 	hud.Get<UIText>("Cheats")->Destroy();
 	hud.Get<UIText>("Speed")->Destroy();
+	hud.Get<UIText>("Music")->Destroy();
 }					
 
 void InstructionsState::HandleEvents(Game& game, Event& ev)
@@ -65,10 +66,11 @@ void InstructionsState::Init(Game& game)
 	_miniBackground = std::make_unique<UIIcon>(UIIcon("zwartkader", { config::width / 2 - 270, config::height / 3 - 180 }, 150));
 	auto& hud = Hud::Instance();
 	hud.AddComponent("Titel", make_unique<UIText>(UIText{ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } }));
-	hud.AddComponent("Moving", make_unique<UIText>(UIText{ "Moving: W, A, S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } }));
+	hud.AddComponent("Moving", make_unique<UIText>(UIText{ "Moving: W, A, S, D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } }));
 	hud.AddComponent("Aiming", make_unique<UIText>(UIText{ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } }));
 	hud.AddComponent("Shooting", make_unique<UIText>(UIText{ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } }));
 	hud.AddComponent("Pause", make_unique<UIText>(UIText{ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } }));
-	hud.AddComponent("Cheats", make_unique<UIText>(UIText{ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} }));
-	hud.AddComponent("Speed", make_unique<UIText>(UIText{ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} }));
+	hud.AddComponent("Cheats", make_unique<UIText>(UIText{ "Cheats: K , Nuke: N", 25,{ config::width / 2 - 120, config::height / 3 + 150 } }));
+	hud.AddComponent("Speed", make_unique<UIText>(UIText{ "Level speed: faster: [, slower: ]", 25,{ config::width / 2 - 120, config::height / 3 + 200 } }));
+	hud.AddComponent("Music", make_unique<UIText>(UIText{ "Toggle music: M", 25,{ config::width / 2 - 120, config::height / 3 + 250 } }));
 }

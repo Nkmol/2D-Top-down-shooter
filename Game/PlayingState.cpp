@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "InputManager.h"
 #include "StateGameOver.h"
+#include "WinState.h"
 #include "Event.h"
 #include <chrono>
 
@@ -36,8 +37,9 @@ void PlayingState::Update(Game &game, float time)
 	{
 		int highestLevel = _level.GetPlayer().GetHighestLevel();
 		AssetManager::Instance().SaveJson(_level.GetPlayer(), _level.GetPlayer().GetSaveName());
-		game.PopState();
-		game.GetStateBack(0)->SetHighestLevel(highestLevel);
+		//game.PopState();
+		game.GetStateBack(1)->SetHighestLevel(highestLevel);
+		game.ChangeState(std::make_unique<WinState>());
 		return;
 	}
 

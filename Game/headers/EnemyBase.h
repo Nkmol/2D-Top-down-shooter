@@ -34,7 +34,7 @@ protected:
 	void onCollision(Bullet * bullet);
 	void onCollision(EnemyBase * enemy);
 	void onCollision(Player * player);
-	void dropDropable();
+	void DropDropable();
 	void OnBaseCollision(bool isWall);
 
 public:
