@@ -12,6 +12,7 @@
 #include "../CustomDeleter.h"
 #include <memory>
 #include <json.hpp>
+#include "../Font.h"
 
 using namespace std;
 
@@ -38,6 +39,5 @@ public:
 
 	void SaveJson(const nlohmann::json & json, const std::string savedGame) const;
 
-	typedef std::unique_ptr<TTF_Font, CustomDeleter> Font;
 	Font LoadFont(const string & fontToken, const int size) const;
 };

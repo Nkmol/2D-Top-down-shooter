@@ -226,8 +226,12 @@ void Level::Update(float time) {
 
 	if (_player->CanShoot() && InputManager::Instance().LMBState()) {
 		_player->ChangeState("shoot");
-		auto bullet = make_shared<Bullet>(_player->shoot()); // returns a bullet
-		_objsNoEnemies.emplace_back(bullet);
+		std::vector<Bullet> bullets = _player->Shoot();
+		for (auto& b : bullets)
+		{
+			auto bullet = make_shared<Bullet>(b); // returns a bullet
+			_objsNoEnemies.emplace_back(bullet);
+		}		
 	}
 
     AnimationManager::Instance().Update(*_player, accSpeed);

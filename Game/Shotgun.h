@@ -9,9 +9,10 @@
 #include <Weapon.h>
 
 class Shotgun : public Weapon {
-
+	int _number = 500;
 public:
-    explicit Shotgun(int _damage = 40, float fireRate = 0.5);
+    Shotgun(int _damage = 40, float fireRate = 0.5);
+	std::vector<Bullet> GetBullet(int angle, Point coordinates, bool & isCheatActive);
 };
 
 
