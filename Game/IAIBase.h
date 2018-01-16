@@ -18,7 +18,7 @@ protected:
 
 	bool _isLeader;
 
-	const int COLLIDABLEWEIGHTMULTIPLIER = 10000;
+	const int COLLIDABLEWEIGHTMULTIPLIER = 7500;
 public:
 	IAIBase(EnemyBase& owner, const unsigned weightMultiplier, const bool isLeader) : _owner(&owner), _weightMultiplier(weightMultiplier), _isLeader(isLeader)
 	{

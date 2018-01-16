@@ -28,7 +28,7 @@ void PhysicsManager::CheckWallCollision(MoveableObject* m, Point newPos)
 	auto midY = m->GetPredictionMidY(newPos.y);
 	auto radius = m->GetRadius();
 
-	if (midX - radius < _tileSize || midY - radius < _tileSize || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
+	if (midX - radius < 0 || midY - radius < 0 || midX + radius > _playScreenWidth || midY + radius > _playScreenHeight) {
 		m->OnBaseCollision(true);
 	}
 
@@ -66,16 +66,34 @@ bool PhysicsManager::IntersectsCircle(float midX, float midY, float radius, cons
 
 	return (false);
 }
+//
+//void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
+//{
+//	bool isCollision = false;
+//
+//	auto midX = m->GetPredictionMidX(newPos.x);
+//	auto midY = m->GetPredictionMidY(newPos.y);
+//	auto radius = m->GetRadius();
+//	for (int i = 0; i < _collidables->size(); i++) {
+//		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
+//			m->OnBaseCollision(true);
+//			break;
+//		}
+//	}
+//}
 
-void PhysicsManager::CheckStaticObjectCollision(MoveableObject* m, Point newPos)
+void PhysicsManager::CheckNewStaticObjectCollision(MoveableObject* m, Point newPos)
 {
 	bool isCollision = false;
 	auto midX = m->GetPredictionMidX(newPos.x);
 	auto midY = m->GetPredictionMidY(newPos.y);
 	auto radius = m->GetRadius();
-	for (int i = 0; i < _collidables->size(); i++) {
-		if (IntersectsRect(midX, midY, radius, &_collidables->at(i))) {
+	std::vector<GameObject*> tmep = {};
+	MapManager::Instance().GetNearbyCollidables(newPos, &tmep);
+	for (int i = 0; i < tmep.size(); i++) {
+		if (IntersectsRect(midX, midY, radius, tmep.at(i))) {
 			m->OnBaseCollision(true);
+			break;
 		}
 	}
 }
@@ -98,11 +116,11 @@ void PhysicsManager::CheckMoveableCollision(MoveableObject* m, Point newPos)
 void PhysicsManager::SetStaticObjects()
 {
 	if (_collidables == NULL) {
-		_collidables = MapManager::Instance().GetCollidables();
+		//_collidables = MapManager::Instance().GetCollidables();
 	}
 	_tileSize = config::tileSize;
-	_playScreenWidth = config::width - _tileSize;
-	_playScreenHeight = config::height - _tileSize;
+	_playScreenWidth = config::width;
+	_playScreenHeight = config::height;
 }
 
 void PhysicsManager::SetMoveableObjects(vector<shared_ptr<MoveableObject>>* _objs)

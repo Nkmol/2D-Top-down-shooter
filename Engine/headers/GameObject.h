@@ -34,6 +34,9 @@ public:
 	GameObject(const GameObject& other);
 	GameObject& operator=(GameObject that);
 
+	
+	void SetIsCollidable(bool isCollidable);
+
 	const int GetMidX() const;
 	const int GetMidY() const;
 	int GetWidth() const;
@@ -48,6 +51,7 @@ public:
 	bool IsVisible() const;
 	const int GetRadius() const ;
 	string GetSpriteToken() const;
+	bool GetIsCollidable() { return _isCollidable; }
 
 protected:
 	GameObject();
@@ -55,6 +59,7 @@ protected:
 	float radius, midX, midY;
 	Point _coordinates;
 	bool _visible;
+	bool _isCollidable = false;
 	unique_ptr<Texture> _sprite;
     std::string _spriteToken;
 };

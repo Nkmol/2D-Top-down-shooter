@@ -24,16 +24,19 @@ set(SOURCE_FILES
         Game/AIBat.h
         Game/PlayingState.cpp
         Game/EnemyBase.cpp
+        Game/CreditsState.h
         Game/Handgun.cpp
         Game/AIDefault.h
         Game/Player.cpp
         Game/PlayingState.h
         Game/AIDefault.cpp
+        Game/Hud.h
         Game/Config.h
         Game/Shotgun.cpp
         Game/Explosion.cpp
         Game/Shotgun.h
         Game/Wave.cpp
+        Game/InstructionsState.h
         Game/WaveController.cpp
         Game/Level.cpp
         Game/StateGameOver.h
@@ -44,6 +47,7 @@ set(SOURCE_FILES
         Game/PausedState.h
         Game/IAIBase.h
         Game/Level.h
+        Game/InstructionsState.cpp
         Game/Game.h
         Game/PausedState.cpp
         Game/MenuState.h
@@ -55,6 +59,8 @@ set(SOURCE_FILES
         Game/Explosion.h
         Game/Wave.h
         Game/Bullet.cpp
+        Game/CreditsState.cpp
+        Game/Hud.cpp
         Game/State.h
         Game/main.cpp
         Game/FactoryBehaviour.h
@@ -77,6 +83,8 @@ set(SOURCE_FILES
         Game/headers/Weapon.h
         Game/headers/Bullet.h
         Game/headers/EnemyBase.h
+        Engine/UIElement.h
+        Engine/UIElement.cpp
         Engine/Button.cpp
         Engine/MoveableObject.cpp
         Engine/CustomDeleter.h
@@ -90,11 +98,13 @@ set(SOURCE_FILES
         Engine/UIText.h
         Engine/Point.cpp
         Engine/AssetManager.cpp
+        Engine/UIIcon.cpp
         Engine/AnimationManager.h
         Engine/MapManager.cpp
         Engine/Texture.h
         Engine/Engine.cpp
         Engine/AudioManager.cpp
+        Engine/UIIcon.h
         Engine/headers/RenderManager.h
         Engine/headers/Engine.h
         Engine/headers/MapManager.h

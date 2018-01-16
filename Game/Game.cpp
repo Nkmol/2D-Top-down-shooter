@@ -7,6 +7,8 @@
 #include "RenderManager.h"
 #include "Config.h"
 #include "Level.h"
+#include "Hud.h"
+#include <memory>
 
 Game::Game() = default;
 
@@ -18,7 +20,8 @@ void Game::Init()
 	RenderManager::Instance().CreateWindow(config::title, config::fullscreen, config::width, config::height);
 
 	// Init after window renderer has been created
-	_fpsUI = std::move(UIText{ "0.00", 48,{ 20, 20 } });
+	_fpsUI = std::make_unique<UIText>(UIText("0.00", 16,{ 2, 2 }));
+	Hud::Instance().AddComponent(_fpsUI.get());
 }
 
 // Explicity force user to transfer ownership with std::move
@@ -35,9 +38,9 @@ void Game::SetState(unique_ptr<State>&& state)
 	ChangeState(move(state));
 }
 
-const unique_ptr<State>& Game::GetStateBack(const int at)
+const std::unique_ptr<State>& Game::GetStateBack(const int at)
 {
-	return _states.end()[- (at+1)];
+	return _states.end()[-(at + 1)];
 }
 
 void Game::PopState(unsigned val)
@@ -112,6 +115,7 @@ void Game::HandleEvents()
 
 void Game::Update(float time)
 {
+	Hud::Instance().Update(time);
 	_states.back()->Update(*this, time);
 }
 
@@ -123,9 +127,9 @@ void Game::Draw()
 
 	// Fps to string and 2 decimal
 	std::stringstream str;
-	str << fixed << std::setprecision(2) << _fps;
-	_fpsUI.ChangeText(str.str());
-	_fpsUI.Draw();
+	str << fixed << std::setprecision(0) << _fps;
+	_fpsUI->ChangeText(str.str());
+	Hud::Instance().Draw();
 
 	renderManager.Render();
 }

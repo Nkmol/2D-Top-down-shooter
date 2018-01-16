@@ -1,0 +1,19 @@
+{
+    "currentWeapon": 1,
+    "highestLevel": 3,
+    "lifepoints": 100,
+    "weapons": [
+        {
+            "currentBullets": 9,
+            "name": "Glock"
+        },
+        {
+            "currentBullets": 100,
+            "name": "AR-15"
+        },
+        {
+            "currentBullets": 5,
+            "name": "Saiga-12"
+        }
+    ]
+}

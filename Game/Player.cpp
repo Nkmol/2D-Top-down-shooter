@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Bullet.h"
+#include "AudioManager.h"
 
 Player::Player(const std::string &filePath, const float x, const float y) :
         Player(filePath, Point{x, y}) {
@@ -11,7 +12,7 @@ Player::Player(const std::string &filePath, const float x, const float y) :
 
 Player::Player(const std::string &filePath, const Point coordinates, const int lp) :
         _isCheatActive{false},
-        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), _lifepoints(lp) {
+        MoveableObject(filePath, coordinates, 140.0f), currentWeapon(0), _lifepoints(lp), _maxLifepoints(lp) {
     type = PLAYER;
     this->ChangeState("idle");
 }
@@ -36,7 +37,7 @@ void Player::ChangeWeapon(const unsigned index) {
     if (index >= _weapons.size() || index < 0) {
         return;
     }
-
+	AudioManager::Instance().PlayEffect("switchweapon");
     currentWeapon = index;
 }
 
@@ -46,7 +47,17 @@ bool Player::IsCheatActive() {
 
 Bullet Player::shoot() {
 	GetWeapon()->ResetLastShot();
-	return GetWeapon()->GetBullet(GetAngle(), _coordinates, _isCheatActive);
+
+	float x = -28;
+	float y = -11;
+
+	float radians = angle * M_PI / 180;
+	float newx = x * cos(radians) - y * sin(radians);
+	float newy = x * sin(radians) + y * cos(radians);
+
+	
+	//float(GetMidX()), float(GetMidY())
+	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
 }
 
 bool Player::CanShoot() {
@@ -62,7 +73,7 @@ void Player::Update(float time) {
     updatePowerups(time);
     const auto newPosition = _coordinates + (destination * speed * time);
     PhysicsManager::Instance().CheckWallCollision(this, newPosition);
-    PhysicsManager::Instance().CheckStaticObjectCollision(this, newPosition);
+    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPosition);
     MoveableObject::Update(time);
 }
 
@@ -96,8 +107,8 @@ void to_json(nlohmann::json &j, const Player &value) {
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.ChangeLifepoints(j.at("lifepoints").get<int>());
-    value.ChangeWeapon(j.at("currentWeapon").get<int>());
+    value.SetMaxLifepoints(j.at("lifepoints").get<int>());
+    //value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
@@ -115,13 +126,19 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 }
 
 void Player::Hit(int _damage) {
-    if (!_isCheatActive) {
-        _lifepoints -= _damage;
-    }
-    if (_lifepoints <= 0) {
-	this->ChangeState("dead");
-    }
-
+	if (_isCheatActive) return;
+	
+	auto hittime = clock();
+	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
+	{
+		_lastHit = hittime;
+		_lifepoints -= _damage;
+		if (_lifepoints <= 0) {
+			_lifepoints = 0;
+			AudioManager::Instance().PlayEffect("wasted");
+			this->ChangeState("dead");
+		}
+	}
 }
 
 void Player::HandleAnimationFinished() {
@@ -176,7 +193,7 @@ void Player::ReloadState() {
         frames = 20;
 
         // todo: fix, reload for handgun is 15 frames
-        if (this->GetWeapon()->GetName() == "handgun") {
+        if (this->GetWeapon()->GetType() == "handgun") {
             frames = 15;
         }
 
@@ -186,7 +203,7 @@ void Player::ReloadState() {
 
 // a player doesnot have his own image, it's based on the weapon.
 string Player::GetAnimationToken() {
-    return this->_spriteToken + "/" + this->GetWeapon()->GetName();
+    return this->_spriteToken + "/" + this->GetWeapon()->GetType();
 }
 
 void Player::updatePowerups(float time) {

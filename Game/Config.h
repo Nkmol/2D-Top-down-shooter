@@ -3,12 +3,14 @@
 
 #include <string>
 #include <array>
+#include "Point.h"
+
 namespace config 
 {
 	const int width = 1280;
 	const int height = 960;
 	const int tileSize = 32;
-	const std::string title = "Shooter Game";
+	const std::string title = "Zombie infestation";
 	const bool fullscreen = false;
 
 	const std::array<std::string, 3> levels{
@@ -16,5 +18,7 @@ namespace config
 		"../content/level2.json",
 		"../content/level3.json"
 	};
+
+	const Point WINDOW_CENTER { height / 2, width / 2 };
 }
 #endif CONFIG_H

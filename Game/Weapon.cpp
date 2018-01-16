@@ -6,13 +6,15 @@
 #include "Weapon.h"
 #include "Point.h"
 #include "Bullet.h"
+#include "AudioManager.h"
 
-Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate) :
+Weapon::Weapon(int _damage, std::string name, int maxBullets, float fireRate, std::string soundName) :
         name{std::move(name)},
         _damage{_damage},
         maxBullets{maxBullets},
         fireRate{fireRate},
-        standardFireRate{fireRate} {}
+        standardFireRate{fireRate},
+	    _soundName{soundName}{}
 
 Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
     Bullet bullet("bullet", coordinates, _damage);
@@ -27,10 +29,11 @@ Bullet Weapon::GetBullet(int angle, Point coordinates, bool &isCheatActive) {
 			shooted++;
 		else
 			bullet.SetDamage(10000000);
+		PlaySound(_soundName);
     } else {
         bullet.Hide(); // returns a hidden bullet, so it will not be drawn
     }
-
+	_triggerDown = true;
     return bullet;
 }
 
@@ -44,6 +47,11 @@ int Weapon::TotalBullets() const {
 
 std::string Weapon::GetName() const {
     return this->name;
+}
+
+const std::string Weapon::GetType() const
+{
+	return type;
 }
 
 int Weapon::GetShot() const {
@@ -64,6 +72,7 @@ void Weapon::SetCurrentBullets(const int v) {
 
 void Weapon::Reload() {
     this->shooted = 0;
+	PlaySound("reload");
 }
 
 bool Weapon::CanReload() const {
@@ -71,7 +80,8 @@ bool Weapon::CanReload() const {
 }
 
 bool Weapon::CanShoot() const{
-    return this->lastShot <= 0;
+
+    return (this->lastShot <= 0 && (_automatic || (!_automatic && !_triggerDown)));
 }
 
 void Weapon::ResetLastShot(){
@@ -82,16 +92,21 @@ void Weapon::UpdateFireRate(float time) {
     this->lastShot -= time;
 }
 
-void Weapon::setFireRate(float fireRate) {
+void Weapon::SetFireRate(float fireRate) {
     Weapon::fireRate = fireRate;
 }
 
-float Weapon::getFireRate() const {
+float Weapon::GetFireRate() const {
     return fireRate;
 }
 
-float Weapon::getStandardFireRate() const {
+float Weapon::GetStandardFireRate() const {
     return standardFireRate;
+}
+
+void Weapon::PlaySound(std::string soudName)
+{
+	AudioManager::Instance().PlayEffect(soudName);
 }
 
 void to_json(nlohmann::json &j, const Weapon &value) {

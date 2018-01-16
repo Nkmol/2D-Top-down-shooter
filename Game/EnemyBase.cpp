@@ -10,20 +10,21 @@
 #include "powerups/DropableFactory.h"
 #include "Level.h"
 #include "powerups/PowerupFastShot.h"
+#include "AudioManager.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed,
-                     const bool isLeader, const int _damage, const int lifepoints, const int reward) :
-        EnemyBase(filePath, Point{xPos, yPos}, speed, isLeader, _damage, lifepoints, reward) {
+	const bool isLeader, const int _damage, const int lifepoints, const int reward, float multiplier) :
+        EnemyBase(filePath, Point{xPos, yPos}, speed, isLeader, _damage, lifepoints, reward, multiplier) {
     type = ENEMY;
 }
 
 EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, const float speed, const bool isLeader,
-                     const int _damage, const int lifepoints, const int reward) :
-        MoveableObject(filePath, coordinates, speed),
-        _behaviour(make_unique<AIDefault>(*this, 100, isLeader)),
-        lifepoints(lifepoints),
-        _damage(_damage),
-        reward(reward),
+                     const int _damage, const int lifepoints, const int reward, float multiplier) :
+        MoveableObject(filePath, coordinates, speed*multiplier),
+        _behaviour(make_unique<AIDefault>(*this, 100* multiplier, isLeader)),
+        lifepoints(lifepoints*multiplier),
+        _damage(_damage*multiplier),
+        reward(reward*multiplier),
         destinationPoint{coordinates} {
     type = ENEMY;
 }
@@ -72,7 +73,8 @@ void EnemyBase::UpdatePosition(const float time)
 void EnemyBase::Update(const float time) {
     const auto newPostition = _coordinates + (destination * speed * time);
 
-    PhysicsManager::Instance().CheckStaticObjectCollision(this, newPostition);
+
+    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
     PhysicsManager::Instance().CheckMoveableCollision(this, newPostition);
     MoveableObject::Update(time);
 }
@@ -136,8 +138,10 @@ void EnemyBase::onCollision(MoveableObject *object) {
 
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
+	AudioManager::Instance().PlayEffect("hitmarker");
     if (lifepoints < 0) {
         dropDropable();
+		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
     }
 

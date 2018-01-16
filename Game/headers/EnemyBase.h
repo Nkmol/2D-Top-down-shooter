@@ -38,9 +38,9 @@ protected:
 	void OnBaseCollision(bool isWall);
 
 public:
-	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int _damage, int lifepoints, int reward = 50);
+	EnemyBase(const std::string &filePath, float xPos, float yPos, float speed, bool isLeader, int _damage, int lifepoints, int reward = 50, float multiplier = 1);
 	EnemyBase(const std::string& filePath, const Point& coordinates, const float speed, const bool isLeader,
-		const int _damage, const int lifepoints, const int reward);
+		const int _damage, const int lifepoints, const int reward, float multiplier = 1);
 	EnemyBase(const nlohmann::json & j, std::vector<std::unique_ptr<EnemyBase>>* npcList, std::shared_ptr<Player> player);
 	EnemyBase(const EnemyBase& other);
 	virtual ~EnemyBase();

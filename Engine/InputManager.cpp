@@ -80,6 +80,7 @@ Point InputManager::GetDirection(Event &event) {
             direction += value.second;
     }
 
+
     return direction;
 }
 
@@ -101,9 +102,8 @@ int InputManager::RecalculateMouseAngle(MoveableObject &object) {
 // (see: isMouseMoved function) so that we don't need to ask SDL for the current mouse coordinates
 int InputManager::CalculateMouseAngle(MoveableObject &object) {
 
-    const auto &coordinates = object.GetCoordinates();
-    float deltaY = coordinates.y - InputManager::GetMousePositionY();
-    float deltaX = coordinates.x - InputManager::GetMousePositionX();
+    float deltaY = object.GetMidY() - InputManager::GetMousePositionY();
+    float deltaX = object.GetMidX() - InputManager::GetMousePositionX();
 
     double radian = atan2(deltaY, deltaX);
 
@@ -123,7 +123,6 @@ bool InputManager::IsMousePressed(Event &event) {
     if (IsMouseClicked(event)) {
         _buttonState = true;
     }
-
     return _buttonState;
 }
 

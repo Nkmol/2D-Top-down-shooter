@@ -12,7 +12,7 @@
 class Bullet : public MoveableObject {
 
 private:
-    float BULLET_SPEED = 0.8f;
+    float BULLET_SPEED = 450.0f;
 
     int _damage;
 public:

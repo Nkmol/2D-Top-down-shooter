@@ -21,9 +21,15 @@ protected:
     float fireRate;
     float standardFireRate;
     float lastShot;
+	std::string type;
+	std::string _soundName;
+	void PlaySound(std::string soundName);
+
+	bool _automatic = false;
+	bool _triggerDown = false;
 
 public:
-    Weapon(int _damage, std::string name, int maxBullets, float fireRate);
+    Weapon(int _damage, std::string name, int maxBullets, float fireRate, std::string soundName);
 
     bool HasBullets();
 
@@ -51,12 +57,15 @@ public:
 
     void ResetLastShot();
 
-    void setFireRate(float fireRate);
+    void SetFireRate(float fireRate);
 
-    float getFireRate() const;
+    float GetFireRate() const;
 
-    float getStandardFireRate() const;
+    float GetStandardFireRate() const;
 
+	void ReleaseTrigger() { _triggerDown = false; }
+
+	const std::string GetType() const;
 };
 
 void to_json(nlohmann::json &j, const Weapon &value);

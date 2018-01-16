@@ -12,24 +12,30 @@
 #include <Weapon.h>
 #include "PhysicsManager.h"
 #include "../powerups/PowerupMode.h"
+#include <time.h>
 
 class Point;
 
 class Player : public MoveableObject {
 
-    vector<Weapon> _weapons;
+    std::vector<Weapon> _weapons;
     unsigned currentWeapon;
 
 private:
     int _lifepoints;
+	int _maxLifepoints;
     int _highestLevel = 1;
 	bool _isCheatActive;
-
+	clock_t _lastHit = clock();
+	double _invTime = 500;
+	std::string _saveName;
 public:
 	vector<std::unique_ptr<PowerupMode>> powerupmodes;
+
     Player(const std::string &filePath, float x, float y);
 
     Player(const std::string &filePath, Point coordinates, int lp = 100);
+
 	~Player();
 
     Bullet shoot();
@@ -43,6 +49,10 @@ public:
     const int GetLifepoints() const;
 
     const int ChangeLifepoints(const int lp);
+
+	const int GetMaxLifepoints() const { return _maxLifepoints; }
+
+	const int SetMaxLifepoints(const int lp) { _maxLifepoints = lp; return _maxLifepoints; }
 
     Weapon *GetWeapon();
 
@@ -82,6 +92,10 @@ public:
     void IdleState();
 
     bool CanShoot();
+
+	const std::string& GetSaveName() const { return _saveName; }
+
+	void SetSaveName(const std::string value) { _saveName = value; }
 };
 
 

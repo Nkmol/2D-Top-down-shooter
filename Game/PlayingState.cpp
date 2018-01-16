@@ -19,10 +19,6 @@ PlayingState::~PlayingState() = default;
 void PlayingState::HandleEvents(Game &game, Event& event) {
     auto &inputManager = InputManager::Instance();
 
-    if(inputManager.IsMousePressed(event)){
-        _level.HandleEvents(event);
-    }
-
 	if (inputManager.IsPauseResume(event)) {
 		auto state = std::make_unique<PausedState>();
 		game.ChangeState(std::move(state));
@@ -31,14 +27,24 @@ void PlayingState::HandleEvents(Game &game, Event& event) {
 	_level.HandleEvents(event);
 }
 
-void PlayingState::Update(Game &game, float time) {
-	if(_level.GetPlayer().GetState() == "dead")
+void PlayingState::Update(Game &game, float time) 
+{	
+	_level.Update(time);
+
+	if (_level.IsCompleted())
+	{
+		int highestLevel = _level.GetPlayer().GetHighestLevel();
+		AssetManager::Instance().SaveJson(_level.GetPlayer(), _level.GetPlayer().GetSaveName());
+		game.PopState();
+		game.GetStateBack(0)->SetHighestLevel(highestLevel);
+		return;
+	}
+
+	if (_level.GetPlayer().GetState() == "dead")
 	{
 		game.ChangeState(make_unique<StateGameOver>());
 		return;
 	}
-
-	_level.Update(time);
 }
 
 void PlayingState::Draw(Game &game) {

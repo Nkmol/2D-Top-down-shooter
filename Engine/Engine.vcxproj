@@ -93,6 +93,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings);4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2_mixer.lib;SDL2main.lib;SDL2test.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -173,6 +174,8 @@
     <ClInclude Include="tmx\include\TSXParser.h" />
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\MoveableObject.h" />
+    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="UIIcon.h" />
     <ClInclude Include="UIText.h" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +194,8 @@
     <ClCompile Include="TickerTime.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />
     <ClCompile Include="tmx\src\TSXParser.cpp" />
+    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UIIcon.cpp" />
     <ClCompile Include="UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
