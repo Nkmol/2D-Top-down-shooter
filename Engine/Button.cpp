@@ -5,7 +5,7 @@
 
 Button::Button(const std::string& mediatoken, const Point& startPosition, const Point& size) : GameObject(startPosition, size.x, size.y)
 {
-	GameObject::_sprite = AssetManager::Instance().LoadTexture(mediatoken).get();
+	GameObject::_sprite = AssetManager::Instance().LoadTexture(mediatoken).release();
 	GameObject::_spriteToken = mediatoken;
 }
 

@@ -31,11 +31,13 @@ void AnimationManager::Update(MoveableObject &object, double time) {
         auto it = textures.find(token);
 
         if (it != textures.end()) {
-            object.ChangeTexture(*it->second.get());
+            std::cout << textures.size() << std::endl;
             std::cout << "found" << std::endl;
+            object.ChangeTexture(*it->second);
         } else {
-            textures.insert(std::make_pair(token, AssetManager::Instance().LoadTexture(token)));
-            object.ChangeSprite(token);
+            auto texture = AssetManager::Instance().LoadTexture(token).release();
+            textures.insert(std::make_pair(token, texture));
+            object.ChangeTexture(*texture);
             std::cout << "not found" << std::endl;
         }
 
@@ -45,11 +47,16 @@ void AnimationManager::Update(MoveableObject &object, double time) {
 
 // Creates a token like: soldier/handgun/idle/0
 string AnimationManager::GenerateToken(MoveableObject &object, int sprite) const {
-    auto token = object.GetAnimationToken();                        // eg: soldier/handgun
+    auto token = object.GetAnimationToken();               // eg: soldier/handgun
     token.append("/");
-    token.append(object.GetState());                                // eg: soldier/handgun/idle
+    token.append(object.GetState());                       // eg: soldier/handgun/idle
     token.append("/");
     return token.append(to_string(sprite));                // eg: soldier/handgun/idle/0
 }
+
+AnimationManager::~AnimationManager() {
+
+}
+
 
 

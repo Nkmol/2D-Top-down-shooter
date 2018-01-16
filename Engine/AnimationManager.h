@@ -15,7 +15,7 @@ private:
 
     AnimationManager();
 
-    std::map<std::string, std::unique_ptr<Texture>> textures;
+    std::map<std::string, Texture *> textures{};
 
 public:
     // singleton
@@ -24,6 +24,8 @@ public:
     void Update(MoveableObject &object, double time);
 
     std::string GenerateToken(MoveableObject &object, int sprite) const;
+
+    ~AnimationManager();
 };
 
 

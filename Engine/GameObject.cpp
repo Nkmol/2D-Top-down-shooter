@@ -11,7 +11,7 @@ GameObject::GameObject(const Point coordinates, const int width, const int heigh
 }
 
 GameObject::GameObject(const std::string &_spriteToken, const Point coordinates) : _coordinates(coordinates) {
-    _sprite = AssetManager::Instance().LoadTexture(_spriteToken).get();
+    _sprite = AssetManager::Instance().LoadTexture(_spriteToken).release();
     // TODO Move to RenderManager
     SDL_QueryTexture(_sprite->GetTexture(), nullptr, nullptr, &this->width, &this->height);
     _visible = true;
@@ -26,7 +26,7 @@ GameObject::GameObject(const GameObject &other) : width(other.width), height(oth
                                                   midX(other.midX),
                                                   midY(other.midY),
                                                   _coordinates(other._coordinates), _visible(other._visible){
-    _sprite = AssetManager::Instance().LoadTexture(other._spriteToken).get();
+    _sprite = other._sprite;
     _spriteToken = other._spriteToken;
 }
 
