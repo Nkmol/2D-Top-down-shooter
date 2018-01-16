@@ -51,16 +51,16 @@ int AudioManager::LoadBGM(string audioToken)
 
 int AudioManager::PlayEffect(string audioToken)
 {
-	Mix_FreeChunk(_effectMusic);
-	//Mix_Chunk* effectM = Mix_LoadWAV(name);
-	_effectMusic = AssetManager::Instance().LoadEffect(audioToken);
-	Mix_VolumeChunk(_effectMusic, MIX_MAX_VOLUME/8);
-	if (_effectMusic == NULL)
-	{
-		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
-		return 1;
-	}
-	Mix_PlayChannel(-1, _effectMusic, 0);
+//	Mix_FreeChunk(_effectMusic);
+//	//Mix_Chunk* effectM = Mix_LoadWAV(name);
+//	_effectMusic = AssetManager::Instance().LoadEffect(audioToken);
+//	Mix_VolumeChunk(_effectMusic, MIX_MAX_VOLUME/8);
+//	if (_effectMusic == NULL)
+//	{
+//		cout << "Failed to load scratch sound effect! SDL_mixer Error: %s\n" << Mix_GetError() << endl;
+//		return 1;
+//	}
+//	Mix_PlayChannel(-1, _effectMusic, 0);
 	return 0;
 }
 

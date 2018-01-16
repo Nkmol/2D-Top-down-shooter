@@ -86,9 +86,9 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 void MenuState::NewGame()
 {
 	fs::path path{ fs::current_path().parent_path() };
-	path += "\\content\\saves";		
+	path += "/content/saves";
 	std::string str = path.string();
-	str += "\\SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));	
+	str += "/SavedGame-" + std::to_string(std::distance(fs::directory_iterator(path), fs::directory_iterator{}));
 	str += ".json";
 
 	std::ofstream newsave (str);
@@ -103,7 +103,7 @@ void MenuState::NewGame()
 void MenuState::LoadGame() {
 	fs::path path{ fs::current_path().parent_path() };
 
-	path += "\\content\\saves";
+	path += "/content/saves";
 	std::string str = path.string();
 
 	nfdchar_t *outPath = NULL;
