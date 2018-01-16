@@ -59,22 +59,6 @@ bool WaveController::Update(float time, int levelnumber)
 		SpawnWave();
 	}
 	return true;
-
-	/*_lastWaveTimer += time;
-
-	if (_lastWaveTimer >= _curWave->GetTime() * _multiplier) {
-		_lastWaveTimer = 0.0f;
-		_curWave++;
-		if (_curWave == _waves.end() & levelnumber != 3){
-			return false;
-		}
-		else if (_curWave == _waves.end() & levelnumber == 3){
-			_curWave = _waves.begin();
-			_multiplier = _multiplier * 1.2;
-		}
-		SpawnWave();
-	}
-	return true;*/
 }
 
 

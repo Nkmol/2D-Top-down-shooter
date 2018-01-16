@@ -27,6 +27,5 @@ private:
 
 	std::vector<unique_ptr<Button>> _buttons;
 	std::unique_ptr<Texture> _background;
-	std::vector<UIText> _texts;
 	std::unique_ptr<UIIcon> _miniBackground;
 };

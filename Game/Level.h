@@ -37,6 +37,9 @@ class Level {
     WaveController _waveController;
     std::forward_list<Wave> _waves;
 
+	std::unique_ptr<UIIcon> _miniBackground;
+
+
 	// Map of the UI based on index
 	std::map<int, std::string> _weaponUIMapping;
 

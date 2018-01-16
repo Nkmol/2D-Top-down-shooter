@@ -60,7 +60,6 @@ std::vector<Bullet> Player::Shoot() {
 	float radians = angle * M_PI / 180;
 	float newx = x * cos(radians) - y * sin(radians);
 	float newy = x * sin(radians) + y * cos(radians);
-
 	
 	//float(GetMidX()), float(GetMidY())
 	return GetWeapon()->GetBullet(angle, { GetMidX() + newx, GetMidY() + newy }, _isCheatActive);
@@ -130,11 +129,9 @@ void Player::OnBaseCollision(bool isCollidedOnWall) {
 
 void Player::Hit(int _damage) {
 	if (_isCheatActive) return;
-	
-	auto hittime = clock();
-	if (difftime((time_t)hittime, (time_t)_lastHit) >= _invTime)
+    if (_lastHit.GetTimePassed() >= _invTime)
 	{
-		_lastHit = hittime;
+		_lastHit = Timer();
 		_lifepoints -= _damage;
 		if (_lifepoints <= 0) {
 			_lifepoints = 0;

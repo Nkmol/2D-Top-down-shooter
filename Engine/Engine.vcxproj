@@ -168,6 +168,7 @@
     <ClInclude Include="CustomDeleter.h" />
     <ClInclude Include="SdlWrapper.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_iterators.hpp" />
     <ClInclude Include="tmx\include\rapidxml\rapidxml_print.hpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="TickerTime.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="tmx\src\TMXParser.cpp" />
     <ClCompile Include="tmx\src\TSXParser.cpp" />
     <ClCompile Include="UIElement.cpp" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "InstructionsState.h"
+#include "Hud.h"
 
 InstructionsState::InstructionsState()
 {
@@ -8,7 +9,17 @@ InstructionsState::InstructionsState()
 
 InstructionsState::~InstructionsState()
 {
-}
+	// ...
+	auto& hud = Hud::Instance();
+	hud.Get<UIText>("Titel")->Destroy();
+	hud.Get<UIText>("Moving")->Destroy();
+	hud.Get<UIText>("Aiming")->Destroy();
+	hud.Get<UIText>("Shooting")->Destroy();
+	hud.Get<UIText>("Pause")->Destroy();
+	hud.Get<UIText>("Cheats")->Destroy();
+	hud.Get<UIText>("Speed")->Destroy();
+	hud.Get<UIText>("Music")->Destroy();
+}					
 
 void InstructionsState::HandleEvents(Game& game, Event& ev)
 {
@@ -36,9 +47,6 @@ void InstructionsState::Draw(Game & game)
 
 	_miniBackground->Draw();
 
-	for (auto& t : _texts)
-		t.Draw();
-
 	// Draw all buttons
 	for (auto& button : _buttons)
 	{
@@ -56,11 +64,13 @@ void InstructionsState::Init(Game& game)
 	}));
 
 	_miniBackground = std::make_unique<UIIcon>(UIIcon("zwartkader", { config::width / 2 - 270, config::height / 3 - 180 }, 150));
-	_texts.push_back({ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } });
-	_texts.push_back({ "Moving: W, A, S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } });
-	_texts.push_back({ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } });
-	_texts.push_back({ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } });
-	_texts.push_back({ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } });
-	_texts.push_back({ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} });
-	_texts.push_back({ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} });
+	auto& hud = Hud::Instance();
+	hud.AddComponent("Titel", make_unique<UIText>(UIText{ "Controls: ", 25,{ config::width / 2 - 120, config::height / 3 - 100 } }));
+	hud.AddComponent("Moving", make_unique<UIText>(UIText{ "Moving: W, A, S & D ", 25,{ config::width / 2 - 120, config::height / 3 - 50 } }));
+	hud.AddComponent("Aiming", make_unique<UIText>(UIText{ "Aiming: Mouse move", 25,{ config::width / 2 - 120, config::height / 3 - 0 } }));
+	hud.AddComponent("Shooting", make_unique<UIText>(UIText{ "Shooting: LMB, Reload: R", 25,{ config::width / 2 - 120, config::height / 3 + 50 } }));
+	hud.AddComponent("Pause", make_unique<UIText>(UIText{ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } }));
+	hud.AddComponent("Cheats", make_unique<UIText>(UIText{ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} }));
+	hud.AddComponent("Speed", make_unique<UIText>(UIText{ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} }));
+	hud.AddComponent("Music", make_unique<UIText>(UIText{ "Toggle music: M", 25,{ config::width / 2 - 120, config::height / 3 + 250 } }));
 }

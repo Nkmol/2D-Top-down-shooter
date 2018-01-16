@@ -4,11 +4,16 @@
 #include "Game.h"
 #include "Config.h"
 #include "../Engine/UIText.h"
+#include "Hud.h"
 
 
-StateGameOver::StateGameOver() : _UITitle("Game over", 72), _UIContinue("Press any button to return to main menu...", 24, { config::width / 2 - 200, config::height - 100 - 20 })
+StateGameOver::StateGameOver()
 {
-	_UITitle.Center();
+	auto conti =  std::make_unique<UIText>(UIText("Press any button to return to main menu...", 24, { config::width / 2 - 200, config::height - 100 - 20 }));
+	Hud::Instance().AddComponent("ContinueGameover", std::move(conti));
+	auto title = std::make_unique<UIText>(UIText("Game over", 72));
+	title->Center();
+	Hud::Instance().AddComponent("TitelGameover", std::move(title));
 }
 
 
@@ -39,7 +44,4 @@ void StateGameOver::Draw(Game& game)
 {
 	// Draw previous state (the game)
 	game.GetStateBack(1)->Draw(game);
-
-	_UITitle.Draw();
-	_UIContinue.Draw();
 }
