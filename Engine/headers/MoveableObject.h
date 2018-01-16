@@ -37,8 +37,17 @@ protected:
 
     std::string state;
     int frames;
+public:
+    void SetFrames(int frames);
+
+protected:
     float currentAnimationTimer;
     float animationTimer = 0;
+public:
+    void SetAnimationTimer(float animationTimer);
+    bool hasAnimation = true;
+
+protected:
     int currentSprite = 0;
 
 public:

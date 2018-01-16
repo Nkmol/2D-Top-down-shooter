@@ -3,20 +3,22 @@
 
 void AIDefault::Update(float time)
 {
-	Align();
-	Cohese();
-	Seperate();
-	CohesePlayer();
-	
-	auto& coordinates = _owner->GetCoordinates();
-	auto& destinationPoint = _owner->GetDestinationPoint();
+	GoTarget();
+	if(doMove) {
+		Cohese();
+		Seperate();
+		CohesePlayer();
 
-	const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
-	const auto dir = Helper::RadiansToDegrees(rad);
-	const auto correctedAngleRadians = Helper::DegreesToRadians(dir - 90);
-	_owner->SetAngle(dir);
+		auto &coordinates = _owner->GetCoordinates();
+		auto &destinationPoint = _owner->GetDestinationPoint();
 
-	_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
+		const auto rad = atan2(coordinates.y - destinationPoint.y, coordinates.x - destinationPoint.x);
+		const auto dir = Helper::RadiansToDegrees(rad);
+		const auto correctedAngleRadians = Helper::DegreesToRadians(dir - 90);
+		_owner->SetAngle(dir);
+
+		_owner->SetDestination(Point(sin(correctedAngleRadians), -cos(correctedAngleRadians)));
+	}
 }
 
 void AIDefault::Align()
@@ -93,7 +95,7 @@ void AIDefault::CohesePlayer()
 
 void AIDefault::GoTarget()
 {
-	_owner->SetDestinationPoint(_target->GetCoordinates());
+	Align();
 }
 
 AIDefault::~AIDefault() = default;

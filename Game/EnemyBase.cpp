@@ -43,6 +43,7 @@ EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyB
 	_behaviour->SetOwner(*this);
 	npcs = { npcList };
 	_player = { player };
+    this->hasAnimation = false;
 }
 
 
@@ -72,11 +73,11 @@ void EnemyBase::UpdatePosition(const float time)
 
 void EnemyBase::Update(const float time) {
     const auto newPostition = _coordinates + (destination * speed * time);
-
-
-    PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
     PhysicsManager::Instance().CheckMoveableCollision(this, newPostition);
-    MoveableObject::Update(time);
+    if(_behaviour->doMove) {
+        PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPostition);
+        MoveableObject::Update(time);
+    }
 }
 
 const Point &EnemyBase::GetDestinationPoint() const {

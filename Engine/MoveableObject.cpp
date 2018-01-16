@@ -105,3 +105,11 @@ void MoveableObject::SetSpeed(float speed) {
 float MoveableObject::GetSpeed() const {
     return speed;
 }
+
+void MoveableObject::SetFrames(int frames) {
+    MoveableObject::frames = frames;
+}
+
+void MoveableObject::SetAnimationTimer(float animationTimer) {
+    MoveableObject::animationTimer = animationTimer;
+}

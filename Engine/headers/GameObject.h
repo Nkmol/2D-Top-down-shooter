@@ -63,5 +63,7 @@ protected:
 //	unique_ptr<Texture> _sprite;
 	Texture *_sprite;
     std::string _spriteToken;
+public:
+	void SetSpriteToken(const string &_spriteToken);
 };
 
