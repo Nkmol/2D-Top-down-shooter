@@ -103,7 +103,7 @@ void MenuState::NewGame()
 void MenuState::LoadGame() {
 	fs::path path{ fs::current_path().parent_path() };
 
-	path += "/content/saves";
+	path += "\\content\\saves";
 	std::string str = path.string();
 
 	nfdchar_t *outPath = NULL;
@@ -165,9 +165,9 @@ void MenuState::Init(Game &game) {
 	_quitButton = Button("button_quit", { (config::width / 2) - 150, 600 }, { 300, 50 });
 
 
-	_level1 = Button("button_level1", { 50, 200 }, { 300, 50 });
-	_level2 = Button("button_level2", { 50, 300 }, { 300, 50 });
-	_level3 = Button("button_level3", { 50, 400 }, { 300, 50 });
+	_level1 = Button("button_level1", { 900, 200 }, { 300, 50 });
+	_level2 = Button("button_level2", { 900, 300 }, { 300, 50 });
+	_level3 = Button("button_level3", { 900, 400 }, { 300, 50 });
 
 	_muteButton = Button("button_mute", { (config::width) - 100, (config::height) - 100 }, { 75, 75 });
 
