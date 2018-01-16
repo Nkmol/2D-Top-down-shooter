@@ -15,13 +15,19 @@ private:
 
     AnimationManager();
 
+    std::map<std::string, Texture *> textures{};
+
 public:
     // singleton
     static AnimationManager &Instance();
 
     void Update(MoveableObject &object, double time);
 
-    std::string GenerateToken(MoveableObject &object, const int sprite) const;
+    std::string GenerateToken(MoveableObject &object, int sprite) const;
+
+    Texture *GetTexture(string token);
+
+    ~AnimationManager();
 };
 
 

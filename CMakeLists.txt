@@ -83,6 +83,13 @@ set(SOURCE_FILES
         Game/headers/Weapon.h
         Game/headers/Bullet.h
         Game/headers/EnemyBase.h
+        Game/StateGameOver.cpp
+        Game/StateGameOver.h
+        Game/InstructionsState.cpp
+        Game/InstructionsState.h
+        Game/CreditsState.cpp
+        Game/CreditsState.h
+        Engine/UIElement.cpp
         Engine/UIElement.h
         Engine/UIElement.cpp
         Engine/Button.cpp

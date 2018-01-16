@@ -2,18 +2,17 @@
 #include "AssetManager.h"
 
 GameObject::GameObject(const Point coordinates, const int width, const int height) :
-	angle(0),
-	_coordinates(coordinates), width(width), height(height)
-{
-	_visible = true;
-	midX = _coordinates.x + width / 2;
-	midY = _coordinates.y + height / 2;
-	radius = (width + height) / 4;
+        angle(0),
+        _coordinates(coordinates), width(width), height(height) {
+    _visible = true;
+    midX = _coordinates.x + width / 2;
+    midY = _coordinates.y + height / 2;
+    radius = (width + height) / 4;
 }
 
 GameObject::GameObject(const std::string &_spriteToken, const Point coordinates) : _coordinates(coordinates) {
-    _sprite = AssetManager::Instance().LoadTexture(_spriteToken);
-	// TODO Move to RenderManager
+    _sprite = AssetManager::Instance().LoadTexture(_spriteToken).release();
+    // TODO Move to RenderManager
     SDL_QueryTexture(_sprite->GetTexture(), nullptr, nullptr, &this->width, &this->height);
     _visible = true;
     midX = _coordinates.x + width / 2;
@@ -22,31 +21,26 @@ GameObject::GameObject(const std::string &_spriteToken, const Point coordinates)
     this->_spriteToken = _spriteToken;
 }
 
-GameObject::GameObject(const GameObject& other) : width(other.width), height(other.height), angle(other.angle),
+GameObject::GameObject(const GameObject &other) : width(other.width), height(other.height), angle(other.angle),
                                                   radius(other.radius),
                                                   midX(other.midX),
                                                   midY(other.midY),
-                                                  _coordinates(other._coordinates), _visible(other._visible),
-												  // TODO Would be cool to copy this directly
-                                                  _sprite(AssetManager::Instance().LoadTexture(other._spriteToken)),
-                                                  _spriteToken{other._spriteToken}
-
-{
+                                                  _coordinates(other._coordinates), _visible(other._visible){
+    _sprite = other._sprite;
+    _spriteToken = other._spriteToken;
 }
 
-GameObject& GameObject::operator=(GameObject that)
-{
-	Swap(*this, that);
-	return *this;
+GameObject &GameObject::operator=(GameObject that) {
+    Swap(*this, that);
+    return *this;
 }
 
 GameObject::GameObject() {
 
 }
 
-void GameObject::SetIsCollidable(bool isCollidable)
-{
-	_isCollidable = isCollidable;
+void GameObject::SetIsCollidable(bool isCollidable) {
+    _isCollidable = isCollidable;
 }
 
 const int GameObject::GetMidX() const {
