@@ -78,7 +78,7 @@ std::unique_ptr<Texture> AssetManager::LoadTexture(const std::string& str)
 	{
 		std::cout << "Failed to load texture " << str << ". Error: " << SDL_GetError() << std::endl;
 	}
-	return std::make_unique<Texture>(texture);//memleak
+	return std::move(std::make_unique<Texture>(texture));//memleak
 }
 
 void AssetManager::SaveJson(const nlohmann::json& json, const std::string savedGame) const
