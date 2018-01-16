@@ -104,26 +104,23 @@ const std::vector<std::unique_ptr<Weapon>>& Player::GetWeapons() const {
 
 void to_json(nlohmann::json &j, const Player &value) {
     j = nlohmann::json{
-            {"lifepoints",    value.GetLifepoints()},
-            {"highestLevel",  value.GetHighestLevel()},
-            //{"weapons",       value.GetWeapons()},
-            {"currentWeapon", value.GetCurrentWeaponIndex()}
+            {"highestLevel",  value.GetHighestLevel()}
     };
 }
 
 void from_json(const nlohmann::json &j, Player &value) {
-    value.SetMaxLifepoints(j.at("lifepoints").get<int>());
+    //value.SetMaxLifepoints(j.at("lifepoints").get<int>());
     //value.ChangeWeapon(j.at("currentWeapon").get<int>());
     value.SetHighestLevel(j.at("highestLevel").get<int>());
 
     // TODO resolve with wep id -> refactored when weapons are saved in JSON
-    //auto weps = value.GetWeapons();
-    //auto jsonWeapons = j.at("weapons");
-    //for (auto i = 0; i < jsonWeapons.size(); i++) {
-    //    from_json(jsonWeapons[i], weps[i]);
-    //}
+    /*auto weps = value.GetWeapons();
+    auto jsonWeapons = j.at("weapons");
+    for (auto i = 0; i < jsonWeapons.size(); i++) {
+        from_json(jsonWeapons[i], weps[i]);
+    }
 
-    //value.SetWeapons(weps);
+    value.SetWeapons(weps);*/
 }
 
 void Player::OnBaseCollision(bool isCollidedOnWall) {
