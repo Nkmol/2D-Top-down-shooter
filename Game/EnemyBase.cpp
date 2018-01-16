@@ -6,6 +6,10 @@
 #include "AIDefault.h"
 #include "FactoryBehaviour.h"
 #include "Bullet.h"
+#include "powerups/PowerupHP.h"
+#include "powerups/DropableFactory.h"
+#include "Level.h"
+#include "powerups/PowerupFastShot.h"
 #include "AudioManager.h"
 
 EnemyBase::EnemyBase(const std::string &filePath, const float xPos, const float yPos, const float speed,
@@ -136,6 +140,7 @@ void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
 	AudioManager::Instance().PlayEffect("hitmarker");
     if (lifepoints < 0) {
+        dropDropable();
 		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
     }
@@ -152,6 +157,20 @@ void EnemyBase::onCollision(EnemyBase *enemy) {
 void EnemyBase::onCollision(Player *player) {
     player->Hit(_damage);
     MoveableObject::StopMove();
+}
+
+void EnemyBase::dropDropable() {
+    int dropchance = DropableFactory::Instance().dropChance;
+    int rollNumber = rand() % 10 + 0;
+    if(rollNumber <= dropchance){
+        if(rollNumber == 1){
+            PowerupHP powerup = PowerupHP(_coordinates);
+            Level::_loot.emplace_back(make_unique<PowerupHP>(powerup));
+        }else{
+            PowerupFastShot powerup = PowerupFastShot(_coordinates);
+            Level::_loot.emplace_back(make_unique<PowerupFastShot>(powerup));
+        }
+    }
 }
 
 void EnemyBase::OnBaseCollision(bool isWall) {

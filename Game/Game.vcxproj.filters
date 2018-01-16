@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\DroppableObjects">
+      <UniqueIdentifier>{72207ccd-6b7f-4b6b-97a7-492b3ad7fa8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DroppableObjects">
+      <UniqueIdentifier>{4447b91c-a7ad-4928-8d98-b109c9260dbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,6 +92,24 @@
     </ClCompile>
     <ClCompile Include="Hud.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\DropableFactory.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\DropableObject.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\PowerupFastShot.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\PowerupHP.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\PowerupMode.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="powerups\PowerupModeFastShot.cpp">
+      <Filter>Source Files\DroppableObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +193,24 @@
     </ClInclude>
     <ClInclude Include="Hud.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\DropableFactory.h">
+      <Filter>Header Files\DroppableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\DropableObject.h">
+      <Filter>Header Files\DroppableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\PowerupFastShot.h">
+      <Filter>Header Files\DroppableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\PowerupHP.h">
+      <Filter>Header Files\DroppableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\PowerupMode.h">
+      <Filter>Header Files\DroppableObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="powerups\PowerupModeFastShot.h">
+      <Filter>Header Files\DroppableObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

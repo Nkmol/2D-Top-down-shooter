@@ -16,13 +16,14 @@
 #include "Hud.h"
 #include "AudioManager.h"
 
+std::vector<unique_ptr<DropableObject>> Level::_loot;
 Level::Level(const int level, const ::std::string savedGame) :
         _level(level),
         _savedGame(savedGame),
         _levelSpeed(1)
 {
     Init();
-    Level::_explosion = {};		
+    Level::_explosion = {};
 }
 
 Level::~Level() = default;
@@ -36,7 +37,7 @@ void Level::Init() {
     LoadPlayer();
 
     _waveController.Init(_waves, _player, &_npcs);
-
+    Level::_loot.clear();
     PhysicsManager::Instance().SetStaticObjects();
     PhysicsManager::Instance().SetMoveableObjects(&_objsNoEnemies);
 	//AudioManager::Instance().PlayEffect("level3");
@@ -244,6 +245,10 @@ void Level::Update(float time) {
         AnimationManager::Instance().Update(explosion, accSpeed);
     }
 
+    for (std::unique_ptr<DropableObject> &loot : _loot) {
+        loot->CheckForCollision(*_player);
+    }
+
     RemoveHiddenObjects(_objsNoEnemies);
     RemoveHiddenNpcs();
     RemoveHiddenExplosionObjects(_explosion);
@@ -297,6 +302,10 @@ void Level::Draw() {
     for (auto &explosion : _explosion) {
         explosion.Draw();
     }
+
+    for (auto& loot : Level::_loot) {
+        loot->Draw();
+    }
 }
 
 void Level::ChangeWeapon(const int num)
@@ -311,7 +320,6 @@ void Level::ChangeWeapon(const int num)
 			hud.Get<UIIcon>(_weaponUIMapping.at(i))->SetOpacity(120);
 	}
 }
-
 void from_json(const nlohmann::json &j, Level &value) {
     value.SetId(j.at("id").get<int>());
     value.SetMap(j.at("map").get<std::string>());
