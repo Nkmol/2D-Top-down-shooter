@@ -248,6 +248,9 @@ void Level::Update(float time) {
 
     for (auto &npc : _npcs) {
         npc->UpdatePosition(accSpeed);
+        if(npc->hasAnimation) {
+            AnimationManager::Instance().Update(*npc, accSpeed);
+        }
         if (!npc->IsVisible()) {
             this->AddExplosion(npc->GetCoordinates());
         }

@@ -147,6 +147,19 @@
 					"type": 1
 				}
 			]
+		},
+		{
+			"id": 7,
+			"time": 20,
+			"multiplier": 1,
+			"flocks": [
+				{
+					"amount": 2,
+					"minPos": 200,
+					"maxPos": 600,
+					"type": 2
+				}
+			]
 		}
 	]
 }

@@ -107,3 +107,7 @@ string GameObject::GetSpriteToken() const {
     return this->_spriteToken;
 }
 
+void GameObject::SetSpriteToken(const string &_spriteToken) {
+    GameObject::_spriteToken = _spriteToken;
+}
+

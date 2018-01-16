@@ -16,5 +16,14 @@
         "reward": 5,
         "weightmultiplier": 10,
         "behaviour": "bat"
+    },
+    {
+        "type": "spider",
+        "speed": 150,
+        "damage": 25,
+        "lifepoints": 1000,
+        "reward": 50,
+        "weightmultiplier": 1000,
+        "behaviour": "spider"
     }
 ]

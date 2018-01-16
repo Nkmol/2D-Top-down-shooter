@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include "AIBat.h"
+#include "AISpider.h"
 
 class IAIBase;
 
@@ -19,6 +20,7 @@ class FactoryBehaviour
 	{
 		_processors["default"] = Creator<AIDefault>;
 		_processors["bat"] = Creator<AIBat>;
+		_processors["spider"] = Creator<AISpider>;
 	}
 public:
 	FactoryBehaviour(FactoryBehaviour const&) = delete;
