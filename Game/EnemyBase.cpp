@@ -24,7 +24,7 @@ EnemyBase::EnemyBase(const std::string &filePath, const Point &coordinates, cons
         _behaviour(make_unique<AIDefault>(*this, 100* multiplier, isLeader)),
         lifepoints(lifepoints*multiplier),
         _damage(_damage*multiplier),
-        reward(reward*multiplier),
+        _reward(reward*multiplier),
         destinationPoint{coordinates} {
     type = ENEMY;
 }
@@ -50,7 +50,7 @@ EnemyBase::EnemyBase(const nlohmann::json &j, std::vector<std::unique_ptr<EnemyB
 EnemyBase::EnemyBase(const EnemyBase &other) : MoveableObject(other),
                                                _behaviour(other._behaviour->Clone()),
                                                lifepoints(other.lifepoints),
-                                               _damage(other._damage), reward(other.reward),
+                                               _damage(other._damage), _reward(other._reward),
                                                destinationPoint(other._coordinates) {
     _behaviour->SetOwner(*this);
     type = ENEMY;
@@ -110,7 +110,7 @@ const int EnemyBase::GetDamage() const {
 }
 
 const int EnemyBase::GetReward() const {
-    return reward;
+    return _reward;
 }
 
 void EnemyBase::OnBaseCollision(MoveableObject *object) {
@@ -143,6 +143,8 @@ void EnemyBase::onCollision(Bullet *bullet) {
         DropDropable();
 		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
+
+		_player->AddPoints(_reward);
     }
 
     bullet->OnBaseCollision(true);

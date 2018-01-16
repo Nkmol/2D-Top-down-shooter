@@ -31,6 +31,7 @@ public:
 
 	Mix_Music* LoadBGM(const string soundToken);
 	Mix_Chunk* LoadEffect(const string effectToken);
+	nlohmann::json LoadJson(const std::string& path) const;
 
 	typedef std::unique_ptr<SDL_Surface, CustomDeleter> Surface;
 	SDL_Surface* LoadSurface(const string mediaToken);

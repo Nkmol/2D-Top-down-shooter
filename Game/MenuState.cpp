@@ -7,9 +7,9 @@
 #include "nfd.h"
 #include <json.hpp>
 #include <regex>
+#include "HighscoreState.h"
 #include <iostream>
 #include <fstream>
-
 
 namespace fs = std::experimental::filesystem;
 
@@ -52,6 +52,12 @@ void MenuState::HandleEvents(Game &game, Event& ev) {
 
 	if (_instructions.IsClicked(ev)) {
 		auto state = std::make_unique<InstructionsState>();
+		game.ChangeState(std::move(state));
+		return;
+	}
+
+	if (_highscores.IsClicked(ev)) {
+		auto state = std::make_unique<HighscoreState>();
 		game.ChangeState(std::move(state));
 		return;
 	}
@@ -162,7 +168,8 @@ void MenuState::Init(Game &game) {
 	_loadgameButton = Button("button_load", { (config::width / 2) - 150, 300 }, { 300, 50 });
 	_creditsButton = Button("button_credits", { (config::width / 2) - 150, 400 }, { 300, 50 });
 	_instructions = Button("button_instructions", { (config::width / 2) - 150, 500 }, { 300, 50 });
-	_quitButton = Button("button_quit", { (config::width / 2) - 150, 600 }, { 300, 50 });
+	_highscores = Button("button_highscores", { (config::width / 2) - 150, 600 }, { 300, 50 });
+	_quitButton = Button("button_quit", { (config::width / 2) - 150, 700 }, { 300, 50 });
 
 
 	_level1 = Button("button_level1", { 900, 200 }, { 300, 50 });
@@ -181,7 +188,7 @@ void MenuState::Init(Game &game) {
 	_adnr = rand() % _advertisementsLinks.size();
 	SetRandomAd();
 
-	_allButtons = { _newgameButton, _loadgameButton, _creditsButton, _muteButton, _quitButton, _instructions, _advertisement };
+	_allButtons = { _newgameButton, _loadgameButton, _creditsButton, _muteButton, _quitButton, _instructions, _advertisement, _highscores };
 
     int muted = 0;
 }

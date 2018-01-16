@@ -123,6 +123,9 @@
     <ClCompile Include="AISpider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HighscoreState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Player.h">
@@ -228,6 +231,9 @@
       <Filter>Header Files\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="AISpider.h">
+    <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

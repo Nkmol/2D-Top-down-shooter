@@ -29,6 +29,7 @@ class Player : public MoveableObject {
 	std::string _saveName;
     bool isCheatActive;
 
+	int _points = 0;
 public:
 	std::vector<std::unique_ptr<PowerupMode>> powerupmodes;
 
@@ -96,6 +97,9 @@ public:
 	const std::string& GetSaveName() const { return _saveName; }
 
 	void SetSaveName(const std::string value) { _saveName = value; }
+
+	int GetPoints() const;
+	void AddPoints(int value);
 };
 
 
