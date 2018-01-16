@@ -14,7 +14,7 @@ WaveController::WaveController()
 
 WaveController::~WaveController()
 {
-	//Hud::Instance().RemoveComponent(_waveCounter.get());
+	Hud::Instance().Get<UIText>("Counter")->Destroy();
 }
 
 void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
