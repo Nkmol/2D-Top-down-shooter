@@ -60,7 +60,8 @@ protected:
 	Point _coordinates;
 	bool _visible;
 	bool _isCollidable = false;
-	unique_ptr<Texture> _sprite;
+//	unique_ptr<Texture> _sprite;
+	Texture *_sprite;
     std::string _spriteToken;
 };
 

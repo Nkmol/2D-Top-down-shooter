@@ -91,6 +91,8 @@ public:
 
     void SetSpeed(float speed);
 
+    void ChangeTexture(Texture &texture);
+
 };
 
 
