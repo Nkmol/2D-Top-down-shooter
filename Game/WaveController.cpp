@@ -14,7 +14,7 @@ WaveController::WaveController()
 
 WaveController::~WaveController()
 {
-	Hud::Instance().RemoveComponent(_waveCounter.get());
+	//Hud::Instance().RemoveComponent(_waveCounter.get());
 }
 
 void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player> player, std::vector<std::unique_ptr<EnemyBase>>* npcs)
@@ -23,8 +23,7 @@ void WaveController::Init(std::forward_list<Wave> waves, std::shared_ptr<Player>
 	_npcs = npcs;
 	_player = player;
 
-	_waveCounter = std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 }));
-	Hud::Instance().AddComponent(_waveCounter.get());
+	Hud::Instance().AddComponent("Counter", std::make_unique<UIText>(UIText("", 20, { config::width / 2 - 50, 5 })));
 
 	std::ifstream i;
 	i.exceptions(ifstream::failbit | ifstream::badbit);
@@ -83,8 +82,8 @@ void WaveController::SpawnWave()
 {
 	std::cout << "new wave: " << _curWave->GetId() << endl;
 	std::string waveText = "Wave " + std::to_string(_waveNumber) + " incoming!";
-	Hud::Instance().AddComponent(new UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f));
-	_waveCounter->ChangeText("Wave: " + std::to_string(_waveNumber));
+	Hud::Instance().AddComponent("Incoming", make_unique<UIText>(UIText(waveText, 40, Point(config::width / 2 - 180, 100), 2.0f)));
+	Hud::Instance().Get<UIText>("Counter")->ChangeText("Wave: " + std::to_string(_waveNumber));
 
 	Point screenCenter;
 	screenCenter.x = config::width / 2;
