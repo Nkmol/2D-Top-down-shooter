@@ -44,7 +44,7 @@ public:
 
     void Move(const Point direction);
 
-	void updatePowerups(float time);
+	void UpdatePowerups(float time);
 
     void Update(float time) override;
 

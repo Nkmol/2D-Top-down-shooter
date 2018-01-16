@@ -70,7 +70,7 @@ void Player::Move(const Point direction) {
 
 void Player::Update(float time) {
     GetWeapon()->UpdateFireRate(time);
-    updatePowerups(time);
+    UpdatePowerups(time);
     const auto newPosition = _coordinates + (destination * speed * time);
     PhysicsManager::Instance().CheckWallCollision(this, newPosition);
     PhysicsManager::Instance().CheckNewStaticObjectCollision(this, newPosition);
@@ -206,14 +206,14 @@ string Player::GetAnimationToken() {
     return this->_spriteToken + "/" + this->GetWeapon()->GetType();
 }
 
-void Player::updatePowerups(float time) {
+void Player::UpdatePowerups(float time) {
     int i = 0;
     std::vector<int> ids;
     for( std::unique_ptr<PowerupMode> &powerup : powerupmodes){
-        if(powerup->getCounter() >= powerup->getMaxTime()){
+        if(powerup->GetCounter() >= powerup->GetMaxTime()){
             ids.emplace_back(i);
         }else{
-            powerup->update(time, *this);
+            powerup->Update(time, *this);
         }
         i++;
     }

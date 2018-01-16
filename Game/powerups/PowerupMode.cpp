@@ -4,15 +4,15 @@
 
 #include "PowerupMode.h"
 
-void PowerupMode::update(float time, Player &player) {
+void PowerupMode::Update(float time, Player &player) {
     counter += time;
     if(counter < maxTime){
         if(!didPowerUp) {
             didPowerUp = true;
-            powerupPlayer(player);
+            PowerupPlayer(player);
         }
     }else{
-        removePowerup(player);
+        RemovePowerup(player);
     }
 }
 
@@ -20,18 +20,18 @@ PowerupMode::PowerupMode(float maxTime) : maxTime(maxTime) {
 
 }
 
-float PowerupMode::getCounter() const {
+float PowerupMode::GetCounter() const {
     return counter;
 }
 
-float PowerupMode::getMaxTime() const {
+float PowerupMode::GetMaxTime() const {
     return maxTime;
 }
 
-void PowerupMode::powerupPlayer(Player &player) {
+void PowerupMode::PowerupPlayer(Player &player) {
 
 }
 
-void PowerupMode::removePowerup(Player &player) {
+void PowerupMode::RemovePowerup(Player &player) {
 
 }

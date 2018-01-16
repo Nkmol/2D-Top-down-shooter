@@ -10,8 +10,8 @@
 class PowerupModeFastShot : public PowerupMode {
 public:
     PowerupModeFastShot(float maxTime = 10);
-    void powerupPlayer(Player &player);
-    void removePowerup(Player &player);
+    void PowerupPlayer(Player &player);
+    void RemovePowerup(Player &player);
 };
 
 

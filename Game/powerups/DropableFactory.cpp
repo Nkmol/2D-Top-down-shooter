@@ -8,16 +8,16 @@
 
 DropableFactory::DropableFactory() {
     const Point p = {0,0};
-    dropables.emplace_back(PowerupHP(p));
-    dropables.emplace_back(PowerupFastShot(p));
+    _dropables.emplace_back(PowerupHP(p));
+    _dropables.emplace_back(PowerupFastShot(p));
 }
 
-DropableObject DropableFactory::getDropable(int i) {
-    DropableObject dropableObject = dropables.at(i);
+DropableObject DropableFactory::GetDropable(int i) {
+    DropableObject dropableObject = _dropables.at(i);
     return dropableObject;
 }
 
 DropableFactory &DropableFactory::Instance() {
-    static DropableFactory sInstance;
-    return sInstance;
+    static DropableFactory _instance;
+    return _instance;
 }

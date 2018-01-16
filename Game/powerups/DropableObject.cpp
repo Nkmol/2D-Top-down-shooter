@@ -12,7 +12,7 @@ void DropableObject::ActivateDropable(Player &player) {
     this->Hide();
 }
 
-void DropableObject::checkForCollision(Player &player) {
+void DropableObject::CheckForCollision(Player &player) {
     if(this->IsVisible()){
         Point pCoordinates = player.GetCoordinates();
         Point pOrigin = {(pCoordinates.x + (player.GetWidth()/2)), (pCoordinates.y + (player.GetHeight()/2))};

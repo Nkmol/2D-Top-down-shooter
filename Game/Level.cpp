@@ -243,7 +243,7 @@ void Level::Update(float time) {
     }
 
     for (std::unique_ptr<DropableObject> &loot : _loot) {
-        loot->checkForCollision(*_player);
+        loot->CheckForCollision(*_player);
     }
 
     RemoveHiddenObjects(_objsNoEnemies);
@@ -316,7 +316,6 @@ void Level::ChangeWeapon(const int num)
 			_weaponSlots.at(i)->SetOpacity(120);
 	}
 }
-
 void from_json(const nlohmann::json &j, Level &value) {
     value.SetId(j.at("id").get<int>());
     value.SetMap(j.at("map").get<std::string>());
