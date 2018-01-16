@@ -28,6 +28,10 @@ private:
 protected:
 
     float speed, distance;
+public:
+    float GetSpeed() const;
+
+protected:
     Point destination;
     classType type;
 
@@ -84,6 +88,9 @@ public:
     void DecreaseAnimationTimer(double by);
 
     void ResetAnimationTimer();
+
+    void SetSpeed(float speed);
+
 };
 
 

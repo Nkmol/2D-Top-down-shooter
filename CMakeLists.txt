@@ -65,6 +65,18 @@ set(SOURCE_FILES
         Game/main.cpp
         Game/FactoryBehaviour.h
         Game/Game.cpp
+        Game/powerups/DropableObject.cpp
+        Game/powerups/PowerupModeFastShot.cpp
+        Game/powerups/PowerupMode.h
+        Game/powerups/PowerupMode.cpp
+        Game/powerups/DropableObject.h
+        Game/powerups/PowerupFastShot.h
+        Game/powerups/DropableFactory.cpp
+        Game/powerups/PowerupModeFastShot.h
+        Game/powerups/DropableFactory.h
+        Game/powerups/PowerupFastShot.cpp
+        Game/powerups/PowerupHP.cpp
+        Game/powerups/PowerupHP.h
         Game/headers/Helper.h
         Game/headers/Rifle.h
         Game/headers/Player.h

@@ -160,6 +160,12 @@
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayingState.cpp" />
+    <ClCompile Include="powerups\DropableFactory.cpp" />
+    <ClCompile Include="powerups\DropableObject.cpp" />
+    <ClCompile Include="powerups\PowerupFastShot.cpp" />
+    <ClCompile Include="powerups\PowerupHP.cpp" />
+    <ClCompile Include="powerups\PowerupMode.cpp" />
+    <ClCompile Include="powerups\PowerupModeFastShot.cpp" />
     <ClCompile Include="Shotgun.cpp" />
     <ClCompile Include="Rifle.cpp" />
     <ClCompile Include="StateGameOver.cpp" />
@@ -190,6 +196,12 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
     <ClInclude Include="PlayingState.h" />
+    <ClInclude Include="powerups\DropableFactory.h" />
+    <ClInclude Include="powerups\DropableObject.h" />
+    <ClInclude Include="powerups\PowerupFastShot.h" />
+    <ClInclude Include="powerups\PowerupHP.h" />
+    <ClInclude Include="powerups\PowerupMode.h" />
+    <ClInclude Include="powerups\PowerupModeFastShot.h" />
     <ClInclude Include="Shotgun.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateGameOver.h" />

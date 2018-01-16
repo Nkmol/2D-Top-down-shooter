@@ -31,4 +31,5 @@ public:
 
 	void Update(float time);
 	const bool Destroyable() const { return _livingtime > _lifetime; }
+	void Destroy() { _livingtime = INT_MAX; }
 };
