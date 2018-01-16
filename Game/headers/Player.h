@@ -12,8 +12,8 @@
 #include <Weapon.h>
 #include "PhysicsManager.h"
 #include "../powerups/PowerupMode.h"
-#include <time.h>
-
+#include "../../Engine/Timer.h"
+#include <ctime>
 class Point;
 
 class Player : public MoveableObject {
@@ -24,7 +24,7 @@ class Player : public MoveableObject {
 	int _maxLifepoints;
     int _highestLevel = 1;
 	bool _isCheatActive;
-	clock_t _lastHit = clock();
+	Timer _lastHit = Timer();
 	double _invTime = 500;
 	std::string _saveName;
     bool isCheatActive;
