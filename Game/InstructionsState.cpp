@@ -18,6 +18,7 @@ InstructionsState::~InstructionsState()
 	hud.Get<UIText>("Pause")->Destroy();
 	hud.Get<UIText>("Cheats")->Destroy();
 	hud.Get<UIText>("Speed")->Destroy();
+	hud.Get<UIText>("Music")->Destroy();
 }					
 
 void InstructionsState::HandleEvents(Game& game, Event& ev)
@@ -71,5 +72,5 @@ void InstructionsState::Init(Game& game)
 	hud.AddComponent("Pause", make_unique<UIText>(UIText{ "Pause: Esc Button", 25,{ config::width / 2 - 120, config::height / 3 + 100 } }));
 	hud.AddComponent("Cheats", make_unique<UIText>(UIText{ "Cheats: K & N", 25, {config::width / 2 - 120, config::height / 3 + 150} }));
 	hud.AddComponent("Speed", make_unique<UIText>(UIText{ "Change level speed: [ & ]", 25, {config::width / 2 - 120, config::height / 3 + 200} }));
-
+	hud.AddComponent("Music", make_unique<UIText>(UIText{ "Toggle music: M", 25,{ config::width / 2 - 120, config::height / 3 + 250 } }));
 }
