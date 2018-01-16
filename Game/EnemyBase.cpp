@@ -134,25 +134,21 @@ void EnemyBase::OnBaseCollision(GameObject *object) {
 }
 
 void EnemyBase::onCollision(MoveableObject *object) {
-    MoveableObject::StopMove();
+
 }
 
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
-	AudioManager::Instance().PlayEffect("hitmarker");
     if (lifepoints < 0) {
-        dropDropable();
+        DropDropable();
 		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
     }
 
     bullet->OnBaseCollision(true);
-
-    MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(EnemyBase *enemy) {
-    //MoveableObject::StopMove();
 }
 
 void EnemyBase::onCollision(Player *player) {
@@ -160,9 +156,9 @@ void EnemyBase::onCollision(Player *player) {
     MoveableObject::StopMove();
 }
 
-void EnemyBase::dropDropable() {
-    int dropchance = DropableFactory::Instance().dropChance;
-    int rollNumber = rand() % 10 + 0;
+void EnemyBase::DropDropable() {
+    int dropchance = DropableFactory::Instance()._dropChance;
+    int rollNumber = rand() % 40;
     if(rollNumber <= dropchance){
         if(rollNumber == 1){
             PowerupHP powerup = PowerupHP(_coordinates);
@@ -175,5 +171,5 @@ void EnemyBase::dropDropable() {
 }
 
 void EnemyBase::OnBaseCollision(bool isWall) {
-    //MoveableObject::StopMove();
+
 }
