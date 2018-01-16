@@ -134,7 +134,6 @@ void EnemyBase::onCollision(MoveableObject *object) {
 
 void EnemyBase::onCollision(Bullet *bullet) {
     lifepoints -= bullet->GetDamage();
-	AudioManager::Instance().PlayEffect("hitmarker");
     if (lifepoints < 0) {
 		AudioManager::Instance().PlayEffect("enemydie");
         Hide();
