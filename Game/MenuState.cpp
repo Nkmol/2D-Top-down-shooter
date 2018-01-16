@@ -12,7 +12,7 @@ namespace fs = std::experimental::filesystem;
 
 MenuState::MenuState() {
     AudioManager::Instance().InitMusicPlayer();
-    //AudioManager::Instance().LoadBGM("mainmenu");
+    AudioManager::Instance().LoadBGM("mainmenu");
 }
 
 MenuState::~MenuState() {
